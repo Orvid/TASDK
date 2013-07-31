@@ -660,9 +660,14 @@ struct ClassDescription
 			wtr->WriteLine("{");
 			wtr->Indent++;
 		}
-		
+
+		// BEWARE: This code will run in an infinite loop if
+		// there is a circular reference.
 		if (nestedStructs.size() > 0)
 		{
+			std::unordered_map<const char*, int> definedStructsTable;
+			std::vector<ClassDescription*> definedStructs;
+			std::deque<ClassDescription*> delayedStructs;
 			bool inCoreObject = !strcmp(originalClass->GetName(), "Object");
 			for (unsigned int i = 0; i < nestedStructs.size(); i++)
 			{
@@ -677,11 +682,57 @@ struct ClassDescription
 					)
 					{
 						wtr->WriteLine("// struct %s is manually defined", ns->originalClass->GetName());
+						definedStructsTable[ns->originalClass->GetName()] = 1;
 						continue;
 					}
 				}
-				ns->Write(wtr);
+				for each (auto rc in ns->dependencyManager.requiredChildren)
+				{
+					if (!strcmp(rc->outer()->GetName(), originalClass->GetName()))
+					{
+						if (definedStructsTable.count(rc->GetName()) == 0)
+						{
+							add = false;
+							delayedStructs.push_back(ns);
+							break;
+						}
+					}
+				}
+
+				if (add)
+				{
+					definedStructs.push_back(ns);
+					definedStructsTable[ns->originalClass->GetName()] = 1;
+				}
 			}
+
+			while (delayedStructs.size() > 0)
+			{
+				auto ns = delayedStructs.front();
+				delayedStructs.pop_front();
+				bool add = true;
+				for each (auto rc in ns->dependencyManager.requiredChildren)
+				{
+					if (strcmp(rc->object_class()->GetName(), "Enum") && !strcmp(rc->outer()->GetName(), originalClass->GetName()))
+					{
+						if (definedStructsTable.count(rc->GetName()) == 0)
+						{
+							add = false;
+							delayedStructs.push_back(ns);
+							break;
+						}
+					}
+				}
+
+				if (add)
+				{
+					definedStructs.push_back(ns);
+					definedStructsTable[ns->originalClass->GetName()] = 1;
+				}
+			}
+
+			for (unsigned int i = 0; i < definedStructs.size(); i++)
+				definedStructs[i]->Write(wtr);
 		}
 
 		if (isClassDefinition)
