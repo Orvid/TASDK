@@ -596,10 +596,10 @@ struct ClassDescription
 		else
 			wtr->Write("struct");
 
-		wtr->Write(" %s;", GetTypeNameForProperty(originalClass).c_str());
+		wtr->WriteLine(" %s;", GetTypeNameForProperty(originalClass).c_str());
 			
 		for (unsigned int i = 0; i < nestedEnums.size(); i++)
-			nestedEnums[i].WriteDeclaration(wtr);
+			nestedEnums[i].WriteToStream(wtr);
 		for (unsigned int i = 0; i < nestedStructs.size(); i++)
 			nestedStructs[i].WriteDeclaration(wtr);
 		
@@ -660,6 +660,29 @@ struct ClassDescription
 			wtr->WriteLine("{");
 			wtr->Indent++;
 		}
+		
+		if (nestedStructs.size() > 0)
+		{
+			bool inCoreObject = !strcmp(originalClass->GetName(), "Object");
+			for (unsigned int i = 0; i < nestedStructs.size(); i++)
+			{
+				auto ns = &nestedStructs[i];
+				bool add = true;
+				if (inCoreObject)
+				{
+					if (
+						   !strcmp(ns->originalClass->GetName(), "QWord")
+						|| !strcmp(ns->originalClass->GetName(), "Rotator")
+						|| !strcmp(ns->originalClass->GetName(), "Vector")
+					)
+					{
+						wtr->WriteLine("// struct %s is manually defined", ns->originalClass->GetName());
+						continue;
+					}
+				}
+				ns->Write(wtr);
+			}
+		}
 
 		if (isClassDefinition)
 			wtr->Write("class");
@@ -689,30 +712,6 @@ struct ClassDescription
 
 		for (unsigned int i = 0; i < nestedConstants.size(); i++)
 			nestedConstants[i].WriteImplementation(wtr);
-		for (unsigned int i = 0; i < nestedEnums.size(); i++)
-			nestedEnums[i].WriteToStream(wtr);
-		if (nestedStructs.size() > 0)
-		{
-			bool inCoreObject = !strcmp(originalClass->GetName(), "Object");
-			for (unsigned int i = 0; i < nestedStructs.size(); i++)
-			{
-				auto ns = &nestedStructs[i];
-				bool add = true;
-				if (inCoreObject)
-				{
-					if (
-						   !strcmp(ns->originalClass->GetName(), "QWord")
-						|| !strcmp(ns->originalClass->GetName(), "Rotator")
-						|| !strcmp(ns->originalClass->GetName(), "Vector")
-					)
-					{
-						wtr->WriteLine("// struct %s is manually defined", ns->originalClass->GetName());
-						continue;
-					}
-				}
-				ns->Write(wtr);
-			}
-		}
 		
 		if (isClassDefinition)
 		{
