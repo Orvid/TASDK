@@ -53,7 +53,7 @@ std::string GetTypeNameForProperty(ScriptObject* prop)
 		}
 		for (auto outer = objProp->property_class->outer(); outer->outer(); outer = outer->outer())
 		{
-			tp.insert(0, "::");
+			tp.insert(0, "__");
 			tp.insert(0, outer->GetName());
 		}
 		if (!strcmp(prop->object_class()->GetName(), "ObjectProperty"))
@@ -73,7 +73,7 @@ std::string GetTypeNameForProperty(ScriptObject* prop)
 		std::string tp = prop->GetName();
 		for (auto outer = prop->outer(); outer->outer(); outer = outer->outer())
 		{
-			tp.insert(0, "::");
+			tp.insert(0, "__");
 			tp.insert(0, outer->GetName());
 		}
 		return tp;
@@ -596,23 +596,12 @@ struct ClassDescription
 		else
 			wtr->Write("struct");
 
-		wtr->Write(" %s", originalClass->GetName());
-		if (nestedStructs.size() > 0 || nestedEnums.size() > 0)
-		{
-			wtr->WriteLine("");
-			wtr->WriteLine("{");
-			wtr->WriteLine("public:");
-			wtr->Indent++;
+		wtr->Write(" %s;", GetTypeNameForProperty(originalClass).c_str());
 			
-			for (unsigned int i = 0; i < nestedEnums.size(); i++)
-				nestedEnums[i].WriteDeclaration(wtr);
-			for (unsigned int i = 0; i < nestedStructs.size(); i++)
-				nestedStructs[i].WriteDeclaration(wtr);
-
-			wtr->Indent--;
-			wtr->Write("}");
-		}
-		wtr->WriteLine(";");
+		for (unsigned int i = 0; i < nestedEnums.size(); i++)
+			nestedEnums[i].WriteDeclaration(wtr);
+		for (unsigned int i = 0; i < nestedStructs.size(); i++)
+			nestedStructs[i].WriteDeclaration(wtr);
 		
 		if (isClassDefinition)
 		{
@@ -627,7 +616,7 @@ struct ClassDescription
 		{
 			wtr->WriteLine("#pragma once");
 
-			//WriteDeclaration(wtr);
+			WriteDeclaration(wtr);
 		
 			dependencyManager.WriteToStream(wtr);
 
@@ -678,9 +667,9 @@ struct ClassDescription
 			wtr->Write("struct");
 
 		if (originalClass->super())
-			wtr->WriteLine(" %s : public %s", originalClass->GetName(), originalClass->super()->GetName());
+			wtr->WriteLine(" %s : public %s", GetTypeNameForProperty(originalClass).c_str(), GetTypeNameForProperty(originalClass->super()).c_str());
 		else
-			wtr->WriteLine(" %s", originalClass->GetName());
+			wtr->WriteLine(" %s", GetTypeNameForProperty(originalClass).c_str());
 		wtr->WriteLine("{");
 		if (properties.size() > 0 || functions.size() > 0 || nestedStructs.size() > 0)
 			wtr->WriteLine("public:");
@@ -689,16 +678,21 @@ struct ClassDescription
 
 		for (unsigned int i = 0; i < nestedConstants.size(); i++)
 			nestedConstants[i].WriteDeclaration(wtr);
+
+		for (unsigned int i = 0; i < properties.size(); i++)
+			properties[i].WriteToStream(wtr);
+		for (unsigned int i = 0; i < functions.size(); i++)
+			functions[i].WriteToStream(wtr);
+
+		wtr->Indent--;
+		wtr->WriteLine("};");
+
+		for (unsigned int i = 0; i < nestedConstants.size(); i++)
+			nestedConstants[i].WriteImplementation(wtr);
 		for (unsigned int i = 0; i < nestedEnums.size(); i++)
 			nestedEnums[i].WriteToStream(wtr);
-
-		// BEWARE: This code will run in an infinite loop if
-		// there is a circular reference.
 		if (nestedStructs.size() > 0)
 		{
-			std::unordered_map<const char*, int> definedStructsTable;
-			std::vector<ClassDescription*> definedStructs;
-			std::deque<ClassDescription*> delayedStructs;
 			bool inCoreObject = !strcmp(originalClass->GetName(), "Object");
 			for (unsigned int i = 0; i < nestedStructs.size(); i++)
 			{
@@ -713,69 +707,12 @@ struct ClassDescription
 					)
 					{
 						wtr->WriteLine("// struct %s is manually defined", ns->originalClass->GetName());
-						definedStructsTable[ns->originalClass->GetName()] = 1;
 						continue;
 					}
 				}
-				for each (auto rc in ns->dependencyManager.requiredChildren)
-				{
-					if (!strcmp(rc->outer()->GetName(), originalClass->GetName()))
-					{
-						if (definedStructsTable.count(rc->GetName()) == 0)
-						{
-							add = false;
-							delayedStructs.push_back(ns);
-							break;
-						}
-					}
-				}
-				
-				if (add)
-				{
-					definedStructs.push_back(ns);
-					definedStructsTable[ns->originalClass->GetName()] = 1;
-				}
+				ns->Write(wtr);
 			}
-
-			while (delayedStructs.size() > 0)
-			{
-				auto ns = delayedStructs.front();
-				delayedStructs.pop_front();
-				bool add = true;
-				for each (auto rc in ns->dependencyManager.requiredChildren)
-				{
-					if (strcmp(rc->object_class()->GetName(), "Enum") && !strcmp(rc->outer()->GetName(), originalClass->GetName()))
-					{
-						if (definedStructsTable.count(rc->GetName()) == 0)
-						{
-							add = false;
-							delayedStructs.push_back(ns);
-							break;
-						}
-					}
-				}
-				
-				if (add)
-				{
-					definedStructs.push_back(ns);
-					definedStructsTable[ns->originalClass->GetName()] = 1;
-				}
-			}
-
-			for (unsigned int i = 0; i < definedStructs.size(); i++)
-				definedStructs[i]->Write(wtr);
 		}
-
-		for (unsigned int i = 0; i < properties.size(); i++)
-			properties[i].WriteToStream(wtr);
-		for (unsigned int i = 0; i < functions.size(); i++)
-			functions[i].WriteToStream(wtr);
-
-		wtr->Indent--;
-		wtr->WriteLine("};");
-
-		for (unsigned int i = 0; i < nestedConstants.size(); i++)
-			nestedConstants[i].WriteImplementation(wtr);
 		
 		if (isClassDefinition)
 		{
