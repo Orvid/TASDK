@@ -170,14 +170,14 @@ struct ClassDependencyManager
 	{
 		if (objType == parentClass)
 			return;
-		if (objType->outer()->outer())
-		{
-			// Ensure that we only require the class-level
-			// include.
-			requiredChildren.push_back(objType);
-			RequireType(objType->outer());
-			return;
-		}
+		//if (objType->outer()->outer())
+		//{
+		//	// Ensure that we only require the class-level
+		//	// include.
+		//	requiredChildren.push_back(objType);
+		//	RequireType(objType->outer());
+		//	return;
+		//}
 		static std::string headerName;
 		headerName = GetHeaderName(objType);
 		if (requiredHeaders.count(headerName) > 0)
@@ -632,7 +632,7 @@ struct ClassDescription
 		{
 			wtr->WriteLine("#pragma once");
 
-			WriteDeclaration(wtr);
+			//WriteDeclaration(wtr);
 		
 			dependencyManager.WriteToStream(wtr);
 
@@ -677,79 +677,79 @@ struct ClassDescription
 			wtr->Indent++;
 		}
 
-		// BEWARE: This code will run in an infinite loop if
-		// there is a circular reference.
-		if (nestedStructs.size() > 0)
-		{
-			std::unordered_map<const char*, int> definedStructsTable;
-			std::vector<ClassDescription*> definedStructs;
-			std::deque<ClassDescription*> delayedStructs;
-			bool inCoreObject = !strcmp(originalClass->GetName(), "Object");
-			for (unsigned int i = 0; i < nestedStructs.size(); i++)
-			{
-				auto ns = &nestedStructs[i];
-				bool add = true;
-				if (inCoreObject)
-				{
-					if (
-						   !strcmp(ns->originalClass->GetName(), "QWord")
-						|| !strcmp(ns->originalClass->GetName(), "Rotator")
-						|| !strcmp(ns->originalClass->GetName(), "Vector")
-					)
-					{
-						wtr->WriteLine("// struct %s is manually defined", ns->originalClass->GetName());
-						definedStructsTable[ns->originalClass->GetName()] = 1;
-						continue;
-					}
-				}
-				for each (auto rc in ns->dependencyManager.requiredChildren)
-				{
-					if (!strcmp(rc->outer()->GetName(), originalClass->GetName()))
-					{
-						if (definedStructsTable.count(rc->GetName()) == 0)
-						{
-							add = false;
-							delayedStructs.push_back(ns);
-							break;
-						}
-					}
-				}
+		//// BEWARE: This code will run in an infinite loop if
+		//// there is a circular reference.
+		//if (nestedStructs.size() > 0)
+		//{
+		//	std::unordered_map<const char*, int> definedStructsTable;
+		//	std::vector<ClassDescription*> definedStructs;
+		//	std::deque<ClassDescription*> delayedStructs;
+		//	bool inCoreObject = !strcmp(originalClass->GetName(), "Object");
+		//	for (unsigned int i = 0; i < nestedStructs.size(); i++)
+		//	{
+		//		auto ns = &nestedStructs[i];
+		//		bool add = true;
+		//		if (inCoreObject)
+		//		{
+		//			if (
+		//				   !strcmp(ns->originalClass->GetName(), "QWord")
+		//				|| !strcmp(ns->originalClass->GetName(), "Rotator")
+		//				|| !strcmp(ns->originalClass->GetName(), "Vector")
+		//			)
+		//			{
+		//				wtr->WriteLine("// struct %s is manually defined", ns->originalClass->GetName());
+		//				definedStructsTable[ns->originalClass->GetName()] = 1;
+		//				continue;
+		//			}
+		//		}
+		//		for each (auto rc in ns->dependencyManager.requiredChildren)
+		//		{
+		//			if (!strcmp(rc->outer()->GetName(), originalClass->GetName()))
+		//			{
+		//				if (definedStructsTable.count(rc->GetName()) == 0)
+		//				{
+		//					add = false;
+		//					delayedStructs.push_back(ns);
+		//					break;
+		//				}
+		//			}
+		//		}
 
-				if (add)
-				{
-					definedStructs.push_back(ns);
-					definedStructsTable[ns->originalClass->GetName()] = 1;
-				}
-			}
+		//		if (add)
+		//		{
+		//			definedStructs.push_back(ns);
+		//			definedStructsTable[ns->originalClass->GetName()] = 1;
+		//		}
+		//	}
 
-			while (delayedStructs.size() > 0)
-			{
-				auto ns = delayedStructs.front();
-				delayedStructs.pop_front();
-				bool add = true;
-				for each (auto rc in ns->dependencyManager.requiredChildren)
-				{
-					if (strcmp(rc->object_class()->GetName(), "Enum") && !strcmp(rc->outer()->GetName(), originalClass->GetName()))
-					{
-						if (definedStructsTable.count(rc->GetName()) == 0)
-						{
-							add = false;
-							delayedStructs.push_back(ns);
-							break;
-						}
-					}
-				}
+		//	while (delayedStructs.size() > 0)
+		//	{
+		//		auto ns = delayedStructs.front();
+		//		delayedStructs.pop_front();
+		//		bool add = true;
+		//		for each (auto rc in ns->dependencyManager.requiredChildren)
+		//		{
+		//			if (strcmp(rc->object_class()->GetName(), "Enum") && !strcmp(rc->outer()->GetName(), originalClass->GetName()))
+		//			{
+		//				if (definedStructsTable.count(rc->GetName()) == 0)
+		//				{
+		//					add = false;
+		//					delayedStructs.push_back(ns);
+		//					break;
+		//				}
+		//			}
+		//		}
 
-				if (add)
-				{
-					definedStructs.push_back(ns);
-					definedStructsTable[ns->originalClass->GetName()] = 1;
-				}
-			}
+		//		if (add)
+		//		{
+		//			definedStructs.push_back(ns);
+		//			definedStructsTable[ns->originalClass->GetName()] = 1;
+		//		}
+		//	}
 
-			for (unsigned int i = 0; i < definedStructs.size(); i++)
-				definedStructs[i]->Write(wtr);
-		}
+		//	for (unsigned int i = 0; i < definedStructs.size(); i++)
+		//		definedStructs[i]->Write(wtr);
+		//}
 
 		if (isClassDefinition)
 			wtr->Write("class");
@@ -797,23 +797,42 @@ struct ClassDescription
 
 void ScriptObject::GenerateHeader()
 {
-	auto cd = new ClassDescription((ScriptClass*)this);
-	auto headerName = GetHeaderName(cd->originalClass);
+	auto headerName = GetHeaderName(this);
 	headerName.insert(0, REPO_ROOT "TribesAscendSDK\\HeaderDump\\");
 	auto wtr = new IndentedStreamWriter(headerName.c_str());
-	cd->Write(wtr);
+	if (!strcmp(this->object_class()->GetName(), "Enum"))
+	{
+		wtr->WriteLine("#pragma once");
+		auto ed = new EnumDescription((ScriptEnum*)this);
+		ed->WriteToStream(wtr);
+		delete ed;
+	}
+	else
+	{
+		auto cd = new ClassDescription((ScriptClass*)this);
+		cd->Write(wtr);
+		delete cd;
+	}
 	delete wtr;
-	delete cd;
 }
 
 void ScriptObject::GenerateHeaders()
 {
 	static ScriptClass* core_class = ScriptObject::Find<ScriptClass>("Class Core.Class");
+	static ScriptClass* core_enum = ScriptObject::Find<ScriptClass>("Class Core.Enum");
+	static ScriptClass* core_scriptStruct = ScriptObject::Find<ScriptClass>("Class Core.ScriptStruct");
 	for (int i = 0; i < object_array()->count(); i++)
 	{
 		ScriptObject* class_object = (*object_array())(i);
-		if(class_object && class_object->object_class() == core_class)
+		if(class_object && 
+		(
+			   class_object->object_class() == core_class
+			|| class_object->object_class() == core_enum
+			|| class_object->object_class() == core_scriptStruct
+		))
+		{
 			class_object->GenerateHeader();
+		}
 	}
 
 	OutputLog("Finished.\n");
