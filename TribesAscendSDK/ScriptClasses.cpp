@@ -553,8 +553,14 @@ struct EnumDescription
 		for (int i = 0; i < originalEnum->value_names().count(); i++)
 		{
 			auto name = originalEnum->value_names().data()[i].GetName();
-			if (!strcmp(name, "PF_MAX")) // This is due to the fact PF_MAX is a #define in WinSock.h
-				continue;
+			if (
+				   !strcmp(name, "PF_MAX") // This is due to the fact PF_MAX is a #define in WinSock.h
+				|| !strcmp(name, "Vehicle")
+				|| !strcmp(name, "Weapon")
+			)
+			{
+				wtr->Write("//");
+			}
 			wtr->WriteLine("%s = %i,", name, i);
 		}
 		
