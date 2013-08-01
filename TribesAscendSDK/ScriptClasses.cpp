@@ -592,6 +592,14 @@ struct ClassDescription
 
 	void WriteDeclaration(IndentedStreamWriter* wtr)
 	{
+		if (
+			   !strcmp(originalClass->GetName(), "QWord")
+			|| !strcmp(originalClass->GetName(), "Rotator")
+			|| !strcmp(originalClass->GetName(), "Vector")
+		)
+		{
+			return;
+		}
 		if (isClassDefinition)
 		{
 			wtr->WriteLine("namespace UnrealScript");
