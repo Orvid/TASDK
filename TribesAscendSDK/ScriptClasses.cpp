@@ -402,6 +402,9 @@ struct FunctionDescription
 
 	void WriteToStream(IndentedStreamWriter* wtr)
 	{
+		if (!strcmp(originalFunction->GetName(), originalFunction->outer()->GetName())) // Engine.PlayerInput defines a method called PlayerInput.
+			return;
+
 		if (returnProperty)
 			wtr->Write("%s", GetTypeNameForProperty(returnProperty).c_str());
 		else
