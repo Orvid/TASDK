@@ -18,6 +18,7 @@ if ( \
 	|| !strcmp(name, "Vector") \
 )
 
+
 void ScriptObject::LogAll()
 {
 	OutputLog( "ScriptObject.LogAll output: \n" );
@@ -60,7 +61,6 @@ std::string GetTypeNameForProperty(ScriptObject* prop)
 			tp.insert(0, "__");
 			tp.insert(0, outer->GetName());
 		}
-		tp.insert(0, "UnrealScript::");
 		if (!strcmp(prop->object_class()->GetName(), "ObjectProperty"))
 		{
 			tp.insert(0, "class ");
@@ -275,6 +275,18 @@ struct PropertyDescription
 
 	void WriteToStream(IndentedStreamWriter* writer)
 	{
+		if ( 
+			   !strcmp(originalProperty->GetName(), "Controller")
+			|| !strcmp(originalProperty->GetName(), "Pawn")
+			|| !strcmp(originalProperty->GetName(), "PhysicalMaterial") 
+			|| !strcmp(originalProperty->GetName(), "PlayerReplicationInfo")
+			|| !strcmp(originalProperty->GetName(), "Vector")
+			|| !strcmp(originalProperty->GetName(), "Vehicle")
+			|| !strcmp(originalProperty->GetName(), "Weapon")
+		)
+		{
+			return;
+		}
 		if (!strcmp(originalProperty->GetName(), originalProperty->outer()->GetName())) // Engine.Canvas defines a field with the same name as the class itself.
 			return;
 		if (!strcmp(originalProperty->object_class()->GetName(), "BoolProperty"))
