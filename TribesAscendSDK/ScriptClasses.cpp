@@ -597,6 +597,11 @@ struct ClassDescription
 		if (originalClass->super())
 			classDepMgr->RequireType(originalClass->super());
 
+		for (unsigned int i = 0; i < nestedEnums.size(); i++)
+			classDepMgr->RequireType(nestedEnums[i].originalEnum);
+		for (unsigned int i = 0; i < nestedStructs.size(); i++)
+			classDepMgr->RequireType(nestedStructs[i].originalClass);
+
 		for (unsigned int i = 0; i < properties.size(); i++)
 			properties[i].RequireTypes(classDepMgr);
 		for (unsigned int i = 0; i < functions.size(); i++)
