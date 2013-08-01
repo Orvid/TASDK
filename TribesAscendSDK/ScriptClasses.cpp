@@ -493,6 +493,9 @@ struct EnumDescription
 
 	void WriteToStream(IndentedStreamWriter* wtr)
 	{
+		wtr->WriteLine("namespace UnrealScript");
+		wtr->WriteLine("{");
+		wtr->Indent--;
 		wtr->WriteLine("enum %s : byte", GetTypeNameForProperty(originalEnum).c_str());
 		wtr->WriteLine("{");
 		wtr->Indent++;
@@ -502,6 +505,8 @@ struct EnumDescription
 		
 		wtr->Indent--;
 		wtr->WriteLine("};");
+		wtr->Indent--;
+		wtr->WriteLine("}");
 	}
 };
 
@@ -628,8 +633,8 @@ struct ClassDescription
 
 	void Write(IndentedStreamWriter* wtr)
 	{
-		if (isClassDefinition)
-		{
+		//if (isClassDefinition)
+		//{
 			wtr->WriteLine("#pragma once");
 
 			//WriteDeclaration(wtr);
@@ -675,7 +680,7 @@ struct ClassDescription
 			wtr->WriteLine("namespace UnrealScript");
 			wtr->WriteLine("{");
 			wtr->Indent++;
-		}
+		//}
 
 		//// BEWARE: This code will run in an infinite loop if
 		//// there is a circular reference.
@@ -780,8 +785,8 @@ struct ClassDescription
 		for (unsigned int i = 0; i < nestedConstants.size(); i++)
 			nestedConstants[i].WriteImplementation(wtr);
 		
-		if (isClassDefinition)
-		{
+		//if (isClassDefinition)
+		//{
 			wtr->Indent--;
 			wtr->WriteLine("}");
 			
@@ -791,7 +796,7 @@ struct ClassDescription
 				wtr->WriteLine("#undef ADD_STRUCT");
 			if (objectPropertyCount > 0)
 				wtr->WriteLine("#undef ADD_OBJECT");
-		}
+		//}
 	}
 };
 
