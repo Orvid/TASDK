@@ -1,6 +1,7 @@
 #include "TASDK.h"
 #include "IndentedStreamWriter.h"
 #include <deque>
+#include <map>
 #include <unordered_map>
 #include <vector>
 
@@ -141,7 +142,7 @@ std::string GetHeaderName(ScriptObject* obj)
 struct ClassDependencyManager
 {
 	std::vector<ScriptObject*> requiredChildren;
-	std::unordered_map<std::string, int> requiredHeaders;
+	std::map<std::string, int> requiredHeaders;
 	ScriptObject* parentClass;
 
 	~ClassDependencyManager()
@@ -181,6 +182,7 @@ struct ClassDependencyManager
 		//}
 		static std::string headerName;
 		headerName = GetHeaderName(objType);
+		headerName = headerName.substr(0, headerName.length() - 2);
 		if (requiredHeaders.count(headerName) > 0)
 			headerName.~basic_string();
 		else
@@ -190,7 +192,7 @@ struct ClassDependencyManager
 	void WriteToStream(IndentedStreamWriter* wtr)
 	{
 		for each (auto h in requiredHeaders)
-			wtr->WriteLine("#include \"%s\"", h.first.c_str());
+			wtr->WriteLine("#include \"%s.h\"", h.first.c_str());
 	}
 };
 
@@ -502,7 +504,12 @@ struct EnumDescription
 		wtr->Indent++;
 
 		for (int i = 0; i < originalEnum->value_names().count(); i++)
-			wtr->WriteLine("%s = %i,", originalEnum->value_names().data()[i].GetName(), i);
+		{
+			auto name = originalEnum->value_names().data()[i].GetName();
+			if (!strcmp(name, "PF_MAX")) // This is due to the fact PF_MAX is a #define in WinSock.h
+				continue;
+			wtr->WriteLine("%s = %i,", name, i);
+		}
 		
 		wtr->Indent--;
 		wtr->WriteLine("};");
