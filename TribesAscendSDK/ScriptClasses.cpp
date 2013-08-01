@@ -495,7 +495,7 @@ struct EnumDescription
 	{
 		wtr->WriteLine("namespace UnrealScript");
 		wtr->WriteLine("{");
-		wtr->Indent--;
+		wtr->Indent++;
 		wtr->WriteLine("enum %s : byte", GetTypeNameForProperty(originalEnum).c_str());
 		wtr->WriteLine("{");
 		wtr->Indent++;
