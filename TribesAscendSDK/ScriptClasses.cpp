@@ -168,6 +168,15 @@ struct ClassDependencyManager
 			ProcessProperty(((ScriptArrayProperty*)prop)->inner_property);
 	}
 
+	bool SuperIsSelf(ScriptStruct* objType)
+	{
+		if (objType == parentClass)
+			return true;
+		if (objType->super())
+			return SuperIsSelf((ScriptStruct*)objType->super());
+		return false;
+	}
+
 	void RequireType(ScriptObject* objType)
 	{
 		if (objType == parentClass)
@@ -185,6 +194,12 @@ struct ClassDependencyManager
 		static std::string headerName;
 		headerName = GetHeaderName(objType);
 		headerName = headerName.substr(0, headerName.length() - 2);
+		if (!strcmp(objType->object_class()->GetName(), "Class") && SuperIsSelf((ScriptStruct*)objType))
+		{
+			requiredPreDeclarations[objType->GetName()] = 1;
+			requiredPostHeaders[headerName] = 1;
+			return;
+		}
 		if (requiredHeaders.count(headerName) > 0)
 			headerName.~basic_string();
 		else
@@ -200,7 +215,7 @@ struct ClassDependencyManager
 	void WritePreDeclarations(IndentedStreamWriter* wtr)
 	{
 		for each (auto h in requiredPreDeclarations)
-			wtr->WriteLine(h.first.c_str());
+			wtr->WriteLine("class %s;", h.first.c_str());
 	}
 
 	void WritePostHeaders(IndentedStreamWriter* wtr)
