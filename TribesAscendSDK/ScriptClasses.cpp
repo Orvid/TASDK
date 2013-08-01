@@ -628,12 +628,9 @@ struct ClassDescription
 
 	void WriteDeclaration(IndentedStreamWriter* wtr)
 	{
-		//if (isClassDefinition)
-		//{
-			wtr->WriteLine("namespace UnrealScript");
-			wtr->WriteLine("{");
-			wtr->Indent++;
-		//}
+		wtr->WriteLine("namespace UnrealScript");
+		wtr->WriteLine("{");
+		wtr->Indent++;
 		
 		if (isClassDefinition)
 			wtr->Write("class");
@@ -641,143 +638,61 @@ struct ClassDescription
 			wtr->Write("struct");
 
 		wtr->WriteLine(" %s;", GetTypeNameForProperty(originalClass).c_str());
-			
-		/*for (unsigned int i = 0; i < nestedEnums.size(); i++)
-			nestedEnums[i].WriteToStream(wtr);
-		for (unsigned int i = 0; i < nestedStructs.size(); i++)
-			nestedStructs[i].WriteDeclaration(wtr);*/
-		
-		//if (isClassDefinition)
-		//{
-			wtr->Indent--;
-			wtr->WriteLine("}");
-		//}
+
+		dependencyManager.WritePreDeclarations(wtr);
+
+		wtr->Indent--;
+		wtr->WriteLine("}");
 	}
 
 	void Write(IndentedStreamWriter* wtr)
 	{
-		//if (isClassDefinition)
-		//{
-			wtr->WriteLine("#pragma once");
+		wtr->WriteLine("#pragma once");
 
-			WriteDeclaration(wtr);
+		WriteDeclaration(wtr);
 		
-			dependencyManager.WriteToStream(wtr);
+		dependencyManager.WriteToStream(wtr);
 
-			if (boolPropertyCount > 0)
-			{
-				wtr->WriteLine("#define ADD_BOOL(name, offset, mask) \\");
-				wtr->WriteLine("bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \\");
-				wtr->WriteLine("void set_##name(bool val) \\");
-				wtr->WriteLine("{ \\");
-				wtr->Indent++;
-				wtr->WriteLine("if (val) \\");
-				wtr->Indent++;
-				wtr->WriteLine("*(DWORD*)(this + offset) |= mask; \\");
-				wtr->Indent--;
-				wtr->WriteLine("else \\");
-				wtr->Indent++;
-				wtr->WriteLine("*(DWORD*)(this + offset) &= ~mask; \\");
-				wtr->Indent--;
-				wtr->Indent--;
-				wtr->WriteLine("} \\");
-				wtr->WriteLine("__declspec(property(get=get_##name, put=set_##name)) bool name;");
-			}
-
-			if (structPropertyCount > 0 || primitivePropertyCount > 0)
-			{
-				wtr->WriteLine("#define ADD_STRUCT(x, y, offset) \\");
-				wtr->WriteLine("x get_##y() { return *(x*)(this + offset); } \\");
-				wtr->WriteLine("void set_##y(x val) { *(x*)(this + offset) = val; } \\");
-				wtr->WriteLine("__declspec(property(get=get_##y, put=set_##y)) x y;");
-			}
-
-			if (objectPropertyCount > 0)
-			{
-				wtr->WriteLine("#define ADD_OBJECT(x, y, offset) \\");
-				wtr->WriteLine("class x* get_##y() { return *(class x**)(this + offset); } \\");
-				wtr->WriteLine("void set_##y(x* val) { *(class x**)(this + offset) = val; } \\");
-				wtr->WriteLine("__declspec(property(get=get_##y, put=set_##y)) class x* y;");
-			}
-
-			wtr->WriteLine("namespace UnrealScript");
-			wtr->WriteLine("{");
+		if (boolPropertyCount > 0)
+		{
+			wtr->WriteLine("#define ADD_BOOL(name, offset, mask) \\");
+			wtr->WriteLine("bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \\");
+			wtr->WriteLine("void set_##name(bool val) \\");
+			wtr->WriteLine("{ \\");
 			wtr->Indent++;
-		//}
+			wtr->WriteLine("if (val) \\");
+			wtr->Indent++;
+			wtr->WriteLine("*(DWORD*)(this + offset) |= mask; \\");
+			wtr->Indent--;
+			wtr->WriteLine("else \\");
+			wtr->Indent++;
+			wtr->WriteLine("*(DWORD*)(this + offset) &= ~mask; \\");
+			wtr->Indent--;
+			wtr->Indent--;
+			wtr->WriteLine("} \\");
+			wtr->WriteLine("__declspec(property(get=get_##name, put=set_##name)) bool name;");
+		}
 
-		//// BEWARE: This code will run in an infinite loop if
-		//// there is a circular reference.
-		//if (nestedStructs.size() > 0)
-		//{
-		//	std::unordered_map<const char*, int> definedStructsTable;
-		//	std::vector<ClassDescription*> definedStructs;
-		//	std::deque<ClassDescription*> delayedStructs;
-		//	bool inCoreObject = !strcmp(originalClass->GetName(), "Object");
-		//	for (unsigned int i = 0; i < nestedStructs.size(); i++)
-		//	{
-		//		auto ns = &nestedStructs[i];
-		//		bool add = true;
-		//		if (inCoreObject)
-		//		{
-		//			if (
-		//				   !strcmp(ns->originalClass->GetName(), "QWord")
-		//				|| !strcmp(ns->originalClass->GetName(), "Rotator")
-		//				|| !strcmp(ns->originalClass->GetName(), "Vector")
-		//			)
-		//			{
-		//				wtr->WriteLine("// struct %s is manually defined", ns->originalClass->GetName());
-		//				definedStructsTable[ns->originalClass->GetName()] = 1;
-		//				continue;
-		//			}
-		//		}
-		//		for each (auto rc in ns->dependencyManager.requiredChildren)
-		//		{
-		//			if (!strcmp(rc->outer()->GetName(), originalClass->GetName()))
-		//			{
-		//				if (definedStructsTable.count(rc->GetName()) == 0)
-		//				{
-		//					add = false;
-		//					delayedStructs.push_back(ns);
-		//					break;
-		//				}
-		//			}
-		//		}
+		if (structPropertyCount > 0 || primitivePropertyCount > 0)
+		{
+			wtr->WriteLine("#define ADD_STRUCT(x, y, offset) \\");
+			wtr->WriteLine("x get_##y() { return *(x*)(this + offset); } \\");
+			wtr->WriteLine("void set_##y(x val) { *(x*)(this + offset) = val; } \\");
+			wtr->WriteLine("__declspec(property(get=get_##y, put=set_##y)) x y;");
+		}
 
-		//		if (add)
-		//		{
-		//			definedStructs.push_back(ns);
-		//			definedStructsTable[ns->originalClass->GetName()] = 1;
-		//		}
-		//	}
+		if (objectPropertyCount > 0)
+		{
+			wtr->WriteLine("#define ADD_OBJECT(x, y, offset) \\");
+			wtr->WriteLine("class x* get_##y() { return *(class x**)(this + offset); } \\");
+			wtr->WriteLine("void set_##y(x* val) { *(class x**)(this + offset) = val; } \\");
+			wtr->WriteLine("__declspec(property(get=get_##y, put=set_##y)) class x* y;");
+		}
 
-		//	while (delayedStructs.size() > 0)
-		//	{
-		//		auto ns = delayedStructs.front();
-		//		delayedStructs.pop_front();
-		//		bool add = true;
-		//		for each (auto rc in ns->dependencyManager.requiredChildren)
-		//		{
-		//			if (strcmp(rc->object_class()->GetName(), "Enum") && !strcmp(rc->outer()->GetName(), originalClass->GetName()))
-		//			{
-		//				if (definedStructsTable.count(rc->GetName()) == 0)
-		//				{
-		//					add = false;
-		//					delayedStructs.push_back(ns);
-		//					break;
-		//				}
-		//			}
-		//		}
+		wtr->WriteLine("namespace UnrealScript");
+		wtr->WriteLine("{");
+		wtr->Indent++;
 
-		//		if (add)
-		//		{
-		//			definedStructs.push_back(ns);
-		//			definedStructsTable[ns->originalClass->GetName()] = 1;
-		//		}
-		//	}
-
-		//	for (unsigned int i = 0; i < definedStructs.size(); i++)
-		//		definedStructs[i]->Write(wtr);
-		//}
 
 		if (isClassDefinition)
 			wtr->Write("class");
@@ -812,18 +727,16 @@ struct ClassDescription
 		for (unsigned int i = 0; i < nestedConstants.size(); i++)
 			nestedConstants[i].WriteImplementation(wtr);
 		
-		//if (isClassDefinition)
-		//{
-			wtr->Indent--;
-			wtr->WriteLine("}");
+		wtr->Indent--;
+		wtr->WriteLine("}");
 			
-			if (boolPropertyCount > 0)
-				wtr->WriteLine("#undef ADD_BOOL");
-			if (structPropertyCount > 0 || primitivePropertyCount > 0)
-				wtr->WriteLine("#undef ADD_STRUCT");
-			if (objectPropertyCount > 0)
-				wtr->WriteLine("#undef ADD_OBJECT");
-		//}
+		if (boolPropertyCount > 0)
+			wtr->WriteLine("#undef ADD_BOOL");
+		if (structPropertyCount > 0 || primitivePropertyCount > 0)
+			wtr->WriteLine("#undef ADD_STRUCT");
+		if (objectPropertyCount > 0)
+			wtr->WriteLine("#undef ADD_OBJECT");
+		dependencyManager.WritePostHeaders(wtr);
 	}
 };
 
