@@ -85,7 +85,6 @@ std::string GetTypeNameForProperty(ScriptObject* prop)
 			tp.insert(0, "__");
 			tp.insert(0, outer->GetName());
 		}
-		tp.insert(0, "UnrealScript::");
 		return tp;
 	}
 	else if (!strcmp(prop->object_class()->GetName(), "ArrayProperty"))
