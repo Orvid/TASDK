@@ -71,6 +71,14 @@ std::string GetTypeNameForProperty(ScriptObject* prop)
 	)
 	{
 		std::string tp = prop->GetName();
+		if (
+			   !strcmp(tp.c_str(), "QWord")
+			|| !strcmp(tp.c_str(), "Rotator")
+			|| !strcmp(tp.c_str(), "Vector")
+		)
+		{
+			return tp;
+		}
 		for (auto outer = prop->outer(); outer->outer(); outer = outer->outer())
 		{
 			tp.insert(0, "__");
@@ -480,12 +488,12 @@ struct EnumDescription
 
 	void WriteDeclaration(IndentedStreamWriter* wtr)
 	{
-		wtr->WriteLine("enum %s;", originalEnum->GetName());
+		wtr->WriteLine("enum %s;", GetTypeNameForProperty(originalEnum).c_str());
 	}
 
 	void WriteToStream(IndentedStreamWriter* wtr)
 	{
-		wtr->WriteLine("enum %s : byte", originalEnum->GetName());
+		wtr->WriteLine("enum %s : byte", GetTypeNameForProperty(originalEnum).c_str());
 		wtr->WriteLine("{");
 		wtr->Indent++;
 
