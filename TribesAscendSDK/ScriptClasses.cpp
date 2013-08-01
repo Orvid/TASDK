@@ -142,7 +142,9 @@ std::string GetHeaderName(ScriptObject* obj)
 struct ClassDependencyManager
 {
 	std::vector<ScriptObject*> requiredChildren;
+	std::map<std::string, int> requiredPreDeclarations;
 	std::map<std::string, int> requiredHeaders;
+	std::map<std::string, int> requiredPostHeaders;
 	ScriptObject* parentClass;
 
 	~ClassDependencyManager()
@@ -192,6 +194,18 @@ struct ClassDependencyManager
 	void WriteToStream(IndentedStreamWriter* wtr)
 	{
 		for each (auto h in requiredHeaders)
+			wtr->WriteLine("#include \"%s.h\"", h.first.c_str());
+	}
+
+	void WritePreDeclarations(IndentedStreamWriter* wtr)
+	{
+		for each (auto h in requiredPreDeclarations)
+			wtr->WriteLine(h.first.c_str());
+	}
+
+	void WritePostHeaders(IndentedStreamWriter* wtr)
+	{
+		for each (auto h in requiredPostHeaders)
 			wtr->WriteLine("#include \"%s.h\"", h.first.c_str());
 	}
 };
