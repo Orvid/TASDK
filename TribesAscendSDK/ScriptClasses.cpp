@@ -10,6 +10,13 @@
 // Orvid
 #define REPO_ROOT "..\\..\\..\\AltimorTASDK\\"
 
+#define IF_MANUALLY_DEFINED_TYPE(name) \
+if ( \
+	   !strcmp(name, "QWord") \
+	|| !strcmp(name, "Rotator") \
+	|| !strcmp(name, "Vector") \
+)
+
 void ScriptObject::LogAll()
 {
 	OutputLog( "ScriptObject.LogAll output: \n" );
@@ -43,11 +50,7 @@ std::string GetTypeNameForProperty(ScriptObject* prop)
 	{
 		auto objProp = (ScriptObjectProperty*)prop;
 		std::string tp = objProp->property_class->GetName();
-		if (
-			   !strcmp(tp.c_str(), "QWord")
-			|| !strcmp(tp.c_str(), "Rotator")
-			|| !strcmp(tp.c_str(), "Vector")
-		)
+		IF_MANUALLY_DEFINED_TYPE(tp.c_str())
 		{
 			return tp;
 		}
@@ -71,11 +74,7 @@ std::string GetTypeNameForProperty(ScriptObject* prop)
 	)
 	{
 		std::string tp = prop->GetName();
-		if (
-			   !strcmp(tp.c_str(), "QWord")
-			|| !strcmp(tp.c_str(), "Rotator")
-			|| !strcmp(tp.c_str(), "Vector")
-		)
+		IF_MANUALLY_DEFINED_TYPE(tp.c_str())
 		{
 			return tp;
 		}
@@ -169,6 +168,8 @@ struct ClassDependencyManager
 	void RequireType(ScriptObject* objType)
 	{
 		if (objType == parentClass)
+			return;
+		IF_MANUALLY_DEFINED_TYPE(objType->GetName())
 			return;
 		//if (objType->outer()->outer())
 		//{
@@ -597,20 +598,12 @@ struct ClassDescription
 
 	void WriteDeclaration(IndentedStreamWriter* wtr)
 	{
-		if (
-			   !strcmp(originalClass->GetName(), "QWord")
-			|| !strcmp(originalClass->GetName(), "Rotator")
-			|| !strcmp(originalClass->GetName(), "Vector")
-		)
-		{
-			return;
-		}
-		if (isClassDefinition)
-		{
+		//if (isClassDefinition)
+		//{
 			wtr->WriteLine("namespace UnrealScript");
 			wtr->WriteLine("{");
 			wtr->Indent++;
-		}
+		//}
 		
 		if (isClassDefinition)
 			wtr->Write("class");
@@ -619,16 +612,16 @@ struct ClassDescription
 
 		wtr->WriteLine(" %s;", GetTypeNameForProperty(originalClass).c_str());
 			
-		for (unsigned int i = 0; i < nestedEnums.size(); i++)
+		/*for (unsigned int i = 0; i < nestedEnums.size(); i++)
 			nestedEnums[i].WriteToStream(wtr);
 		for (unsigned int i = 0; i < nestedStructs.size(); i++)
-			nestedStructs[i].WriteDeclaration(wtr);
+			nestedStructs[i].WriteDeclaration(wtr);*/
 		
-		if (isClassDefinition)
-		{
+		//if (isClassDefinition)
+		//{
 			wtr->Indent--;
 			wtr->WriteLine("}");
-		}
+		//}
 	}
 
 	void Write(IndentedStreamWriter* wtr)
@@ -637,7 +630,7 @@ struct ClassDescription
 		//{
 			wtr->WriteLine("#pragma once");
 
-			//WriteDeclaration(wtr);
+			WriteDeclaration(wtr);
 		
 			dependencyManager.WriteToStream(wtr);
 
@@ -802,6 +795,10 @@ struct ClassDescription
 
 void ScriptObject::GenerateHeader()
 {
+	IF_MANUALLY_DEFINED_TYPE(this->GetName())
+	{
+		return;
+	}
 	auto headerName = GetHeaderName(this);
 	headerName.insert(0, REPO_ROOT "TribesAscendSDK\\HeaderDump\\");
 	auto wtr = new IndentedStreamWriter(headerName.c_str());
