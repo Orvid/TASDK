@@ -60,6 +60,7 @@ std::string GetTypeNameForProperty(ScriptObject* prop)
 			tp.insert(0, "__");
 			tp.insert(0, outer->GetName());
 		}
+		tp.insert(0, "UnrealScript::");
 		if (!strcmp(prop->object_class()->GetName(), "ObjectProperty"))
 		{
 			tp.insert(0, "class ");
@@ -84,6 +85,7 @@ std::string GetTypeNameForProperty(ScriptObject* prop)
 			tp.insert(0, "__");
 			tp.insert(0, outer->GetName());
 		}
+		tp.insert(0, "UnrealScript::");
 		return tp;
 	}
 	else if (!strcmp(prop->object_class()->GetName(), "ArrayProperty"))
@@ -274,8 +276,6 @@ struct PropertyDescription
 
 	void WriteToStream(IndentedStreamWriter* writer)
 	{
-		if (!strcmp(originalProperty->GetName(), "PhysicalMaterial")) // Engine.Material defines a field with the same name as a class.
-			return;
 		if (!strcmp(originalProperty->GetName(), originalProperty->outer()->GetName())) // Engine.Canvas defines a field with the same name as the class itself.
 			return;
 		if (!strcmp(originalProperty->object_class()->GetName(), "BoolProperty"))
