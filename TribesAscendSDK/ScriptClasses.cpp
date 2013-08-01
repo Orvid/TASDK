@@ -763,7 +763,11 @@ struct ClassDescription
 			wtr->WriteLine("public:");
 		wtr->Indent++;
 
-
+		
+		for (unsigned int i = 0; i < nestedEnums.size(); i++)
+			wtr->WriteLine("typedef %s %s;", GetTypeNameForProperty(nestedEnums[i].originalEnum).c_str(), nestedEnums[i].originalEnum->GetName());
+		for (unsigned int i = 0; i < nestedStructs.size(); i++)
+			wtr->WriteLine("typedef %s %s;", GetTypeNameForProperty(nestedStructs[i].originalClass).c_str(), nestedStructs[i].originalClass->GetName());
 		for (unsigned int i = 0; i < nestedConstants.size(); i++)
 			nestedConstants[i].WriteDeclaration(wtr);
 
