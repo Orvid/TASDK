@@ -2,6 +2,7 @@
 #include "Core.Object.h"
 #include "Engine.MorphTarget.h"
 #include "Engine.SkeletalMesh.h"
+#include "Core.Object.Array_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,7 +17,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<class MorphTarget*>, Targets, 60)
-		ADD_STRUCT(Object::Array_Mirror, RawWedgePointIndices, 76)
+		ADD_STRUCT(Object__Array_Mirror, RawWedgePointIndices, 76)
 		ADD_OBJECT(SkeletalMesh, BaseSkelMesh, 72)
 		class MorphTarget* FindMorphTarget(ScriptName MorphTargetName)
 		{

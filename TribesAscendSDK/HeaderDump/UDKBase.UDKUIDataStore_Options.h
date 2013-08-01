@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.UIDataStore_GameResource.h"
 #include "UDKBase.UDKUIResourceDataProvider.h"
-#include "Core.Object.h"
+#include "Core.Object.MultiMap_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,7 +12,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<class UDKUIResourceDataProvider*>, DynamicProviders, 256)
-		ADD_STRUCT(Object::MultiMap_Mirror, OptionProviders, 196)
+		ADD_STRUCT(Object__MultiMap_Mirror, OptionProviders, 196)
 		void ClearSet(ScriptName SetName)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(35645);

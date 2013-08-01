@@ -1,6 +1,7 @@
 #pragma once
 #include "TribesGame.TrObject.h"
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.TrFriendManager.FriendStruct.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,25 +25,11 @@ namespace UnrealScript
 	class TrFriendManager : public TrObject
 	{
 	public:
-		enum EOnlineState : byte
-		{
-			EOS_OFFLINE = 0,
-			EOS_ONLINE = 1,
-			EOS_INGAME = 2,
-			EOS_MAX = 3,
-		};
-		struct FriendStruct
-		{
-		public:
-			ADD_STRUCT(ScriptString*, PlayerName, 4)
-			ADD_STRUCT(TrFriendManager::EOnlineState, OnlineState, 16)
-			ADD_STRUCT(int, PlayerID, 0)
-		};
 		ADD_BOOL(AddFriendSuccess, 72, 0x1)
 		ADD_STRUCT(ScriptString*, RecentlyAddedFriend, 76)
-		ADD_STRUCT(ScriptArray<TrFriendManager::FriendStruct>, FriendsList, 96)
-		ADD_STRUCT(ScriptArray<TrFriendManager::FriendStruct>, FollowersList, 108)
-		ADD_STRUCT(ScriptArray<TrFriendManager::FriendStruct>, IgnoredList, 120)
+		ADD_STRUCT(ScriptArray<TrFriendManager__FriendStruct>, FriendsList, 96)
+		ADD_STRUCT(ScriptArray<TrFriendManager__FriendStruct>, FollowersList, 108)
+		ADD_STRUCT(ScriptArray<TrFriendManager__FriendStruct>, IgnoredList, 120)
 		ADD_OBJECT(GFxObject, GFxList, 92)
 		ADD_STRUCT(int, GFxCount, 88)
 		ADD_STRUCT(int, PrevBlockedCount, 68)

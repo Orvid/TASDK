@@ -1,7 +1,10 @@
 #pragma once
 #include "Engine.ParticleModuleLocationBase.h"
+#include "Engine.ParticleModuleLocationBoneSocket.LocationBoneSocketInfo.h"
 #include "Engine.SkeletalMesh.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Engine.ParticleModuleLocationBoneSocket.ELocationBoneSocketSelectionMethod.h"
+#include "Engine.ParticleModuleLocationBoneSocket.ELocationBoneSocketSource.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,33 +28,14 @@ namespace UnrealScript
 	class ParticleModuleLocationBoneSocket : public ParticleModuleLocationBase
 	{
 	public:
-		enum ELocationBoneSocketSource : byte
-		{
-			BONESOCKETSOURCE_Bones = 0,
-			BONESOCKETSOURCE_Sockets = 1,
-			BONESOCKETSOURCE_MAX = 2,
-		};
-		enum ELocationBoneSocketSelectionMethod : byte
-		{
-			BONESOCKETSEL_Sequential = 0,
-			BONESOCKETSEL_Random = 1,
-			BONESOCKETSEL_RandomExhaustive = 2,
-			BONESOCKETSEL_MAX = 3,
-		};
-		struct LocationBoneSocketInfo
-		{
-		public:
-			ADD_STRUCT(Vector, Offset, 8)
-			ADD_STRUCT(ScriptName, BoneSocketName, 0)
-		};
-		ADD_STRUCT(ScriptArray<ParticleModuleLocationBoneSocket::LocationBoneSocketInfo>, SourceLocations, 88)
+		ADD_STRUCT(ScriptArray<ParticleModuleLocationBoneSocket__LocationBoneSocketInfo>, SourceLocations, 88)
 		ADD_OBJECT(SkeletalMesh, EditorSkelMesh, 112)
 		ADD_STRUCT(ScriptName, SkelMeshActorParamName, 104)
 		ADD_BOOL(bOrientMeshEmitters, 100, 0x2)
 		ADD_BOOL(bUpdatePositionEachFrame, 100, 0x1)
 		ADD_STRUCT(Vector, UniversalOffset, 76)
-		ADD_STRUCT(ParticleModuleLocationBoneSocket::ELocationBoneSocketSelectionMethod, SelectionMethod, 73)
-		ADD_STRUCT(ParticleModuleLocationBoneSocket::ELocationBoneSocketSource, SourceType, 72)
+		ADD_STRUCT(ParticleModuleLocationBoneSocket__ELocationBoneSocketSelectionMethod, SelectionMethod, 73)
+		ADD_STRUCT(ParticleModuleLocationBoneSocket__ELocationBoneSocketSource, SourceType, 72)
 	};
 }
 #undef ADD_BOOL

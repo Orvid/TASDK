@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.NxForceField.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,7 +20,7 @@ namespace UnrealScript
 	class NxTornadoAngularForceField : public NxForceField
 	{
 	public:
-		ADD_STRUCT(Object::Pointer, Kernel, 584)
+		ADD_STRUCT(Object__Pointer, Kernel, 584)
 		ADD_STRUCT(float, SelfRotationStrength, 580)
 		ADD_BOOL(BSpecialRadialForceMode, 576, 0x1)
 		ADD_STRUCT(float, HeightOffset, 572)

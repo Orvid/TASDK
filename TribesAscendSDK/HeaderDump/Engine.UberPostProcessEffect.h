@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.DOFBloomMotionBlurEffect.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Engine.UberPostProcessEffect.ETonemapperType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,13 +21,6 @@ namespace UnrealScript
 	class UberPostProcessEffect : public DOFBloomMotionBlurEffect
 	{
 	public:
-		enum ETonemapperType : byte
-		{
-			Tonemapper_Off = 0,
-			Tonemapper_Filmic = 1,
-			Tonemapper_Customizable = 2,
-			Tonemapper_MAX = 3,
-		};
 		ADD_STRUCT(float, SceneHDRTonemapperScale, 300)
 		ADD_STRUCT(float, BloomSizeScaleLarge, 296)
 		ADD_STRUCT(float, BloomSizeScaleMedium, 292)
@@ -41,7 +35,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, TonemapperScale, 260)
 		ADD_STRUCT(float, TonemapperToeFactor, 256)
 		ADD_STRUCT(float, TonemapperRange, 252)
-		ADD_STRUCT(UberPostProcessEffect::ETonemapperType, TonemapperType, 248)
+		ADD_STRUCT(UberPostProcessEffect__ETonemapperType, TonemapperType, 248)
 		ADD_STRUCT(Vector, SceneShadows, 196)
 		ADD_STRUCT(Vector, SceneColorize, 236)
 		ADD_STRUCT(float, SceneDesaturation, 232)

@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.ParticleModuleTypeDataBase.h"
-#include "Core.Object.h"
-#include "Core.DistributionFloat.h"
+#include "Core.Object.Vector.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,7 +22,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(Vector, SpawnDistance, 108)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Tension, 80)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Tension, 80)
 		ADD_STRUCT(int, TessellationFactor, 76)
 		ADD_BOOL(SpawnByDistance, 72, 0x10)
 		ADD_BOOL(Tapered, 72, 0x8)

@@ -1,6 +1,7 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Vector.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -23,7 +24,7 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(bPreserveInternalGeo, 480, 0x2)
 		ADD_BOOL(bEnabled, 480, 0x1)
-		ADD_STRUCT(Object::Pointer, VfTable_IInterface_NavMeshPathObstacle, 476)
+		ADD_STRUCT(Object__Pointer, VfTable_IInterface_NavMeshPathObstacle, 476)
 		bool GetObstacleBoudingShape(ScriptArray<Vector>& Shape)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21027);

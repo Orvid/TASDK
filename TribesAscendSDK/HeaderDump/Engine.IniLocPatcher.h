@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine.IniLocPatcher.IniLocFileEntry.h"
 #include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -9,13 +10,7 @@ namespace UnrealScript
 	class IniLocPatcher : public Object
 	{
 	public:
-		struct IniLocFileEntry
-		{
-		public:
-			ADD_STRUCT(OnlineSubsystem::EOnlineEnumerationReadState, ReadState, 12)
-			ADD_STRUCT(ScriptString*, Filename, 0)
-		};
-		ADD_STRUCT(ScriptArray<IniLocPatcher::IniLocFileEntry>, Files, 60)
+		ADD_STRUCT(ScriptArray<IniLocPatcher__IniLocFileEntry>, Files, 60)
 		void OnReadTitleFileComplete(bool bWasSuccessful, ScriptString* Filename)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(18260);

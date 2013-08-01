@@ -1,43 +1,63 @@
 #pragma once
-#include "Engine.SeqAct_Latent.h"
 #include "Engine.RB_ConstraintSetup.h"
 #include "Core.Object.h"
+#include "Engine.Actor.ENetRole.h"
 #include "Engine.SequenceEvent.h"
 #include "Engine.Canvas.h"
 #include "Engine.WorldInfo.h"
 #include "Engine.Pawn.h"
-#include "Engine.PhysicsVolume.h"
-#include "Engine.AnimNodeSequence.h"
+#include "Engine.FaceFXAnimSet.h"
+#include "Engine.SeqAct_ModifyHealth.h"
+#include "Core.Object.Vector.h"
 #include "Core.Property.h"
+#include "Core.Object.Rotator.h"
+#include "Engine.Actor.ECollisionType.h"
+#include "Engine.PhysicsVolume.h"
+#include "Engine.Actor.EPhysics.h"
+#include "Engine.SeqAct_Latent.h"
+#include "Core.Object.Color.h"
+#include "Engine.Actor.CollisionImpactData.h"
+#include "Engine.Actor.EMoveDir.h"
+#include "Core.Object.RenderCommandFence.h"
+#include "Engine.AnimNotify_Trails.h"
+#include "Core.Object.ETickingGroup.h"
+#include "Engine.Actor.TimerData.h"
+#include "Engine.AnimNotify_ForceField.h"
+#include "Engine.SeqAct_Destroy.h"
+#include "Core.Object.QWord.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Engine.SeqAct_Interp.h"
+#include "Engine.Actor.BasedPosition.h"
+#include "Core.Object.LinearColor.h"
+#include "Core.Object.Matrix.h"
+#include "Engine.FluidSurfaceActor.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
+#include "Engine.Actor.ImpactInfo.h"
+#include "Engine.InterpGroupInst.h"
+#include "Core.Object.Box.h"
 #include "Engine.SeqAct_ChangeCollision.h"
 #include "Engine.SeqAct_SetPhysics.h"
 #include "Engine.SoundCue.h"
-#include "Engine.Controller.h"
 #include "Engine.Teleporter.h"
 #include "Engine.InterpGroup.h"
 #include "Engine.PlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.RB_ConstraintInstance.h"
+#include "Core.Object.BoneAtom.h"
 #include "Engine.SeqAct_SetBlockRigidBody.h"
 #include "Engine.Projectile.h"
 #include "Engine.SkelControlLookAt.h"
 #include "Engine.HUD.h"
-#include "Engine.FluidSurfaceActor.h"
-#include "Engine.AnimNotify_ForceField.h"
-#include "Engine.SeqAct_Destroy.h"
-#include "Engine.FaceFXAnimSet.h"
-#include "Engine.SeqAct_ModifyHealth.h"
 #include "Engine.SeqAct_Teleport.h"
 #include "Engine.SeqAct_SetVelocity.h"
 #include "Engine.AnimNotify_PlayParticleEffect.h"
 #include "Engine.SeqAct_ToggleHidden.h"
 #include "Engine.SeqAct_AttachToActor.h"
 #include "Engine.FaceFXAsset.h"
-#include "Engine.SeqAct_Interp.h"
-#include "Engine.InterpGroupInst.h"
 #include "Engine.SVehicle.h"
+#include "Core.Object.Guid.h"
 #include "Engine.RB_BodyInstance.h"
-#include "Engine.AnimNotify_Trails.h"
 #include "Engine.SequenceOp.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -74,173 +94,6 @@ namespace UnrealScript
 		static const auto TRACEFLAG_SkipMovers = 4;
 		static const auto TRACEFLAG_PhysicsVolumes = 2;
 		static const auto TRACEFLAG_Bullet = 1;
-		enum EPhysics : byte
-		{
-			PHYS_None = 0,
-			PHYS_Walking = 1,
-			PHYS_Falling = 2,
-			PHYS_Swimming = 3,
-			PHYS_Flying = 4,
-			PHYS_Rotating = 5,
-			PHYS_Projectile = 6,
-			PHYS_Interpolating = 7,
-			PHYS_Spider = 8,
-			PHYS_Ladder = 9,
-			PHYS_RigidBody = 10,
-			PHYS_SoftBody = 11,
-			PHYS_NavMeshWalking = 12,
-			PHYS_Skiing = 13,
-			PHYS_Unused = 14,
-			PHYS_Custom = 15,
-			PHYS_MAX = 16,
-		};
-		enum EMoveDir : byte
-		{
-			MD_Stationary = 0,
-			MD_Forward = 1,
-			MD_Backward = 2,
-			MD_Left = 3,
-			MD_Right = 4,
-			MD_Up = 5,
-			MD_Down = 6,
-			MD_MAX = 7,
-		};
-		enum ECollisionType : byte
-		{
-			COLLIDE_CustomDefault = 0,
-			COLLIDE_NoCollision = 1,
-			COLLIDE_BlockAll = 2,
-			COLLIDE_BlockWeapons = 3,
-			COLLIDE_BlockVehicles = 4,
-			COLLIDE_TouchAll = 5,
-			COLLIDE_TouchWeapons = 6,
-			COLLIDE_BlockAllButWeapons = 7,
-			COLLIDE_TouchAllButWeapons = 8,
-			COLLIDE_BlockWeaponsKickable = 9,
-			COLLIDE_MAX = 10,
-		};
-		enum ETravelType : byte
-		{
-			TRAVEL_Absolute = 0,
-			TRAVEL_Partial = 1,
-			TRAVEL_Relative = 2,
-			TRAVEL_MAX = 3,
-		};
-		enum EDoubleClickDir : byte
-		{
-			DCLICK_None = 0,
-			DCLICK_Left = 1,
-			DCLICK_Right = 2,
-			DCLICK_Forward = 3,
-			DCLICK_Back = 4,
-			DCLICK_Active = 5,
-			DCLICK_Done = 6,
-			DCLICK_MAX = 7,
-		};
-		enum ENetRole : byte
-		{
-			ROLE_None = 0,
-			ROLE_SimulatedProxy = 1,
-			ROLE_AutonomousProxy = 2,
-			ROLE_Authority = 3,
-			ROLE_MAX = 4,
-		};
-		struct AnimSlotDesc
-		{
-		public:
-			ADD_STRUCT(ScriptName, SlotName, 0)
-			ADD_STRUCT(int, NumChannels, 8)
-		};
-		struct RigidBodyState
-		{
-		public:
-			ADD_STRUCT(byte, bNewData, 56)
-			ADD_STRUCT(Vector, AngVel, 44)
-			ADD_STRUCT(Vector, LinVel, 32)
-			ADD_STRUCT(Object::Quat, Quaternion, 16)
-			ADD_STRUCT(Vector, Position, 0)
-		};
-		struct RigidBodyContactInfo
-		{
-		public:
-			ADD_OBJECT(PhysicalMaterial, PhysMaterial, 52)
-			ADD_STRUCT(Vector, ContactVelocity, 28)
-			ADD_STRUCT(float, ContactPenetration, 24)
-			ADD_STRUCT(Vector, ContactNormal, 12)
-			ADD_STRUCT(Vector, ContactPosition, 0)
-		};
-		struct CollisionImpactData
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Actor::RigidBodyContactInfo>, ContactInfos, 0)
-			ADD_STRUCT(Vector, TotalFrictionForceVector, 24)
-			ADD_STRUCT(Vector, TotalNormalForceVector, 12)
-		};
-		struct PhysEffectInfo
-		{
-		public:
-			ADD_OBJECT(SoundCue, Sound, 12)
-			ADD_OBJECT(ParticleSystem, Effect, 8)
-			ADD_STRUCT(float, ReFireDelay, 4)
-			ADD_STRUCT(float, Threshold, 0)
-		};
-		struct ActorReference
-		{
-		public:
-			ADD_STRUCT(Object::Guid, Guid, 4)
-			ADD_OBJECT(Actor, Actor, 0)
-		};
-		struct NavReference
-		{
-		public:
-			ADD_STRUCT(Object::Guid, Guid, 4)
-			ADD_OBJECT(NavigationPoint, Nav, 0)
-		};
-		struct BasedPosition
-		{
-		public:
-			ADD_STRUCT(Vector, CachedTransPosition, 40)
-			ADD_STRUCT(Rotator, CachedBaseRotation, 28)
-			ADD_STRUCT(Vector, CachedBaseLocation, 16)
-			ADD_STRUCT(Vector, Position, 4)
-			ADD_OBJECT(Actor, Base, 0)
-		};
-		struct TraceHitInfo
-		{
-		public:
-			ADD_OBJECT(Material, Material, 0)
-			ADD_OBJECT(PhysicalMaterial, PhysMaterial, 4)
-			ADD_STRUCT(int, Item, 8)
-			ADD_STRUCT(int, LevelIndex, 12)
-			ADD_STRUCT(ScriptName, BoneName, 16)
-		};
-		struct ImpactInfo
-		{
-		public:
-			ADD_OBJECT(Actor, HitActor, 0)
-			ADD_STRUCT(Vector, HitLocation, 4)
-			ADD_STRUCT(Vector, HitNormal, 16)
-			ADD_STRUCT(Vector, RayDir, 28)
-			ADD_STRUCT(Vector, StartTrace, 40)
-			ADD_STRUCT(Actor::TraceHitInfo, HitInfo, 52)
-		};
-		struct AnimSlotInfo
-		{
-		public:
-			ADD_STRUCT(ScriptName, SlotName, 0)
-			ADD_STRUCT(ScriptArray<float>, ChannelWeights, 8)
-		};
-		struct TimerData
-		{
-		public:
-			ADD_BOOL(bLoop, 0, 0x1)
-			ADD_BOOL(bPaused, 0, 0x2)
-			ADD_STRUCT(ScriptName, FuncName, 4)
-			ADD_STRUCT(float, Rate, 12)
-			ADD_STRUCT(float, Count, 16)
-			ADD_STRUCT(float, TimerTimeDilation, 20)
-			ADD_OBJECT(Object, TimerObj, 24)
-		};
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, Components, 60)
@@ -260,8 +113,8 @@ void*>, Components, 60)
 		ADD_STRUCT(Vector, Location, 188)
 		ADD_STRUCT(Rotator, Rotation, 84)
 		ADD_BOOL(bDeleteMe, 164, 0x8)
-		ADD_STRUCT(Actor::ENetRole, Role, 138)
-		ADD_STRUCT(Actor::ENetRole, RemoteRole, 137)
+		ADD_STRUCT(Actor__ENetRole, Role, 138)
+		ADD_STRUCT(Actor__ENetRole, RemoteRole, 137)
 		ADD_BOOL(bTearOff, 164, 0x4000000)
 		ADD_OBJECT(PhysicsVolume, PhysicsVolume, 324)
 		ADD_OBJECT(Actor, Base, 148)
@@ -275,7 +128,7 @@ void*>, Components, 60)
 		ADD_BOOL(bCollideActors, 168, 0x8000000)
 		ADD_BOOL(bCollideWorld, 168, 0x10000000)
 		ADD_OBJECT(Actor, Owner, 144)
-		ADD_STRUCT(Actor::EPhysics, Physics, 136)
+		ADD_STRUCT(Actor__EPhysics, Physics, 136)
 		ADD_BOOL(bAllowFluidSurfaceInteraction, 164, 0x10000000)
 		ADD_BOOL(bDebugEffectIsRelevant, 172, 0x8000000)
 		ADD_STRUCT(float, LastRenderTime, 256)
@@ -301,13 +154,13 @@ void*>, AllComponents, 72)
 		ADD_STRUCT(float, DrawScale, 96)
 		ADD_STRUCT(Vector, DrawScale3D, 100)
 		ADD_STRUCT(Vector, PrePivot, 112)
-		ADD_STRUCT(Object::Color, EditorIconColor, 124)
-		ADD_STRUCT(Object::RenderCommandFence, DetachFence, 128)
+		ADD_STRUCT(Object__Color, EditorIconColor, 124)
+		ADD_STRUCT(Object__RenderCommandFence, DetachFence, 128)
 		ADD_STRUCT(float, CustomTimeDilation, 132)
-		ADD_STRUCT(Actor::ECollisionType, CollisionType, 139)
-		ADD_STRUCT(Actor::ECollisionType, ReplicatedCollisionType, 140)
-		ADD_STRUCT(Object::ETickingGroup, TickGroup, 141)
-		ADD_STRUCT(ScriptArray<Actor::TimerData>, Timers, 152)
+		ADD_STRUCT(Actor__ECollisionType, CollisionType, 139)
+		ADD_STRUCT(Actor__ECollisionType, ReplicatedCollisionType, 140)
+		ADD_STRUCT(Object__ETickingGroup, TickGroup, 141)
+		ADD_STRUCT(ScriptArray<Actor__TimerData>, Timers, 152)
 		ADD_BOOL(bTicked, 164, 0x10)
 		ADD_BOOL(bOnlyOwnerSee, 164, 0x20)
 		ADD_BOOL(bTickIsDisabled, 164, 0x40)
@@ -445,11 +298,11 @@ void*>, AllComponents, 72)
 			*(float*)&params[4] = NewHeight;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetCollisionType(Actor::ECollisionType NewCollisionType)
+		void SetCollisionType(Actor__ECollisionType NewCollisionType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3527);
 			byte params[1] = { NULL };
-			*(Actor::ECollisionType*)params = NewCollisionType;
+			*(Actor__ECollisionType*)params = NewCollisionType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetDrawScale(float NewScale)
@@ -490,14 +343,14 @@ void*>, AllComponents, 72)
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		Actor::EMoveDir MovingWhichWay(float& Amount)
+		Actor__EMoveDir MovingWhichWay(float& Amount)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3542);
 			byte params[5] = { NULL };
 			*(float*)params = Amount;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			Amount = *(float*)params;
-			return *(Actor::EMoveDir*)&params[4];
+			return *(Actor__EMoveDir*)&params[4];
 		}
 		void SetZone(bool bForceRefresh)
 		{
@@ -633,39 +486,39 @@ void**)&params[16] = SkelComp;
 			*(bool*)&params[4] = bAdd;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void Vect2BP(Actor::BasedPosition& BP, Vector pos, class Actor* ForcedBase)
+		void Vect2BP(Actor__BasedPosition& BP, Vector pos, class Actor* ForcedBase)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3591);
 			byte params[68] = { NULL };
-			*(Actor::BasedPosition*)params = BP;
+			*(Actor__BasedPosition*)params = BP;
 			*(Vector*)&params[52] = pos;
 			*(class Actor**)&params[64] = ForcedBase;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			BP = *(Actor::BasedPosition*)params;
+			BP = *(Actor__BasedPosition*)params;
 		}
-		Vector BP2Vect(Actor::BasedPosition BP)
+		Vector BP2Vect(Actor__BasedPosition BP)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3595);
 			byte params[64] = { NULL };
-			*(Actor::BasedPosition*)params = BP;
+			*(Actor__BasedPosition*)params = BP;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[52];
 		}
-		void SetBasedPosition(Actor::BasedPosition& BP, Vector pos, class Actor* ForcedBase)
+		void SetBasedPosition(Actor__BasedPosition& BP, Vector pos, class Actor* ForcedBase)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3598);
 			byte params[68] = { NULL };
-			*(Actor::BasedPosition*)params = BP;
+			*(Actor__BasedPosition*)params = BP;
 			*(Vector*)&params[52] = pos;
 			*(class Actor**)&params[64] = ForcedBase;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			BP = *(Actor::BasedPosition*)params;
+			BP = *(Actor__BasedPosition*)params;
 		}
-		Vector GetBasedPosition(Actor::BasedPosition BP)
+		Vector GetBasedPosition(Actor__BasedPosition BP)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3602);
 			byte params[64] = { NULL };
-			*(Actor::BasedPosition*)params = BP;
+			*(Actor__BasedPosition*)params = BP;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[52];
 		}
@@ -686,13 +539,13 @@ void**)&params[16] = SkelComp;
 			*(bool*)&params[28] = bPersistentLines;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawDebugPoint(Vector Position, float Size, Object::LinearColor PointColor, bool bPersistentLines)
+		void DrawDebugPoint(Vector Position, float Size, Object__LinearColor PointColor, bool bPersistentLines)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3613);
 			byte params[36] = { NULL };
 			*(Vector*)params = Position;
 			*(float*)&params[12] = Size;
-			*(Object::LinearColor*)&params[16] = PointColor;
+			*(Object__LinearColor*)&params[16] = PointColor;
 			*(bool*)&params[32] = bPersistentLines;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -757,7 +610,7 @@ void**)&params[16] = SkelComp;
 			*(bool*)&params[36] = bPersistentLines;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawDebugCone(Vector Origin, Vector Direction, float Length, float AngleWidth, float AngleHeight, int NumSides, Object::Color DrawColor, bool bPersistentLines)
+		void DrawDebugCone(Vector Origin, Vector Direction, float Length, float AngleWidth, float AngleHeight, int NumSides, Object__Color DrawColor, bool bPersistentLines)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3654);
 			byte params[48] = { NULL };
@@ -767,32 +620,32 @@ void**)&params[16] = SkelComp;
 			*(float*)&params[28] = AngleWidth;
 			*(float*)&params[32] = AngleHeight;
 			*(int*)&params[36] = NumSides;
-			*(Object::Color*)&params[40] = DrawColor;
+			*(Object__Color*)&params[40] = DrawColor;
 			*(bool*)&params[44] = bPersistentLines;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawDebugString(Vector TextLocation, ScriptString* Text, class Actor* TestBaseActor, Object::Color TextColor, float Duration)
+		void DrawDebugString(Vector TextLocation, ScriptString* Text, class Actor* TestBaseActor, Object__Color TextColor, float Duration)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3663);
 			byte params[36] = { NULL };
 			*(Vector*)params = TextLocation;
 			*(ScriptString**)&params[12] = Text;
 			*(class Actor**)&params[24] = TestBaseActor;
-			*(Object::Color*)&params[28] = TextColor;
+			*(Object__Color*)&params[28] = TextColor;
 			*(float*)&params[32] = Duration;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawDebugFrustrum(Object::Matrix& FrustumToWorld, byte R, byte G, byte B, bool bPersistentLines)
+		void DrawDebugFrustrum(Object__Matrix& FrustumToWorld, byte R, byte G, byte B, bool bPersistentLines)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3669);
 			byte params[71] = { NULL };
-			*(Object::Matrix*)params = FrustumToWorld;
+			*(Object__Matrix*)params = FrustumToWorld;
 			params[64] = R;
 			params[65] = G;
 			params[66] = B;
 			*(bool*)&params[68] = bPersistentLines;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			FrustumToWorld = *(Object::Matrix*)params;
+			FrustumToWorld = *(Object__Matrix*)params;
 		}
 		void FlushDebugStrings()
 		{
@@ -821,11 +674,11 @@ void**)&params[16] = SkelComp;
 			*(bool*)params = bNewOnlyOwnerSee;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetPhysics(Actor::EPhysics newPhysics)
+		void SetPhysics(Actor__EPhysics newPhysics)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3683);
 			byte params[1] = { NULL };
-			*(Actor::EPhysics*)params = newPhysics;
+			*(Actor__EPhysics*)params = newPhysics;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void Clock(float& Time)
@@ -877,11 +730,11 @@ void* ComponentToReattach)
 void**)params = ComponentToReattach;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetTickGroup(Object::ETickingGroup NewTickGroup)
+		void SetTickGroup(Object__ETickingGroup NewTickGroup)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3695);
 			byte params[1] = { NULL };
-			*(Object::ETickingGroup*)params = NewTickGroup;
+			*(Object__ETickingGroup*)params = NewTickGroup;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetTickIsDisabled(bool bInDisabled)
@@ -1110,7 +963,7 @@ void**)&params[4] = OtherComp;
 			*(class PhysicsVolume**)params = PV;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		class Actor* Trace(Vector& HitLocation, Vector& HitNormal, Vector TraceEnd, Vector TraceStart, bool bTraceActors, Vector Extent, Actor::TraceHitInfo& HitInfo, int ExtraTraceFlags)
+		class Actor* Trace(Vector& HitLocation, Vector& HitNormal, Vector TraceEnd, Vector TraceStart, bool bTraceActors, Vector Extent, Actor__TraceHitInfo& HitInfo, int ExtraTraceFlags)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3767);
 			byte params[100] = { NULL };
@@ -1120,17 +973,17 @@ void**)&params[4] = OtherComp;
 			*(Vector*)&params[36] = TraceStart;
 			*(bool*)&params[48] = bTraceActors;
 			*(Vector*)&params[52] = Extent;
-			*(Actor::TraceHitInfo*)&params[64] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[64] = HitInfo;
 			*(int*)&params[92] = ExtraTraceFlags;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			HitLocation = *(Vector*)params;
 			HitNormal = *(Vector*)&params[12];
-			HitInfo = *(Actor::TraceHitInfo*)&params[64];
+			HitInfo = *(Actor__TraceHitInfo*)&params[64];
 			return *(class Actor**)&params[96];
 		}
 		bool TraceComponent(Vector& HitLocation, Vector& HitNormal, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
-void* InComponent, Vector TraceEnd, Vector TraceStart, Vector Extent, Actor::TraceHitInfo& HitInfo, bool bComplexCollision)
+void* InComponent, Vector TraceEnd, Vector TraceStart, Vector Extent, Actor__TraceHitInfo& HitInfo, bool bComplexCollision)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3785);
 			byte params[100] = { NULL };
@@ -1142,12 +995,12 @@ void**)&params[24] = InComponent;
 			*(Vector*)&params[28] = TraceEnd;
 			*(Vector*)&params[40] = TraceStart;
 			*(Vector*)&params[52] = Extent;
-			*(Actor::TraceHitInfo*)&params[64] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[64] = HitInfo;
 			*(bool*)&params[92] = bComplexCollision;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			HitLocation = *(Vector*)params;
 			HitNormal = *(Vector*)&params[12];
-			HitInfo = *(Actor::TraceHitInfo*)&params[64];
+			HitInfo = *(Actor__TraceHitInfo*)&params[64];
 			return *(bool*)&params[96];
 		}
 		bool PointCheckComponent(
@@ -1177,7 +1030,7 @@ void**)params = InComponent;
 		}
 		bool TraceAllPhysicsAssetInteractions(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
-void* SkelMeshComp, Vector EndTrace, Vector StartTrace, ScriptArray<Actor::ImpactInfo>& out_Hits, Vector Extent)
+void* SkelMeshComp, Vector EndTrace, Vector StartTrace, ScriptArray<Actor__ImpactInfo>& out_Hits, Vector Extent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3806);
 			byte params[56] = { NULL };
@@ -1186,10 +1039,10 @@ void* SkelMeshComp, Vector EndTrace, Vector StartTrace, ScriptArray<Actor::Impac
 void**)params = SkelMeshComp;
 			*(Vector*)&params[4] = EndTrace;
 			*(Vector*)&params[16] = StartTrace;
-			*(ScriptArray<Actor::ImpactInfo>*)&params[28] = out_Hits;
+			*(ScriptArray<Actor__ImpactInfo>*)&params[28] = out_Hits;
 			*(Vector*)&params[40] = Extent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_Hits = *(ScriptArray<Actor::ImpactInfo>*)&params[28];
+			out_Hits = *(ScriptArray<Actor__ImpactInfo>*)&params[28];
 			return *(bool*)&params[52];
 		}
 		bool FindSpot(Vector BoxExtent, Vector& SpotLocation)
@@ -1218,13 +1071,13 @@ void**)params = SkelMeshComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void GetComponentsBoundingBox(Object::Box& ActorBox)
+		void GetComponentsBoundingBox(Object__Box& ActorBox)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3831);
 			byte params[28] = { NULL };
-			*(Object::Box*)params = ActorBox;
+			*(Object__Box*)params = ActorBox;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ActorBox = *(Object::Box*)params;
+			ActorBox = *(Object__Box*)params;
 		}
 		void GetBoundingCylinder(float& CollisionRadius, float& CollisionHeight)
 		{
@@ -1514,7 +1367,7 @@ void**)&params[32];
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			Actor = *(class Actor**)&params[4];
 		}
-		void TraceActors(ScriptClass* BaseClass, class Actor*& Actor, Vector& HitLoc, Vector& HitNorm, Vector End, Vector Start, Vector Extent, Actor::TraceHitInfo& HitInfo, int ExtraTraceFlags)
+		void TraceActors(ScriptClass* BaseClass, class Actor*& Actor, Vector& HitLoc, Vector& HitNorm, Vector End, Vector Start, Vector Extent, Actor__TraceHitInfo& HitInfo, int ExtraTraceFlags)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3961);
 			byte params[100] = { NULL };
@@ -1525,13 +1378,13 @@ void**)&params[32];
 			*(Vector*)&params[32] = End;
 			*(Vector*)&params[44] = Start;
 			*(Vector*)&params[56] = Extent;
-			*(Actor::TraceHitInfo*)&params[68] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[68] = HitInfo;
 			*(int*)&params[96] = ExtraTraceFlags;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			Actor = *(class Actor**)&params[4];
 			HitLoc = *(Vector*)&params[8];
 			HitNorm = *(Vector*)&params[20];
-			HitInfo = *(Actor::TraceHitInfo*)&params[68];
+			HitInfo = *(Actor__TraceHitInfo*)&params[68];
 		}
 		void VisibleActors(ScriptClass* BaseClass, class Actor*& Actor, float Radius, Vector Loc)
 		{
@@ -1544,7 +1397,7 @@ void**)&params[32];
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			Actor = *(class Actor**)&params[4];
 		}
-		void VisibleCollidingActors(ScriptClass* BaseClass, class Actor*& Actor, float Radius, Vector Loc, bool bIgnoreHidden, Vector Extent, bool bTraceActors, ScriptClass* InterfaceClass, Actor::TraceHitInfo& HitInfo)
+		void VisibleCollidingActors(ScriptClass* BaseClass, class Actor*& Actor, float Radius, Vector Loc, bool bIgnoreHidden, Vector Extent, bool bTraceActors, ScriptClass* InterfaceClass, Actor__TraceHitInfo& HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3976);
 			byte params[76] = { NULL };
@@ -1556,12 +1409,12 @@ void**)&params[32];
 			*(Vector*)&params[28] = Extent;
 			*(bool*)&params[40] = bTraceActors;
 			*(ScriptClass**)&params[44] = InterfaceClass;
-			*(Actor::TraceHitInfo*)&params[48] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[48] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			Actor = *(class Actor**)&params[4];
-			HitInfo = *(Actor::TraceHitInfo*)&params[48];
+			HitInfo = *(Actor__TraceHitInfo*)&params[48];
 		}
-		void CollidingActors(ScriptClass* BaseClass, class Actor*& Actor, float Radius, Vector Loc, bool bUseOverlapCheck, ScriptClass* InterfaceClass, Actor::TraceHitInfo& HitInfo)
+		void CollidingActors(ScriptClass* BaseClass, class Actor*& Actor, float Radius, Vector Loc, bool bUseOverlapCheck, ScriptClass* InterfaceClass, Actor__TraceHitInfo& HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3986);
 			byte params[60] = { NULL };
@@ -1571,12 +1424,12 @@ void**)&params[32];
 			*(Vector*)&params[12] = Loc;
 			*(bool*)&params[24] = bUseOverlapCheck;
 			*(ScriptClass**)&params[28] = InterfaceClass;
-			*(Actor::TraceHitInfo*)&params[32] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[32] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			Actor = *(class Actor**)&params[4];
-			HitInfo = *(Actor::TraceHitInfo*)&params[32];
+			HitInfo = *(Actor__TraceHitInfo*)&params[32];
 		}
-		void VisibleCollidingExtentActors(ScriptClass* BaseClass, class Actor*& Actor, float Radius, Vector Loc, Vector AltLoc, bool bIgnoreHidden, Vector Extent, bool bTraceActors, ScriptClass* InterfaceClass, Actor::TraceHitInfo& HitInfo, float XYCheckRadius)
+		void VisibleCollidingExtentActors(ScriptClass* BaseClass, class Actor*& Actor, float Radius, Vector Loc, Vector AltLoc, bool bIgnoreHidden, Vector Extent, bool bTraceActors, ScriptClass* InterfaceClass, Actor__TraceHitInfo& HitInfo, float XYCheckRadius)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3994);
 			byte params[92] = { NULL };
@@ -1589,11 +1442,11 @@ void**)&params[32];
 			*(Vector*)&params[40] = Extent;
 			*(bool*)&params[52] = bTraceActors;
 			*(ScriptClass**)&params[56] = InterfaceClass;
-			*(Actor::TraceHitInfo*)&params[60] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[60] = HitInfo;
 			*(float*)&params[88] = XYCheckRadius;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			Actor = *(class Actor**)&params[4];
-			HitInfo = *(Actor::TraceHitInfo*)&params[60];
+			HitInfo = *(Actor__TraceHitInfo*)&params[60];
 		}
 		void OverlappingActors(ScriptClass* BaseClass, class Actor*& out_Actor, float Radius, Vector Loc, bool bIgnoreHidden)
 		{
@@ -1737,7 +1590,7 @@ void**)&params[4];
 			*(class Pawn**)params = EventInstigator;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4087);
 			byte params[68] = { NULL };
@@ -1746,7 +1599,7 @@ void**)&params[4];
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1775,20 +1628,20 @@ void**)&params[4];
 			*(float*)&params[40] = DamageFalloffExponent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void CheckHitInfo(Actor::TraceHitInfo& HitInfo, 
+		void CheckHitInfo(Actor__TraceHitInfo& HitInfo, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void* FallBackComponent, Vector Dir, Vector& out_HitLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4120);
 			byte params[56] = { NULL };
-			*(Actor::TraceHitInfo*)params = HitInfo;
+			*(Actor__TraceHitInfo*)params = HitInfo;
 			*(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void**)&params[28] = FallBackComponent;
 			*(Vector*)&params[32] = Dir;
 			*(Vector*)&params[44] = out_HitLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			HitInfo = *(Actor::TraceHitInfo*)params;
+			HitInfo = *(Actor__TraceHitInfo*)params;
 			out_HitLocation = *(Vector*)&params[44];
 		}
 		float GetGravityZ()
@@ -2336,7 +2189,7 @@ void**)params;
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void* HitComponent, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
-void* OtherComponent, Actor::CollisionImpactData& RigidCollisionData, int ContactIndex)
+void* OtherComponent, Actor__CollisionImpactData& RigidCollisionData, int ContactIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4500);
 			byte params[48] = { NULL };
@@ -2346,10 +2199,10 @@ void**)params = HitComponent;
 			*(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void**)&params[4] = OtherComponent;
-			*(Actor::CollisionImpactData*)&params[8] = RigidCollisionData;
+			*(Actor__CollisionImpactData*)&params[8] = RigidCollisionData;
 			*(int*)&params[44] = ContactIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			RigidCollisionData = *(Actor::CollisionImpactData*)&params[8];
+			RigidCollisionData = *(Actor__CollisionImpactData*)&params[8];
 		}
 		void OnRanOver(class SVehicle* Vehicle, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
@@ -2404,16 +2257,16 @@ void**)params = SkelComp;
 		}
 		void RootMotionExtracted(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
-void* SkelComp, Object::BoneAtom& ExtractedRootMotionDelta)
+void* SkelComp, Object__BoneAtom& ExtractedRootMotionDelta)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4523);
 			byte params[36] = { NULL };
 			*(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void**)params = SkelComp;
-			*(Object::BoneAtom*)&params[16] = ExtractedRootMotionDelta;
+			*(Object__BoneAtom*)&params[16] = ExtractedRootMotionDelta;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ExtractedRootMotionDelta = *(Object::BoneAtom*)&params[16];
+			ExtractedRootMotionDelta = *(Object__BoneAtom*)&params[16];
 		}
 		void PostInitAnimTree(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
@@ -2426,13 +2279,13 @@ void* SkelComp)
 void**)params = SkelComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		Object::Guid GetPackageGuid(ScriptName PackageName)
+		Object__Guid GetPackageGuid(ScriptName PackageName)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4528);
 			byte params[24] = { NULL };
 			*(ScriptName*)params = PackageName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Guid*)&params[8];
+			return *(Object__Guid*)&params[8];
 		}
 		void OnRigidBodySpringOverextension(class RB_BodyInstance* BodyInstance)
 		{

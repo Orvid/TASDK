@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "TribesGame.TrDaDStats.DaDScoreInfo.h"
 #include "TribesGame.TrPlayerController.h"
 #include "TribesGame.GfxTrHud.h"
 #include "TribesGame.TrGameReplicationInfo.h"
@@ -26,18 +27,8 @@ namespace UnrealScript
 	class TrDaDStats : public Object
 	{
 	public:
-		struct DaDScoreInfo
-		{
-		public:
-			ADD_STRUCT(int, CoreHealthPct, 12)
-			ADD_BOOL(bCapacitorCOnline, 8, 0x4)
-			ADD_BOOL(bCapacitorBOnline, 8, 0x2)
-			ADD_BOOL(bCapacitorAOnline, 8, 0x1)
-			ADD_STRUCT(int, GeneratorRemainingTime, 4)
-			ADD_BOOL(bGeneratorOnline, 0, 0x1)
-		};
-		ADD_STRUCT(TrDaDStats::DaDScoreInfo, EnemyDaDScore, 116)
-		ADD_STRUCT(TrDaDStats::DaDScoreInfo, FriendlyDaDScore, 100)
+		ADD_STRUCT(TrDaDStats__DaDScoreInfo, EnemyDaDScore, 116)
+		ADD_STRUCT(TrDaDStats__DaDScoreInfo, FriendlyDaDScore, 100)
 		ADD_OBJECT(TrPlayerController, TrPC, 96)
 		ADD_OBJECT(GfxTrHud, m_MoviePlayer, 92)
 		ADD_STRUCT(int, RoundNum, 88)

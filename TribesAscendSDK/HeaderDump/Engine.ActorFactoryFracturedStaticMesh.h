@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Engine.ActorFactory.h"
-#include "Core.Object.h"
 #include "Engine.FracturedStaticMesh.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

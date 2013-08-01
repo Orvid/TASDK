@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.HUD.h"
+#include "Core.Object.Vector.h"
 #include "GameFramework.SeqEvent_HudRender.h"
-#include "Core.Object.h"
+#include "GameFramework.SeqEvent_HudRenderText.ETextDrawMethod.h"
+#include "Core.Object.Color.h"
 #include "Engine.Font.h"
 #include "Engine.Canvas.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -17,16 +19,10 @@ namespace UnrealScript
 	class SeqEvent_HudRenderText : public SeqEvent_HudRender
 	{
 	public:
-		enum ETextDrawMethod : byte
-		{
-			DRAW_CenterText = 0,
-			DRAW_WrapText = 1,
-			DRAW_MAX = 2,
-		};
-		ADD_STRUCT(SeqEvent_HudRenderText::ETextDrawMethod, TextDrawMethod, 308)
+		ADD_STRUCT(SeqEvent_HudRenderText__ETextDrawMethod, TextDrawMethod, 308)
 		ADD_STRUCT(ScriptString*, DisplayText, 296)
 		ADD_STRUCT(Vector, DisplayLocation, 284)
-		ADD_STRUCT(Object::Color, DisplayColor, 280)
+		ADD_STRUCT(Object__Color, DisplayColor, 280)
 		ADD_OBJECT(Font, DisplayFont, 276)
 		void Render(class Canvas* TargetCanvas, class HUD* TargetHud)
 		{

@@ -1,4 +1,18 @@
 #pragma once
+#include "Core.Object.Vector2D.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.LinearColor.h"
+#include "Core.Object.QWord.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.EDebugBreakType.h"
+#include "Core.Object.Rotator.h"
+#include "Core.Object.Color.h"
+#include "Core.Object.InterpCurveVector2D.h"
+#include "Core.Object.InterpCurveVector.h"
+#include "Core.Object.InterpCurveFloat.h"
+#include "Core.Object.Quat.h"
+#include "Core.Object.Matrix.h"
+#include "Core.Object.EAxis.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -27,436 +41,16 @@ namespace UnrealScript
 		static const float RadToDeg;
 		static const float Pi;
 		static const auto MaxInt = 0x7fffffff;
-		enum EDebugBreakType : byte
-		{
-			DEBUGGER_NativeOnly = 0,
-			DEBUGGER_ScriptOnly = 1,
-			DEBUGGER_Both = 2,
-			DEBUGGER_MAX = 3,
-		};
-		enum EAutomatedRunResult : byte
-		{
-			ARR_Unknown = 0,
-			ARR_OOM = 1,
-			ARR_Passed = 2,
-			ARR_MAX = 3,
-		};
-		enum EAspectRatioAxisConstraint : byte
-		{
-			AspectRatio_MaintainYFOV = 0,
-			AspectRatio_MaintainXFOV = 1,
-			AspectRatio_MajorAxisFOV = 2,
-			AspectRatio_MAX = 3,
-		};
-		enum EInterpCurveMode : byte
-		{
-			CIM_Linear = 0,
-			CIM_CurveAuto = 1,
-			CIM_Constant = 2,
-			CIM_CurveUser = 3,
-			CIM_CurveBreak = 4,
-			CIM_CurveAutoClamped = 5,
-			CIM_MAX = 6,
-		};
-		enum EInterpMethodType : byte
-		{
-			IMT_UseFixedTangentEvalAndNewAutoTangents = 0,
-			IMT_UseFixedTangentEval = 1,
-			IMT_UseBrokenTangentEval = 2,
-			IMT_MAX = 3,
-		};
-		enum EAxis : byte
-		{
-			AXIS_NONE = 0,
-			AXIS_X = 1,
-			AXIS_Y = 2,
-			AXIS_BLANK = 3,
-			AXIS_Z = 4,
-			AXIS_MAX = 5,
-		};
-		enum ETickingGroup : byte
-		{
-			TG_PreAsyncWork = 0,
-			TG_DuringAsyncWork = 1,
-			TG_PostAsyncWork = 2,
-			TG_PostUpdateWork = 3,
-			TG_EffectsUpdateWork = 4,
-			TG_MAX = 5,
-		};
-		enum EInputEvent : byte
-		{
-			IE_Pressed = 0,
-			IE_Released = 1,
-			IE_Repeat = 2,
-			IE_DoubleClick = 3,
-			IE_Axis = 4,
-			IE_MAX = 5,
-		};
-		enum AlphaBlendType : byte
-		{
-			ABT_Linear = 0,
-			ABT_Cubic = 1,
-			ABT_Sinusoidal = 2,
-			ABT_EaseInOutExponent2 = 3,
-			ABT_EaseInOutExponent3 = 4,
-			ABT_EaseInOutExponent4 = 5,
-			ABT_EaseInOutExponent5 = 6,
-			ABT_MAX = 7,
-		};
-		// struct Rotator is manually defined
-		// struct Vector is manually defined
-		// struct QWord is manually defined
-		struct Guid
-		{
-		public:
-			ADD_STRUCT(int, A, 0)
-			ADD_STRUCT(int, B, 4)
-			ADD_STRUCT(int, C, 8)
-			ADD_STRUCT(int, D, 12)
-		};
-		struct Vector2D
-		{
-		public:
-			ADD_STRUCT(float, X, 0)
-			ADD_STRUCT(float, Y, 4)
-		};
-		struct Vector4
-		{
-		public:
-			ADD_STRUCT(float, X, 0)
-			ADD_STRUCT(float, Y, 4)
-			ADD_STRUCT(float, Z, 8)
-			ADD_STRUCT(float, W, 12)
-		};
-		struct LinearColor
-		{
-		public:
-			ADD_STRUCT(float, R, 0)
-			ADD_STRUCT(float, G, 4)
-			ADD_STRUCT(float, B, 8)
-			ADD_STRUCT(float, A, 12)
-		};
-		struct Color
-		{
-		public:
-			ADD_STRUCT(byte, R, 2)
-			ADD_STRUCT(byte, G, 1)
-			ADD_STRUCT(byte, B, 0)
-			ADD_STRUCT(byte, A, 3)
-		};
-		struct Cylinder
-		{
-		public:
-			ADD_STRUCT(float, Radius, 0)
-			ADD_STRUCT(float, Height, 4)
-		};
-		struct Quat
-		{
-		public:
-			ADD_STRUCT(float, X, 0)
-			ADD_STRUCT(float, Y, 4)
-			ADD_STRUCT(float, Z, 8)
-			ADD_STRUCT(float, W, 12)
-		};
-		struct BoxSphereBounds
-		{
-		public:
-			ADD_STRUCT(Vector, Origin, 0)
-			ADD_STRUCT(Vector, BoxExtent, 12)
-			ADD_STRUCT(float, SphereRadius, 24)
-		};
-		struct TwoVectors
-		{
-		public:
-			ADD_STRUCT(Vector, v1, 0)
-			ADD_STRUCT(Vector, v2, 12)
-		};
-		struct BoneAtom
-		{
-		public:
-			ADD_STRUCT(Object::Quat, Rotation, 0)
-			ADD_STRUCT(Vector, Translation, 16)
-			ADD_STRUCT(float, Scale, 28)
-		};
-		struct RenderCommandFence
-		{
-		public:
-			ADD_STRUCT(int, NumPendingFences, 0)
-		};
-		struct Pointer
-		{
-		public:
-			ADD_STRUCT(int, Dummy, 0)
-		};
-		struct RawDistribution
-		{
-		public:
-			ADD_STRUCT(byte, Type, 0)
-			ADD_STRUCT(byte, Op, 1)
-			ADD_STRUCT(byte, LookupTableNumElements, 2)
-			ADD_STRUCT(byte, LookupTableChunkSize, 3)
-			ADD_STRUCT(ScriptArray<float>, LookupTable, 4)
-			ADD_STRUCT(float, LookupTableTimeScale, 16)
-			ADD_STRUCT(float, LookupTableStartTime, 20)
-		};
-		struct Box
-		{
-		public:
-			ADD_STRUCT(Vector, Min, 0)
-			ADD_STRUCT(Vector, Max, 12)
-			ADD_STRUCT(byte, IsValid, 24)
-		};
-		struct TPOV
-		{
-		public:
-			ADD_STRUCT(Vector, Location, 0)
-			ADD_STRUCT(Rotator, Rotation, 12)
-			ADD_STRUCT(float, FOV, 24)
-		};
-		struct SHVector
-		{
-		public:
-			ADD_STRUCT(float, V, 0)
-			ADD_STRUCT(float, Padding, 36)
-		};
-		struct IntPoint
-		{
-		public:
-			ADD_STRUCT(int, X, 0)
-			ADD_STRUCT(int, Y, 4)
-		};
-		struct Array_Mirror
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, Data, 0)
-			ADD_STRUCT(int, ArrayNum, 4)
-			ADD_STRUCT(int, ArrayMax, 8)
-		};
-		struct IndirectArray_Mirror
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, Data, 0)
-			ADD_STRUCT(int, ArrayNum, 4)
-			ADD_STRUCT(int, ArrayMax, 8)
-		};
-		struct FColorVertexBuffer_Mirror
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, VfTable, 0)
-			ADD_STRUCT(Object::Pointer, VertexData, 4)
-			ADD_STRUCT(int, Data, 8)
-			ADD_STRUCT(int, Stride, 12)
-			ADD_STRUCT(int, NumVertices, 16)
-		};
-		struct RenderCommandFence_Mirror
-		{
-		public:
-			ADD_STRUCT(int, NumPendingFences, 0)
-		};
-		struct UntypedBulkData_Mirror
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, VfTable, 0)
-			ADD_STRUCT(int, BulkDataFlags, 4)
-			ADD_STRUCT(int, ElementCount, 8)
-			ADD_STRUCT(int, BulkDataOffsetInFile, 12)
-			ADD_STRUCT(int, BulkDataSizeOnDisk, 16)
-			ADD_STRUCT(int, SavedBulkDataFlags, 20)
-			ADD_STRUCT(int, SavedElementCount, 24)
-			ADD_STRUCT(int, SavedBulkDataOffsetInFile, 28)
-			ADD_STRUCT(int, SavedBulkDataSizeOnDisk, 32)
-			ADD_STRUCT(Object::Pointer, BulkData, 36)
-			ADD_STRUCT(int, LockStatus, 40)
-			ADD_STRUCT(Object::Pointer, AttachedAr, 44)
-			ADD_STRUCT(int, bShouldFreeOnEmpty, 48)
-		};
-		struct BitArray_Mirror
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, IndirectData, 0)
-			ADD_STRUCT(int, InlineData, 4)
-			ADD_STRUCT(int, NumBits, 20)
-			ADD_STRUCT(int, MaxBits, 24)
-		};
-		struct ThreadSafeCounter
-		{
-		public:
-			ADD_STRUCT(int, Value, 0)
-		};
-		struct Double
-		{
-		public:
-			ADD_STRUCT(int, A, 0)
-			ADD_STRUCT(int, B, 4)
-		};
-		struct Plane : public Vector
-		{
-		public:
-			ADD_STRUCT(float, W, 12)
-		};
-		struct InterpCurvePointVector2D
-		{
-		public:
-			ADD_STRUCT(float, InVal, 0)
-			ADD_STRUCT(Object::Vector2D, OutVal, 4)
-			ADD_STRUCT(Object::Vector2D, ArriveTangent, 12)
-			ADD_STRUCT(Object::Vector2D, LeaveTangent, 20)
-			ADD_STRUCT(Object::EInterpCurveMode, InterpMode, 28)
-		};
-		struct InterpCurvePointVector
-		{
-		public:
-			ADD_STRUCT(float, InVal, 0)
-			ADD_STRUCT(Vector, OutVal, 4)
-			ADD_STRUCT(Vector, ArriveTangent, 16)
-			ADD_STRUCT(Vector, LeaveTangent, 28)
-			ADD_STRUCT(Object::EInterpCurveMode, InterpMode, 40)
-		};
-		struct InterpCurvePointFloat
-		{
-		public:
-			ADD_STRUCT(float, InVal, 0)
-			ADD_STRUCT(float, OutVal, 4)
-			ADD_STRUCT(float, ArriveTangent, 8)
-			ADD_STRUCT(float, LeaveTangent, 12)
-			ADD_STRUCT(Object::EInterpCurveMode, InterpMode, 16)
-		};
-		struct Matrix
-		{
-		public:
-			ADD_STRUCT(Object::Plane, XPlane, 0)
-			ADD_STRUCT(Object::Plane, YPlane, 16)
-			ADD_STRUCT(Object::Plane, ZPlane, 32)
-			ADD_STRUCT(Object::Plane, WPlane, 48)
-		};
-		struct TAlphaBlend
-		{
-		public:
-			ADD_STRUCT(float, AlphaIn, 0)
-			ADD_STRUCT(float, AlphaOut, 4)
-			ADD_STRUCT(float, AlphaTarget, 8)
-			ADD_STRUCT(float, BlendTime, 12)
-			ADD_STRUCT(float, BlendTimeToGo, 16)
-			ADD_STRUCT(Object::AlphaBlendType, BlendType, 20)
-		};
-		struct OctreeElementId
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, Node, 0)
-			ADD_STRUCT(int, ElementIndex, 4)
-		};
-		struct InterpCurvePointLinearColor
-		{
-		public:
-			ADD_STRUCT(float, InVal, 0)
-			ADD_STRUCT(Object::LinearColor, OutVal, 4)
-			ADD_STRUCT(Object::LinearColor, ArriveTangent, 20)
-			ADD_STRUCT(Object::LinearColor, LeaveTangent, 36)
-			ADD_STRUCT(Object::EInterpCurveMode, InterpMode, 52)
-		};
-		struct InterpCurvePointQuat
-		{
-		public:
-			ADD_STRUCT(float, InVal, 0)
-			ADD_STRUCT(Object::Quat, OutVal, 16)
-			ADD_STRUCT(Object::Quat, ArriveTangent, 32)
-			ADD_STRUCT(Object::Quat, LeaveTangent, 48)
-			ADD_STRUCT(Object::EInterpCurveMode, InterpMode, 64)
-		};
-		struct InterpCurvePointTwoVectors
-		{
-		public:
-			ADD_STRUCT(float, InVal, 0)
-			ADD_STRUCT(Object::TwoVectors, OutVal, 4)
-			ADD_STRUCT(Object::TwoVectors, ArriveTangent, 28)
-			ADD_STRUCT(Object::TwoVectors, LeaveTangent, 52)
-			ADD_STRUCT(Object::EInterpCurveMode, InterpMode, 76)
-		};
-		struct SHVectorRGB
-		{
-		public:
-			ADD_STRUCT(Object::SHVector, R, 0)
-			ADD_STRUCT(Object::SHVector, G, 48)
-			ADD_STRUCT(Object::SHVector, B, 96)
-		};
-		struct InlinePointerArray_Mirror
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, InlineData, 0)
-			ADD_STRUCT(Object::Array_Mirror, SecondaryData, 4)
-		};
-		struct SparseArray_Mirror
-		{
-		public:
-			ADD_STRUCT(ScriptArray<int>, Elements, 0)
-			ADD_STRUCT(Object::BitArray_Mirror, AllocationFlags, 12)
-			ADD_STRUCT(int, FirstFreeIndex, 40)
-			ADD_STRUCT(int, NumFreeIndices, 44)
-		};
-		struct InterpCurveVector2D
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Object::InterpCurvePointVector2D>, Points, 0)
-			ADD_STRUCT(Object::EInterpMethodType, InterpMethod, 12)
-		};
-		struct InterpCurveFloat
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Object::InterpCurvePointFloat>, Points, 0)
-			ADD_STRUCT(Object::EInterpMethodType, InterpMethod, 12)
-		};
-		struct InterpCurveVector
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Object::InterpCurvePointVector>, Points, 0)
-			ADD_STRUCT(Object::EInterpMethodType, InterpMethod, 12)
-		};
-		struct InterpCurveLinearColor
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Object::InterpCurvePointLinearColor>, Points, 0)
-			ADD_STRUCT(Object::EInterpMethodType, InterpMethod, 12)
-		};
-		struct InterpCurveQuat
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Object::InterpCurvePointQuat>, Points, 0)
-			ADD_STRUCT(Object::EInterpMethodType, InterpMethod, 12)
-		};
-		struct InterpCurveTwoVectors
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Object::InterpCurvePointTwoVectors>, Points, 0)
-			ADD_STRUCT(Object::EInterpMethodType, InterpMethod, 12)
-		};
-		struct Set_Mirror
-		{
-		public:
-			ADD_STRUCT(Object::SparseArray_Mirror, Elements, 0)
-			ADD_STRUCT(Object::Pointer, Hash, 48)
-			ADD_STRUCT(int, InlineHash, 52)
-			ADD_STRUCT(int, HashSize, 56)
-		};
-		struct MultiMap_Mirror
-		{
-		public:
-			ADD_STRUCT(Object::Set_Mirror, Pairs, 0)
-		};
-		struct Map_Mirror
-		{
-		public:
-			ADD_STRUCT(Object::Set_Mirror, Pairs, 0)
-		};
 		ADD_OBJECT(Object, Outer, 40)
 		ADD_STRUCT(ScriptName, Name, 44)
-		ADD_STRUCT(Object::Pointer, VfTableObject, 0)
+		ADD_STRUCT(Object__Pointer, VfTableObject, 0)
 		ADD_STRUCT(int, ObjectInternalInteger, 4)
 		ADD_STRUCT(QWord, ObjectFlags, 8)
-		ADD_STRUCT(Object::Pointer, HashNext, 16)
-		ADD_STRUCT(Object::Pointer, HashOuterNext, 20)
-		ADD_STRUCT(Object::Pointer, StateFrame, 24)
+		ADD_STRUCT(Object__Pointer, HashNext, 16)
+		ADD_STRUCT(Object__Pointer, HashOuterNext, 20)
+		ADD_STRUCT(Object__Pointer, StateFrame, 24)
 		ADD_OBJECT(Object, Linker, 28)
-		ADD_STRUCT(Object::Pointer, LinkerIndex, 32)
+		ADD_STRUCT(Object__Pointer, LinkerIndex, 32)
 		ADD_STRUCT(int, NetIndex, 36)
 		ADD_OBJECT(ScriptClass, Class, 52)
 		ADD_OBJECT(Object, ObjectArchetype, 56)
@@ -570,13 +164,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[12];
 		}
-		void GetAngularDegreesFromRadians(Object::Vector2D& OutFOV)
+		void GetAngularDegreesFromRadians(Object__Vector2D& OutFOV)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2041);
 			byte params[8] = { NULL };
-			*(Object::Vector2D*)params = OutFOV;
+			*(Object__Vector2D*)params = OutFOV;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutFOV = *(Object::Vector2D*)params;
+			OutFOV = *(Object__Vector2D*)params;
 		}
 		float Acos(float A)
 		{
@@ -586,39 +180,39 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[4];
 		}
-		void GetAngularFromDotDist(Object::Vector2D& OutAngDist, Object::Vector2D DotDist)
+		void GetAngularFromDotDist(Object__Vector2D& OutAngDist, Object__Vector2D DotDist)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2046);
 			byte params[16] = { NULL };
-			*(Object::Vector2D*)params = OutAngDist;
-			*(Object::Vector2D*)&params[8] = DotDist;
+			*(Object__Vector2D*)params = OutAngDist;
+			*(Object__Vector2D*)&params[8] = DotDist;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutAngDist = *(Object::Vector2D*)params;
+			OutAngDist = *(Object__Vector2D*)params;
 		}
-		bool GetAngularDistance(Object::Vector2D& OutAngularDist, Vector Direction, Vector AxisX, Vector AxisY, Vector AxisZ)
+		bool GetAngularDistance(Object__Vector2D& OutAngularDist, Vector Direction, Vector AxisX, Vector AxisY, Vector AxisZ)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2052);
 			byte params[60] = { NULL };
-			*(Object::Vector2D*)params = OutAngularDist;
+			*(Object__Vector2D*)params = OutAngularDist;
 			*(Vector*)&params[8] = Direction;
 			*(Vector*)&params[20] = AxisX;
 			*(Vector*)&params[32] = AxisY;
 			*(Vector*)&params[44] = AxisZ;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutAngularDist = *(Object::Vector2D*)params;
+			OutAngularDist = *(Object__Vector2D*)params;
 			return *(bool*)&params[56];
 		}
-		bool GetDotDistance(Object::Vector2D& OutDotDist, Vector Direction, Vector AxisX, Vector AxisY, Vector AxisZ)
+		bool GetDotDistance(Object__Vector2D& OutDotDist, Vector Direction, Vector AxisX, Vector AxisY, Vector AxisZ)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2055);
 			byte params[60] = { NULL };
-			*(Object::Vector2D*)params = OutDotDist;
+			*(Object__Vector2D*)params = OutDotDist;
 			*(Vector*)&params[8] = Direction;
 			*(Vector*)&params[20] = AxisX;
 			*(Vector*)&params[32] = AxisY;
 			*(Vector*)&params[44] = AxisZ;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutDotDist = *(Object::Vector2D*)params;
+			OutDotDist = *(Object__Vector2D*)params;
 			return *(bool*)&params[56];
 		}
 		Vector PointProjectToPlane(Vector Point, Vector A, Vector B, Vector C)
@@ -842,12 +436,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptName*)params;
 		}
-		void DebugBreak(int UserFlags, Object::EDebugBreakType DebuggerType)
+		void DebugBreak(int UserFlags, Object__EDebugBreakType DebuggerType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2159);
 			byte params[5] = { NULL };
 			*(int*)params = UserFlags;
-			*(Object::EDebugBreakType*)&params[4] = DebuggerType;
+			*(Object__EDebugBreakType*)&params[4] = DebuggerType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		ScriptString* GetScriptTrace()
@@ -906,33 +500,33 @@ namespace UnrealScript
 			*(ScriptName*)&params[12] = Tag;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		Object::LinearColor Subtract_LinearColorLinearColor(Object::LinearColor A, Object::LinearColor B)
+		Object__LinearColor Subtract_LinearColorLinearColor(Object__LinearColor A, Object__LinearColor B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2182);
 			byte params[48] = { NULL };
-			*(Object::LinearColor*)params = A;
-			*(Object::LinearColor*)&params[16] = B;
+			*(Object__LinearColor*)params = A;
+			*(Object__LinearColor*)&params[16] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::LinearColor*)&params[32];
+			return *(Object__LinearColor*)&params[32];
 		}
-		Object::LinearColor Multiply_LinearColorFloat(Object::LinearColor LC, float Mult)
+		Object__LinearColor Multiply_LinearColorFloat(Object__LinearColor LC, float Mult)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2185);
 			byte params[36] = { NULL };
-			*(Object::LinearColor*)params = LC;
+			*(Object__LinearColor*)params = LC;
 			*(float*)&params[16] = Mult;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::LinearColor*)&params[20];
+			return *(Object__LinearColor*)&params[20];
 		}
-		Object::LinearColor ColorToLinearColor(Object::Color OldColor)
+		Object__LinearColor ColorToLinearColor(Object__Color OldColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2195);
 			byte params[20] = { NULL };
-			*(Object::Color*)params = OldColor;
+			*(Object__Color*)params = OldColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::LinearColor*)&params[4];
+			return *(Object__LinearColor*)&params[4];
 		}
-		Object::LinearColor MakeLinearColor(float R, float G, float B, float A)
+		Object__LinearColor MakeLinearColor(float R, float G, float B, float A)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2199);
 			byte params[32] = { NULL };
@@ -941,19 +535,19 @@ namespace UnrealScript
 			*(float*)&params[8] = B;
 			*(float*)&params[12] = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::LinearColor*)&params[16];
+			return *(Object__LinearColor*)&params[16];
 		}
-		Object::Color LerpColor(Object::Color A, Object::Color B, float Alpha)
+		Object__Color LerpColor(Object__Color A, Object__Color B, float Alpha)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2207);
 			byte params[16] = { NULL };
-			*(Object::Color*)params = A;
-			*(Object::Color*)&params[4] = B;
+			*(Object__Color*)params = A;
+			*(Object__Color*)&params[4] = B;
 			*(float*)&params[8] = Alpha;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[12];
+			return *(Object__Color*)&params[12];
 		}
-		Object::Color MakeColor(byte R, byte G, byte B, byte A)
+		Object__Color MakeColor(byte R, byte G, byte B, byte A)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2214);
 			byte params[8] = { NULL };
@@ -962,368 +556,368 @@ namespace UnrealScript
 			params[2] = B;
 			params[3] = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[4];
+			return *(Object__Color*)&params[4];
 		}
-		Object::Color Add_ColorColor(Object::Color A, Object::Color B)
+		Object__Color Add_ColorColor(Object__Color A, Object__Color B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2226);
 			byte params[12] = { NULL };
-			*(Object::Color*)params = A;
-			*(Object::Color*)&params[4] = B;
+			*(Object__Color*)params = A;
+			*(Object__Color*)&params[4] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[8];
+			return *(Object__Color*)&params[8];
 		}
-		Object::Color Multiply_ColorFloat(Object::Color A, float B)
+		Object__Color Multiply_ColorFloat(Object__Color A, float B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2233);
 			byte params[12] = { NULL };
-			*(Object::Color*)params = A;
+			*(Object__Color*)params = A;
 			*(float*)&params[4] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[8];
+			return *(Object__Color*)&params[8];
 		}
-		Object::Color Multiply_FloatColor(float A, Object::Color B)
+		Object__Color Multiply_FloatColor(float A, Object__Color B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2237);
 			byte params[12] = { NULL };
 			*(float*)params = A;
-			*(Object::Color*)&params[4] = B;
+			*(Object__Color*)&params[4] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[8];
+			return *(Object__Color*)&params[8];
 		}
-		Object::Color Subtract_ColorColor(Object::Color A, Object::Color B)
+		Object__Color Subtract_ColorColor(Object__Color A, Object__Color B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2241);
 			byte params[12] = { NULL };
-			*(Object::Color*)params = A;
-			*(Object::Color*)&params[4] = B;
+			*(Object__Color*)params = A;
+			*(Object__Color*)&params[4] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[8];
+			return *(Object__Color*)&params[8];
 		}
-		Object::Vector2D EvalInterpCurveVector2D(Object::InterpCurveVector2D Vector2DCurve, float InVal)
+		Object__Vector2D EvalInterpCurveVector2D(Object__InterpCurveVector2D Vector2DCurve, float InVal)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2245);
 			byte params[28] = { NULL };
-			*(Object::InterpCurveVector2D*)params = Vector2DCurve;
+			*(Object__InterpCurveVector2D*)params = Vector2DCurve;
 			*(float*)&params[16] = InVal;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Vector2D*)&params[20];
+			return *(Object__Vector2D*)&params[20];
 		}
-		Vector EvalInterpCurveVector(Object::InterpCurveVector VectorCurve, float InVal)
+		Vector EvalInterpCurveVector(Object__InterpCurveVector VectorCurve, float InVal)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2249);
 			byte params[32] = { NULL };
-			*(Object::InterpCurveVector*)params = VectorCurve;
+			*(Object__InterpCurveVector*)params = VectorCurve;
 			*(float*)&params[16] = InVal;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[20];
 		}
-		float EvalInterpCurveFloat(Object::InterpCurveFloat FloatCurve, float InVal)
+		float EvalInterpCurveFloat(Object__InterpCurveFloat FloatCurve, float InVal)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2267);
 			byte params[24] = { NULL };
-			*(Object::InterpCurveFloat*)params = FloatCurve;
+			*(Object__InterpCurveFloat*)params = FloatCurve;
 			*(float*)&params[16] = InVal;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[20];
 		}
-		Object::Vector2D vect2d(float InX, float InY)
+		Object__Vector2D vect2d(float InX, float InY)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2281);
 			byte params[16] = { NULL };
 			*(float*)params = InX;
 			*(float*)&params[4] = InY;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Vector2D*)&params[8];
+			return *(Object__Vector2D*)&params[8];
 		}
-		float GetMappedRangeValue(Object::Vector2D InputRange, Object::Vector2D OutputRange, float Value)
+		float GetMappedRangeValue(Object__Vector2D InputRange, Object__Vector2D OutputRange, float Value)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2294);
 			byte params[24] = { NULL };
-			*(Object::Vector2D*)params = InputRange;
-			*(Object::Vector2D*)&params[8] = OutputRange;
+			*(Object__Vector2D*)params = InputRange;
+			*(Object__Vector2D*)&params[8] = OutputRange;
 			*(float*)&params[16] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[20];
 		}
-		float GetRangePctByValue(Object::Vector2D Range, float Value)
+		float GetRangePctByValue(Object__Vector2D Range, float Value)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2299);
 			byte params[16] = { NULL };
-			*(Object::Vector2D*)params = Range;
+			*(Object__Vector2D*)params = Range;
 			*(float*)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[12];
 		}
-		float GetRangeValueByPct(Object::Vector2D Range, float Pct)
+		float GetRangeValueByPct(Object__Vector2D Range, float Pct)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2304);
 			byte params[16] = { NULL };
-			*(Object::Vector2D*)params = Range;
+			*(Object__Vector2D*)params = Range;
 			*(float*)&params[8] = Pct;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[12];
 		}
-		Object::Vector2D SubtractEqual_Vector2DVector2D(Object::Vector2D& A, Object::Vector2D B)
+		Object__Vector2D SubtractEqual_Vector2DVector2D(Object__Vector2D& A, Object__Vector2D B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2308);
 			byte params[24] = { NULL };
-			*(Object::Vector2D*)params = A;
-			*(Object::Vector2D*)&params[8] = B;
+			*(Object__Vector2D*)params = A;
+			*(Object__Vector2D*)&params[8] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			A = *(Object::Vector2D*)params;
-			return *(Object::Vector2D*)&params[16];
+			A = *(Object__Vector2D*)params;
+			return *(Object__Vector2D*)&params[16];
 		}
-		Object::Vector2D AddEqual_Vector2DVector2D(Object::Vector2D& A, Object::Vector2D B)
+		Object__Vector2D AddEqual_Vector2DVector2D(Object__Vector2D& A, Object__Vector2D B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2312);
 			byte params[24] = { NULL };
-			*(Object::Vector2D*)params = A;
-			*(Object::Vector2D*)&params[8] = B;
+			*(Object__Vector2D*)params = A;
+			*(Object__Vector2D*)&params[8] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			A = *(Object::Vector2D*)params;
-			return *(Object::Vector2D*)&params[16];
+			A = *(Object__Vector2D*)params;
+			return *(Object__Vector2D*)&params[16];
 		}
-		Object::Vector2D DivideEqual_Vector2DFloat(Object::Vector2D& A, float B)
+		Object__Vector2D DivideEqual_Vector2DFloat(Object__Vector2D& A, float B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2316);
 			byte params[20] = { NULL };
-			*(Object::Vector2D*)params = A;
+			*(Object__Vector2D*)params = A;
 			*(float*)&params[8] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			A = *(Object::Vector2D*)params;
-			return *(Object::Vector2D*)&params[12];
+			A = *(Object__Vector2D*)params;
+			return *(Object__Vector2D*)&params[12];
 		}
-		Object::Vector2D MultiplyEqual_Vector2DFloat(Object::Vector2D& A, float B)
+		Object__Vector2D MultiplyEqual_Vector2DFloat(Object__Vector2D& A, float B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2320);
 			byte params[20] = { NULL };
-			*(Object::Vector2D*)params = A;
+			*(Object__Vector2D*)params = A;
 			*(float*)&params[8] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			A = *(Object::Vector2D*)params;
-			return *(Object::Vector2D*)&params[12];
+			A = *(Object__Vector2D*)params;
+			return *(Object__Vector2D*)&params[12];
 		}
-		Object::Vector2D Divide_Vector2DFloat(Object::Vector2D A, float B)
+		Object__Vector2D Divide_Vector2DFloat(Object__Vector2D A, float B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2324);
 			byte params[20] = { NULL };
-			*(Object::Vector2D*)params = A;
+			*(Object__Vector2D*)params = A;
 			*(float*)&params[8] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Vector2D*)&params[12];
+			return *(Object__Vector2D*)&params[12];
 		}
-		Object::Vector2D Multiply_Vector2DFloat(Object::Vector2D A, float B)
+		Object__Vector2D Multiply_Vector2DFloat(Object__Vector2D A, float B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2328);
 			byte params[20] = { NULL };
-			*(Object::Vector2D*)params = A;
+			*(Object__Vector2D*)params = A;
 			*(float*)&params[8] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Vector2D*)&params[12];
+			return *(Object__Vector2D*)&params[12];
 		}
-		Object::Vector2D Subtract_Vector2DVector2D(Object::Vector2D A, Object::Vector2D B)
+		Object__Vector2D Subtract_Vector2DVector2D(Object__Vector2D A, Object__Vector2D B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2332);
 			byte params[24] = { NULL };
-			*(Object::Vector2D*)params = A;
-			*(Object::Vector2D*)&params[8] = B;
+			*(Object__Vector2D*)params = A;
+			*(Object__Vector2D*)&params[8] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Vector2D*)&params[16];
+			return *(Object__Vector2D*)&params[16];
 		}
-		Object::Vector2D Add_Vector2DVector2D(Object::Vector2D A, Object::Vector2D B)
+		Object__Vector2D Add_Vector2DVector2D(Object__Vector2D A, Object__Vector2D B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2336);
 			byte params[24] = { NULL };
-			*(Object::Vector2D*)params = A;
-			*(Object::Vector2D*)&params[8] = B;
+			*(Object__Vector2D*)params = A;
+			*(Object__Vector2D*)&params[8] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Vector2D*)&params[16];
+			return *(Object__Vector2D*)&params[16];
 		}
-		Object::Quat Subtract_QuatQuat(Object::Quat A, Object::Quat B)
+		Object__Quat Subtract_QuatQuat(Object__Quat A, Object__Quat B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2340);
 			byte params[48] = { NULL };
-			*(Object::Quat*)params = A;
-			*(Object::Quat*)&params[16] = B;
+			*(Object__Quat*)params = A;
+			*(Object__Quat*)&params[16] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Quat*)&params[32];
+			return *(Object__Quat*)&params[32];
 		}
-		Object::Quat Add_QuatQuat(Object::Quat A, Object::Quat B)
+		Object__Quat Add_QuatQuat(Object__Quat A, Object__Quat B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2344);
 			byte params[48] = { NULL };
-			*(Object::Quat*)params = A;
-			*(Object::Quat*)&params[16] = B;
+			*(Object__Quat*)params = A;
+			*(Object__Quat*)&params[16] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Quat*)&params[32];
+			return *(Object__Quat*)&params[32];
 		}
-		Object::Quat QuatSlerp(Object::Quat A, Object::Quat B, float Alpha, bool bShortestPath)
+		Object__Quat QuatSlerp(Object__Quat A, Object__Quat B, float Alpha, bool bShortestPath)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2353);
 			byte params[56] = { NULL };
-			*(Object::Quat*)params = A;
-			*(Object::Quat*)&params[16] = B;
+			*(Object__Quat*)params = A;
+			*(Object__Quat*)&params[16] = B;
 			*(float*)&params[32] = Alpha;
 			*(bool*)&params[36] = bShortestPath;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Quat*)&params[48];
+			return *(Object__Quat*)&params[48];
 		}
-		Rotator QuatToRotator(Object::Quat A)
+		Rotator QuatToRotator(Object__Quat A)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2357);
 			byte params[28] = { NULL };
-			*(Object::Quat*)params = A;
+			*(Object__Quat*)params = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Rotator*)&params[16];
 		}
-		Object::Quat QuatFromRotator(Rotator A)
+		Object__Quat QuatFromRotator(Rotator A)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2363);
 			byte params[28] = { NULL };
 			*(Rotator*)params = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Quat*)&params[16];
+			return *(Object__Quat*)&params[16];
 		}
-		Object::Quat QuatFromAxisAndAngle(Vector Axis, float Angle)
+		Object__Quat QuatFromAxisAndAngle(Vector Axis, float Angle)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2366);
 			byte params[32] = { NULL };
 			*(Vector*)params = Axis;
 			*(float*)&params[12] = Angle;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Quat*)&params[16];
+			return *(Object__Quat*)&params[16];
 		}
-		Object::Quat QuatFindBetween(Vector A, Vector B)
+		Object__Quat QuatFindBetween(Vector A, Vector B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2369);
 			byte params[40] = { NULL };
 			*(Vector*)params = A;
 			*(Vector*)&params[12] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Quat*)&params[32];
+			return *(Object__Quat*)&params[32];
 		}
-		Vector QuatRotateVector(Object::Quat A, Vector B)
+		Vector QuatRotateVector(Object__Quat A, Vector B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2373);
 			byte params[40] = { NULL };
-			*(Object::Quat*)params = A;
+			*(Object__Quat*)params = A;
 			*(Vector*)&params[16] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[28];
 		}
-		Object::Quat QuatInvert(Object::Quat A)
+		Object__Quat QuatInvert(Object__Quat A)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2377);
 			byte params[32] = { NULL };
-			*(Object::Quat*)params = A;
+			*(Object__Quat*)params = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Quat*)&params[16];
+			return *(Object__Quat*)&params[16];
 		}
-		float QuatDot(Object::Quat A, Object::Quat B)
+		float QuatDot(Object__Quat A, Object__Quat B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2381);
 			byte params[36] = { NULL };
-			*(Object::Quat*)params = A;
-			*(Object::Quat*)&params[16] = B;
+			*(Object__Quat*)params = A;
+			*(Object__Quat*)&params[16] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[32];
 		}
-		Object::Quat QuatProduct(Object::Quat A, Object::Quat B)
+		Object__Quat QuatProduct(Object__Quat A, Object__Quat B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2384);
 			byte params[48] = { NULL };
-			*(Object::Quat*)params = A;
-			*(Object::Quat*)&params[16] = B;
+			*(Object__Quat*)params = A;
+			*(Object__Quat*)&params[16] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Quat*)&params[32];
+			return *(Object__Quat*)&params[32];
 		}
-		Vector MatrixGetAxis(Object::Matrix TM, Object::EAxis Axis)
+		Vector MatrixGetAxis(Object__Matrix TM, Object__EAxis Axis)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2388);
 			byte params[77] = { NULL };
-			*(Object::Matrix*)params = TM;
-			*(Object::EAxis*)&params[64] = Axis;
+			*(Object__Matrix*)params = TM;
+			*(Object__EAxis*)&params[64] = Axis;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[68];
 		}
-		Vector MatrixGetOrigin(Object::Matrix TM)
+		Vector MatrixGetOrigin(Object__Matrix TM)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2392);
 			byte params[76] = { NULL };
-			*(Object::Matrix*)params = TM;
+			*(Object__Matrix*)params = TM;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[64];
 		}
-		Rotator MatrixGetRotator(Object::Matrix TM)
+		Rotator MatrixGetRotator(Object__Matrix TM)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2406);
 			byte params[76] = { NULL };
-			*(Object::Matrix*)params = TM;
+			*(Object__Matrix*)params = TM;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Rotator*)&params[64];
 		}
-		Object::Matrix MakeRotationMatrix(Rotator Rotation)
+		Object__Matrix MakeRotationMatrix(Rotator Rotation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2409);
 			byte params[76] = { NULL };
 			*(Rotator*)params = Rotation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Matrix*)&params[16];
+			return *(Object__Matrix*)&params[16];
 		}
-		Object::Matrix MakeRotationTranslationMatrix(Vector Translation, Rotator Rotation)
+		Object__Matrix MakeRotationTranslationMatrix(Vector Translation, Rotator Rotation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2412);
 			byte params[88] = { NULL };
 			*(Vector*)params = Translation;
 			*(Rotator*)&params[12] = Rotation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Matrix*)&params[32];
+			return *(Object__Matrix*)&params[32];
 		}
-		Vector InverseTransformNormal(Object::Matrix TM, Vector A)
+		Vector InverseTransformNormal(Object__Matrix TM, Vector A)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2415);
 			byte params[88] = { NULL };
-			*(Object::Matrix*)params = TM;
+			*(Object__Matrix*)params = TM;
 			*(Vector*)&params[64] = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[76];
 		}
-		Vector TransformNormal(Object::Matrix TM, Vector A)
+		Vector TransformNormal(Object__Matrix TM, Vector A)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2419);
 			byte params[88] = { NULL };
-			*(Object::Matrix*)params = TM;
+			*(Object__Matrix*)params = TM;
 			*(Vector*)&params[64] = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[76];
 		}
-		Vector InverseTransformVector(Object::Matrix TM, Vector A)
+		Vector InverseTransformVector(Object__Matrix TM, Vector A)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2423);
 			byte params[88] = { NULL };
-			*(Object::Matrix*)params = TM;
+			*(Object__Matrix*)params = TM;
 			*(Vector*)&params[64] = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[76];
 		}
-		Vector TransformVector(Object::Matrix TM, Vector A)
+		Vector TransformVector(Object__Matrix TM, Vector A)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2427);
 			byte params[88] = { NULL };
-			*(Object::Matrix*)params = TM;
+			*(Object__Matrix*)params = TM;
 			*(Vector*)&params[64] = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[76];
 		}
-		Object::Matrix Multiply_MatrixMatrix(Object::Matrix A, Object::Matrix B)
+		Object__Matrix Multiply_MatrixMatrix(Object__Matrix A, Object__Matrix B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(2431);
 			byte params[192] = { NULL };
-			*(Object::Matrix*)params = A;
-			*(Object::Matrix*)&params[64] = B;
+			*(Object__Matrix*)params = A;
+			*(Object__Matrix*)&params[64] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Matrix*)&params[128];
+			return *(Object__Matrix*)&params[128];
 		}
 		bool NotEqual_NameName(ScriptName A, ScriptName B)
 		{

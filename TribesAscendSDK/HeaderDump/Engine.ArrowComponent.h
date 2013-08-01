@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.PrimitiveComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,7 +22,7 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(bTreatAsASprite, 496, 0x1)
 		ADD_STRUCT(float, ArrowSize, 492)
-		ADD_STRUCT(Object::Color, ArrowColor, 488)
+		ADD_STRUCT(Object__Color, ArrowColor, 488)
 	};
 }
 #undef ADD_BOOL

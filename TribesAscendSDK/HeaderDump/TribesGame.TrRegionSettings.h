@@ -1,6 +1,6 @@
 #pragma once
 #include "GFxUI.GFxObject.h"
-#include "GameFramework.SeqAct_ModifyProperty.h"
+#include "GameFramework.SeqAct_ModifyProperty.PropertyInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,7 +14,7 @@ namespace UnrealScript
 	class TrRegionSettings : public GFxObject
 	{
 	public:
-		ADD_STRUCT(ScriptArray<SeqAct_ModifyProperty::PropertyInfo>, AvailableRegions, 128)
+		ADD_STRUCT(ScriptArray<SeqAct_ModifyProperty__PropertyInfo>, AvailableRegions, 128)
 		ADD_OBJECT(GFxObject, m_RegionSettingsList, 124)
 		ADD_STRUCT(int, m_RegionSettingsCount, 120)
 		int GetPreferredSiteId()

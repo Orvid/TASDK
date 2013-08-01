@@ -1,9 +1,10 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "TribesGame.TrProj_Mine.h"
-#include "Core.Object.h"
 #include "TribesGame.TrTripActor.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.Pawn.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -23,7 +24,7 @@ namespace UnrealScript
 		ADD_OBJECT(ParticleSystem, m_LaserTemplate, 912)
 		ADD_STRUCT(float, m_fTripDistance, 908)
 		ADD_OBJECT(TrTripActor, m_TripActor, 904)
-		ADD_STRUCT(Object::Pointer, VfTable_IInterface_TrTripNotifier, 900)
+		ADD_STRUCT(Object__Pointer, VfTable_IInterface_TrTripNotifier, 900)
 		void PawnEnteredDetonationArea(class Pawn* Other)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(108871);

@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.InterpTrack.h"
+#include "Engine.InterpTrackParticleReplay.ParticleReplayTrackKey.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,14 +20,7 @@ namespace UnrealScript
 	class InterpTrackParticleReplay : public InterpTrack
 	{
 	public:
-		struct ParticleReplayTrackKey
-		{
-		public:
-			ADD_STRUCT(int, ClipIDNumber, 8)
-			ADD_STRUCT(float, Duration, 4)
-			ADD_STRUCT(float, Time, 0)
-		};
-		ADD_STRUCT(ScriptArray<InterpTrackParticleReplay::ParticleReplayTrackKey>, TrackKeys, 128)
+		ADD_STRUCT(ScriptArray<InterpTrackParticleReplay__ParticleReplayTrackKey>, TrackKeys, 128)
 		ADD_STRUCT(float, FixedTimeStep, 144)
 		ADD_BOOL(bIsCapturingReplay, 140, 0x1)
 	};

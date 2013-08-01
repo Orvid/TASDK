@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.InterpTrackInstProperty.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,7 +21,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_BOOL(ResetBool, 72, 0x1)
-		ADD_STRUCT(Object::Pointer, BoolProp, 68)
+		ADD_STRUCT(Object__Pointer, BoolProp, 68)
 	};
 }
 #undef ADD_BOOL

@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.Texture.h"
 #include "Engine.Texture2D.h"
+#include "Engine.Texture.EPixelFormat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,7 +33,7 @@ namespace UnrealScript
 		ADD_OBJECT(Texture2D, FacePosX, 256)
 		ADD_BOOL(bIsCubemapValid, 252, 0x1)
 		ADD_STRUCT(int, NumMips, 248)
-		ADD_STRUCT(Texture::EPixelFormat, Format, 244)
+		ADD_STRUCT(Texture__EPixelFormat, Format, 244)
 		ADD_STRUCT(int, SizeY, 240)
 		ADD_STRUCT(int, SizeX, 236)
 	};

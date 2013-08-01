@@ -2,8 +2,8 @@
 #include "Engine.Weapon.h"
 #include "UTGame.UTInventoryManager.h"
 #include "TribesGame.TrStatsInterface.h"
-#include "TribesGame.TrObject.h"
 #include "TribesGame.TrDevice.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
 #include "Engine.Inventory.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -30,13 +30,13 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(c_bRetryEquippingPrimaryWeapon, 544, 0x1)
 		ADD_OBJECT(TrStatsInterface, Stats, 540)
-		ADD_STRUCT(TrObject::TR_EQUIP_POINT, m_PreviousDeviceEquipPoint, 536)
+		ADD_STRUCT(TrObject__TR_EQUIP_POINT, m_PreviousDeviceEquipPoint, 536)
 		ADD_OBJECT(TrDevice, m_RealLastDevice, 532)
-		class TrDevice* GetDeviceByEquipPoint(TrObject::TR_EQUIP_POINT EquipPoint)
+		class TrDevice* GetDeviceByEquipPoint(TrObject__TR_EQUIP_POINT EquipPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72629);
 			byte params[5] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class TrDevice**)&params[4];
 		}
@@ -112,18 +112,18 @@ namespace UnrealScript
 			*(class Inventory**)params = ItemToRemove;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AutoFireWeapon(TrObject::TR_EQUIP_POINT EquipPoint)
+		void AutoFireWeapon(TrObject__TR_EQUIP_POINT EquipPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(98149);
 			byte params[1] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SwitchWeaponByEquipPoint(TrObject::TR_EQUIP_POINT EquipPoint)
+		void SwitchWeaponByEquipPoint(TrObject__TR_EQUIP_POINT EquipPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(98154);
 			byte params[1] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SwitchToPreviousWeapon()
@@ -131,11 +131,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(98158);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ServerAutoFireWeapon(TrObject::TR_EQUIP_POINT EquipPoint)
+		void ServerAutoFireWeapon(TrObject__TR_EQUIP_POINT EquipPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(98159);
 			byte params[1] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 	};

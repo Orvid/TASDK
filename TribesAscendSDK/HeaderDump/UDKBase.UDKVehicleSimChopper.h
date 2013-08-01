@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.SVehicleSimBase.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,15 +20,6 @@ namespace UnrealScript
 	class UDKVehicleSimChopper : public SVehicleSimBase
 	{
 	public:
-		struct AnglePID
-		{
-		public:
-			ADD_STRUCT(float, PrevError, 16)
-			ADD_STRUCT(float, PrevIntegral, 12)
-			ADD_STRUCT(float, IGain, 8)
-			ADD_STRUCT(float, DGain, 4)
-			ADD_STRUCT(float, PGain, 0)
-		};
 		ADD_STRUCT(float, HardLimitAirSpeedScale, 304)
 		ADD_STRUCT(float, StoppedBrakeTorque, 300)
 		ADD_STRUCT(Vector, OldVelocity, 288)

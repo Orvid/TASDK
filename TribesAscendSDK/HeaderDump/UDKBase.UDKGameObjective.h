@@ -1,13 +1,14 @@
 #pragma once
 #include "Engine.NavigationPoint.h"
-#include "Engine.UIRoot.h"
+#include "Engine.Canvas.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
 #include "Engine.Texture2D.h"
+#include "Engine.AIController.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
-#include "Engine.AIController.h"
-#include "Engine.Canvas.h"
 #include "UDKBase.UDKPlayerController.h"
+#include "Core.Object.LinearColor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,7 +34,7 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(ScriptArray<class NavigationPoint*>, ShootSpots, 692)
 		ADD_STRUCT(byte, DefenderTeamIndex, 740)
-		ADD_STRUCT(UIRoot::TextureCoordinates, IconCoords, 724)
+		ADD_STRUCT(UIRoot__TextureCoordinates, IconCoords, 724)
 		ADD_OBJECT(Texture2D, IconHudTexture, 720)
 		ADD_STRUCT(Vector, HUDLocation, 708)
 		ADD_BOOL(bUnderAttack, 704, 0x2)
@@ -73,7 +74,7 @@ namespace UnrealScript
 			*(Vector*)params = NewHUDLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawIcon(class Canvas* Canvas, Vector IconLocation, float IconWidth, float IconAlpha, class UDKPlayerController* PlayerOwner, Object::LinearColor DrawColor)
+		void DrawIcon(class Canvas* Canvas, Vector IconLocation, float IconWidth, float IconAlpha, class UDKPlayerController* PlayerOwner, Object__LinearColor DrawColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(34887);
 			byte params[44] = { NULL };
@@ -82,7 +83,7 @@ namespace UnrealScript
 			*(float*)&params[16] = IconWidth;
 			*(float*)&params[20] = IconAlpha;
 			*(class UDKPlayerController**)&params[24] = PlayerOwner;
-			*(Object::LinearColor*)&params[28] = DrawColor;
+			*(Object__LinearColor*)&params[28] = DrawColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		byte GetTeamNum()

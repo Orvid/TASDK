@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine.ActorComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Quat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,8 +31,8 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, LinearStiffnessScale3D, 124)
 		ADD_STRUCT(float, LinearStiffness, 120)
 		ADD_STRUCT(float, LinearDamping, 116)
-		ADD_STRUCT(Object::Pointer, KinActorData, 112)
-		ADD_STRUCT(Object::Pointer, HandleData, 108)
+		ADD_STRUCT(Object__Pointer, KinActorData, 112)
+		ADD_STRUCT(Object__Pointer, HandleData, 108)
 		ADD_BOOL(bInterpolating, 104, 0x4)
 		ADD_BOOL(bRotationConstrained, 104, 0x2)
 		ADD_BOOL(bInHardware, 104, 0x1)
@@ -78,20 +80,20 @@ void**)params = Component;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			NewLocation = *(Vector*)params;
 		}
-		void SetOrientation(Object::Quat& NewOrientation)
+		void SetOrientation(Object__Quat& NewOrientation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25264);
 			byte params[16] = { NULL };
-			*(Object::Quat*)params = NewOrientation;
+			*(Object__Quat*)params = NewOrientation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			NewOrientation = *(Object::Quat*)params;
+			NewOrientation = *(Object__Quat*)params;
 		}
-		Object::Quat GetOrientation()
+		Object__Quat GetOrientation()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25266);
 			byte params[16] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Quat*)params;
+			return *(Object__Quat*)params;
 		}
 	};
 }

@@ -2,10 +2,10 @@
 #include "TribesGame.TrCollisionProxy.h"
 #include "TribesGame.TrProjectile.h"
 #include "Engine.Pawn.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #include "Engine.SoundCue.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.Actor.h"
 #include "Engine.PhysicsVolume.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

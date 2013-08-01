@@ -1,9 +1,11 @@
 #pragma once
-#include "Engine.Actor.h"
+#include "Engine.Actor.PhysEffectInfo.h"
 #include "Core.Object.h"
 #include "Engine.PhysicalMaterialPropertyBase.h"
 #include "Engine.SoundCue.h"
+#include "Core.Object.Vector.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.PhysicalMaterial.EPhysEffectType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,12 +29,6 @@ namespace UnrealScript
 	class PhysicalMaterial : public Object
 	{
 	public:
-		enum EPhysEffectType : byte
-		{
-			EPMET_Impact = 0,
-			EPMET_Slide = 1,
-			EPMET_MAX = 2,
-		};
 		ADD_STRUCT(int, MaterialIndex, 60)
 		ADD_OBJECT(SoundCue, FractureSoundSingle, 148)
 		ADD_OBJECT(SoundCue, FractureSoundExplosion, 144)
@@ -57,13 +53,13 @@ namespace UnrealScript
 		ADD_STRUCT(float, SlideReFireDelay, 132)
 		ADD_OBJECT(ParticleSystem, SlideEffect, 136)
 		ADD_OBJECT(SoundCue, SlideSound, 140)
-		Actor::PhysEffectInfo FindPhysEffectInfo(PhysicalMaterial::EPhysEffectType Type)
+		Actor__PhysEffectInfo FindPhysEffectInfo(PhysicalMaterial__EPhysEffectType Type)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16492);
 			byte params[17] = { NULL };
-			*(PhysicalMaterial::EPhysEffectType*)params = Type;
+			*(PhysicalMaterial__EPhysEffectType*)params = Type;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Actor::PhysEffectInfo*)&params[4];
+			return *(Actor__PhysEffectInfo*)&params[4];
 		}
 		void FindFractureSounds(class SoundCue*& OutSoundExplosion, class SoundCue*& OutSoundSingle)
 		{

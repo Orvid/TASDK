@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.ActorComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,7 +22,7 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(float, StartDistance, 112)
 		ADD_STRUCT(float, ExtinctionDistance, 108)
-		ADD_STRUCT(Object::Color, LightColor, 104)
+		ADD_STRUCT(Object__Color, LightColor, 104)
 		ADD_STRUCT(float, LightBrightness, 100)
 		ADD_STRUCT(float, Density, 96)
 		ADD_STRUCT(float, Height, 92)

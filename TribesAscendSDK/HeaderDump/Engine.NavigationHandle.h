@@ -1,12 +1,19 @@
 #pragma once
-#include "Engine.Controller.h"
-#include "Engine.Actor.h"
 #include "Engine.NavMeshPathConstraint.h"
 #include "Core.Object.h"
-#include "Engine.EngineTypes.h"
-#include "Engine.NavMeshPathGoalEvaluator.h"
+#include "Engine.EngineTypes.EPathFindingError.h"
 #include "Engine.Pylon.h"
-#include "Engine.CoverLink.h"
+#include "Engine.NavigationHandle.NavMeshPathParams.h"
+#include "Engine.NavMeshPathGoalEvaluator.h"
+#include "Engine.Actor.BasedPosition.h"
+#include "Engine.NavigationHandle.PathStore.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
+#include "Core.Object.Color.h"
+#include "Engine.Pylon.ENavMeshEdgeType.h"
+#include "Engine.CoverLink.CoverInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,52 +39,21 @@ namespace UnrealScript
 	public:
 		static const float LINECHECK_GRANULARITY;
 		static const auto NUM_PATHFINDING_PARAMS = 9;
-		struct PolySegmentSpan
-		{
-		public:
-			ADD_STRUCT(Vector, P2, 16)
-			ADD_STRUCT(Vector, P1, 4)
-			ADD_STRUCT(Object::Pointer, Poly, 0)
-		};
-		struct NavMeshPathParams
-		{
-		public:
-			ADD_STRUCT(float, MaxHoverDistance, 44)
-			ADD_STRUCT(float, MinWalkableZ, 40)
-			ADD_STRUCT(float, MaxDropHeight, 36)
-			ADD_STRUCT(Vector, SearchStart, 24)
-			ADD_STRUCT(float, SearchLaneMultiplier, 20)
-			ADD_STRUCT(Vector, SearchExtent, 8)
-			ADD_BOOL(bAbleToSearch, 4, 0x4)
-			ADD_BOOL(bNeedsMantleValidityTest, 4, 0x2)
-			ADD_BOOL(bCanMantle, 4, 0x1)
-			ADD_STRUCT(Object::Pointer, Interface, 0)
-		};
-		struct EdgePointer
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, Dummy, 0)
-		};
-		struct PathStore
-		{
-		public:
-			ADD_STRUCT(ScriptArray<NavigationHandle::EdgePointer>, EdgeList, 0)
-		};
 		ADD_STRUCT(float, LastPathFailTime, 208)
-		ADD_STRUCT(EngineTypes::EPathFindingError, LastPathError, 204)
-		ADD_STRUCT(NavigationHandle::NavMeshPathParams, CachedPathParams, 156)
+		ADD_STRUCT(EngineTypes__EPathFindingError, LastPathError, 204)
+		ADD_STRUCT(NavigationHandle__NavMeshPathParams, CachedPathParams, 156)
 		ADD_OBJECT(NavMeshPathGoalEvaluator, PathGoalList, 152)
 		ADD_OBJECT(NavMeshPathConstraint, PathConstraintList, 148)
 		ADD_BOOL(bUltraVerbosePathDebugging, 144, 0x8)
 		ADD_BOOL(bDebugConstraintsAndGoalEvals, 144, 0x4)
 		ADD_BOOL(bUseORforEvaluateGoal, 144, 0x2)
 		ADD_BOOL(bSkipRouteCacheUpdates, 144, 0x1)
-		ADD_STRUCT(Actor::BasedPosition, FinalDestination, 92)
-		ADD_STRUCT(Object::Pointer, SubGoal_DestPoly, 88)
-		ADD_STRUCT(Object::Pointer, CurrentEdge, 84)
-		ADD_STRUCT(Object::Pointer, BestUnfinishedPathPoint, 80)
-		ADD_STRUCT(NavigationHandle::PathStore, PathCache, 68)
-		ADD_STRUCT(Object::Pointer, AnchorPoly, 64)
+		ADD_STRUCT(Actor__BasedPosition, FinalDestination, 92)
+		ADD_STRUCT(Object__Pointer, SubGoal_DestPoly, 88)
+		ADD_STRUCT(Object__Pointer, CurrentEdge, 84)
+		ADD_STRUCT(Object__Pointer, BestUnfinishedPathPoint, 80)
+		ADD_STRUCT(NavigationHandle__PathStore, PathCache, 68)
+		ADD_STRUCT(Object__Pointer, AnchorPoly, 64)
 		ADD_OBJECT(Pylon, AnchorPylon, 60)
 		void ClearConstraints()
 		{
@@ -275,13 +251,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void DrawPathCache(Vector DrawOffset, bool bPersistent, Object::Color DrawColor)
+		void DrawPathCache(Vector DrawOffset, bool bPersistent, Object__Color DrawColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20858);
 			byte params[20] = { NULL };
 			*(Vector*)params = DrawOffset;
 			*(bool*)&params[12] = bPersistent;
-			*(Object::Color*)&params[16] = DrawColor;
+			*(Object__Color*)&params[16] = DrawColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		ScriptString* GetCurrentEdgeDebugText()
@@ -296,12 +272,12 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20864);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		Pylon::ENavMeshEdgeType GetCurrentEdgeType()
+		Pylon__ENavMeshEdgeType GetCurrentEdgeType()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20865);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Pylon::ENavMeshEdgeType*)params;
+			return *(Pylon__ENavMeshEdgeType*)params;
 		}
 		void GetAllPolyCentersWithinBounds(Vector pos, Vector Extent, ScriptArray<Vector>& out_PolyCtrs)
 		{
@@ -373,15 +349,15 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		bool GetAllCoverSlotsInRadius(Vector FromLoc, float Radius, ScriptArray<CoverLink::CoverInfo>& out_CoverList)
+		bool GetAllCoverSlotsInRadius(Vector FromLoc, float Radius, ScriptArray<CoverLink__CoverInfo>& out_CoverList)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20897);
 			byte params[32] = { NULL };
 			*(Vector*)params = FromLoc;
 			*(float*)&params[12] = Radius;
-			*(ScriptArray<CoverLink::CoverInfo>*)&params[16] = out_CoverList;
+			*(ScriptArray<CoverLink__CoverInfo>*)&params[16] = out_CoverList;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_CoverList = *(ScriptArray<CoverLink::CoverInfo>*)&params[16];
+			out_CoverList = *(ScriptArray<CoverLink__CoverInfo>*)&params[16];
 			return *(bool*)&params[28];
 		}
 	};

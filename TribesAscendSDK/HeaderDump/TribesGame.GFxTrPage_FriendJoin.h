@@ -1,7 +1,7 @@
 #pragma once
 #include "TribesGame.GFxTrPage.h"
-#include "TribesGame.TrFriendManager.h"
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.TrFriendManager.FriendStruct.h"
 #include "TribesGame.GFxTrAction.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -22,7 +22,7 @@ namespace UnrealScript
 	class GFxTrPage_FriendJoin : public GFxTrPage
 	{
 	public:
-		ADD_STRUCT(ScriptArray<TrFriendManager::FriendStruct>, SortedFriends, 424)
+		ADD_STRUCT(ScriptArray<TrFriendManager__FriendStruct>, SortedFriends, 424)
 		ADD_STRUCT(ScriptString*, NotInAGameSubtext, 412)
 		ADD_STRUCT(ScriptString*, SocialSubtext, 400)
 		ADD_STRUCT(ScriptString*, SocialTitle, 388)

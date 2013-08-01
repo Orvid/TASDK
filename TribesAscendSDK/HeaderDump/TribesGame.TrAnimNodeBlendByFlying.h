@@ -1,4 +1,5 @@
 #pragma once
+#include "TribesGame.TrAnimNodeBlendByFlying.EFlyDirTypes.h"
 #include "TribesGame.TrAnimNodeBlendList.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -14,20 +15,8 @@ namespace UnrealScript
 	class TrAnimNodeBlendByFlying : public TrAnimNodeBlendList
 	{
 	public:
-		enum EFlyDirTypes : byte
-		{
-			FLY_Forward = 0,
-			FLY_Back = 1,
-			FLY_Left = 2,
-			FLY_Right = 3,
-			FLY_Up = 4,
-			FLY_Down = 5,
-			FLY_UpMidair = 6,
-			FLY_None = 7,
-			FLY_MAX = 8,
-		};
 		ADD_OBJECT(TrPawn, m_TrPawn, 296)
-		ADD_STRUCT(TrAnimNodeBlendByFlying::EFlyDirTypes, LastDirection, 292)
+		ADD_STRUCT(TrAnimNodeBlendByFlying__EFlyDirTypes, LastDirection, 292)
 	};
 }
 #undef ADD_STRUCT

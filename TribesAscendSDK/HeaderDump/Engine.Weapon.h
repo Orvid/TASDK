@@ -1,12 +1,15 @@
 #pragma once
-#include "Engine.Projectile.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.Inventory.h"
+#include "Engine.Weapon.EWeaponFireType.h"
 #include "Engine.HUD.h"
+#include "Core.Object.Vector.h"
 #include "Engine.AIController.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.Pawn.h"
+#include "Engine.Actor.ImpactInfo.h"
+#include "Engine.Projectile.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,19 +33,11 @@ namespace UnrealScript
 	class Weapon : public Inventory
 	{
 	public:
-		enum EWeaponFireType : byte
-		{
-			EWFT_InstantHit = 0,
-			EWFT_Projectile = 1,
-			EWFT_Custom = 2,
-			EWFT_None = 3,
-			EWFT_MAX = 4,
-		};
 		ADD_BOOL(bInstantHit, 672, 0x10)
 		ADD_STRUCT(float, WeaponRange, 676)
 		ADD_STRUCT(byte, CurrentFireMode, 552)
 		ADD_STRUCT(ScriptArray<ScriptName>, FiringStatesArray, 556)
-		ADD_STRUCT(ScriptArray<Weapon::EWeaponFireType>, WeaponFireTypes, 568)
+		ADD_STRUCT(ScriptArray<Weapon__EWeaponFireType>, WeaponFireTypes, 568)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, WeaponProjectiles, 580)
 		ADD_STRUCT(ScriptArray<float>, FireInterval, 592)
 		ADD_STRUCT(ScriptArray<float>, Spread, 604)
@@ -509,17 +504,17 @@ void**)params = MeshCpnt;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class Actor**)params;
 		}
-		Actor::ImpactInfo CalcWeaponFire(Vector StartTrace, Vector EndTrace, ScriptArray<Actor::ImpactInfo>& ImpactList, Vector Extent)
+		Actor__ImpactInfo CalcWeaponFire(Vector StartTrace, Vector EndTrace, ScriptArray<Actor__ImpactInfo>& ImpactList, Vector Extent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29433);
 			byte params[128] = { NULL };
 			*(Vector*)params = StartTrace;
 			*(Vector*)&params[12] = EndTrace;
-			*(ScriptArray<Actor::ImpactInfo>*)&params[24] = ImpactList;
+			*(ScriptArray<Actor__ImpactInfo>*)&params[24] = ImpactList;
 			*(Vector*)&params[36] = Extent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ImpactList = *(ScriptArray<Actor::ImpactInfo>*)&params[24];
-			return *(Actor::ImpactInfo*)&params[48];
+			ImpactList = *(ScriptArray<Actor__ImpactInfo>*)&params[24];
+			return *(Actor__ImpactInfo*)&params[48];
 		}
 		bool PassThroughDamage(class Actor* HitActor)
 		{
@@ -534,12 +529,12 @@ void**)params = MeshCpnt;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29453);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ProcessInstantHit(byte FiringMode, Actor::ImpactInfo Impact, int NumHits)
+		void ProcessInstantHit(byte FiringMode, Actor__ImpactInfo Impact, int NumHits)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29460);
 			byte params[85] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(int*)&params[84] = NumHits;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

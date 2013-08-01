@@ -1,13 +1,20 @@
 #pragma once
+#include "Core.Object.Guid.h"
 #include "Engine.MaterialExpressionCompound.h"
-#include "Engine.EngineTypes.h"
 #include "Engine.MaterialInterface.h"
 #include "Engine.MaterialExpression.h"
 #include "Engine.Texture2D.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.MaterialExpressionComment.h"
-#include "Engine.PhysicalMaterial.h"
 #include "Engine.Texture.h"
-#include "Core.Object.h"
+#include "Engine.Material.ScalarMaterialInput.h"
+#include "Engine.Material.ColorMaterialInput.h"
+#include "Engine.Material.Vector2MaterialInput.h"
+#include "Engine.Material.VectorMaterialInput.h"
+#include "Engine.EngineTypes.EMaterialTessellationMode.h"
+#include "Engine.EngineTypes.EMaterialLightingModel.h"
+#include "Engine.EngineTypes.EBlendMode.h"
+#include "Engine.PhysicalMaterial.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,53 +38,17 @@ namespace UnrealScript
 	class Material : public MaterialInterface
 	{
 	public:
-		struct MaterialInput
-		{
-		public:
-			ADD_STRUCT(int, GCC64_Padding, 24)
-			ADD_STRUCT(int, MaskA, 20)
-			ADD_STRUCT(int, MaskB, 16)
-			ADD_STRUCT(int, MaskG, 12)
-			ADD_STRUCT(int, MaskR, 8)
-			ADD_STRUCT(int, Mask, 4)
-			ADD_OBJECT(MaterialExpression, Expression, 0)
-		};
-		struct ColorMaterialInput : public MaterialInput
-		{
-		public:
-			ADD_STRUCT(Object::Color, Constant, 32)
-			ADD_BOOL(UseConstant, 28, 0x1)
-		};
-		struct ScalarMaterialInput : public MaterialInput
-		{
-		public:
-			ADD_STRUCT(float, Constant, 32)
-			ADD_BOOL(UseConstant, 28, 0x1)
-		};
-		struct VectorMaterialInput : public MaterialInput
-		{
-		public:
-			ADD_STRUCT(Vector, Constant, 32)
-			ADD_BOOL(UseConstant, 28, 0x1)
-		};
-		struct Vector2MaterialInput : public MaterialInput
-		{
-		public:
-			ADD_STRUCT(float, ConstantY, 36)
-			ADD_STRUCT(float, ConstantX, 32)
-			ADD_BOOL(UseConstant, 28, 0x1)
-		};
 		ADD_STRUCT(ScriptArray<class MaterialExpression*>, Expressions, 1172)
 		ADD_STRUCT(ScriptArray<class MaterialExpressionComment*>, EditorComments, 1184)
 		ADD_STRUCT(ScriptArray<class MaterialExpressionCompound*>, EditorCompounds, 1196)
 		ADD_STRUCT(ScriptArray<class Texture*>, ReferencedTextures, 1268)
-		ADD_STRUCT(ScriptArray<Object::Guid>, ReferencedTextureGuids, 1280)
+		ADD_STRUCT(ScriptArray<Object__Guid>, ReferencedTextureGuids, 1280)
 		ADD_STRUCT(int, EditorYaw, 1168)
 		ADD_STRUCT(int, EditorPitch, 1164)
 		ADD_STRUCT(int, EditorY, 1160)
 		ADD_STRUCT(int, EditorX, 1156)
-		ADD_STRUCT(Object::Pointer, DefaultMaterialInstances, 1144)
-		ADD_STRUCT(Object::Pointer, MaterialResources, 1136)
+		ADD_STRUCT(Object__Pointer, DefaultMaterialInstances, 1144)
+		ADD_STRUCT(Object__Pointer, MaterialResources, 1136)
 		ADD_BOOL(bIsPreviewMaterial, 1132, 0x1000)
 		ADD_BOOL(bIsMasked, 1132, 0x800)
 		ADD_BOOL(bUsesDistortion, 1132, 0x400)
@@ -123,30 +94,30 @@ namespace UnrealScript
 		ADD_BOOL(TwoSidedSeparatePass, 1128, 0x4)
 		ADD_BOOL(TwoSided, 1128, 0x2)
 		ADD_BOOL(EnableSubsurfaceScattering, 1128, 0x1)
-		ADD_STRUCT(Material::ScalarMaterialInput, SubsurfaceScatteringRadius, 1092)
-		ADD_STRUCT(Material::ColorMaterialInput, SubsurfaceAbsorptionColor, 1056)
-		ADD_STRUCT(Material::ColorMaterialInput, SubsurfaceInscatteringColor, 1020)
-		ADD_STRUCT(Material::Vector2MaterialInput, TessellationFactors, 980)
-		ADD_STRUCT(Material::VectorMaterialInput, WorldDisplacement, 936)
-		ADD_STRUCT(Material::VectorMaterialInput, WorldPositionOffset, 892)
-		ADD_STRUCT(Material::ColorMaterialInput, TwoSidedLightingColor, 856)
-		ADD_STRUCT(Material::ScalarMaterialInput, TwoSidedLightingMask, 820)
-		ADD_STRUCT(Material::VectorMaterialInput, AnisotropicDirection, 776)
-		ADD_STRUCT(Material::ColorMaterialInput, CustomSkylightDiffuse, 740)
-		ADD_STRUCT(Material::ColorMaterialInput, CustomLighting, 704)
-		ADD_STRUCT(EngineTypes::EMaterialTessellationMode, D3D11TessellationMode, 702)
-		ADD_STRUCT(EngineTypes::EMaterialLightingModel, LightingModel, 701)
-		ADD_STRUCT(EngineTypes::EBlendMode, BlendMode, 700)
-		ADD_STRUCT(Material::Vector2MaterialInput, Distortion, 660)
+		ADD_STRUCT(Material__ScalarMaterialInput, SubsurfaceScatteringRadius, 1092)
+		ADD_STRUCT(Material__ColorMaterialInput, SubsurfaceAbsorptionColor, 1056)
+		ADD_STRUCT(Material__ColorMaterialInput, SubsurfaceInscatteringColor, 1020)
+		ADD_STRUCT(Material__Vector2MaterialInput, TessellationFactors, 980)
+		ADD_STRUCT(Material__VectorMaterialInput, WorldDisplacement, 936)
+		ADD_STRUCT(Material__VectorMaterialInput, WorldPositionOffset, 892)
+		ADD_STRUCT(Material__ColorMaterialInput, TwoSidedLightingColor, 856)
+		ADD_STRUCT(Material__ScalarMaterialInput, TwoSidedLightingMask, 820)
+		ADD_STRUCT(Material__VectorMaterialInput, AnisotropicDirection, 776)
+		ADD_STRUCT(Material__ColorMaterialInput, CustomSkylightDiffuse, 740)
+		ADD_STRUCT(Material__ColorMaterialInput, CustomLighting, 704)
+		ADD_STRUCT(EngineTypes__EMaterialTessellationMode, D3D11TessellationMode, 702)
+		ADD_STRUCT(EngineTypes__EMaterialLightingModel, LightingModel, 701)
+		ADD_STRUCT(EngineTypes__EBlendMode, BlendMode, 700)
+		ADD_STRUCT(Material__Vector2MaterialInput, Distortion, 660)
 		ADD_STRUCT(float, OpacityMaskClipValue, 656)
-		ADD_STRUCT(Material::ScalarMaterialInput, OpacityMask, 620)
-		ADD_STRUCT(Material::ScalarMaterialInput, Opacity, 584)
-		ADD_STRUCT(Material::ColorMaterialInput, EmissiveColor, 548)
-		ADD_STRUCT(Material::VectorMaterialInput, Normal, 504)
-		ADD_STRUCT(Material::ScalarMaterialInput, SpecularPower, 468)
-		ADD_STRUCT(Material::ColorMaterialInput, SpecularColor, 432)
-		ADD_STRUCT(Material::ScalarMaterialInput, DiffusePower, 396)
-		ADD_STRUCT(Material::ColorMaterialInput, DiffuseColor, 360)
+		ADD_STRUCT(Material__ScalarMaterialInput, OpacityMask, 620)
+		ADD_STRUCT(Material__ScalarMaterialInput, Opacity, 584)
+		ADD_STRUCT(Material__ColorMaterialInput, EmissiveColor, 548)
+		ADD_STRUCT(Material__VectorMaterialInput, Normal, 504)
+		ADD_STRUCT(Material__ScalarMaterialInput, SpecularPower, 468)
+		ADD_STRUCT(Material__ColorMaterialInput, SpecularColor, 432)
+		ADD_STRUCT(Material__ScalarMaterialInput, DiffusePower, 396)
+		ADD_STRUCT(Material__ColorMaterialInput, DiffuseColor, 360)
 		ADD_OBJECT(PhysicalMaterial, WhitePhysicalMaterial, 356)
 		ADD_OBJECT(PhysicalMaterial, BlackPhysicalMaterial, 352)
 		ADD_STRUCT(int, PhysMaterialMaskUVChannel, 348)

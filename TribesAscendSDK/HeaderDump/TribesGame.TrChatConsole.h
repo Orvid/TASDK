@@ -1,9 +1,9 @@
 #pragma once
 #include "UTGame.UTConsole.h"
-#include "Engine.Console.h"
+#include "Engine.Console.AutoCompleteCommand.h"
 #include "TribesGame.TrPlayerController.h"
 #include "Engine.Canvas.h"
-#include "Core.Object.h"
+#include "Core.Object.EInputEvent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,7 +17,7 @@ namespace UnrealScript
 	class TrChatConsole : public UTConsole
 	{
 	public:
-		ADD_STRUCT(ScriptArray<Console::AutoCompleteCommand>, TribesAutoCompleteList, 468)
+		ADD_STRUCT(ScriptArray<Console__AutoCompleteCommand>, TribesAutoCompleteList, 468)
 		ADD_OBJECT(TrPlayerController, m_TrPC, 536)
 		ADD_STRUCT(float, m_fTypingTime, 532)
 		ADD_STRUCT(ScriptString*, EscHelp, 520)
@@ -80,13 +80,13 @@ namespace UnrealScript
 			*(class Canvas**)params = Canvas;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool InputKey(int ControllerId, ScriptName Key, Object::EInputEvent Event, float AmountDepressed, bool bGamepad)
+		bool InputKey(int ControllerId, ScriptName Key, Object__EInputEvent Event, float AmountDepressed, bool bGamepad)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(74312);
 			byte params[25] = { NULL };
 			*(int*)params = ControllerId;
 			*(ScriptName*)&params[4] = Key;
-			*(Object::EInputEvent*)&params[12] = Event;
+			*(Object__EInputEvent*)&params[12] = Event;
 			*(float*)&params[16] = AmountDepressed;
 			*(bool*)&params[20] = bGamepad;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);

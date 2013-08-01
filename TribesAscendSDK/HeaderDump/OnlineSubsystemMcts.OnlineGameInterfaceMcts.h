@@ -1,9 +1,10 @@
 #pragma once
 #include "IpDrv.OnlineGameInterfaceImpl.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "OnlineSubsystemMcts.MctsOnlineSettings.h"
 #include "OnlineSubsystemMcts.OnlineVoiceInterfaceMcts.h"
 #include "Engine.OnlineGameSearch.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
 #include "Engine.OnlineGameSettings.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -18,13 +19,6 @@ namespace UnrealScript
 	class OnlineGameInterfaceMcts : public OnlineGameInterfaceImpl
 	{
 	public:
-		enum EMctsMatchmakingType : byte
-		{
-			SMT_Invalid = 0,
-			SMT_LAN = 1,
-			SMT_Internet = 2,
-			SMT_MAX = 3,
-		};
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, GameInviteAcceptedDelegates, 444)
@@ -37,29 +31,29 @@ void*>, UnregisterPlayerCompleteDelegates, 472)
 		ADD_OBJECT(OnlineGameSearch, InviteGameSearch, 456)
 		ADD_OBJECT(OnlineVoiceInterfaceMcts, MctsVoiceInt, 440)
 		ADD_OBJECT(MctsOnlineSettings, MctsSettings, 436)
-		void OnGameInviteAccepted(OnlineGameSearch::OnlineGameSearchResult& InviteResult)
+		void OnGameInviteAccepted(OnlineGameSearch__OnlineGameSearchResult& InviteResult)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156413);
 			byte params[8] = { NULL };
-			*(OnlineGameSearch::OnlineGameSearchResult*)params = InviteResult;
+			*(OnlineGameSearch__OnlineGameSearchResult*)params = InviteResult;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			InviteResult = *(OnlineGameSearch::OnlineGameSearchResult*)params;
+			InviteResult = *(OnlineGameSearch__OnlineGameSearchResult*)params;
 		}
-		void OnRegisterPlayerComplete(ScriptName SessionName, OnlineSubsystem::UniqueNetId PlayerID, bool bWasSuccessful)
+		void OnRegisterPlayerComplete(ScriptName SessionName, OnlineSubsystem__UniqueNetId PlayerID, bool bWasSuccessful)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156416);
 			byte params[20] = { NULL };
 			*(ScriptName*)params = SessionName;
-			*(OnlineSubsystem::UniqueNetId*)&params[8] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[8] = PlayerID;
 			*(bool*)&params[16] = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnUnregisterPlayerComplete(ScriptName SessionName, OnlineSubsystem::UniqueNetId PlayerID, bool bWasSuccessful)
+		void OnUnregisterPlayerComplete(ScriptName SessionName, OnlineSubsystem__UniqueNetId PlayerID, bool bWasSuccessful)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156419);
 			byte params[20] = { NULL };
 			*(ScriptName*)params = SessionName;
-			*(OnlineSubsystem::UniqueNetId*)&params[8] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[8] = PlayerID;
 			*(bool*)&params[16] = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -192,12 +186,12 @@ void**)&params[4] = GameInviteAcceptedDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		bool RegisterPlayer(ScriptName SessionName, OnlineSubsystem::UniqueNetId PlayerID, bool bWasInvited)
+		bool RegisterPlayer(ScriptName SessionName, OnlineSubsystem__UniqueNetId PlayerID, bool bWasInvited)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156476);
 			byte params[24] = { NULL };
 			*(ScriptName*)params = SessionName;
-			*(OnlineSubsystem::UniqueNetId*)&params[8] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[8] = PlayerID;
 			*(bool*)&params[16] = bWasInvited;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[20];
@@ -224,12 +218,12 @@ void* RegisterPlayerCompleteDelegate)
 void**)params = RegisterPlayerCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool UnregisterPlayer(ScriptName SessionName, OnlineSubsystem::UniqueNetId PlayerID)
+		bool UnregisterPlayer(ScriptName SessionName, OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156489);
 			byte params[20] = { NULL };
 			*(ScriptName*)params = SessionName;
-			*(OnlineSubsystem::UniqueNetId*)&params[8] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[8] = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}

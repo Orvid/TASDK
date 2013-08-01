@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.ParticleModuleLocationPrimitiveBase.h"
-#include "Core.DistributionFloat.h"
+#include "Engine.ParticleModuleLocationPrimitiveCylinder.CylinderHeightAxis.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,17 +21,10 @@ namespace UnrealScript
 	class ParticleModuleLocationPrimitiveCylinder : public ParticleModuleLocationPrimitiveBase
 	{
 	public:
-		enum CylinderHeightAxis : byte
-		{
-			PMLPC_HEIGHTAXIS_X = 0,
-			PMLPC_HEIGHTAXIS_Y = 1,
-			PMLPC_HEIGHTAXIS_Z = 2,
-			PMLPC_HEIGHTAXIS_MAX = 3,
-		};
-		ADD_STRUCT(ParticleModuleLocationPrimitiveCylinder::CylinderHeightAxis, HeightAxis, 192)
+		ADD_STRUCT(ParticleModuleLocationPrimitiveCylinder__CylinderHeightAxis, HeightAxis, 192)
 		ADD_BOOL(RadialVelocity, 132, 0x1)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, StartHeight, 164)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, StartRadius, 136)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, StartHeight, 164)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, StartRadius, 136)
 	};
 }
 #undef ADD_BOOL

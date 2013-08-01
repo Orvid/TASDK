@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.PBRuleNodeBase.h"
-#include "Engine.ProcBuilding.h"
+#include "Engine.PBRuleNodeCorner.RBCornerAngleInfo.h"
+#include "Engine.ProcBuilding.EPBCornerType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,17 +21,11 @@ namespace UnrealScript
 	class PBRuleNodeCorner : public PBRuleNodeBase
 	{
 	public:
-		struct RBCornerAngleInfo
-		{
-		public:
-			ADD_STRUCT(float, CornerSize, 4)
-			ADD_STRUCT(float, Angle, 0)
-		};
-		ADD_STRUCT(ScriptArray<PBRuleNodeCorner::RBCornerAngleInfo>, Angles, 108)
+		ADD_STRUCT(ScriptArray<PBRuleNodeCorner__RBCornerAngleInfo>, Angles, 108)
 		ADD_STRUCT(float, RoundCurvature, 140)
 		ADD_STRUCT(int, RoundTesselation, 136)
 		ADD_STRUCT(float, CornerShapeOffset, 132)
-		ADD_STRUCT(ProcBuilding::EPBCornerType, CornerType, 128)
+		ADD_STRUCT(ProcBuilding__EPBCornerType, CornerType, 128)
 		ADD_BOOL(bUseAdjacentRulesetForRightGap, 124, 0x2)
 		ADD_BOOL(bNoMeshForConcaveCorners, 124, 0x1)
 		ADD_STRUCT(float, FlatThreshold, 120)

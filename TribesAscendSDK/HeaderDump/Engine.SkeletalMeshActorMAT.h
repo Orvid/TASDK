@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.SkeletalMeshCinematicActor.h"
 #include "Engine.AnimNodeSlot.h"
-#include "Engine.Actor.h"
+#include "Engine.Actor.AnimSlotInfo.h"
 #include "Engine.InterpGroup.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -13,11 +13,11 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<class AnimNodeSlot*>, SlotNodes, 536)
-		void MAT_SetAnimWeights(ScriptArray<Actor::AnimSlotInfo> SlotInfos)
+		void MAT_SetAnimWeights(ScriptArray<Actor__AnimSlotInfo> SlotInfos)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(26761);
 			byte params[12] = { NULL };
-			*(ScriptArray<Actor::AnimSlotInfo>*)params = SlotInfos;
+			*(ScriptArray<Actor__AnimSlotInfo>*)params = SlotInfos;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void MAT_SetMorphWeight(ScriptName MorphNodeName, float MorphWeight)

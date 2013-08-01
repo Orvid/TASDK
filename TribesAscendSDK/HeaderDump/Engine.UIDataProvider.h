@@ -1,5 +1,9 @@
 #pragma once
+#include "Engine.UIDataProvider.UIDataProviderField.h"
 #include "Engine.UIRoot.h"
+#include "Engine.UIDataProvider.EProviderAccessType.h"
+#include "Engine.UIRoot.EUIDataProviderFieldType.h"
+#include "Engine.UIRoot.UIProviderScriptFieldValue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -9,24 +13,10 @@ namespace UnrealScript
 	class UIDataProvider : public UIRoot
 	{
 	public:
-		enum EProviderAccessType : byte
-		{
-			ACCESS_ReadOnly = 0,
-			ACCESS_PerField = 1,
-			ACCESS_WriteAll = 2,
-			ACCESS_MAX = 3,
-		};
-		struct UIDataProviderField
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class UIDataProvider*>, FieldProviders, 12)
-			ADD_STRUCT(UIRoot::EUIDataProviderFieldType, FieldType, 8)
-			ADD_STRUCT(ScriptName, FieldTag, 0)
-		};
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, ProviderChangedNotifies, 64)
-		ADD_STRUCT(UIDataProvider::EProviderAccessType, WriteAccessType, 60)
+		ADD_STRUCT(UIDataProvider__EProviderAccessType, WriteAccessType, 60)
 		void OnDataProviderPropertyChange(class UIDataProvider* SourceProvider, ScriptName PropTag)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22531);
@@ -35,14 +25,14 @@ void*>, ProviderChangedNotifies, 64)
 			*(ScriptName*)&params[4] = PropTag;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool GetProviderFieldType(ScriptString* DataTag, UIRoot::EUIDataProviderFieldType& out_ProviderFieldType)
+		bool GetProviderFieldType(ScriptString* DataTag, UIRoot__EUIDataProviderFieldType& out_ProviderFieldType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22536);
 			byte params[17] = { NULL };
 			*(ScriptString**)params = DataTag;
-			*(UIRoot::EUIDataProviderFieldType*)&params[12] = out_ProviderFieldType;
+			*(UIRoot__EUIDataProviderFieldType*)&params[12] = out_ProviderFieldType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_ProviderFieldType = *(UIRoot::EUIDataProviderFieldType*)&params[12];
+			out_ProviderFieldType = *(UIRoot__EUIDataProviderFieldType*)&params[12];
 			return *(bool*)&params[16];
 		}
 		int ParseArrayDelimiter(ScriptString*& DataTag)
@@ -54,13 +44,13 @@ void*>, ProviderChangedNotifies, 64)
 			DataTag = *(ScriptString**)params;
 			return *(int*)&params[12];
 		}
-		void GetSupportedScriptFields(ScriptArray<UIDataProvider::UIDataProviderField>& out_Fields)
+		void GetSupportedScriptFields(ScriptArray<UIDataProvider__UIDataProviderField>& out_Fields)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22543);
 			byte params[12] = { NULL };
-			*(ScriptArray<UIDataProvider::UIDataProviderField>*)params = out_Fields;
+			*(ScriptArray<UIDataProvider__UIDataProviderField>*)params = out_Fields;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_Fields = *(ScriptArray<UIDataProvider::UIDataProviderField>*)params;
+			out_Fields = *(ScriptArray<UIDataProvider__UIDataProviderField>*)params;
 		}
 		bool AllowPublishingToField(ScriptString* FieldName, int ArrayIndex)
 		{
@@ -71,26 +61,26 @@ void*>, ProviderChangedNotifies, 64)
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
-		bool GetFieldValue(ScriptString* FieldName, UIRoot::UIProviderScriptFieldValue& FieldValue, int ArrayIndex)
+		bool GetFieldValue(ScriptString* FieldName, UIRoot__UIProviderScriptFieldValue& FieldValue, int ArrayIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22550);
 			byte params[104] = { NULL };
 			*(ScriptString**)params = FieldName;
-			*(UIRoot::UIProviderScriptFieldValue*)&params[12] = FieldValue;
+			*(UIRoot__UIProviderScriptFieldValue*)&params[12] = FieldValue;
 			*(int*)&params[96] = ArrayIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			FieldValue = *(UIRoot::UIProviderScriptFieldValue*)&params[12];
+			FieldValue = *(UIRoot__UIProviderScriptFieldValue*)&params[12];
 			return *(bool*)&params[100];
 		}
-		bool SetFieldValue(ScriptString* FieldName, UIRoot::UIProviderScriptFieldValue& FieldValue, int ArrayIndex)
+		bool SetFieldValue(ScriptString* FieldName, UIRoot__UIProviderScriptFieldValue& FieldValue, int ArrayIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22555);
 			byte params[104] = { NULL };
 			*(ScriptString**)params = FieldName;
-			*(UIRoot::UIProviderScriptFieldValue*)&params[12] = FieldValue;
+			*(UIRoot__UIProviderScriptFieldValue*)&params[12] = FieldValue;
 			*(int*)&params[96] = ArrayIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			FieldValue = *(UIRoot::UIProviderScriptFieldValue*)&params[12];
+			FieldValue = *(UIRoot__UIProviderScriptFieldValue*)&params[12];
 			return *(bool*)&params[100];
 		}
 		ScriptString* GenerateScriptMarkupString(ScriptName DataTag)
@@ -116,11 +106,11 @@ void*>, ProviderChangedNotifies, 64)
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		bool IsCollectionDataType(UIRoot::EUIDataProviderFieldType FieldType)
+		bool IsCollectionDataType(UIRoot__EUIDataProviderFieldType FieldType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22568);
 			byte params[5] = { NULL };
-			*(UIRoot::EUIDataProviderFieldType*)params = FieldType;
+			*(UIRoot__EUIDataProviderFieldType*)params = FieldType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}

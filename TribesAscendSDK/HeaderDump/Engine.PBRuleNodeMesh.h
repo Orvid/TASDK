@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine.PBRuleNodeMesh.BuildingMeshInfo.h"
 #include "Engine.PBRuleNodeBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -23,28 +24,10 @@ namespace UnrealScript
 	class PBRuleNodeMesh : public PBRuleNodeBase
 	{
 	public:
-		struct BuildingMatOverrides
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class MaterialInterface*>, MaterialOptions, 0)
-		};
-		struct BuildingMeshInfo
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class MaterialInterface*>, MaterialOverrides, 32)
-			ADD_STRUCT(ScriptArray<PBRuleNodeMesh::BuildingMatOverrides>, SectionOverrides, 44)
-			ADD_STRUCT(int, OverriddenMeshLightMapRes, 28)
-			ADD_BOOL(bOverrideMeshLightMapRes, 24, 0x2)
-			ADD_BOOL(bMeshScaleTranslation, 24, 0x1)
-			ADD_STRUCT(float, Chance, 12)
-			ADD_STRUCT(float, DimZ, 8)
-			ADD_STRUCT(float, DimX, 4)
-			ADD_OBJECT(StaticMesh, Mesh, 0)
-		};
-		ADD_STRUCT(ScriptArray<PBRuleNodeMesh::BuildingMeshInfo>, BuildingMeshes, 104)
+		ADD_STRUCT(ScriptArray<PBRuleNodeMesh__BuildingMeshInfo>, BuildingMeshes, 104)
 		ADD_BOOL(bBlockAll, 172, 0x2)
 		ADD_BOOL(bDoOcclusionTest, 172, 0x1)
-		ADD_STRUCT(PBRuleNodeMesh::BuildingMeshInfo, PartialOccludedBuildingMesh, 116)
+		ADD_STRUCT(PBRuleNodeMesh__BuildingMeshInfo, PartialOccludedBuildingMesh, 116)
 		int PickRandomBuildingMesh()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(24258);

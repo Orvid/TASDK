@@ -1,7 +1,7 @@
 #pragma once
 #include "TribesGame.GFxTrPage.h"
-#include "TribesGame.TrFriendManager.h"
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.TrFriendManager.FriendStruct.h"
 #include "TribesGame.GFxTrAction.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -12,7 +12,7 @@ namespace UnrealScript
 	class GFxTrPage_Followers : public GFxTrPage
 	{
 	public:
-		ADD_STRUCT(ScriptArray<TrFriendManager::FriendStruct>, SortedFriends, 396)
+		ADD_STRUCT(ScriptArray<TrFriendManager__FriendStruct>, SortedFriends, 396)
 		ADD_STRUCT(ScriptString*, MutalFriendLabel, 384)
 		ADD_STRUCT(ScriptString*, SelectPromptLabel, 372)
 		ADD_STRUCT(int, RemovingIndex, 368)

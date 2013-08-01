@@ -1,7 +1,8 @@
 #pragma once
 #include "Core.Object.h"
+#include "TribesGame.TrMainMenuContentData.MeshData.h"
 #include "TribesGame.TrPaperDollMainMenu.h"
-#include "TribesGame.TrObject.h"
+#include "TribesGame.TrObject.EContentDataType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,19 +16,13 @@ namespace UnrealScript
 	class TrMainMenuContentData : public Object
 	{
 	public:
-		struct MeshData
-		{
-		public:
-			ADD_OBJECT(TrMainMenuMeshInfo, MainMeshInfo, 4)
-			ADD_STRUCT(TrObject::EContentDataType, ContentDataType, 0)
-		};
-		ADD_STRUCT(ScriptArray<TrMainMenuContentData::MeshData>, m_MeshData, 60)
-		void SendPaperDollANewMesh(class TrPaperDollMainMenu* MainMenuPaperDoll, TrObject::EContentDataType ContentDataType)
+		ADD_STRUCT(ScriptArray<TrMainMenuContentData__MeshData>, m_MeshData, 60)
+		void SendPaperDollANewMesh(class TrPaperDollMainMenu* MainMenuPaperDoll, TrObject__EContentDataType ContentDataType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(98683);
 			byte params[5] = { NULL };
 			*(class TrPaperDollMainMenu**)params = MainMenuPaperDoll;
-			*(TrObject::EContentDataType*)&params[4] = ContentDataType;
+			*(TrObject__EContentDataType*)&params[4] = ContentDataType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void PreloadTextures(float ForceDuration)

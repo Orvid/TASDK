@@ -1,7 +1,8 @@
 #pragma once
 #include "Engine.ActorFactory.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
 #include "Engine.ApexDestructibleAsset.h"
-#include "Engine.PrimitiveComponent.h"
+#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,8 +27,8 @@ namespace UnrealScript
 	{
 	public:
 		ADD_OBJECT(ApexDestructibleAsset, DestructibleAsset, 104)
-		ADD_STRUCT(PrimitiveComponent::RBCollisionChannelContainer, CollideWithChannels, 100)
-		ADD_STRUCT(PrimitiveComponent::ERBCollisionChannel, RBChannel, 96)
+		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, CollideWithChannels, 100)
+		ADD_STRUCT(PrimitiveComponent__ERBCollisionChannel, RBChannel, 96)
 		ADD_BOOL(bStartAwake, 92, 0x1)
 	};
 }

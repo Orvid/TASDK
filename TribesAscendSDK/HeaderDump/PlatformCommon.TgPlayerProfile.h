@@ -1,5 +1,8 @@
 #pragma once
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
 #include "Engine.OnlinePlayerStorage.h"
+#include "PlatformCommon.TgPlayerProfile.BadgeStruct.h"
+#include "PlatformCommon.TgPlayerProfile.AccoladeStruct.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,37 +22,10 @@ namespace UnrealScript
 	class TgPlayerProfile : public OnlinePlayerStorage
 	{
 	public:
-		struct BadgeStruct
-		{
-		public:
-			ADD_STRUCT(ScriptString*, Description, 40)
-			ADD_STRUCT(ScriptString*, Title, 28)
-			ADD_STRUCT(int, Category, 24)
-			ADD_STRUCT(int, MaxValue, 20)
-			ADD_STRUCT(int, Progress, 16)
-			ADD_STRUCT(int, Tier, 12)
-			ADD_STRUCT(int, Icon, 8)
-			ADD_STRUCT(int, ActivityId, 4)
-			ADD_STRUCT(int, BadgeId, 0)
-		};
-		struct PropertyPair
-		{
-		public:
-			ADD_STRUCT(int, Value, 4)
-			ADD_STRUCT(int, PropertyId, 0)
-		};
-		struct AccoladeStruct
-		{
-		public:
-			ADD_STRUCT(int, Value, 12)
-			ADD_STRUCT(int, Type, 8)
-			ADD_STRUCT(int, ActivityId, 4)
-			ADD_STRUCT(int, AccoladeId, 0)
-		};
-		ADD_STRUCT(ScriptArray<TgPlayerProfile::BadgeStruct>, Badges, 192)
-		ADD_STRUCT(ScriptArray<TgPlayerProfile::BadgeStruct>, TopBadges, 204)
-		ADD_STRUCT(ScriptArray<TgPlayerProfile::PropertyPair>, ClassTimePlayed, 216)
-		ADD_STRUCT(ScriptArray<TgPlayerProfile::AccoladeStruct>, Accolades, 228)
+		ADD_STRUCT(ScriptArray<TgPlayerProfile__BadgeStruct>, Badges, 192)
+		ADD_STRUCT(ScriptArray<TgPlayerProfile__BadgeStruct>, TopBadges, 204)
+		ADD_STRUCT(ScriptArray<TgPlayerProfile__PropertyPair>, ClassTimePlayed, 216)
+		ADD_STRUCT(ScriptArray<TgPlayerProfile__AccoladeStruct>, Accolades, 228)
 		ADD_STRUCT(ScriptString*, PlayerName, 180)
 		ADD_STRUCT(int, PlayerID, 176)
 		ADD_BOOL(bBoost, 172, 0x2)

@@ -1,8 +1,11 @@
 #pragma once
 #include "Engine.Texture.h"
+#include "Engine.StaticMeshComponent.ELightmapModificationFunction.h"
 #include "Engine.MeshComponent.h"
-#include "Core.Object.h"
-#include "Engine.EngineTypes.h"
+#include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
+#include "Core.Object.Guid.h"
+#include "Core.Object.Color.h"
+#include "Engine.StaticMeshComponent.StaticMeshComponentLODInfo.h"
 #include "Engine.StaticMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -27,27 +30,12 @@ namespace UnrealScript
 	class StaticMeshComponent : public MeshComponent
 	{
 	public:
-		enum ELightmapModificationFunction : byte
-		{
-			MLMF_Modulate = 0,
-			MLMF_ModulateAlpha = 1,
-			MLMF_MAX = 2,
-		};
-		struct StaticMeshComponentLODInfo
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class ShadowMap2D*>, ShadowMaps, 0)
-			ADD_STRUCT(ScriptArray<class Object*>, ShadowVertexBuffers, 12)
-			ADD_STRUCT(ScriptArray<Vector>, VertexColorPositions, 32)
-			ADD_STRUCT(Object::Pointer, OverrideVertexColors, 28)
-			ADD_STRUCT(Object::Pointer, LightMap, 24)
-		};
-		ADD_STRUCT(ScriptArray<Object::Guid>, IrrelevantLights, 552)
-		ADD_STRUCT(ScriptArray<StaticMeshComponent::StaticMeshComponentLODInfo>, LODData, 564)
-		ADD_STRUCT(EngineTypes::LightmassPrimitiveSettings, LightmassSettings, 580)
+		ADD_STRUCT(ScriptArray<Object__Guid>, IrrelevantLights, 552)
+		ADD_STRUCT(ScriptArray<StaticMeshComponent__StaticMeshComponentLODInfo>, LODData, 564)
+		ADD_STRUCT(EngineTypes__LightmassPrimitiveSettings, LightmassSettings, 580)
 		ADD_STRUCT(int, VertexPositionVersionNumber, 576)
 		ADD_BOOL(bNeverBecomeDynamic, 548, 0x1)
-		ADD_STRUCT(StaticMeshComponent::ELightmapModificationFunction, SimpleLightmapModificationFunction, 544)
+		ADD_STRUCT(StaticMeshComponent__ELightmapModificationFunction, SimpleLightmapModificationFunction, 544)
 		ADD_STRUCT(int, ForcedLodModel, 500)
 		ADD_OBJECT(Texture, SimpleLightmapModificationTexture, 540)
 		ADD_BOOL(bUseSimpleLightmapModifications, 536, 0x8)
@@ -61,7 +49,7 @@ namespace UnrealScript
 		ADD_BOOL(bOverrideLightMapRes, 516, 0x4)
 		ADD_BOOL(bOverrideLightMapResolution, 516, 0x2)
 		ADD_BOOL(bIgnoreInstanceForTextureStreaming, 516, 0x1)
-		ADD_STRUCT(Object::Color, WireframeColor, 512)
+		ADD_STRUCT(Object__Color, WireframeColor, 512)
 		ADD_OBJECT(StaticMesh, StaticMesh, 508)
 		ADD_STRUCT(int, PreviousLODLevel, 504)
 		bool CanBecomeDynamic()

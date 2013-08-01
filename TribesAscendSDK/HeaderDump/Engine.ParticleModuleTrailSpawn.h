@@ -9,13 +9,6 @@ namespace UnrealScript
 	class ParticleModuleTrailSpawn : public ParticleModuleTrailBase
 	{
 	public:
-		enum ETrail2SpawnMethod : byte
-		{
-			PET2SM_Emitter = 0,
-			PET2SM_Velocity = 1,
-			PET2SM_Distance = 2,
-			PET2SM_MAX = 3,
-		};
 		ADD_STRUCT(float, MinSpawnVelocity, 76)
 	};
 }

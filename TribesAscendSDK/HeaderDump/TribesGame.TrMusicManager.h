@@ -1,4 +1,5 @@
 #pragma once
+#include "TribesGame.TrMusicManager.ETgMusicState.h"
 #include "Engine.Info.h"
 #include "Engine.SoundCue.h"
 #include "TribesGame.TrPlayerController.h"
@@ -15,23 +16,10 @@ namespace UnrealScript
 	class TrMusicManager : public Info
 	{
 	public:
-		enum ETgMusicState : byte
-		{
-			MUSICSTATE_BattleLow = 0,
-			MUSICSTATE_BattleMed = 1,
-			MUSICSTATE_BattleHigh = 2,
-			MUSICSTATE_FlagPossession = 3,
-			MUSICSTATE_DeathDirge = 4,
-			MUSICSTATE_TeamWonMatch = 5,
-			MUSICSTATE_TeamLostMatch = 6,
-			MUSICSTATE_NoMusic = 7,
-			MUSICSTATE_Ambient = 8,
-			MUSICSTATE_MAX = 9,
-		};
 		ADD_OBJECT(TrPlayerController, m_PlayerOwner, 476)
 		ADD_STRUCT(float, m_fMusicVolume, 480)
-		ADD_STRUCT(TrMusicManager::ETgMusicState, m_CurrentState, 488)
-		ADD_STRUCT(TrMusicManager::ETgMusicState, m_PendingState, 489)
+		ADD_STRUCT(TrMusicManager__ETgMusicState, m_CurrentState, 488)
+		ADD_STRUCT(TrMusicManager__ETgMusicState, m_PendingState, 489)
 		ADD_STRUCT(float, m_fStingerVolumeMultiplier, 484)
 		ADD_STRUCT(float, m_CTFTeamScores, 532)
 		void PostBeginPlay()
@@ -75,18 +63,18 @@ void**)&params[4];
 			*(int*)params = NewEventIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetPendingState(TrMusicManager::ETgMusicState NewState)
+		void SetPendingState(TrMusicManager__ETgMusicState NewState)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(100273);
 			byte params[1] = { NULL };
-			*(TrMusicManager::ETgMusicState*)params = NewState;
+			*(TrMusicManager__ETgMusicState*)params = NewState;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetCurrentState(TrMusicManager::ETgMusicState NewState)
+		void SetCurrentState(TrMusicManager__ETgMusicState NewState)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(100275);
 			byte params[1] = { NULL };
-			*(TrMusicManager::ETgMusicState*)params = NewState;
+			*(TrMusicManager__ETgMusicState*)params = NewState;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void PlayerScoredFlag()

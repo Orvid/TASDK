@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.GameplayEventsReader.h"
 #include "Core.Object.h"
-#include "Engine.GameplayEvents.h"
+#include "Engine.GameplayEvents.GameStatGroup.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,7 +16,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<int>, EventIDFilter, 60)
-		ADD_STRUCT(ScriptArray<GameplayEvents::GameStatGroup>, GroupFilter, 72)
+		ADD_STRUCT(ScriptArray<GameplayEvents__GameStatGroup>, GroupFilter, 72)
 		ADD_OBJECT(GameplayEventsReader, Reader, 84)
 		void SetReader(class GameplayEventsReader* NewReader)
 		{

@@ -1,52 +1,72 @@
 #pragma once
+#include "Engine.PlayerController.ConnectedPeerInfo.h"
 #include "Engine.Actor.h"
 #include "Engine.SeqAct_CameraLookAt.h"
 #include "Engine.Controller.h"
 #include "Engine.Player.h"
-#include "Engine.Weapon.h"
-#include "Engine.Pawn.h"
-#include "Engine.SavedMove.h"
 #include "Engine.OnlineSubsystem.h"
-#include "Engine.SeqAct_CameraShake.h"
 #include "Engine.Camera.h"
-#include "Engine.SeqAct_SetSoundMode.h"
-#include "Engine.HUD.h"
 #include "Engine.CoverReplicator.h"
-#include "Engine.CameraAnim.h"
 #include "Engine.SeqAct_Destroy.h"
 #include "Engine.Trigger.h"
 #include "Engine.OnlineGameSearch.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.Camera.ECameraAnimPlaySpace.h"
+#include "Engine.HUD.h"
+#include "Engine.Weapon.h"
+#include "Engine.Pawn.h"
+#include "Engine.SavedMove.h"
 #include "Engine.PlayerInput.h"
-#include "Engine.SeqAct_ControlMovieTexture.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.Interaction.h"
 #include "Engine.ForceFeedbackManager.h"
 #include "Engine.UIDataStore_OnlinePlayerData.h"
-#include "Core.Object.h"
+#include "Engine.PlayerController.ClientAdjustment.h"
+#include "Engine.FaceFXAnimSet.h"
+#include "Engine.OnlineGameSettings.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Font.h"
+#include "Engine.OnlineSubsystem.ENATType.h"
+#include "Engine.Actor.EDoubleClickDir.h"
 #include "Engine.NetConnection.h"
+#include "Engine.PlayerController.DebugTextInfo.h"
+#include "Engine.SeqAct_ControlMovieTexture.EMovieControlType.h"
 #include "Engine.CheatManager.h"
 #include "Engine.InterpTrackInstDirector.h"
+#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
+#include "Engine.SeqAct_ToggleInput.h"
+#include "Core.Object.Rotator.h"
+#include "Engine.PlayerController.InputMatchRequest.h"
+#include "Engine.Actor.ETravelType.h"
+#include "Core.Object.Guid.h"
 #include "Engine.Canvas.h"
 #include "Engine.Inventory.h"
+#include "Core.Object.h"
 #include "Engine.SeqAct_DrawText.h"
+#include "Engine.Camera.ViewTargetTransitionParams.h"
 #include "Engine.SoundCue.h"
-#include "Engine.OnlineGameSettings.h"
-#include "Engine.FaceFXAnimSet.h"
 #include "Engine.SeqAct_ConsoleCommand.h"
 #include "Engine.UIInteraction.h"
-#include "Engine.SeqAct_ToggleInput.h"
-#include "Engine.MaterialInterface.h"
+#include "Engine.ForceFeedbackWaveform.h"
+#include "Core.Object.Color.h"
+#include "Engine.Camera.EViewTargetBlendFunction.h"
+#include "Core.Object.Vector2D.h"
+#include "Engine.Actor.EPhysics.h"
+#include "Engine.PlayerController.EProgressMessageType.h"
+#include "Engine.HUD.KismetDrawTextInfo.h"
 #include "Engine.SeqAct_SetCameraTarget.h"
+#include "Engine.MaterialInterface.h"
 #include "Engine.SeqAct_ToggleHUD.h"
 #include "Engine.SeqAct_ForceFeedback.h"
-#include "Engine.ForceFeedbackWaveform.h"
 #include "Engine.AnimNotify_Rumble.h"
 #include "Engine.SeqAct_ToggleCinematicMode.h"
 #include "Engine.LevelStreaming.h"
-#include "Engine.Font.h"
 #include "Engine.TextureMovie.h"
 #include "Engine.SeqAct_FlyThroughHasEnded.h"
 #include "Engine.CameraShake.h"
+#include "Engine.SeqAct_CameraShake.h"
+#include "Engine.CameraAnim.h"
+#include "Engine.SeqAct_SetSoundMode.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -75,82 +95,6 @@ namespace UnrealScript
 		static const float MAXVEHICLEPOSITIONERRORSQUARED;
 		static const float MAXNEARZEROVELOCITYSQUARED;
 		static const float MAXPOSITIONERRORSQUARED;
-		enum EProgressMessageType : byte
-		{
-			PMT_Clear = 0,
-			PMT_Information = 1,
-			PMT_AdminMessage = 2,
-			PMT_DownloadProgress = 3,
-			PMT_ConnectionFailure = 4,
-			PMT_PeerConnectionFailure = 5,
-			PMT_PeerHostMigrationFailure = 6,
-			PMT_SocketFailure = 7,
-			PMT_MAX = 8,
-		};
-		enum EInputMatchAction : byte
-		{
-			IMA_GreaterThan = 0,
-			IMA_LessThan = 1,
-			IMA_MAX = 2,
-		};
-		enum EInputTypes : byte
-		{
-			IT_XAxis = 0,
-			IT_YAxis = 1,
-			IT_MAX = 2,
-		};
-		struct DebugTextInfo
-		{
-		public:
-			ADD_OBJECT(Actor, SrcActor, 0)
-			ADD_STRUCT(float, TimeRemaining, 40)
-			ADD_OBJECT(Font, Font, 68)
-			ADD_BOOL(bAbsoluteLocation, 52, 0x1)
-			ADD_STRUCT(Vector, SrcActorOffset, 4)
-			ADD_STRUCT(Vector, SrcActorDesiredOffset, 16)
-			ADD_STRUCT(float, Duration, 44)
-			ADD_BOOL(bKeepAttachedToActor, 52, 0x2)
-			ADD_STRUCT(Vector, OrigActorLocation, 56)
-			ADD_STRUCT(Object::Color, TextColor, 48)
-			ADD_STRUCT(ScriptString*, DebugText, 28)
-		};
-		struct ConnectedPeerInfo
-		{
-		public:
-			ADD_STRUCT(OnlineSubsystem::UniqueNetId, PlayerID, 0)
-			ADD_STRUCT(OnlineSubsystem::ENATType, NatType, 8)
-			ADD_BOOL(bLostConnectionToHost, 12, 0x1)
-		};
-		struct ClientAdjustment
-		{
-		public:
-			ADD_STRUCT(Actor::EPhysics, newPhysics, 4)
-			ADD_STRUCT(Vector, NewLoc, 8)
-			ADD_STRUCT(Vector, NewVel, 20)
-			ADD_OBJECT(Actor, NewBase, 32)
-			ADD_STRUCT(Vector, NewFloor, 36)
-			ADD_STRUCT(float, TimeStamp, 0)
-			ADD_STRUCT(byte, bAckGoodMove, 48)
-		};
-		struct InputEntry
-		{
-		public:
-			ADD_STRUCT(PlayerController::EInputTypes, Type, 0)
-			ADD_STRUCT(float, Value, 4)
-			ADD_STRUCT(float, TimeDelta, 8)
-			ADD_STRUCT(PlayerController::EInputMatchAction, Action, 12)
-		};
-		struct InputMatchRequest
-		{
-		public:
-			ADD_STRUCT(ScriptArray<PlayerController::InputEntry>, Inputs, 0)
-			ADD_OBJECT(Actor, MatchActor, 12)
-			ADD_STRUCT(ScriptName, MatchFuncName, 16)
-			ADD_STRUCT(ScriptName, FailedFuncName, 36)
-			ADD_STRUCT(ScriptName, RequestName, 44)
-			ADD_STRUCT(int, MatchIdx, 52)
-			ADD_STRUCT(float, LastMatchTime, 56)
-		};
 		ADD_STRUCT(float, LODDistanceFactor, 960)
 		ADD_OBJECT(Player, Player, 900)
 		ADD_OBJECT(Actor, ViewTarget, 936)
@@ -163,8 +107,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, MaxResponseTime, 916)
 		ADD_STRUCT(float, LastActiveTime, 1048)
 		ADD_OBJECT(OnlineSubsystem, OnlineSub, 1248)
-		ADD_STRUCT(ScriptArray<PlayerController::ConnectedPeerInfo>, ConnectedPeers, 1220)
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::UniqueNetId>, BestNextHostPeers, 1232)
+		ADD_STRUCT(ScriptArray<PlayerController__ConnectedPeerInfo>, ConnectedPeers, 1220)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__UniqueNetId>, BestNextHostPeers, 1232)
 		ADD_OBJECT(OnlineGameSearch, MigratedSearchToJoin, 1244)
 		ADD_STRUCT(float, TimeMargin, 1036)
 		ADD_BOOL(bShortConnectTimeOut, 912, 0x100)
@@ -195,7 +139,7 @@ void*>, HearSoundPoolComponents, 1396)
 		ADD_STRUCT(float, CurrentTimeStamp, 1024)
 		ADD_BOOL(bWasSpeedHack, 912, 0x400)
 		ADD_STRUCT(float, LastSpeedHackLog, 1064)
-		ADD_STRUCT(PlayerController::ClientAdjustment, PendingAdjustment, 1068)
+		ADD_STRUCT(PlayerController__ClientAdjustment, PendingAdjustment, 1068)
 		ADD_STRUCT(float, ServerTimeStamp, 1032)
 		ADD_OBJECT(ScriptClass, SavedMoveClass, 996)
 		ADD_BOOL(bDoubleJump, 912, 0x4)
@@ -214,7 +158,7 @@ void*>, HearSoundPoolComponents, 1396)
 		ADD_BOOL(bAimingHelp, 912, 0x1000)
 		ADD_BOOL(bClientSimulatingViewTarget, 912, 0x2000)
 		ADD_OBJECT(ScriptClass, CameraClass, 908)
-		ADD_STRUCT(Actor::EDoubleClickDir, DoubleClickDir, 928)
+		ADD_STRUCT(Actor__EDoubleClickDir, DoubleClickDir, 928)
 		ADD_STRUCT(int, GroundPitch, 1120)
 		ADD_BOOL(bCheatFlying, 912, 0x40)
 		ADD_STRUCT(float, LastSpectatorStateSynchTime, 1420)
@@ -228,10 +172,10 @@ void*>, HearSoundPoolComponents, 1396)
 		ADD_BOOL(bCinemaDisableInputLook, 912, 0x40000)
 		ADD_STRUCT(ScriptArray<ScriptName>, PendingMapChangeLevelNames, 1340)
 		ADD_BOOL(bHasVoiceHandshakeCompleted, 912, 0x8000)
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::UniqueNetId>, VoicePacketFilter, 1208)
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::UniqueNetId>, GameplayVoiceMuteList, 1196)
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::UniqueNetId>, VoiceMuteList, 1184)
-		ADD_STRUCT(ScriptArray<PlayerController::DebugTextInfo>, DebugTextList, 1356)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__UniqueNetId>, VoicePacketFilter, 1208)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__UniqueNetId>, GameplayVoiceMuteList, 1196)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__UniqueNetId>, VoiceMuteList, 1184)
+		ADD_STRUCT(ScriptArray<PlayerController__DebugTextInfo>, DebugTextList, 1356)
 		ADD_STRUCT(byte, NetPlayerIndex, 933)
 		ADD_OBJECT(CheatManager, CheatManager, 1124)
 		ADD_BOOL(bNeverSwitchOnPickup, 912, 0x20)
@@ -255,7 +199,7 @@ void*>, HearSoundPoolComponents, 1396)
 		ADD_OBJECT(ScriptClass, CheatClass, 1128)
 		ADD_STRUCT(Vector, FailedPathStart, 1140)
 		ADD_STRUCT(ScriptName, DelayedJoinSessionName, 1268)
-		ADD_STRUCT(ScriptArray<PlayerController::InputMatchRequest>, InputRequests, 1276)
+		ADD_STRUCT(ScriptArray<PlayerController__InputMatchRequest>, InputRequests, 1276)
 		ADD_STRUCT(int, MaxConcurrentHearSounds, 1380)
 		ADD_STRUCT(ScriptArray<class Actor*>, HiddenActors, 1408)
 		float GetFOVAngle()
@@ -309,14 +253,14 @@ void*>, HearSoundPoolComponents, 1396)
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[16];
 		}
-		void ClientTravel(ScriptString* URL, Actor::ETravelType TravelType, bool bSeamless, Object::Guid MapPackageGuid)
+		void ClientTravel(ScriptString* URL, Actor__ETravelType TravelType, bool bSeamless, Object__Guid MapPackageGuid)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7562);
 			byte params[33] = { NULL };
 			*(ScriptString**)params = URL;
-			*(Actor::ETravelType*)&params[12] = TravelType;
+			*(Actor__ETravelType*)&params[12] = TravelType;
 			*(bool*)&params[16] = bSeamless;
-			*(Object::Guid*)&params[20] = MapPackageGuid;
+			*(Object__Guid*)&params[20] = MapPackageGuid;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UpdateURL(ScriptString* NewOption, ScriptString* NewValue, bool bSave1Default)
@@ -465,64 +409,64 @@ void*>, HearSoundPoolComponents, 1396)
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7630);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		int FindConnectedPeerIndex(OnlineSubsystem::UniqueNetId PeerNetId)
+		int FindConnectedPeerIndex(OnlineSubsystem__UniqueNetId PeerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7631);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PeerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PeerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[8];
 		}
-		void AddPeer(OnlineSubsystem::UniqueNetId PeerNetId, OnlineSubsystem::ENATType NatType)
+		void AddPeer(OnlineSubsystem__UniqueNetId PeerNetId, OnlineSubsystem__ENATType NatType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7638);
 			byte params[9] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PeerNetId;
-			*(OnlineSubsystem::ENATType*)&params[8] = NatType;
+			*(OnlineSubsystem__UniqueNetId*)params = PeerNetId;
+			*(OnlineSubsystem__ENATType*)&params[8] = NatType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void RemovePeer(OnlineSubsystem::UniqueNetId PeerNetId)
+		void RemovePeer(OnlineSubsystem__UniqueNetId PeerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7646);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PeerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PeerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerAddPeer(OnlineSubsystem::UniqueNetId PeerNetId, OnlineSubsystem::ENATType NatType)
+		void ServerAddPeer(OnlineSubsystem__UniqueNetId PeerNetId, OnlineSubsystem__ENATType NatType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7650);
 			byte params[9] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PeerNetId;
-			*(OnlineSubsystem::ENATType*)&params[8] = NatType;
+			*(OnlineSubsystem__UniqueNetId*)params = PeerNetId;
+			*(OnlineSubsystem__ENATType*)&params[8] = NatType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerRemovePeer(OnlineSubsystem::UniqueNetId PeerNetId)
+		void ServerRemovePeer(OnlineSubsystem__UniqueNetId PeerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7655);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PeerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PeerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientUpdateBestNextHosts(OnlineSubsystem::UniqueNetId SortedNextHosts, byte NumEntries)
+		void ClientUpdateBestNextHosts(OnlineSubsystem__UniqueNetId SortedNextHosts, byte NumEntries)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7659);
 			byte params[9] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = SortedNextHosts;
+			*(OnlineSubsystem__UniqueNetId*)params = SortedNextHosts;
 			params[80] = NumEntries;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void NotifyPeerDisconnectHost(OnlineSubsystem::UniqueNetId PeerNetId)
+		void NotifyPeerDisconnectHost(OnlineSubsystem__UniqueNetId PeerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7664);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PeerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PeerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool IsBestHostPeer(OnlineSubsystem::UniqueNetId PeerNetId)
+		bool IsBestHostPeer(OnlineSubsystem__UniqueNetId PeerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7667);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PeerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PeerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
@@ -541,14 +485,14 @@ void*>, HearSoundPoolComponents, 1396)
 			*(bool*)&params[8] = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void GetRegisteredPlayersInSession(ScriptName SessionName, ScriptArray<OnlineSubsystem::UniqueNetId>& OutRegisteredPlayers)
+		void GetRegisteredPlayersInSession(ScriptName SessionName, ScriptArray<OnlineSubsystem__UniqueNetId>& OutRegisteredPlayers)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7682);
 			byte params[20] = { NULL };
 			*(ScriptName*)params = SessionName;
-			*(ScriptArray<OnlineSubsystem::UniqueNetId>*)&params[8] = OutRegisteredPlayers;
+			*(ScriptArray<OnlineSubsystem__UniqueNetId>*)&params[8] = OutRegisteredPlayers;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutRegisteredPlayers = *(ScriptArray<OnlineSubsystem::UniqueNetId>*)&params[8];
+			OutRegisteredPlayers = *(ScriptArray<OnlineSubsystem__UniqueNetId>*)&params[8];
 		}
 		void RemoveMissingPeersFromSession(ScriptName SessionName)
 		{
@@ -557,12 +501,12 @@ void*>, HearSoundPoolComponents, 1396)
 			*(ScriptName*)params = SessionName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnUnregisterPlayerCompleteForMigrate(ScriptName SessionName, OnlineSubsystem::UniqueNetId PlayerID, bool bWasSuccessful)
+		void OnUnregisterPlayerCompleteForMigrate(ScriptName SessionName, OnlineSubsystem__UniqueNetId PlayerID, bool bWasSuccessful)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7697);
 			byte params[20] = { NULL };
 			*(ScriptName*)params = SessionName;
-			*(OnlineSubsystem::UniqueNetId*)&params[8] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[8] = PlayerID;
 			*(bool*)&params[16] = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -596,29 +540,29 @@ void*>, HearSoundPoolComponents, 1396)
 			*(ScriptString**)&params[4] = URL;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TellPeerToTravel(OnlineSubsystem::UniqueNetId ToPeerNetId)
+		void TellPeerToTravel(OnlineSubsystem__UniqueNetId ToPeerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7720);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = ToPeerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = ToPeerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TellPeerToTravelToSession(OnlineSubsystem::UniqueNetId ToPeerNetId, ScriptName SessionName, ScriptClass* SearchClass, byte PlatformSpecificInfo, int PlatformSpecificInfoSize)
+		void TellPeerToTravelToSession(OnlineSubsystem__UniqueNetId ToPeerNetId, ScriptName SessionName, ScriptClass* SearchClass, byte PlatformSpecificInfo, int PlatformSpecificInfoSize)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7722);
 			byte params[25] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = ToPeerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = ToPeerNetId;
 			*(ScriptName*)&params[8] = SessionName;
 			*(ScriptClass**)&params[16] = SearchClass;
 			params[20] = PlatformSpecificInfo;
 			*(int*)&params[100] = PlatformSpecificInfoSize;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void PeerReceivedMigratedSession(OnlineSubsystem::UniqueNetId FromPeerNetId, ScriptName SessionName, ScriptClass* SearchClass, byte PlatformSpecificInfo)
+		void PeerReceivedMigratedSession(OnlineSubsystem__UniqueNetId FromPeerNetId, ScriptName SessionName, ScriptClass* SearchClass, byte PlatformSpecificInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7728);
 			byte params[21] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = FromPeerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = FromPeerNetId;
 			*(ScriptName*)&params[8] = SessionName;
 			*(ScriptClass**)&params[16] = SearchClass;
 			params[20] = PlatformSpecificInfo;
@@ -1048,21 +992,21 @@ void**)&params[28];
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7985);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnPartyMemberListChanged(bool bJoinedOrLeft, ScriptString* PlayerName, OnlineSubsystem::UniqueNetId PlayerID)
+		void OnPartyMemberListChanged(bool bJoinedOrLeft, ScriptString* PlayerName, OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7988);
 			byte params[24] = { NULL };
 			*(bool*)params = bJoinedOrLeft;
 			*(ScriptString**)&params[4] = PlayerName;
-			*(OnlineSubsystem::UniqueNetId*)&params[16] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[16] = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnPartyMembersInfoChanged(ScriptString* PlayerName, OnlineSubsystem::UniqueNetId PlayerID, int CustomData1, int CustomData2, int CustomData3, int CustomData4)
+		void OnPartyMembersInfoChanged(ScriptString* PlayerName, OnlineSubsystem__UniqueNetId PlayerID, int CustomData1, int CustomData2, int CustomData3, int CustomData4)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7992);
 			byte params[36] = { NULL };
 			*(ScriptString**)params = PlayerName;
-			*(OnlineSubsystem::UniqueNetId*)&params[12] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[12] = PlayerID;
 			*(int*)&params[20] = CustomData1;
 			*(int*)&params[24] = CustomData2;
 			*(int*)&params[28] = CustomData3;
@@ -1151,12 +1095,12 @@ void**)&params[28];
 			*(ScriptString**)params = msg;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void PreClientTravel(ScriptString* PendingURL, Actor::ETravelType TravelType, bool bIsSeamlessTravel)
+		void PreClientTravel(ScriptString* PendingURL, Actor__ETravelType TravelType, bool bIsSeamlessTravel)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8039);
 			byte params[17] = { NULL };
 			*(ScriptString**)params = PendingURL;
-			*(Actor::ETravelType*)&params[12] = TravelType;
+			*(Actor__ETravelType*)&params[12] = TravelType;
 			*(bool*)&params[16] = bIsSeamlessTravel;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1200,13 +1144,13 @@ void**)&params[28];
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8055);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ClientSetCameraFade(bool bEnableFading, Object::Color FadeColor, Object::Vector2D FadeAlpha, float FadeTime)
+		void ClientSetCameraFade(bool bEnableFading, Object__Color FadeColor, Object__Vector2D FadeAlpha, float FadeTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8058);
 			byte params[20] = { NULL };
 			*(bool*)params = bEnableFading;
-			*(Object::Color*)&params[4] = FadeColor;
-			*(Object::Vector2D*)&params[8] = FadeAlpha;
+			*(Object__Color*)&params[4] = FadeColor;
+			*(Object__Vector2D*)&params[8] = FadeAlpha;
 			*(float*)&params[16] = FadeTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1304,13 +1248,13 @@ void**)&params[28];
 			*(bool*)&params[12] = InJump;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ProcessMove(float DeltaTime, Vector newAccel, Actor::EDoubleClickDir DoubleClickMove, Rotator DeltaRot)
+		void ProcessMove(float DeltaTime, Vector newAccel, Actor__EDoubleClickDir DoubleClickMove, Rotator DeltaRot)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8138);
 			byte params[29] = { NULL };
 			*(float*)params = DeltaTime;
 			*(Vector*)&params[4] = newAccel;
-			*(Actor::EDoubleClickDir*)&params[16] = DoubleClickMove;
+			*(Actor__EDoubleClickDir*)&params[16] = DoubleClickMove;
 			*(Rotator*)&params[20] = DeltaRot;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1335,13 +1279,13 @@ void**)&params[28];
 			*(class Actor**)&params[16] = NewBase;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ShortClientAdjustPosition(float TimeStamp, ScriptName NewState, Actor::EPhysics newPhysics, float NewLocX, float NewLocY, float NewLocZ, class Actor* NewBase)
+		void ShortClientAdjustPosition(float TimeStamp, ScriptName NewState, Actor__EPhysics newPhysics, float NewLocX, float NewLocY, float NewLocZ, class Actor* NewBase)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8160);
 			byte params[29] = { NULL };
 			*(float*)params = TimeStamp;
 			*(ScriptName*)&params[4] = NewState;
-			*(Actor::EPhysics*)&params[12] = newPhysics;
+			*(Actor__EPhysics*)&params[12] = newPhysics;
 			*(float*)&params[16] = NewLocX;
 			*(float*)&params[20] = NewLocY;
 			*(float*)&params[24] = NewLocZ;
@@ -1369,13 +1313,13 @@ void**)&params[28];
 			*(float*)params = TimeStamp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientAdjustPosition(float TimeStamp, ScriptName NewState, Actor::EPhysics newPhysics, float NewLocX, float NewLocY, float NewLocZ, float NewVelX, float NewVelY, float NewVelZ, class Actor* NewBase)
+		void ClientAdjustPosition(float TimeStamp, ScriptName NewState, Actor__EPhysics newPhysics, float NewLocX, float NewLocY, float NewLocZ, float NewVelX, float NewVelY, float NewVelZ, class Actor* NewBase)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8175);
 			byte params[41] = { NULL };
 			*(float*)params = TimeStamp;
 			*(ScriptName*)&params[4] = NewState;
-			*(Actor::EPhysics*)&params[12] = newPhysics;
+			*(Actor__EPhysics*)&params[12] = newPhysics;
 			*(float*)&params[16] = NewLocX;
 			*(float*)&params[20] = NewLocY;
 			*(float*)&params[24] = NewLocZ;
@@ -1385,13 +1329,13 @@ void**)&params[28];
 			*(class Actor**)&params[40] = NewBase;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void LongClientAdjustPosition(float TimeStamp, ScriptName NewState, Actor::EPhysics newPhysics, float NewLocX, float NewLocY, float NewLocZ, float NewVelX, float NewVelY, float NewVelZ, class Actor* NewBase, float NewFloorX, float NewFloorY, float NewFloorZ)
+		void LongClientAdjustPosition(float TimeStamp, ScriptName NewState, Actor__EPhysics newPhysics, float NewLocX, float NewLocY, float NewLocZ, float NewVelX, float NewVelY, float NewVelZ, class Actor* NewBase, float NewFloorX, float NewFloorY, float NewFloorZ)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8190);
 			byte params[53] = { NULL };
 			*(float*)params = TimeStamp;
 			*(ScriptName*)&params[4] = NewState;
-			*(Actor::EPhysics*)&params[12] = newPhysics;
+			*(Actor__EPhysics*)&params[12] = newPhysics;
 			*(float*)&params[16] = NewLocX;
 			*(float*)&params[20] = NewLocY;
 			*(float*)&params[24] = NewLocZ;
@@ -1443,13 +1387,13 @@ void**)&params[28];
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
-		void ReplicateMove(float DeltaTime, Vector newAccel, Actor::EDoubleClickDir DoubleClickMove, Rotator DeltaRot)
+		void ReplicateMove(float DeltaTime, Vector newAccel, Actor__EDoubleClickDir DoubleClickMove, Rotator DeltaRot)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8258);
 			byte params[29] = { NULL };
 			*(float*)params = DeltaTime;
 			*(Vector*)&params[4] = newAccel;
-			*(Actor::EDoubleClickDir*)&params[16] = DoubleClickMove;
+			*(Actor__EDoubleClickDir*)&params[16] = DoubleClickMove;
 			*(Rotator*)&params[20] = DeltaRot;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1668,11 +1612,11 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(int*)params = N;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientSetProgressMessage(PlayerController::EProgressMessageType MessageType, ScriptString* Message, ScriptString* Title, bool bIgnoreFutureNetworkMessages)
+		void ClientSetProgressMessage(PlayerController__EProgressMessageType MessageType, ScriptString* Message, ScriptString* Title, bool bIgnoreFutureNetworkMessages)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8399);
 			byte params[29] = { NULL };
-			*(PlayerController::EProgressMessageType*)params = MessageType;
+			*(PlayerController__EProgressMessageType*)params = MessageType;
 			*(ScriptString**)&params[4] = Message;
 			*(ScriptString**)&params[16] = Title;
 			*(bool*)&params[28] = bIgnoreFutureNetworkMessages;
@@ -1819,31 +1763,31 @@ void**)&params[4] = CanUnpauseDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void SetViewTarget(class Actor* NewViewTarget, Camera::ViewTargetTransitionParams TransitionParams)
+		void SetViewTarget(class Actor* NewViewTarget, Camera__ViewTargetTransitionParams TransitionParams)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8480);
 			byte params[20] = { NULL };
 			*(class Actor**)params = NewViewTarget;
-			*(Camera::ViewTargetTransitionParams*)&params[4] = TransitionParams;
+			*(Camera__ViewTargetTransitionParams*)&params[4] = TransitionParams;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetViewTargetWithBlend(class Actor* NewViewTarget, float BlendTime, Camera::EViewTargetBlendFunction BlendFunc, float BlendExp, bool bLockOutgoing)
+		void SetViewTargetWithBlend(class Actor* NewViewTarget, float BlendTime, Camera__EViewTargetBlendFunction BlendFunc, float BlendExp, bool bLockOutgoing)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8483);
 			byte params[17] = { NULL };
 			*(class Actor**)params = NewViewTarget;
 			*(float*)&params[4] = BlendTime;
-			*(Camera::EViewTargetBlendFunction*)&params[8] = BlendFunc;
+			*(Camera__EViewTargetBlendFunction*)&params[8] = BlendFunc;
 			*(float*)&params[12] = BlendExp;
 			*(bool*)&params[16] = bLockOutgoing;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientSetViewTarget(class Actor* A, Camera::ViewTargetTransitionParams TransitionParams)
+		void ClientSetViewTarget(class Actor* A, Camera__ViewTargetTransitionParams TransitionParams)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8490);
 			byte params[20] = { NULL };
 			*(class Actor**)params = A;
-			*(Camera::ViewTargetTransitionParams*)&params[4] = TransitionParams;
+			*(Camera__ViewTargetTransitionParams*)&params[4] = TransitionParams;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ServerVerifyViewTarget()
@@ -1936,11 +1880,11 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(int*)params = Dir;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerViewSelf(Camera::ViewTargetTransitionParams TransitionParams)
+		void ServerViewSelf(Camera__ViewTargetTransitionParams TransitionParams)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8745);
 			byte params[16] = { NULL };
-			*(Camera::ViewTargetTransitionParams*)params = TransitionParams;
+			*(Camera__ViewTargetTransitionParams*)params = TransitionParams;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool IsWaiting()
@@ -2003,19 +1947,19 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(class SeqAct_DrawText**)params = inAction;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientDrawKismetText(HUD::KismetDrawTextInfo DrawTextInfo, float DisplayTime)
+		void ClientDrawKismetText(HUD__KismetDrawTextInfo DrawTextInfo, float DisplayTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9008);
 			byte params[56] = { NULL };
-			*(HUD::KismetDrawTextInfo*)params = DrawTextInfo;
+			*(HUD__KismetDrawTextInfo*)params = DrawTextInfo;
 			*(float*)&params[52] = DisplayTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientClearKismetText(Object::Vector2D MessageOffset)
+		void ClientClearKismetText(Object__Vector2D MessageOffset)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9011);
 			byte params[8] = { NULL };
-			*(Object::Vector2D*)params = MessageOffset;
+			*(Object__Vector2D*)params = MessageOffset;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnSetCameraTarget(class SeqAct_SetCameraTarget* inAction)
@@ -2215,13 +2159,13 @@ void**)&params[4] = CanUnpauseDelegate;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9183);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		bool IsPlayerMuted(OnlineSubsystem::UniqueNetId& Sender)
+		bool IsPlayerMuted(OnlineSubsystem__UniqueNetId& Sender)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9189);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = Sender;
+			*(OnlineSubsystem__UniqueNetId*)params = Sender;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Sender = *(OnlineSubsystem::UniqueNetId*)params;
+			Sender = *(OnlineSubsystem__UniqueNetId*)params;
 			return *(bool*)&params[8];
 		}
 		void GetSeamlessTravelActorList(bool bToEntry, ScriptArray<class Actor*>& ActorList)
@@ -2252,11 +2196,11 @@ void**)&params[4] = CanUnpauseDelegate;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9200);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		class PlayerController* GetPlayerControllerFromNetId(OnlineSubsystem::UniqueNetId PlayerNetId)
+		class PlayerController* GetPlayerControllerFromNetId(OnlineSubsystem__UniqueNetId PlayerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9201);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class PlayerController**)&params[8];
 		}
@@ -2265,46 +2209,46 @@ void**)&params[4] = CanUnpauseDelegate;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9204);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ClientMutePlayer(OnlineSubsystem::UniqueNetId PlayerNetId)
+		void ClientMutePlayer(OnlineSubsystem__UniqueNetId PlayerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9206);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientUnmutePlayer(OnlineSubsystem::UniqueNetId PlayerNetId)
+		void ClientUnmutePlayer(OnlineSubsystem__UniqueNetId PlayerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9212);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void GameplayMutePlayer(OnlineSubsystem::UniqueNetId PlayerNetId)
+		void GameplayMutePlayer(OnlineSubsystem__UniqueNetId PlayerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9218);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void GameplayUnmutePlayer(OnlineSubsystem::UniqueNetId PlayerNetId)
+		void GameplayUnmutePlayer(OnlineSubsystem__UniqueNetId PlayerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9221);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerMutePlayer(OnlineSubsystem::UniqueNetId PlayerNetId)
+		void ServerMutePlayer(OnlineSubsystem__UniqueNetId PlayerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9226);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerUnmutePlayer(OnlineSubsystem::UniqueNetId PlayerNetId)
+		void ServerUnmutePlayer(OnlineSubsystem__UniqueNetId PlayerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9229);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void NotifyDirectorControl(bool bNowControlling)
@@ -2353,13 +2297,13 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(bool*)params = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnGameInviteAccepted(OnlineGameSearch::OnlineGameSearchResult& InviteResult)
+		void OnGameInviteAccepted(OnlineGameSearch__OnlineGameSearchResult& InviteResult)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9248);
 			byte params[8] = { NULL };
-			*(OnlineGameSearch::OnlineGameSearchResult*)params = InviteResult;
+			*(OnlineGameSearch__OnlineGameSearchResult*)params = InviteResult;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			InviteResult = *(OnlineGameSearch::OnlineGameSearchResult*)params;
+			InviteResult = *(OnlineGameSearch__OnlineGameSearchResult*)params;
 		}
 		bool InviteHasEnoughSpace(class OnlineGameSettings* InviteSettings)
 		{
@@ -2447,11 +2391,11 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(ScriptClass**)params = OnlineStatsWriteClass;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientSetHostUniqueId(OnlineSubsystem::UniqueNetId InHostId)
+		void ClientSetHostUniqueId(OnlineSubsystem__UniqueNetId InHostId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9308);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = InHostId;
+			*(OnlineSubsystem__UniqueNetId*)params = InHostId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ClientStopNetworkedVoice()
@@ -2479,7 +2423,7 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(float*)&params[4] = RenderDelta;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddDebugText(ScriptString* DebugText, class Actor* SrcActor, float Duration, Vector Offset, Vector DesiredOffset, Object::Color TextColor, bool bSkipOverwriteCheck, bool bAbsoluteLocation, bool bKeepAttachedToActor, class Font* InFont)
+		void AddDebugText(ScriptString* DebugText, class Actor* SrcActor, float Duration, Vector Offset, Vector DesiredOffset, Object__Color TextColor, bool bSkipOverwriteCheck, bool bAbsoluteLocation, bool bKeepAttachedToActor, class Font* InFont)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9342);
 			byte params[64] = { NULL };
@@ -2488,7 +2432,7 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(float*)&params[16] = Duration;
 			*(Vector*)&params[20] = Offset;
 			*(Vector*)&params[32] = DesiredOffset;
-			*(Object::Color*)&params[44] = TextColor;
+			*(Object__Color*)&params[44] = TextColor;
 			*(bool*)&params[48] = bSkipOverwriteCheck;
 			*(bool*)&params[52] = bAbsoluteLocation;
 			*(bool*)&params[56] = bKeepAttachedToActor;
@@ -2574,11 +2518,11 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(bool*)&params[8] = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientReturnToParty(OnlineSubsystem::UniqueNetId RequestingPlayerId)
+		void ClientReturnToParty(OnlineSubsystem__UniqueNetId RequestingPlayerId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9402);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = RequestingPlayerId;
+			*(OnlineSubsystem__UniqueNetId*)params = RequestingPlayerId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool IsSplitscreenPlayer(int& out_SplitscreenPlayerIndex)
@@ -2605,12 +2549,12 @@ void**)&params[4] = CanUnpauseDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)params;
 		}
-		void ClientControlMovieTexture(class TextureMovie* MovieTexture, SeqAct_ControlMovieTexture::EMovieControlType Mode)
+		void ClientControlMovieTexture(class TextureMovie* MovieTexture, SeqAct_ControlMovieTexture__EMovieControlType Mode)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9430);
 			byte params[5] = { NULL };
 			*(class TextureMovie**)params = MovieTexture;
-			*(SeqAct_ControlMovieTexture::EMovieControlType*)&params[4] = Mode;
+			*(SeqAct_ControlMovieTexture__EMovieControlType*)&params[4] = Mode;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ClientSetForceMipLevelsToBeResident(class MaterialInterface* Material, float ForceDuration, int CinematicTextureGroups)
@@ -2700,14 +2644,14 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(float*)&params[4] = ShakeScale;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientPlayCameraShake(class CameraShake* Shake, float Scale, bool bTryForceFeedback, Camera::ECameraAnimPlaySpace PlaySpace, Rotator UserPlaySpaceRot)
+		void ClientPlayCameraShake(class CameraShake* Shake, float Scale, bool bTryForceFeedback, Camera__ECameraAnimPlaySpace PlaySpace, Rotator UserPlaySpaceRot)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9468);
 			byte params[25] = { NULL };
 			*(class CameraShake**)params = Shake;
 			*(float*)&params[4] = Scale;
 			*(bool*)&params[8] = bTryForceFeedback;
-			*(Camera::ECameraAnimPlaySpace*)&params[12] = PlaySpace;
+			*(Camera__ECameraAnimPlaySpace*)&params[12] = PlaySpace;
 			*(Rotator*)&params[16] = UserPlaySpaceRot;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -2725,7 +2669,7 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(class SeqAct_CameraShake**)params = inAction;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientPlayCameraAnim(class CameraAnim* AnimToPlay, float Scale, float Rate, float BlendInTime, float BlendOutTime, bool bLoop, bool bRandomStartTime, Camera::ECameraAnimPlaySpace Space, Rotator CustomPlaySpace)
+		void ClientPlayCameraAnim(class CameraAnim* AnimToPlay, float Scale, float Rate, float BlendInTime, float BlendOutTime, bool bLoop, bool bRandomStartTime, Camera__ECameraAnimPlaySpace Space, Rotator CustomPlaySpace)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9488);
 			byte params[41] = { NULL };
@@ -2736,7 +2680,7 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(float*)&params[16] = BlendOutTime;
 			*(bool*)&params[20] = bLoop;
 			*(bool*)&params[24] = bRandomStartTime;
-			*(Camera::ECameraAnimPlaySpace*)&params[28] = Space;
+			*(Camera__ECameraAnimPlaySpace*)&params[28] = Space;
 			*(Rotator*)&params[32] = CustomPlaySpace;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -2761,13 +2705,13 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(class SeqAct_SetSoundMode**)params = Action;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool HasPeerConnection(OnlineSubsystem::UniqueNetId& PeerNetId)
+		bool HasPeerConnection(OnlineSubsystem__UniqueNetId& PeerNetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9513);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PeerNetId;
+			*(OnlineSubsystem__UniqueNetId*)params = PeerNetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			PeerNetId = *(OnlineSubsystem::UniqueNetId*)params;
+			PeerNetId = *(OnlineSubsystem__UniqueNetId*)params;
 			return *(bool*)&params[8];
 		}
 		void BugItGo(float X, float Y, float Z, int Pitch, int Yaw, int Roll)

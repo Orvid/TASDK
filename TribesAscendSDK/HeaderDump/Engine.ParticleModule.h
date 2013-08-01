@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,39 +24,7 @@ namespace UnrealScript
 	class ParticleModule : public Object
 	{
 	public:
-		enum EModuleType : byte
-		{
-			EPMT_General = 0,
-			EPMT_TypeData = 1,
-			EPMT_Beam = 2,
-			EPMT_Trail = 3,
-			EPMT_Spawn = 4,
-			EPMT_Required = 5,
-			EPMT_Event = 6,
-			EPMT_MAX = 7,
-		};
-		enum EParticleSourceSelectionMethod : byte
-		{
-			EPSSM_Random = 0,
-			EPSSM_Sequential = 1,
-			EPSSM_MAX = 2,
-		};
-		struct ParticleCurvePair
-		{
-		public:
-			ADD_OBJECT(Object, CurveObject, 12)
-			ADD_STRUCT(ScriptString*, CurveName, 0)
-		};
-		struct ParticleRandomSeedInfo
-		{
-		public:
-			ADD_STRUCT(ScriptArray<int>, RandomSeeds, 12)
-			ADD_BOOL(bResetSeedOnEmitterLooping, 8, 0x4)
-			ADD_BOOL(bInstanceSeedIsIndex, 8, 0x2)
-			ADD_BOOL(bGetSeedFromInstance, 8, 0x1)
-			ADD_STRUCT(ScriptName, ParameterName, 0)
-		};
-		ADD_STRUCT(Object::Color, ModuleEditorColor, 68)
+		ADD_STRUCT(Object__Color, ModuleEditorColor, 68)
 		ADD_STRUCT(byte, LODValidity, 64)
 		ADD_BOOL(bRequiresLoopingNotification, 60, 0x400)
 		ADD_BOOL(bSupportsRandomSeed, 60, 0x200)

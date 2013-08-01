@@ -1,7 +1,7 @@
 #pragma once
-#include "GFxUI.GFxClikWidget.h"
 #include "UTGame.GFxUDKFrontEnd_SettingsBase.h"
 #include "GFxUI.GFxObject.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,11 +23,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39027);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnOptionChanged(GFxClikWidget::EventData ev)
+		void OnOptionChanged(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39028);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SaveState()

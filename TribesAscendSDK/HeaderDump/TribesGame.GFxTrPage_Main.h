@@ -1,5 +1,6 @@
 #pragma once
 #include "TribesGame.GFxTrPage.h"
+#include "TribesGame.GFxTrPage_Main.BundleData.h"
 #include "TribesGame.GFxTrAction.h"
 #include "GFxUI.GFxObject.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -21,23 +22,8 @@ namespace UnrealScript
 	class GFxTrPage_Main : public GFxTrPage
 	{
 	public:
-		enum EFEATURES : byte
-		{
-			FEA_GOLD = 0,
-			FEA_DOTD = 1,
-			FEA_BUNDLEA = 2,
-			FEA_BUNDLEB = 3,
-			FEA_BUNDLEC = 4,
-			FEA_MAX = 5,
-		};
-		struct BundleData
-		{
-		public:
-			ADD_STRUCT(TrObject::EContentDataType, Model, 4)
-			ADD_STRUCT(int, LootId, 0)
-		};
 		ADD_BOOL(bSwingingCamera, 376, 0x1)
-		ADD_STRUCT(ScriptArray<GFxTrPage_Main::BundleData>, ActiveBundles, 404)
+		ADD_STRUCT(ScriptArray<GFxTrPage_Main__BundleData>, ActiveBundles, 404)
 		ADD_STRUCT(ScriptString*, TabOffset, 392)
 		ADD_STRUCT(ScriptString*, QueueTimer, 380)
 		ADD_BOOL(bAnimInit, 376, 0x2)

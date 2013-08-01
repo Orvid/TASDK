@@ -1,6 +1,8 @@
 #pragma once
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.EOnlineContentType.h"
+#include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
+#include "Engine.OnlineSubsystem.OnlineContent.h"
 namespace UnrealScript
 {
 	class OnlineContentInterface : public Interface
@@ -73,60 +75,60 @@ void**)params = ContentDelegate;
 			params[12] = LocalUserNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddReadContentComplete(byte LocalUserNum, OnlineSubsystem::EOnlineContentType ContentType, 
+		void AddReadContentComplete(byte LocalUserNum, OnlineSubsystem__EOnlineContentType ContentType, 
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void* ReadContentCompleteDelegate)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21511);
 			byte params[14] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineContentType*)&params[1] = ContentType;
+			*(OnlineSubsystem__EOnlineContentType*)&params[1] = ContentType;
 			*(
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void**)&params[4] = ReadContentCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClearReadContentComplete(byte LocalUserNum, OnlineSubsystem::EOnlineContentType ContentType, 
+		void ClearReadContentComplete(byte LocalUserNum, OnlineSubsystem__EOnlineContentType ContentType, 
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void* ReadContentCompleteDelegate)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21515);
 			byte params[14] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineContentType*)&params[1] = ContentType;
+			*(OnlineSubsystem__EOnlineContentType*)&params[1] = ContentType;
 			*(
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void**)&params[4] = ReadContentCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool ReadContentList(byte LocalUserNum, OnlineSubsystem::EOnlineContentType ContentType, int DeviceID)
+		bool ReadContentList(byte LocalUserNum, OnlineSubsystem__EOnlineContentType ContentType, int DeviceID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21519);
 			byte params[10] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineContentType*)&params[1] = ContentType;
+			*(OnlineSubsystem__EOnlineContentType*)&params[1] = ContentType;
 			*(int*)&params[4] = DeviceID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
-		void ClearContentList(byte LocalUserNum, OnlineSubsystem::EOnlineContentType ContentType)
+		void ClearContentList(byte LocalUserNum, OnlineSubsystem__EOnlineContentType ContentType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21524);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineContentType*)&params[1] = ContentType;
+			*(OnlineSubsystem__EOnlineContentType*)&params[1] = ContentType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		OnlineSubsystem::EOnlineEnumerationReadState GetContentList(byte LocalUserNum, OnlineSubsystem::EOnlineContentType ContentType, ScriptArray<OnlineSubsystem::OnlineContent>& ContentList)
+		OnlineSubsystem__EOnlineEnumerationReadState GetContentList(byte LocalUserNum, OnlineSubsystem__EOnlineContentType ContentType, ScriptArray<OnlineSubsystem__OnlineContent>& ContentList)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21527);
 			byte params[15] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineContentType*)&params[1] = ContentType;
-			*(ScriptArray<OnlineSubsystem::OnlineContent>*)&params[4] = ContentList;
+			*(OnlineSubsystem__EOnlineContentType*)&params[1] = ContentType;
+			*(ScriptArray<OnlineSubsystem__OnlineContent>*)&params[4] = ContentList;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ContentList = *(ScriptArray<OnlineSubsystem::OnlineContent>*)&params[4];
-			return *(OnlineSubsystem::EOnlineEnumerationReadState*)&params[16];
+			ContentList = *(ScriptArray<OnlineSubsystem__OnlineContent>*)&params[4];
+			return *(OnlineSubsystem__EOnlineEnumerationReadState*)&params[16];
 		}
 		bool QueryAvailableDownloads(byte LocalUserNum, int CategoryMask)
 		{

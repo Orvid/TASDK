@@ -3,6 +3,7 @@
 #include "Core.Object.h"
 #include "Engine.PhysicsAssetInstance.h"
 #include "Engine.RB_BodySetup.h"
+#include "Core.Object.Map_Mirror.h"
 #include "Engine.SkeletalMesh.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -21,7 +22,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<class RB_BodySetup*>, BodySetup, 64)
 		ADD_STRUCT(ScriptArray<int>, BoundsBodies, 136)
 		ADD_OBJECT(PhysicsAssetInstance, DefaultInstance, 160)
-		ADD_STRUCT(Object::Map_Mirror, BodySetupIndexMap, 76)
+		ADD_STRUCT(Object__Map_Mirror, BodySetupIndexMap, 76)
 		ADD_OBJECT(SkeletalMesh, DefaultSkelMesh, 60)
 		int FindBodyIndex(ScriptName BodyName)
 		{

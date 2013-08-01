@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.InterpTrackFloatMaterialParam.h"
 #include "Engine.InterpTrackInst.h"
+#include "Engine.InterpTrackInstFloatMaterialParam.FloatMaterialParamMICData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,13 +15,7 @@ namespace UnrealScript
 	class InterpTrackInstFloatMaterialParam : public InterpTrackInst
 	{
 	public:
-		struct FloatMaterialParamMICData
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class MaterialInstanceConstant*>, MICs, 0)
-			ADD_STRUCT(ScriptArray<float>, MICResetFloats, 12)
-		};
-		ADD_STRUCT(ScriptArray<InterpTrackInstFloatMaterialParam::FloatMaterialParamMICData>, MICInfos, 60)
+		ADD_STRUCT(ScriptArray<InterpTrackInstFloatMaterialParam__FloatMaterialParamMICData>, MICInfos, 60)
 		ADD_OBJECT(InterpTrackFloatMaterialParam, InstancedTrack, 72)
 	};
 }

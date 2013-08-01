@@ -1,7 +1,7 @@
 #pragma once
 #include "UTGame.UTHUD.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,7 +26,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, OldLeftScore, 2728)
 		ADD_STRUCT(float, RightTeamPulseTime, 2724)
 		ADD_STRUCT(float, LeftTeamPulseTime, 2720)
-		ADD_STRUCT(Object::Vector2D, TeamIconCenterPoints, 2704)
+		ADD_STRUCT(Object__Vector2D, TeamIconCenterPoints, 2704)
 		ADD_STRUCT(int, ScoreTransitionTime, 2696)
 		ADD_STRUCT(int, LastScores, 2688)
 		ADD_BOOL(bShowDirectional, 2684, 0x1)
@@ -56,21 +56,21 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class Actor**)&params[4];
 		}
-		void DisplayTeamLogos(byte TeamIndex, Object::Vector2D pos, float DestScale)
+		void DisplayTeamLogos(byte TeamIndex, Object__Vector2D pos, float DestScale)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(46025);
 			byte params[13] = { NULL };
 			*params = TeamIndex;
-			*(Object::Vector2D*)&params[4] = pos;
+			*(Object__Vector2D*)&params[4] = pos;
 			*(float*)&params[12] = DestScale;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DisplayDirectionIndicator(byte TeamIndex, Object::Vector2D pos, class Actor* destActor, float DestScale)
+		void DisplayDirectionIndicator(byte TeamIndex, Object__Vector2D pos, class Actor* destActor, float DestScale)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(46029);
 			byte params[17] = { NULL };
 			*params = TeamIndex;
-			*(Object::Vector2D*)&params[4] = pos;
+			*(Object__Vector2D*)&params[4] = pos;
 			*(class Actor**)&params[12] = destActor;
 			*(float*)&params[16] = DestScale;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);

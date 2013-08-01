@@ -1,7 +1,8 @@
 #pragma once
+#include "Core.Object.Vector2D.h"
 #include "Engine.SplineActor.h"
 #include "Engine.MaterialInterface.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #include "Engine.StaticMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -33,7 +34,7 @@ void*>, SplineMeshComps, 564)
 		ADD_STRUCT(float, MeshMaxDrawDistance, 624)
 		ADD_BOOL(bAcceptsLights, 616, 0x2)
 		ADD_BOOL(bSmoothInterpRollAndScale, 616, 0x1)
-		ADD_STRUCT(Object::Vector2D, Offset, 608)
+		ADD_STRUCT(Object__Vector2D, Offset, 608)
 		ADD_STRUCT(Vector, WorldXDir, 596)
 		ADD_STRUCT(float, Roll, 592)
 		ADD_OBJECT(StaticMesh, DeformMesh, 576)

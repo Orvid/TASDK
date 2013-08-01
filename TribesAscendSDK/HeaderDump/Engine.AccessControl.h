@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.PlayerController.h"
-#include "Engine.OnlineSubsystem.h"
 #include "Engine.Info.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.Controller.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -27,7 +27,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<ScriptString*>, IPPolicies, 476)
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::UniqueNetId>, BannedIDs, 488)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__UniqueNetId>, BannedIDs, 488)
 		ADD_BOOL(bDontAddDefaultAdmin, 684, 0x1)
 		ADD_STRUCT(ScriptString*, ACDescText, 648)
 		ADD_STRUCT(ScriptString*, ACDisplayText, 612)
@@ -178,13 +178,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		bool IsIDBanned(OnlineSubsystem::UniqueNetId& NetId)
+		bool IsIDBanned(OnlineSubsystem__UniqueNetId& NetId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(5784);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = NetId;
+			*(OnlineSubsystem__UniqueNetId*)params = NetId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			NetId = *(OnlineSubsystem::UniqueNetId*)params;
+			NetId = *(OnlineSubsystem__UniqueNetId*)params;
 			return *(bool*)&params[8];
 		}
 	};

@@ -1,7 +1,8 @@
 #pragma once
 #include "GFxUI.GFxMoviePlayer.h"
+#include "Core.Object.EInputEvent.h"
 #include "GFxUI.GFxClikWidget.h"
-#include "Core.Object.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -16,18 +17,6 @@ namespace UnrealScript
 	class GFxUIFrontEnd_TitleScreen : public GFxMoviePlayer
 	{
 	public:
-		enum MenuButtonsType : byte
-		{
-			MENU_BTN_CAMPAIGN = 0,
-			MENU_BTN_INSTANTACTION = 1,
-			MENU_BTN_MULTIPLAYER = 2,
-			MENU_BTN_COMMUNITY = 3,
-			MENU_BTN_SETTINGS = 4,
-			MENU_BTN_EXIT = 5,
-			MENU_BTN_LOGOUT = 6,
-			MENU_BTN_SELECT = 7,
-			MENU_BTN_MAX = 8,
-		};
 		ADD_STRUCT(byte, Selection, 444)
 		ADD_STRUCT(ScriptString*, CampaignMap, 432)
 		ADD_STRUCT(ScriptString*, InstantActionMap, 420)
@@ -49,21 +38,21 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool FilterButtonInput(int ControllerId, ScriptName ButtonName, Object::EInputEvent InputEvent)
+		bool FilterButtonInput(int ControllerId, ScriptName ButtonName, Object__EInputEvent InputEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39132);
 			byte params[17] = { NULL };
 			*(int*)params = ControllerId;
 			*(ScriptName*)&params[4] = ButtonName;
-			*(Object::EInputEvent*)&params[12] = InputEvent;
+			*(Object__EInputEvent*)&params[12] = InputEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
-		void OnMenuButtonPress(GFxClikWidget::EventData ev)
+		void OnMenuButtonPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39137);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void PlayCloseAnimation()

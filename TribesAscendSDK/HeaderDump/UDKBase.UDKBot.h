@@ -1,7 +1,8 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Engine.AIController.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "UDKBase.UDKBot.EnemyPosition.h"
 #include "Engine.Pawn.h"
 #include "UDKBase.UDKSquadAI.h"
 #include "Engine.NavigationPoint.h"
@@ -32,14 +33,7 @@ namespace UnrealScript
 	class UDKBot : public AIController
 	{
 	public:
-		struct EnemyPosition
-		{
-		public:
-			ADD_STRUCT(float, Time, 24)
-			ADD_STRUCT(Vector, Velocity, 12)
-			ADD_STRUCT(Vector, Position, 0)
-		};
-		ADD_STRUCT(ScriptArray<UDKBot::EnemyPosition>, SavedPositions, 960)
+		ADD_STRUCT(ScriptArray<UDKBot__EnemyPosition>, SavedPositions, 960)
 		ADD_STRUCT(float, MultiJumpZ, 1120)
 		ADD_STRUCT(float, DodgeToGoalPct, 1116)
 		ADD_OBJECT(Actor, FearSpots, 1108)

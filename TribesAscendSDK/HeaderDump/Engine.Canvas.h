@@ -1,10 +1,20 @@
 #pragma once
+#include "Engine.Canvas.CanvasUVTri.h"
 #include "Core.Object.h"
-#include "Engine.Texture2D.h"
+#include "Core.Object.Color.h"
 #include "Engine.Font.h"
+#include "Engine.Texture2D.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Plane.h"
+#include "Engine.Canvas.FontRenderInfo.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Texture.h"
+#include "Core.Object.LinearColor.h"
+#include "Engine.EngineTypes.EBlendMode.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.EngineTypes.h"
+#include "Engine.Canvas.CanvasIcon.h"
+#include "Core.Object.Rotator.h"
+#include "Core.Object.Vector2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,64 +38,12 @@ namespace UnrealScript
 	class Canvas : public Object
 	{
 	public:
-		struct CanvasIcon
-		{
-		public:
-			ADD_STRUCT(float, VL, 16)
-			ADD_STRUCT(float, UL, 12)
-			ADD_STRUCT(float, V, 8)
-			ADD_STRUCT(float, U, 4)
-			ADD_OBJECT(Texture, Texture, 0)
-		};
-		struct DepthFieldGlowInfo
-		{
-		public:
-			ADD_STRUCT(Object::Vector2D, GlowInnerRadius, 28)
-			ADD_STRUCT(Object::Vector2D, GlowOuterRadius, 20)
-			ADD_STRUCT(Object::LinearColor, GlowColor, 4)
-			ADD_BOOL(bEnableGlow, 0, 0x1)
-		};
-		struct FontRenderInfo
-		{
-		public:
-			ADD_STRUCT(Canvas::DepthFieldGlowInfo, GlowInfo, 4)
-			ADD_BOOL(bEnableShadow, 0, 0x2)
-			ADD_BOOL(bClipText, 0, 0x1)
-		};
-		struct CanvasUVTri
-		{
-		public:
-			ADD_STRUCT(Object::Vector2D, V2_UV, 40)
-			ADD_STRUCT(Object::Vector2D, V2_Pos, 32)
-			ADD_STRUCT(Object::Vector2D, V1_UV, 24)
-			ADD_STRUCT(Object::Vector2D, V1_Pos, 16)
-			ADD_STRUCT(Object::Vector2D, V0_UV, 8)
-			ADD_STRUCT(Object::Vector2D, V0_Pos, 0)
-		};
-		struct TextSizingParameters
-		{
-		public:
-			ADD_STRUCT(float, ViewportHeight, 36)
-			ADD_STRUCT(Object::Vector2D, SpacingAdjust, 28)
-			ADD_OBJECT(Font, DrawFont, 24)
-			ADD_STRUCT(Object::Vector2D, Scaling, 16)
-			ADD_STRUCT(float, DrawYL, 12)
-			ADD_STRUCT(float, DrawXL, 8)
-			ADD_STRUCT(float, DrawY, 4)
-			ADD_STRUCT(float, DrawX, 0)
-		};
-		struct WrappedStringElement
-		{
-		public:
-			ADD_STRUCT(Object::Vector2D, LineExtent, 12)
-			ADD_STRUCT(ScriptString*, Value, 0)
-		};
-		ADD_STRUCT(Object::Color, DrawColor, 96)
+		ADD_STRUCT(Object__Color, DrawColor, 96)
 		ADD_OBJECT(Font, Font, 60)
 		ADD_OBJECT(Texture2D, DefaultTexture, 144)
-		ADD_STRUCT(Object::Plane, ColorModulate, 128)
-		ADD_STRUCT(Object::Pointer, SceneView, 116)
-		ADD_STRUCT(Object::Pointer, Canvas, 112)
+		ADD_STRUCT(Object__Plane, ColorModulate, 128)
+		ADD_STRUCT(Object__Pointer, SceneView, 116)
+		ADD_STRUCT(Object__Pointer, Canvas, 112)
 		ADD_STRUCT(int, SizeY, 108)
 		ADD_STRUCT(int, SizeX, 104)
 		ADD_BOOL(bNoSmooth, 100, 0x2)
@@ -117,7 +75,7 @@ namespace UnrealScript
 			params[3] = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawText(ScriptString* Text, bool CR, float XScale, float YScale, Canvas::FontRenderInfo& RenderInfo)
+		void DrawText(ScriptString* Text, bool CR, float XScale, float YScale, Canvas__FontRenderInfo& RenderInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4183);
 			byte params[64] = { NULL };
@@ -125,9 +83,9 @@ namespace UnrealScript
 			*(bool*)&params[12] = CR;
 			*(float*)&params[16] = XScale;
 			*(float*)&params[20] = YScale;
-			*(Canvas::FontRenderInfo*)&params[24] = RenderInfo;
+			*(Canvas__FontRenderInfo*)&params[24] = RenderInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			RenderInfo = *(Canvas::FontRenderInfo*)&params[24];
+			RenderInfo = *(Canvas__FontRenderInfo*)&params[24];
 		}
 		Vector Project(Vector Location)
 		{
@@ -148,7 +106,7 @@ namespace UnrealScript
 			XL = *(float*)&params[12];
 			YL = *(float*)&params[16];
 		}
-		void DrawTile(class Texture* Tex, float XL, float YL, float U, float V, float UL, float VL, Object::LinearColor LColor, bool ClipTile, EngineTypes::EBlendMode Blend)
+		void DrawTile(class Texture* Tex, float XL, float YL, float U, float V, float UL, float VL, Object__LinearColor LColor, bool ClipTile, EngineTypes__EBlendMode Blend)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12443);
 			byte params[49] = { NULL };
@@ -159,18 +117,18 @@ namespace UnrealScript
 			*(float*)&params[16] = V;
 			*(float*)&params[20] = UL;
 			*(float*)&params[24] = VL;
-			*(Object::LinearColor*)&params[28] = LColor;
+			*(Object__LinearColor*)&params[28] = LColor;
 			*(bool*)&params[44] = ClipTile;
-			*(EngineTypes::EBlendMode*)&params[48] = Blend;
+			*(EngineTypes__EBlendMode*)&params[48] = Blend;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void PreOptimizeDrawTiles(int Num, class Texture* Tex, EngineTypes::EBlendMode Blend)
+		void PreOptimizeDrawTiles(int Num, class Texture* Tex, EngineTypes__EBlendMode Blend)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12454);
 			byte params[9] = { NULL };
 			*(int*)params = Num;
 			*(class Texture**)&params[4] = Tex;
-			*(EngineTypes::EBlendMode*)&params[8] = Blend;
+			*(EngineTypes__EBlendMode*)&params[8] = Blend;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void DrawMaterialTile(class MaterialInterface* Mat, float XL, float YL, float U, float V, float UL, float VL, bool bClipTile)
@@ -219,7 +177,7 @@ namespace UnrealScript
 			*(float*)&params[44] = AnchorY;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawTileStretched(class Texture* Tex, float XL, float YL, float U, float V, float UL, float VL, Object::LinearColor LColor, bool bStretchHorizontally, bool bStretchVertically, float ScalingFactor)
+		void DrawTileStretched(class Texture* Tex, float XL, float YL, float U, float V, float UL, float VL, Object__LinearColor LColor, bool bStretchHorizontally, bool bStretchVertically, float ScalingFactor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12489);
 			byte params[56] = { NULL };
@@ -230,31 +188,31 @@ namespace UnrealScript
 			*(float*)&params[16] = V;
 			*(float*)&params[20] = UL;
 			*(float*)&params[24] = VL;
-			*(Object::LinearColor*)&params[28] = LColor;
+			*(Object__LinearColor*)&params[28] = LColor;
 			*(bool*)&params[44] = bStretchHorizontally;
 			*(bool*)&params[48] = bStretchVertically;
 			*(float*)&params[52] = ScalingFactor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawTris(class Texture* Tex, ScriptArray<Canvas::CanvasUVTri> Triangles)
+		void DrawTris(class Texture* Tex, ScriptArray<Canvas__CanvasUVTri> Triangles)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12501);
 			byte params[16] = { NULL };
 			*(class Texture**)params = Tex;
-			*(ScriptArray<Canvas::CanvasUVTri>*)&params[4] = Triangles;
+			*(ScriptArray<Canvas__CanvasUVTri>*)&params[4] = Triangles;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		Canvas::FontRenderInfo CreateFontRenderInfo(bool bClipText, bool bEnableShadow, Object::LinearColor GlowColor, Object::Vector2D GlowOuterRadius, Object::Vector2D GlowInnerRadius)
+		Canvas__FontRenderInfo CreateFontRenderInfo(bool bClipText, bool bEnableShadow, Object__LinearColor GlowColor, Object__Vector2D GlowOuterRadius, Object__Vector2D GlowInnerRadius)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12505);
 			byte params[80] = { NULL };
 			*(bool*)params = bClipText;
 			*(bool*)&params[4] = bEnableShadow;
-			*(Object::LinearColor*)&params[8] = GlowColor;
-			*(Object::Vector2D*)&params[24] = GlowOuterRadius;
-			*(Object::Vector2D*)&params[32] = GlowInnerRadius;
+			*(Object__LinearColor*)&params[8] = GlowColor;
+			*(Object__Vector2D*)&params[24] = GlowOuterRadius;
+			*(Object__Vector2D*)&params[32] = GlowInnerRadius;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Canvas::FontRenderInfo*)&params[40];
+			return *(Canvas__FontRenderInfo*)&params[40];
 		}
 		void TextSize(ScriptString* String, float& XL, float& YL)
 		{
@@ -267,11 +225,11 @@ namespace UnrealScript
 			XL = *(float*)&params[12];
 			YL = *(float*)&params[16];
 		}
-		void DeProject(Object::Vector2D ScreenPos, Vector& WorldOrigin, Vector& WorldDirection)
+		void DeProject(Object__Vector2D ScreenPos, Vector& WorldOrigin, Vector& WorldDirection)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12526);
 			byte params[32] = { NULL };
-			*(Object::Vector2D*)params = ScreenPos;
+			*(Object__Vector2D*)params = ScreenPos;
 			*(Vector*)&params[8] = WorldOrigin;
 			*(Vector*)&params[20] = WorldDirection;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -321,16 +279,16 @@ namespace UnrealScript
 			*(float*)&params[4] = Scale;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawTextureBlended(class Texture* Tex, float Scale, EngineTypes::EBlendMode Blend)
+		void DrawTextureBlended(class Texture* Tex, float Scale, EngineTypes__EBlendMode Blend)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12547);
 			byte params[9] = { NULL };
 			*(class Texture**)params = Tex;
 			*(float*)&params[4] = Scale;
-			*(EngineTypes::EBlendMode*)&params[8] = Blend;
+			*(EngineTypes__EBlendMode*)&params[8] = Blend;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		Canvas::CanvasIcon MakeIcon(class Texture* Texture, float U, float V, float UL, float VL)
+		Canvas__CanvasIcon MakeIcon(class Texture* Texture, float U, float V, float UL, float VL)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12552);
 			byte params[40] = { NULL };
@@ -340,13 +298,13 @@ namespace UnrealScript
 			*(float*)&params[12] = UL;
 			*(float*)&params[16] = VL;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Canvas::CanvasIcon*)&params[20];
+			return *(Canvas__CanvasIcon*)&params[20];
 		}
-		void DrawIcon(Canvas::CanvasIcon Icon, float X, float Y, float Scale)
+		void DrawIcon(Canvas__CanvasIcon Icon, float X, float Y, float Scale)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12560);
 			byte params[32] = { NULL };
-			*(Canvas::CanvasIcon*)params = Icon;
+			*(Canvas__CanvasIcon*)params = Icon;
 			*(float*)&params[20] = X;
 			*(float*)&params[24] = Y;
 			*(float*)&params[28] = Scale;
@@ -369,14 +327,14 @@ namespace UnrealScript
 			*(float*)&params[4] = Height;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetDrawColorStruct(Object::Color C)
+		void SetDrawColorStruct(Object__Color C)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12578);
 			byte params[4] = { NULL };
-			*(Object::Color*)params = C;
+			*(Object__Color*)params = C;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void Draw2DLine(float X1, float Y1, float X2, float Y2, Object::Color LineColor)
+		void Draw2DLine(float X1, float Y1, float X2, float Y2, Object__Color LineColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12580);
 			byte params[20] = { NULL };
@@ -384,10 +342,10 @@ namespace UnrealScript
 			*(float*)&params[4] = Y1;
 			*(float*)&params[8] = X2;
 			*(float*)&params[12] = Y2;
-			*(Object::Color*)&params[16] = LineColor;
+			*(Object__Color*)&params[16] = LineColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawTextureLine(Vector StartPoint, Vector EndPoint, float Perc, float Width, Object::Color LineColor, class Texture* LineTexture, float U, float V, float UL, float VL)
+		void DrawTextureLine(Vector StartPoint, Vector EndPoint, float Perc, float Width, Object__Color LineColor, class Texture* LineTexture, float U, float V, float UL, float VL)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12586);
 			byte params[56] = { NULL };
@@ -395,7 +353,7 @@ namespace UnrealScript
 			*(Vector*)&params[12] = EndPoint;
 			*(float*)&params[24] = Perc;
 			*(float*)&params[28] = Width;
-			*(Object::Color*)&params[32] = LineColor;
+			*(Object__Color*)&params[32] = LineColor;
 			*(class Texture**)&params[36] = LineTexture;
 			*(float*)&params[40] = U;
 			*(float*)&params[44] = V;
@@ -403,7 +361,7 @@ namespace UnrealScript
 			*(float*)&params[52] = VL;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawTextureDoubleLine(Vector StartPoint, Vector EndPoint, float Perc, float Spacing, float Width, Object::Color LineColor, Object::Color AltLineColor, class Texture* Tex, float U, float V, float UL, float VL)
+		void DrawTextureDoubleLine(Vector StartPoint, Vector EndPoint, float Perc, float Spacing, float Width, Object__Color LineColor, Object__Color AltLineColor, class Texture* Tex, float U, float V, float UL, float VL)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12597);
 			byte params[64] = { NULL };
@@ -412,8 +370,8 @@ namespace UnrealScript
 			*(float*)&params[24] = Perc;
 			*(float*)&params[28] = Spacing;
 			*(float*)&params[32] = Width;
-			*(Object::Color*)&params[36] = LineColor;
-			*(Object::Color*)&params[40] = AltLineColor;
+			*(Object__Color*)&params[36] = LineColor;
+			*(Object__Color*)&params[40] = AltLineColor;
 			*(class Texture**)&params[44] = Tex;
 			*(float*)&params[48] = U;
 			*(float*)&params[52] = V;
@@ -421,7 +379,7 @@ namespace UnrealScript
 			*(float*)&params[60] = VL;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawDebugGraph(ScriptString* Title, float ValueX, float ValueY, float UL_X, float UL_Y, float W, float H, Object::Vector2D RangeX, Object::Vector2D RangeY)
+		void DrawDebugGraph(ScriptString* Title, float ValueX, float ValueY, float UL_X, float UL_Y, float W, float H, Object__Vector2D RangeX, Object__Vector2D RangeY)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12610);
 			byte params[52] = { NULL };
@@ -432,8 +390,8 @@ namespace UnrealScript
 			*(float*)&params[24] = UL_Y;
 			*(float*)&params[28] = W;
 			*(float*)&params[32] = H;
-			*(Object::Vector2D*)&params[36] = RangeX;
-			*(Object::Vector2D*)&params[44] = RangeY;
+			*(Object__Vector2D*)&params[36] = RangeX;
+			*(Object__Vector2D*)&params[44] = RangeY;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 	};

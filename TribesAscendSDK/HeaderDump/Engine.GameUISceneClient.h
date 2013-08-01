@@ -1,10 +1,12 @@
 #pragma once
 #include "Engine.UISceneClient.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
-#include "Engine.WorldInfo.h"
+#include "Core.Object.Double.h"
+#include "Core.Object.Map_Mirror.h"
+#include "Core.Object.IntPoint.h"
+#include "Engine.WorldInfo.ENetMode.h"
 #include "Engine.PlayerController.h"
 #include "Engine.LocalPlayer.h"
+#include "Engine.Actor.ETravelType.h"
 #include "Engine.Player.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -32,16 +34,16 @@ namespace UnrealScript
 		ADD_BOOL(bEnableDebugInput, 296, 0x4)
 		ADD_BOOL(bUpdateSceneViewportSizes, 296, 0x2)
 		ADD_BOOL(bUpdateInputProcessingStatus, 296, 0x1)
-		ADD_STRUCT(Object::Map_Mirror, InitialPressedKeys, 236)
-		ADD_STRUCT(Object::IntPoint, DoubleClickStartPosition, 228)
-		ADD_STRUCT(Object::Double, DoubleClickStartTime, 220)
+		ADD_STRUCT(Object__Map_Mirror, InitialPressedKeys, 236)
+		ADD_STRUCT(Object__IntPoint, DoubleClickStartPosition, 228)
+		ADD_STRUCT(Object__Double, DoubleClickStartTime, 220)
 		ADD_STRUCT(float, LatestDeltaTime, 216)
-		WorldInfo::ENetMode GetCurrentNetMode()
+		WorldInfo__ENetMode GetCurrentNetMode()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17834);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(WorldInfo::ENetMode*)params;
+			return *(WorldInfo__ENetMode*)params;
 		}
 		void RequestInputProcessingUpdate()
 		{
@@ -63,13 +65,13 @@ namespace UnrealScript
 			*(int*)&params[4] = PlayerIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void NotifyClientTravel(class PlayerController* TravellingPlayer, ScriptString* TravelURL, Actor::ETravelType TravelType, bool bIsSeamlessTravel)
+		void NotifyClientTravel(class PlayerController* TravellingPlayer, ScriptString* TravelURL, Actor__ETravelType TravelType, bool bIsSeamlessTravel)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17843);
 			byte params[21] = { NULL };
 			*(class PlayerController**)params = TravellingPlayer;
 			*(ScriptString**)&params[4] = TravelURL;
-			*(Actor::ETravelType*)&params[16] = TravelType;
+			*(Actor__ETravelType*)&params[16] = TravelType;
 			*(bool*)&params[20] = bIsSeamlessTravel;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

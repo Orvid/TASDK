@@ -1,5 +1,15 @@
 #pragma once
+#include "Engine.GameplayEvents.PawnClassEventData.h"
 #include "Core.Object.h"
+#include "Engine.GameplayEvents.PlayerInformationNew.h"
+#include "Engine.GameplayEvents.WeaponClassEventData.h"
+#include "Engine.GameplayEvents.TeamInformation.h"
+#include "Engine.GameplayEvents.GameSessionInformation.h"
+#include "Engine.GameplayEvents.GameplayEventMetaData.h"
+#include "Engine.GameplayEvents.DamageClassEventData.h"
+#include "Engine.GameplayEvents.ProjectileClassEventData.h"
+#include "Engine.GameplayEvents.GameplayEventsHeader.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,114 +30,19 @@ namespace UnrealScript
 	{
 	public:
 		static const auto HeaderFlags_NoEventStrings = 1;
-		enum EGameStatGroups : byte
-		{
-			GSG_EngineStats = 0,
-			GSG_Game = 1,
-			GSG_Team = 2,
-			GSG_Player = 3,
-			GSG_Weapon = 4,
-			GSG_Damage = 5,
-			GSG_Projectile = 6,
-			GSG_Pawn = 7,
-			GSG_GameSpecific = 8,
-			GSG_Aggregate = 9,
-			GSG_MAX = 10,
-		};
-		struct PlayerInformationNew
-		{
-		public:
-			ADD_BOOL(bIsBot, 32, 0x1)
-			ADD_STRUCT(OnlineSubsystem::UniqueNetId, UniqueId, 24)
-			ADD_STRUCT(ScriptString*, PlayerName, 12)
-			ADD_STRUCT(ScriptString*, ControllerName, 0)
-		};
-		struct TeamInformation
-		{
-		public:
-			ADD_STRUCT(int, MaxSize, 20)
-			ADD_STRUCT(Object::Color, TeamColor, 16)
-			ADD_STRUCT(ScriptString*, TeamName, 4)
-			ADD_STRUCT(int, TeamIndex, 0)
-		};
-		struct WeaponClassEventData
-		{
-		public:
-			ADD_STRUCT(ScriptString*, WeaponClassName, 0)
-		};
-		struct DamageClassEventData
-		{
-		public:
-			ADD_STRUCT(ScriptString*, DamageClassName, 0)
-		};
-		struct ProjectileClassEventData
-		{
-		public:
-			ADD_STRUCT(ScriptString*, ProjectileClassName, 0)
-		};
-		struct PawnClassEventData
-		{
-		public:
-			ADD_STRUCT(ScriptString*, PawnClassName, 0)
-		};
-		struct GameplayEventsHeader
-		{
-		public:
-			ADD_STRUCT(int, Flags, 40)
-			ADD_STRUCT(ScriptString*, FilterClass, 28)
-			ADD_STRUCT(int, FileSize, 24)
-			ADD_STRUCT(int, TotalStreamSize, 20)
-			ADD_STRUCT(int, FooterOffset, 16)
-			ADD_STRUCT(int, AggregateOffset, 12)
-			ADD_STRUCT(int, StreamOffset, 8)
-			ADD_STRUCT(int, StatsWriterVersion, 4)
-			ADD_STRUCT(int, EngineVersion, 0)
-		};
-		struct GameSessionInformation
-		{
-		public:
-			ADD_STRUCT(OnlineSubsystem::UniqueNetId, OwningNetId, 100)
-			ADD_STRUCT(int, GameTypeId, 96)
-			ADD_STRUCT(int, SessionInstance, 92)
-			ADD_STRUCT(ScriptString*, MapURL, 80)
-			ADD_STRUCT(ScriptString*, MapName, 68)
-			ADD_STRUCT(ScriptString*, GameClassName, 56)
-			ADD_STRUCT(ScriptString*, GameplaySessionID, 44)
-			ADD_BOOL(bGameplaySessionInProgress, 40, 0x1)
-			ADD_STRUCT(float, GameplaySessionEndTime, 36)
-			ADD_STRUCT(float, GameplaySessionStartTime, 32)
-			ADD_STRUCT(ScriptString*, GameplaySessionTimestamp, 20)
-			ADD_STRUCT(ScriptString*, Language, 8)
-			ADD_STRUCT(int, PlatformType, 4)
-			ADD_STRUCT(int, AppTitleID, 0)
-		};
-		struct GameStatGroup
-		{
-		public:
-			ADD_STRUCT(int, Level, 4)
-			ADD_STRUCT(GameplayEvents::EGameStatGroups, Group, 0)
-		};
-		struct GameplayEventMetaData
-		{
-		public:
-			ADD_STRUCT(int, EventDataType, 20)
-			ADD_STRUCT(GameplayEvents::GameStatGroup, StatGroup, 12)
-			ADD_STRUCT(ScriptName, EventName, 4)
-			ADD_STRUCT(int, EventID, 0)
-		};
-		ADD_STRUCT(ScriptArray<GameplayEvents::PlayerInformationNew>, PlayerList, 228)
-		ADD_STRUCT(ScriptArray<GameplayEvents::TeamInformation>, TeamList, 240)
-		ADD_STRUCT(ScriptArray<GameplayEvents::GameplayEventMetaData>, SupportedEvents, 252)
-		ADD_STRUCT(ScriptArray<GameplayEvents::WeaponClassEventData>, WeaponClassArray, 264)
-		ADD_STRUCT(ScriptArray<GameplayEvents::DamageClassEventData>, DamageClassArray, 276)
-		ADD_STRUCT(ScriptArray<GameplayEvents::ProjectileClassEventData>, ProjectileClassArray, 288)
-		ADD_STRUCT(ScriptArray<GameplayEvents::PawnClassEventData>, PawnClassArray, 300)
+		ADD_STRUCT(ScriptArray<GameplayEvents__PlayerInformationNew>, PlayerList, 228)
+		ADD_STRUCT(ScriptArray<GameplayEvents__TeamInformation>, TeamList, 240)
+		ADD_STRUCT(ScriptArray<GameplayEvents__GameplayEventMetaData>, SupportedEvents, 252)
+		ADD_STRUCT(ScriptArray<GameplayEvents__WeaponClassEventData>, WeaponClassArray, 264)
+		ADD_STRUCT(ScriptArray<GameplayEvents__DamageClassEventData>, DamageClassArray, 276)
+		ADD_STRUCT(ScriptArray<GameplayEvents__ProjectileClassEventData>, ProjectileClassArray, 288)
+		ADD_STRUCT(ScriptArray<GameplayEvents__PawnClassEventData>, PawnClassArray, 300)
 		ADD_STRUCT(ScriptArray<ScriptString*>, ActorArray, 312)
 		ADD_STRUCT(ScriptArray<ScriptString*>, SoundCueArray, 324)
-		ADD_STRUCT(GameplayEvents::GameSessionInformation, CurrentSessionInfo, 120)
-		ADD_STRUCT(GameplayEvents::GameplayEventsHeader, Header, 76)
+		ADD_STRUCT(GameplayEvents__GameSessionInformation, CurrentSessionInfo, 120)
+		ADD_STRUCT(GameplayEvents__GameplayEventsHeader, Header, 76)
 		ADD_STRUCT(ScriptString*, StatsFileName, 64)
-		ADD_STRUCT(Object::Pointer, Archive, 60)
+		ADD_STRUCT(Object__Pointer, Archive, 60)
 		bool OpenStatsFile(ScriptString* Filename)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17548);

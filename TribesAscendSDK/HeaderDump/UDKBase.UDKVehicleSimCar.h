@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.SVehicleSimCar.h"
-#include "Core.Object.h"
+#include "Core.Object.InterpCurveFloat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -45,8 +45,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, MinRPM, 236)
 		ADD_STRUCT(float, ThrottleSpeed, 232)
 		ADD_STRUCT(float, LSDFactor, 228)
-		ADD_STRUCT(Object::InterpCurveFloat, EngineRPMCurve, 212)
-		ADD_STRUCT(Object::InterpCurveFloat, TorqueVSpeedCurve, 196)
+		ADD_STRUCT(Object__InterpCurveFloat, EngineRPMCurve, 212)
+		ADD_STRUCT(Object__InterpCurveFloat, TorqueVSpeedCurve, 196)
 	};
 }
 #undef ADD_BOOL

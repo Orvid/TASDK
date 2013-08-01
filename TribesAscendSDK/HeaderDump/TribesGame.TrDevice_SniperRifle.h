@@ -1,6 +1,6 @@
 #pragma once
 #include "TribesGame.TrDevice.h"
-#include "Engine.Actor.h"
+#include "Engine.Actor.ImpactInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -30,12 +30,12 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(86163);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		float ModifyInstantHitDamage(byte FiringMode, Actor::ImpactInfo Impact, float Damage)
+		float ModifyInstantHitDamage(byte FiringMode, Actor__ImpactInfo Impact, float Damage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(86164);
 			byte params[89] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(float*)&params[84] = Damage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[88];

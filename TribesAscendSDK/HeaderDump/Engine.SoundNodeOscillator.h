@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.SoundNode.h"
-#include "Core.DistributionFloat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,10 +20,10 @@ namespace UnrealScript
 	class SoundNodeOscillator : public SoundNode
 	{
 	public:
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Center, 196)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Offset, 168)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Frequency, 140)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Amplitude, 112)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Center, 196)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Offset, 168)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Frequency, 140)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Amplitude, 112)
 		ADD_STRUCT(float, CenterMax, 108)
 		ADD_STRUCT(float, CenterMin, 104)
 		ADD_STRUCT(float, OffsetMax, 100)

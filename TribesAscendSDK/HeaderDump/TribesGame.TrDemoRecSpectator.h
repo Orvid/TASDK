@@ -1,9 +1,10 @@
 #pragma once
+#include "Engine.Camera.ViewTargetTransitionParams.h"
 #include "TribesGame.TrPlayerController.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
-#include "Engine.Camera.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -68,19 +69,19 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(79849);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void SetViewTarget(class Actor* NewViewTarget, Camera::ViewTargetTransitionParams TransitionParams)
+		void SetViewTarget(class Actor* NewViewTarget, Camera__ViewTargetTransitionParams TransitionParams)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(79853);
 			byte params[20] = { NULL };
 			*(class Actor**)params = NewViewTarget;
-			*(Camera::ViewTargetTransitionParams*)&params[4] = TransitionParams;
+			*(Camera__ViewTargetTransitionParams*)&params[4] = TransitionParams;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerViewSelf(Camera::ViewTargetTransitionParams TransitionParams)
+		void ServerViewSelf(Camera__ViewTargetTransitionParams TransitionParams)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(79856);
 			byte params[16] = { NULL };
-			*(Camera::ViewTargetTransitionParams*)params = TransitionParams;
+			*(Camera__ViewTargetTransitionParams*)params = TransitionParams;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ClientSetRealViewTarget(class PlayerReplicationInfo* NewTarget)

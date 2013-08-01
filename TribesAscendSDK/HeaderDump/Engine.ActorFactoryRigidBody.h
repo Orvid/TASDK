@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.ActorFactoryDynamicSM.h"
-#include "Engine.PrimitiveComponent.h"
-#include "Core.Object.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,7 +23,7 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(float, StayUprightMaxTorque, 148)
 		ADD_STRUCT(float, StayUprightTorqueFactor, 144)
-		ADD_STRUCT(PrimitiveComponent::ERBCollisionChannel, RBChannel, 140)
+		ADD_STRUCT(PrimitiveComponent__ERBCollisionChannel, RBChannel, 140)
 		ADD_STRUCT(Vector, InitialVelocity, 120)
 		ADD_BOOL(bEnableStayUprightSpring, 116, 0x8)
 		ADD_BOOL(bLocalSpaceInitialVelocity, 116, 0x4)

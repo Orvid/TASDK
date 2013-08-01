@@ -1,8 +1,9 @@
 #pragma once
 #include "TribesGame.TrDevice_AutoFire.h"
-#include "Core.Object.h"
-#include "Engine.Actor.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "Engine.AnimNodeSequence.h"
+#include "TribesGame.TrDevice_Melee.MeleeRandomAnimation.h"
+#include "Core.Object.Vector.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -17,14 +18,8 @@ namespace UnrealScript
 	class TrDevice_Melee : public TrDevice_AutoFire
 	{
 	public:
-		struct MeleeRandomAnimation
-		{
-		public:
-			ADD_OBJECT(CameraAnim, FireCameraAnim, 8)
-			ADD_STRUCT(ScriptName, FireAnimName, 0)
-		};
-		ADD_STRUCT(ScriptArray<Actor::ImpactInfo>, PendingImpactList, 2164)
-		ADD_STRUCT(ScriptArray<TrDevice_Melee::MeleeRandomAnimation>, FiringAnimRandomList, 2176)
+		ADD_STRUCT(ScriptArray<Actor__ImpactInfo>, PendingImpactList, 2164)
+		ADD_STRUCT(ScriptArray<TrDevice_Melee__MeleeRandomAnimation>, FiringAnimRandomList, 2176)
 		ADD_OBJECT(AnimNodeSequence, FiringAnimSeqNode, 2188)
 		void OwningClientPlayHit(Vector HitLocation)
 		{
@@ -68,12 +63,12 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(83131);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		float ModifyInstantHitDamage(byte FiringMode, Actor::ImpactInfo Impact, float Damage)
+		float ModifyInstantHitDamage(byte FiringMode, Actor__ImpactInfo Impact, float Damage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(83151);
 			byte params[89] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(float*)&params[84] = Damage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[88];

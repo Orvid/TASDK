@@ -1,4 +1,5 @@
 #pragma once
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -13,22 +14,11 @@ namespace UnrealScript
 	class GFxClikWidget : public GFxObject
 	{
 	public:
-		struct EventData
-		{
-		public:
-			ADD_STRUCT(int, lastIndex, 32)
-			ADD_STRUCT(int, Index, 28)
-			ADD_STRUCT(int, Button, 24)
-			ADD_STRUCT(int, mouseIndex, 20)
-			ADD_STRUCT(int, Data, 16)
-			ADD_STRUCT(ScriptString*, Type, 4)
-			ADD_OBJECT(GFxObject, Target, 0)
-		};
-		void EventListener(GFxClikWidget::EventData Data)
+		void EventListener(GFxClikWidget__EventData Data)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30228);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = Data;
+			*(GFxClikWidget__EventData*)params = Data;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void AddEventListener(ScriptName Type, 

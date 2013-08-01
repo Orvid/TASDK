@@ -1,8 +1,9 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.LensFlare.h"
 #include "Engine.Actor.h"
 #include "Engine.SeqAct_Toggle.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.LinearColor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -61,12 +62,12 @@ namespace UnrealScript
 			*(Vector*)&params[8] = Param;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetColorParameter(ScriptName ParameterName, Object::LinearColor Param)
+		void SetColorParameter(ScriptName ParameterName, Object__LinearColor Param)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19336);
 			byte params[24] = { NULL };
 			*(ScriptName*)params = ParameterName;
-			*(Object::LinearColor*)&params[8] = Param;
+			*(Object__LinearColor*)&params[8] = Param;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetExtColorParameter(ScriptName ParameterName, float Red, float Green, float Blue, float Alpha)

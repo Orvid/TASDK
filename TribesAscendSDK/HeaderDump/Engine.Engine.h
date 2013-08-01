@@ -1,21 +1,28 @@
 #pragma once
-#include "Engine.GameViewportClient.h"
 #include "Core.Subsystem.h"
+#include "Core.Object.Color.h"
 #include "Engine.ApexDestructibleDamageParameters.h"
 #include "Engine.LocalPlayer.h"
-#include "Engine.Font.h"
 #include "Engine.Texture2D.h"
-#include "Core.Object.h"
+#include "Engine.Font.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.Engine.StatColorMapping.h"
+#include "Engine.SoundNodeWave.h"
+#include "Core.Object.LinearColor.h"
+#include "Engine.Engine.DropNoteInfo.h"
+#include "Core.Object.Vector.h"
+#include "Engine.TranslationContext.h"
+#include "Engine.Engine.ETransitionType.h"
+#include "Engine.GameViewportClient.h"
 #include "Engine.Material.h"
 #include "Engine.Client.h"
-#include "Engine.TranslationContext.h"
-#include "Engine.SoundNodeWave.h"
 #include "Engine.Texture.h"
 #include "Engine.PostProcessChain.h"
 #include "Engine.PhysicalMaterial.h"
 #include "Engine.StaticMesh.h"
 #include "Engine.AudioDevice.h"
 #include "Engine.WorldInfo.h"
+#include "Core.Object.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -39,52 +46,22 @@ namespace UnrealScript
 	class Engine : public Subsystem
 	{
 	public:
-		enum ETransitionType : byte
-		{
-			TT_None = 0,
-			TT_Paused = 1,
-			TT_Loading = 2,
-			TT_Saving = 3,
-			TT_Connecting = 4,
-			TT_Precaching = 5,
-			TT_MAX = 6,
-		};
-		struct DropNoteInfo
-		{
-		public:
-			ADD_STRUCT(ScriptString*, Comment, 24)
-			ADD_STRUCT(Rotator, Rotation, 12)
-			ADD_STRUCT(Vector, Location, 0)
-		};
-		struct StatColorMapEntry
-		{
-		public:
-			ADD_STRUCT(Object::Color, Out, 4)
-			ADD_STRUCT(float, In, 0)
-		};
-		struct StatColorMapping
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Engine::StatColorMapEntry>, ColorMap, 12)
-			ADD_BOOL(DisableBlend, 24, 0x1)
-			ADD_STRUCT(ScriptString*, StatName, 0)
-		};
 		ADD_STRUCT(ScriptArray<class LocalPlayer*>, GamePlayers, 1152)
 		ADD_STRUCT(ScriptArray<class Font*>, AdditionalFonts, 144)
 		ADD_STRUCT(ScriptArray<ScriptString*>, AdditionalFontNames, 156)
-		ADD_STRUCT(ScriptArray<Object::Color>, LightComplexityColors, 692)
-		ADD_STRUCT(ScriptArray<Object::LinearColor>, ShaderComplexityColors, 704)
-		ADD_STRUCT(ScriptArray<Engine::StatColorMapping>, StatColorMappings, 784)
+		ADD_STRUCT(ScriptArray<Object__Color>, LightComplexityColors, 692)
+		ADD_STRUCT(ScriptArray<Object__LinearColor>, ShaderComplexityColors, 704)
+		ADD_STRUCT(ScriptArray<Engine__StatColorMapping>, StatColorMappings, 784)
 		ADD_STRUCT(ScriptArray<ScriptString*>, DeferredCommands, 1168)
-		ADD_STRUCT(ScriptArray<Engine::DropNoteInfo>, PendingDroppedNotes, 1360)
+		ADD_STRUCT(ScriptArray<Engine__DropNoteInfo>, PendingDroppedNotes, 1360)
 		ADD_STRUCT(ScriptArray<ScriptName>, IgnoreSimulatedFuncWarnings, 1460)
 		ADD_OBJECT(TranslationContext, GlobalTranslationContext, 1480)
-		ADD_STRUCT(Object::Pointer, ScreenSaverInhibitor, 1476)
+		ADD_STRUCT(Object__Pointer, ScreenSaverInhibitor, 1476)
 		ADD_STRUCT(int, ScreenSaverInhibitorSemaphore, 1472)
-		ADD_STRUCT(Object::LinearColor, UnselectedMaterialColor, 1444)
-		ADD_STRUCT(Object::LinearColor, SelectedMaterialColor, 1428)
-		ADD_STRUCT(Object::LinearColor, DefaultHoveredMaterialColor, 1412)
-		ADD_STRUCT(Object::LinearColor, DefaultSelectedMaterialColor, 1396)
+		ADD_STRUCT(Object__LinearColor, UnselectedMaterialColor, 1444)
+		ADD_STRUCT(Object__LinearColor, SelectedMaterialColor, 1428)
+		ADD_STRUCT(Object__LinearColor, DefaultHoveredMaterialColor, 1412)
+		ADD_STRUCT(Object__LinearColor, DefaultSelectedMaterialColor, 1396)
 		ADD_STRUCT(float, TrackedOcclusionStepSize, 1392)
 		ADD_STRUCT(float, MaxTrackedOcclusionIncrement, 1388)
 		ADD_STRUCT(float, NetClientTicksPerSecond, 1384)
@@ -105,24 +82,24 @@ namespace UnrealScript
 		ADD_STRUCT(float, MeshLODRange, 1304)
 		ADD_STRUCT(ScriptString*, TransitionGameType, 1292)
 		ADD_STRUCT(ScriptString*, TransitionDescription, 1280)
-		ADD_STRUCT(Engine::ETransitionType, TransitionType, 1276)
+		ADD_STRUCT(Engine__ETransitionType, TransitionType, 1276)
 		ADD_STRUCT(ScriptString*, ScoutClassName, 1264)
 		ADD_STRUCT(float, StreamingDistanceFactor, 1260)
-		ADD_STRUCT(Object::Color, C_BrushShape, 1256)
-		ADD_STRUCT(Object::Color, C_Volume, 1252)
-		ADD_STRUCT(Object::Color, C_OrthoBackground, 1248)
-		ADD_STRUCT(Object::Color, C_BSPCollision, 1244)
-		ADD_STRUCT(Object::Color, C_VolumeCollision, 1240)
-		ADD_STRUCT(Object::Color, C_ScaleBoxHi, 1236)
-		ADD_STRUCT(Object::Color, C_WireBackground, 1232)
-		ADD_STRUCT(Object::Color, C_NonSolidWire, 1228)
-		ADD_STRUCT(Object::Color, C_SemiSolidWire, 1224)
-		ADD_STRUCT(Object::Color, C_SubtractWire, 1220)
-		ADD_STRUCT(Object::Color, C_AddWire, 1216)
-		ADD_STRUCT(Object::Color, C_BrushWire, 1212)
-		ADD_STRUCT(Object::Color, C_WorldBox, 1208)
-		ADD_STRUCT(Object::Pointer, MobileMaterialEmulator, 1204)
-		ADD_STRUCT(Object::Pointer, RemoteControlExec, 1200)
+		ADD_STRUCT(Object__Color, C_BrushShape, 1256)
+		ADD_STRUCT(Object__Color, C_Volume, 1252)
+		ADD_STRUCT(Object__Color, C_OrthoBackground, 1248)
+		ADD_STRUCT(Object__Color, C_BSPCollision, 1244)
+		ADD_STRUCT(Object__Color, C_VolumeCollision, 1240)
+		ADD_STRUCT(Object__Color, C_ScaleBoxHi, 1236)
+		ADD_STRUCT(Object__Color, C_WireBackground, 1232)
+		ADD_STRUCT(Object__Color, C_NonSolidWire, 1228)
+		ADD_STRUCT(Object__Color, C_SemiSolidWire, 1224)
+		ADD_STRUCT(Object__Color, C_SubtractWire, 1220)
+		ADD_STRUCT(Object__Color, C_AddWire, 1216)
+		ADD_STRUCT(Object__Color, C_BrushWire, 1212)
+		ADD_STRUCT(Object__Color, C_WorldBox, 1208)
+		ADD_STRUCT(Object__Pointer, MobileMaterialEmulator, 1204)
+		ADD_STRUCT(Object__Pointer, RemoteControlExec, 1200)
 		ADD_STRUCT(float, MinSmoothedFrameRate, 1196)
 		ADD_STRUCT(float, MaxSmoothedFrameRate, 1192)
 		ADD_STRUCT(int, ClientCycles, 1188)
@@ -176,8 +153,8 @@ namespace UnrealScript
 		ADD_OBJECT(PhysicalMaterial, DefaultPhysMaterial, 812)
 		ADD_STRUCT(ScriptString*, EditorBrushMaterialName, 800)
 		ADD_OBJECT(Material, EditorBrushMaterial, 796)
-		ADD_STRUCT(Object::LinearColor, LightMapDensitySelectedColor, 768)
-		ADD_STRUCT(Object::LinearColor, LightMapDensityVertexMappedColor, 752)
+		ADD_STRUCT(Object__LinearColor, LightMapDensitySelectedColor, 768)
+		ADD_STRUCT(Object__LinearColor, LightMapDensityVertexMappedColor, 752)
 		ADD_STRUCT(float, RenderLightMapDensityColorScale, 748)
 		ADD_STRUCT(float, RenderLightMapDensityGrayscaleScale, 744)
 		ADD_STRUCT(float, MaxLightMapDensity, 740)
@@ -187,7 +164,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, IdealTextureDensity, 724)
 		ADD_STRUCT(float, MinTextureDensity, 720)
 		ADD_STRUCT(float, MaxPixelShaderAdditiveComplexityCount, 716)
-		ADD_STRUCT(Object::LinearColor, LightingOnlyBrightness, 676)
+		ADD_STRUCT(Object__LinearColor, LightingOnlyBrightness, 676)
 		ADD_STRUCT(int, ImageReflectionTextureSize, 672)
 		ADD_STRUCT(float, MaxRMSDForCombiningMappings, 668)
 		ADD_BOOL(bDisableAILogging, 664, 0x40000000)

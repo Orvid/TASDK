@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.StaticMeshComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.RenderCommandFence_Mirror.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.StaticMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -29,8 +30,8 @@ namespace UnrealScript
 		ADD_BOOL(bInitialVisibilityValue, 628, 0x4)
 		ADD_BOOL(bVisibilityReset, 628, 0x2)
 		ADD_BOOL(bVisibilityHasChanged, 628, 0x1)
-		ADD_STRUCT(Object::RenderCommandFence_Mirror, ReleaseResourcesFence, 612)
-		ADD_STRUCT(Object::Pointer, ComponentBaseResources, 608)
+		ADD_STRUCT(Object__RenderCommandFence_Mirror, ReleaseResourcesFence, 612)
+		ADD_STRUCT(Object__Pointer, ComponentBaseResources, 608)
 		bool SetStaticMesh(class StaticMesh* NewMesh, bool bForce)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16003);

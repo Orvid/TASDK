@@ -1,7 +1,8 @@
 #pragma once
+#include "Engine.Actor.ImpactInfo.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "TribesGame.TrDevice_ConstantFire.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -67,12 +68,12 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(85865);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ProcessInstantHit_Internal(byte FiringMode, Actor::ImpactInfo Impact, bool bHeadShot)
+		void ProcessInstantHit_Internal(byte FiringMode, Actor__ImpactInfo Impact, bool bHeadShot)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(85874);
 			byte params[85] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(bool*)&params[84] = bHeadShot;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -118,12 +119,12 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(85914);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		float ModifyInstantHitDamage(byte FiringMode, Actor::ImpactInfo Impact, float Damage)
+		float ModifyInstantHitDamage(byte FiringMode, Actor__ImpactInfo Impact, float Damage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(85917);
 			byte params[89] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(float*)&params[84] = Damage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[88];

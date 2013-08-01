@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.K2GraphBase.h"
+#include "Engine.DMC_Prototype.DMCNewVar.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,13 +14,7 @@ namespace UnrealScript
 	class DMC_Prototype : public K2GraphBase
 	{
 	public:
-		struct DMCNewVar
-		{
-		public:
-			ADD_STRUCT(ScriptName, VarType, 8)
-			ADD_STRUCT(ScriptName, VarName, 0)
-		};
-		ADD_STRUCT(ScriptArray<DMC_Prototype::DMCNewVar>, NewVars, 104)
+		ADD_STRUCT(ScriptArray<DMC_Prototype__DMCNewVar>, NewVars, 104)
 		ADD_STRUCT(ScriptString*, DefaultPropText, 92)
 		ADD_STRUCT(ScriptString*, FunctionCode, 80)
 		ADD_OBJECT(ScriptClass, GeneratedClass, 76)

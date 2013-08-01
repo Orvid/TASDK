@@ -1,6 +1,7 @@
 #pragma once
-#include "PlatformCommon.TgPlayerProfile.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
 #include "Core.Object.h"
+#include "TribesGame.TrSummaryHelper.MVPAward.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -270,45 +271,38 @@ namespace UnrealScript
 		static const auto STAT_AWDW_FLAG_RETURNS = 85;
 		static const auto STAT_AWDW_DEATHS = 1;
 		static const auto MIN_CREDITS_FOR_XP = 100;
-		struct MVPAward
-		{
-		public:
-			ADD_STRUCT(int, Value, 0)
-			ADD_STRUCT(int, AwardId, 8)
-			ADD_STRUCT(int, PlayerID, 4)
-		};
 		ADD_STRUCT(int, AWARD_TIER_SIZE, 60)
-		void SortPlayerAwards(ScriptArray<TgPlayerProfile::PropertyPair>& AwardArray)
+		void SortPlayerAwards(ScriptArray<TgPlayerProfile__PropertyPair>& AwardArray)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(63316);
 			byte params[12] = { NULL };
-			*(ScriptArray<TgPlayerProfile::PropertyPair>*)params = AwardArray;
+			*(ScriptArray<TgPlayerProfile__PropertyPair>*)params = AwardArray;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			AwardArray = *(ScriptArray<TgPlayerProfile::PropertyPair>*)params;
+			AwardArray = *(ScriptArray<TgPlayerProfile__PropertyPair>*)params;
 		}
-		void SortMVPAwards(ScriptArray<TrSummaryHelper::MVPAward>& AwardArray)
+		void SortMVPAwards(ScriptArray<TrSummaryHelper__MVPAward>& AwardArray)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(63324);
 			byte params[12] = { NULL };
-			*(ScriptArray<TrSummaryHelper::MVPAward>*)params = AwardArray;
+			*(ScriptArray<TrSummaryHelper__MVPAward>*)params = AwardArray;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			AwardArray = *(ScriptArray<TrSummaryHelper::MVPAward>*)params;
+			AwardArray = *(ScriptArray<TrSummaryHelper__MVPAward>*)params;
 		}
-		int MVPSort(TrSummaryHelper::MVPAward A, TrSummaryHelper::MVPAward B)
+		int MVPSort(TrSummaryHelper__MVPAward A, TrSummaryHelper__MVPAward B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(63336);
 			byte params[28] = { NULL };
-			*(TrSummaryHelper::MVPAward*)params = A;
-			*(TrSummaryHelper::MVPAward*)&params[12] = B;
+			*(TrSummaryHelper__MVPAward*)params = A;
+			*(TrSummaryHelper__MVPAward*)&params[12] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[24];
 		}
-		int AwardSort(TgPlayerProfile::PropertyPair A, TgPlayerProfile::PropertyPair B)
+		int AwardSort(TgPlayerProfile__PropertyPair A, TgPlayerProfile__PropertyPair B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(63340);
 			byte params[20] = { NULL };
-			*(TgPlayerProfile::PropertyPair*)params = A;
-			*(TgPlayerProfile::PropertyPair*)&params[8] = B;
+			*(TgPlayerProfile__PropertyPair*)params = A;
+			*(TgPlayerProfile__PropertyPair*)&params[8] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[16];
 		}

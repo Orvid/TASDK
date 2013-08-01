@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.ActorComponent.h"
+#include "Engine.SceneCaptureComponent.ESceneCaptureViewMode.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.PostProcessChain.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,26 +27,18 @@ namespace UnrealScript
 	class SceneCaptureComponent : public ActorComponent
 	{
 	public:
-		enum ESceneCaptureViewMode : byte
-		{
-			SceneCapView_Lit = 0,
-			SceneCapView_Unlit = 1,
-			SceneCapView_LitNoShadows = 2,
-			SceneCapView_Wire = 3,
-			SceneCapView_MAX = 4,
-		};
 		ADD_BOOL(bEnabled, 88, 0x1)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, PostProcessProxies, 132)
-		ADD_STRUCT(Object::Pointer, ViewState, 128)
-		ADD_STRUCT(Object::Pointer, CaptureInfo, 124)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, PostProcessProxies, 132)
+		ADD_STRUCT(Object__Pointer, ViewState, 128)
+		ADD_STRUCT(Object__Pointer, CaptureInfo, 124)
 		ADD_STRUCT(float, MaxStreamingUpdateDist, 120)
 		ADD_STRUCT(float, MaxViewDistanceOverride, 116)
 		ADD_STRUCT(float, MaxUpdateDist, 112)
 		ADD_OBJECT(PostProcessChain, PostProcess, 108)
 		ADD_STRUCT(float, FrameRate, 104)
 		ADD_STRUCT(int, SceneLOD, 100)
-		ADD_STRUCT(SceneCaptureComponent::ESceneCaptureViewMode, ViewMode, 96)
-		ADD_STRUCT(Object::Color, ClearColor, 92)
+		ADD_STRUCT(SceneCaptureComponent__ESceneCaptureViewMode, ViewMode, 96)
+		ADD_STRUCT(Object__Color, ClearColor, 92)
 		ADD_BOOL(bSkipRenderingDepthPrepass, 88, 0x40)
 		ADD_BOOL(bSkipUpdateIfOwnerOccluded, 88, 0x20)
 		ADD_BOOL(bSkipUpdateIfTextureUsersOccluded, 88, 0x10)

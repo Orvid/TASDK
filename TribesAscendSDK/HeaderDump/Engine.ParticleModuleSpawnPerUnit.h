@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleSpawnBase.h"
-#include "Core.DistributionFloat.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,7 +25,7 @@ namespace UnrealScript
 		ADD_BOOL(bIgnoreMovementAlongY, 108, 0x4)
 		ADD_BOOL(bIgnoreMovementAlongX, 108, 0x2)
 		ADD_BOOL(bIgnoreSpawnRateWhenMoving, 108, 0x1)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, SpawnPerUnit, 80)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, SpawnPerUnit, 80)
 		ADD_STRUCT(float, UnitScalar, 76)
 	};
 }

@@ -1,8 +1,13 @@
 #pragma once
+#include "IpDrv.PartyBeaconClient.EPartyBeaconClientRequest.h"
+#include "IpDrv.PartyBeacon.PartyReservation.h"
+#include "IpDrv.PartyBeaconClient.EPartyBeaconClientState.h"
 #include "IpDrv.PartyBeacon.h"
 #include "IpDrv.ClientBeaconAddressResolver.h"
-#include "Engine.OnlineGameSearch.h"
-#include "Engine.OnlineSubsystem.h"
+#include "IpDrv.PartyBeacon.PlayerReservation.h"
+#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "IpDrv.PartyBeacon.EPartyReservationResult.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,31 +21,15 @@ namespace UnrealScript
 	class PartyBeaconClient : public PartyBeacon
 	{
 	public:
-		enum EPartyBeaconClientRequest : byte
-		{
-			PBClientRequest_NewReservation = 0,
-			PBClientRequest_UpdateReservation = 1,
-			PBClientRequest_MAX = 2,
-		};
-		enum EPartyBeaconClientState : byte
-		{
-			PBCS_None = 0,
-			PBCS_Connecting = 1,
-			PBCS_Connected = 2,
-			PBCS_ConnectionFailed = 3,
-			PBCS_AwaitingResponse = 4,
-			PBCS_Closed = 5,
-			PBCS_MAX = 6,
-		};
 		ADD_OBJECT(ClientBeaconAddressResolver, Resolver, 164)
 		ADD_OBJECT(ScriptClass, ResolverClass, 160)
 		ADD_STRUCT(ScriptString*, ResolverClassName, 148)
 		ADD_STRUCT(float, ReservationRequestElapsedTime, 144)
 		ADD_STRUCT(float, ReservationRequestTimeout, 140)
-		ADD_STRUCT(PartyBeaconClient::EPartyBeaconClientRequest, ClientBeaconRequestType, 137)
-		ADD_STRUCT(PartyBeaconClient::EPartyBeaconClientState, ClientBeaconState, 136)
-		ADD_STRUCT(OnlineGameSearch::OnlineGameSearchResult, HostPendingRequest, 104)
-		ADD_STRUCT(PartyBeacon::PartyReservation, PendingRequest, 112)
+		ADD_STRUCT(PartyBeaconClient__EPartyBeaconClientRequest, ClientBeaconRequestType, 137)
+		ADD_STRUCT(PartyBeaconClient__EPartyBeaconClientState, ClientBeaconState, 136)
+		ADD_STRUCT(OnlineGameSearch__OnlineGameSearchResult, HostPendingRequest, 104)
+		ADD_STRUCT(PartyBeacon__PartyReservation, PendingRequest, 112)
 		void OnHostHasCancelled()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33911);
@@ -67,42 +56,42 @@ namespace UnrealScript
 			*(int*)params = ReservationRemaining;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnReservationRequestComplete(PartyBeacon::EPartyReservationResult ReservationResult)
+		void OnReservationRequestComplete(PartyBeacon__EPartyReservationResult ReservationResult)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33919);
 			byte params[1] = { NULL };
-			*(PartyBeacon::EPartyReservationResult*)params = ReservationResult;
+			*(PartyBeacon__EPartyReservationResult*)params = ReservationResult;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool RequestReservation(OnlineGameSearch::OnlineGameSearchResult& DesiredHost, OnlineSubsystem::UniqueNetId RequestingPartyLeader, ScriptArray<PartyBeacon::PlayerReservation>& Players)
+		bool RequestReservation(OnlineGameSearch__OnlineGameSearchResult& DesiredHost, OnlineSubsystem__UniqueNetId RequestingPartyLeader, ScriptArray<PartyBeacon__PlayerReservation>& Players)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33936);
 			byte params[32] = { NULL };
-			*(OnlineGameSearch::OnlineGameSearchResult*)params = DesiredHost;
-			*(OnlineSubsystem::UniqueNetId*)&params[8] = RequestingPartyLeader;
-			*(ScriptArray<PartyBeacon::PlayerReservation>*)&params[16] = Players;
+			*(OnlineGameSearch__OnlineGameSearchResult*)params = DesiredHost;
+			*(OnlineSubsystem__UniqueNetId*)&params[8] = RequestingPartyLeader;
+			*(ScriptArray<PartyBeacon__PlayerReservation>*)&params[16] = Players;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			DesiredHost = *(OnlineGameSearch::OnlineGameSearchResult*)params;
-			Players = *(ScriptArray<PartyBeacon::PlayerReservation>*)&params[16];
+			DesiredHost = *(OnlineGameSearch__OnlineGameSearchResult*)params;
+			Players = *(ScriptArray<PartyBeacon__PlayerReservation>*)&params[16];
 			return *(bool*)&params[28];
 		}
-		bool RequestReservationUpdate(OnlineGameSearch::OnlineGameSearchResult& DesiredHost, OnlineSubsystem::UniqueNetId RequestingPartyLeader, ScriptArray<PartyBeacon::PlayerReservation>& PlayersToAdd)
+		bool RequestReservationUpdate(OnlineGameSearch__OnlineGameSearchResult& DesiredHost, OnlineSubsystem__UniqueNetId RequestingPartyLeader, ScriptArray<PartyBeacon__PlayerReservation>& PlayersToAdd)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33942);
 			byte params[32] = { NULL };
-			*(OnlineGameSearch::OnlineGameSearchResult*)params = DesiredHost;
-			*(OnlineSubsystem::UniqueNetId*)&params[8] = RequestingPartyLeader;
-			*(ScriptArray<PartyBeacon::PlayerReservation>*)&params[16] = PlayersToAdd;
+			*(OnlineGameSearch__OnlineGameSearchResult*)params = DesiredHost;
+			*(OnlineSubsystem__UniqueNetId*)&params[8] = RequestingPartyLeader;
+			*(ScriptArray<PartyBeacon__PlayerReservation>*)&params[16] = PlayersToAdd;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			DesiredHost = *(OnlineGameSearch::OnlineGameSearchResult*)params;
-			PlayersToAdd = *(ScriptArray<PartyBeacon::PlayerReservation>*)&params[16];
+			DesiredHost = *(OnlineGameSearch__OnlineGameSearchResult*)params;
+			PlayersToAdd = *(ScriptArray<PartyBeacon__PlayerReservation>*)&params[16];
 			return *(bool*)&params[28];
 		}
-		bool CancelReservation(OnlineSubsystem::UniqueNetId CancellingPartyLeader)
+		bool CancelReservation(OnlineSubsystem__UniqueNetId CancellingPartyLeader)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33948);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = CancellingPartyLeader;
+			*(OnlineSubsystem__UniqueNetId*)params = CancellingPartyLeader;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}

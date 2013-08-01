@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.SequenceAction.h"
+#include "Engine.SeqAct_SetMesh.EMeshType.h"
 #include "Engine.StaticMesh.h"
 #include "Engine.SkeletalMesh.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -25,13 +26,7 @@ namespace UnrealScript
 	class SeqAct_SetMesh : public SequenceAction
 	{
 	public:
-		enum EMeshType : byte
-		{
-			MeshType_StaticMesh = 0,
-			MeshType_SkeletalMesh = 1,
-			MeshType_MAX = 2,
-		};
-		ADD_STRUCT(SeqAct_SetMesh::EMeshType, MeshType, 240)
+		ADD_STRUCT(SeqAct_SetMesh__EMeshType, MeshType, 240)
 		ADD_BOOL(bIsAllowedToMove, 244, 0x1)
 		ADD_BOOL(bAllowDecalsToReattach, 244, 0x2)
 		ADD_OBJECT(StaticMesh, NewStaticMesh, 236)

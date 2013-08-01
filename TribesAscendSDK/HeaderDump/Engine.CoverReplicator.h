@@ -1,6 +1,9 @@
 #pragma once
+#include "Engine.CoverLink.ECoverType.h"
 #include "Engine.ReplicationInfo.h"
+#include "Engine.CoverReplicator.CoverReplicationInfo.h"
 #include "Engine.PlayerController.h"
+#include "Engine.CoverReplicator.ManualCoverTypeInfo.h"
 #include "Engine.CoverLink.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -15,22 +18,7 @@ namespace UnrealScript
 	class CoverReplicator : public ReplicationInfo
 	{
 	public:
-		struct ManualCoverTypeInfo
-		{
-		public:
-			ADD_STRUCT(CoverLink::ECoverType, ManualCoverType, 1)
-			ADD_STRUCT(byte, SlotIndex, 0)
-		};
-		struct CoverReplicationInfo
-		{
-		public:
-			ADD_STRUCT(ScriptArray<byte>, SlotsEnabled, 4)
-			ADD_STRUCT(ScriptArray<byte>, SlotsDisabled, 16)
-			ADD_STRUCT(ScriptArray<byte>, SlotsAdjusted, 28)
-			ADD_STRUCT(ScriptArray<CoverReplicator::ManualCoverTypeInfo>, SlotsCoverTypeChanged, 40)
-			ADD_OBJECT(CoverLink, Link, 0)
-		};
-		ADD_STRUCT(ScriptArray<CoverReplicator::CoverReplicationInfo>, CoverReplicationData, 476)
+		ADD_STRUCT(ScriptArray<CoverReplicator__CoverReplicationInfo>, CoverReplicationData, 476)
 		void PurgeOldEntries()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13464);
@@ -55,7 +43,7 @@ namespace UnrealScript
 			*(int*)params = Index;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientReceiveInitialCoverReplicationInfo(int Index, class CoverLink* Link, bool bLinkDisabled, byte NumSlotsEnabled, byte SlotsEnabled, byte NumSlotsDisabled, byte SlotsDisabled, byte NumSlotsAdjusted, byte SlotsAdjusted, byte NumCoverTypesChanged, CoverReplicator::ManualCoverTypeInfo SlotsCoverTypeChanged, bool bDone)
+		void ClientReceiveInitialCoverReplicationInfo(int Index, class CoverLink* Link, bool bLinkDisabled, byte NumSlotsEnabled, byte SlotsEnabled, byte NumSlotsDisabled, byte SlotsDisabled, byte NumSlotsAdjusted, byte SlotsAdjusted, byte NumCoverTypesChanged, CoverReplicator__ManualCoverTypeInfo SlotsCoverTypeChanged, bool bDone)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13483);
 			byte params[27] = { NULL };
@@ -69,7 +57,7 @@ namespace UnrealScript
 			params[30] = NumSlotsAdjusted;
 			params[31] = SlotsAdjusted;
 			params[39] = NumCoverTypesChanged;
-			*(CoverReplicator::ManualCoverTypeInfo*)&params[40] = SlotsCoverTypeChanged;
+			*(CoverReplicator__ManualCoverTypeInfo*)&params[40] = SlotsCoverTypeChanged;
 			*(bool*)&params[72] = bDone;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -154,13 +142,13 @@ namespace UnrealScript
 			*(bool*)&params[20] = bDone;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void NotifySetManualCoverTypeForSlots(class CoverLink* Link, ScriptArray<int>& SlotIndices, CoverLink::ECoverType NewCoverType)
+		void NotifySetManualCoverTypeForSlots(class CoverLink* Link, ScriptArray<int>& SlotIndices, CoverLink__ECoverType NewCoverType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13563);
 			byte params[17] = { NULL };
 			*(class CoverLink**)params = Link;
 			*(ScriptArray<int>*)&params[4] = SlotIndices;
-			*(CoverLink::ECoverType*)&params[16] = NewCoverType;
+			*(CoverLink__ECoverType*)&params[16] = NewCoverType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			SlotIndices = *(ScriptArray<int>*)&params[4];
 		}
@@ -171,14 +159,14 @@ namespace UnrealScript
 			*(int*)params = Index;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientReceiveManualCoverTypeSlots(int Index, class CoverLink* Link, byte NumCoverTypesChanged, CoverReplicator::ManualCoverTypeInfo SlotsCoverTypeChanged, bool bDone)
+		void ClientReceiveManualCoverTypeSlots(int Index, class CoverLink* Link, byte NumCoverTypesChanged, CoverReplicator__ManualCoverTypeInfo SlotsCoverTypeChanged, bool bDone)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13579);
 			byte params[17] = { NULL };
 			*(int*)params = Index;
 			*(class CoverLink**)&params[4] = Link;
 			params[8] = NumCoverTypesChanged;
-			*(CoverReplicator::ManualCoverTypeInfo*)&params[12] = SlotsCoverTypeChanged;
+			*(CoverReplicator__ManualCoverTypeInfo*)&params[12] = SlotsCoverTypeChanged;
 			*(bool*)&params[44] = bDone;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

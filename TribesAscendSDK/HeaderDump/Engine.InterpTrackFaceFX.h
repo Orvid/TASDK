@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine.InterpTrack.h"
 #include "Engine.FaceFXAnimSet.h"
+#include "Engine.InterpTrackFaceFX.FaceFXTrackKey.h"
+#include "Engine.InterpTrackFaceFX.FaceFXSoundCueKey.h"
 #include "Engine.FaceFXAsset.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -15,21 +17,9 @@ namespace UnrealScript
 	class InterpTrackFaceFX : public InterpTrack
 	{
 	public:
-		struct FaceFXTrackKey
-		{
-		public:
-			ADD_STRUCT(ScriptString*, FaceFXSeqName, 16)
-			ADD_STRUCT(ScriptString*, FaceFXGroupName, 4)
-			ADD_STRUCT(float, StartTime, 0)
-		};
-		struct FaceFXSoundCueKey
-		{
-		public:
-			ADD_OBJECT(SoundCue, FaceFXSoundCue, 0)
-		};
 		ADD_STRUCT(ScriptArray<class FaceFXAnimSet*>, FaceFXAnimSets, 128)
-		ADD_STRUCT(ScriptArray<InterpTrackFaceFX::FaceFXTrackKey>, FaceFXSeqs, 140)
-		ADD_STRUCT(ScriptArray<InterpTrackFaceFX::FaceFXSoundCueKey>, FaceFXSoundCueKeys, 156)
+		ADD_STRUCT(ScriptArray<InterpTrackFaceFX__FaceFXTrackKey>, FaceFXSeqs, 140)
+		ADD_STRUCT(ScriptArray<InterpTrackFaceFX__FaceFXSoundCueKey>, FaceFXSoundCueKeys, 156)
 		ADD_OBJECT(FaceFXAsset, CachedActorFXAsset, 152)
 	};
 }

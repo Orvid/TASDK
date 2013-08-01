@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.Interaction.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,7 +10,7 @@ namespace UnrealScript
 	class TgBrowserInteraction : public Interaction
 	{
 	public:
-		ADD_STRUCT(Object::Pointer, VfTable_FCallbackEventDevice, 108)
+		ADD_STRUCT(Object__Pointer, VfTable_FCallbackEventDevice, 108)
 	};
 }
 #undef ADD_STRUCT

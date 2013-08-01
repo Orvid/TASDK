@@ -1,46 +1,67 @@
 #pragma once
 #include "Engine.ZoneInfo.h"
+#include "Engine.WorldInfo.ENetMode.h"
 #include "Engine.ClipPadEntry.h"
 #include "Engine.GameInfo.h"
 #include "Engine.EmitterPool.h"
-#include "Engine.MusicTrackDataStructures.h"
 #include "Engine.LevelStreaming.h"
+#include "Core.Object.Color.h"
 #include "Engine.GameReplicationInfo.h"
-#include "Engine.Actor.h"
-#include "Engine.MassiveLODOverrideVolume.h"
-#include "Core.Object.h"
+#include "Core.Object.Map_Mirror.h"
+#include "Core.Object.Vector.h"
+#include "Engine.ReverbVolume.InteriorSettings.h"
 #include "Engine.FractureManager.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Engine.MusicTrackDataStructures.MusicTrackStruct.h"
+#include "Engine.ProcBuildingRuleset.h"
+#include "Engine.Actor.ETravelType.h"
 #include "Engine.DecalManager.h"
 #include "Engine.CoverLink.h"
 #include "Engine.ParticleEventManager.h"
-#include "Engine.PostProcessVolume.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #include "Engine.NavMeshPathConstraint.h"
 #include "Engine.PostProcessChain.h"
+#include "Engine.PostProcessVolume.h"
+#include "Engine.ReverbVolume.ReverbSettings.h"
 #include "Engine.EnvironmentVolume.h"
 #include "Engine.ReverbVolume.h"
+#include "Core.Object.h"
+#include "Engine.MassiveLODOverrideVolume.h"
 #include "Engine.PortalVolume.h"
+#include "Engine.WorldInfo.WorldFractureSettings.h"
+#include "Engine.Sequence.h"
+#include "Core.Object.Double.h"
 #include "Engine.BookMark.h"
 #include "Engine.KismetBookMark.h"
 #include "Engine.Texture2D.h"
-#include "Engine.EngineTypes.h"
+#include "Engine.MapInfo.h"
+#include "Engine.WorldInfo.EVisibilityAggressiveness.h"
+#include "Engine.EngineTypes.ELightingBuildQuality.h"
 #include "Engine.CrowdPopulationManagerBase.h"
 #include "Engine.NavigationPoint.h"
 #include "Engine.DefaultPhysicsVolume.h"
 #include "Engine.Controller.h"
+#include "Engine.WorldInfo.HostMigrationState.h"
 #include "Engine.Pawn.h"
 #include "Engine.Pylon.h"
+#include "Engine.WorldInfo.NetViewer.h"
 #include "Engine.ObjectReferencer.h"
-#include "Engine.MapInfo.h"
-#include "Engine.ProcBuildingRuleset.h"
-#include "Engine.PhysicsLODVerticalEmitter.h"
-#include "Engine.LightmassLevelSettings.h"
-#include "Engine.SeqAct_Latent.h"
-#include "Engine.Sequence.h"
-#include "Engine.Scene.h"
+#include "Engine.WorldInfo.PhysXSceneProperties.h"
 #include "Engine.NavigationHandle.h"
+#include "Engine.WorldInfo.CompartmentRunList.h"
+#include "Engine.WorldInfo.ApexModuleDestructibleSettings.h"
+#include "Engine.PhysicsLODVerticalEmitter.h"
+#include "Engine.Scene.EDetailMode.h"
+#include "Engine.WorldInfo.PhysXVerticalProperties.h"
+#include "Core.Object.LinearColor.h"
+#include "Engine.WorldInfo.ScreenMessageString.h"
+#include "Engine.LightmassLevelSettings.h"
+#include "Engine.WorldInfo.EConsoleType.h"
+#include "Engine.WorldInfo.LightmassWorldInfoSettings.h"
+#include "Engine.SeqAct_Latent.h"
 #include "Engine.NavMeshPathGoalEvaluator.h"
 #include "Engine.ReachSpec.h"
+#include "Core.Object.Guid.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -65,161 +86,7 @@ namespace UnrealScript
 	{
 	public:
 		static const auto MAX_INSTANCES_PER_CLASS = 5;
-		enum EHostMigrationProgress : byte
-		{
-			HostMigration_None = 0,
-			HostMigration_FindingNewHost = 1,
-			HostMigration_MigratingAsHost = 2,
-			HostMigration_MigratingAsClient = 3,
-			HostMigration_HostReadyToTravel = 4,
-			HostMigration_MAX = 5,
-		};
-		enum EConsoleType : byte
-		{
-			CONSOLE_Any = 0,
-			CONSOLE_Xbox360 = 1,
-			CONSOLE_PS3 = 2,
-			CONSOLE_Mobile = 3,
-			CONSOLE_IPhone = 4,
-			CONSOLE_Android = 5,
-			CONSOLE_MAX = 6,
-		};
-		enum EVisibilityAggressiveness : byte
-		{
-			VIS_LeastAggressive = 0,
-			VIS_ModeratelyAggressive = 1,
-			VIS_MostAggressive = 2,
-			VIS_Max = 3,
-		};
-		enum ENetMode : byte
-		{
-			NM_Standalone = 0,
-			NM_DedicatedServer = 1,
-			NM_ListenServer = 2,
-			NM_Client = 3,
-			NM_MAX = 4,
-		};
-		struct NavMeshPathGoalEvaluatorCacheDatum
-		{
-		public:
-			ADD_STRUCT(int, ListIdx, 0)
-			ADD_OBJECT(NavMeshPathGoalEvaluator, List, 4)
-		};
-		struct WorldFractureSettings
-		{
-		public:
-			ADD_STRUCT(float, ChanceOfPhysicsChunkOverride, 0)
-			ADD_BOOL(bEnableChanceOfPhysicsChunkOverride, 4, 0x1)
-			ADD_BOOL(bLimitExplosionChunkSize, 4, 0x2)
-			ADD_STRUCT(float, MaxExplosionChunkSize, 8)
-			ADD_BOOL(bLimitDamageChunkSize, 12, 0x1)
-			ADD_STRUCT(float, MaxDamageChunkSize, 16)
-			ADD_STRUCT(int, MaxNumFacturedChunksToSpawnInAFrame, 20)
-			ADD_STRUCT(float, FractureExplosionVelScale, 24)
-		};
-		struct NavMeshPathConstraintCacheDatum
-		{
-		public:
-			ADD_STRUCT(int, ListIdx, 0)
-			ADD_OBJECT(NavMeshPathConstraint, List, 4)
-		};
-		struct LightmassWorldInfoSettings
-		{
-		public:
-			ADD_STRUCT(float, StaticLightingLevelScale, 0)
-			ADD_STRUCT(int, NumIndirectLightingBounces, 4)
-			ADD_STRUCT(Object::Color, EnvironmentColor, 8)
-			ADD_STRUCT(float, EnvironmentIntensity, 12)
-			ADD_STRUCT(float, EmissiveBoost, 16)
-			ADD_STRUCT(float, DiffuseBoost, 20)
-			ADD_STRUCT(float, SpecularBoost, 24)
-			ADD_STRUCT(float, IndirectNormalInfluenceBoost, 28)
-			ADD_BOOL(bUseNormalMapsForSimpleLightMaps, 32, 0x1)
-			ADD_BOOL(bUseAmbientOcclusion, 32, 0x2)
-			ADD_BOOL(bEnableImageReflectionShadowing, 32, 0x4)
-			ADD_STRUCT(float, DirectIlluminationOcclusionFraction, 36)
-			ADD_STRUCT(float, IndirectIlluminationOcclusionFraction, 40)
-			ADD_STRUCT(float, OcclusionExponent, 44)
-			ADD_STRUCT(float, FullyOccludedSamplesFraction, 48)
-			ADD_STRUCT(float, MaxOcclusionDistance, 52)
-			ADD_BOOL(bVisualizeMaterialDiffuse, 56, 0x1)
-			ADD_BOOL(bVisualizeAmbientOcclusion, 56, 0x2)
-		};
-		struct ScreenMessageString
-		{
-		public:
-			ADD_STRUCT(QWord, Key, 0)
-			ADD_STRUCT(ScriptString*, ScreenMessage, 8)
-			ADD_STRUCT(Object::Color, DisplayColor, 20)
-			ADD_STRUCT(float, TimeToDisplay, 24)
-			ADD_STRUCT(float, CurrentTimeDisplayed, 28)
-		};
-		struct PhysXEmitterVerticalProperties
-		{
-		public:
-			ADD_BOOL(bDisableLod, 0, 0x1)
-			ADD_STRUCT(int, ParticlesLodMin, 4)
-			ADD_STRUCT(int, ParticlesLodMax, 8)
-			ADD_STRUCT(int, PacketsPerPhysXParticleSystemMax, 12)
-			ADD_BOOL(bApplyCylindricalPacketCulling, 16, 0x1)
-			ADD_STRUCT(float, SpawnLodVsFifoBias, 20)
-		};
-		struct ApexModuleDestructibleSettings
-		{
-		public:
-			ADD_STRUCT(int, MaxChunkIslandCount, 0)
-			ADD_STRUCT(int, MaxRrbActorCount, 4)
-			ADD_STRUCT(float, MaxChunkSeparationLOD, 8)
-			ADD_BOOL(bOverrideMaxChunkSeparationLOD, 12, 0x1)
-		};
-		struct PhysXSimulationProperties
-		{
-		public:
-			ADD_BOOL(bUseHardware, 0, 0x1)
-			ADD_BOOL(bFixedTimeStep, 0, 0x2)
-			ADD_STRUCT(float, TimeStep, 4)
-			ADD_STRUCT(int, MaxSubSteps, 8)
-		};
-		struct CompartmentRunList
-		{
-		public:
-			ADD_BOOL(RigidBody, 0, 0x1)
-			ADD_BOOL(Fluid, 0, 0x2)
-			ADD_BOOL(Cloth, 0, 0x4)
-			ADD_BOOL(SoftBody, 0, 0x8)
-		};
-		struct NetViewer
-		{
-		public:
-			ADD_OBJECT(PlayerController, InViewer, 0)
-			ADD_OBJECT(Actor, Viewer, 4)
-			ADD_STRUCT(Vector, ViewLocation, 8)
-			ADD_STRUCT(Vector, ViewDir, 20)
-		};
-		struct HostMigrationState
-		{
-		public:
-			ADD_BOOL(bHostMigrationEnabled, 24, 0x1)
-			ADD_STRUCT(ScriptString*, HostMigrationTravelURL, 12)
-			ADD_STRUCT(float, HostMigrationTravelCountdown, 8)
-			ADD_STRUCT(float, HostMigrationElapsedTime, 4)
-			ADD_STRUCT(WorldInfo::EHostMigrationProgress, HostMigrationProgress, 0)
-		};
-		struct PhysXVerticalProperties
-		{
-		public:
-			ADD_STRUCT(WorldInfo::PhysXEmitterVerticalProperties, Emitters, 0)
-		};
-		struct PhysXSceneProperties
-		{
-		public:
-			ADD_STRUCT(WorldInfo::PhysXSimulationProperties, PrimaryScene, 0)
-			ADD_STRUCT(WorldInfo::PhysXSimulationProperties, CompartmentRigidBody, 12)
-			ADD_STRUCT(WorldInfo::PhysXSimulationProperties, CompartmentFluid, 24)
-			ADD_STRUCT(WorldInfo::PhysXSimulationProperties, CompartmentCloth, 36)
-			ADD_STRUCT(WorldInfo::PhysXSimulationProperties, CompartmentSoftBody, 48)
-		};
-		ADD_STRUCT(WorldInfo::ENetMode, NetMode, 1048)
+		ADD_STRUCT(WorldInfo__ENetMode, NetMode, 1048)
 		ADD_OBJECT(GameInfo, Game, 1088)
 		ADD_STRUCT(float, TimeSeconds, 960)
 		ADD_OBJECT(GameReplicationInfo, GRI, 1044)
@@ -236,8 +103,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, WorldGravityZ, 1096)
 		ADD_BOOL(bPlayersOnlyPending, 716, 0x400)
 		ADD_STRUCT(float, DemoPlayTimeDilation, 956)
-		ADD_STRUCT(MusicTrackDataStructures::MusicTrackStruct, ReplicatedMusicTrack, 1272)
-		ADD_STRUCT(Actor::ETravelType, NextTravelType, 1049)
+		ADD_STRUCT(MusicTrackDataStructures__MusicTrackStruct, ReplicatedMusicTrack, 1272)
+		ADD_STRUCT(Actor__ETravelType, NextTravelType, 1049)
 		ADD_STRUCT(ScriptString*, NextURL, 1148)
 		ADD_STRUCT(float, NextSwitchCountdown, 1160)
 		ADD_STRUCT(ScriptString*, EmitterPoolClassPath, 1336)
@@ -248,7 +115,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptString*, ParticleEventManagerClassPath, 1384)
 		ADD_OBJECT(ParticleEventManager, MyParticleEventManager, 1396)
 		ADD_BOOL(bUseConsoleInput, 716, 0x20000)
-		ADD_STRUCT(PostProcessVolume::PostProcessSettings, DefaultPostProcessSettings, 492)
+		ADD_STRUCT(PostProcessVolume__PostProcessSettings, DefaultPostProcessSettings, 492)
 		ADD_OBJECT(PostProcessChain, WorldPostProcessChain, 712)
 		ADD_BOOL(bPersistPostProcessToNextLevel, 716, 0x1)
 		ADD_BOOL(bFogEnabled, 716, 0x2)
@@ -285,17 +152,17 @@ namespace UnrealScript
 		ADD_BOOL(bAllowHostMigration, 720, 0x10)
 		ADD_STRUCT(float, SquintModeKernelSize, 724)
 		ADD_OBJECT(PostProcessVolume, HighestPriorityPostProcessVolume, 728)
-		ADD_STRUCT(ReverbVolume::ReverbSettings, DefaultReverbSettings, 732)
-		ADD_STRUCT(ReverbVolume::InteriorSettings, DefaultAmbientZoneSettings, 748)
+		ADD_STRUCT(ReverbVolume__ReverbSettings, DefaultReverbSettings, 732)
+		ADD_STRUCT(ReverbVolume__InteriorSettings, DefaultAmbientZoneSettings, 748)
 		ADD_STRUCT(float, FogStart, 784)
 		ADD_STRUCT(float, FogEnd, 788)
-		ADD_STRUCT(Object::Color, FogColor, 792)
+		ADD_STRUCT(Object__Color, FogColor, 792)
 		ADD_STRUCT(float, BumpEnd, 796)
 		ADD_OBJECT(ReverbVolume, HighestPriorityReverbVolume, 800)
 		ADD_STRUCT(ScriptArray<class MassiveLODOverrideVolume*>, MassiveLODOverrideVolumes, 804)
 		ADD_STRUCT(ScriptArray<class PortalVolume*>, PortalVolumes, 816)
 		ADD_STRUCT(ScriptArray<class EnvironmentVolume*>, EnvironmentVolumes, 828)
-		ADD_STRUCT(Object::Double, LastTimeUnbuiltLightingWasEncountered, 852)
+		ADD_STRUCT(Object__Double, LastTimeUnbuiltLightingWasEncountered, 852)
 		ADD_OBJECT(BookMark, BookMarks, 860)
 		ADD_OBJECT(KismetBookMark, KismetBookMarks, 900)
 		ADD_STRUCT(ScriptArray<class ClipPadEntry*>, ClipPadEntries, 940)
@@ -311,8 +178,8 @@ namespace UnrealScript
 		ADD_OBJECT(Texture2D, LargeVertex, 1024)
 		ADD_OBJECT(Texture2D, BSPVertex, 1028)
 		ADD_STRUCT(ScriptArray<ScriptString*>, DeferredExecs, 1032)
-		ADD_STRUCT(WorldInfo::EVisibilityAggressiveness, VisibilityAggressiveness, 1050)
-		ADD_STRUCT(EngineTypes::ELightingBuildQuality, LevelLightingQuality, 1051)
+		ADD_STRUCT(WorldInfo__EVisibilityAggressiveness, VisibilityAggressiveness, 1050)
+		ADD_STRUCT(EngineTypes__ELightingBuildQuality, LevelLightingQuality, 1051)
 		ADD_STRUCT(ScriptString*, ComputerName, 1052)
 		ADD_STRUCT(ScriptString*, EngineVersion, 1064)
 		ADD_STRUCT(ScriptString*, MinNetVersion, 1076)
@@ -324,7 +191,7 @@ namespace UnrealScript
 		ADD_OBJECT(Pawn, PawnList, 1120)
 		ADD_OBJECT(CoverLink, CoverList, 1124)
 		ADD_OBJECT(Pylon, PylonList, 1128)
-		ADD_STRUCT(ScriptArray<WorldInfo::NetViewer>, ReplicationViewers, 1136)
+		ADD_STRUCT(ScriptArray<WorldInfo__NetViewer>, ReplicationViewers, 1136)
 		ADD_STRUCT(int, PackedLightAndShadowMapTextureSize, 1164)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, GameTypesSupportedOnThisMap, 1180)
 		ADD_OBJECT(ScriptClass, GameTypeForPIE, 1192)
@@ -332,20 +199,20 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<ScriptName>, PreparingLevelNames, 1208)
 		ADD_STRUCT(ScriptName, CommittedPersistentLevelName, 1220)
 		ADD_OBJECT(ObjectReferencer, PersistentMapForcedObjects, 1228)
-		ADD_STRUCT(MusicTrackDataStructures::MusicTrackStruct, CurrentMusicTrack, 1236)
+		ADD_STRUCT(MusicTrackDataStructures__MusicTrackStruct, CurrentMusicTrack, 1236)
 		ADD_STRUCT(ScriptString*, Title, 1308)
 		ADD_STRUCT(ScriptString*, Author, 1320)
 		ADD_OBJECT(MapInfo, MyMapInfo, 1332)
 		ADD_OBJECT(ProcBuildingRuleset, ProcBuildingRulesetOverride, 1400)
 		ADD_STRUCT(float, MaxPhysicsDeltaTime, 1404)
 		ADD_STRUCT(int, MaxPhysicsSubsteps, 1408)
-		ADD_STRUCT(WorldInfo::PhysXSceneProperties, PhysicsProperties, 1412)
-		ADD_STRUCT(ScriptArray<WorldInfo::CompartmentRunList>, CompartmentRunFrames, 1472)
+		ADD_STRUCT(WorldInfo__PhysXSceneProperties, PhysicsProperties, 1412)
+		ADD_STRUCT(ScriptArray<WorldInfo__CompartmentRunList>, CompartmentRunFrames, 1472)
 		ADD_STRUCT(float, DefaultSkinWidth, 1484)
 		ADD_STRUCT(float, ApexLODResourceBudget, 1488)
-		ADD_STRUCT(WorldInfo::ApexModuleDestructibleSettings, DestructibleSettings, 1492)
+		ADD_STRUCT(WorldInfo__ApexModuleDestructibleSettings, DestructibleSettings, 1492)
 		ADD_OBJECT(PhysicsLODVerticalEmitter, EmitterVertical, 1508)
-		ADD_STRUCT(WorldInfo::PhysXVerticalProperties, VerticalProperties, 1512)
+		ADD_STRUCT(WorldInfo__PhysXVerticalProperties, VerticalProperties, 1512)
 		ADD_STRUCT(float, ChanceOfPhysicsChunkOverride, 1536)
 		ADD_STRUCT(float, MaxExplosionChunkSize, 1540)
 		ADD_STRUCT(float, MaxDamageChunkSize, 1544)
@@ -360,16 +227,16 @@ namespace UnrealScript
 		ADD_STRUCT(float, CharacterShadowedIndirectContrastFactor, 1580)
 		ADD_STRUCT(float, CharacterLightingContrastFactor, 1584)
 		ADD_OBJECT(Texture2D, ImageReflectionEnvironmentTexture, 1588)
-		ADD_STRUCT(Object::LinearColor, ImageReflectionEnvironmentColor, 1592)
+		ADD_STRUCT(Object__LinearColor, ImageReflectionEnvironmentColor, 1592)
 		ADD_STRUCT(float, ImageReflectionEnvironmentRotation, 1608)
-		ADD_STRUCT(Object::Map_Mirror, ScreenMessages, 1612)
-		ADD_STRUCT(ScriptArray<WorldInfo::ScreenMessageString>, PriorityScreenMessages, 1672)
+		ADD_STRUCT(Object__Map_Mirror, ScreenMessages, 1612)
+		ADD_STRUCT(ScriptArray<WorldInfo__ScreenMessageString>, PriorityScreenMessages, 1672)
 		ADD_STRUCT(int, MaxTrianglesPerLeaf, 1684)
 		ADD_OBJECT(LightmassLevelSettings, LMLevelSettings, 1688)
-		ADD_STRUCT(WorldInfo::LightmassWorldInfoSettings, LightmassSettings, 1692)
+		ADD_STRUCT(WorldInfo__LightmassWorldInfoSettings, LightmassSettings, 1692)
 		ADD_OBJECT(CrowdPopulationManagerBase, PopulationManager, 1872)
 		ADD_STRUCT(ScriptArray<class SeqAct_Latent*>, CrowdSpawnerActions, 1876)
-		ADD_STRUCT(WorldInfo::HostMigrationState, PeerHostMigration, 1888)
+		ADD_STRUCT(WorldInfo__HostMigrationState, PeerHostMigration, 1888)
 		ADD_STRUCT(float, HostMigrationTimeout, 1916)
 		class Sequence* GetGameSequence()
 		{
@@ -387,11 +254,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			C = *(class Controller**)&params[4];
 		}
-		bool IsConsoleBuild(WorldInfo::EConsoleType ConsoleType)
+		bool IsConsoleBuild(WorldInfo__EConsoleType ConsoleType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(5728);
 			byte params[5] = { NULL };
-			*(WorldInfo::EConsoleType*)params = ConsoleType;
+			*(WorldInfo__EConsoleType*)params = ConsoleType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
@@ -488,20 +355,20 @@ namespace UnrealScript
 			*(ScriptName*)params = VarName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void UpdateMusicTrack(MusicTrackDataStructures::MusicTrackStruct NewMusicTrack)
+		void UpdateMusicTrack(MusicTrackDataStructures__MusicTrackStruct NewMusicTrack)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16096);
 			byte params[36] = { NULL };
-			*(MusicTrackDataStructures::MusicTrackStruct*)params = NewMusicTrack;
+			*(MusicTrackDataStructures__MusicTrackStruct*)params = NewMusicTrack;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddOnScreenDebugMessage(int Key, float TimeToDisplay, Object::Color DisplayColor, ScriptString* DebugMessage)
+		void AddOnScreenDebugMessage(int Key, float TimeToDisplay, Object__Color DisplayColor, ScriptString* DebugMessage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16098);
 			byte params[24] = { NULL };
 			*(int*)params = Key;
 			*(float*)&params[4] = TimeToDisplay;
-			*(Object::Color*)&params[8] = DisplayColor;
+			*(Object__Color*)&params[8] = DisplayColor;
 			*(ScriptString**)&params[12] = DebugMessage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -662,13 +529,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void SeamlessTravel(ScriptString* URL, bool bAbsolute, Object::Guid MapPackageGuid)
+		void SeamlessTravel(ScriptString* URL, bool bAbsolute, Object__Guid MapPackageGuid)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16193);
 			byte params[32] = { NULL };
 			*(ScriptString**)params = URL;
 			*(bool*)&params[12] = bAbsolute;
-			*(Object::Guid*)&params[16] = MapPackageGuid;
+			*(Object__Guid*)&params[16] = MapPackageGuid;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetSeamlessTravelMidpointPause(bool bNowPaused)
@@ -692,12 +559,12 @@ namespace UnrealScript
 			*(class MapInfo**)params = NewMapInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		Scene::EDetailMode GetDetailMode()
+		Scene__EDetailMode GetDetailMode()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16205);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Scene::EDetailMode*)params;
+			return *(Scene__EDetailMode*)params;
 		}
 		bool IsRecordingDemo()
 		{
@@ -737,12 +604,12 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16218);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		WorldInfo::WorldFractureSettings GetWorldFractureSettings()
+		WorldInfo__WorldFractureSettings GetWorldFractureSettings()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16219);
 			byte params[28] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(WorldInfo::WorldFractureSettings*)params;
+			return *(WorldInfo__WorldFractureSettings*)params;
 		}
 		class EnvironmentVolume* FindEnvironmentVolume(Vector TestLocation)
 		{

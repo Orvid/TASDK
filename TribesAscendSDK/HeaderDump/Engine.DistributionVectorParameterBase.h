@@ -1,7 +1,7 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.DistributionVectorConstant.h"
-#include "Engine.DistributionFloatParameterBase.h"
+#include "Engine.DistributionFloatParameterBase.DistributionParamMode.h"
+#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,7 +11,7 @@ namespace UnrealScript
 	class DistributionVectorParameterBase : public DistributionVectorConstant
 	{
 	public:
-		ADD_STRUCT(DistributionFloatParameterBase::DistributionParamMode, ParamModes, 156)
+		ADD_STRUCT(DistributionFloatParameterBase__DistributionParamMode, ParamModes, 156)
 		ADD_STRUCT(Vector, MaxOutput, 144)
 		ADD_STRUCT(Vector, MinOutput, 132)
 		ADD_STRUCT(Vector, MaxInput, 120)

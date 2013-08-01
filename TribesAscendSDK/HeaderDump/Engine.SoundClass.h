@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "Engine.SoundClass.SoundClassProperties.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,34 +20,10 @@ namespace UnrealScript
 	class SoundClass : public Object
 	{
 	public:
-		struct SoundClassEditorData
-		{
-		public:
-			ADD_STRUCT(int, NodePosY, 4)
-			ADD_STRUCT(int, NodePosX, 0)
-		};
-		struct SoundClassProperties
-		{
-		public:
-			ADD_BOOL(bBassBoost, 28, 0x40)
-			ADD_BOOL(bCenterChannelOnly, 28, 0x20)
-			ADD_BOOL(bReverb, 28, 0x10)
-			ADD_BOOL(bIsMusic, 28, 0x8)
-			ADD_BOOL(bIsUISound, 28, 0x4)
-			ADD_BOOL(bAlwaysPlay, 28, 0x2)
-			ADD_BOOL(bApplyEffects, 28, 0x1)
-			ADD_STRUCT(float, RadioFilterVolumeThreshold, 24)
-			ADD_STRUCT(float, RadioFilterVolume, 20)
-			ADD_STRUCT(float, VoiceCenterChannelVolume, 16)
-			ADD_STRUCT(float, LFEBleed, 12)
-			ADD_STRUCT(float, StereoBleed, 8)
-			ADD_STRUCT(float, Pitch, 4)
-			ADD_STRUCT(float, Volume, 0)
-		};
 		ADD_STRUCT(ScriptArray<ScriptName>, ChildClassNames, 92)
 		ADD_STRUCT(int, MenuID, 108)
 		ADD_BOOL(bIsChild, 104, 0x1)
-		ADD_STRUCT(SoundClass::SoundClassProperties, Properties, 60)
+		ADD_STRUCT(SoundClass__SoundClassProperties, Properties, 60)
 	};
 }
 #undef ADD_BOOL

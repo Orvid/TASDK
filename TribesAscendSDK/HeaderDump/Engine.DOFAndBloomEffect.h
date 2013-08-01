@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.Color.h"
 #include "Engine.DOFEffect.h"
-#include "Core.Object.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,7 +26,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, BlurBloomKernelSize, 168)
 		ADD_STRUCT(float, SceneMultiplier, 164)
 		ADD_STRUCT(float, BloomScreenBlendThreshold, 160)
-		ADD_STRUCT(Object::Color, BloomTint, 156)
+		ADD_STRUCT(Object__Color, BloomTint, 156)
 		ADD_STRUCT(float, BloomThreshold, 152)
 		ADD_STRUCT(float, BloomScale, 148)
 	};

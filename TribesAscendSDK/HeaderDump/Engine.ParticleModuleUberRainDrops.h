@@ -1,7 +1,7 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.ParticleModuleUberBase.h"
-#include "Engine.ParticleModuleLocationPrimitiveCylinder.h"
+#include "Core.Object.Vector.h"
+#include "Engine.ParticleModuleLocationPrimitiveCylinder.CylinderHeightAxis.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,7 +23,7 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(Vector, StartLocationMax, 208)
 		ADD_STRUCT(Vector, StartLocationMin, 196)
-		ADD_STRUCT(ParticleModuleLocationPrimitiveCylinder::CylinderHeightAxis, PC_HeightAxis, 192)
+		ADD_STRUCT(ParticleModuleLocationPrimitiveCylinder__CylinderHeightAxis, PC_HeightAxis, 192)
 		ADD_STRUCT(float, PC_StartHeight, 188)
 		ADD_STRUCT(float, PC_StartRadius, 184)
 		ADD_STRUCT(Vector, PC_StartLocation, 172)

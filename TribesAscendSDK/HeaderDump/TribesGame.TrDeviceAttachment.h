@@ -3,14 +3,16 @@
 #include "Engine.ParticleSystem.h"
 #include "Engine.AnimSet.h"
 #include "UTGame.UTWeaponAttachment.h"
-#include "TribesGame.TrProj_Tracer.h"
-#include "TribesGame.TrObject.h"
+#include "TribesGame.TrObject.EffectFormOverwrite.h"
+#include "TribesGame.TrObject.EWeaponTracerType.h"
 #include "Engine.Weapon.h"
 #include "TribesGame.TrPawn.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "TribesGame.TrProj_Tracer.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.Actor.h"
 #include "Engine.SoundCue.h"
-#include "UDKBase.UDKPawn.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
 #include "Engine.PhysicalMaterial.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -37,10 +39,10 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(ScriptArray<class AnimSet*>, m_LightMed3pPawnAnimSets, 736)
 		ADD_STRUCT(ScriptArray<class AnimSet*>, m_Heavy3pPawnAnimSets, 748)
-		ADD_STRUCT(ScriptArray<TrObject::EffectFormOverwrite>, m_EffectFormOverwrite, 760)
+		ADD_STRUCT(ScriptArray<TrObject__EffectFormOverwrite>, m_EffectFormOverwrite, 760)
 		ADD_STRUCT(ScriptName, m_nmRidingAsPassengerFireAnimName, 772)
 		ADD_STRUCT(float, m_fShowTracerDistance, 732)
-		ADD_STRUCT(TrObject::EWeaponTracerType, m_TracerType, 728)
+		ADD_STRUCT(TrObject__EWeaponTracerType, m_TracerType, 728)
 		ADD_OBJECT(ParticleSystem, m_TracerBeamTemplate, 724)
 		ADD_BOOL(m_bScaleFireAnimRate, 720, 0x4)
 		ADD_BOOL(m_bSpawnTracerBeams, 720, 0x2)
@@ -161,13 +163,13 @@ void**)params = MeshCpnt;
 			*(Vector*)&params[20] = HitLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		UDKPawn::MaterialImpactEffect GetImpactEffect(class PhysicalMaterial* HitMaterial)
+		UDKPawn__MaterialImpactEffect GetImpactEffect(class PhysicalMaterial* HitMaterial)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(68114);
 			byte params[52] = { NULL };
 			*(class PhysicalMaterial**)params = HitMaterial;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(UDKPawn::MaterialImpactEffect*)&params[4];
+			return *(UDKPawn__MaterialImpactEffect*)&params[4];
 		}
 	};
 }

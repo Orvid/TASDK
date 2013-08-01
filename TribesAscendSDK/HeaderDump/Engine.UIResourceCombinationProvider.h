@@ -1,9 +1,11 @@
 #pragma once
 #include "Engine.UIDataProvider.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.UIDataProvider_OnlineProfileSettings.h"
 #include "Engine.UIResourceDataProvider.h"
-#include "Core.Object.h"
-#include "Engine.UIRoot.h"
+#include "Engine.UIRoot.EUIDataProviderFieldType.h"
+#include "Engine.UIDataProvider.UIDataProviderField.h"
+#include "Engine.UIRoot.UIProviderFieldValue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -19,8 +21,8 @@ namespace UnrealScript
 	public:
 		ADD_OBJECT(UIDataProvider_OnlineProfileSettings, ProfileProvider, 100)
 		ADD_OBJECT(UIResourceDataProvider, StaticDataProvider, 96)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 92)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementProvider, 88)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 92)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementProvider, 88)
 		void InitializeProvider(bool bIsEditor, class UIResourceDataProvider* InStaticResourceProvider, class UIDataProvider_OnlineProfileSettings* InProfileProvider)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29150);
@@ -108,28 +110,28 @@ void**)&params[12];
 			CellFieldTags = *(ScriptArray<ScriptName>*)&params[8];
 			ColumnHeaderDisplayText = *(ScriptArray<ScriptString*>*)&params[20];
 		}
-		bool GetCellFieldType(ScriptName FieldName, ScriptName CellTag, UIRoot::EUIDataProviderFieldType& FieldType)
+		bool GetCellFieldType(ScriptName FieldName, ScriptName CellTag, UIRoot__EUIDataProviderFieldType& FieldType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29191);
 			byte params[21] = { NULL };
 			*(ScriptName*)params = FieldName;
 			*(ScriptName*)&params[8] = CellTag;
-			*(UIRoot::EUIDataProviderFieldType*)&params[16] = FieldType;
+			*(UIRoot__EUIDataProviderFieldType*)&params[16] = FieldType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			FieldType = *(UIRoot::EUIDataProviderFieldType*)&params[16];
+			FieldType = *(UIRoot__EUIDataProviderFieldType*)&params[16];
 			return *(bool*)&params[20];
 		}
-		bool GetCellFieldValue(ScriptName FieldName, ScriptName CellTag, int ListIndex, UIRoot::UIProviderFieldValue& out_FieldValue, int ArrayIndex)
+		bool GetCellFieldValue(ScriptName FieldName, ScriptName CellTag, int ListIndex, UIRoot__UIProviderFieldValue& out_FieldValue, int ArrayIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29197);
 			byte params[116] = { NULL };
 			*(ScriptName*)params = FieldName;
 			*(ScriptName*)&params[8] = CellTag;
 			*(int*)&params[16] = ListIndex;
-			*(UIRoot::UIProviderFieldValue*)&params[20] = out_FieldValue;
+			*(UIRoot__UIProviderFieldValue*)&params[20] = out_FieldValue;
 			*(int*)&params[108] = ArrayIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_FieldValue = *(UIRoot::UIProviderFieldValue*)&params[20];
+			out_FieldValue = *(UIRoot__UIProviderFieldValue*)&params[20];
 			return *(bool*)&params[112];
 		}
 		void ClearProviderReferences()
@@ -137,26 +139,26 @@ void**)&params[12];
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29205);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		bool ReplaceProviderValue(ScriptArray<UIDataProvider::UIDataProviderField>& out_Fields, ScriptName TargetFieldTag, class UIDataProvider* ReplacementProvider)
+		bool ReplaceProviderValue(ScriptArray<UIDataProvider__UIDataProviderField>& out_Fields, ScriptName TargetFieldTag, class UIDataProvider* ReplacementProvider)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29206);
 			byte params[28] = { NULL };
-			*(ScriptArray<UIDataProvider::UIDataProviderField>*)params = out_Fields;
+			*(ScriptArray<UIDataProvider__UIDataProviderField>*)params = out_Fields;
 			*(ScriptName*)&params[12] = TargetFieldTag;
 			*(class UIDataProvider**)&params[20] = ReplacementProvider;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_Fields = *(ScriptArray<UIDataProvider::UIDataProviderField>*)params;
+			out_Fields = *(ScriptArray<UIDataProvider__UIDataProviderField>*)params;
 			return *(bool*)&params[24];
 		}
-		bool ReplaceProviderCollection(ScriptArray<UIDataProvider::UIDataProviderField>& out_Fields, ScriptName TargetFieldTag, ScriptArray<class UIDataProvider*>& ReplacementProviders)
+		bool ReplaceProviderCollection(ScriptArray<UIDataProvider__UIDataProviderField>& out_Fields, ScriptName TargetFieldTag, ScriptArray<class UIDataProvider*>& ReplacementProviders)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29214);
 			byte params[36] = { NULL };
-			*(ScriptArray<UIDataProvider::UIDataProviderField>*)params = out_Fields;
+			*(ScriptArray<UIDataProvider__UIDataProviderField>*)params = out_Fields;
 			*(ScriptName*)&params[12] = TargetFieldTag;
 			*(ScriptArray<class UIDataProvider*>*)&params[20] = ReplacementProviders;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_Fields = *(ScriptArray<UIDataProvider::UIDataProviderField>*)params;
+			out_Fields = *(ScriptArray<UIDataProvider__UIDataProviderField>*)params;
 			ReplacementProviders = *(ScriptArray<class UIDataProvider*>*)&params[20];
 			return *(bool*)&params[32];
 		}

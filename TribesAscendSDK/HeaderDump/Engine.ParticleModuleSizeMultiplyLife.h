@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleSizeBase.h"
-#include "Core.DistributionVector.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,7 +23,7 @@ namespace UnrealScript
 		ADD_BOOL(MultiplyZ, 100, 0x4)
 		ADD_BOOL(MultiplyY, 100, 0x2)
 		ADD_BOOL(MultiplyX, 100, 0x1)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, LifeMultiplier, 72)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, LifeMultiplier, 72)
 	};
 }
 #undef ADD_BOOL

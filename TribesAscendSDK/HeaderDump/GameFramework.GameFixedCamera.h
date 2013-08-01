@@ -1,8 +1,8 @@
 #pragma once
-#include "Engine.Camera.h"
 #include "Engine.Pawn.h"
 #include "GameFramework.GameCameraBase.h"
 #include "GameFramework.GamePlayerCamera.h"
+#include "Engine.Camera.TViewTarget.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,16 +13,16 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(float, DefaultFOV, 68)
-		void UpdateCamera(class Pawn* P, class GamePlayerCamera* CameraActor, float DeltaTime, Camera::TViewTarget& OutVT)
+		void UpdateCamera(class Pawn* P, class GamePlayerCamera* CameraActor, float DeltaTime, Camera__TViewTarget& OutVT)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31703);
 			byte params[56] = { NULL };
 			*(class Pawn**)params = P;
 			*(class GamePlayerCamera**)&params[4] = CameraActor;
 			*(float*)&params[8] = DeltaTime;
-			*(Camera::TViewTarget*)&params[12] = OutVT;
+			*(Camera__TViewTarget*)&params[12] = OutVT;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutVT = *(Camera::TViewTarget*)&params[12];
+			OutVT = *(Camera__TViewTarget*)&params[12];
 		}
 		void OnBecomeActive(class GameCameraBase* OldCamera)
 		{

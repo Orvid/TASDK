@@ -11,14 +11,6 @@ namespace UnrealScript
 	class GFxTrPage_WhisperSettings : public GFxTrPage
 	{
 	public:
-		enum MENU_ACTION_WHISPER_NOTIFY_TYPE : byte
-		{
-			MAWNT_SHOWALL = 0,
-			MAWNT_ONLYFRIENDS = 1,
-			MAWNT_NOBODY = 2,
-			MAVNT_MAX = 3,
-			MENU_ACTION_WHISPER_NOTIFY_TYPE_MAX = 4,
-		};
 		ADD_STRUCT(int, CurrSetting, 356)
 		void Initialize()
 		{

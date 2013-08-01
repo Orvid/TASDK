@@ -1,8 +1,9 @@
 #pragma once
+#include "Engine.Actor.TraceHitInfo.h"
 #include "TribesGame.TrProj_StickyGrenade.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "Engine.Controller.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -39,7 +40,7 @@ namespace UnrealScript
 			*(float*)&params[40] = DamageFalloffExponent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(108934);
 			byte params[68] = { NULL };
@@ -48,7 +49,7 @@ namespace UnrealScript
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

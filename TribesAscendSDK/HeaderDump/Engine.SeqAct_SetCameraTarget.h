@@ -1,7 +1,7 @@
 #pragma once
+#include "Engine.Camera.ViewTargetTransitionParams.h"
 #include "Engine.SequenceAction.h"
 #include "Engine.Actor.h"
-#include "Engine.Camera.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,7 +16,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_OBJECT(Actor, CameraTarget, 232)
-		ADD_STRUCT(Camera::ViewTargetTransitionParams, TransitionParams, 236)
+		ADD_STRUCT(Camera__ViewTargetTransitionParams, TransitionParams, 236)
 		int GetObjClassVersion()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25853);

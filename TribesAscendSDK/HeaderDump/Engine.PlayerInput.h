@@ -1,7 +1,8 @@
 #pragma once
+#include "Engine.Actor.EDoubleClickDir.h"
 #include "Engine.Input.h"
-#include "Engine.Actor.h"
 #include "Engine.HUD.h"
+#include "Engine.Actor.ETravelType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -76,13 +77,13 @@ namespace UnrealScript
 		ADD_BOOL(bInvertAirVehicles, 216, 0x8)
 		ADD_BOOL(bInvertTurn, 216, 0x4)
 		ADD_BOOL(bInvertMouse, 216, 0x2)
-		Actor::EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
+		Actor__EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8556);
 			byte params[5] = { NULL };
 			*(float*)params = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Actor::EDoubleClickDir*)&params[4];
+			return *(Actor__EDoubleClickDir*)&params[4];
 		}
 		bool InvertMouse()
 		{
@@ -196,12 +197,12 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14022);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void PreClientTravel(ScriptString* PendingURL, Actor::ETravelType TravelType, bool bIsSeamlessTravel)
+		void PreClientTravel(ScriptString* PendingURL, Actor__ETravelType TravelType, bool bIsSeamlessTravel)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14023);
 			byte params[17] = { NULL };
 			*(ScriptString**)params = PendingURL;
-			*(Actor::ETravelType*)&params[12] = TravelType;
+			*(Actor__ETravelType*)&params[12] = TravelType;
 			*(bool*)&params[16] = bIsSeamlessTravel;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

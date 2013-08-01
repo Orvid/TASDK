@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.Pointer.h"
 #include "Engine.Texture2D.h"
-#include "Core.Object.h"
 #include "Engine.Terrain.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -15,10 +15,7 @@ namespace UnrealScript
 	class TerrainWeightMapTexture : public Texture2D
 	{
 	public:
-		struct TerrainWeightedMaterial
-		{
-		};
-		ADD_STRUCT(ScriptArray<Object::Pointer>, WeightedMaterials, 372)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, WeightedMaterials, 372)
 		ADD_OBJECT(Terrain, ParentTerrain, 368)
 	};
 }

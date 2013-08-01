@@ -2,13 +2,14 @@
 #include "UDKBase.UDKGameObjective.h"
 #include "UTGame.UTVehicleFactory.h"
 #include "Engine.NavigationPoint.h"
-#include "Core.Object.h"
+#include "Engine.SoundNodeWave.h"
+#include "Core.Object.LinearColor.h"
+#include "UTGame.UTGameObjective.ScorerRecord.h"
 #include "UTGame.UTTeamStaticMesh.h"
 #include "Engine.PlayerStart.h"
-#include "Engine.SoundNodeWave.h"
-#include "UDKBase.UDKPlayerController.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
 #include "Engine.Material.h"
-#include "Engine.UIRoot.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
 #include "UTGame.UTCarriedObject.h"
 #include "Engine.Volume.h"
 #include "UTGame.UTDefensePoint.h"
@@ -16,9 +17,11 @@
 #include "Engine.Pawn.h"
 #include "Engine.Actor.h"
 #include "UTGame.UTPlayerController.h"
+#include "Core.Object.Vector.h"
 #include "Engine.PlayerController.h"
 #include "Engine.Canvas.h"
 #include "UTGame.UTBot.h"
+#include "Core.Object.Rotator.h"
 #include "UTGame.UTMapInfo.h"
 #include "Engine.AIController.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
@@ -47,20 +50,14 @@ namespace UnrealScript
 	class UTGameObjective : public UDKGameObjective
 	{
 	public:
-		struct ScorerRecord
-		{
-		public:
-			ADD_STRUCT(float, Pct, 4)
-			ADD_OBJECT(UTPlayerReplicationInfo, PRI, 0)
-		};
 		ADD_BOOL(bAllowRemoteUse, 744, 0x2)
 		ADD_STRUCT(ScriptArray<class NavigationPoint*>, VehicleParkingSpots, 772)
-		ADD_STRUCT(ScriptArray<UTGameObjective::ScorerRecord>, Scorers, 792)
+		ADD_STRUCT(ScriptArray<UTGameObjective__ScorerRecord>, Scorers, 792)
 		ADD_STRUCT(ScriptArray<class UTVehicleFactory*>, VehicleFactories, 904)
 		ADD_STRUCT(ScriptArray<class PlayerStart*>, PlayerStarts, 916)
 		ADD_STRUCT(ScriptArray<class UTTeamStaticMesh*>, TeamStaticMeshes, 928)
 		ADD_STRUCT(ScriptArray<class SoundNodeWave*>, LocationSpeech, 1000)
-		ADD_STRUCT(Object::LinearColor, AttackLinearColor, 1012)
+		ADD_STRUCT(Object__LinearColor, AttackLinearColor, 1012)
 		ADD_STRUCT(float, MaxBeaconDistance, 996)
 		ADD_STRUCT(float, LastPostRenderTraceTime, 992)
 		ADD_STRUCT(float, LastHighlightUpdate, 988)
@@ -68,8 +65,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, HighlightSpeed, 980)
 		ADD_STRUCT(float, MaxHighlightScale, 976)
 		ADD_STRUCT(float, HighlightScale, 972)
-		ADD_STRUCT(UDKPlayerController::ObjectiveAnnouncementInfo, DefendAnnouncement, 956)
-		ADD_STRUCT(UDKPlayerController::ObjectiveAnnouncementInfo, AttackAnnouncement, 940)
+		ADD_STRUCT(UDKPlayerController__ObjectiveAnnouncementInfo, DefendAnnouncement, 956)
+		ADD_STRUCT(UDKPlayerController__ObjectiveAnnouncementInfo, AttackAnnouncement, 940)
 		ADD_STRUCT(float, CameraViewDistance, 900)
 		ADD_STRUCT(float, MaxSensorRange, 896)
 		ADD_OBJECT(Material, HudMaterial, 892)
@@ -77,8 +74,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, IconExtentX, 884)
 		ADD_STRUCT(float, IconPosY, 880)
 		ADD_STRUCT(float, IconPosX, 876)
-		ADD_STRUCT(UIRoot::TextureCoordinates, AttackCoords, 860)
-		ADD_STRUCT(Object::LinearColor, ControlColor, 812)
+		ADD_STRUCT(UIRoot__TextureCoordinates, AttackCoords, 860)
+		ADD_STRUCT(Object__LinearColor, ControlColor, 812)
 		ADD_OBJECT(UTGameObjective, NextObjective, 808)
 		ADD_STRUCT(int, Score, 804)
 		ADD_STRUCT(float, BaseRadius, 788)

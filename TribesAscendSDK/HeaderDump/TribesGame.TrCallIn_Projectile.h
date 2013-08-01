@@ -1,6 +1,6 @@
 #pragma once
 #include "TribesGame.TrCallIn.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.SoundCue.h"
 #define ADD_STRUCT(x, y, offset) \

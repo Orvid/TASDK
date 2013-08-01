@@ -1,6 +1,6 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Vector.h"
 #include "Engine.PlayerController.h"
 #include "Engine.Canvas.h"
 #define ADD_STRUCT(x, y, offset) \

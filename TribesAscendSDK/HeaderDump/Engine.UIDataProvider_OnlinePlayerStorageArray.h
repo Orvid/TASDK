@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.UIDataProvider.h"
-#include "Core.Object.h"
 #include "Engine.OnlinePlayerStorage.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -20,8 +20,8 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptName, PlayerStorageName, 104)
 		ADD_STRUCT(int, PlayerStorageId, 100)
 		ADD_OBJECT(OnlinePlayerStorage, PlayerStorage, 96)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 92)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementProvider, 88)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 92)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementProvider, 88)
 	};
 }
 #undef ADD_STRUCT

@@ -2,7 +2,7 @@
 #include "Core.Object.h"
 #include "Engine.SeqAct_Latent.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.Texture.h"
+#include "Engine.Texture.TextureGroupContainer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,7 +25,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<class Object*>, LocationActors, 260)
 		ADD_STRUCT(ScriptArray<class MaterialInterface*>, ForceMaterials, 272)
 		ADD_STRUCT(int, SelectedCinematicTextureGroups, 288)
-		ADD_STRUCT(Texture::TextureGroupContainer, CinematicTextureGroups, 284)
+		ADD_STRUCT(Texture__TextureGroupContainer, CinematicTextureGroups, 284)
 		ADD_STRUCT(float, StopTimestamp, 256)
 		ADD_STRUCT(float, Seconds, 252)
 		ADD_BOOL(bStreamingActive, 248, 0x2)

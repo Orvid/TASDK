@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.PBRuleNodeBase.h"
-#include "Engine.ProcBuildingRuleset.h"
+#include "Engine.PBRuleNodeSplit.RBSplitInfo.h"
+#include "Engine.ProcBuildingRuleset.EProcBuildingAxis.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,16 +21,8 @@ namespace UnrealScript
 	class PBRuleNodeSplit : public PBRuleNodeBase
 	{
 	public:
-		struct RBSplitInfo
-		{
-		public:
-			ADD_STRUCT(ScriptName, SplitName, 12)
-			ADD_STRUCT(float, ExpandRatio, 8)
-			ADD_STRUCT(float, FixedSize, 4)
-			ADD_BOOL(bFixSize, 0, 0x1)
-		};
-		ADD_STRUCT(ScriptArray<PBRuleNodeSplit::RBSplitInfo>, SplitSetup, 108)
-		ADD_STRUCT(ProcBuildingRuleset::EProcBuildingAxis, SplitAxis, 104)
+		ADD_STRUCT(ScriptArray<PBRuleNodeSplit__RBSplitInfo>, SplitSetup, 108)
+		ADD_STRUCT(ProcBuildingRuleset__EProcBuildingAxis, SplitAxis, 104)
 	};
 }
 #undef ADD_BOOL

@@ -1,13 +1,17 @@
 #pragma once
+#include "Core.Object.Vector2D.h"
+#include "TribesGame.TrObject.TrClassType.h"
 #include "UTGame.UTFamilyInfo.h"
-#include "TribesGame.TrObject.h"
 #include "Engine.AnimTree.h"
-#include "Core.Object.h"
-#include "Engine.MorphTargetSet.h"
-#include "Engine.AnimSet.h"
 #include "Engine.SkeletalMesh.h"
 #include "Engine.ParticleSystem.h"
+#include "TribesGame.TrFamilyInfo.SkillNode.h"
 #include "Engine.PhysicsAsset.h"
+#include "TribesGame.TrFamilyInfo.DeviceSelectionList.h"
+#include "TribesGame.TrObject.PaperDollInfo.h"
+#include "Engine.AnimSet.h"
+#include "Engine.MorphTargetSet.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,28 +36,10 @@ namespace UnrealScript
 	{
 	public:
 		static const auto TR_MAX_FACTION_NBR = 3;
-		struct DeviceSelectionList
-		{
-		public:
-			ADD_OBJECT(ScriptClass, DeviceClass, 4)
-			ADD_STRUCT(TrObject::TR_EQUIP_POINT, EquipPoint, 0)
-			ADD_STRUCT(ScriptString*, ContentDeviceClassString, 8)
-		};
-		struct SkillNode
-		{
-		public:
-			ADD_STRUCT(int, Cost, 24)
-			ADD_STRUCT(int, ParentIndex, 20)
-			ADD_STRUCT(int, IconId, 16)
-			ADD_STRUCT(int, IconPosY, 12)
-			ADD_STRUCT(int, IconPosX, 8)
-			ADD_STRUCT(float, Value, 4)
-			ADD_OBJECT(TrValueModifier, ValueModifier, 0)
-		};
 		ADD_STRUCT(int, ClassId, 636)
 		ADD_STRUCT(ScriptString*, FriendlyName, 624)
 		ADD_STRUCT(int, m_IconId, 784)
-		ADD_STRUCT(TrObject::TrClassType, ClassType, 644)
+		ADD_STRUCT(TrObject__TrClassType, ClassType, 644)
 		ADD_STRUCT(ScriptString*, ClassDescription, 660)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, VehicleSelectionList, 424)
 		ADD_OBJECT(AnimTree, m_3pAnimTreeTemplate, 620)
@@ -92,8 +78,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fPowerPoolRechargeRate, 540)
 		ADD_STRUCT(float, m_fSecondsBeforeAutoHeal, 548)
 		ADD_STRUCT(float, m_fHealthPoolRechargeRate, 544)
-		ADD_STRUCT(Object::Vector2D, m_vAirControlReductionRange, 452)
-		ADD_STRUCT(Object::Vector2D, m_vAirControlMultiplier, 460)
+		ADD_STRUCT(Object__Vector2D, m_vAirControlReductionRange, 452)
+		ADD_STRUCT(Object__Vector2D, m_vAirControlMultiplier, 460)
 		ADD_STRUCT(float, m_fFlightAcceleration, 468)
 		ADD_BOOL(m_bMomentumDampingEnabled, 708, 0x1)
 		ADD_STRUCT(float, m_fMomentumDampingSpeed, 712)
@@ -109,12 +95,12 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fLowHealthThreshold, 552)
 		ADD_STRUCT(float, m_fJetpackInitTotalTime, 476)
 		ADD_STRUCT(int, InfoBit, 640)
-		ADD_STRUCT(ScriptArray<TrFamilyInfo::DeviceSelectionList>, DevSelectionList, 412)
+		ADD_STRUCT(ScriptArray<TrFamilyInfo__DeviceSelectionList>, DevSelectionList, 412)
 		ADD_OBJECT(ScriptClass, DefaultSkinClass, 448)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, PassengerSelectionList, 436)
 		ADD_STRUCT(ScriptArray<ScriptName>, m_nmJetpackThrustEffectSockets, 500)
-		ADD_STRUCT(ScriptArray<TrFamilyInfo::SkillNode>, m_SkillGrid, 796)
-		ADD_STRUCT(TrObject::PaperDollInfo, m_MainMenuPaperDollInfo, 1748)
+		ADD_STRUCT(ScriptArray<TrFamilyInfo__SkillNode>, m_SkillGrid, 796)
+		ADD_STRUCT(TrObject__PaperDollInfo, m_MainMenuPaperDollInfo, 1748)
 		ADD_OBJECT(PhysicsAsset, m_PaperDollSidekickPhysics, 1724)
 		ADD_OBJECT(AnimTree, m_PaperDollSidekickAnimTree, 1720)
 		ADD_OBJECT(AnimSet, m_PaperDollSidekickAnimset, 1716)
@@ -138,19 +124,19 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fJetpackPowerPoolTickRate, 484)
 		ADD_STRUCT(float, m_fJetpackPowerPoolCost, 480)
 		ADD_STRUCT(float, m_fJetpackInitAccelMultiplier, 472)
-		ScriptClass* GetDeviceClassByEquipPoint(TrObject::TR_EQUIP_POINT EquipPoint)
+		ScriptClass* GetDeviceClassByEquipPoint(TrObject__TR_EQUIP_POINT EquipPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87674);
 			byte params[5] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptClass**)&params[4];
 		}
-		ScriptString* GetContentDeviceClassStringByEquipPoint(TrObject::TR_EQUIP_POINT EquipPoint)
+		ScriptString* GetContentDeviceClassStringByEquipPoint(TrObject__TR_EQUIP_POINT EquipPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87678);
 			byte params[13] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}

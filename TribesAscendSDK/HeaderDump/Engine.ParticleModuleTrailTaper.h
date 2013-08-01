@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.ParticleModuleTrailBase.h"
-#include "Core.DistributionFloat.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Engine.ParticleModuleTrailTaper.ETrailTaperMethod.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,15 +11,8 @@ namespace UnrealScript
 	class ParticleModuleTrailTaper : public ParticleModuleTrailBase
 	{
 	public:
-		enum ETrailTaperMethod : byte
-		{
-			PETTM_None = 0,
-			PETTM_Full = 1,
-			PETTM_Partial = 2,
-			PETTM_MAX = 3,
-		};
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, TaperFactor, 76)
-		ADD_STRUCT(ParticleModuleTrailTaper::ETrailTaperMethod, TaperMethod, 72)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, TaperFactor, 76)
+		ADD_STRUCT(ParticleModuleTrailTaper__ETrailTaperMethod, TaperMethod, 72)
 	};
 }
 #undef ADD_STRUCT

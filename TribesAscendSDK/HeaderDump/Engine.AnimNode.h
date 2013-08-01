@@ -1,7 +1,8 @@
 #pragma once
 #include "Engine.AnimObject.h"
 #include "Engine.AnimNodeBlendBase.h"
-#include "Core.Object.h"
+#include "Core.Object.BoneAtom.h"
+#include "Engine.AnimNode.CurveKey.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,25 +22,13 @@ namespace UnrealScript
 	class AnimNode : public AnimObject
 	{
 	public:
-		enum ESliderType : byte
-		{
-			ST_1D = 0,
-			ST_2D = 1,
-			ST_MAX = 2,
-		};
-		struct CurveKey
-		{
-		public:
-			ADD_STRUCT(float, Weight, 8)
-			ADD_STRUCT(ScriptName, CurveName, 0)
-		};
 		ADD_STRUCT(ScriptArray<class AnimNodeBlendBase*>, ParentNodes, 120)
-		ADD_STRUCT(ScriptArray<Object::BoneAtom>, CachedBoneAtoms, 140)
-		ADD_STRUCT(ScriptArray<AnimNode::CurveKey>, CachedCurveKeys, 196)
-		ADD_STRUCT(ScriptArray<AnimNode::CurveKey>, LastUpdatedAnimMorphKeys, 212)
+		ADD_STRUCT(ScriptArray<Object__BoneAtom>, CachedBoneAtoms, 140)
+		ADD_STRUCT(ScriptArray<AnimNode__CurveKey>, CachedCurveKeys, 196)
+		ADD_STRUCT(ScriptArray<AnimNode__CurveKey>, LastUpdatedAnimMorphKeys, 212)
 		ADD_STRUCT(int, SearchTag, 208)
 		ADD_STRUCT(int, bCachedHasRootMotion, 192)
-		ADD_STRUCT(Object::BoneAtom, CachedRootMotionDelta, 160)
+		ADD_STRUCT(Object__BoneAtom, CachedRootMotionDelta, 160)
 		ADD_STRUCT(byte, CachedNumDesiredBones, 152)
 		ADD_STRUCT(ScriptName, NodeName, 132)
 		ADD_STRUCT(float, NodeTotalWeight, 116)

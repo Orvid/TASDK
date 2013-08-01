@@ -1,6 +1,7 @@
 #pragma once
+#include "Core.Object.Map_Mirror.h"
 #include "Engine.UIDataStore_StringAliasMap.h"
-#include "Core.Object.h"
+#include "UDKBase.UDKUIDataStore_StringAliasBindingMap.ControllerMap.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,22 +12,8 @@ namespace UnrealScript
 	{
 	public:
 		static const auto SABM_FIND_FIRST_BIND = -2;
-		struct ControllerMap
-		{
-		public:
-			ADD_STRUCT(ScriptString*, PS3Mapping, 20)
-			ADD_STRUCT(ScriptString*, XBoxMapping, 8)
-			ADD_STRUCT(ScriptName, KeyName, 0)
-		};
-		struct BindCacheElement
-		{
-		public:
-			ADD_STRUCT(int, FieldIndex, 20)
-			ADD_STRUCT(ScriptString*, MappingString, 8)
-			ADD_STRUCT(ScriptName, KeyName, 0)
-		};
-		ADD_STRUCT(ScriptArray<UDKUIDataStore_StringAliasBindingMap::ControllerMap>, ControllerMapArray, 260)
-		ADD_STRUCT(Object::Map_Mirror, CommandToBindNames, 200)
+		ADD_STRUCT(ScriptArray<UDKUIDataStore_StringAliasBindingMap__ControllerMap>, ControllerMapArray, 260)
+		ADD_STRUCT(Object__Map_Mirror, CommandToBindNames, 200)
 		ADD_STRUCT(int, FakePlatform, 196)
 		int GetStringWithFieldName(ScriptString* FieldName, ScriptString*& MappedString)
 		{

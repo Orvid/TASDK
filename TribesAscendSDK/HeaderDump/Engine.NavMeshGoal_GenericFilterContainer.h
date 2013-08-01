@@ -1,8 +1,9 @@
 #pragma once
 #include "Engine.NavMeshPathGoalEvaluator.h"
 #include "Engine.NavMeshGoal_Filter.h"
+#include "Core.Object.Vector.h"
 #include "Engine.NavigationHandle.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -18,7 +19,7 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(ScriptArray<class NavMeshGoal_Filter*>, GoalFilters, 80)
 		ADD_OBJECT(NavigationHandle, MyNavigationHandle, 96)
-		ADD_STRUCT(Object::Pointer, SuccessfulGoal, 92)
+		ADD_STRUCT(Object__Pointer, SuccessfulGoal, 92)
 		class NavMeshGoal_GenericFilterContainer* CreateAndAddFilterToNavHandle(class NavigationHandle* NavHandle, int InMaxPathVisits)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20963);

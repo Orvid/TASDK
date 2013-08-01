@@ -1,8 +1,9 @@
 #pragma once
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "TribesGame.TrDevice_ConstantFire.h"
 #include "TribesGame.TrCallIn.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.SoundCue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

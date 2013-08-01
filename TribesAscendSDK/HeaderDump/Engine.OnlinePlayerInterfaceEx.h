@@ -1,26 +1,26 @@
 #pragma once
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 namespace UnrealScript
 {
 	class OnlinePlayerInterfaceEx : public Interface
 	{
 	public:
-		bool ShowFeedbackUI(byte LocalUserNum, OnlineSubsystem::UniqueNetId PlayerID)
+		bool ShowFeedbackUI(byte LocalUserNum, OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22318);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		bool ShowGamerCardUI(byte LocalUserNum, OnlineSubsystem::UniqueNetId PlayerID)
+		bool ShowGamerCardUI(byte LocalUserNum, OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22322);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
@@ -165,12 +165,12 @@ void* ProfileDataChangedDelegate)
 void**)&params[4] = ProfileDataChangedDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool ShowFriendsInviteUI(byte LocalUserNum, OnlineSubsystem::UniqueNetId PlayerID)
+		bool ShowFriendsInviteUI(byte LocalUserNum, OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22378);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
@@ -182,16 +182,16 @@ void**)&params[4] = ProfileDataChangedDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool ShowCustomPlayersUI(byte LocalUserNum, ScriptArray<OnlineSubsystem::UniqueNetId>& Players, ScriptString* Title, ScriptString* Description)
+		bool ShowCustomPlayersUI(byte LocalUserNum, ScriptArray<OnlineSubsystem__UniqueNetId>& Players, ScriptString* Title, ScriptString* Description)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22385);
 			byte params[41] = { NULL };
 			*params = LocalUserNum;
-			*(ScriptArray<OnlineSubsystem::UniqueNetId>*)&params[4] = Players;
+			*(ScriptArray<OnlineSubsystem__UniqueNetId>*)&params[4] = Players;
 			*(ScriptString**)&params[16] = Title;
 			*(ScriptString**)&params[28] = Description;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Players = *(ScriptArray<OnlineSubsystem::UniqueNetId>*)&params[4];
+			Players = *(ScriptArray<OnlineSubsystem__UniqueNetId>*)&params[4];
 			return *(bool*)&params[40];
 		}
 		bool UnlockAvatarAward(byte LocalUserNum, int AvatarItemId)

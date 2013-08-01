@@ -1,6 +1,6 @@
 #pragma once
-#include "Engine.InterpTrackToggle.h"
 #include "Engine.InterpTrackInst.h"
+#include "Engine.InterpTrackToggle.ETrackToggleAction.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,7 +22,7 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(bSavedActiveState, 68, 0x1)
 		ADD_STRUCT(float, LastUpdatePosition, 64)
-		ADD_STRUCT(InterpTrackToggle::ETrackToggleAction, Action, 60)
+		ADD_STRUCT(InterpTrackToggle__ETrackToggleAction, Action, 60)
 	};
 }
 #undef ADD_BOOL

@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.MaterialExpression.h"
+#include "Engine.MaterialExpression.ExpressionInput.h"
 #include "Engine.Texture.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -14,7 +15,7 @@ namespace UnrealScript
 	class MaterialExpressionTextureSample : public MaterialExpression
 	{
 	public:
-		ADD_STRUCT(MaterialExpression::ExpressionInput, Coordinates, 112)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, Coordinates, 112)
 		ADD_OBJECT(Texture, Texture, 108)
 	};
 }

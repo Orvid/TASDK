@@ -1,6 +1,8 @@
 #pragma once
+#include "Engine.SoundNodeAttenuation.SoundDistanceModel.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.SoundNode.h"
-#include "Core.DistributionFloat.h"
+#include "Engine.SoundNodeAttenuation.ESoundDistanceCalc.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,34 +22,17 @@ namespace UnrealScript
 	class SoundNodeAttenuation : public SoundNode
 	{
 	public:
-		enum ESoundDistanceCalc : byte
-		{
-			SOUNDDISTANCE_Normal = 0,
-			SOUNDDISTANCE_InfiniteXYPlane = 1,
-			SOUNDDISTANCE_InfiniteXZPlane = 2,
-			SOUNDDISTANCE_InfiniteYZPlane = 3,
-			SOUNDDISTANCE_MAX = 4,
-		};
-		enum SoundDistanceModel : byte
-		{
-			ATTENUATION_Linear = 0,
-			ATTENUATION_Logarithmic = 1,
-			ATTENUATION_Inverse = 2,
-			ATTENUATION_LogReverse = 3,
-			ATTENUATION_NaturalSound = 4,
-			ATTENUATION_MAX = 5,
-		};
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, LPFMaxRadius, 188)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, LPFMinRadius, 160)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, MaxRadius, 132)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, MinRadius, 104)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, LPFMaxRadius, 188)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, LPFMinRadius, 160)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, MaxRadius, 132)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, MinRadius, 104)
 		ADD_STRUCT(float, LPFRadiusMax, 100)
 		ADD_STRUCT(float, LPFRadiusMin, 96)
 		ADD_STRUCT(float, RadiusMax, 92)
 		ADD_STRUCT(float, RadiusMin, 88)
-		ADD_STRUCT(SoundNodeAttenuation::SoundDistanceModel, DistanceModel, 86)
-		ADD_STRUCT(SoundNodeAttenuation::ESoundDistanceCalc, DistanceType, 85)
-		ADD_STRUCT(SoundNodeAttenuation::SoundDistanceModel, DistanceAlgorithm, 84)
+		ADD_STRUCT(SoundNodeAttenuation__SoundDistanceModel, DistanceModel, 86)
+		ADD_STRUCT(SoundNodeAttenuation__ESoundDistanceCalc, DistanceType, 85)
+		ADD_STRUCT(SoundNodeAttenuation__SoundDistanceModel, DistanceAlgorithm, 84)
 		ADD_STRUCT(float, dBAttenuationAtMax, 80)
 		ADD_BOOL(bAttenuateWithLowPassFilter, 76, 0x8)
 		ADD_BOOL(bAttenuateWithLPF, 76, 0x4)

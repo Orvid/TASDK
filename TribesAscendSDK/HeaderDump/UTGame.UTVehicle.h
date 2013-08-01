@@ -1,43 +1,56 @@
 #pragma once
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.ParticleSystem.h"
 #include "UDKBase.UDKVehicle.h"
 #include "Engine.SoundCue.h"
+#include "Engine.Canvas.h"
+#include "UTGame.UTVehicle.MaterialList.h"
 #include "Engine.MaterialInterface.h"
-#include "UDKBase.UDKPawn.h"
-#include "UDKBase.UDKProjectile.h"
-#include "UTGame.UTGib.h"
 #include "Engine.StaticMesh.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.SoundNodeWave.h"
-#include "Core.Object.h"
-#include "Engine.UIRoot.h"
+#include "Engine.Actor.RigidBodyContactInfo.h"
+#include "UDKBase.UDKPawn.DistanceBasedParticleTemplate.h"
+#include "Core.Object.Vector2D.h"
+#include "UTGame.UTVehicle.TimePosition.h"
+#include "Core.Object.Vector.h"
+#include "UDKBase.UDKProjectile.h"
+#include "UTGame.UTVehicle.EAIVehiclePurpose.h"
+#include "UTGame.UTGib.h"
+#include "UTGame.UTMapInfo.h"
+#include "Core.Object.InterpCurveFloat.h"
+#include "UTGame.UTWeapon.h"
+#include "UTGame.UTHUD.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "Engine.Actor.EDoubleClickDir.h"
 #include "Engine.Texture2D.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.Actor.h"
 #include "UTGame.UTVehicleDeathPiece.h"
 #include "UTGame.UTPlayerController.h"
 #include "Engine.CameraAnim.h"
 #include "UTGame.UTBot.h"
 #include "Engine.Emitter.h"
-#include "UDKBase.UDKPlayerController.h"
 #include "UTGame.UTVehicleFactory.h"
 #include "Engine.PhysicalMaterial.h"
 #include "Engine.Weapon.h"
 #include "Engine.Pawn.h"
-#include "Engine.Canvas.h"
-#include "UTGame.UTWeapon.h"
-#include "UTGame.UTHUD.h"
-#include "UTGame.UTMapInfo.h"
 #include "Engine.Vehicle.h"
 #include "Engine.Controller.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.PlayerController.h"
+#include "Core.Object.Color.h"
 #include "UTGame.UTCarriedObject.h"
 #include "Engine.Projectile.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #include "UDKBase.UDKCarriedObject.h"
 #include "UTGame.UTSquadAI.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "UTGame.UTVehicleWeapon.h"
 #include "UTGame.UTProjectile.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
+#include "Engine.Actor.CollisionImpactData.h"
 #include "UTGame.UTPawn.h"
 #include "UTGame.UTSeqAct_ExitVehicle.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -64,24 +77,6 @@ namespace UnrealScript
 	{
 	public:
 		static const auto UTVEHICLE_UNSET_TEAM = 255;
-		enum EAIVehiclePurpose : byte
-		{
-			AIP_Offensive = 0,
-			AIP_Defensive = 1,
-			AIP_Any = 2,
-			AIP_MAX = 3,
-		};
-		struct MaterialList
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class MaterialInterface*>, Materials, 0)
-		};
-		struct TimePosition
-		{
-		public:
-			ADD_STRUCT(float, Time, 12)
-			ADD_STRUCT(Vector, Position, 0)
-		};
 		ADD_BOOL(bCanCarryFlag, 1976, 0x2)
 		ADD_BOOL(bRequestedEntryWithFlag, 1976, 0x200000)
 		ADD_BOOL(bHasCustomEntryRadius, 1976, 0x10)
@@ -91,12 +86,12 @@ namespace UnrealScript
 		ADD_BOOL(bSpectatedView, 1980, 0x200)
 		ADD_STRUCT(ScriptArray<class SoundCue*>, HornSounds, 2048)
 		ADD_STRUCT(ScriptArray<class MaterialInterface*>, TeamMaterials, 2196)
-		ADD_STRUCT(ScriptArray<UDKPawn::DistanceBasedParticleTemplate>, BigExplosionTemplates, 2232)
-		ADD_STRUCT(ScriptArray<UDKPawn::DistanceBasedParticleTemplate>, DistanceTurretExplosionTemplates, 2312)
+		ADD_STRUCT(ScriptArray<UDKPawn__DistanceBasedParticleTemplate>, BigExplosionTemplates, 2232)
+		ADD_STRUCT(ScriptArray<UDKPawn__DistanceBasedParticleTemplate>, DistanceTurretExplosionTemplates, 2312)
 		ADD_STRUCT(ScriptArray<class ParticleSystem*>, SpawnInTemplates, 2560)
-		ADD_STRUCT(ScriptArray<UTVehicle::MaterialList>, SpawnMaterialLists, 2572)
+		ADD_STRUCT(ScriptArray<UTVehicle__MaterialList>, SpawnMaterialLists, 2572)
 		ADD_STRUCT(ScriptArray<class MaterialInterface*>, OriginalMaterials, 2608)
-		ADD_STRUCT(ScriptArray<UTVehicle::TimePosition>, OldPositions, 2656)
+		ADD_STRUCT(ScriptArray<UTVehicle__TimePosition>, OldPositions, 2656)
 		ADD_STRUCT(ScriptArray<class SoundNodeWave*>, EnemyVehicleSound, 2732)
 		ADD_STRUCT(ScriptArray<class SoundNodeWave*>, VehicleDestroyedSound, 2744)
 		ADD_STRUCT(float, LastEnemyWarningTime, 2728)
@@ -117,20 +112,20 @@ namespace UnrealScript
 		ADD_STRUCT(float, CollisionDamageMult, 2632)
 		ADD_OBJECT(MaterialInterface, BurnOutMaterial, 2624)
 		ADD_STRUCT(float, SpawnInTime, 2620)
-		ADD_STRUCT(Object::InterpCurveFloat, SpawnMaterialParameterCurve, 2592)
+		ADD_STRUCT(Object__InterpCurveFloat, SpawnMaterialParameterCurve, 2592)
 		ADD_STRUCT(ScriptName, SpawnMaterialParameterName, 2584)
-		ADD_STRUCT(UIRoot::TextureCoordinates, HudCoords, 2544)
+		ADD_STRUCT(UIRoot__TextureCoordinates, HudCoords, 2544)
 		ADD_OBJECT(Texture2D, HudIcons, 2540)
 		ADD_STRUCT(Vector, PassengerTeamBeaconOffset, 2528)
 		ADD_OBJECT(PlayerReplicationInfo, PassengerPRI, 2512)
 		ADD_STRUCT(Vector, TeamBeaconOffset, 2500)
 		ADD_STRUCT(float, HealthPulseTime, 2496)
 		ADD_STRUCT(int, LastHealth, 2492)
-		ADD_STRUCT(UIRoot::TextureCoordinates, DropOrbIconCoords, 2476)
-		ADD_STRUCT(UIRoot::TextureCoordinates, DropFlagIconCoords, 2460)
-		ADD_STRUCT(UIRoot::TextureCoordinates, EnterToolTipIconCoords, 2444)
-		ADD_STRUCT(UIRoot::TextureCoordinates, FlipToolTipIconCoords, 2428)
-		ADD_STRUCT(UIRoot::TextureCoordinates, IconCoords, 2412)
+		ADD_STRUCT(UIRoot__TextureCoordinates, DropOrbIconCoords, 2476)
+		ADD_STRUCT(UIRoot__TextureCoordinates, DropFlagIconCoords, 2460)
+		ADD_STRUCT(UIRoot__TextureCoordinates, EnterToolTipIconCoords, 2444)
+		ADD_STRUCT(UIRoot__TextureCoordinates, FlipToolTipIconCoords, 2428)
+		ADD_STRUCT(UIRoot__TextureCoordinates, IconCoords, 2412)
 		ADD_STRUCT(float, MapSize, 2408)
 		ADD_STRUCT(ScriptName, FlagBone, 2400)
 		ADD_STRUCT(Rotator, FlagRotation, 2388)
@@ -173,7 +168,7 @@ namespace UnrealScript
 		ADD_OBJECT(ScriptClass, VehicleDrowningDamType, 2172)
 		ADD_STRUCT(float, HUDExtent, 2168)
 		ADD_STRUCT(float, TeamBeaconPlayerInfoMaxDist, 2164)
-		ADD_STRUCT(UDKPlayerController::ObjectiveAnnouncementInfo, NeedToPickUpAnnouncement, 2148)
+		ADD_STRUCT(UDKPlayerController__ObjectiveAnnouncementInfo, NeedToPickUpAnnouncement, 2148)
 		ADD_STRUCT(ScriptString*, VehicleNameString, 2136)
 		ADD_STRUCT(ScriptString*, VehiclePositionString, 2124)
 		ADD_OBJECT(UTBot, Reservation, 2120)
@@ -204,7 +199,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, DeflectionReverseThresh, 1996)
 		ADD_OBJECT(Actor, NoPassengerObjective, 1992)
 		ADD_STRUCT(byte, LinkedToCount, 1989)
-		ADD_STRUCT(UTVehicle::EAIVehiclePurpose, AIPurpose, 1988)
+		ADD_STRUCT(UTVehicle__EAIVehiclePurpose, AIPurpose, 1988)
 		ADD_BOOL(bDriverHoldsFlag, 1976, 0x1)
 		ADD_OBJECT(SoundCue, VehicleLockedSound, 1984)
 		ADD_BOOL(bIsNecrisVehicle, 1980, 0x100)
@@ -352,14 +347,14 @@ namespace UnrealScript
 			*(float*)&params[16] = HUDScaleY;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void RenderMapIcon(class UTMapInfo* MP, class Canvas* Canvas, class UTPlayerController* PlayerOwner, Object::LinearColor FinalColor)
+		void RenderMapIcon(class UTMapInfo* MP, class Canvas* Canvas, class UTPlayerController* PlayerOwner, Object__LinearColor FinalColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39411);
 			byte params[28] = { NULL };
 			*(class UTMapInfo**)params = MP;
 			*(class Canvas**)&params[4] = Canvas;
 			*(class UTPlayerController**)&params[8] = PlayerOwner;
-			*(Object::LinearColor*)&params[12] = FinalColor;
+			*(Object__LinearColor*)&params[12] = FinalColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		float AdjustedStrength()
@@ -764,25 +759,25 @@ void**)&params[8] = PSC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)params;
 		}
-		void RenderPassengerBeacons(class PlayerController* PC, class Canvas* Canvas, Object::LinearColor TeamColor, Object::Color TextColor, class UTWeapon* Weap)
+		void RenderPassengerBeacons(class PlayerController* PC, class Canvas* Canvas, Object__LinearColor TeamColor, Object__Color TextColor, class UTWeapon* Weap)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39650);
 			byte params[32] = { NULL };
 			*(class PlayerController**)params = PC;
 			*(class Canvas**)&params[4] = Canvas;
-			*(Object::LinearColor*)&params[8] = TeamColor;
-			*(Object::Color*)&params[24] = TextColor;
+			*(Object__LinearColor*)&params[8] = TeamColor;
+			*(Object__Color*)&params[24] = TextColor;
 			*(class UTWeapon**)&params[28] = Weap;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void PostRenderPassengerBeacon(class PlayerController* PC, class Canvas* Canvas, Object::LinearColor TeamColor, Object::Color TextColor, class UTWeapon* Weap, class PlayerReplicationInfo* InPassengerPRI, Vector InPassengerTeamBeaconOffset)
+		void PostRenderPassengerBeacon(class PlayerController* PC, class Canvas* Canvas, Object__LinearColor TeamColor, Object__Color TextColor, class UTWeapon* Weap, class PlayerReplicationInfo* InPassengerPRI, Vector InPassengerTeamBeaconOffset)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39656);
 			byte params[48] = { NULL };
 			*(class PlayerController**)params = PC;
 			*(class Canvas**)&params[4] = Canvas;
-			*(Object::LinearColor*)&params[8] = TeamColor;
-			*(Object::Color*)&params[24] = TextColor;
+			*(Object__LinearColor*)&params[8] = TeamColor;
+			*(Object__Color*)&params[24] = TextColor;
 			*(class UTWeapon**)&params[28] = Weap;
 			*(class PlayerReplicationInfo**)&params[32] = InPassengerPRI;
 			*(Vector*)&params[36] = InPassengerTeamBeaconOffset;
@@ -805,11 +800,11 @@ void**)&params[8] = PSC;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39675);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		bool Dodge(Actor::EDoubleClickDir DoubleClickMove)
+		bool Dodge(Actor__EDoubleClickDir DoubleClickMove)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39680);
 			byte params[5] = { NULL };
-			*(Actor::EDoubleClickDir*)params = DoubleClickMove;
+			*(Actor__EDoubleClickDir*)params = DoubleClickMove;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
@@ -1060,7 +1055,7 @@ void**)&params[8] = PSC;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39806);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void PlayHit(float Damage, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Vector Momentum, Actor::TraceHitInfo HitInfo)
+		void PlayHit(float Damage, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Vector Momentum, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39810);
 			byte params[64] = { NULL };
@@ -1069,7 +1064,7 @@ void**)&params[8] = PSC;
 			*(Vector*)&params[8] = HitLocation;
 			*(ScriptClass**)&params[20] = DamageType;
 			*(Vector*)&params[24] = Momentum;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void PlayTakeHitEffects()
@@ -1088,7 +1083,7 @@ void**)&params[8] = PSC;
 			*(Vector*)&params[24] = Momentum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39831);
 			byte params[68] = { NULL };
@@ -1097,7 +1092,7 @@ void**)&params[8] = PSC;
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1292,7 +1287,7 @@ void**)&params[8] = PSC;
 			*(int*)&params[12] = SeatIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		class Actor* FindWeaponHitNormal(Vector& HitLocation, Vector& HitNormal, Vector End, Vector Start, Actor::TraceHitInfo& HitInfo)
+		class Actor* FindWeaponHitNormal(Vector& HitLocation, Vector& HitNormal, Vector End, Vector Start, Actor__TraceHitInfo& HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39952);
 			byte params[80] = { NULL };
@@ -1300,11 +1295,11 @@ void**)&params[8] = PSC;
 			*(Vector*)&params[12] = HitNormal;
 			*(Vector*)&params[24] = End;
 			*(Vector*)&params[36] = Start;
-			*(Actor::TraceHitInfo*)&params[48] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[48] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			HitLocation = *(Vector*)params;
 			HitNormal = *(Vector*)&params[12];
-			HitInfo = *(Actor::TraceHitInfo*)&params[48];
+			HitInfo = *(Actor__TraceHitInfo*)&params[48];
 			return *(class Actor**)&params[76];
 		}
 		void VehicleWeaponImpactEffects(Vector HitLocation, int SeatIndex)
@@ -1315,16 +1310,16 @@ void**)&params[8] = PSC;
 			*(int*)&params[12] = SeatIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SpawnImpactEmitter(Vector HitLocation, Vector HitNormal, UDKPawn::MaterialImpactEffect& ImpactEffect, int SeatIndex)
+		void SpawnImpactEmitter(Vector HitLocation, Vector HitNormal, UDKPawn__MaterialImpactEffect& ImpactEffect, int SeatIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39977);
 			byte params[76] = { NULL };
 			*(Vector*)params = HitLocation;
 			*(Vector*)&params[12] = HitNormal;
-			*(UDKPawn::MaterialImpactEffect*)&params[24] = ImpactEffect;
+			*(UDKPawn__MaterialImpactEffect*)&params[24] = ImpactEffect;
 			*(int*)&params[72] = SeatIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ImpactEffect = *(UDKPawn::MaterialImpactEffect*)&params[24];
+			ImpactEffect = *(UDKPawn__MaterialImpactEffect*)&params[24];
 		}
 		void VehicleAdjustFlashCount(int SeatIndex, byte FireModeNum, bool bClear)
 		{
@@ -1459,7 +1454,7 @@ void**)&params[8] = PSC;
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void* HitComponent, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
-void* OtherComponent, Actor::CollisionImpactData& Collision, int ContactIndex)
+void* OtherComponent, Actor__CollisionImpactData& Collision, int ContactIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(40149);
 			byte params[48] = { NULL };
@@ -1469,10 +1464,10 @@ void**)params = HitComponent;
 			*(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void**)&params[4] = OtherComponent;
-			*(Actor::CollisionImpactData*)&params[8] = Collision;
+			*(Actor__CollisionImpactData*)&params[8] = Collision;
 			*(int*)&params[44] = ContactIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Collision = *(Actor::CollisionImpactData*)&params[8];
+			Collision = *(Actor__CollisionImpactData*)&params[8];
 		}
 		void TurretExplosion()
 		{
@@ -1533,13 +1528,13 @@ void**)&params[4] = OtherComponent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
-		float GetCollisionDamageModifier(ScriptArray<Actor::RigidBodyContactInfo>& ContactInfos)
+		float GetCollisionDamageModifier(ScriptArray<Actor__RigidBodyContactInfo>& ContactInfos)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(40193);
 			byte params[16] = { NULL };
-			*(ScriptArray<Actor::RigidBodyContactInfo>*)params = ContactInfos;
+			*(ScriptArray<Actor__RigidBodyContactInfo>*)params = ContactInfos;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ContactInfos = *(ScriptArray<Actor::RigidBodyContactInfo>*)params;
+			ContactInfos = *(ScriptArray<Actor__RigidBodyContactInfo>*)params;
 			return *(float*)&params[12];
 		}
 		void InitializeMorphs()
@@ -1643,13 +1638,13 @@ void**)&params[4] = OtherComponent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptName*)params;
 		}
-		void DisplayHud(class UTHUD* HUD, class Canvas* Canvas, Object::Vector2D HudPOS, int SeatIndex)
+		void DisplayHud(class UTHUD* HUD, class Canvas* Canvas, Object__Vector2D HudPOS, int SeatIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(40278);
 			byte params[20] = { NULL };
 			*(class UTHUD**)params = HUD;
 			*(class Canvas**)&params[4] = Canvas;
-			*(Object::Vector2D*)&params[8] = HudPOS;
+			*(Object__Vector2D*)&params[8] = HudPOS;
 			*(int*)&params[16] = SeatIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1665,13 +1660,13 @@ void**)&params[4] = OtherComponent;
 			*(class Canvas**)&params[20] = DrawCanvas;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DisplayExtraHud(class UTHUD* HUD, class Canvas* Canvas, Object::Vector2D pos, float Width, float Height, int SIndex)
+		void DisplayExtraHud(class UTHUD* HUD, class Canvas* Canvas, Object__Vector2D pos, float Width, float Height, int SIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(40306);
 			byte params[28] = { NULL };
 			*(class UTHUD**)params = HUD;
 			*(class Canvas**)&params[4] = Canvas;
-			*(Object::Vector2D*)&params[8] = pos;
+			*(Object__Vector2D*)&params[8] = pos;
 			*(float*)&params[16] = Width;
 			*(float*)&params[20] = Height;
 			*(int*)&params[24] = SIndex;
@@ -1690,14 +1685,14 @@ void**)&params[4] = OtherComponent;
 			*(int*)&params[24] = SIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		Object::LinearColor GetSeatColor(int SeatIndex, bool bIsPlayersSeat)
+		Object__LinearColor GetSeatColor(int SeatIndex, bool bIsPlayersSeat)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(40326);
 			byte params[24] = { NULL };
 			*(int*)params = SeatIndex;
 			*(bool*)&params[4] = bIsPlayersSeat;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::LinearColor*)&params[8];
+			return *(Object__LinearColor*)&params[8];
 		}
 		void ApplyWeaponEffects(int OverlayFlags, int SeatIndex)
 		{

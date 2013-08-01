@@ -1,7 +1,9 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Vector.h"
+#include "Engine.EmitterPool.EmitterBaseInfo.h"
 #include "Engine.MaterialInstanceConstant.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.ParticleSystem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -26,21 +28,13 @@ namespace UnrealScript
 	class EmitterPool : public Actor
 	{
 	public:
-		struct EmitterBaseInfo
-		{
-		public:
-			ADD_BOOL(bInheritBaseScale, 32, 0x1)
-			ADD_STRUCT(Rotator, RelativeRotation, 20)
-			ADD_STRUCT(Vector, RelativeLocation, 8)
-			ADD_OBJECT(Actor, Base, 4)
-		};
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, PoolComponents, 480)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, ActiveComponents, 492)
-		ADD_STRUCT(ScriptArray<EmitterPool::EmitterBaseInfo>, RelativePSCs, 512)
+		ADD_STRUCT(ScriptArray<EmitterPool__EmitterBaseInfo>, RelativePSCs, 512)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, FreeSMComponents, 540)

@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.SequenceAction.h"
+#include "GFxUI.GFxMoviePlayer.ASValue.h"
 #include "GFxUI.GFxMoviePlayer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -14,7 +15,7 @@ namespace UnrealScript
 	class GFxAction_Invoke : public SequenceAction
 	{
 	public:
-		ADD_STRUCT(ScriptArray<GFxMoviePlayer::ASValue>, Arguments, 248)
+		ADD_STRUCT(ScriptArray<GFxMoviePlayer__ASValue>, Arguments, 248)
 		ADD_STRUCT(ScriptString*, MethodName, 236)
 		ADD_OBJECT(GFxMoviePlayer, Movie, 232)
 		bool IsValidLevelSequenceObject()

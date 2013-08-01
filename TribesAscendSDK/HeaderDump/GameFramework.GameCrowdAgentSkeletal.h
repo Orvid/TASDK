@@ -1,12 +1,13 @@
 #pragma once
 #include "GameFramework.GameCrowdAgent.h"
-#include "Core.Object.h"
+#include "GameFramework.SeqAct_PlayAgentAnimation.h"
+#include "GameFramework.GameCrowdAgentSkeletal.GameCrowdAttachmentList.h"
 #include "Engine.AnimTree.h"
-#include "Engine.LightComponent.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.AnimNodeSlot.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
 #include "Engine.AnimNodeBlend.h"
-#include "GameFramework.SeqAct_PlayAgentAnimation.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,24 +31,11 @@ namespace UnrealScript
 	class GameCrowdAgentSkeletal : public GameCrowdAgent
 	{
 	public:
-		struct GameCrowdAttachmentInfo
-		{
-		public:
-			ADD_STRUCT(Vector, Scale3D, 8)
-			ADD_STRUCT(float, Chance, 4)
-			ADD_OBJECT(StaticMesh, StaticMesh, 0)
-		};
-		struct GameCrowdAttachmentList
-		{
-		public:
-			ADD_STRUCT(ScriptArray<GameCrowdAgentSkeletal::GameCrowdAttachmentInfo>, List, 8)
-			ADD_STRUCT(ScriptName, SocketName, 0)
-		};
 		ADD_STRUCT(ScriptArray<ScriptName>, WalkAnimNames, 992)
 		ADD_STRUCT(ScriptArray<ScriptName>, RunAnimNames, 1004)
 		ADD_STRUCT(ScriptArray<ScriptName>, IdleAnimNames, 1016)
 		ADD_STRUCT(ScriptArray<ScriptName>, DeathAnimNames, 1028)
-		ADD_STRUCT(ScriptArray<GameCrowdAgentSkeletal::GameCrowdAttachmentList>, Attachments, 1064)
+		ADD_STRUCT(ScriptArray<GameCrowdAgentSkeletal__GameCrowdAttachmentList>, Attachments, 1064)
 		ADD_STRUCT(float, MaxAnimationDistanceSq, 1088)
 		ADD_STRUCT(float, MaxAnimationDistance, 1084)
 		ADD_BOOL(bAnimateThisTick, 1080, 0x8)
@@ -71,12 +59,12 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31167);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void SetLighting(bool bEnableLightEnvironment, LightComponent::LightingChannelContainer AgentLightingChannel, bool bCastShadows)
+		void SetLighting(bool bEnableLightEnvironment, LightComponent__LightingChannelContainer AgentLightingChannel, bool bCastShadows)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31168);
 			byte params[12] = { NULL };
 			*(bool*)params = bEnableLightEnvironment;
-			*(LightComponent::LightingChannelContainer*)&params[4] = AgentLightingChannel;
+			*(LightComponent__LightingChannelContainer*)&params[4] = AgentLightingChannel;
 			*(bool*)&params[8] = bCastShadows;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

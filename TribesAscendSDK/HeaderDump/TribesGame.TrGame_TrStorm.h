@@ -1,5 +1,7 @@
 #pragma once
 #include "TribesGame.TrGame.h"
+#include "TribesGame.TrGame_TrStorm.Missile.h"
+#include "TribesGame.TrGame_TrStorm.Carrier.h"
 #include "TribesGame.TrStormCarrierShield.h"
 #include "TribesGame.TrStormCore.h"
 #include "Engine.PlayerReplicationInfo.h"
@@ -17,28 +19,14 @@ namespace UnrealScript
 	class TrGame_TrStorm : public TrGame
 	{
 	public:
-		struct Missile
-		{
-		public:
-			ADD_STRUCT(byte, TargetTeam, 8)
-			ADD_STRUCT(float, RemainingFlightTime, 4)
-			ADD_OBJECT(TrStormControlPoint, FiredFrom, 0)
-		};
-		struct Carrier
-		{
-		public:
-			ADD_STRUCT(byte, TeamNum, 8)
-			ADD_STRUCT(int, CoreHealth, 4)
-			ADD_STRUCT(int, ShieldHealth, 0)
-		};
-		ADD_STRUCT(ScriptArray<TrGame_TrStorm::Missile>, m_fActiveMissiles, 1480)
+		ADD_STRUCT(ScriptArray<TrGame_TrStorm__Missile>, m_fActiveMissiles, 1480)
 		ADD_STRUCT(float, MatchEndingTime, 1520)
 		ADD_STRUCT(int, m_nMaxCoreHealth, 1516)
 		ADD_STRUCT(int, m_nMaxShieldHealth, 1512)
 		ADD_OBJECT(TrStormCore, m_CarrierCore, 1504)
 		ADD_OBJECT(TrStormCarrierShield, m_CarrierShields, 1496)
 		ADD_STRUCT(float, m_fMissileDamageAmount, 1492)
-		ADD_STRUCT(TrGame_TrStorm::Carrier, m_Carriers, 1456)
+		ADD_STRUCT(TrGame_TrStorm__Carrier, m_Carriers, 1456)
 		void PostBeginPlay()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(90913);

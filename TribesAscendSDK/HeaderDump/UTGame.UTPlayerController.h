@@ -1,16 +1,25 @@
 #pragma once
+#include "UTGame.UTPlayerController.EPawnShadowMode.h"
+#include "UTGame.UTPlayerController.EUTVehicleControls.h"
 #include "UDKBase.UDKPlayerController.h"
+#include "Core.Object.Vector.h"
 #include "UTGame.UTAnnouncer.h"
 #include "UTGame.UTUIDataStore_StringAliasBindingsMap.h"
+#include "UTGame.UTPlayerController.EWeaponHand.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #include "UTGame.UTMusicManager.h"
-#include "Core.Object.h"
+#include "UTGame.UTPlayerController.EAutoObjectivePreference.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.CameraAnim.h"
 #include "Engine.ForceFeedbackWaveform.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.Camera.ECameraAnimPlaySpace.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "UTGame.UTSeqAct_PlayCameraAnim.h"
 #include "Engine.SpeechRecognition.h"
+#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
+#include "Engine.Camera.ViewTargetTransitionParams.h"
 #include "Engine.SoundCue.h"
 #include "Engine.SavedMove.h"
 #include "Engine.Pawn.h"
@@ -18,10 +27,11 @@
 #include "UTGame.UTVehicle.h"
 #include "Engine.Projectile.h"
 #include "Engine.HUD.h"
-#include "Engine.Camera.h"
 #include "Engine.Controller.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Core.Object.h"
 #include "UTGame.UTSeqAct_StopCameraAnim.h"
+#include "Engine.Actor.EPhysics.h"
 #include "UTGame.UTTeamInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -149,46 +159,6 @@ namespace UnrealScript
 		static const auto GS_MESSAGE_MAXLENGTH = 255;
 		static const auto GS_PASSWORD_MAXLENGTH = 30;
 		static const auto GS_USERNAME_MAXLENGTH = 15;
-		enum EWeaponHand : byte
-		{
-			HAND_Right = 0,
-			HAND_Left = 1,
-			HAND_Centered = 2,
-			HAND_Hidden = 3,
-			HAND_MAX = 4,
-		};
-		enum EPawnShadowMode : byte
-		{
-			SHADOW_None = 0,
-			SHADOW_Self = 1,
-			SHADOW_All = 2,
-			SHADOW_MAX = 3,
-		};
-		enum EAutoObjectivePreference : byte
-		{
-			AOP_Disabled = 0,
-			AOP_NoPreference = 1,
-			AOP_Attack = 2,
-			AOP_Defend = 3,
-			AOP_OrbRunner = 4,
-			AOP_SpecialOps = 5,
-			AOP_MAX = 6,
-		};
-		enum EUTVehicleControls : byte
-		{
-			UTVC_Simple = 0,
-			UTVC_Normal = 1,
-			UTVC_Advanced = 2,
-			UTVC_MAX = 3,
-		};
-		struct PostProcessInfo
-		{
-		public:
-			ADD_STRUCT(float, Desaturation, 12)
-			ADD_STRUCT(float, HighLights, 8)
-			ADD_STRUCT(float, MidTones, 4)
-			ADD_STRUCT(float, Shadows, 0)
-		};
 		ADD_BOOL(bLateComer, 1960, 0x1)
 		ADD_OBJECT(UTUIDataStore_StringAliasBindingsMap, BoundEventsStringDataStore, 2152)
 		ADD_BOOL(bQuittingToMainMenu, 1960, 0x20000)
@@ -202,17 +172,17 @@ namespace UnrealScript
 		ADD_BOOL(bBehindView, 1960, 0x80)
 		ADD_STRUCT(float, LastKickWarningTime, 1996)
 		ADD_STRUCT(float, OnFootDefaultFOV, 2160)
-		ADD_STRUCT(UTPlayerController::EWeaponHand, WeaponHandPreference, 1966)
+		ADD_STRUCT(UTPlayerController__EWeaponHand, WeaponHandPreference, 1966)
 		ADD_BOOL(bAutoTaunt, 1960, 0x4)
 		ADD_BOOL(bCenteredWeaponFire, 1960, 0x8000)
-		ADD_STRUCT(UTPlayerController::EAutoObjectivePreference, AutoObjectivePreference, 1968)
-		ADD_STRUCT(UTPlayerController::EUTVehicleControls, VehicleControlType, 1969)
-		ADD_STRUCT(UTPlayerController::EPawnShadowMode, PawnShadowMode, 1965)
+		ADD_STRUCT(UTPlayerController__EAutoObjectivePreference, AutoObjectivePreference, 1968)
+		ADD_STRUCT(UTPlayerController__EUTVehicleControls, VehicleControlType, 1969)
+		ADD_STRUCT(UTPlayerController__EPawnShadowMode, PawnShadowMode, 1965)
 		ADD_OBJECT(Actor, LastAutoObjective, 2132)
 		ADD_STRUCT(float, LastShowPathTime, 2128)
 		ADD_BOOL(bUseVehicleRotationOnPossess, 1960, 0x8)
 		ADD_STRUCT(byte, IdentifiedTeam, 1964)
-		ADD_STRUCT(UTPlayerController::EWeaponHand, WeaponHand, 1967)
+		ADD_STRUCT(UTPlayerController__EWeaponHand, WeaponHand, 1967)
 		ADD_STRUCT(float, LastUseTime, 2140)
 		ADD_BOOL(bAlreadyReset, 1960, 0x400000)
 		ADD_OBJECT(Actor, CalcViewActor, 2032)
@@ -309,11 +279,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36328);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnConnectionStatusChange(OnlineSubsystem::EOnlineServerConnectionStatus ConnectionStatus)
+		void OnConnectionStatusChange(OnlineSubsystem__EOnlineServerConnectionStatus ConnectionStatus)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36337);
 			byte params[1] = { NULL };
-			*(OnlineSubsystem::EOnlineServerConnectionStatus*)params = ConnectionStatus;
+			*(OnlineSubsystem__EOnlineServerConnectionStatus*)params = ConnectionStatus;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnLinkStatusChanged(bool bConnected)
@@ -339,22 +309,22 @@ namespace UnrealScript
 			*(ScriptString**)&params[4] = RequestingNick;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFriendInviteReceived(byte LocalUserNum, OnlineSubsystem::UniqueNetId RequestingPlayer, ScriptString* RequestingNick, ScriptString* Message)
+		void OnFriendInviteReceived(byte LocalUserNum, OnlineSubsystem__UniqueNetId RequestingPlayer, ScriptString* RequestingNick, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36350);
 			byte params[33] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = RequestingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = RequestingPlayer;
 			*(ScriptString**)&params[12] = RequestingNick;
 			*(ScriptString**)&params[24] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFriendMessageReceived(byte LocalUserNum, OnlineSubsystem::UniqueNetId SendingPlayer, ScriptString* SendingNick, ScriptString* Message)
+		void OnFriendMessageReceived(byte LocalUserNum, OnlineSubsystem__UniqueNetId SendingPlayer, ScriptString* SendingNick, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36355);
 			byte params[33] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = SendingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = SendingPlayer;
 			*(ScriptString**)&params[12] = SendingNick;
 			*(ScriptString**)&params[24] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -433,11 +403,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36381);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ServerProcessSpeechRecognition(OnlineSubsystem::SpeechRecognizedWord ReplicatedWords)
+		void ServerProcessSpeechRecognition(OnlineSubsystem__SpeechRecognizedWord ReplicatedWords)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36386);
 			byte params[20] = { NULL };
-			*(OnlineSubsystem::SpeechRecognizedWord*)params = ReplicatedWords;
+			*(OnlineSubsystem__SpeechRecognizedWord*)params = ReplicatedWords;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ClientHearSound(class SoundCue* ASound, class Actor* SourceActor, Vector SourceLocation, bool bStopWhenOwnerDestroyed, bool bIsOccluded)
@@ -645,12 +615,12 @@ namespace UnrealScript
 			*(class Pawn**)params = NewPawn;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetViewTarget(class Actor* NewViewTarget, Camera::ViewTargetTransitionParams TransitionParams)
+		void SetViewTarget(class Actor* NewViewTarget, Camera__ViewTargetTransitionParams TransitionParams)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36524);
 			byte params[20] = { NULL };
 			*(class Actor**)params = NewViewTarget;
-			*(Camera::ViewTargetTransitionParams*)&params[4] = TransitionParams;
+			*(Camera__ViewTargetTransitionParams*)&params[4] = TransitionParams;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void CheckAutoObjective(bool bOnlyNotifyDifferent)
@@ -700,29 +670,29 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36563);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ServerPlayerPreferences(UTPlayerController::EWeaponHand NewWeaponHand, bool bNewAutoTaunt, bool bNewCenteredWeaponFire, UTPlayerController::EAutoObjectivePreference NewAutoObjectivePreference, UTPlayerController::EUTVehicleControls NewVehicleControls)
+		void ServerPlayerPreferences(UTPlayerController__EWeaponHand NewWeaponHand, bool bNewAutoTaunt, bool bNewCenteredWeaponFire, UTPlayerController__EAutoObjectivePreference NewAutoObjectivePreference, UTPlayerController__EUTVehicleControls NewVehicleControls)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36564);
 			byte params[11] = { NULL };
-			*(UTPlayerController::EWeaponHand*)params = NewWeaponHand;
+			*(UTPlayerController__EWeaponHand*)params = NewWeaponHand;
 			*(bool*)&params[4] = bNewAutoTaunt;
 			*(bool*)&params[8] = bNewCenteredWeaponFire;
-			*(UTPlayerController::EAutoObjectivePreference*)&params[12] = NewAutoObjectivePreference;
-			*(UTPlayerController::EUTVehicleControls*)&params[13] = NewVehicleControls;
+			*(UTPlayerController__EAutoObjectivePreference*)&params[12] = NewAutoObjectivePreference;
+			*(UTPlayerController__EUTVehicleControls*)&params[13] = NewVehicleControls;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerSetHand(UTPlayerController::EWeaponHand NewWeaponHand)
+		void ServerSetHand(UTPlayerController__EWeaponHand NewWeaponHand)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36570);
 			byte params[1] = { NULL };
-			*(UTPlayerController::EWeaponHand*)params = NewWeaponHand;
+			*(UTPlayerController__EWeaponHand*)params = NewWeaponHand;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetHand(UTPlayerController::EWeaponHand NewWeaponHand)
+		void SetHand(UTPlayerController__EWeaponHand NewWeaponHand)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36573);
 			byte params[1] = { NULL };
-			*(UTPlayerController::EWeaponHand*)params = NewWeaponHand;
+			*(UTPlayerController__EWeaponHand*)params = NewWeaponHand;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ResetCameraMode()
@@ -963,7 +933,7 @@ namespace UnrealScript
 			*(float*)params = NewStrength;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientPlayCameraAnim(class CameraAnim* AnimToPlay, float Scale, float Rate, float BlendInTime, float BlendOutTime, bool bLoop, bool bRandomStartTime, Camera::ECameraAnimPlaySpace Space, Rotator CustomPlaySpace)
+		void ClientPlayCameraAnim(class CameraAnim* AnimToPlay, float Scale, float Rate, float BlendInTime, float BlendOutTime, bool bLoop, bool bRandomStartTime, Camera__ECameraAnimPlaySpace Space, Rotator CustomPlaySpace)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36851);
 			byte params[41] = { NULL };
@@ -974,7 +944,7 @@ namespace UnrealScript
 			*(float*)&params[16] = BlendOutTime;
 			*(bool*)&params[20] = bLoop;
 			*(bool*)&params[24] = bRandomStartTime;
-			*(Camera::ECameraAnimPlaySpace*)&params[28] = Space;
+			*(Camera__ECameraAnimPlaySpace*)&params[28] = Space;
 			*(Rotator*)&params[32] = CustomPlaySpace;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1038,13 +1008,13 @@ namespace UnrealScript
 			*(int*)&params[20] = View;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void LongClientAdjustPosition(float TimeStamp, ScriptName NewState, Actor::EPhysics newPhysics, float NewLocX, float NewLocY, float NewLocZ, float NewVelX, float NewVelY, float NewVelZ, class Actor* NewBase, float NewFloorX, float NewFloorY, float NewFloorZ)
+		void LongClientAdjustPosition(float TimeStamp, ScriptName NewState, Actor__EPhysics newPhysics, float NewLocX, float NewLocY, float NewLocZ, float NewVelX, float NewVelY, float NewVelZ, class Actor* NewBase, float NewFloorX, float NewFloorY, float NewFloorZ)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36895);
 			byte params[53] = { NULL };
 			*(float*)params = TimeStamp;
 			*(ScriptName*)&params[4] = NewState;
-			*(Actor::EPhysics*)&params[12] = newPhysics;
+			*(Actor__EPhysics*)&params[12] = newPhysics;
 			*(float*)&params[16] = NewLocX;
 			*(float*)&params[20] = NewLocY;
 			*(float*)&params[24] = NewLocZ;
@@ -1069,11 +1039,11 @@ namespace UnrealScript
 			*params = T;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerViewSelf(Camera::ViewTargetTransitionParams TransitionParams)
+		void ServerViewSelf(Camera__ViewTargetTransitionParams TransitionParams)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(36932);
 			byte params[16] = { NULL };
-			*(Camera::ViewTargetTransitionParams*)params = TransitionParams;
+			*(Camera__ViewTargetTransitionParams*)params = TransitionParams;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ViewPlayerByName(ScriptString* PlayerName)

@@ -1,6 +1,6 @@
 #pragma once
-#include "Core.DistributionFloat.h"
 #include "Engine.ParticleModuleSubUVBase.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,7 +10,7 @@ namespace UnrealScript
 	class ParticleModuleSubUV : public ParticleModuleSubUVBase
 	{
 	public:
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, SubImageIndex, 72)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, SubImageIndex, 72)
 	};
 }
 #undef ADD_STRUCT

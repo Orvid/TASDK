@@ -1,7 +1,9 @@
 #pragma once
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModuleBeamBase.h"
-#include "Core.DistributionVector.h"
-#include "Core.DistributionFloat.h"
+#include "Engine.ParticleModuleBeamModifier.BeamModifierOptions.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleBeamModifier.BeamModifierType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,27 +23,14 @@ namespace UnrealScript
 	class ParticleModuleBeamModifier : public ParticleModuleBeamBase
 	{
 	public:
-		enum BeamModifierType : byte
-		{
-			PEB2MT_Source = 0,
-			PEB2MT_Target = 1,
-			PEB2MT_MAX = 2,
-		};
-		struct BeamModifierOptions
-		{
-		public:
-			ADD_BOOL(Block, 0, 0x4)
-			ADD_BOOL(bScale, 0, 0x2)
-			ADD_BOOL(bModify, 0, 0x1)
-		};
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Strength, 148)
-		ADD_STRUCT(ParticleModuleBeamModifier::BeamModifierOptions, StrengthOptions, 144)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Strength, 148)
+		ADD_STRUCT(ParticleModuleBeamModifier__BeamModifierOptions, StrengthOptions, 144)
 		ADD_BOOL(bAbsoluteTangent, 140, 0x1)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, Tangent, 112)
-		ADD_STRUCT(ParticleModuleBeamModifier::BeamModifierOptions, TangentOptions, 108)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, Position, 80)
-		ADD_STRUCT(ParticleModuleBeamModifier::BeamModifierOptions, PositionOptions, 76)
-		ADD_STRUCT(ParticleModuleBeamModifier::BeamModifierType, ModifierType, 72)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, Tangent, 112)
+		ADD_STRUCT(ParticleModuleBeamModifier__BeamModifierOptions, TangentOptions, 108)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, Position, 80)
+		ADD_STRUCT(ParticleModuleBeamModifier__BeamModifierOptions, PositionOptions, 76)
+		ADD_STRUCT(ParticleModuleBeamModifier__BeamModifierType, ModifierType, 72)
 	};
 }
 #undef ADD_BOOL

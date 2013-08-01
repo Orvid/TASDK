@@ -2,12 +2,13 @@
 #include "UTGame.UTDamageType.h"
 #include "TribesGame.TrPlayerController.h"
 #include "Engine.SoundCue.h"
-#include "Engine.PrimitiveComponent.h"
+#include "Engine.PrimitiveComponent.ERadialImpulseFalloff.h"
+#include "Core.Object.Vector2D.h"
+#include "Core.Object.Vector.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "Engine.Vehicle.h"
-#include "TribesGame.TrObject.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -40,13 +41,13 @@ namespace UnrealScript
 		ADD_BOOL(m_bCausesGib, 344, 0x1)
 		ADD_STRUCT(float, m_fGibRadius, 348)
 		ADD_STRUCT(float, m_fGibStrength, 352)
-		ADD_STRUCT(PrimitiveComponent::ERadialImpulseFalloff, m_GibFalloff, 356)
+		ADD_STRUCT(PrimitiveComponent__ERadialImpulseFalloff, m_GibFalloff, 356)
 		ADD_BOOL(m_bEnableMotors, 344, 0x2)
 		ADD_STRUCT(float, m_fDamageMultiplierAgainstGenerators, 332)
 		ADD_STRUCT(ScriptArray<ScriptName>, m_nmDeathAnimNames, 360)
-		ADD_STRUCT(Object::Vector2D, m_v2DDamageNumbersMinMaxZ, 416)
-		ADD_STRUCT(Object::Vector2D, m_v2DDamageNumbersMinMaxY, 408)
-		ADD_STRUCT(Object::Vector2D, m_v2DDamageNumbersMinMaxX, 400)
+		ADD_STRUCT(Object__Vector2D, m_v2DDamageNumbersMinMaxZ, 416)
+		ADD_STRUCT(Object__Vector2D, m_v2DDamageNumbersMinMaxY, 408)
+		ADD_STRUCT(Object__Vector2D, m_v2DDamageNumbersMinMaxX, 400)
 		ADD_STRUCT(int, m_nKillIconIndex, 392)
 		ADD_STRUCT(ScriptName, m_nmCameraShake, 372)
 		ADD_BOOL(bOffhandType, 344, 0x10)
@@ -59,14 +60,14 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fMaxDamageRangePct, 312)
 		ADD_STRUCT(int, DBWeaponTypeId, 308)
 		ADD_STRUCT(int, DBWeaponBaseId, 304)
-		float CalculateRangeDamageFalloff(float Dist, float damageRange, class TrPlayerController* TrPCDamager, TrObject::TR_EQUIP_POINT EquipPoint, bool bMinDamageAlwaysApplied)
+		float CalculateRangeDamageFalloff(float Dist, float damageRange, class TrPlayerController* TrPCDamager, TrObject__TR_EQUIP_POINT EquipPoint, bool bMinDamageAlwaysApplied)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67461);
 			byte params[21] = { NULL };
 			*(float*)params = Dist;
 			*(float*)&params[4] = damageRange;
 			*(class TrPlayerController**)&params[8] = TrPCDamager;
-			*(TrObject::TR_EQUIP_POINT*)&params[12] = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)&params[12] = EquipPoint;
 			*(bool*)&params[16] = bMinDamageAlwaysApplied;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[20];

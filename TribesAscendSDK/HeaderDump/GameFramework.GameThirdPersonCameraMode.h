@@ -1,10 +1,15 @@
 #pragma once
 #include "Engine.Actor.h"
 #include "Core.Object.h"
+#include "GameFramework.GameThirdPersonCameraMode.ViewOffsetData.h"
+#include "Engine.Camera.TViewTarget.h"
 #include "GameFramework.GameThirdPersonCamera.h"
-#include "Engine.PostProcessVolume.h"
-#include "Engine.Camera.h"
+#include "Core.Object.Vector.h"
+#include "GameFramework.GameThirdPersonCameraMode.ECameraViewportTypes.h"
 #include "Engine.Pawn.h"
+#include "Core.Object.Vector2D.h"
+#include "Core.Object.Rotator.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,29 +33,12 @@ namespace UnrealScript
 	class GameThirdPersonCameraMode : public Object
 	{
 	public:
-		enum ECameraViewportTypes : byte
-		{
-			CVT_16to9_Full = 0,
-			CVT_16to9_VertSplit = 1,
-			CVT_16to9_HorizSplit = 2,
-			CVT_4to3_Full = 3,
-			CVT_4to3_HorizSplit = 4,
-			CVT_4to3_VertSplit = 5,
-			CVT_MAX = 6,
-		};
-		struct ViewOffsetData
-		{
-		public:
-			ADD_STRUCT(Vector, OffsetLow, 24)
-			ADD_STRUCT(Vector, OffsetMid, 12)
-			ADD_STRUCT(Vector, OffsetHigh, 0)
-		};
 		ADD_OBJECT(GameThirdPersonCamera, ThirdPersonCam, 60)
-		ADD_STRUCT(GameThirdPersonCameraMode::ECameraViewportTypes, CurrentViewportType, 556)
+		ADD_STRUCT(GameThirdPersonCameraMode__ECameraViewportTypes, CurrentViewportType, 556)
 		ADD_STRUCT(float, OffsetAdjustmentInterpSpeed, 552)
 		ADD_STRUCT(float, ViewOffsetInterp, 548)
-		ADD_STRUCT(Object::Vector2D, DOF_RadiusDistRange, 540)
-		ADD_STRUCT(Object::Vector2D, DOF_RadiusRange, 532)
+		ADD_STRUCT(Object__Vector2D, DOF_RadiusDistRange, 540)
+		ADD_STRUCT(Object__Vector2D, DOF_RadiusRange, 532)
 		ADD_STRUCT(float, DOF_RadiusFalloff, 528)
 		ADD_STRUCT(Vector, DOFTraceExtent, 516)
 		ADD_STRUCT(float, DOFDistanceInterpSpeed, 512)
@@ -61,8 +49,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, DOF_FocusInnerRadius, 492)
 		ADD_STRUCT(float, DOF_BlurKernelSize, 488)
 		ADD_STRUCT(float, DOF_FalloffExponent, 484)
-		ADD_STRUCT(GameThirdPersonCameraMode::ViewOffsetData, ViewOffset_ViewportAdjustments, 268)
-		ADD_STRUCT(GameThirdPersonCameraMode::ViewOffsetData, ViewOffset, 232)
+		ADD_STRUCT(GameThirdPersonCameraMode__ViewOffsetData, ViewOffset_ViewportAdjustments, 268)
+		ADD_STRUCT(GameThirdPersonCameraMode__ViewOffsetData, ViewOffset, 232)
 		ADD_STRUCT(Vector, TargetRelativeCameraOriginOffset, 220)
 		ADD_STRUCT(Vector, WorstLocOffset, 208)
 		ADD_STRUCT(Vector, LastRunOffset, 196)
@@ -148,12 +136,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[16];
 		}
-		Vector GetCameraWorstCaseLoc(class Pawn* TargetPawn, Camera::TViewTarget CurrentViewTarget)
+		Vector GetCameraWorstCaseLoc(class Pawn* TargetPawn, Camera__TViewTarget CurrentViewTarget)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32260);
 			byte params[60] = { NULL };
 			*(class Pawn**)params = TargetPawn;
-			*(Camera::TViewTarget*)&params[4] = CurrentViewTarget;
+			*(Camera__TViewTarget*)&params[4] = CurrentViewTarget;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[48];
 		}
@@ -189,30 +177,30 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[28];
 		}
-		void UpdatePostProcess(Camera::TViewTarget& VT, float DeltaTime)
+		void UpdatePostProcess(Camera__TViewTarget& VT, float DeltaTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32283);
 			byte params[48] = { NULL };
-			*(Camera::TViewTarget*)params = VT;
+			*(Camera__TViewTarget*)params = VT;
 			*(float*)&params[44] = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			VT = *(Camera::TViewTarget*)params;
+			VT = *(Camera__TViewTarget*)params;
 		}
-		void ModifyPostProcessSettings(PostProcessVolume::PostProcessSettings& PP)
+		void ModifyPostProcessSettings(PostProcessVolume__PostProcessSettings& PP)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32293);
 			byte params[220] = { NULL };
-			*(PostProcessVolume::PostProcessSettings*)params = PP;
+			*(PostProcessVolume__PostProcessSettings*)params = PP;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			PP = *(PostProcessVolume::PostProcessSettings*)params;
+			PP = *(PostProcessVolume__PostProcessSettings*)params;
 		}
-		void SetViewOffset(GameThirdPersonCameraMode::ViewOffsetData& NewViewOffset)
+		void SetViewOffset(GameThirdPersonCameraMode__ViewOffsetData& NewViewOffset)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32295);
 			byte params[36] = { NULL };
-			*(GameThirdPersonCameraMode::ViewOffsetData*)params = NewViewOffset;
+			*(GameThirdPersonCameraMode__ViewOffsetData*)params = NewViewOffset;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			NewViewOffset = *(GameThirdPersonCameraMode::ViewOffsetData*)params;
+			NewViewOffset = *(GameThirdPersonCameraMode__ViewOffsetData*)params;
 		}
 	};
 }

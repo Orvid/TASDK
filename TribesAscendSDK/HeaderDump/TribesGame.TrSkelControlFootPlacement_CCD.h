@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine.SkelControl_CCD_IK.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.EAxis.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,7 +35,7 @@ namespace UnrealScript
 		ADD_BOOL(bOrientFootToGround, 280, 0x2)
 		ADD_BOOL(bInvertFootUpAxis, 280, 0x1)
 		ADD_STRUCT(Rotator, FootRotOffset, 268)
-		ADD_STRUCT(Object::EAxis, FootUpAxis, 264)
+		ADD_STRUCT(Object__EAxis, FootUpAxis, 264)
 		ADD_STRUCT(float, FootOffset, 260)
 	};
 }

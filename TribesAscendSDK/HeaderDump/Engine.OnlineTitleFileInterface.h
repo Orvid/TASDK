@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
 namespace UnrealScript
 {
 	class OnlineTitleFileInterface : public Interface
@@ -61,13 +61,13 @@ void* ReadTitleFileCompleteDelegate)
 void**)params = ReadTitleFileCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		OnlineSubsystem::EOnlineEnumerationReadState GetTitleFileState(ScriptString* Filename)
+		OnlineSubsystem__EOnlineEnumerationReadState GetTitleFileState(ScriptString* Filename)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22979);
 			byte params[13] = { NULL };
 			*(ScriptString**)params = Filename;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::EOnlineEnumerationReadState*)&params[12];
+			return *(OnlineSubsystem__EOnlineEnumerationReadState*)&params[12];
 		}
 		bool ClearDownloadedFile(ScriptString* Filename)
 		{

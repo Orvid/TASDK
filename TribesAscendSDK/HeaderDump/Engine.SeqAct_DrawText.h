@@ -1,6 +1,6 @@
 #pragma once
+#include "Engine.HUD.KismetDrawTextInfo.h"
 #include "Engine.SequenceAction.h"
-#include "Engine.HUD.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,7 +20,7 @@ namespace UnrealScript
 	class SeqAct_DrawText : public SequenceAction
 	{
 	public:
-		ADD_STRUCT(HUD::KismetDrawTextInfo, DrawTextInfo, 240)
+		ADD_STRUCT(HUD__KismetDrawTextInfo, DrawTextInfo, 240)
 		ADD_STRUCT(float, DisplayTimeSeconds, 232)
 		ADD_BOOL(bDisplayOnObject, 236, 0x1)
 		int GetObjClassVersion()

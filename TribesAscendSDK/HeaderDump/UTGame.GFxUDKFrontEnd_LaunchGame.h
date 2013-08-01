@@ -1,9 +1,11 @@
 #pragma once
 #include "UTGame.GFxUDKFrontEnd_Screen.h"
+#include "GFxUI.GFxClikWidget.h"
+#include "UTGame.GFxUDKFrontEnd_LaunchGame.Option.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "Engine.UIDataStore_OnlineGameSettings.h"
 #include "UTGame.UTUIDataStore_MenuItems.h"
 #include "GFxUI.GFxObject.h"
-#include "GFxUI.GFxClikWidget.h"
 #include "UTGame.UTUIDataStore_StringList.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -19,14 +21,7 @@ namespace UnrealScript
 	{
 	public:
 		static const float MarkupForNoMapImage;
-		struct Option
-		{
-		public:
-			ADD_STRUCT(ScriptString*, OptionDesc, 24)
-			ADD_STRUCT(ScriptString*, OptionLabel, 12)
-			ADD_STRUCT(ScriptString*, OptionName, 0)
-		};
-		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_LaunchGame::Option>, ListOptions, 292)
+		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_LaunchGame__Option>, ListOptions, 292)
 		ADD_OBJECT(GFxObject, MutatorsLabelTxt, 380)
 		ADD_OBJECT(GFxObject, RespawnLabelTxt, 376)
 		ADD_OBJECT(GFxObject, TimeLabelTxt, 372)
@@ -107,18 +102,18 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38255);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnListItemPress(GFxClikWidget::EventData ev)
+		void OnListItemPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38263);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnListChange(GFxClikWidget::EventData ev)
+		void OnListChange(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38267);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UpdateDescription()

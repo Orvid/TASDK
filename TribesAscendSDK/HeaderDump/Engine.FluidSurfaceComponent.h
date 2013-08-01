@@ -1,10 +1,12 @@
 #pragma once
+#include "Core.Object.Pointer.h"
 #include "Engine.PrimitiveComponent.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.EngineTypes.h"
+#include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
 #include "Engine.ShadowMap2D.h"
+#include "Engine.EngineTypes.LightMapRef.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,8 +33,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, ForceImpact, 568)
 		ADD_STRUCT(ScriptArray<byte>, ClampMap, 692)
 		ADD_STRUCT(ScriptArray<class ShadowMap2D*>, ShadowMaps, 704)
-		ADD_STRUCT(Object::Pointer, FluidSimulation, 720)
-		ADD_STRUCT(EngineTypes::LightMapRef, LightMap, 716)
+		ADD_STRUCT(Object__Pointer, FluidSimulation, 720)
+		ADD_STRUCT(EngineTypes__LightMapRef, LightMap, 716)
 		ADD_STRUCT(Vector, EditorViewPosition, 680)
 		ADD_STRUCT(Vector, DetailPosition, 668)
 		ADD_STRUCT(Vector, SimulationPosition, 656)
@@ -78,7 +80,7 @@ namespace UnrealScript
 		ADD_BOOL(bPause, 524, 0x4)
 		ADD_BOOL(EnableDetail, 524, 0x2)
 		ADD_BOOL(EnableSimulation, 524, 0x1)
-		ADD_STRUCT(EngineTypes::LightmassPrimitiveSettings, LightmassSettings, 496)
+		ADD_STRUCT(EngineTypes__LightmassPrimitiveSettings, LightmassSettings, 496)
 		ADD_STRUCT(int, LightMapResolution, 492)
 		ADD_OBJECT(MaterialInterface, FluidMaterial, 488)
 		void ApplyForce(Vector WorldPos, float Strength, float Radius, bool bImpulse)

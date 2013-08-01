@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.Volume.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Pawn.h"
 namespace UnrealScript
 {

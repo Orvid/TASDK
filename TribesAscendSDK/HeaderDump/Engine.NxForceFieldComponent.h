@@ -1,6 +1,7 @@
 #pragma once
+#include "Core.Object.Pointer.h"
 #include "Engine.PrimitiveComponent.h"
-#include "Core.Object.h"
+#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #include "Engine.ForceFieldShape.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -25,15 +26,15 @@ namespace UnrealScript
 	class NxForceFieldComponent : public PrimitiveComponent
 	{
 	public:
-		ADD_STRUCT(ScriptArray<Object::Pointer>, ConvexMeshes, 516)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, ExclusionShapes, 528)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, ExclusionShapePoses, 540)
-		ADD_STRUCT(Object::Pointer, RBPhysScene, 564)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, ConvexMeshes, 516)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, ExclusionShapes, 528)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, ExclusionShapePoses, 540)
+		ADD_STRUCT(Object__Pointer, RBPhysScene, 564)
 		ADD_STRUCT(float, ElapsedTime, 556)
 		ADD_STRUCT(int, SceneIndex, 552)
-		ADD_STRUCT(Object::Pointer, ForceField, 512)
+		ADD_STRUCT(Object__Pointer, ForceField, 512)
 		ADD_STRUCT(float, Duration, 508)
-		ADD_STRUCT(PrimitiveComponent::RBCollisionChannelContainer, CollideWithChannels, 504)
+		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, CollideWithChannels, 504)
 		ADD_BOOL(bDestroyWhenInactive, 500, 0x2)
 		ADD_BOOL(bForceActive, 500, 0x1)
 		ADD_STRUCT(int, ExcludeChannel, 496)

@@ -1,9 +1,11 @@
 #pragma once
 #include "Core.Object.h"
 #include "Engine.PBRuleNodeBase.h"
+#include "Engine.ProcBuildingRuleset.PBParamSwatch.h"
 #include "Engine.MaterialInterface.h"
 #include "Engine.PBRuleNodeComment.h"
 #include "Engine.Texture.h"
+#include "Engine.ProcBuildingRuleset.PBVariationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,24 +29,6 @@ namespace UnrealScript
 	class ProcBuildingRuleset : public Object
 	{
 	public:
-		enum EProcBuildingAxis : byte
-		{
-			EPBAxis_X = 0,
-			EPBAxis_Z = 1,
-			EPBAxis_MAX = 2,
-		};
-		struct PBParamSwatch
-		{
-		public:
-			ADD_STRUCT(ScriptName, SwatchName, 0)
-			ADD_STRUCT(ScriptArray<ProcBuilding::PBMaterialParam>, Params, 8)
-		};
-		struct PBVariationInfo
-		{
-		public:
-			ADD_STRUCT(ScriptName, VariationName, 0)
-			ADD_BOOL(bMeshOnTopOfFacePoly, 8, 0x1)
-		};
 		ADD_OBJECT(PBRuleNodeBase, RootRule, 60)
 		ADD_BOOL(bBeingEdited, 64, 0x1)
 		ADD_BOOL(bEnableInteriorTexture, 64, 0x2)
@@ -63,8 +47,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, RoofEdgeScopeRaise, 108)
 		ADD_OBJECT(Texture, LODCubemap, 112)
 		ADD_OBJECT(Texture, InteriorTexture, 116)
-		ADD_STRUCT(ScriptArray<ProcBuildingRuleset::PBVariationInfo>, Variations, 120)
-		ADD_STRUCT(ScriptArray<ProcBuildingRuleset::PBParamSwatch>, ParamSwatches, 132)
+		ADD_STRUCT(ScriptArray<ProcBuildingRuleset__PBVariationInfo>, Variations, 120)
+		ADD_STRUCT(ScriptArray<ProcBuildingRuleset__PBParamSwatch>, ParamSwatches, 132)
 		ADD_STRUCT(ScriptArray<class PBRuleNodeComment*>, Comments, 144)
 	};
 }

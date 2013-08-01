@@ -1,11 +1,14 @@
 #pragma once
-#include "Engine.Canvas.h"
 #include "TribesGame.TrProjectile.h"
+#include "Core.Object.Rotator.h"
+#include "TribesGame.TrSeekingMissileManager.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
-#include "TribesGame.TrSeekingMissileManager.h"
+#include "TribesGame.TrProj_TrackingMissile.ETrackingMissileStage.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.PlayerController.h"
+#include "Engine.Canvas.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,13 +28,6 @@ namespace UnrealScript
 	class TrProj_TrackingMissile : public TrProjectile
 	{
 	public:
-		enum ETrackingMissileStage : byte
-		{
-			ETrackingMissileStage_JustFired = 0,
-			ETrackingMissileStage_AdjustingForGoodLOS = 1,
-			ETrackingMissileStage_HomingInOnTarget = 2,
-			ETrackingMissileStage_MAX = 3,
-		};
 		ADD_STRUCT(float, m_fLoseTightTrackingDistance, 884)
 		ADD_STRUCT(Rotator, m_MissileCaratRotation, 872)
 		ADD_STRUCT(float, m_fStage1MinGroundDist, 868)
@@ -45,7 +41,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fLOSDelay, 824)
 		ADD_BOOL(m_bLostTightHoming, 820, 0x2)
 		ADD_BOOL(m_bHasBentToTarget, 820, 0x1)
-		ADD_STRUCT(TrProj_TrackingMissile::ETrackingMissileStage, m_MissileStage, 816)
+		ADD_STRUCT(TrProj_TrackingMissile__ETrackingMissileStage, m_MissileStage, 816)
 		void PostBeginPlay()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109357);
@@ -122,7 +118,7 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109382);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109388);
 			byte params[68] = { NULL };
@@ -131,7 +127,7 @@ namespace UnrealScript
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

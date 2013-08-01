@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.NavMeshPathGoalEvaluator.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.NavigationHandle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -11,7 +11,7 @@ namespace UnrealScript
 	class NavMeshGoal_Null : public NavMeshPathGoalEvaluator
 	{
 	public:
-		ADD_STRUCT(Object::Pointer, PartialGoal, 80)
+		ADD_STRUCT(Object__Pointer, PartialGoal, 80)
 		bool GoUntilBust(class NavigationHandle* NavHandle, int InMaxPathVisits)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20975);

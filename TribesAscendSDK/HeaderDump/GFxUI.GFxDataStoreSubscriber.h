@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.Object.h"
 #include "GFxUI.GFxMoviePlayer.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.UIDataStore.h"
 #include "Engine.UIDataProvider.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -17,7 +18,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_OBJECT(GFxMoviePlayer, Movie, 64)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIDataStorePublisher, 60)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIDataStorePublisher, 60)
 		void PublishValues()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30255);

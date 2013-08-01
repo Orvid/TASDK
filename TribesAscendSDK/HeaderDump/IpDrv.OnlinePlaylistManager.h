@@ -1,6 +1,9 @@
 #pragma once
 #include "Core.Object.h"
+#include "IpDrv.OnlinePlaylistManager.Playlist.h"
 #include "Engine.OnlineGameSettings.h"
+#include "IpDrv.OnlinePlaylistManager.PlaylistPopulation.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,49 +27,10 @@ namespace UnrealScript
 	class OnlinePlaylistManager : public Object
 	{
 	public:
-		struct PlaylistPopulation
-		{
-		public:
-			ADD_STRUCT(int, RegionTotal, 8)
-			ADD_STRUCT(int, WorldwideTotal, 4)
-			ADD_STRUCT(int, PlaylistId, 0)
-		};
-		struct ConfiguredGameSetting
-		{
-		public:
-			ADD_OBJECT(OnlineGameSettings, GameSettings, 28)
-			ADD_STRUCT(ScriptString*, URL, 16)
-			ADD_STRUCT(ScriptString*, GameSettingsClassName, 4)
-			ADD_STRUCT(int, GameSettingId, 0)
-		};
-		struct InventorySwap
-		{
-		public:
-			ADD_STRUCT(ScriptString*, SwapTo, 8)
-			ADD_STRUCT(ScriptName, Original, 0)
-		};
-		struct Playlist
-		{
-		public:
-			ADD_STRUCT(ScriptArray<OnlinePlaylistManager::ConfiguredGameSetting>, ConfiguredGames, 0)
-			ADD_STRUCT(ScriptArray<int>, ContentIds, 32)
-			ADD_STRUCT(ScriptArray<ScriptName>, MapCycle, 84)
-			ADD_STRUCT(ScriptArray<OnlinePlaylistManager::InventorySwap>, InventorySwaps, 96)
-			ADD_BOOL(bDisableDedicatedServerSearches, 80, 0x2)
-			ADD_BOOL(bIsArbitrated, 80, 0x1)
-			ADD_STRUCT(ScriptString*, URL, 68)
-			ADD_STRUCT(ScriptString*, Name, 56)
-			ADD_STRUCT(int, MaxPartySize, 52)
-			ADD_STRUCT(int, TeamCount, 48)
-			ADD_STRUCT(int, TeamSize, 44)
-			ADD_STRUCT(ScriptString*, LocalizationString, 20)
-			ADD_STRUCT(int, LoadBalanceId, 16)
-			ADD_STRUCT(int, PlaylistId, 12)
-		};
-		ADD_STRUCT(ScriptArray<OnlinePlaylistManager::Playlist>, Playlists, 64)
+		ADD_STRUCT(ScriptArray<OnlinePlaylistManager__Playlist>, Playlists, 64)
 		ADD_STRUCT(ScriptArray<ScriptString*>, PlaylistFileNames, 76)
 		ADD_STRUCT(ScriptArray<ScriptName>, DatastoresToRefresh, 88)
-		ADD_STRUCT(ScriptArray<OnlinePlaylistManager::PlaylistPopulation>, PopulationData, 112)
+		ADD_STRUCT(ScriptArray<OnlinePlaylistManager__PlaylistPopulation>, PopulationData, 112)
 		ADD_STRUCT(ScriptString*, DataCenterFileName, 180)
 		ADD_STRUCT(int, DataCenterId, 176)
 		ADD_STRUCT(ScriptName, EventsInterfaceName, 168)
@@ -80,7 +44,7 @@ namespace UnrealScript
 		ADD_STRUCT(int, VersionNumber, 108)
 		ADD_STRUCT(int, SuccessfulCount, 104)
 		ADD_STRUCT(int, DownloadCount, 100)
-		ADD_STRUCT(Object::Pointer, VfTable_FTickableObject, 60)
+		ADD_STRUCT(Object__Pointer, VfTable_FTickableObject, 60)
 		void OnPlaylistPopulationDataUpdated()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33686);

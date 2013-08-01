@@ -1,11 +1,18 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
 #include "Engine.Canvas.h"
-#include "Engine.Font.h"
-#include "Engine.Pawn.h"
+#include "Engine.HUD.HudLocalizedMessage.h"
+#include "Core.Object.Vector.h"
+#include "Engine.HUD.ConsoleMessage.h"
+#include "Engine.HUD.KismetDrawTextInfo.h"
+#include "Core.Object.Color.h"
 #include "Engine.PlayerController.h"
+#include "Core.Object.Rotator.h"
+#include "Engine.Pawn.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Core.Object.h"
+#include "Core.Object.Vector2D.h"
+#include "Engine.Font.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,48 +36,11 @@ namespace UnrealScript
 	class HUD : public Actor
 	{
 	public:
-		struct KismetDrawTextInfo
-		{
-		public:
-			ADD_STRUCT(Object::Vector2D, MessageOffset, 36)
-			ADD_STRUCT(float, MessageEndTime, 48)
-			ADD_STRUCT(Object::Color, MessageColor, 44)
-			ADD_STRUCT(Object::Vector2D, MessageFontScale, 28)
-			ADD_OBJECT(Font, MessageFont, 24)
-			ADD_STRUCT(ScriptString*, AppendedText, 12)
-			ADD_STRUCT(ScriptString*, MessageText, 0)
-		};
-		struct ConsoleMessage
-		{
-		public:
-			ADD_OBJECT(PlayerReplicationInfo, PRI, 20)
-			ADD_STRUCT(float, MessageLife, 16)
-			ADD_STRUCT(Object::Color, TextColor, 12)
-			ADD_STRUCT(ScriptString*, Text, 0)
-		};
-		struct HudLocalizedMessage
-		{
-		public:
-			ADD_OBJECT(Object, OptionalObject, 60)
-			ADD_STRUCT(int, Count, 56)
-			ADD_BOOL(Drawn, 52, 0x1)
-			ADD_STRUCT(float, DY, 48)
-			ADD_STRUCT(float, DX, 44)
-			ADD_OBJECT(Font, StringFont, 40)
-			ADD_STRUCT(int, FontSize, 36)
-			ADD_STRUCT(Object::Color, DrawColor, 32)
-			ADD_STRUCT(float, PosY, 28)
-			ADD_STRUCT(float, Lifetime, 24)
-			ADD_STRUCT(float, EndOfLife, 20)
-			ADD_STRUCT(int, Switch, 16)
-			ADD_STRUCT(ScriptString*, StringMessage, 4)
-			ADD_OBJECT(ScriptClass, Message, 0)
-		};
 		ADD_OBJECT(Canvas, Canvas, 1064)
 		ADD_STRUCT(ScriptArray<class Actor*>, PostRenderedActors, 500)
-		ADD_STRUCT(ScriptArray<HUD::ConsoleMessage>, ConsoleMessages, 512)
+		ADD_STRUCT(ScriptArray<HUD__ConsoleMessage>, ConsoleMessages, 512)
 		ADD_STRUCT(ScriptArray<ScriptName>, DebugDisplay, 1100)
-		ADD_STRUCT(ScriptArray<HUD::KismetDrawTextInfo>, KismetTextInfo, 1112)
+		ADD_STRUCT(ScriptArray<HUD__KismetDrawTextInfo>, KismetTextInfo, 1112)
 		ADD_STRUCT(float, RatioY, 1096)
 		ADD_STRUCT(float, RatioX, 1092)
 		ADD_STRUCT(float, CenterY, 1088)
@@ -81,12 +51,12 @@ namespace UnrealScript
 		ADD_STRUCT(float, LastHUDRenderTime, 1068)
 		ADD_STRUCT(float, ConsoleMessagePosY, 1060)
 		ADD_STRUCT(float, ConsoleMessagePosX, 1056)
-		ADD_STRUCT(HUD::HudLocalizedMessage, LocalMessages, 544)
+		ADD_STRUCT(HUD__HudLocalizedMessage, LocalMessages, 544)
 		ADD_STRUCT(int, MaxHUDAreaMessageCount, 540)
 		ADD_STRUCT(int, MessageFontOffset, 536)
 		ADD_STRUCT(int, ConsoleFontSize, 532)
 		ADD_STRUCT(int, ConsoleMessageCount, 528)
-		ADD_STRUCT(Object::Color, ConsoleColor, 524)
+		ADD_STRUCT(Object__Color, ConsoleColor, 524)
 		ADD_STRUCT(float, HudCanvasScale, 496)
 		ADD_BOOL(bShowOverlays, 492, 0x40)
 		ADD_BOOL(bMessageBeep, 492, 0x20)
@@ -96,9 +66,9 @@ namespace UnrealScript
 		ADD_BOOL(bShowHUD, 492, 0x2)
 		ADD_BOOL(bLostFocusPaused, 492, 0x1)
 		ADD_OBJECT(PlayerController, PlayerOwner, 488)
-		ADD_STRUCT(Object::Color, RedColor, 484)
-		ADD_STRUCT(Object::Color, GreenColor, 480)
-		ADD_STRUCT(Object::Color, WhiteColor, 476)
+		ADD_STRUCT(Object__Color, RedColor, 484)
+		ADD_STRUCT(Object__Color, GreenColor, 480)
+		ADD_STRUCT(Object__Color, WhiteColor, 476)
 		bool ShouldDisplayDebug(ScriptName DebugType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4184);
@@ -107,16 +77,16 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
-		void Draw3DLine(Vector Start, Vector End, Object::Color LineColor)
+		void Draw3DLine(Vector Start, Vector End, Object__Color LineColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13718);
 			byte params[28] = { NULL };
 			*(Vector*)params = Start;
 			*(Vector*)&params[12] = End;
-			*(Object::Color*)&params[24] = LineColor;
+			*(Object__Color*)&params[24] = LineColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void Draw2DLine(int X1, int Y1, int X2, int Y2, Object::Color LineColor)
+		void Draw2DLine(int X1, int Y1, int X2, int Y2, Object__Color LineColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13722);
 			byte params[20] = { NULL };
@@ -124,7 +94,7 @@ namespace UnrealScript
 			*(int*)&params[4] = Y1;
 			*(int*)&params[8] = X2;
 			*(int*)&params[12] = Y2;
-			*(Object::Color*)&params[16] = LineColor;
+			*(Object__Color*)&params[16] = LineColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void PostBeginPlay()
@@ -220,13 +190,13 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13770);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ClearMessage(HUD::HudLocalizedMessage& M)
+		void ClearMessage(HUD__HudLocalizedMessage& M)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13771);
 			byte params[64] = { NULL };
-			*(HUD::HudLocalizedMessage*)params = M;
+			*(HUD__HudLocalizedMessage*)params = M;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			M = *(HUD::HudLocalizedMessage*)params;
+			M = *(HUD__HudLocalizedMessage*)params;
 		}
 		void Message(class PlayerReplicationInfo* PRI, ScriptString* msg, ScriptName MsgType, float Lifetime)
 		{
@@ -253,7 +223,7 @@ namespace UnrealScript
 			*(float*)&params[20] = Lifetime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void LocalizedMessage(ScriptClass* InMessageClass, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, ScriptString* CriticalString, int Switch, float Position, float Lifetime, int FontSize, Object::Color DrawColor, class Object* OptionalObject)
+		void LocalizedMessage(ScriptClass* InMessageClass, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, ScriptString* CriticalString, int Switch, float Position, float Lifetime, int FontSize, Object__Color DrawColor, class Object* OptionalObject)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13795);
 			byte params[48] = { NULL };
@@ -265,11 +235,11 @@ namespace UnrealScript
 			*(float*)&params[28] = Position;
 			*(float*)&params[32] = Lifetime;
 			*(int*)&params[36] = FontSize;
-			*(Object::Color*)&params[40] = DrawColor;
+			*(Object__Color*)&params[40] = DrawColor;
 			*(class Object**)&params[44] = OptionalObject;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddLocalizedMessage(int Index, ScriptClass* InMessageClass, ScriptString* CriticalString, int Switch, float Position, float Lifetime, int FontSize, Object::Color DrawColor, int MessageCount, class Object* OptionalObject)
+		void AddLocalizedMessage(int Index, ScriptClass* InMessageClass, ScriptString* CriticalString, int Switch, float Position, float Lifetime, int FontSize, Object__Color DrawColor, int MessageCount, class Object* OptionalObject)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13815);
 			byte params[48] = { NULL };
@@ -280,23 +250,23 @@ namespace UnrealScript
 			*(float*)&params[24] = Position;
 			*(float*)&params[28] = Lifetime;
 			*(int*)&params[32] = FontSize;
-			*(Object::Color*)&params[36] = DrawColor;
+			*(Object__Color*)&params[36] = DrawColor;
 			*(int*)&params[40] = MessageCount;
 			*(class Object**)&params[44] = OptionalObject;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void GetScreenCoords(float PosY, float& ScreenX, float& ScreenY, HUD::HudLocalizedMessage& InMessage)
+		void GetScreenCoords(float PosY, float& ScreenX, float& ScreenY, HUD__HudLocalizedMessage& InMessage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13826);
 			byte params[76] = { NULL };
 			*(float*)params = PosY;
 			*(float*)&params[4] = ScreenX;
 			*(float*)&params[8] = ScreenY;
-			*(HUD::HudLocalizedMessage*)&params[12] = InMessage;
+			*(HUD__HudLocalizedMessage*)&params[12] = InMessage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			ScreenX = *(float*)&params[4];
 			ScreenY = *(float*)&params[8];
-			InMessage = *(HUD::HudLocalizedMessage*)&params[12];
+			InMessage = *(HUD__HudLocalizedMessage*)&params[12];
 		}
 		void DrawMessage(int I, float PosY, float& DX, float& DY)
 		{
@@ -310,11 +280,11 @@ namespace UnrealScript
 			DX = *(float*)&params[8];
 			DY = *(float*)&params[12];
 		}
-		void DrawMessageText(HUD::HudLocalizedMessage LocalMessage, float ScreenX, float ScreenY)
+		void DrawMessageText(HUD__HudLocalizedMessage LocalMessage, float ScreenX, float ScreenY)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13839);
 			byte params[72] = { NULL };
-			*(HUD::HudLocalizedMessage*)params = LocalMessage;
+			*(HUD__HudLocalizedMessage*)params = LocalMessage;
 			*(float*)&params[64] = ScreenX;
 			*(float*)&params[68] = ScreenY;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -329,15 +299,15 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13854);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void DrawText(ScriptString* Text, Object::Vector2D Position, class Font* TextFont, Object::Vector2D FontScale, Object::Color TextColor)
+		void DrawText(ScriptString* Text, Object__Vector2D Position, class Font* TextFont, Object__Vector2D FontScale, Object__Color TextColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13856);
 			byte params[36] = { NULL };
 			*(ScriptString**)params = Text;
-			*(Object::Vector2D*)&params[12] = Position;
+			*(Object__Vector2D*)&params[12] = Position;
 			*(class Font**)&params[20] = TextFont;
-			*(Object::Vector2D*)&params[24] = FontScale;
-			*(Object::Color*)&params[32] = TextColor;
+			*(Object__Vector2D*)&params[24] = FontScale;
+			*(Object__Color*)&params[32] = TextColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		class Font* GetFontSizeIndex(int FontSize)

@@ -1,6 +1,9 @@
 #pragma once
-#include "Core.Object.h"
+#include "Core.Object.InterpCurveVector2D.h"
 #include "Engine.SpriteComponent.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.InterpCurveLinearColor.h"
+#include "Core.Object.InterpCurveFloat.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,9 +15,9 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(int, LoopCount, 576)
 		ADD_STRUCT(Vector, LocationOffset, 564)
-		ADD_STRUCT(Object::InterpCurveVector2D, AnimatedPosition, 548)
-		ADD_STRUCT(Object::InterpCurveLinearColor, AnimatedColor, 532)
-		ADD_STRUCT(Object::InterpCurveFloat, AnimatedScale, 516)
+		ADD_STRUCT(Object__InterpCurveVector2D, AnimatedPosition, 548)
+		ADD_STRUCT(Object__InterpCurveLinearColor, AnimatedColor, 532)
+		ADD_STRUCT(Object__InterpCurveFloat, AnimatedScale, 516)
 	};
 }
 #undef ADD_STRUCT

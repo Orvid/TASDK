@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.SequenceAction.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,8 +25,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, TotalTime, 272)
 		ADD_STRUCT(ScriptString*, TextDisplay, 260)
 		ADD_STRUCT(ScriptName, FocusBoneName, 252)
-		ADD_STRUCT(Object::Vector2D, InFocusFOV, 244)
-		ADD_STRUCT(Object::Vector2D, InterpSpeedRange, 236)
+		ADD_STRUCT(Object__Vector2D, InFocusFOV, 244)
+		ADD_STRUCT(Object__Vector2D, InterpSpeedRange, 236)
 		ADD_BOOL(bCheckLineOfSight, 232, 0x800)
 		ADD_BOOL(bUsedTimer, 232, 0x400)
 		ADD_BOOL(bDisableInput, 232, 0x200)

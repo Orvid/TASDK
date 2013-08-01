@@ -1,7 +1,8 @@
 #pragma once
 #include "Engine.Trigger.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Engine.TriggerStreamingLevel.LevelStreamingData.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,15 +26,7 @@ namespace UnrealScript
 	class TriggerStreamingLevel : public Trigger
 	{
 	public:
-		struct LevelStreamingData
-		{
-		public:
-			ADD_OBJECT(LevelStreaming, Level, 4)
-			ADD_BOOL(bShouldBlockOnLoad, 0, 0x4)
-			ADD_BOOL(bShouldBeVisible, 0, 0x2)
-			ADD_BOOL(bShouldBeLoaded, 0, 0x1)
-		};
-		ADD_STRUCT(ScriptArray<TriggerStreamingLevel::LevelStreamingData>, Levels, 488)
+		ADD_STRUCT(ScriptArray<TriggerStreamingLevel__LevelStreamingData>, Levels, 488)
 		void Touch(class Actor* Other, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void* OtherComp, Vector HitLocation, Vector HitNormal)

@@ -1,8 +1,12 @@
 #pragma once
 #include "Engine.LocalPlayer.h"
 #include "Engine.Interaction.h"
+#include "Engine.Console.scrollbackData.h"
+#include "Engine.Console.AutoCompleteCommand.h"
+#include "Engine.Console.AutoCompleteNode.h"
 #include "Engine.Texture2D.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
+#include "Core.Object.EInputEvent.h"
 #include "Engine.Canvas.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -28,30 +32,11 @@ namespace UnrealScript
 	{
 	public:
 		static const auto MaxHistory = 16;
-		struct scrollbackData
-		{
-		public:
-			ADD_STRUCT(Object::Color, OverrideColor, 12)
-			ADD_STRUCT(ScriptString*, Text, 0)
-		};
-		struct AutoCompleteCommand
-		{
-		public:
-			ADD_STRUCT(ScriptString*, Desc, 12)
-			ADD_STRUCT(ScriptString*, Command, 0)
-		};
-		struct AutoCompleteNode
-		{
-		public:
-			ADD_STRUCT(ScriptArray<int>, AutoCompleteListIndices, 4)
-			ADD_STRUCT(ScriptArray<Object::Pointer>, ChildNodes, 16)
-			ADD_STRUCT(int, IndexChar, 0)
-		};
-		ADD_STRUCT(ScriptArray<Console::scrollbackData>, Scrollback, 140)
-		ADD_STRUCT(ScriptArray<Console::AutoCompleteCommand>, ManualAutoCompleteList, 384)
-		ADD_STRUCT(ScriptArray<Console::AutoCompleteCommand>, AutoCompleteList, 396)
+		ADD_STRUCT(ScriptArray<Console__scrollbackData>, Scrollback, 140)
+		ADD_STRUCT(ScriptArray<Console__AutoCompleteCommand>, ManualAutoCompleteList, 384)
+		ADD_STRUCT(ScriptArray<Console__AutoCompleteCommand>, AutoCompleteList, 396)
 		ADD_STRUCT(ScriptArray<int>, AutoCompleteIndices, 440)
-		ADD_STRUCT(Console::AutoCompleteNode, AutoCompleteTree, 412)
+		ADD_STRUCT(Console__AutoCompleteNode, AutoCompleteTree, 412)
 		ADD_STRUCT(int, AutoCompleteIndex, 408)
 		ADD_STRUCT(int, TypedStrPos, 380)
 		ADD_STRUCT(ScriptString*, TypedStr, 368)
@@ -112,20 +97,20 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12996);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OutputTextLine(ScriptString* Text, Object::Color OverrideColor)
+		void OutputTextLine(ScriptString* Text, Object__Color OverrideColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12997);
 			byte params[16] = { NULL };
 			*(ScriptString**)params = Text;
-			*(Object::Color*)&params[12] = OverrideColor;
+			*(Object__Color*)&params[12] = OverrideColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OutputText(ScriptString* Text, Object::Color OverrideColor)
+		void OutputText(ScriptString* Text, Object__Color OverrideColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13001);
 			byte params[16] = { NULL };
 			*(ScriptString**)params = Text;
-			*(Object::Color*)&params[12] = OverrideColor;
+			*(Object__Color*)&params[12] = OverrideColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void StartTyping(ScriptString* Text)
@@ -142,13 +127,13 @@ namespace UnrealScript
 			*(class Canvas**)params = Canvas;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool InputKey(int ControllerId, ScriptName Key, Object::EInputEvent Event, float AmountDepressed, bool bGamepad)
+		bool InputKey(int ControllerId, ScriptName Key, Object__EInputEvent Event, float AmountDepressed, bool bGamepad)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13011);
 			byte params[25] = { NULL };
 			*(int*)params = ControllerId;
 			*(ScriptName*)&params[4] = Key;
-			*(Object::EInputEvent*)&params[12] = Event;
+			*(Object__EInputEvent*)&params[12] = Event;
 			*(float*)&params[16] = AmountDepressed;
 			*(bool*)&params[20] = bGamepad;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -168,12 +153,12 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13022);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		bool ProcessControlKey(ScriptName Key, Object::EInputEvent Event)
+		bool ProcessControlKey(ScriptName Key, Object__EInputEvent Event)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13024);
 			byte params[13] = { NULL };
 			*(ScriptName*)params = Key;
-			*(Object::EInputEvent*)&params[8] = Event;
+			*(Object__EInputEvent*)&params[8] = Event;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}

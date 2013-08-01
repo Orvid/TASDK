@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.PrimitiveComponent.h"
 #include "Engine.Material.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,7 +31,7 @@ namespace UnrealScript
 		ADD_STRUCT(int, SphereSides, 500)
 		ADD_STRUCT(float, SphereRadius, 496)
 		ADD_OBJECT(Material, SphereMaterial, 492)
-		ADD_STRUCT(Object::Color, SphereColor, 488)
+		ADD_STRUCT(Object__Color, SphereColor, 488)
 	};
 }
 #undef ADD_BOOL

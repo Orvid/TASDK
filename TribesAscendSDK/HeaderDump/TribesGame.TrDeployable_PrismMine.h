@@ -3,8 +3,9 @@
 #include "Engine.ParticleSystem.h"
 #include "TribesGame.TrTripActor.h"
 #include "Engine.SoundCue.h"
-#include "Core.Object.h"
 #include "Engine.Pawn.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -28,7 +29,7 @@ namespace UnrealScript
 		ADD_OBJECT(ScriptClass, m_DamageType, 1552)
 		ADD_STRUCT(ScriptName, m_nSocketTraceName, 1544)
 		ADD_STRUCT(float, m_fPrismRadius, 1540)
-		ADD_STRUCT(Object::Pointer, VfTable_IInterface_TrTripNotifier, 1524)
+		ADD_STRUCT(Object__Pointer, VfTable_IInterface_TrTripNotifier, 1524)
 		void CreateTripActor(class TrDeployable_PrismMine* Right, Vector LeftLocation, Vector RightLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(80237);

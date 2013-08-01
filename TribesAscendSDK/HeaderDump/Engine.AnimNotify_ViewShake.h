@@ -1,8 +1,8 @@
 #pragma once
 #include "Engine.AnimNotify_Scripted.h"
+#include "Core.Object.Vector.h"
 #include "Engine.CameraShake.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "Engine.AnimNodeSequence.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

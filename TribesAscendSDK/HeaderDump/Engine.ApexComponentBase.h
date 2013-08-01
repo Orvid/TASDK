@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.MeshComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #include "Engine.ApexAsset.h"
+#include "Core.Object.RenderCommandFence_Mirror.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,10 +28,10 @@ namespace UnrealScript
 	{
 	public:
 		ADD_BOOL(bAssetChanged, 516, 0x1)
-		ADD_STRUCT(Object::Color, WireframeColor, 512)
+		ADD_STRUCT(Object__Color, WireframeColor, 512)
 		ADD_OBJECT(ApexAsset, Asset, 508)
-		ADD_STRUCT(Object::RenderCommandFence_Mirror, ReleaseResourcesFence, 504)
-		ADD_STRUCT(Object::Pointer, ComponentBaseResources, 500)
+		ADD_STRUCT(Object__RenderCommandFence_Mirror, ReleaseResourcesFence, 504)
+		ADD_STRUCT(Object__Pointer, ComponentBaseResources, 500)
 	};
 }
 #undef ADD_BOOL

@@ -1,7 +1,8 @@
 #pragma once
 #include "Engine.MaterialInstanceConstant.h"
 #include "Engine.MorphNodeWeightBase.h"
-#include "Core.Object.h"
+#include "Engine.MorphNodeWeightByBoneAngle.BoneAngleMorph.h"
+#include "Core.Object.EAxis.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,13 +26,7 @@ namespace UnrealScript
 	class MorphNodeWeightByBoneAngle : public MorphNodeWeightBase
 	{
 	public:
-		struct BoneAngleMorph
-		{
-		public:
-			ADD_STRUCT(float, TargetWeight, 4)
-			ADD_STRUCT(float, Angle, 0)
-		};
-		ADD_STRUCT(ScriptArray<MorphNodeWeightByBoneAngle::BoneAngleMorph>, WeightArray, 168)
+		ADD_STRUCT(ScriptArray<MorphNodeWeightByBoneAngle__BoneAngleMorph>, WeightArray, 168)
 		ADD_OBJECT(MaterialInstanceConstant, MaterialInstanceConstant, 164)
 		ADD_STRUCT(ScriptName, ScalarParameterName, 156)
 		ADD_STRUCT(int, MaterialSlotId, 152)
@@ -39,8 +34,8 @@ namespace UnrealScript
 		ADD_BOOL(bControlMaterialParameter, 140, 0x4)
 		ADD_BOOL(bInvertAngleBoneAxis, 140, 0x2)
 		ADD_BOOL(bInvertBaseBoneAxis, 140, 0x1)
-		ADD_STRUCT(Object::EAxis, AngleBoneAxis, 137)
-		ADD_STRUCT(Object::EAxis, BaseBoneAxis, 136)
+		ADD_STRUCT(Object__EAxis, AngleBoneAxis, 137)
+		ADD_STRUCT(Object__EAxis, BaseBoneAxis, 136)
 		ADD_STRUCT(ScriptName, BaseBoneName, 128)
 		ADD_STRUCT(float, NodeWeight, 124)
 		ADD_STRUCT(float, Angle, 120)

@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.NavigationPoint.h"
 #include "Engine.Actor.h"
+#include "Engine.DoorMarker.EDoorType.h"
 #include "Engine.InterpActor.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -26,19 +27,13 @@ namespace UnrealScript
 	class DoorMarker : public NavigationPoint
 	{
 	public:
-		enum EDoorType : byte
-		{
-			DOOR_Shoot = 0,
-			DOOR_Touch = 1,
-			DOOR_MAX = 2,
-		};
 		ADD_BOOL(bTempDisabledCollision, 704, 0x10)
 		ADD_BOOL(bDoorOpen, 704, 0x8)
 		ADD_BOOL(bBlockedWhenClosed, 704, 0x4)
 		ADD_BOOL(bInitiallyClosed, 704, 0x2)
 		ADD_BOOL(bWaitUntilCompletelyOpened, 704, 0x1)
 		ADD_OBJECT(Actor, DoorTrigger, 700)
-		ADD_STRUCT(DoorMarker::EDoorType, DoorType, 696)
+		ADD_STRUCT(DoorMarker__EDoorType, DoorType, 696)
 		ADD_OBJECT(InterpActor, MyDoor, 692)
 		void PostBeginPlay()
 		{

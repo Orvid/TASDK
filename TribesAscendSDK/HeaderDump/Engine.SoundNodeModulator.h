@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.SoundNode.h"
-#include "Core.DistributionFloat.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,8 +10,8 @@ namespace UnrealScript
 	class SoundNodeModulator : public SoundNode
 	{
 	public:
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, VolumeModulation, 120)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, PitchModulation, 92)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, VolumeModulation, 120)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, PitchModulation, 92)
 		ADD_STRUCT(float, VolumeMax, 88)
 		ADD_STRUCT(float, VolumeMin, 84)
 		ADD_STRUCT(float, PitchMax, 80)

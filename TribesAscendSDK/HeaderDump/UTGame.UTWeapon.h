@@ -1,25 +1,33 @@
 #pragma once
 #include "Engine.SoundCue.h"
 #include "UDKBase.UDKWeapon.h"
+#include "UDKBase.UDKPawn.h"
+#include "Core.Object.Color.h"
+#include "Engine.ForceFeedbackWaveform.h"
+#include "UTGame.UTWeapon.AmmoWidgetDisplayStyle.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "Engine.Texture2D.h"
+#include "Engine.AnimSet.h"
 #include "UTGame.UTPlayerController.h"
 #include "Engine.CameraAnim.h"
-#include "Engine.UIRoot.h"
-#include "Engine.Texture2D.h"
-#include "Core.Object.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
 #include "Engine.ParticleSystem.h"
-#include "Engine.AnimSet.h"
-#include "UDKBase.UDKPawn.h"
-#include "Engine.ForceFeedbackWaveform.h"
-#include "UDKBase.UDKPlayerController.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Rotator.h"
+#include "Core.Object.InterpCurveFloat.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.SoundNodeWave.h"
 #include "Engine.Canvas.h"
 #include "Engine.Material.h"
 #include "Engine.HUD.h"
+#include "UTGame.UTPlayerController.EWeaponHand.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "Engine.Controller.h"
 #include "Engine.Weapon.h"
 #include "Engine.Pawn.h"
 #include "Engine.Actor.h"
 #include "Engine.Projectile.h"
+#include "UTGame.UTWeapon.EZoomState.h"
 #include "Engine.AnimNodeSequence.h"
 #include "UTGame.UTPawn.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -45,45 +53,29 @@ namespace UnrealScript
 	class UTWeapon : public UDKWeapon
 	{
 	public:
-		enum EZoomState : byte
-		{
-			ZST_NotZoomed = 0,
-			ZST_ZoomingOut = 1,
-			ZST_ZoomingIn = 2,
-			ZST_Zoomed = 3,
-			ZST_MAX = 4,
-		};
-		enum AmmoWidgetDisplayStyle : byte
-		{
-			EAWDS_Numeric = 0,
-			EAWDS_BarGraph = 1,
-			EAWDS_Both = 2,
-			EAWDS_None = 3,
-			EAWDS_MAX = 4,
-		};
-		ADD_STRUCT(UTWeapon::AmmoWidgetDisplayStyle, AmmoDisplayType, 970)
+		ADD_STRUCT(UTWeapon__AmmoWidgetDisplayStyle, AmmoDisplayType, 970)
 		ADD_STRUCT(byte, InventoryGroup, 969)
 		ADD_STRUCT(ScriptString*, UseHintString, 1460)
 		ADD_BOOL(bExportMenuData, 748, 0x1)
 		ADD_BOOL(bAllowFiringWithoutController, 748, 0x40000)
 		ADD_BOOL(bSmallWeapons, 748, 0x8)
 		ADD_BOOL(bUseCustomCoordinates, 748, 0x4)
-		ADD_STRUCT(UIRoot::TextureCoordinates, SimpleCrossHairCoordinates, 868)
-		ADD_STRUCT(UIRoot::TextureCoordinates, CustomCrosshairCoordinates, 936)
+		ADD_STRUCT(UIRoot__TextureCoordinates, SimpleCrossHairCoordinates, 868)
+		ADD_STRUCT(UIRoot__TextureCoordinates, CustomCrosshairCoordinates, 936)
 		ADD_STRUCT(float, LastHitEnemyTime, 924)
 		ADD_STRUCT(float, InventoryWeight, 1012)
 		ADD_STRUCT(float, GroupWeight, 1008)
-		ADD_STRUCT(UIRoot::TextureCoordinates, CrossHairCoordinates, 852)
+		ADD_STRUCT(UIRoot__TextureCoordinates, CrossHairCoordinates, 852)
 		ADD_STRUCT(float, CrosshairScaling, 932)
 		ADD_OBJECT(Texture2D, CrosshairImage, 884)
-		ADD_STRUCT(Object::Color, CrosshairColor, 928)
+		ADD_STRUCT(Object__Color, CrosshairColor, 928)
 		ADD_BOOL(bWasLocked, 748, 0x2)
 		ADD_STRUCT(float, LockedStartTime, 920)
 		ADD_STRUCT(float, CurrentLockedScale, 904)
 		ADD_STRUCT(float, StartLockedScale, 908)
 		ADD_STRUCT(float, LockedScaleTime, 916)
 		ADD_STRUCT(float, FinalLockedScale, 912)
-		ADD_STRUCT(UIRoot::TextureCoordinates, LockedCrossHairCoordinates, 888)
+		ADD_STRUCT(UIRoot__TextureCoordinates, LockedCrossHairCoordinates, 888)
 		ADD_STRUCT(float, ZoomedRate, 976)
 		ADD_STRUCT(float, ZoomedTargetFOV, 972)
 		ADD_OBJECT(AnimSet, ArmsAnimSet, 1040)
@@ -109,7 +101,7 @@ namespace UnrealScript
 		ADD_OBJECT(SoundCue, WeaponEquipSnd, 1116)
 		ADD_BOOL(bPendingShow, 748, 0x100)
 		ADD_OBJECT(ScriptClass, AttachmentClass, 992)
-		ADD_STRUCT(Object::Color, MuzzleFlashColor, 1216)
+		ADD_STRUCT(Object__Color, MuzzleFlashColor, 1216)
 		ADD_BOOL(bForceHidden, 748, 0x200000)
 		ADD_STRUCT(Vector, HiddenWeaponsOffset, 1272)
 		ADD_STRUCT(Vector, PlayerViewOffset, 1232)
@@ -144,7 +136,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<ScriptName>, EffectSockets, 804)
 		ADD_STRUCT(float, WeaponCanvasXPct, 1188)
 		ADD_STRUCT(float, WeaponCanvasYPct, 1192)
-		ADD_STRUCT(UIRoot::TextureCoordinates, IconCoordinates, 836)
+		ADD_STRUCT(UIRoot__TextureCoordinates, IconCoordinates, 836)
 		ADD_BOOL(bSuperWeapon, 748, 0x10)
 		ADD_BOOL(bNeverForwardPendingFire, 748, 0x20)
 		ADD_BOOL(bUsesOffhand, 748, 0x80)
@@ -165,17 +157,17 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, PivotTranslation, 996)
 		ADD_STRUCT(ScriptArray<ScriptName>, WeaponIdleAnims, 1076)
 		ADD_STRUCT(ScriptArray<ScriptName>, ArmIdleAnims, 1088)
-		ADD_STRUCT(Object::Color, WeaponColor, 1184)
+		ADD_STRUCT(Object__Color, WeaponColor, 1184)
 		ADD_STRUCT(Rotator, LockerRotation, 1288)
 		ADD_STRUCT(Vector, LockerOffset, 1300)
 		ADD_STRUCT(float, aimerror, 1316)
-		ADD_STRUCT(UDKPlayerController::ObjectiveAnnouncementInfo, NeedToPickUpAnnouncement, 1320)
+		ADD_STRUCT(UDKPlayerController__ObjectiveAnnouncementInfo, NeedToPickUpAnnouncement, 1320)
 		ADD_STRUCT(float, ZoomedTurnSpeedScalePct, 1344)
 		ADD_STRUCT(float, TargetFrictionDistanceMin, 1348)
 		ADD_STRUCT(float, TargetFrictionDistancePeak, 1352)
 		ADD_STRUCT(float, TargetFrictionDistanceMax, 1356)
-		ADD_STRUCT(Object::InterpCurveFloat, TargetFrictionDistanceCurve, 1360)
-		ADD_STRUCT(Object::Vector2D, TargetFrictionMultiplierRange, 1376)
+		ADD_STRUCT(Object__InterpCurveFloat, TargetFrictionDistanceCurve, 1360)
+		ADD_STRUCT(Object__Vector2D, TargetFrictionMultiplierRange, 1376)
 		ADD_STRUCT(float, TargetFrictionPeakRadiusScale, 1384)
 		ADD_STRUCT(float, TargetFrictionPeakHeightScale, 1388)
 		ADD_STRUCT(Vector, TargetFrictionOffset, 1392)
@@ -184,7 +176,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, TargetAdhesionDistanceMax, 1412)
 		ADD_STRUCT(float, TargetAdhesionAimDistY, 1416)
 		ADD_STRUCT(float, TargetAdhesionAimDistZ, 1420)
-		ADD_STRUCT(Object::Vector2D, TargetAdhesionScaleRange, 1424)
+		ADD_STRUCT(Object__Vector2D, TargetAdhesionScaleRange, 1424)
 		ADD_STRUCT(float, TargetAdhesionScaleAmountMin, 1432)
 		ADD_STRUCT(float, TargetAdhesionTargetVelocityMin, 1436)
 		ADD_STRUCT(float, TargetAdhesionPlayerVelocityMin, 1440)
@@ -505,12 +497,12 @@ void**)params = PSC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		UTPlayerController::EWeaponHand GetHand()
+		UTPlayerController__EWeaponHand GetHand()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(40867);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(UTPlayerController::EWeaponHand*)params;
+			return *(UTPlayerController__EWeaponHand*)params;
 		}
 		void SetPosition(class UDKPawn* Holder, float DeltaSeconds)
 		{
@@ -790,15 +782,15 @@ void**)params = PSC;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41037);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		Actor::ImpactInfo InstantAimHelp(Vector StartTrace, Vector EndTrace, Actor::ImpactInfo RealImpact)
+		Actor__ImpactInfo InstantAimHelp(Vector StartTrace, Vector EndTrace, Actor__ImpactInfo RealImpact)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41047);
 			byte params[184] = { NULL };
 			*(Vector*)params = StartTrace;
 			*(Vector*)&params[12] = EndTrace;
-			*(Actor::ImpactInfo*)&params[24] = RealImpact;
+			*(Actor__ImpactInfo*)&params[24] = RealImpact;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Actor::ImpactInfo*)&params[104];
+			return *(Actor__ImpactInfo*)&params[104];
 		}
 		class Projectile* ProjectileFire()
 		{
@@ -807,21 +799,21 @@ void**)params = PSC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class Projectile**)params;
 		}
-		void ProcessInstantHit(byte FiringMode, Actor::ImpactInfo Impact, int NumHits)
+		void ProcessInstantHit(byte FiringMode, Actor__ImpactInfo Impact, int NumHits)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41063);
 			byte params[85] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(int*)&params[84] = NumHits;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		UTWeapon::EZoomState GetZoomedState()
+		UTWeapon__EZoomState GetZoomedState()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41070);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(UTWeapon::EZoomState*)params;
+			return *(UTWeapon__EZoomState*)params;
 		}
 		bool CheckZoom(byte FireModeNum)
 		{

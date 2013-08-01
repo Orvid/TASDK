@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.Object.h"
 #include "Engine.SoundCue.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.FaceFXAsset.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -19,7 +20,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<byte>, RawFaceFXMiniSessionBytes, 80)
 		ADD_STRUCT(ScriptArray<class SoundCue*>, ReferencedSoundCues, 92)
 		ADD_STRUCT(int, NumLoadErrors, 104)
-		ADD_STRUCT(Object::Pointer, InternalFaceFXAnimSet, 64)
+		ADD_STRUCT(Object__Pointer, InternalFaceFXAnimSet, 64)
 		ADD_OBJECT(FaceFXAsset, DefaultFaceFXAsset, 60)
 	};
 }

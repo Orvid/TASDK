@@ -1,6 +1,7 @@
 #pragma once
+#include "Core.Object.Pointer.h"
 #include "Engine.Texture2D.h"
-#include "Core.Object.h"
+#include "Engine.TextureFlipBook.TextureFlipBookMethod.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,28 +21,15 @@ namespace UnrealScript
 	class TextureFlipBook : public Texture2D
 	{
 	public:
-		enum TextureFlipBookMethod : byte
-		{
-			TFBM_UL_ROW = 0,
-			TFBM_UL_COL = 1,
-			TFBM_UR_ROW = 2,
-			TFBM_UR_COL = 3,
-			TFBM_LL_ROW = 4,
-			TFBM_LL_COL = 5,
-			TFBM_LR_ROW = 6,
-			TFBM_LR_COL = 7,
-			TFBM_RANDOM = 8,
-			TFBM_MAX = 9,
-		};
-		ADD_STRUCT(Object::Pointer, ReleaseResourcesFence, 428)
+		ADD_STRUCT(Object__Pointer, ReleaseResourcesFence, 428)
 		ADD_STRUCT(float, RenderOffsetV, 424)
 		ADD_STRUCT(float, RenderOffsetU, 420)
 		ADD_STRUCT(int, CurrentColumn, 416)
 		ADD_STRUCT(int, CurrentRow, 412)
 		ADD_STRUCT(float, FrameTime, 408)
 		ADD_STRUCT(float, FrameRate, 404)
-		ADD_STRUCT(TextureFlipBook::TextureFlipBookMethod, FBMethod, 400)
-		ADD_STRUCT(Object::Pointer, VfTable_FTickableObject, 368)
+		ADD_STRUCT(TextureFlipBook__TextureFlipBookMethod, FBMethod, 400)
+		ADD_STRUCT(Object__Pointer, VfTable_FTickableObject, 368)
 		ADD_STRUCT(int, VerticalImages, 396)
 		ADD_STRUCT(int, HorizontalImages, 392)
 		ADD_BOOL(bAutoPlay, 388, 0x8)

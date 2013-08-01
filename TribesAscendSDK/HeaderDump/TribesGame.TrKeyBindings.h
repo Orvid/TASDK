@@ -1,7 +1,7 @@
 #pragma once
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.TrObject.ESettingsList.h"
 #include "Engine.PlayerInput.h"
-#include "TribesGame.TrObject.h"
 #include "TribesGame.TrPlayerInput_Spectator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -42,11 +42,11 @@ namespace UnrealScript
 		ADD_OBJECT(GFxObject, m_KeyBindingsList, 128)
 		ADD_STRUCT(int, m_KeyBindingsCount, 124)
 		ADD_BOOL(m_bGotInputKey, 120, 0x1)
-		ScriptString* GetCurrentBind(TrObject::ESettingsList Key)
+		ScriptString* GetCurrentBind(TrObject__ESettingsList Key)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(59263);
 			byte params[13] = { NULL };
-			*(TrObject::ESettingsList*)params = Key;
+			*(TrObject__ESettingsList*)params = Key;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}
@@ -180,11 +180,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[16];
 		}
-		ScriptString* GetCommandName(TrObject::ESettingsList Index)
+		ScriptString* GetCommandName(TrObject__ESettingsList Index)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(98436);
 			byte params[13] = { NULL };
-			*(TrObject::ESettingsList*)params = Index;
+			*(TrObject__ESettingsList*)params = Index;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}

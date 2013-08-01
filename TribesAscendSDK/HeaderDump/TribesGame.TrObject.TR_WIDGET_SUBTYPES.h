@@ -1,0 +1,18 @@
+#pragma once
+namespace UnrealScript
+{
+	enum TrObject__TR_WIDGET_SUBTYPES : byte
+	{
+		IST_NONE = 0,
+		IST_DEVICE_MELEE = 1,
+		IST_DEVICE_RANGED = 2,
+		IST_DEVICE_SPECIALTY = 3,
+		IST_DEVICE_JETPACK = 4,
+		IST_DEVICE_TOGGLE = 5,
+		IST_DEVICE_GRENADE = 6,
+		IST_DEVICE_BELT = 7,
+		IST_DEVICE_DEPLOYABLE = 8,
+		IST_DEVICE_REST = 9,
+		IST_MAX = 10,
+	};
+}

@@ -1,5 +1,6 @@
 #pragma once
 #include "GFxUI.GFxMoviePlayer.h"
+#include "UTGame.GFxUDKFrontEnd.ViewInfo.h"
 #include "UTGame.GFxUDKFrontEnd_View.h"
 #include "UTGame.GFxUDKFrontEnd_JoinDialog.h"
 #include "UTGame.GFxUDKFrontEnd_JoinGame.h"
@@ -42,14 +43,7 @@ namespace UnrealScript
 	class GFxUDKFrontEnd : public GFxMoviePlayer
 	{
 	public:
-		struct ViewInfo
-		{
-		public:
-			ADD_STRUCT(ScriptArray<ScriptName>, DependantViews, 20)
-			ADD_STRUCT(ScriptString*, SWFName, 8)
-			ADD_STRUCT(ScriptName, ViewName, 0)
-		};
-		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd::ViewInfo>, ViewData, 452)
+		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd__ViewInfo>, ViewData, 452)
 		ADD_STRUCT(ScriptArray<class GFxUDKFrontEnd_View*>, ViewStack, 464)
 		ADD_STRUCT(ScriptArray<ScriptName>, LoadedViews, 476)
 		ADD_OBJECT(GFxUDKFrontEnd_PasswordDialog, PasswordDialog, 448)
@@ -100,11 +94,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37787);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void LoadView(GFxUDKFrontEnd::ViewInfo InViewInfo)
+		void LoadView(GFxUDKFrontEnd__ViewInfo InViewInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37789);
 			byte params[32] = { NULL };
-			*(GFxUDKFrontEnd::ViewInfo*)params = InViewInfo;
+			*(GFxUDKFrontEnd__ViewInfo*)params = InViewInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void LoadViewByName(ScriptName InViewName)

@@ -1,7 +1,8 @@
 #pragma once
 #include "Engine.NavMeshGoal_GenericFilterContainer.h"
 #include "Engine.NavMeshGoal_Filter.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,7 +13,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(Vector, OutOfViewLocation, 76)
-		ADD_STRUCT(Object::Pointer, GoalPoly, 72)
+		ADD_STRUCT(Object__Pointer, GoalPoly, 72)
 		bool MustBeHiddenFromThisPoint(class NavMeshGoal_GenericFilterContainer* FilterContainer, Vector InOutOfViewLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21003);

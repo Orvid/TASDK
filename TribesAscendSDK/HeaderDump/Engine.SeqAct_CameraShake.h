@@ -2,7 +2,7 @@
 #include "Engine.SequenceAction.h"
 #include "Engine.Actor.h"
 #include "Engine.CameraShake.h"
-#include "Engine.Camera.h"
+#include "Engine.Camera.ECameraAnimPlaySpace.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -35,7 +35,7 @@ namespace UnrealScript
 		ADD_BOOL(bDoControllerVibration, 240, 0x1)
 		ADD_BOOL(bOrientTowardRadialEpicenter, 240, 0x4)
 		ADD_STRUCT(float, ShakeScale, 236)
-		ADD_STRUCT(Camera::ECameraAnimPlaySpace, PlaySpace, 256)
+		ADD_STRUCT(Camera__ECameraAnimPlaySpace, PlaySpace, 256)
 		int GetObjClassVersion()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25635);

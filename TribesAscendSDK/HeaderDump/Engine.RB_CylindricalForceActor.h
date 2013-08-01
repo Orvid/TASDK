@@ -1,6 +1,6 @@
 #pragma once
-#include "Engine.PrimitiveComponent.h"
 #include "Engine.RigidBodyBase.h"
+#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -21,7 +21,7 @@ namespace UnrealScript
 	class RB_CylindricalForceActor : public RigidBodyBase
 	{
 	public:
-		ADD_STRUCT(PrimitiveComponent::RBCollisionChannelContainer, CollideWithChannels, 520)
+		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, CollideWithChannels, 520)
 		ADD_BOOL(bForceApplyToProjectiles, 516, 0x10)
 		ADD_BOOL(bForceApplyToRigidBodies, 516, 0x8)
 		ADD_BOOL(bForceApplyToFluid, 516, 0x4)

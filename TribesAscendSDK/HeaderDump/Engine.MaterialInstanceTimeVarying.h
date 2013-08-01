@@ -1,8 +1,14 @@
 #pragma once
 #include "Engine.MaterialInstance.h"
+#include "Engine.MaterialInstanceTimeVarying.FontParameterValueOverTime.h"
+#include "Core.Object.LinearColor.h"
+#include "Engine.MaterialInstanceTimeVarying.ScalarParameterValueOverTime.h"
+#include "Engine.MaterialInstanceTimeVarying.TextureParameterValueOverTime.h"
+#include "Engine.MaterialInstanceTimeVarying.VectorParameterValueOverTime.h"
 #include "Engine.MaterialInterface.h"
-#include "Core.Object.h"
 #include "Engine.Texture.h"
+#include "Core.Object.InterpCurveFloat.h"
+#include "Core.Object.InterpCurveVector.h"
 #include "Engine.Font.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -27,46 +33,10 @@ namespace UnrealScript
 	class MaterialInstanceTimeVarying : public MaterialInstance
 	{
 	public:
-		struct ParameterValueOverTime
-		{
-		public:
-			ADD_BOOL(bOffsetFromEnd, 44, 0x1)
-			ADD_STRUCT(float, OffsetTime, 40)
-			ADD_BOOL(bNormalizeTime, 36, 0x1)
-			ADD_STRUCT(float, CycleTime, 32)
-			ADD_BOOL(bAutoActivate, 28, 0x2)
-			ADD_BOOL(bLoop, 28, 0x1)
-			ADD_STRUCT(ScriptName, ParameterName, 20)
-			ADD_STRUCT(float, StartTime, 16)
-			ADD_STRUCT(Object::Guid, ExpressionGUID, 0)
-		};
-		struct FontParameterValueOverTime : public ParameterValueOverTime
-		{
-		public:
-			ADD_STRUCT(int, FontPage, 52)
-			ADD_OBJECT(Font, FontValue, 48)
-		};
-		struct ScalarParameterValueOverTime : public ParameterValueOverTime
-		{
-		public:
-			ADD_STRUCT(Object::InterpCurveFloat, ParameterValueCurve, 52)
-			ADD_STRUCT(float, ParameterValue, 48)
-		};
-		struct TextureParameterValueOverTime : public ParameterValueOverTime
-		{
-		public:
-			ADD_OBJECT(Texture, ParameterValue, 48)
-		};
-		struct VectorParameterValueOverTime : public ParameterValueOverTime
-		{
-		public:
-			ADD_STRUCT(Object::InterpCurveVector, ParameterValueCurve, 64)
-			ADD_STRUCT(Object::LinearColor, ParameterValue, 48)
-		};
-		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying::FontParameterValueOverTime>, FontParameterValues, 440)
-		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying::ScalarParameterValueOverTime>, ScalarParameterValues, 452)
-		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying::TextureParameterValueOverTime>, TextureParameterValues, 464)
-		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying::VectorParameterValueOverTime>, VectorParameterValues, 476)
+		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying__FontParameterValueOverTime>, FontParameterValues, 440)
+		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying__ScalarParameterValueOverTime>, ScalarParameterValues, 452)
+		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying__TextureParameterValueOverTime>, TextureParameterValues, 464)
+		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying__VectorParameterValueOverTime>, VectorParameterValues, 476)
 		ADD_STRUCT(float, Duration, 436)
 		ADD_BOOL(bAutoActivateAll, 432, 0x1)
 		void SetParent(class MaterialInterface* NewParent)
@@ -84,14 +54,14 @@ namespace UnrealScript
 			*(float*)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetScalarCurveParameterValue(ScriptName ParameterName, Object::InterpCurveFloat& Value)
+		void SetScalarCurveParameterValue(ScriptName ParameterName, Object__InterpCurveFloat& Value)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19888);
 			byte params[24] = { NULL };
 			*(ScriptName*)params = ParameterName;
-			*(Object::InterpCurveFloat*)&params[8] = Value;
+			*(Object__InterpCurveFloat*)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Value = *(Object::InterpCurveFloat*)&params[8];
+			Value = *(Object__InterpCurveFloat*)&params[8];
 		}
 		void SetScalarStartTime(ScriptName ParameterName, float Value)
 		{
@@ -116,23 +86,23 @@ namespace UnrealScript
 			*(class Texture**)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetVectorParameterValue(ScriptName ParameterName, Object::LinearColor& Value)
+		void SetVectorParameterValue(ScriptName ParameterName, Object__LinearColor& Value)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19899);
 			byte params[24] = { NULL };
 			*(ScriptName*)params = ParameterName;
-			*(Object::LinearColor*)&params[8] = Value;
+			*(Object__LinearColor*)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Value = *(Object::LinearColor*)&params[8];
+			Value = *(Object__LinearColor*)&params[8];
 		}
-		void SetVectorCurveParameterValue(ScriptName ParameterName, Object::InterpCurveVector& Value)
+		void SetVectorCurveParameterValue(ScriptName ParameterName, Object__InterpCurveVector& Value)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19902);
 			byte params[24] = { NULL };
 			*(ScriptName*)params = ParameterName;
-			*(Object::InterpCurveVector*)&params[8] = Value;
+			*(Object__InterpCurveVector*)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Value = *(Object::InterpCurveVector*)&params[8];
+			Value = *(Object__InterpCurveVector*)&params[8];
 		}
 		void SetVectorStartTime(ScriptName ParameterName, float Value)
 		{

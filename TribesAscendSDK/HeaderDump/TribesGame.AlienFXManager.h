@@ -1,5 +1,7 @@
 #pragma once
 #include "Core.Object.h"
+#include "TribesGame.AlienFXManager.FXOverlay.h"
+#include "TribesGame.AlienFXManager.FXArea.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,31 +21,8 @@ namespace UnrealScript
 	class AlienFXManager : public Object
 	{
 	public:
-		enum FXOverlay : byte
-		{
-			FXO_NONE = 0,
-			FXO_RAGE = 1,
-			FXO_REGEN = 2,
-			FXO_DYING = 3,
-			FXO_INVULN = 4,
-			FXO_JAMMER = 5,
-			FXO_SHIELD = 6,
-			FXO_STEALTH = 7,
-			FXO_MAX = 8,
-		};
-		enum FXArea : byte
-		{
-			FXA_ALL = 0,
-			FXA_RIGHT = 1,
-			FXA_LEFT = 2,
-			FXA_UPPER = 3,
-			FXA_LOWER = 4,
-			FXA_FRONT = 5,
-			FXA_REAR = 6,
-			FXA_MAX = 7,
-		};
-		ADD_STRUCT(AlienFXManager::FXOverlay, eLastOverlay, 141)
-		ADD_STRUCT(AlienFXManager::FXOverlay, eCurrOverlay, 140)
+		ADD_STRUCT(AlienFXManager__FXOverlay, eLastOverlay, 141)
+		ADD_STRUCT(AlienFXManager__FXOverlay, eCurrOverlay, 140)
 		ADD_STRUCT(float, fIntervalCount, 136)
 		ADD_STRUCT(float, fInterval, 132)
 		ADD_STRUCT(float, fSpeed, 128)
@@ -99,11 +78,11 @@ namespace UnrealScript
 			*(bool*)params = bOpen;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void Damage(AlienFXManager::FXArea Area)
+		void Damage(AlienFXManager__FXArea Area)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(50999);
 			byte params[1] = { NULL };
-			*(AlienFXManager::FXArea*)params = Area;
+			*(AlienFXManager__FXArea*)params = Area;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetTeam(int TeamNum)
@@ -127,11 +106,11 @@ namespace UnrealScript
 			*(float*)params = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void Overlay(AlienFXManager::FXOverlay Type)
+		void Overlay(AlienFXManager__FXOverlay Type)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(51007);
 			byte params[1] = { NULL };
-			*(AlienFXManager::FXOverlay*)params = Type;
+			*(AlienFXManager__FXOverlay*)params = Type;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void DamageConvert(ScriptString* Area)

@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.PointLightComponent.h"
+#include "UDKBase.UDKExplosionLight.LightValues.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,15 +20,7 @@ namespace UnrealScript
 	class UDKExplosionLight : public PointLightComponent
 	{
 	public:
-		struct LightValues
-		{
-		public:
-			ADD_STRUCT(Object::Color, LightColor, 12)
-			ADD_STRUCT(float, Brightness, 8)
-			ADD_STRUCT(float, Radius, 4)
-			ADD_STRUCT(float, StartTime, 0)
-		};
-		ADD_STRUCT(ScriptArray<UDKExplosionLight::LightValues>, TimeShift, 600)
+		ADD_STRUCT(ScriptArray<UDKExplosionLight__LightValues>, TimeShift, 600)
 		ADD_STRUCT(int, TimeShiftIndex, 596)
 		ADD_STRUCT(float, Lifetime, 592)
 		ADD_STRUCT(float, HighDetailFrameTime, 588)

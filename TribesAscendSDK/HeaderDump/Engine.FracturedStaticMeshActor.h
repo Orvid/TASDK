@@ -1,12 +1,15 @@
 #pragma once
-#include "Engine.Controller.h"
-#include "Core.Object.h"
+#include "Engine.Actor.PhysEffectInfo.h"
 #include "Engine.Actor.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.FracturedStaticMeshActor.DeferredPartToSpawn.h"
 #include "Engine.MaterialInterface.h"
 #include "Engine.SoundCue.h"
 #include "Engine.FracturedStaticMeshPart.h"
 #include "Engine.Pawn.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Controller.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,23 +33,14 @@ namespace UnrealScript
 	class FracturedStaticMeshActor : public Actor
 	{
 	public:
-		struct DeferredPartToSpawn
-		{
-		public:
-			ADD_BOOL(bExplosion, 32, 0x1)
-			ADD_STRUCT(float, RelativeScale, 28)
-			ADD_STRUCT(Vector, InitialAngVel, 16)
-			ADD_STRUCT(Vector, InitialVel, 4)
-			ADD_STRUCT(int, ChunkIndex, 0)
-		};
 		ADD_STRUCT(ScriptArray<int>, ChunkHealth, 488)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, FracturedByDamageType, 504)
 		ADD_STRUCT(ScriptArray<class ParticleSystem*>, OverrideFragmentDestroyEffects, 520)
-		ADD_STRUCT(ScriptArray<FracturedStaticMeshActor::DeferredPartToSpawn>, DeferredPartsToSpawn, 540)
+		ADD_STRUCT(ScriptArray<FracturedStaticMeshActor__DeferredPartToSpawn>, DeferredPartsToSpawn, 540)
 		ADD_OBJECT(MaterialInterface, MI_LoseChunkPreviousMaterial, 576)
 		ADD_OBJECT(SoundCue, SingleChunkFractureSound, 572)
 		ADD_OBJECT(SoundCue, ExplosionFractureSound, 568)
-		ADD_STRUCT(Actor::PhysEffectInfo, PartImpactEffect, 552)
+		ADD_STRUCT(Actor__PhysEffectInfo, PartImpactEffect, 552)
 		ADD_STRUCT(float, FractureCullMaxDistance, 536)
 		ADD_STRUCT(float, FractureCullMinDistance, 532)
 		ADD_STRUCT(float, ChunkHealthScale, 516)
@@ -132,7 +126,7 @@ namespace UnrealScript
 			*(int*)params = IndexToRemoveDecalsFrom;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16521);
 			byte params[68] = { NULL };
@@ -141,7 +135,7 @@ namespace UnrealScript
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

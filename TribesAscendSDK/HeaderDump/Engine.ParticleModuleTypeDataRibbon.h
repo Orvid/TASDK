@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleTypeDataBase.h"
+#include "Engine.ParticleModuleTypeDataRibbon.ETrailsRenderAxisOption.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,18 +20,11 @@ namespace UnrealScript
 	class ParticleModuleTypeDataRibbon : public ParticleModuleTypeDataBase
 	{
 	public:
-		enum ETrailsRenderAxisOption : byte
-		{
-			Trails_CameraUp = 0,
-			Trails_SourceUp = 1,
-			Trails_WorldUp = 2,
-			Trails_MAX = 3,
-		};
 		ADD_STRUCT(float, TangentTessellationScalar, 108)
 		ADD_STRUCT(float, DistanceTessellationStepSize, 104)
 		ADD_STRUCT(float, TilingDistance, 100)
 		ADD_STRUCT(float, TangentSpawningScalar, 96)
-		ADD_STRUCT(ParticleModuleTypeDataRibbon::ETrailsRenderAxisOption, RenderAxis, 92)
+		ADD_STRUCT(ParticleModuleTypeDataRibbon__ETrailsRenderAxisOption, RenderAxis, 92)
 		ADD_STRUCT(int, MaxTessellationBetweenParticles, 72)
 		ADD_BOOL(bRenderTessellation, 88, 0x100)
 		ADD_BOOL(bRenderTangents, 88, 0x80)

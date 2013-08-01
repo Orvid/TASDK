@@ -1,10 +1,11 @@
 #pragma once
 #include "Engine.Pawn.h"
-#include "Engine.PostProcessVolume.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #include "GameFramework.GamePlayerController.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Rotator.h"
 #include "UDKBase.UDKEmitCameraEffect.h"
+#include "Core.Object.Vector.h"
 #include "Engine.CameraAnimInst.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -29,17 +30,11 @@ namespace UnrealScript
 	class UDKPlayerController : public GamePlayerController
 	{
 	public:
-		struct ObjectiveAnnouncementInfo
-		{
-		public:
-			ADD_STRUCT(ScriptString*, AnnouncementText, 4)
-			ADD_OBJECT(SoundNodeWave, AnnouncementSound, 0)
-		};
 		ADD_STRUCT(ScriptArray<class Actor*>, PotentiallyHiddenActors, 1940)
 		ADD_STRUCT(float, PulseTimer, 1956)
 		ADD_STRUCT(float, VehicleCheckRadiusScaling, 1952)
-		ADD_STRUCT(PostProcessVolume::PostProcessSettings, PostProcessModifier, 1720)
-		ADD_STRUCT(PostProcessVolume::PostProcessSettings, CamOverridePostProcess, 1500)
+		ADD_STRUCT(PostProcessVolume__PostProcessSettings, PostProcessModifier, 1720)
+		ADD_STRUCT(PostProcessVolume__PostProcessSettings, CamOverridePostProcess, 1500)
 		ADD_STRUCT(Rotator, ShakeRot, 1488)
 		ADD_STRUCT(Vector, ShakeOffset, 1476)
 		ADD_BOOL(bUsePhysicsRotation, 1472, 0x10)

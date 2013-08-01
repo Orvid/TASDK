@@ -1,8 +1,16 @@
 #pragma once
+#include "GameFramework.GameStatsAggregator.GameEvents.h"
+#include "GameFramework.GameStatsAggregator.PawnEvents.h"
+#include "Engine.GameplayEvents.GameplayEventMetaData.h"
 #include "Engine.GameplayEventsHandler.h"
-#include "Engine.GameplayEvents.h"
-#include "Core.Object.h"
 #include "GameFramework.GameStateObject.h"
+#include "GameFramework.GameStatsAggregator.AggregateEventMapping.h"
+#include "GameFramework.GameStatsAggregator.TeamEvents.h"
+#include "GameFramework.GameStatsAggregator.PlayerEvents.h"
+#include "GameFramework.GameStatsAggregator.DamageEvents.h"
+#include "GameFramework.GameStatsAggregator.ProjectileEvents.h"
+#include "GameFramework.GameStatsAggregator.WeaponEvents.h"
+#include "Core.Object.Map_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -38,77 +46,16 @@ namespace UnrealScript
 		static const auto GAMEEVENT_AGGREGATED_WEAPON_FIRED = 10300;
 		static const auto GAMEEVENT_AGGREGATED_PAWN_SPAWN = 10400;
 		static const auto GAMEEVENT_AGGREGATED_GAME_SPECIFIC = 11000;
-		struct AggregateEventMapping
-		{
-		public:
-			ADD_STRUCT(int, TargetAggregateID, 8)
-			ADD_STRUCT(int, AggregateID, 4)
-			ADD_STRUCT(int, EventID, 0)
-		};
-		struct GameEvents
-		{
-		public:
-			ADD_STRUCT(Object::Map_Mirror, Events, 0)
-		};
-		struct GameEvent
-		{
-		public:
-			ADD_STRUCT(ScriptArray<float>, EventCountByTimePeriod, 0)
-		};
-		struct DamageEvents
-		{
-		public:
-			ADD_STRUCT(ScriptArray<GameStatsAggregator::GameEvents>, EventsByDamageClass, 60)
-			ADD_STRUCT(GameStatsAggregator::GameEvents, TotalEvents, 0)
-		};
-		struct PawnEvents
-		{
-		public:
-			ADD_STRUCT(ScriptArray<GameStatsAggregator::GameEvents>, EventsByPawnClass, 60)
-			ADD_STRUCT(GameStatsAggregator::GameEvents, TotalEvents, 0)
-		};
-		struct ProjectileEvents
-		{
-		public:
-			ADD_STRUCT(ScriptArray<GameStatsAggregator::GameEvents>, EventsByProjectileClass, 60)
-			ADD_STRUCT(GameStatsAggregator::GameEvents, TotalEvents, 0)
-		};
-		struct WeaponEvents
-		{
-		public:
-			ADD_STRUCT(ScriptArray<GameStatsAggregator::GameEvents>, EventsByWeaponClass, 60)
-			ADD_STRUCT(GameStatsAggregator::GameEvents, TotalEvents, 0)
-		};
-		struct TeamEvents
-		{
-		public:
-			ADD_STRUCT(GameStatsAggregator::PawnEvents, PawnEvents, 348)
-			ADD_STRUCT(GameStatsAggregator::ProjectileEvents, ProjectileEvents, 276)
-			ADD_STRUCT(GameStatsAggregator::DamageEvents, DamageAsTargetEvents, 204)
-			ADD_STRUCT(GameStatsAggregator::DamageEvents, DamageAsPlayerEvents, 132)
-			ADD_STRUCT(GameStatsAggregator::WeaponEvents, WeaponEvents, 60)
-			ADD_STRUCT(GameStatsAggregator::GameEvents, TotalEvents, 0)
-		};
-		struct PlayerEvents
-		{
-		public:
-			ADD_STRUCT(GameStatsAggregator::PawnEvents, PawnEvents, 348)
-			ADD_STRUCT(GameStatsAggregator::ProjectileEvents, ProjectileEvents, 276)
-			ADD_STRUCT(GameStatsAggregator::DamageEvents, DamageAsTargetEvents, 204)
-			ADD_STRUCT(GameStatsAggregator::DamageEvents, DamageAsPlayerEvents, 132)
-			ADD_STRUCT(GameStatsAggregator::WeaponEvents, WeaponEvents, 60)
-			ADD_STRUCT(GameStatsAggregator::GameEvents, TotalEvents, 0)
-		};
-		ADD_STRUCT(ScriptArray<GameStatsAggregator::AggregateEventMapping>, AggregatesList, 92)
-		ADD_STRUCT(ScriptArray<GameplayEvents::GameplayEventMetaData>, AggregateEvents, 164)
-		ADD_STRUCT(ScriptArray<GameStatsAggregator::TeamEvents>, AllTeamEvents, 236)
-		ADD_STRUCT(ScriptArray<GameStatsAggregator::PlayerEvents>, AllPlayerEvents, 248)
-		ADD_STRUCT(GameStatsAggregator::DamageEvents, AllDamageEvents, 476)
-		ADD_STRUCT(GameStatsAggregator::PawnEvents, AllPawnEvents, 404)
-		ADD_STRUCT(GameStatsAggregator::ProjectileEvents, AllProjectileEvents, 332)
-		ADD_STRUCT(GameStatsAggregator::WeaponEvents, AllWeaponEvents, 260)
-		ADD_STRUCT(GameStatsAggregator::GameEvents, AllGameEvents, 176)
-		ADD_STRUCT(Object::Map_Mirror, AggregateEventsMapping, 104)
+		ADD_STRUCT(ScriptArray<GameStatsAggregator__AggregateEventMapping>, AggregatesList, 92)
+		ADD_STRUCT(ScriptArray<GameplayEvents__GameplayEventMetaData>, AggregateEvents, 164)
+		ADD_STRUCT(ScriptArray<GameStatsAggregator__TeamEvents>, AllTeamEvents, 236)
+		ADD_STRUCT(ScriptArray<GameStatsAggregator__PlayerEvents>, AllPlayerEvents, 248)
+		ADD_STRUCT(GameStatsAggregator__DamageEvents, AllDamageEvents, 476)
+		ADD_STRUCT(GameStatsAggregator__PawnEvents, AllPawnEvents, 404)
+		ADD_STRUCT(GameStatsAggregator__ProjectileEvents, AllProjectileEvents, 332)
+		ADD_STRUCT(GameStatsAggregator__WeaponEvents, AllWeaponEvents, 260)
+		ADD_STRUCT(GameStatsAggregator__GameEvents, AllGameEvents, 176)
+		ADD_STRUCT(Object__Map_Mirror, AggregateEventsMapping, 104)
 		ADD_OBJECT(GameStateObject, GameState, 88)
 		void PreProcessStream()
 		{

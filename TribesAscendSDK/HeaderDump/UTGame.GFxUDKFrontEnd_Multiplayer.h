@@ -1,5 +1,7 @@
 #pragma once
 #include "UTGame.GFxUDKFrontEnd_Screen.h"
+#include "UTGame.GFxUDKFrontEnd_Multiplayer.Option.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
 #include "GFxUI.GFxClikWidget.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -15,14 +17,7 @@ namespace UnrealScript
 	class GFxUDKFrontEnd_Multiplayer : public GFxUDKFrontEnd_Screen
 	{
 	public:
-		struct Option
-		{
-		public:
-			ADD_STRUCT(ScriptString*, OptionDesc, 24)
-			ADD_STRUCT(ScriptString*, OptionLabel, 12)
-			ADD_STRUCT(ScriptString*, OptionName, 0)
-		};
-		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_Multiplayer::Option>, ListOptions, 220)
+		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_Multiplayer__Option>, ListOptions, 220)
 		ADD_OBJECT(GFxObject, MenuMC, 240)
 		ADD_OBJECT(GFxObject, ListDataProvider, 236)
 		ADD_OBJECT(GFxClikWidget, ListMC, 232)
@@ -55,18 +50,18 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38819);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnListItemPress(GFxClikWidget::EventData ev)
+		void OnListItemPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38820);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnListChange(GFxClikWidget::EventData ev)
+		void OnListChange(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38824);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UpdateDescription()

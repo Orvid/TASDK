@@ -1,9 +1,11 @@
 #pragma once
+#include "TribesGame.TrAnimNodeTurnInPlace.ForcedTransitionAngle.h"
 #include "Engine.AnimNodeBlend.h"
-#include "Core.Object.h"
 #include "TribesGame.TrAnimNodeAimOffset.h"
-#include "TribesGame.TrAnimNodeTurnInPlace_Player.h"
 #include "TribesGame.TrPawn.h"
+#include "TribesGame.TrAnimNodeTurnInPlace.RotTransitionInfo.h"
+#include "TribesGame.TrAnimNodeTurnInPlace_Player.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,21 +29,8 @@ namespace UnrealScript
 	class TrAnimNodeTurnInPlace : public AnimNodeBlend
 	{
 	public:
-		enum ForcedTransitionAngle : byte
-		{
-			FTA_NONE = 0,
-			FTA_90 = 1,
-			FTA_180 = 2,
-			FTA_MAX = 3,
-		};
-		struct RotTransitionInfo
-		{
-		public:
-			ADD_STRUCT(ScriptName, TransName, 4)
-			ADD_STRUCT(float, RotationOffset, 0)
-		};
 		ADD_STRUCT(ScriptArray<class TrAnimNodeAimOffset*>, m_OffsetNodes, 296)
-		ADD_STRUCT(ScriptArray<TrAnimNodeTurnInPlace::RotTransitionInfo>, m_RotTransitions, 308)
+		ADD_STRUCT(ScriptArray<TrAnimNodeTurnInPlace__RotTransitionInfo>, m_RotTransitions, 308)
 		ADD_STRUCT(ScriptArray<class TrAnimNodeTurnInPlace_Player*>, m_PlayerNodes, 348)
 		ADD_STRUCT(Rotator, m_InterpRotation, 368)
 		ADD_STRUCT(float, m_fTurnInterpTime, 364)
@@ -49,7 +38,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_RemainingInterpolationTime, 344)
 		ADD_STRUCT(float, m_fInterpolationTime, 340)
 		ADD_STRUCT(float, m_fChooseNewTransitionPercent, 336)
-		ADD_STRUCT(TrAnimNodeTurnInPlace::ForcedTransitionAngle, m_ForcedTransitionAngle, 332)
+		ADD_STRUCT(TrAnimNodeTurnInPlace__ForcedTransitionAngle, m_ForcedTransitionAngle, 332)
 		ADD_STRUCT(float, m_fTransitionThresholdAngle, 328)
 		ADD_STRUCT(int, m_nCurrentTransitionIndex, 324)
 		ADD_STRUCT(float, m_fTransitionBlendTime, 320)

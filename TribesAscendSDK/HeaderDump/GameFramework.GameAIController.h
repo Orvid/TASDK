@@ -1,10 +1,11 @@
 #pragma once
 #include "GameFramework.GameAICommand.h"
 #include "Engine.FileLog.h"
-#include "GameFramework.GameTypes.h"
 #include "Engine.AIController.h"
-#include "Core.Object.h"
+#include "Engine.AITree.AITreeHandle.h"
+#include "GameFramework.GameTypes.AICmdHistoryItem.h"
 #include "Engine.AITree.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,7 +29,7 @@ namespace UnrealScript
 	class GameAIController : public AIController
 	{
 	public:
-		ADD_STRUCT(ScriptArray<GameTypes::AICmdHistoryItem>, CommandHistory, 992)
+		ADD_STRUCT(ScriptArray<GameTypes__AICmdHistoryItem>, CommandHistory, 992)
 		ADD_STRUCT(ScriptArray<ScriptName>, AILogFilter, 1008)
 		ADD_STRUCT(ScriptString*, DemoActionString, 1020)
 		ADD_STRUCT(int, CommandHistoryNum, 1004)
@@ -43,7 +44,7 @@ namespace UnrealScript
 		ADD_BOOL(bAILogging, 976, 0x4)
 		ADD_BOOL(bHasRunawayCommandList, 976, 0x2)
 		ADD_BOOL(bUseAITree, 976, 0x1)
-		ADD_STRUCT(AITree::AITreeHandle, AITreeHandle, 928)
+		ADD_STRUCT(AITree__AITreeHandle, AITreeHandle, 928)
 		ADD_OBJECT(AITree, AITree, 924)
 		void AllCommands(ScriptClass* BaseClass, class GameAICommand*& Cmd)
 		{

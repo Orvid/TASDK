@@ -1,9 +1,13 @@
 #pragma once
+#include "TribesGame.TrPlayerVoice.VGSContextCommandToVoiceMap.h"
 #include "TribesGame.TrDevice.h"
+#include "TribesGame.TrPlayerVoice.VGSCommandToVoiceMap.h"
 #include "TribesGame.TrPlayerController.h"
-#include "TribesGame.TrVGSCommandList.h"
 #include "Engine.SoundCue.h"
+#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "TribesGame.TrVGSCommandList.EVGSContextActor.h"
+#include "TribesGame.TrVGSCommandList.EVGSContextLocation.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,39 +31,25 @@ namespace UnrealScript
 	class TrPlayerVoice : public TrDevice
 	{
 	public:
-		struct VGSCommandToVoiceMap
-		{
-		public:
-			ADD_OBJECT(SoundCue, Sound, 4)
-			ADD_STRUCT(TrVGSCommandList::VGSCommandType, Command, 0)
-		};
-		struct VGSContextCommandToVoiceMap
-		{
-		public:
-			ADD_OBJECT(SoundCue, Sound, 8)
-			ADD_BOOL(bIsEnemyLocation, 4, 0x1)
-			ADD_STRUCT(TrVGSCommandList::EVGSContextLocation, ContextLocation, 1)
-			ADD_STRUCT(TrVGSCommandList::EVGSContextActor, ContextActor, 0)
-		};
-		ADD_STRUCT(ScriptArray<TrPlayerVoice::VGSCommandToVoiceMap>, m_VGSCommandToVoiceMap, 2148)
+		ADD_STRUCT(ScriptArray<TrPlayerVoice__VGSCommandToVoiceMap>, m_VGSCommandToVoiceMap, 2148)
 		ADD_STRUCT(ScriptArray<class SoundCue*>, m_VGSSampleMap, 2160)
-		ADD_STRUCT(ScriptArray<TrPlayerVoice::VGSContextCommandToVoiceMap>, m_VGSContextCommandToVoiceMap, 2172)
-		void PlaySoundEx(TrVGSCommandList::VGSCommandType Command, class TrPlayerController* TrPC, class PlayerReplicationInfo* InstigatorPRI)
+		ADD_STRUCT(ScriptArray<TrPlayerVoice__VGSContextCommandToVoiceMap>, m_VGSContextCommandToVoiceMap, 2172)
+		void PlaySoundEx(TrVGSCommandList__VGSCommandType Command, class TrPlayerController* TrPC, class PlayerReplicationInfo* InstigatorPRI)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(101604);
 			byte params[9] = { NULL };
-			*(TrVGSCommandList::VGSCommandType*)params = Command;
+			*(TrVGSCommandList__VGSCommandType*)params = Command;
 			*(class TrPlayerController**)&params[4] = TrPC;
 			*(class PlayerReplicationInfo**)&params[8] = InstigatorPRI;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void PlaySoundContext(class TrPlayerController* TrPC, TrVGSCommandList::EVGSContextActor ContextActor, TrVGSCommandList::EVGSContextLocation ContextLocation, bool bEnemyLocation, class PlayerReplicationInfo* InstigatorPRI)
+		void PlaySoundContext(class TrPlayerController* TrPC, TrVGSCommandList__EVGSContextActor ContextActor, TrVGSCommandList__EVGSContextLocation ContextLocation, bool bEnemyLocation, class PlayerReplicationInfo* InstigatorPRI)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(101610);
 			byte params[14] = { NULL };
 			*(class TrPlayerController**)params = TrPC;
-			*(TrVGSCommandList::EVGSContextActor*)&params[4] = ContextActor;
-			*(TrVGSCommandList::EVGSContextLocation*)&params[5] = ContextLocation;
+			*(TrVGSCommandList__EVGSContextActor*)&params[4] = ContextActor;
+			*(TrVGSCommandList__EVGSContextLocation*)&params[5] = ContextLocation;
 			*(bool*)&params[8] = bEnemyLocation;
 			*(class PlayerReplicationInfo**)&params[12] = InstigatorPRI;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);

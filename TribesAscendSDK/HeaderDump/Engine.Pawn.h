@@ -1,42 +1,50 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
+#include "Engine.Pawn.EPathSearchType.h"
 #include "Engine.Weapon.h"
 #include "Engine.InventoryManager.h"
-#include "Engine.PhysicsVolume.h"
 #include "Engine.SeqAct_AttachToActor.h"
 #include "Engine.LadderVolume.h"
+#include "Engine.FaceFXAnimSet.h"
+#include "Core.Object.Vector.h"
+#include "Engine.PhysicsVolume.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.Actor.EPhysics.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.SeqAct_PlayFaceFXAnim.h"
 #include "Engine.AnimNodeSlot.h"
-#include "Engine.NavigationPoint.h"
 #include "Engine.SeqAct_SetMaterial.h"
 #include "Engine.PlayerController.h"
 #include "Engine.InterpGroup.h"
-#include "Engine.SequenceEvent.h"
-#include "Engine.EngineTypes.h"
+#include "Engine.Pawn.ScalarParameterInterpStruct.h"
+#include "Engine.Pawn.LastHitInfoStruct.h"
+#include "Engine.EngineTypes.RootMotionCurve.h"
 #include "Engine.SeqAct_AssignController.h"
 #include "Engine.Inventory.h"
 #include "Engine.MaterialInstanceConstant.h"
 #include "Engine.RB_BodyInstance.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.InterpGroupInst.h"
 #include "Engine.PathGoalEvaluator.h"
 #include "Engine.Vehicle.h"
 #include "Engine.PlayerStart.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.PathConstraint.h"
-#include "Engine.FaceFXAnimSet.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.SoundCue.h"
 #include "Engine.AnimSet.h"
+#include "Engine.SeqAct_SetVelocity.h"
+#include "Engine.Actor.AnimSlotInfo.h"
 #include "Engine.SeqAct_Interp.h"
 #include "Engine.FaceFXAsset.h"
-#include "Engine.Pylon.h"
+#include "Engine.SequenceEvent.h"
+#include "Engine.Pylon.ENavMeshEdgeType.h"
 #include "Engine.HUD.h"
 #include "Engine.SeqAct_GiveInventory.h"
 #include "Engine.TeamInfo.h"
 #include "Engine.SeqAct_Teleport.h"
 #include "Engine.Canvas.h"
-#include "Engine.SeqAct_SetVelocity.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -60,31 +68,6 @@ namespace UnrealScript
 	class Pawn : public Actor
 	{
 	public:
-		enum EPathSearchType : byte
-		{
-			PST_Default = 0,
-			PST_Breadth = 1,
-			PST_NewBestPathTo = 2,
-			PST_Constraint = 3,
-			PST_MAX = 4,
-		};
-		struct ScalarParameterInterpStruct
-		{
-		public:
-			ADD_STRUCT(float, WarmupTime, 16)
-			ADD_STRUCT(float, InterpTime, 12)
-			ADD_STRUCT(float, ParameterValue, 8)
-			ADD_STRUCT(ScriptName, ParameterName, 0)
-		};
-		struct LastHitInfoStruct
-		{
-		public:
-			ADD_OBJECT(ScriptClass, Type, 16)
-			ADD_OBJECT(Actor, Causer, 12)
-			ADD_STRUCT(float, Distance, 8)
-			ADD_STRUCT(float, Amount, 4)
-			ADD_BOOL(bDirectHit, 0, 0x1)
-		};
 		ADD_OBJECT(Controller, Controller, 508)
 		ADD_STRUCT(int, MaxPitchLimit, 664)
 		ADD_OBJECT(Weapon, Weapon, 984)
@@ -108,19 +91,19 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptName, WaterMovementState, 876)
 		ADD_STRUCT(ScriptName, LandMovementState, 868)
 		ADD_STRUCT(float, AccelRate, 684)
-		ADD_STRUCT(Actor::EPhysics, WalkingPhysics, 536)
+		ADD_STRUCT(Actor__EPhysics, WalkingPhysics, 536)
 		ADD_OBJECT(LadderVolume, OnLadder, 864)
 		ADD_BOOL(bUpAndOut, 528, 0x2)
 		ADD_STRUCT(float, OutofWaterZ, 692)
 		ADD_OBJECT(NavigationPoint, Anchor, 612)
 		ADD_STRUCT(ScriptArray<class AnimNodeSlot*>, SlotNodes, 1028)
 		ADD_STRUCT(ScriptArray<class InterpGroup*>, InterpGroupList, 1040)
-		ADD_STRUCT(ScriptArray<Pawn::ScalarParameterInterpStruct>, ScalarParameterInterpArray, 1064)
-		ADD_STRUCT(Pawn::LastHitInfoStruct, LastHitInfo, 1124)
+		ADD_STRUCT(ScriptArray<Pawn__ScalarParameterInterpStruct>, ScalarParameterInterpArray, 1064)
+		ADD_STRUCT(Pawn__LastHitInfoStruct, LastHitInfo, 1124)
 		ADD_STRUCT(Vector, RootMotionInterpCurveLastValue, 1112)
 		ADD_STRUCT(float, RootMotionInterpCurrentTime, 1108)
 		ADD_STRUCT(float, RootMotionInterpRate, 1104)
-		ADD_STRUCT(EngineTypes::RootMotionCurve, RootMotionInterpCurve, 1076)
+		ADD_STRUCT(EngineTypes__RootMotionCurve, RootMotionInterpCurve, 1076)
 		ADD_OBJECT(MaterialInstanceConstant, MIC_PawnHair, 1060)
 		ADD_OBJECT(MaterialInstanceConstant, MIC_PawnMat, 1056)
 		ADD_STRUCT(int, FailedLandingCount, 1024)
@@ -201,8 +184,8 @@ namespace UnrealScript
 		ADD_STRUCT(byte, FiringMode, 540)
 		ADD_STRUCT(byte, FlashCount, 539)
 		ADD_STRUCT(byte, RemoteViewPitch, 538)
-		ADD_STRUCT(Pawn::EPathSearchType, PathSearchType, 537)
-		ADD_STRUCT(Object::Pointer, VfTable_IInterface_Speaker, 476)
+		ADD_STRUCT(Pawn__EPathSearchType, PathSearchType, 537)
+		ADD_STRUCT(Object__Pointer, VfTable_IInterface_Speaker, 476)
 		ADD_BOOL(bDebugShowCameraLocation, 532, 0x10000000)
 		ADD_BOOL(bNeedsBaseTickedFirst, 532, 0x4000000)
 		ADD_BOOL(bUnlockWhenReached, 532, 0x2000000)
@@ -407,13 +390,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		void SetScalarParameterInterp(Pawn::ScalarParameterInterpStruct& ScalarParameterInterp)
+		void SetScalarParameterInterp(Pawn__ScalarParameterInterpStruct& ScalarParameterInterp)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(11399);
 			byte params[20] = { NULL };
-			*(Pawn::ScalarParameterInterpStruct*)params = ScalarParameterInterp;
+			*(Pawn__ScalarParameterInterpStruct*)params = ScalarParameterInterp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ScalarParameterInterp = *(Pawn::ScalarParameterInterpStruct*)params;
+			ScalarParameterInterp = *(Pawn__ScalarParameterInterpStruct*)params;
 		}
 		bool CheatFly()
 		{
@@ -678,11 +661,11 @@ void**)params = SkelComp;
 			*(bool*)&params[32] = bEnableRootMotion;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void MAT_SetAnimWeights(ScriptArray<Actor::AnimSlotInfo> SlotInfos)
+		void MAT_SetAnimWeights(ScriptArray<Actor__AnimSlotInfo> SlotInfos)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19998);
 			byte params[12] = { NULL };
-			*(ScriptArray<Actor::AnimSlotInfo>*)params = SlotInfos;
+			*(ScriptArray<Actor__AnimSlotInfo>*)params = SlotInfos;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void MAT_SetMorphWeight(ScriptName MorphNodeName, float MorphWeight)
@@ -917,11 +900,11 @@ void**)params = AC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		bool SpecialMoveThruEdge(Pylon::ENavMeshEdgeType Type, int Dir, Vector MoveStart, Vector MoveDest, class Actor* RelActor, int RelItem)
+		bool SpecialMoveThruEdge(Pylon__ENavMeshEdgeType Type, int Dir, Vector MoveStart, Vector MoveDest, class Actor* RelActor, int RelItem)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20094);
 			byte params[41] = { NULL };
-			*(Pylon::ENavMeshEdgeType*)params = Type;
+			*(Pylon__ENavMeshEdgeType*)params = Type;
 			*(int*)&params[4] = Dir;
 			*(Vector*)&params[8] = MoveStart;
 			*(Vector*)&params[20] = MoveDest;
@@ -1320,24 +1303,24 @@ void**)params = AC;
 			*(float*)params = HeightAdjust;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void HandleMomentum(Vector Momentum, Vector HitLocation, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo)
+		void HandleMomentum(Vector Momentum, Vector HitLocation, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20252);
 			byte params[56] = { NULL };
 			*(Vector*)params = Momentum;
 			*(Vector*)&params[12] = HitLocation;
 			*(ScriptClass**)&params[24] = DamageType;
-			*(Actor::TraceHitInfo*)&params[28] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[28] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddVelocity(Vector NewVelocity, Vector HitLocation, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo)
+		void AddVelocity(Vector NewVelocity, Vector HitLocation, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20257);
 			byte params[56] = { NULL };
 			*(Vector*)params = NewVelocity;
 			*(Vector*)&params[12] = HitLocation;
 			*(ScriptClass**)&params[24] = DamageType;
-			*(Actor::TraceHitInfo*)&params[28] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[28] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void KilledBy(class Pawn* EventInstigator)
@@ -1496,7 +1479,7 @@ void**)params = AC;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20314);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void AdjustDamage(int& InDamage, Vector& Momentum, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void AdjustDamage(int& InDamage, Vector& Momentum, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20315);
 			byte params[68] = { NULL };
@@ -1505,7 +1488,7 @@ void**)params = AC;
 			*(class Controller**)&params[16] = InstigatedBy;
 			*(Vector*)&params[20] = HitLocation;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			InDamage = *(int*)params;
@@ -1565,7 +1548,7 @@ void**)params = AC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class Controller**)&params[8];
 		}
-		void TakeDamage(int Damage, class Controller* InstigatedBy, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int Damage, class Controller* InstigatedBy, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20360);
 			byte params[68] = { NULL };
@@ -1574,7 +1557,7 @@ void**)params = AC;
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1652,7 +1635,7 @@ void**)params = AC;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20404);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void PlayHit(float Damage, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Vector Momentum, Actor::TraceHitInfo HitInfo)
+		void PlayHit(float Damage, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Vector Momentum, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20405);
 			byte params[64] = { NULL };
@@ -1661,7 +1644,7 @@ void**)params = AC;
 			*(Vector*)&params[8] = HitLocation;
 			*(ScriptClass**)&params[20] = DamageType;
 			*(Vector*)&params[24] = Momentum;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void TurnOff()

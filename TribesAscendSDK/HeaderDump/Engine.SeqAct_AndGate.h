@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.SequenceAction.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,7 +21,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<bool>, LinkedOutputFiredStatus, 236)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, LinkedOutputs, 248)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, LinkedOutputs, 248)
 		ADD_BOOL(bOpen, 232, 0x1)
 	};
 }

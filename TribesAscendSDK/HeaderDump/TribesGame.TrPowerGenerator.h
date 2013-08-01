@@ -1,13 +1,14 @@
 #pragma once
-#include "Core.Object.h"
 #include "TribesGame.TrGameObjective.h"
 #include "Engine.Actor.h"
 #include "Engine.Controller.h"
-#include "Engine.Texture2D.h"
 #include "TribesGame.TrTeamBlockerStaticMeshActor.h"
-#include "TribesGame.TrHelpTextManager.h"
+#include "Core.Object.Vector.h"
 #include "Engine.AnimNodeScalePlayRate.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
 #include "TribesGame.TrDeployable.h"
+#include "Engine.Texture2D.h"
 #include "TribesGame.TrPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -62,11 +63,11 @@ namespace UnrealScript
 			*(ScriptName*)params = VarName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool ShouldShowHelpText(TrHelpTextManager::EHelpTextType HelpTextType)
+		bool ShouldShowHelpText(TrHelpTextManager__EHelpTextType HelpTextType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(107465);
 			byte params[5] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = HelpTextType;
+			*(TrHelpTextManager__EHelpTextType*)params = HelpTextType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
@@ -101,7 +102,7 @@ void**)params = SkelComp;
 			*(int*)&params[4] = HitBoneIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DoRepairs(int HealAmount, class Controller* EventInstigator, class Actor* DamageCauser, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo)
+		void DoRepairs(int HealAmount, class Controller* EventInstigator, class Actor* DamageCauser, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(107481);
 			byte params[44] = { NULL };
@@ -109,7 +110,7 @@ void**)params = SkelComp;
 			*(class Controller**)&params[4] = EventInstigator;
 			*(class Actor**)&params[8] = DamageCauser;
 			*(ScriptClass**)&params[12] = DamageType;
-			*(Actor::TraceHitInfo*)&params[16] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[16] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void DamageAllMorphs(float DamageAmount)
@@ -152,7 +153,7 @@ void**)params = SkelComp;
 			*(class TrDeployable**)params = dep;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(107530);
 			byte params[68] = { NULL };
@@ -161,7 +162,7 @@ void**)params = SkelComp;
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

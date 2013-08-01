@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.UIDataProvider_OnlinePlayerDataBase.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Core.Object.h"
+#include "Engine.OnlineSubsystem.OnlinePartyMember.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.LocalPlayer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -12,7 +12,7 @@ namespace UnrealScript
 	class UIDataProvider_OnlinePartyChatList : public UIDataProvider_OnlinePlayerDataBase
 	{
 	public:
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::OnlinePartyMember>, PartyMembersList, 96)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__OnlinePartyMember>, PartyMembersList, 96)
 		ADD_STRUCT(ScriptArray<ScriptString*>, NatTypes, 108)
 		ADD_STRUCT(ScriptString*, IsPlayingThisGameCol, 192)
 		ADD_STRUCT(ScriptString*, IsInGameSessionCol, 180)
@@ -21,7 +21,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptString*, IsLocalCol, 144)
 		ADD_STRUCT(ScriptString*, NatTypeCol, 132)
 		ADD_STRUCT(ScriptString*, NickNameCol, 120)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 92)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 92)
 		void OnRegister(class LocalPlayer* InPlayer)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28236);

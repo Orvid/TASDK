@@ -1,10 +1,20 @@
 #pragma once
+#include "Engine.Terrain.AlphaMap.h"
 #include "Engine.Info.h"
-#include "Engine.EngineTypes.h"
 #include "Engine.TerrainWeightMapTexture.h"
-#include "Core.Object.h"
-#include "Engine.LightComponent.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
+#include "Core.Object.Guid.h"
+#include "Engine.Terrain.TerrainLayer.h"
+#include "Engine.Terrain.TerrainHeight.h"
+#include "Engine.Terrain.TerrainInfoData.h"
+#include "Engine.Terrain.TerrainDecoLayer.h"
+#include "Engine.Terrain.SelectedTerrainVertex.h"
+#include "Engine.Terrain.TerrainWeightedMaterial.h"
+#include "Core.Object.Color.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
 #include "Engine.PhysicalMaterial.h"
+#include "Engine.Terrain.CachedTerrainMaterialArray.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,92 +38,23 @@ namespace UnrealScript
 	class Terrain : public Info
 	{
 	public:
-		struct TerrainHeight
-		{
-		};
-		struct TerrainInfoData
-		{
-		};
-		struct TerrainLayer
-		{
-		public:
-			ADD_STRUCT(int, MaxY, 44)
-			ADD_STRUCT(int, MaxX, 40)
-			ADD_STRUCT(int, MinY, 36)
-			ADD_STRUCT(int, MinX, 32)
-			ADD_STRUCT(Object::Color, WireframeColor, 28)
-			ADD_STRUCT(Object::Color, HighlightColor, 24)
-			ADD_BOOL(Hidden, 20, 0x4)
-			ADD_BOOL(WireframeHighlighted, 20, 0x2)
-			ADD_BOOL(Highlighted, 20, 0x1)
-			ADD_STRUCT(int, AlphaMapIndex, 16)
-			ADD_OBJECT(TerrainLayerSetup, Setup, 12)
-			ADD_STRUCT(ScriptString*, Name, 0)
-		};
-		struct AlphaMap
-		{
-		};
-		struct TerrainWeightedMaterial
-		{
-		};
-		struct SelectedTerrainVertex
-		{
-		public:
-			ADD_STRUCT(int, Weight, 8)
-			ADD_STRUCT(int, Y, 4)
-			ADD_STRUCT(int, X, 0)
-		};
-		struct TerrainDecorationInstance
-		{
-		public:
-			ADD_STRUCT(int, Yaw, 16)
-			ADD_STRUCT(float, Scale, 12)
-			ADD_STRUCT(float, Y, 8)
-			ADD_STRUCT(float, X, 4)
-		};
-		struct TerrainDecoration
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Terrain::TerrainDecorationInstance>, Instances, 24)
-			ADD_STRUCT(int, RandSeed, 20)
-			ADD_STRUCT(float, SlopeRotationBlend, 16)
-			ADD_STRUCT(float, Density, 12)
-			ADD_STRUCT(float, MaxScale, 8)
-			ADD_STRUCT(float, MinScale, 4)
-			ADD_OBJECT(PrimitiveComponentFactory, Factory, 0)
-		};
-		struct TerrainMaterialResource
-		{
-		};
-		struct CachedTerrainMaterialArray
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Object::Pointer>, CachedMaterials, 0)
-		};
-		struct TerrainDecoLayer
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Terrain::TerrainDecoration>, Decorations, 12)
-			ADD_STRUCT(int, AlphaMapIndex, 24)
-			ADD_STRUCT(ScriptString*, Name, 0)
-		};
-		ADD_STRUCT(ScriptArray<Terrain::TerrainHeight>, Heights, 476)
-		ADD_STRUCT(ScriptArray<Terrain::TerrainInfoData>, InfoData, 488)
-		ADD_STRUCT(ScriptArray<Terrain::TerrainLayer>, Layers, 500)
-		ADD_STRUCT(ScriptArray<Terrain::TerrainDecoLayer>, DecoLayers, 516)
-		ADD_STRUCT(ScriptArray<Terrain::AlphaMap>, AlphaMaps, 528)
+		ADD_STRUCT(ScriptArray<Terrain__TerrainHeight>, Heights, 476)
+		ADD_STRUCT(ScriptArray<Terrain__TerrainInfoData>, InfoData, 488)
+		ADD_STRUCT(ScriptArray<Terrain__TerrainLayer>, Layers, 500)
+		ADD_STRUCT(ScriptArray<Terrain__TerrainDecoLayer>, DecoLayers, 516)
+		ADD_STRUCT(ScriptArray<Terrain__AlphaMap>, AlphaMaps, 528)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, TerrainComponents, 540)
-		ADD_STRUCT(ScriptArray<Terrain::TerrainWeightedMaterial>, WeightedMaterials, 560)
+		ADD_STRUCT(ScriptArray<Terrain__TerrainWeightedMaterial>, WeightedMaterials, 560)
 		ADD_STRUCT(ScriptArray<class TerrainWeightMapTexture*>, WeightedTextureMaps, 572)
-		ADD_STRUCT(ScriptArray<Terrain::SelectedTerrainVertex>, SelectedVertices, 700)
-		ADD_STRUCT(Object::Guid, LightingGuid, 716)
-		ADD_STRUCT(Object::Color, WireframeColor, 712)
+		ADD_STRUCT(ScriptArray<Terrain__SelectedTerrainVertex>, SelectedVertices, 700)
+		ADD_STRUCT(Object__Guid, LightingGuid, 716)
+		ADD_STRUCT(Object__Color, WireframeColor, 712)
 		ADD_STRUCT(int, EditorTessellationLevel, 696)
-		ADD_STRUCT(Object::Pointer, ReleaseResourcesFence, 692)
-		ADD_STRUCT(EngineTypes::LightmassPrimitiveSettings, LightmassSettings, 664)
-		ADD_STRUCT(LightComponent::LightingChannelContainer, LightingChannels, 660)
+		ADD_STRUCT(Object__Pointer, ReleaseResourcesFence, 692)
+		ADD_STRUCT(EngineTypes__LightmassPrimitiveSettings, LightmassSettings, 664)
+		ADD_STRUCT(LightComponent__LightingChannelContainer, LightingChannels, 660)
 		ADD_OBJECT(PhysicalMaterial, TerrainPhysMaterialOverride, 656)
 		ADD_BOOL(bShowWireframe, 652, 0x8000)
 		ADD_BOOL(bUseWorldOriginTextureUVs, 652, 0x4000)
@@ -137,7 +78,7 @@ void*>, TerrainComponents, 540)
 		ADD_STRUCT(int, NumPatchesX, 636)
 		ADD_STRUCT(int, NumVerticesY, 632)
 		ADD_STRUCT(int, NumVerticesX, 628)
-		ADD_STRUCT(Terrain::CachedTerrainMaterialArray, CachedTerrainMaterials, 604)
+		ADD_STRUCT(Terrain__CachedTerrainMaterialArray, CachedTerrainMaterials, 604)
 		ADD_STRUCT(int, CollisionTesselationLevel, 600)
 		ADD_STRUCT(float, TessellationCheckDistance, 596)
 		ADD_STRUCT(float, TesselationDistanceScale, 592)

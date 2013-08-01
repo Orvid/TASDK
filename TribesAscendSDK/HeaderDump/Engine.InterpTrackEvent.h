@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.InterpTrack.h"
+#include "Engine.InterpTrackEvent.EventTrackKey.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,13 +20,7 @@ namespace UnrealScript
 	class InterpTrackEvent : public InterpTrack
 	{
 	public:
-		struct EventTrackKey
-		{
-		public:
-			ADD_STRUCT(ScriptName, EventName, 4)
-			ADD_STRUCT(float, Time, 0)
-		};
-		ADD_STRUCT(ScriptArray<InterpTrackEvent::EventTrackKey>, EventTrack, 128)
+		ADD_STRUCT(ScriptArray<InterpTrackEvent__EventTrackKey>, EventTrack, 128)
 		ADD_BOOL(bFireEventsWhenJumpingForwards, 140, 0x4)
 		ADD_BOOL(bFireEventsWhenBackwards, 140, 0x2)
 		ADD_BOOL(bFireEventsWhenForwards, 140, 0x1)

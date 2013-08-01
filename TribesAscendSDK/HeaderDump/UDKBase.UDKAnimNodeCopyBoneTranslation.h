@@ -2,6 +2,7 @@
 #include "UDKBase.UDKAnimNodeSeqWeap.h"
 #include "Engine.AnimNodeBlendBase.h"
 #include "UDKBase.UDKAnimBlendByWeapType.h"
+#include "UDKBase.UDKAnimNodeCopyBoneTranslation.BoneCopyInfo.h"
 #include "Engine.AnimNodeAimOffset.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -16,17 +17,9 @@ namespace UnrealScript
 	class UDKAnimNodeCopyBoneTranslation : public AnimNodeBlendBase
 	{
 	public:
-		struct BoneCopyInfo
-		{
-		public:
-			ADD_STRUCT(int, DstBoneIndex, 20)
-			ADD_STRUCT(int, SrcBoneIndex, 16)
-			ADD_STRUCT(ScriptName, DstBoneName, 8)
-			ADD_STRUCT(ScriptName, SrcBoneName, 0)
-		};
-		ADD_STRUCT(ScriptArray<UDKAnimNodeCopyBoneTranslation::BoneCopyInfo>, DefaultBoneCopyArray, 256)
-		ADD_STRUCT(ScriptArray<UDKAnimNodeCopyBoneTranslation::BoneCopyInfo>, DualWieldBoneCopyArray, 268)
-		ADD_STRUCT(ScriptArray<UDKAnimNodeCopyBoneTranslation::BoneCopyInfo>, ActiveBoneCopyArray, 280)
+		ADD_STRUCT(ScriptArray<UDKAnimNodeCopyBoneTranslation__BoneCopyInfo>, DefaultBoneCopyArray, 256)
+		ADD_STRUCT(ScriptArray<UDKAnimNodeCopyBoneTranslation__BoneCopyInfo>, DualWieldBoneCopyArray, 268)
+		ADD_STRUCT(ScriptArray<UDKAnimNodeCopyBoneTranslation__BoneCopyInfo>, ActiveBoneCopyArray, 280)
 		ADD_STRUCT(ScriptArray<byte>, RequiredBones, 292)
 		ADD_STRUCT(ScriptArray<class UDKAnimNodeSeqWeap*>, SeqWeaps, 304)
 		ADD_STRUCT(ScriptArray<class UDKAnimBlendByWeapType*>, WeapTypeBlends, 316)

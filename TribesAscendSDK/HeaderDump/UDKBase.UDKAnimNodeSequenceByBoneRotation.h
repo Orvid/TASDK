@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.AnimNodeSequence.h"
-#include "Core.Object.h"
+#include "UDKBase.UDKAnimNodeSequenceByBoneRotation.AnimByRotation.h"
+#include "Core.Object.EAxis.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,14 +11,8 @@ namespace UnrealScript
 	class UDKAnimNodeSequenceByBoneRotation : public AnimNodeSequence
 	{
 	public:
-		struct AnimByRotation
-		{
-		public:
-			ADD_STRUCT(ScriptName, AnimName, 12)
-			ADD_STRUCT(Rotator, DesiredRotation, 0)
-		};
-		ADD_STRUCT(ScriptArray<UDKAnimNodeSequenceByBoneRotation::AnimByRotation>, AnimList, 332)
-		ADD_STRUCT(Object::EAxis, BoneAxis, 328)
+		ADD_STRUCT(ScriptArray<UDKAnimNodeSequenceByBoneRotation__AnimByRotation>, AnimList, 332)
+		ADD_STRUCT(Object__EAxis, BoneAxis, 328)
 		ADD_STRUCT(ScriptName, BoneName, 320)
 		void OnBecomeRelevant()
 		{

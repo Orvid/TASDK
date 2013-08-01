@@ -1,6 +1,6 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Vector.h"
 #include "Engine.MaterialInstanceTimeVarying.h"
 #include "Engine.SoundCue.h"
 #include "Engine.ParticleSystem.h"

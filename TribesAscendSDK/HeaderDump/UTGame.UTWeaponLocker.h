@@ -1,11 +1,14 @@
 #pragma once
 #include "UTGame.UTBot.h"
 #include "Engine.Controller.h"
-#include "Core.Object.h"
 #include "UTGame.UTPickupFactory.h"
 #include "Engine.ParticleSystem.h"
-#include "Engine.PlayerController.h"
+#include "UTGame.UTWeaponLocker.WeaponEntry.h"
+#include "Core.Object.Vector.h"
+#include "UTGame.UTWeaponLocker.PawnToucher.h"
+#include "UTGame.UTWeaponLocker.ReplacementWeaponEntry.h"
 #include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,26 +32,9 @@ namespace UnrealScript
 	class UTWeaponLocker : public UTPickupFactory
 	{
 	public:
-		struct WeaponEntry
-		{
-		public:
-			ADD_OBJECT(ScriptClass, WeaponClass, 0)
-		};
-		struct PawnToucher
-		{
-		public:
-			ADD_STRUCT(float, NextTouchTime, 4)
-			ADD_OBJECT(Pawn, P, 0)
-		};
-		struct ReplacementWeaponEntry
-		{
-		public:
-			ADD_OBJECT(ScriptClass, WeaponClass, 4)
-			ADD_BOOL(bReplaced, 0, 0x1)
-		};
-		ADD_STRUCT(ScriptArray<UTWeaponLocker::WeaponEntry>, Weapons, 944)
+		ADD_STRUCT(ScriptArray<UTWeaponLocker__WeaponEntry>, Weapons, 944)
 		ADD_STRUCT(ScriptArray<Vector>, LockerPositions, 1004)
-		ADD_STRUCT(ScriptArray<UTWeaponLocker::PawnToucher>, Customers, 1028)
+		ADD_STRUCT(ScriptArray<UTWeaponLocker__PawnToucher>, Customers, 1028)
 		ADD_STRUCT(float, NextProximityCheckTime, 1076)
 		ADD_STRUCT(float, ScaleRate, 1072)
 		ADD_OBJECT(ParticleSystem, WeaponSpawnEffectTemplate, 1068)
@@ -60,7 +46,7 @@ namespace UnrealScript
 		ADD_BOOL(bPlayerNearby, 1040, 0x2)
 		ADD_BOOL(bIsActive, 1040, 0x1)
 		ADD_STRUCT(ScriptString*, LockerString, 1016)
-		ADD_STRUCT(UTWeaponLocker::ReplacementWeaponEntry, ReplacementWeapons, 956)
+		ADD_STRUCT(UTWeaponLocker__ReplacementWeaponEntry, ReplacementWeapons, 956)
 		float BotDesireability(class Pawn* Bot, class Controller* C)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(40956);

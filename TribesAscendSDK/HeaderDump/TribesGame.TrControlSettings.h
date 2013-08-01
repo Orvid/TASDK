@@ -1,7 +1,7 @@
 #pragma once
 #include "GFxUI.GFxObject.h"
-#include "TribesGame.TrObject.h"
 #include "Engine.PlayerInput.h"
+#include "TribesGame.TrObject.ESettingsList.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,11 +17,11 @@ namespace UnrealScript
 	public:
 		ADD_OBJECT(GFxObject, m_ControlSettingsList, 124)
 		ADD_STRUCT(int, m_ControlSettingsCount, 120)
-		float GetCurrentControlValue(TrObject::ESettingsList Index)
+		float GetCurrentControlValue(TrObject__ESettingsList Index)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(58463);
 			byte params[5] = { NULL };
-			*(TrObject::ESettingsList*)params = Index;
+			*(TrObject__ESettingsList*)params = Index;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[4];
 		}
@@ -75,19 +75,19 @@ namespace UnrealScript
 			*(bool*)&params[8] = bStore;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		TrObject::ESettingsList GetControlTypeFromName(ScriptString* ControlName)
+		TrObject__ESettingsList GetControlTypeFromName(ScriptString* ControlName)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(78192);
 			byte params[13] = { NULL };
 			*(ScriptString**)params = ControlName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(TrObject::ESettingsList*)&params[12];
+			return *(TrObject__ESettingsList*)&params[12];
 		}
-		ScriptString* GetControlNameFromType(TrObject::ESettingsList Index)
+		ScriptString* GetControlNameFromType(TrObject__ESettingsList Index)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(78195);
 			byte params[13] = { NULL };
-			*(TrObject::ESettingsList*)params = Index;
+			*(TrObject__ESettingsList*)params = Index;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}

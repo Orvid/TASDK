@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.ParticleModuleAttractorBase.h"
-#include "Core.DistributionVector.h"
-#include "Core.DistributionFloat.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,9 +25,9 @@ namespace UnrealScript
 		ADD_BOOL(bOverrideVelocity, 156, 0x4)
 		ADD_BOOL(bAffectBaseVelocity, 156, 0x2)
 		ADD_BOOL(StrengthByDistance, 156, 0x1)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Strength, 128)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Range, 100)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, Position, 72)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Strength, 128)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Range, 100)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, Position, 72)
 	};
 }
 #undef ADD_BOOL

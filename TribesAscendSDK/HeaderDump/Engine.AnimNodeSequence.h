@@ -3,6 +3,8 @@
 #include "Engine.AnimNode.h"
 #include "Engine.AnimSequence.h"
 #include "Engine.CameraAnim.h"
+#include "Engine.AnimNodeSequence.ERootBoneAxis.h"
+#include "Engine.AnimNodeSequence.ERootRotationOption.h"
 #include "Engine.SkelControlBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -27,20 +29,6 @@ namespace UnrealScript
 	class AnimNodeSequence : public AnimNode
 	{
 	public:
-		enum ERootRotationOption : byte
-		{
-			RRO_Default = 0,
-			RRO_Discard = 1,
-			RRO_Extract = 2,
-			RRO_MAX = 3,
-		};
-		enum ERootBoneAxis : byte
-		{
-			RBA_Default = 0,
-			RBA_Discard = 1,
-			RBA_Translate = 2,
-			RBA_MAX = 3,
-		};
 		ADD_OBJECT(AnimSequence, AnimSeq, 252)
 		ADD_BOOL(bPlaying, 236, 0x1)
 		ADD_STRUCT(float, Rate, 232)
@@ -75,8 +63,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, CameraAnimPlayRate, 288)
 		ADD_STRUCT(float, CameraAnimBlendInTime, 292)
 		ADD_STRUCT(float, CameraAnimBlendOutTime, 296)
-		ADD_STRUCT(AnimNodeSequence::ERootBoneAxis, RootBoneOption, 300)
-		ADD_STRUCT(AnimNodeSequence::ERootRotationOption, RootRotationOption, 303)
+		ADD_STRUCT(AnimNodeSequence__ERootBoneAxis, RootBoneOption, 300)
+		ADD_STRUCT(AnimNodeSequence__ERootRotationOption, RootRotationOption, 303)
 		ADD_STRUCT(ScriptArray<class SkelControlBase*>, MetaDataSkelControlList, 308)
 		void SetAnim(ScriptName Sequence)
 		{
@@ -163,22 +151,22 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)params;
 		}
-		void SetRootBoneAxisOption(AnimNodeSequence::ERootBoneAxis AxisX, AnimNodeSequence::ERootBoneAxis AxisY, AnimNodeSequence::ERootBoneAxis AxisZ)
+		void SetRootBoneAxisOption(AnimNodeSequence__ERootBoneAxis AxisX, AnimNodeSequence__ERootBoneAxis AxisY, AnimNodeSequence__ERootBoneAxis AxisZ)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(10936);
 			byte params[3] = { NULL };
-			*(AnimNodeSequence::ERootBoneAxis*)params = AxisX;
-			*(AnimNodeSequence::ERootBoneAxis*)&params[1] = AxisY;
-			*(AnimNodeSequence::ERootBoneAxis*)&params[2] = AxisZ;
+			*(AnimNodeSequence__ERootBoneAxis*)params = AxisX;
+			*(AnimNodeSequence__ERootBoneAxis*)&params[1] = AxisY;
+			*(AnimNodeSequence__ERootBoneAxis*)&params[2] = AxisZ;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetRootBoneRotationOption(AnimNodeSequence::ERootRotationOption AxisX, AnimNodeSequence::ERootRotationOption AxisY, AnimNodeSequence::ERootRotationOption AxisZ)
+		void SetRootBoneRotationOption(AnimNodeSequence__ERootRotationOption AxisX, AnimNodeSequence__ERootRotationOption AxisY, AnimNodeSequence__ERootRotationOption AxisZ)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(10941);
 			byte params[3] = { NULL };
-			*(AnimNodeSequence::ERootRotationOption*)params = AxisX;
-			*(AnimNodeSequence::ERootRotationOption*)&params[1] = AxisY;
-			*(AnimNodeSequence::ERootRotationOption*)&params[2] = AxisZ;
+			*(AnimNodeSequence__ERootRotationOption*)params = AxisX;
+			*(AnimNodeSequence__ERootRotationOption*)&params[1] = AxisY;
+			*(AnimNodeSequence__ERootRotationOption*)&params[2] = AxisZ;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 	};

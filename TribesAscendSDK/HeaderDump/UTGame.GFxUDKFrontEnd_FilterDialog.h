@@ -1,7 +1,9 @@
 #pragma once
 #include "UTGame.GFxUDKFrontEnd_Dialog.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "UTGame.UTUIDataStore_MenuItems.h"
 #include "GFxUI.GFxObject.h"
+#include "UTGame.GFxUDKFrontEnd_FilterDialog.Option.h"
 #include "GFxUI.GFxClikWidget.h"
 #include "UTGame.UTDataStore_GameSearchDM.h"
 #include "UTGame.UTUIDataStore_StringList.h"
@@ -28,14 +30,7 @@ namespace UnrealScript
 	class GFxUDKFrontEnd_FilterDialog : public GFxUDKFrontEnd_Dialog
 	{
 	public:
-		struct Option
-		{
-		public:
-			ADD_STRUCT(ScriptArray<ScriptString*>, OptionData, 24)
-			ADD_STRUCT(ScriptString*, OptionLabel, 12)
-			ADD_STRUCT(ScriptString*, OptionName, 0)
-		};
-		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_FilterDialog::Option>, ListOptions, 196)
+		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_FilterDialog__Option>, ListOptions, 196)
 		ADD_OBJECT(GFxObject, GameTypeOptionItem, 192)
 		ADD_OBJECT(GFxObject, DataProvider, 188)
 		ADD_BOOL(bFiltersHaveChanged, 184, 0x1)
@@ -103,11 +98,11 @@ void**)params = DelegateListener;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[12];
 		}
-		void OnFilterList_OptionChanged(GFxClikWidget::EventData ev)
+		void OnFilterList_OptionChanged(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38092);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetupListDataProvider()

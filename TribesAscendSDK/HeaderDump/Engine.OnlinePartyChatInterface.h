@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.OnlineSubsystem.OnlinePartyMember.h"
 namespace UnrealScript
 {
 	class OnlinePartyChatInterface : public Interface
@@ -21,25 +22,25 @@ namespace UnrealScript
 			*(bool*)params = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnPartyMembersInfoChanged(ScriptString* PlayerName, OnlineSubsystem::UniqueNetId PlayerID, int CustomData1, int CustomData2, int CustomData3, int CustomData4)
+		void OnPartyMembersInfoChanged(ScriptString* PlayerName, OnlineSubsystem__UniqueNetId PlayerID, int CustomData1, int CustomData2, int CustomData3, int CustomData4)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21888);
 			byte params[36] = { NULL };
 			*(ScriptString**)params = PlayerName;
-			*(OnlineSubsystem::UniqueNetId*)&params[12] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[12] = PlayerID;
 			*(int*)&params[20] = CustomData1;
 			*(int*)&params[24] = CustomData2;
 			*(int*)&params[28] = CustomData3;
 			*(int*)&params[32] = CustomData4;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnPartyMemberListChanged(bool bJoinedOrLeft, ScriptString* PlayerName, OnlineSubsystem::UniqueNetId PlayerID)
+		void OnPartyMemberListChanged(bool bJoinedOrLeft, ScriptString* PlayerName, OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21890);
 			byte params[24] = { NULL };
 			*(bool*)params = bJoinedOrLeft;
 			*(ScriptString**)&params[4] = PlayerName;
-			*(OnlineSubsystem::UniqueNetId*)&params[16] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[16] = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void AddSendPartyGameInvitesCompleteDelegate(byte LocalUserNum, 
@@ -66,23 +67,23 @@ void* SendPartyGameInvitesCompleteDelegate)
 void**)&params[4] = SendPartyGameInvitesCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool GetPartyMembersInformation(ScriptArray<OnlineSubsystem::OnlinePartyMember>& PartyMembers)
+		bool GetPartyMembersInformation(ScriptArray<OnlineSubsystem__OnlinePartyMember>& PartyMembers)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21898);
 			byte params[16] = { NULL };
-			*(ScriptArray<OnlineSubsystem::OnlinePartyMember>*)params = PartyMembers;
+			*(ScriptArray<OnlineSubsystem__OnlinePartyMember>*)params = PartyMembers;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			PartyMembers = *(ScriptArray<OnlineSubsystem::OnlinePartyMember>*)params;
+			PartyMembers = *(ScriptArray<OnlineSubsystem__OnlinePartyMember>*)params;
 			return *(bool*)&params[12];
 		}
-		bool GetPartyMemberInformation(OnlineSubsystem::UniqueNetId MemberId, OnlineSubsystem::OnlinePartyMember& PartyMember)
+		bool GetPartyMemberInformation(OnlineSubsystem__UniqueNetId MemberId, OnlineSubsystem__OnlinePartyMember& PartyMember)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21902);
 			byte params[68] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = MemberId;
-			*(OnlineSubsystem::OnlinePartyMember*)&params[8] = PartyMember;
+			*(OnlineSubsystem__UniqueNetId*)params = MemberId;
+			*(OnlineSubsystem__OnlinePartyMember*)&params[8] = PartyMember;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			PartyMember = *(OnlineSubsystem::OnlinePartyMember*)&params[8];
+			PartyMember = *(OnlineSubsystem__OnlinePartyMember*)&params[8];
 			return *(bool*)&params[64];
 		}
 		void AddPartyMemberListChangedDelegate(byte LocalUserNum, 

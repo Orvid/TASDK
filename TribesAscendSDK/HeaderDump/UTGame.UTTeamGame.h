@@ -13,7 +13,7 @@
 #include "Engine.TeamInfo.h"
 #include "Engine.Actor.h"
 #include "UTGame.UTPlayerController.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -346,36 +346,36 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			C = *(class Controller**)params;
 		}
-		void ParseSpeechRecipients(class UTPlayerController* Speaker, ScriptArray<OnlineSubsystem::SpeechRecognizedWord>& Words, ScriptArray<class UTBot*>& Recipients)
+		void ParseSpeechRecipients(class UTPlayerController* Speaker, ScriptArray<OnlineSubsystem__SpeechRecognizedWord>& Words, ScriptArray<class UTBot*>& Recipients)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45327);
 			byte params[28] = { NULL };
 			*(class UTPlayerController**)params = Speaker;
-			*(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4] = Words;
+			*(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4] = Words;
 			*(ScriptArray<class UTBot*>*)&params[16] = Recipients;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Words = *(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4];
+			Words = *(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4];
 			Recipients = *(ScriptArray<class UTBot*>*)&params[16];
 		}
-		void ProcessSpeechOrders(class UTPlayerController* Speaker, ScriptArray<OnlineSubsystem::SpeechRecognizedWord>& Words, ScriptArray<class UTBot*>& Recipients)
+		void ProcessSpeechOrders(class UTPlayerController* Speaker, ScriptArray<OnlineSubsystem__SpeechRecognizedWord>& Words, ScriptArray<class UTBot*>& Recipients)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45339);
 			byte params[28] = { NULL };
 			*(class UTPlayerController**)params = Speaker;
-			*(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4] = Words;
+			*(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4] = Words;
 			*(ScriptArray<class UTBot*>*)&params[16] = Recipients;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Words = *(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4];
+			Words = *(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4];
 			Recipients = *(ScriptArray<class UTBot*>*)&params[16];
 		}
-		void ProcessSpeechRecognition(class UTPlayerController* Speaker, ScriptArray<OnlineSubsystem::SpeechRecognizedWord>& Words)
+		void ProcessSpeechRecognition(class UTPlayerController* Speaker, ScriptArray<OnlineSubsystem__SpeechRecognizedWord>& Words)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45349);
 			byte params[16] = { NULL };
 			*(class UTPlayerController**)params = Speaker;
-			*(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4] = Words;
+			*(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4] = Words;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Words = *(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4];
+			Words = *(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4];
 		}
 	};
 }

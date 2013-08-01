@@ -1,7 +1,12 @@
 #pragma once
-#include "Engine.AnimSequence.h"
+namespace UnrealScript
+{
+	class AnimNotify;
+}
+#include "Engine.AnimSequence.AnimNotifyEvent.h"
 #include "Core.Object.h"
 #include "Engine.AnimNodeSequence.h"
+#include "Core.Object.Color.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,16 +16,16 @@ namespace UnrealScript
 	class AnimNotify : public Object
 	{
 	public:
-		ADD_STRUCT(Object::Color, NotifyColor, 60)
-		bool FindNextNotifyOfClass(class AnimNodeSequence* AnimSeqInstigator, ScriptClass* NotifyClass, AnimSequence::AnimNotifyEvent& OutEvent)
+		ADD_STRUCT(Object__Color, NotifyColor, 60)
+		bool FindNextNotifyOfClass(class AnimNodeSequence* AnimSeqInstigator, ScriptClass* NotifyClass, AnimSequence__AnimNotifyEvent& OutEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(11128);
 			byte params[32] = { NULL };
 			*(class AnimNodeSequence**)params = AnimSeqInstigator;
 			*(ScriptClass**)&params[4] = NotifyClass;
-			*(AnimSequence::AnimNotifyEvent*)&params[8] = OutEvent;
+			*(AnimSequence__AnimNotifyEvent*)&params[8] = OutEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutEvent = *(AnimSequence::AnimNotifyEvent*)&params[8];
+			OutEvent = *(AnimSequence__AnimNotifyEvent*)&params[8];
 			return *(bool*)&params[28];
 		}
 	};

@@ -1,8 +1,8 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "TribesGame.TrDevice.h"
 #include "Engine.AnimNodePlayCustomAnim.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "Engine.AnimNodeSequence.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -78,12 +78,12 @@ void**)params = SkelComp;
 			*params = FireModeNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ProcessInstantHit_Internal(byte FiringMode, Actor::ImpactInfo Impact, bool bHeadShot)
+		void ProcessInstantHit_Internal(byte FiringMode, Actor__ImpactInfo Impact, bool bHeadShot)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(80634);
 			byte params[85] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(bool*)&params[84] = bHeadShot;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

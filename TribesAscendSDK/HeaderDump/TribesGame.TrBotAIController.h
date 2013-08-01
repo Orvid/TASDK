@@ -1,11 +1,11 @@
 #pragma once
-#include "Core.Object.h"
 #include "TribesGame.TrSeqAct_AIStopSkiing.h"
 #include "UTGame.UTBot.h"
 #include "TribesGame.TrSeqAct_AIStartJetting.h"
 #include "TribesGame.TrSeqAct_AIStopJetting.h"
 #include "TribesGame.TrSeqAct_AIStartSkiing.h"
 #include "Engine.SeqAct_AIMoveToActor.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Pawn.h"
 namespace UnrealScript
 {

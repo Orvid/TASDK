@@ -1,9 +1,9 @@
 #pragma once
 #include "Engine.OnlineGameSettings.h"
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Engine.OnlineStatsRead.h"
 #include "Engine.OnlineGameSearch.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.OnlineStatsRead.h"
 namespace UnrealScript
 {
 	class OnlineSuppliedUIInterface : public Interface
@@ -14,14 +14,14 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22903);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		bool ShowOnlineStatsUI(ScriptArray<OnlineSubsystem::UniqueNetId>& Players, class OnlineStatsRead* StatsRead)
+		bool ShowOnlineStatsUI(ScriptArray<OnlineSubsystem__UniqueNetId>& Players, class OnlineStatsRead* StatsRead)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22905);
 			byte params[20] = { NULL };
-			*(ScriptArray<OnlineSubsystem::UniqueNetId>*)params = Players;
+			*(ScriptArray<OnlineSubsystem__UniqueNetId>*)params = Players;
 			*(class OnlineStatsRead**)&params[12] = StatsRead;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Players = *(ScriptArray<OnlineSubsystem::UniqueNetId>*)params;
+			Players = *(ScriptArray<OnlineSubsystem__UniqueNetId>*)params;
 			return *(bool*)&params[16];
 		}
 		void AddShowOnlineStatsUICompleteDelegate(

@@ -1,10 +1,12 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
-#include "Engine.MaterialInstanceConstant.h"
 #include "Engine.Texture2D.h"
 #include "Engine.PlayerController.h"
+#include "Core.Object.Vector2D.h"
+#include "Engine.MaterialInstanceConstant.h"
 #include "Engine.Canvas.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.LinearColor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -21,7 +23,7 @@ namespace UnrealScript
 		ADD_OBJECT(Actor, m_SpottedActor, 476)
 		ADD_STRUCT(float, m_fLastSpottedTimestamp, 484)
 		ADD_STRUCT(float, m_fSpottedActorDuration, 496)
-		ADD_STRUCT(Object::Vector2D, m_MarkerSize, 504)
+		ADD_STRUCT(Object__Vector2D, m_MarkerSize, 504)
 		ADD_OBJECT(MaterialInstanceConstant, m_MarkerMIC, 500)
 		ADD_STRUCT(float, m_fMarkerOpacity, 492)
 		ADD_STRUCT(float, m_fMarkerZOffset, 488)
@@ -62,12 +64,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class Texture2D**)params;
 		}
-		Object::LinearColor GetMarkerColor()
+		Object__LinearColor GetMarkerColor()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(112576);
 			byte params[16] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::LinearColor*)params;
+			return *(Object__LinearColor*)params;
 		}
 	};
 }

@@ -1,27 +1,33 @@
 #pragma once
 #include "TribesGame.TrStreamManager.h"
 #include "GFxUI.GFxMoviePlayer.h"
-#include "TribesGame.TrBrowserManager.h"
-#include "PlatformCommon.TgPlayerProfile.h"
+#include "TribesGame.TrEquipInterface.h"
+#include "TribesGame.GFxTrScene_EULA.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.POPUPTYPE.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.TrPageManager.h"
 #include "Engine.OnlineSubsystem.h"
 #include "TribesGame.TrStrings.h"
 #include "TribesGame.TrUser.h"
 #include "TribesGame.TrInventoryHelper.h"
-#include "TribesGame.TrEquipInterface.h"
+#include "TribesGame.TrBrowserManager.h"
+#include "PlatformCommon.TgPlayerProfile.h"
 #include "TribesGame.TrLoginManager.h"
 #include "TribesGame.TrQueueManager.h"
 #include "TribesGame.TrPartyManager.h"
 #include "TribesGame.TrLoadingData.h"
 #include "TribesGame.TrSettingsManager.h"
+#include "Core.Object.Pointer.h"
 #include "TribesGame.TrRibbonManager.h"
 #include "TribesGame.TrFriendManager.h"
-#include "TribesGame.GFxTrScene_EULA.h"
 #include "TribesGame.GFxTrScene_MatchSummary.h"
 #include "TribesGame.GFxTrScene_PlayerSummary.h"
 #include "TribesGame.GFxTrMenuSounds.h"
-#include "Core.Object.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.AcquisitionType.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.AcquisitionData.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.VendorItemData.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.QueueUIData.h"
 #include "TribesGame.TrHUD.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -1419,62 +1425,7 @@ namespace UnrealScript
 		static const auto TR_QUERY_TDM = 1;
 		static const auto TR_QUERY_CTF = 0;
 		static const auto MAX_CLASS_SLOTS = 10;
-		enum AcquisitionType : byte
-		{
-			AT_STANDARD = 0,
-			AT_USEDGOLD = 1,
-			AT_USEDXP = 2,
-			AT_VIP = 3,
-			AT_BOOST = 4,
-			AT_FWOTD = 5,
-			AT_PROMO = 6,
-			AT_CLASS = 7,
-			AT_SKILL = 8,
-			AT_MAX = 9,
-		};
-		enum POPUPTYPE : byte
-		{
-			PUT_NONE = 0,
-			PUT_STEAM_INIT = 1,
-			PUT_STEAM_FINALIZE = 2,
-			PUT_STEAM_DECLINED = 3,
-			PUT_STEAM_BADDATA = 4,
-			PUT_VIDEO_WARNING = 5,
-			PUT_PORTAL_CONFIRM = 6,
-			PUT_MAX = 7,
-		};
-		struct VendorItemData
-		{
-		public:
-			ADD_STRUCT(ScriptString*, Description, 20)
-			ADD_STRUCT(ScriptString*, Title, 8)
-			ADD_STRUCT(int, LootId, 4)
-			ADD_STRUCT(int, Price, 0)
-		};
-		struct AcquisitionData
-		{
-		public:
-			ADD_STRUCT(int, Icon, 36)
-			ADD_STRUCT(ScriptString*, Type, 24)
-			ADD_STRUCT(ScriptString*, Text, 12)
-			ADD_STRUCT(ScriptString*, Title, 0)
-		};
-		struct QueueUIData
-		{
-		public:
-			ADD_STRUCT(int, LevelMax, 60)
-			ADD_STRUCT(int, LevelMin, 56)
-			ADD_STRUCT(int, SortOrder, 52)
-			ADD_STRUCT(int, contentIndex, 48)
-			ADD_STRUCT(ScriptString*, RibbonText, 36)
-			ADD_STRUCT(int, ribbonType, 32)
-			ADD_BOOL(bShowRibbon, 28, 0x2)
-			ADD_BOOL(bAvailable, 28, 0x1)
-			ADD_STRUCT(ScriptString*, Subtitle, 16)
-			ADD_STRUCT(ScriptString*, Title, 4)
-			ADD_STRUCT(int, queueId, 0)
-		};
-		ADD_STRUCT(GFxTrMenuMoviePlayer::POPUPTYPE, m_PopupType, 380)
+		ADD_STRUCT(GFxTrMenuMoviePlayer__POPUPTYPE, m_PopupType, 380)
 		ADD_BOOL(bInitialized, 384, 0x1000)
 		ADD_OBJECT(GFxObject, _global, 748)
 		ADD_OBJECT(OnlineSubsystem, OnlineSub, 784)
@@ -1538,10 +1489,10 @@ namespace UnrealScript
 		ADD_BOOL(bBlockHotkey, 384, 0x400)
 		ADD_STRUCT(ScriptString*, UnlockItemName, 480)
 		ADD_STRUCT(ScriptString*, UnlockTypeName, 492)
-		ADD_STRUCT(GFxTrMenuMoviePlayer::AcquisitionType, UnlockIconType, 381)
+		ADD_STRUCT(GFxTrMenuMoviePlayer__AcquisitionType, UnlockIconType, 381)
 		ADD_STRUCT(int, UnlockIconId, 476)
-		ADD_STRUCT(ScriptArray<GFxTrMenuMoviePlayer::AcquisitionData>, AcquisitionList, 708)
-		ADD_STRUCT(ScriptArray<TgPlayerProfile::PropertyPair>, UnknownList, 696)
+		ADD_STRUCT(ScriptArray<GFxTrMenuMoviePlayer__AcquisitionData>, AcquisitionList, 708)
+		ADD_STRUCT(ScriptArray<TgPlayerProfile__PropertyPair>, UnknownList, 696)
 		ADD_BOOL(bWaitingForLoginQueuePopup, 384, 0x80000000)
 		ADD_BOOL(bWaitingForAFKKickPopup, 388, 0x2)
 		ADD_BOOL(bWaitingForPurchaseReturn, 388, 0x10)
@@ -1554,7 +1505,7 @@ namespace UnrealScript
 		ADD_BOOL(bShowGenericFailure, 384, 0x2000000)
 		ADD_BOOL(bWaitingForPlayerNameInput, 384, 0x8000000)
 		ADD_STRUCT(ScriptString*, NameRulesMessage, 544)
-		ADD_STRUCT(GFxTrMenuMoviePlayer::VendorItemData, PortalPurchase, 652)
+		ADD_STRUCT(GFxTrMenuMoviePlayer__VendorItemData, PortalPurchase, 652)
 		ADD_BOOL(bInQueue, 384, 0x20)
 		ADD_BOOL(bQueueListDirty, 384, 0x40)
 		ADD_BOOL(bWebVendorLoaded, 384, 0x10000)
@@ -1574,8 +1525,8 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptString*, InLobbyLabel, 616)
 		ADD_STRUCT(ScriptString*, OKLabel, 628)
 		ADD_STRUCT(ScriptString*, CancelLabel, 640)
-		ADD_STRUCT(ScriptArray<GFxTrMenuMoviePlayer::VendorItemData>, GoldItemList, 684)
-		ADD_STRUCT(ScriptArray<GFxTrMenuMoviePlayer::QueueUIData>, QueueUIList, 720)
+		ADD_STRUCT(ScriptArray<GFxTrMenuMoviePlayer__VendorItemData>, GoldItemList, 684)
+		ADD_STRUCT(ScriptArray<GFxTrMenuMoviePlayer__QueueUIData>, QueueUIList, 720)
 		void DelegateNoParam()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(54312);
@@ -1649,11 +1600,11 @@ namespace UnrealScript
 			*(class GFxObject**)&params[4] = List;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DelegateOnMarshalEvent(Object::Pointer pMarEvent)
+		void DelegateOnMarshalEvent(Object__Pointer pMarEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(54336);
 			byte params[4] = { NULL };
-			*(Object::Pointer*)params = pMarEvent;
+			*(Object__Pointer*)params = pMarEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		int DelegateGetInt()
@@ -1806,11 +1757,11 @@ namespace UnrealScript
 			*(ScriptString**)&params[12] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnMarshalEvent(Object::Pointer pMarEvent)
+		void OnMarshalEvent(Object__Pointer pMarEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(54394);
 			byte params[4] = { NULL };
-			*(Object::Pointer*)params = pMarEvent;
+			*(Object__Pointer*)params = pMarEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool ReadPlayerProfileData(class TgPlayerProfile* Profile)
@@ -1821,11 +1772,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void UserLoginChanged(Object::Pointer pMarEvent)
+		void UserLoginChanged(Object__Pointer pMarEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(54399);
 			byte params[4] = { NULL };
-			*(Object::Pointer*)params = pMarEvent;
+			*(Object__Pointer*)params = pMarEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool RegisterMarshalCallback(
@@ -3158,13 +3109,13 @@ void**)params = In;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(54861);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ReadyAcquisition(ScriptString* TopName, ScriptString* BotName, GFxTrMenuMoviePlayer::AcquisitionType IconType, int IconId)
+		void ReadyAcquisition(ScriptString* TopName, ScriptString* BotName, GFxTrMenuMoviePlayer__AcquisitionType IconType, int IconId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(54862);
 			byte params[29] = { NULL };
 			*(ScriptString**)params = TopName;
 			*(ScriptString**)&params[12] = BotName;
-			*(GFxTrMenuMoviePlayer::AcquisitionType*)&params[24] = IconType;
+			*(GFxTrMenuMoviePlayer__AcquisitionType*)&params[24] = IconType;
 			*(int*)&params[28] = IconId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

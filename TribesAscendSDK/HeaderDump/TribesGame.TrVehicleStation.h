@@ -1,11 +1,12 @@
 #pragma once
-#include "TribesGame.TrObject.h"
 #include "TribesGame.TrVehicle.h"
 #include "TribesGame.TrStation.h"
+#include "TribesGame.TrVehicleStation.VehicleSpawnInfo.h"
 #include "TribesGame.TrAnimNodeBlendList.h"
 #include "Engine.Texture2D.h"
 #include "TribesGame.TrVehiclePad.h"
 #include "TribesGame.TrPawn.h"
+#include "TribesGame.TrObject.EVehicleTypes.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,14 +31,6 @@ namespace UnrealScript
 	{
 	public:
 		static const auto SPAWNED_VEHICLE_LIST_MASK = 0xF;
-		struct VehicleSpawnInfo
-		{
-		public:
-			ADD_STRUCT(Rotator, m_rSpawnRotOffset, 20)
-			ADD_STRUCT(Vector, m_vSpawnLocOffset, 8)
-			ADD_STRUCT(int, m_nMaxCount, 4)
-			ADD_OBJECT(ScriptClass, m_VehicleClass, 0)
-		};
 		ADD_OBJECT(TrAnimNodeBlendList, m_VehicleStationBlendNode, 1596)
 		ADD_STRUCT(float, m_fTimeToSpawnVehicleAfterRequest, 1592)
 		ADD_STRUCT(float, m_fInstigatorTeleportTime, 1588)
@@ -45,34 +38,34 @@ namespace UnrealScript
 		ADD_OBJECT(TrVehicle, m_LastSpawnedVehicle, 1580)
 		ADD_STRUCT(float, m_fSpawnTimeStamp, 1576)
 		ADD_STRUCT(float, m_fPostSpawnLockoutTime, 1572)
-		ADD_STRUCT(TrObject::EVehicleTypes, m_LastRequestedVehicleType, 1569)
+		ADD_STRUCT(TrObject__EVehicleTypes, m_LastRequestedVehicleType, 1569)
 		ADD_STRUCT(byte, r_nSpawnSequenceEnded, 1568)
 		ADD_BOOL(r_bSpawnSequenceStarted, 1564, 0x2)
 		ADD_BOOL(r_bIsLocked, 1564, 0x1)
 		ADD_STRUCT(int, r_nSpawnedVehicles, 1560)
 		ADD_OBJECT(TrVehiclePad, m_VehiclePad, 1556)
-		ADD_STRUCT(TrVehicleStation::VehicleSpawnInfo, m_SpawnList, 1396)
-		bool RequestSpawnVehicle(TrObject::EVehicleTypes VehicleType)
+		ADD_STRUCT(TrVehicleStation__VehicleSpawnInfo, m_SpawnList, 1396)
+		bool RequestSpawnVehicle(TrObject__EVehicleTypes VehicleType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(76897);
 			byte params[5] = { NULL };
-			*(TrObject::EVehicleTypes*)params = VehicleType;
+			*(TrObject__EVehicleTypes*)params = VehicleType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		int GetNumVehiclesSpawnedByType(TrObject::EVehicleTypes VehicleType)
+		int GetNumVehiclesSpawnedByType(TrObject__EVehicleTypes VehicleType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77814);
 			byte params[5] = { NULL };
-			*(TrObject::EVehicleTypes*)params = VehicleType;
+			*(TrObject__EVehicleTypes*)params = VehicleType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
-		int GetMaxVehicleCountAllowed(TrObject::EVehicleTypes VehicleType)
+		int GetMaxVehicleCountAllowed(TrObject__EVehicleTypes VehicleType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77816);
 			byte params[5] = { NULL };
-			*(TrObject::EVehicleTypes*)params = VehicleType;
+			*(TrObject__EVehicleTypes*)params = VehicleType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
@@ -148,19 +141,19 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(115021);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		bool AbleToSpawnVehicleType(TrObject::EVehicleTypes VehicleType)
+		bool AbleToSpawnVehicleType(TrObject__EVehicleTypes VehicleType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(115022);
 			byte params[5] = { NULL };
-			*(TrObject::EVehicleTypes*)params = VehicleType;
+			*(TrObject__EVehicleTypes*)params = VehicleType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void AddVehicleToPackedList(TrObject::EVehicleTypes VehicleType, int Num)
+		void AddVehicleToPackedList(TrObject__EVehicleTypes VehicleType, int Num)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(115029);
 			byte params[5] = { NULL };
-			*(TrObject::EVehicleTypes*)params = VehicleType;
+			*(TrObject__EVehicleTypes*)params = VehicleType;
 			*(int*)&params[4] = Num;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

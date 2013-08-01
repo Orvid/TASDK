@@ -2,7 +2,7 @@
 #include "Engine.Mutator.h"
 #include "Engine.Actor.h"
 #include "UTGame.UTPlayerController.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
 namespace UnrealScript
 {
 	class UTMutator : public Mutator
@@ -31,14 +31,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
-		void ProcessSpeechRecognition(class UTPlayerController* Speaker, ScriptArray<OnlineSubsystem::SpeechRecognizedWord>& Words)
+		void ProcessSpeechRecognition(class UTPlayerController* Speaker, ScriptArray<OnlineSubsystem__SpeechRecognizedWord>& Words)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(48563);
 			byte params[16] = { NULL };
 			*(class UTPlayerController**)params = Speaker;
-			*(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4] = Words;
+			*(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4] = Words;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Words = *(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4];
+			Words = *(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4];
 		}
 	};
 }

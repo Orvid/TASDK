@@ -1,20 +1,26 @@
 #pragma once
-#include "GameFramework.GameCrowdGroup.h"
 #include "Engine.CrowdAgentBase.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.LinearColor.h"
 #include "GameFramework.GameCrowdForcePoint.h"
 #include "Engine.Canvas.h"
 #include "GameFramework.GameCrowdAgentBehavior.h"
+#include "GameFramework.GameCrowdAgent.RecentInteraction.h"
+#include "Core.Object.Vector.h"
+#include "GameFramework.GameCrowdAgent.BehaviorEntry.h"
 #include "Engine.SoundCue.h"
 #include "Engine.Texture2D.h"
 #include "Engine.NavigationHandle.h"
+#include "GameFramework.GameCrowdAgent.EConformType.h"
+#include "GameFramework.GameCrowdGroup.h"
 #include "GameFramework.GameCrowdDestination.h"
 #include "Engine.HUD.h"
-#include "Engine.LightComponent.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
 #include "GameFramework.SeqAct_PlayAgentAnimation.h"
 #include "Engine.PlayerController.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.Controller.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -38,40 +44,16 @@ namespace UnrealScript
 	class GameCrowdAgent : public CrowdAgentBase
 	{
 	public:
-		enum EConformType : byte
-		{
-			CFM_NavMesh = 0,
-			CFM_BSP = 1,
-			CFM_World = 2,
-			CFM_None = 3,
-			CFM_MAX = 4,
-		};
-		struct RecentInteraction
-		{
-		public:
-			ADD_STRUCT(float, InteractionDelay, 8)
-			ADD_STRUCT(ScriptName, InteractionTag, 0)
-		};
-		struct BehaviorEntry
-		{
-		public:
-			ADD_BOOL(bCanBeUsed, 12, 0x4)
-			ADD_BOOL(bHasBeenUsed, 12, 0x2)
-			ADD_BOOL(bNeverRepeat, 12, 0x1)
-			ADD_STRUCT(float, BehaviorFrequency, 8)
-			ADD_OBJECT(Actor, LookAtActor, 4)
-			ADD_OBJECT(GameCrowdAgentBehavior, BehaviorArchetype, 0)
-		};
 		ADD_STRUCT(ScriptArray<class Actor*>, NearbyDynamics, 548)
 		ADD_STRUCT(ScriptArray<class GameCrowdForcePoint*>, RelevantAttractors, 560)
-		ADD_STRUCT(ScriptArray<GameCrowdAgent::RecentInteraction>, RecentInteractions, 764)
-		ADD_STRUCT(ScriptArray<GameCrowdAgent::BehaviorEntry>, EncounterAgentBehaviors, 824)
-		ADD_STRUCT(ScriptArray<GameCrowdAgent::BehaviorEntry>, SeePlayerBehaviors, 836)
-		ADD_STRUCT(ScriptArray<GameCrowdAgent::BehaviorEntry>, SpawnBehaviors, 856)
-		ADD_STRUCT(ScriptArray<GameCrowdAgent::BehaviorEntry>, PanicBehaviors, 868)
-		ADD_STRUCT(ScriptArray<GameCrowdAgent::BehaviorEntry>, RandomBehaviors, 880)
-		ADD_STRUCT(ScriptArray<GameCrowdAgent::BehaviorEntry>, TakeDamageBehaviors, 892)
-		ADD_STRUCT(ScriptArray<GameCrowdAgent::BehaviorEntry>, GroupWaitingBehaviors, 916)
+		ADD_STRUCT(ScriptArray<GameCrowdAgent__RecentInteraction>, RecentInteractions, 764)
+		ADD_STRUCT(ScriptArray<GameCrowdAgent__BehaviorEntry>, EncounterAgentBehaviors, 824)
+		ADD_STRUCT(ScriptArray<GameCrowdAgent__BehaviorEntry>, SeePlayerBehaviors, 836)
+		ADD_STRUCT(ScriptArray<GameCrowdAgent__BehaviorEntry>, SpawnBehaviors, 856)
+		ADD_STRUCT(ScriptArray<GameCrowdAgent__BehaviorEntry>, PanicBehaviors, 868)
+		ADD_STRUCT(ScriptArray<GameCrowdAgent__BehaviorEntry>, RandomBehaviors, 880)
+		ADD_STRUCT(ScriptArray<GameCrowdAgent__BehaviorEntry>, TakeDamageBehaviors, 892)
+		ADD_STRUCT(ScriptArray<GameCrowdAgent__BehaviorEntry>, GroupWaitingBehaviors, 916)
 		ADD_STRUCT(float, InitialLastRenderTime, 960)
 		ADD_STRUCT(Vector, SpawnOffset, 948)
 		ADD_STRUCT(float, MaxLOSLifeDistanceSq, 936)
@@ -84,7 +66,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, MaxSeePlayerDistSq, 848)
 		ADD_OBJECT(GameCrowdAgentBehavior, CurrentBehavior, 820)
 		ADD_OBJECT(SoundCue, AmbientSoundCue, 812)
-		ADD_STRUCT(Object::LinearColor, BeaconColor, 796)
+		ADD_STRUCT(Object__LinearColor, BeaconColor, 796)
 		ADD_OBJECT(Texture2D, BeaconTexture, 792)
 		ADD_STRUCT(Vector, BeaconOffset, 780)
 		ADD_STRUCT(float, BeaconMaxDist, 776)
@@ -124,7 +106,7 @@ namespace UnrealScript
 		ADD_STRUCT(int, CurrentConformTraceInterval, 588)
 		ADD_STRUCT(int, ConformTraceInterval, 584)
 		ADD_STRUCT(float, ConformTraceDist, 580)
-		ADD_STRUCT(GameCrowdAgent::EConformType, ConformType, 576)
+		ADD_STRUCT(GameCrowdAgent__EConformType, ConformType, 576)
 		ADD_OBJECT(GameCrowdGroup, MyGroup, 480)
 		ADD_BOOL(bIsInSpawnPool, 572, 0x8000)
 		ADD_BOOL(bHasNotifiedSpawner, 572, 0x4000)
@@ -153,11 +135,11 @@ namespace UnrealScript
 		ADD_OBJECT(GameCrowdDestination, CurrentDestination, 500)
 		ADD_STRUCT(float, AvoidanceShare, 496)
 		ADD_STRUCT(Vector, PreferredVelocity, 484)
-		bool PickBehaviorFrom(ScriptArray<GameCrowdAgent::BehaviorEntry> BehaviorList, Vector BestCameraLoc)
+		bool PickBehaviorFrom(ScriptArray<GameCrowdAgent__BehaviorEntry> BehaviorList, Vector BestCameraLoc)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30495);
 			byte params[28] = { NULL };
-			*(ScriptArray<GameCrowdAgent::BehaviorEntry>*)params = BehaviorList;
+			*(ScriptArray<GameCrowdAgent__BehaviorEntry>*)params = BehaviorList;
 			*(Vector*)&params[12] = BestCameraLoc;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[24];
@@ -232,12 +214,12 @@ namespace UnrealScript
 			out_YL = *(float*)&params[4];
 			out_YPos = *(float*)&params[8];
 		}
-		void SetLighting(bool bEnableLightEnvironment, LightComponent::LightingChannelContainer AgentLightingChannel, bool bCastShadows)
+		void SetLighting(bool bEnableLightEnvironment, LightComponent__LightingChannelContainer AgentLightingChannel, bool bCastShadows)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30983);
 			byte params[12] = { NULL };
 			*(bool*)params = bEnableLightEnvironment;
-			*(LightComponent::LightingChannelContainer*)&params[4] = AgentLightingChannel;
+			*(LightComponent__LightingChannelContainer*)&params[4] = AgentLightingChannel;
 			*(bool*)&params[8] = bCastShadows;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -364,7 +346,7 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31050);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31051);
 			byte params[68] = { NULL };
@@ -373,7 +355,7 @@ namespace UnrealScript
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

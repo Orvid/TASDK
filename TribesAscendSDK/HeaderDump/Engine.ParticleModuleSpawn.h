@@ -1,7 +1,8 @@
 #pragma once
 #include "Engine.ParticleModuleSpawnBase.h"
-#include "Engine.ParticleEmitter.h"
-#include "Core.DistributionFloat.h"
+#include "Engine.ParticleEmitter.ParticleBurst.h"
+#include "Engine.ParticleEmitter.EParticleBurstMethod.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,10 +12,10 @@ namespace UnrealScript
 	class ParticleModuleSpawn : public ParticleModuleSpawnBase
 	{
 	public:
-		ADD_STRUCT(ScriptArray<ParticleEmitter::ParticleBurst>, BurstList, 136)
-		ADD_STRUCT(ParticleEmitter::EParticleBurstMethod, ParticleBurstMethod, 132)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, RateScale, 104)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Rate, 76)
+		ADD_STRUCT(ScriptArray<ParticleEmitter__ParticleBurst>, BurstList, 136)
+		ADD_STRUCT(ParticleEmitter__EParticleBurstMethod, ParticleBurstMethod, 132)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, RateScale, 104)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Rate, 76)
 	};
 }
 #undef ADD_STRUCT

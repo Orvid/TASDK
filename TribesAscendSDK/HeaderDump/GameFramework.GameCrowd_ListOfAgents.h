@@ -1,6 +1,6 @@
 #pragma once
+#include "GameFramework.SeqAct_GameCrowdSpawner.AgentArchetypeInfo.h"
 #include "Core.Object.h"
-#include "GameFramework.SeqAct_GameCrowdSpawner.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,7 +10,7 @@ namespace UnrealScript
 	class GameCrowd_ListOfAgents : public Object
 	{
 	public:
-		ADD_STRUCT(ScriptArray<SeqAct_GameCrowdSpawner::AgentArchetypeInfo>, ListOfAgents, 60)
+		ADD_STRUCT(ScriptArray<SeqAct_GameCrowdSpawner__AgentArchetypeInfo>, ListOfAgents, 60)
 	};
 }
 #undef ADD_STRUCT

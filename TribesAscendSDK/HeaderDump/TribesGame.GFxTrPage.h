@@ -36,12 +36,6 @@ namespace UnrealScript
 		static const auto MENU_ELEMENT_FEATURE = 14;
 		static const auto MENU_ELEMENT_SERVERBROWSER = 15;
 		static const auto MAX_FRIENDS_DISPLAYED = 150;
-		struct ResolutionSet
-		{
-		public:
-			ADD_STRUCT(TgPlayerProfile::PropertyPair, Res, 4)
-			ADD_STRUCT(int, Index, 0)
-		};
 		ADD_STRUCT(ScriptArray<ScriptString*>, OptionTitlesOverride, 188)
 		ADD_STRUCT(ScriptArray<ScriptString*>, OptionSubtextOverride, 200)
 		ADD_STRUCT(ScriptArray<ScriptString*>, OptionTitles, 320)

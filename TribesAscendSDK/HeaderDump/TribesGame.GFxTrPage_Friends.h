@@ -1,7 +1,7 @@
 #pragma once
 #include "TribesGame.GFxTrPage.h"
-#include "TribesGame.TrFriendManager.h"
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.TrFriendManager.FriendStruct.h"
 #include "TribesGame.GFxTrAction.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -24,7 +24,7 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(ScriptString*, FlyoutTitle, 424)
 		ADD_STRUCT(ScriptString*, RemoveFriendTitle, 412)
-		ADD_STRUCT(ScriptArray<TrFriendManager::FriendStruct>, SortedFriends, 436)
+		ADD_STRUCT(ScriptArray<TrFriendManager__FriendStruct>, SortedFriends, 436)
 		ADD_STRUCT(ScriptString*, AddFriendSubtext, 400)
 		ADD_STRUCT(ScriptString*, AddFriendTitle, 388)
 		ADD_STRUCT(ScriptString*, SelectPromptLabel, 376)

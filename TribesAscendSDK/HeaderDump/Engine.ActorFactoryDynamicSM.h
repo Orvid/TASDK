@@ -1,8 +1,8 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Engine.ActorFactory.h"
-#include "Core.Object.h"
-#include "Engine.Actor.h"
 #include "Engine.StaticMesh.h"
+#include "Engine.Actor.ECollisionType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,7 +26,7 @@ namespace UnrealScript
 	class ActorFactoryDynamicSM : public ActorFactory
 	{
 	public:
-		ADD_STRUCT(Actor::ECollisionType, CollisionType, 112)
+		ADD_STRUCT(Actor__ECollisionType, CollisionType, 112)
 		ADD_BOOL(bCastDynamicShadow, 108, 0x10)
 		ADD_BOOL(bUseCompartment, 108, 0x8)
 		ADD_BOOL(bBlockRigidBody, 108, 0x4)

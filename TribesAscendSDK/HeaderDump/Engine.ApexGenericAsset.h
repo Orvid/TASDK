@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.MaterialInterface.h"
 #include "Engine.ApexAsset.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,7 +12,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<class MaterialInterface*>, Materials, 112)
-		ADD_STRUCT(Object::Pointer, MApexAsset, 108)
+		ADD_STRUCT(Object__Pointer, MApexAsset, 108)
 	};
 }
 #undef ADD_STRUCT

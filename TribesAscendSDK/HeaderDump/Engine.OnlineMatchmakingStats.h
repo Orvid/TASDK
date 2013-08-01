@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "Engine.OnlineMatchmakingStats.MMStats_Timer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,27 +20,21 @@ namespace UnrealScript
 	class OnlineMatchmakingStats : public Object
 	{
 	public:
-		struct MMStats_Timer
-		{
-		public:
-			ADD_STRUCT(Object::Double, MSecs, 4)
-			ADD_BOOL(bInProgress, 0, 0x1)
-		};
-		void StartTimer(OnlineMatchmakingStats::MMStats_Timer& Timer)
+		void StartTimer(OnlineMatchmakingStats__MMStats_Timer& Timer)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21861);
 			byte params[12] = { NULL };
-			*(OnlineMatchmakingStats::MMStats_Timer*)params = Timer;
+			*(OnlineMatchmakingStats__MMStats_Timer*)params = Timer;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Timer = *(OnlineMatchmakingStats::MMStats_Timer*)params;
+			Timer = *(OnlineMatchmakingStats__MMStats_Timer*)params;
 		}
-		void StopTimer(OnlineMatchmakingStats::MMStats_Timer& Timer)
+		void StopTimer(OnlineMatchmakingStats__MMStats_Timer& Timer)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21863);
 			byte params[12] = { NULL };
-			*(OnlineMatchmakingStats::MMStats_Timer*)params = Timer;
+			*(OnlineMatchmakingStats__MMStats_Timer*)params = Timer;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Timer = *(OnlineMatchmakingStats::MMStats_Timer*)params;
+			Timer = *(OnlineMatchmakingStats__MMStats_Timer*)params;
 		}
 	};
 }

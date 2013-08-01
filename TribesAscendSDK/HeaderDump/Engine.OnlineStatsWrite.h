@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.OnlineStats.h"
-#include "Engine.Settings.h"
+#include "Engine.Settings.StringIdToStringMapping.h"
+#include "Engine.Settings.SettingsProperty.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,8 +11,8 @@ namespace UnrealScript
 	class OnlineStatsWrite : public OnlineStats
 	{
 	public:
-		ADD_STRUCT(ScriptArray<Settings::StringIdToStringMapping>, StatMappings, 72)
-		ADD_STRUCT(ScriptArray<Settings::SettingsProperty>, Properties, 84)
+		ADD_STRUCT(ScriptArray<Settings__StringIdToStringMapping>, StatMappings, 72)
+		ADD_STRUCT(ScriptArray<Settings__SettingsProperty>, Properties, 84)
 		ADD_STRUCT(ScriptArray<int>, ViewIds, 96)
 		ADD_STRUCT(ScriptArray<int>, ArbitratedViewIds, 108)
 		ADD_STRUCT(int, RatingId, 120)

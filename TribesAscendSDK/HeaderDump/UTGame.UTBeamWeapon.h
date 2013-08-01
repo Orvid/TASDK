@@ -2,9 +2,10 @@
 #include "UTGame.UTWeapon.h"
 #include "Engine.ForceFeedbackWaveform.h"
 #include "Engine.ParticleSystem.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "Engine.HUD.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Actor.ImpactInfo.h"
+#include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -51,16 +52,16 @@ namespace UnrealScript
 			*(class Actor**)&params[24] = HitActor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ProcessBeamHit(Vector StartTrace, Vector AimDir, Actor::ImpactInfo& TestImpact, float DeltaTime)
+		void ProcessBeamHit(Vector StartTrace, Vector AimDir, Actor__ImpactInfo& TestImpact, float DeltaTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41312);
 			byte params[108] = { NULL };
 			*(Vector*)params = StartTrace;
 			*(Vector*)&params[12] = AimDir;
-			*(Actor::ImpactInfo*)&params[24] = TestImpact;
+			*(Actor__ImpactInfo*)&params[24] = TestImpact;
 			*(float*)&params[104] = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			TestImpact = *(Actor::ImpactInfo*)&params[24];
+			TestImpact = *(Actor__ImpactInfo*)&params[24];
 		}
 		void UpdateBeam(float DeltaTime)
 		{

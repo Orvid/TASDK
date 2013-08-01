@@ -1,15 +1,17 @@
 #pragma once
 #include "GFxUI.GFxMoviePlayer.h"
+#include "UTGame.GFxMinimapHud.MessageRow.h"
 #include "UTGame.UTGameReplicationInfo.h"
 #include "GFxUI.GFxObject.h"
-#include "Engine.WorldInfo.h"
 #include "UTGame.UTWeapon.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #include "UTGame.UTVehicle.h"
-#include "Engine.Weapon.h"
+#include "UTGame.GFxMinimapHud.HeEnDisplay.h"
 #include "UTGame.GFxMinimap.h"
+#include "Engine.WorldInfo.h"
+#include "Engine.Weapon.h"
 #include "Engine.LocalPlayer.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #include "Engine.PlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -34,33 +36,12 @@ namespace UnrealScript
 	class GFxMinimapHud : public GFxMoviePlayer
 	{
 	public:
-		struct MessageRow
-		{
-		public:
-			ADD_STRUCT(int, Y, 12)
-			ADD_STRUCT(float, StartFadeTime, 8)
-			ADD_OBJECT(GFxObject, TF, 4)
-			ADD_OBJECT(GFxObject, MC, 0)
-		};
-		struct HeEnDisplay
-		{
-		public:
-			ADD_OBJECT(GFxObject, EnergyBarMC, 32)
-			ADD_OBJECT(GFxObject, EnergyTF, 28)
-			ADD_BOOL(HealthNormOn, 24, 0x1)
-			ADD_OBJECT(GFxObject, HealthCritMC, 20)
-			ADD_OBJECT(GFxObject, HealthNormMC, 16)
-			ADD_OBJECT(GFxObject, HealthBarMC, 12)
-			ADD_OBJECT(GFxObject, HealthTF, 8)
-			ADD_STRUCT(float, LastEnergy, 4)
-			ADD_STRUCT(float, LastHealth, 0)
-		};
 		ADD_BOOL(bIsTeamHUD, 632, 0x1)
 		ADD_STRUCT(float, Radius, 388)
 		ADD_STRUCT(float, NormalZoomf, 396)
 		ADD_STRUCT(float, CurZoomf, 392)
-		ADD_STRUCT(ScriptArray<GFxMinimapHud::MessageRow>, Messages, 484)
-		ADD_STRUCT(ScriptArray<GFxMinimapHud::MessageRow>, FreeMessages, 496)
+		ADD_STRUCT(ScriptArray<GFxMinimapHud__MessageRow>, Messages, 484)
+		ADD_STRUCT(ScriptArray<GFxMinimapHud__MessageRow>, FreeMessages, 496)
 		ADD_BOOL(bDrawWeaponCrosshairs, 632, 0x2)
 		ADD_OBJECT(UTGameReplicationInfo, GRI, 628)
 		ADD_OBJECT(UTPlayerReplicationInfo, LastFlagCarrier, 620)
@@ -85,8 +66,8 @@ namespace UnrealScript
 		ADD_STRUCT(int, NumMessages, 512)
 		ADD_STRUCT(float, MessageHeight, 508)
 		ADD_OBJECT(GFxObject, LogMC, 480)
-		ADD_STRUCT(GFxMinimapHud::HeEnDisplay, VehicleHE, 444)
-		ADD_STRUCT(GFxMinimapHud::HeEnDisplay, PlayerHE, 408)
+		ADD_STRUCT(GFxMinimapHud__HeEnDisplay, VehicleHE, 444)
+		ADD_STRUCT(GFxMinimapHud__HeEnDisplay, PlayerHE, 408)
 		ADD_STRUCT(float, MinZoomf, 404)
 		ADD_STRUCT(float, MaxZoomf, 400)
 		ADD_OBJECT(GFxMinimap, Minimap, 384)
@@ -128,34 +109,34 @@ namespace UnrealScript
 			*(class LocalPlayer**)params = Player;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void LoadHeEn(GFxMinimapHud::HeEnDisplay& Info, ScriptString* Base)
+		void LoadHeEn(GFxMinimapHud__HeEnDisplay& Info, ScriptString* Base)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37457);
 			byte params[48] = { NULL };
-			*(GFxMinimapHud::HeEnDisplay*)params = Info;
+			*(GFxMinimapHud__HeEnDisplay*)params = Info;
 			*(ScriptString**)&params[36] = Base;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Info = *(GFxMinimapHud::HeEnDisplay*)params;
+			Info = *(GFxMinimapHud__HeEnDisplay*)params;
 		}
-		void UpdateHealth(GFxMinimapHud::HeEnDisplay& Info, float NewHealth, float HealthMax)
+		void UpdateHealth(GFxMinimapHud__HeEnDisplay& Info, float NewHealth, float HealthMax)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37460);
 			byte params[44] = { NULL };
-			*(GFxMinimapHud::HeEnDisplay*)params = Info;
+			*(GFxMinimapHud__HeEnDisplay*)params = Info;
 			*(float*)&params[36] = NewHealth;
 			*(float*)&params[40] = HealthMax;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Info = *(GFxMinimapHud::HeEnDisplay*)params;
+			Info = *(GFxMinimapHud__HeEnDisplay*)params;
 		}
-		void UpdateEnergy(GFxMinimapHud::HeEnDisplay& Info, float NewEnergy, float EnergyMax)
+		void UpdateEnergy(GFxMinimapHud__HeEnDisplay& Info, float NewEnergy, float EnergyMax)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37465);
 			byte params[44] = { NULL };
-			*(GFxMinimapHud::HeEnDisplay*)params = Info;
+			*(GFxMinimapHud__HeEnDisplay*)params = Info;
 			*(float*)&params[36] = NewEnergy;
 			*(float*)&params[40] = EnergyMax;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Info = *(GFxMinimapHud::HeEnDisplay*)params;
+			Info = *(GFxMinimapHud__HeEnDisplay*)params;
 		}
 		ScriptString* FormatTime(int Seconds)
 		{

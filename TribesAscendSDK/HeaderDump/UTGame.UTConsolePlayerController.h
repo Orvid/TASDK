@@ -1,5 +1,6 @@
 #pragma once
 #include "UTGame.UTPlayerController.h"
+#include "UTGame.UTConsolePlayerController.ProfileSettingToUE3BindingDatum.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -20,14 +21,8 @@ namespace UnrealScript
 	class UTConsolePlayerController : public UTPlayerController
 	{
 	public:
-		struct ProfileSettingToUE3BindingDatum
-		{
-		public:
-			ADD_STRUCT(ScriptName, UE3BindingName, 8)
-			ADD_STRUCT(ScriptName, ProfileSettingName, 0)
-		};
-		ADD_STRUCT(ScriptArray<UTConsolePlayerController::ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMapping360, 2180)
-		ADD_STRUCT(ScriptArray<UTConsolePlayerController::ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMappingPS3, 2192)
+		ADD_STRUCT(ScriptArray<UTConsolePlayerController__ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMapping360, 2180)
+		ADD_STRUCT(ScriptArray<UTConsolePlayerController__ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMappingPS3, 2192)
 		ADD_BOOL(bDebugTargetAdhesion, 2176, 0x2)
 		ADD_BOOL(bTargetAdhesionEnabled, 2176, 0x1)
 		void UpdateRotation(float DeltaTime)

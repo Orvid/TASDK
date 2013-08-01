@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.UIRoot.h"
-#include "Core.Object.h"
+#include "Core.Object.EInputEvent.h"
 #include "Engine.Canvas.h"
 #include "Engine.LocalPlayer.h"
 namespace UnrealScript
@@ -8,13 +8,13 @@ namespace UnrealScript
 	class Interaction : public UIRoot
 	{
 	public:
-		bool OnReceivedNativeInputKey(int ControllerId, ScriptName Key, Object::EInputEvent EventType, float AmountDepressed, bool bGamepad)
+		bool OnReceivedNativeInputKey(int ControllerId, ScriptName Key, Object__EInputEvent EventType, float AmountDepressed, bool bGamepad)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12902);
 			byte params[25] = { NULL };
 			*(int*)params = ControllerId;
 			*(ScriptName*)&params[4] = Key;
-			*(Object::EInputEvent*)&params[12] = EventType;
+			*(Object__EInputEvent*)&params[12] = EventType;
 			*(float*)&params[16] = AmountDepressed;
 			*(bool*)&params[20] = bGamepad;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);

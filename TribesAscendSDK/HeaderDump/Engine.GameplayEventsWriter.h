@@ -1,10 +1,10 @@
 #pragma once
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.GameplayEvents.h"
 #include "Engine.GameInfo.h"
-#include "Core.Object.h"
 #include "Engine.Controller.h"
+#include "Core.Object.Vector.h"
 #include "Engine.TeamInfo.h"
-#include "Engine.OnlineSubsystem.h"
 #include "Engine.CoverLink.h"
 #include "Engine.GenericParamListStatEntry.h"
 #define ADD_OBJECT(x, y, offset) \
@@ -228,14 +228,14 @@ namespace UnrealScript
 			*(int*)&params[12] = TeamID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void LogPlayerLoginChange(int EventID, class Controller* Player, ScriptString* PlayerName, OnlineSubsystem::UniqueNetId PlayerID, bool bSplitScreen)
+		void LogPlayerLoginChange(int EventID, class Controller* Player, ScriptString* PlayerName, OnlineSubsystem__UniqueNetId PlayerID, bool bSplitScreen)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17709);
 			byte params[32] = { NULL };
 			*(int*)params = EventID;
 			*(class Controller**)&params[4] = Player;
 			*(ScriptString**)&params[8] = PlayerName;
-			*(OnlineSubsystem::UniqueNetId*)&params[20] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[20] = PlayerID;
 			*(bool*)&params[28] = bSplitScreen;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

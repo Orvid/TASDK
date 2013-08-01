@@ -3,11 +3,12 @@
 #include "TribesGame.TrPawn.h"
 #include "Engine.Pawn.h"
 #include "UTGame.UTDroppedPickup.h"
-#include "Engine.Canvas.h"
 #include "TribesGame.TrCollisionProxy.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.SoundCue.h"
+#include "Engine.Actor.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Canvas.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

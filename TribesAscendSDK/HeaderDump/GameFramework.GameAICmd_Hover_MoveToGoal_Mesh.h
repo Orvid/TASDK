@@ -1,8 +1,8 @@
 #pragma once
 #include "Engine.HUD.h"
+#include "Core.Object.Vector.h"
 #include "GameFramework.GameAICommand.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "GameFramework.GameAIController.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \

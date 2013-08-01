@@ -1,7 +1,7 @@
 #pragma once
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModuleBeamBase.h"
-#include "Core.DistributionVector.h"
-#include "Core.DistributionFloat.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,16 +21,16 @@ namespace UnrealScript
 	class ParticleModuleBeamNoise : public ParticleModuleBeamBase
 	{
 	public:
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, NoiseScale, 216)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, NoiseScale, 216)
 		ADD_STRUCT(float, FrequencyDistance, 212)
 		ADD_STRUCT(int, NoiseTessellation, 208)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, NoiseTangentStrength, 180)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, NoiseTangentStrength, 180)
 		ADD_STRUCT(float, NoiseTension, 176)
 		ADD_STRUCT(float, NoiseLockTime, 172)
 		ADD_STRUCT(float, NoiseLockRadius, 168)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, NoiseSpeed, 140)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, NoiseRangeScale, 112)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, NoiseRange, 84)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, NoiseSpeed, 140)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, NoiseRangeScale, 112)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, NoiseRange, 84)
 		ADD_STRUCT(int, Frequency_LowRange, 80)
 		ADD_STRUCT(int, Frequency, 76)
 		ADD_BOOL(bApplyNoiseScale, 72, 0x80)

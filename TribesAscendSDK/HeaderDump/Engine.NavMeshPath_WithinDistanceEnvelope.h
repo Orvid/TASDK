@@ -1,7 +1,7 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.NavMeshPathConstraint.h"
 #include "Engine.NavigationHandle.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

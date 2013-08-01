@@ -1,5 +1,7 @@
 #pragma once
+#include "Engine.MaterialExpressionSceneTexture.ESceneTextureType.h"
 #include "Engine.MaterialExpression.h"
+#include "Engine.MaterialExpression.ExpressionInput.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,14 +21,9 @@ namespace UnrealScript
 	class MaterialExpressionSceneTexture : public MaterialExpression
 	{
 	public:
-		enum ESceneTextureType : byte
-		{
-			SceneTex_Lighting = 0,
-			SceneTex_MAX = 1,
-		};
 		ADD_BOOL(ScreenAlign, 140, 0x1)
-		ADD_STRUCT(MaterialExpressionSceneTexture::ESceneTextureType, SceneTextureType, 136)
-		ADD_STRUCT(MaterialExpression::ExpressionInput, Coordinates, 108)
+		ADD_STRUCT(MaterialExpressionSceneTexture__ESceneTextureType, SceneTextureType, 136)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, Coordinates, 108)
 	};
 }
 #undef ADD_BOOL

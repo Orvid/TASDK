@@ -1,9 +1,9 @@
 #pragma once
 #include "TribesGame.TrSeekingMissileManager.h"
+#include "TribesGame.TrObject.EMissileLock.h"
 #include "TribesGame.TrDevice.h"
 #include "TribesGame.TrPlayerController.h"
 #include "Engine.Actor.h"
-#include "TribesGame.TrObject.h"
 #include "Engine.Projectile.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -100,12 +100,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
-		void SetTargetActorMissileLockState(class Actor* Target, TrObject::EMissileLock lockValue)
+		void SetTargetActorMissileLockState(class Actor* Target, TrObject__EMissileLock lockValue)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(86054);
 			byte params[5] = { NULL };
 			*(class Actor**)params = Target;
-			*(TrObject::EMissileLock*)&params[4] = lockValue;
+			*(TrObject__EMissileLock*)&params[4] = lockValue;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetNewTrackingTarget(class Actor* Target)

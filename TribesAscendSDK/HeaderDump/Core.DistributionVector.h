@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.Component.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,28 +21,9 @@ namespace UnrealScript
 	class DistributionVector : public Component
 	{
 	public:
-		enum EDistributionVectorLockFlags : byte
-		{
-			EDVLF_None = 0,
-			EDVLF_XY = 1,
-			EDVLF_XZ = 2,
-			EDVLF_YZ = 3,
-			EDVLF_XYZ = 4,
-			EDVLF_MAX = 5,
-		};
-		enum EDistributionVectorMirrorFlags : byte
-		{
-			EDVMF_Same = 0,
-			EDVMF_Different = 1,
-			EDVMF_Mirror = 2,
-			EDVMF_MAX = 3,
-		};
-		struct RawDistributionVector : public RawDistribution
-		{
-		};
 		ADD_BOOL(bIsDirty, 76, 0x2)
 		ADD_BOOL(bCanBeBaked, 76, 0x1)
-		ADD_STRUCT(Object::Pointer, VfTable_FCurveEdInterface, 72)
+		ADD_STRUCT(Object__Pointer, VfTable_FCurveEdInterface, 72)
 		Vector GetVectorValue(float F, int LastExtreme)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3442);

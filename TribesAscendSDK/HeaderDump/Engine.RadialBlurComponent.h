@@ -1,8 +1,8 @@
 #pragma once
 #include "Engine.ActorComponent.h"
-#include "Core.Object.h"
-#include "Engine.Scene.h"
 #include "Engine.MaterialInterface.h"
+#include "Core.Object.Matrix.h"
+#include "Engine.Scene.ESceneDepthPriorityGroup.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,7 +26,7 @@ namespace UnrealScript
 	class RadialBlurComponent : public ActorComponent
 	{
 	public:
-		ADD_STRUCT(Object::Matrix, LocalToWorld, 128)
+		ADD_STRUCT(Object__Matrix, LocalToWorld, 128)
 		ADD_BOOL(bEnabled, 116, 0x2)
 		ADD_BOOL(bRenderAsVelocity, 116, 0x1)
 		ADD_STRUCT(float, DistanceFalloffExponent, 112)
@@ -34,7 +34,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, BlurOpacity, 104)
 		ADD_STRUCT(float, BlurFalloffExponent, 100)
 		ADD_STRUCT(float, BlurScale, 96)
-		ADD_STRUCT(Scene::ESceneDepthPriorityGroup, DepthPriorityGroup, 92)
+		ADD_STRUCT(Scene__ESceneDepthPriorityGroup, DepthPriorityGroup, 92)
 		ADD_OBJECT(MaterialInterface, Material, 88)
 		void SetMaterial(class MaterialInterface* InMaterial)
 		{

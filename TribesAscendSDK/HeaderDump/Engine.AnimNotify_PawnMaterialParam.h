@@ -1,6 +1,6 @@
 #pragma once
-#include "Engine.Pawn.h"
 #include "Engine.AnimNotify_Scripted.h"
+#include "Engine.Pawn.ScalarParameterInterpStruct.h"
 #include "Engine.Actor.h"
 #include "Engine.AnimNodeSequence.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -12,7 +12,7 @@ namespace UnrealScript
 	class AnimNotify_PawnMaterialParam : public AnimNotify_Scripted
 	{
 	public:
-		ADD_STRUCT(ScriptArray<Pawn::ScalarParameterInterpStruct>, ScalarParameterInterpArray, 64)
+		ADD_STRUCT(ScriptArray<Pawn__ScalarParameterInterpStruct>, ScalarParameterInterpArray, 64)
 		void Notify(class Actor* Owner, class AnimNodeSequence* AnimSeqInstigator)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(11393);

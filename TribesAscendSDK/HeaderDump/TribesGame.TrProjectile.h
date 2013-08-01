@@ -1,11 +1,11 @@
 #pragma once
 #include "UTGame.UTProjectile.h"
-#include "TribesGame.TrObject.h"
+#include "TribesGame.TrDevice.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
+#include "Core.Object.Vector.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
-#include "UDKBase.UDKPawn.h"
-#include "TribesGame.TrDevice.h"
 #include "Engine.PhysicalMaterial.h"
 #include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -33,12 +33,12 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(m_bTether, 684, 0x40)
 		ADD_BOOL(m_bSimulateAutonomousProjectiles, 684, 0x80)
-		ADD_STRUCT(TrObject::TR_EQUIP_POINT, m_SpawnedEquipPoint, 756)
+		ADD_STRUCT(TrObject__TR_EQUIP_POINT, m_SpawnedEquipPoint, 756)
 		ADD_STRUCT(int, r_nTetherId, 736)
 		ADD_BOOL(m_bIsBullet, 684, 0x100)
 		ADD_STRUCT(Vector, r_vSpawnLocation, 776)
 		ADD_STRUCT(float, m_fInstigatorExtraZMomentum, 732)
-		ADD_STRUCT(ScriptArray<UDKPawn::MaterialImpactEffect>, ImpactEffects, 788)
+		ADD_STRUCT(ScriptArray<UDKPawn__MaterialImpactEffect>, ImpactEffects, 788)
 		ADD_OBJECT(TrDevice, SpawnedFromDevice, 812)
 		ADD_STRUCT(float, m_fAlwaysRelevantDistanceSquared, 808)
 		ADD_STRUCT(float, m_fMinLifespan, 804)

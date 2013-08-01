@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine.AnimNodeBlendBase.h"
 #include "Engine.Pawn.h"
+#include "Engine.AnimNode_MultiBlendPerBone.PerBoneMaskInfo.h"
+#include "Engine.AnimNode_MultiBlendPerBone.EBlendType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,55 +26,9 @@ namespace UnrealScript
 	class AnimNode_MultiBlendPerBone : public AnimNodeBlendBase
 	{
 	public:
-		enum EWeightCheck : byte
-		{
-			EWC_AnimNodeSlotNotPlaying = 0,
-			EWC_MAX = 1,
-		};
-		enum EBlendType : byte
-		{
-			EBT_ParentBoneSpace = 0,
-			EBT_MeshSpace = 1,
-			EBT_MAX = 2,
-		};
-		struct BranchInfo
-		{
-		public:
-			ADD_STRUCT(float, PerBoneWeightIncrease, 8)
-			ADD_STRUCT(ScriptName, BoneName, 0)
-		};
-		struct WeightNodeRule
-		{
-		public:
-			ADD_STRUCT(int, ChildIndex, 20)
-			ADD_STRUCT(AnimNode_MultiBlendPerBone::EWeightCheck, WeightCheck, 16)
-			ADD_OBJECT(AnimNodeSlot, CachedSlotNode, 12)
-			ADD_OBJECT(AnimNodeBlendBase, CachedNode, 8)
-			ADD_STRUCT(ScriptName, NodeName, 0)
-		};
-		struct WeightRule
-		{
-		public:
-			ADD_STRUCT(AnimNode_MultiBlendPerBone::WeightNodeRule, SecondNode, 24)
-			ADD_STRUCT(AnimNode_MultiBlendPerBone::WeightNodeRule, FirstNode, 0)
-		};
-		struct PerBoneMaskInfo
-		{
-		public:
-			ADD_STRUCT(ScriptArray<AnimNode_MultiBlendPerBone::BranchInfo>, BranchList, 0)
-			ADD_STRUCT(ScriptArray<AnimNode_MultiBlendPerBone::WeightRule>, WeightRuleList, 20)
-			ADD_STRUCT(ScriptArray<float>, PerBoneWeights, 36)
-			ADD_STRUCT(ScriptArray<byte>, TransformReqBone, 48)
-			ADD_STRUCT(int, TransformReqBoneIndex, 60)
-			ADD_BOOL(bPendingBlend, 32, 0x4)
-			ADD_BOOL(bDisableForNonLocalHumanPlayers, 32, 0x2)
-			ADD_BOOL(bWeightBasedOnNodeRules, 32, 0x1)
-			ADD_STRUCT(float, BlendTimeToGo, 16)
-			ADD_STRUCT(float, DesiredWeight, 12)
-		};
 		ADD_OBJECT(Pawn, PawnOwner, 244)
-		ADD_STRUCT(ScriptArray<AnimNode_MultiBlendPerBone::PerBoneMaskInfo>, MaskList, 248)
-		ADD_STRUCT(AnimNode_MultiBlendPerBone::EBlendType, RotationBlendType, 260)
+		ADD_STRUCT(ScriptArray<AnimNode_MultiBlendPerBone__PerBoneMaskInfo>, MaskList, 248)
+		ADD_STRUCT(AnimNode_MultiBlendPerBone__EBlendType, RotationBlendType, 260)
 		void SetMaskWeight(int MaskIndex, float DesiredWeight, float BlendTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(10744);

@@ -1,7 +1,7 @@
 #pragma once
 #include "UTGame.UTLocalMessage.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "UDKBase.UDKPlayerController.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
 #include "Engine.SoundNodeWave.h"
@@ -10,7 +10,7 @@ namespace UnrealScript
 	class UTObjectiveSpecificMessage : public UTLocalMessage
 	{
 	public:
-		UDKPlayerController::ObjectiveAnnouncementInfo GetObjectiveAnnouncement(byte MessageIndex, class Object* Objective, class PlayerController* PC)
+		UDKPlayerController__ObjectiveAnnouncementInfo GetObjectiveAnnouncement(byte MessageIndex, class Object* Objective, class PlayerController* PC)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(48229);
 			byte params[25] = { NULL };
@@ -18,7 +18,7 @@ namespace UnrealScript
 			*(class Object**)&params[4] = Objective;
 			*(class PlayerController**)&params[8] = PC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(UDKPlayerController::ObjectiveAnnouncementInfo*)&params[12];
+			return *(UDKPlayerController__ObjectiveAnnouncementInfo*)&params[12];
 		}
 		class SoundNodeWave* AnnouncementSound(int MessageIndex, class Object* OptionalObject, class PlayerController* PC)
 		{

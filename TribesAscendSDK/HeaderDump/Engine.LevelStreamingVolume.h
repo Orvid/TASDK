@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.LevelStreaming.h"
 #include "Engine.Volume.h"
+#include "Engine.LevelStreamingVolume.EStreamingVolumeUsage.h"
 #include "Engine.SeqAct_Toggle.h"
+#include "Engine.LevelStreamingVolume.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,24 +23,10 @@ namespace UnrealScript
 	class LevelStreamingVolume : public Volume
 	{
 	public:
-		enum EStreamingVolumeUsage : byte
-		{
-			SVB_Loading = 0,
-			SVB_LoadingAndVisibility = 1,
-			SVB_VisibilityBlockingOnLoad = 2,
-			SVB_BlockingOnLoad = 3,
-			SVB_LoadingNotVisible = 4,
-			SVB_MAX = 5,
-		};
-		struct CheckpointRecord
-		{
-		public:
-			ADD_BOOL(bDisabled, 0, 0x1)
-		};
 		ADD_STRUCT(ScriptArray<class LevelStreaming*>, StreamingLevels, 520)
 		ADD_STRUCT(float, TestVolumeDistance, 540)
-		ADD_STRUCT(LevelStreamingVolume::EStreamingVolumeUsage, Usage, 537)
-		ADD_STRUCT(LevelStreamingVolume::EStreamingVolumeUsage, StreamingUsage, 536)
+		ADD_STRUCT(LevelStreamingVolume__EStreamingVolumeUsage, Usage, 537)
+		ADD_STRUCT(LevelStreamingVolume__EStreamingVolumeUsage, StreamingUsage, 536)
 		ADD_BOOL(bTestDistanceToVolume, 532, 0x4)
 		ADD_BOOL(bDisabled, 532, 0x2)
 		ADD_BOOL(bEditorPreVisOnly, 532, 0x1)
@@ -49,21 +37,21 @@ namespace UnrealScript
 			*(class SeqAct_Toggle**)params = Action;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void CreateCheckpointRecord(LevelStreamingVolume::CheckpointRecord& Record)
+		void CreateCheckpointRecord(LevelStreamingVolume__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19397);
 			byte params[4] = { NULL };
-			*(LevelStreamingVolume::CheckpointRecord*)params = Record;
+			*(LevelStreamingVolume__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(LevelStreamingVolume::CheckpointRecord*)params;
+			Record = *(LevelStreamingVolume__CheckpointRecord*)params;
 		}
-		void ApplyCheckpointRecord(LevelStreamingVolume::CheckpointRecord& Record)
+		void ApplyCheckpointRecord(LevelStreamingVolume__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19399);
 			byte params[4] = { NULL };
-			*(LevelStreamingVolume::CheckpointRecord*)params = Record;
+			*(LevelStreamingVolume__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(LevelStreamingVolume::CheckpointRecord*)params;
+			Record = *(LevelStreamingVolume__CheckpointRecord*)params;
 		}
 	};
 }

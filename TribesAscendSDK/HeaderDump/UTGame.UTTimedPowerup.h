@@ -1,13 +1,13 @@
 #pragma once
 #include "Engine.SoundCue.h"
 #include "UTGame.UTInventory.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
-#include "Engine.UIRoot.h"
-#include "Engine.Pawn.h"
+#include "Core.Object.Vector.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
 #include "UTGame.UTHUD.h"
 #include "Engine.Canvas.h"
+#include "Engine.Pawn.h"
+#include "Engine.Controller.h"
+#include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -26,7 +26,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, WarningTime, 600)
 		ADD_STRUCT(float, TransitionDuration, 596)
 		ADD_STRUCT(float, TransitionTime, 592)
-		ADD_STRUCT(UIRoot::TextureCoordinates, IconCoords, 576)
+		ADD_STRUCT(UIRoot__TextureCoordinates, IconCoords, 576)
 		ADD_STRUCT(ScriptName, PowerupStatName, 568)
 		ADD_OBJECT(SoundCue, PowerupOverSound, 564)
 		ADD_STRUCT(int, HudIndex, 560)

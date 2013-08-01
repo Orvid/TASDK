@@ -1,19 +1,21 @@
 #pragma once
 #include "TribesGame.GFxTrReticules.h"
 #include "UTGame.GFxMinimapHud.h"
+#include "TribesGame.GfxTrHud.TrTempMessage.h"
+#include "Engine.MaterialEffect.h"
+#include "PlatformCommon.TgSupportCommands.GC_ALERT_PRIORITY.h"
 #include "TribesGame.GFxDeviceAmmoCount.h"
 #include "GFxUI.GFxObject.h"
-#include "PlatformCommon.TgSupportCommands.h"
 #include "Engine.TeamInfo.h"
 #include "Engine.MaterialInstanceConstant.h"
-#include "TribesGame.TrPlayerController.h"
-#include "Engine.MaterialEffect.h"
 #include "TribesGame.TrDevice.h"
+#include "TribesGame.TrPlayerController.h"
 #include "TribesGame.TrHUD.h"
 #include "Engine.LocalPlayer.h"
 #include "Engine.Weapon.h"
 #include "TribesGame.TrVehicle.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "UTGame.GFxMinimapHud.HeEnDisplay.h"
 #include "TribesGame.TrPlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -1912,17 +1914,9 @@ namespace UnrealScript
 		static const auto ITEM_VOICE_T2BDERM02 = 8725;
 		static const auto ITEM_VOICE_T2BDERM03 = 8726;
 		static const auto MAX_VGS_ENTRIES = 16;
-		struct TrTempMessage
-		{
-		public:
-			ADD_STRUCT(TgSupportCommands::GC_ALERT_PRIORITY, Priority, 20)
-			ADD_STRUCT(ScriptString*, Message, 8)
-			ADD_STRUCT(float, TakeDownTime, 4)
-			ADD_BOOL(bInUse, 0, 0x1)
-		};
 		ADD_STRUCT(ScriptArray<ScriptName>, m_aDamageEffectNames, 3004)
-		ADD_STRUCT(GfxTrHud::TrTempMessage, m_HeroStatusTempMessage, 3068)
-		ADD_STRUCT(GfxTrHud::TrTempMessage, m_PromptPanelTempMessage, 3044)
+		ADD_STRUCT(GfxTrHud__TrTempMessage, m_HeroStatusTempMessage, 3068)
+		ADD_STRUCT(GfxTrHud__TrTempMessage, m_PromptPanelTempMessage, 3044)
 		ADD_STRUCT(ScriptString*, m_sRound, 3032)
 		ADD_OBJECT(GFxObject, VGSMenuList, 3028)
 		ADD_OBJECT(GFxObject, _global, 3024)
@@ -2281,13 +2275,13 @@ void**)params = InDelegate;
 			*(bool*)&params[12] = bBold;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddToPromptPanelTime(ScriptString* Message, float EndTime, TgSupportCommands::GC_ALERT_PRIORITY messagePriority)
+		void AddToPromptPanelTime(ScriptString* Message, float EndTime, TgSupportCommands__GC_ALERT_PRIORITY messagePriority)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(53603);
 			byte params[17] = { NULL };
 			*(ScriptString**)params = Message;
 			*(float*)&params[12] = EndTime;
-			*(TgSupportCommands::GC_ALERT_PRIORITY*)&params[16] = messagePriority;
+			*(TgSupportCommands__GC_ALERT_PRIORITY*)&params[16] = messagePriority;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void AddtoPromptPanelAS(ScriptString* Message)
@@ -2555,15 +2549,15 @@ void**)params = InDelegate;
 			*(ScriptClass**)&params[16] = DamageType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void UpdateHealth(GFxMinimapHud::HeEnDisplay& Info, float NewHealth, float HealthMax)
+		void UpdateHealth(GFxMinimapHud__HeEnDisplay& Info, float NewHealth, float HealthMax)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(53777);
 			byte params[44] = { NULL };
-			*(GFxMinimapHud::HeEnDisplay*)params = Info;
+			*(GFxMinimapHud__HeEnDisplay*)params = Info;
 			*(float*)&params[36] = NewHealth;
 			*(float*)&params[40] = HealthMax;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Info = *(GFxMinimapHud::HeEnDisplay*)params;
+			Info = *(GFxMinimapHud__HeEnDisplay*)params;
 		}
 		void TickGhostHealth(float DeltaTime)
 		{
@@ -2572,15 +2566,15 @@ void**)params = InDelegate;
 			*(float*)params = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void UpdateEnergy(GFxMinimapHud::HeEnDisplay& Info, float NewEnergy, float EnergyMax)
+		void UpdateEnergy(GFxMinimapHud__HeEnDisplay& Info, float NewEnergy, float EnergyMax)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(53786);
 			byte params[44] = { NULL };
-			*(GFxMinimapHud::HeEnDisplay*)params = Info;
+			*(GFxMinimapHud__HeEnDisplay*)params = Info;
 			*(float*)&params[36] = NewEnergy;
 			*(float*)&params[40] = EnergyMax;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Info = *(GFxMinimapHud::HeEnDisplay*)params;
+			Info = *(GFxMinimapHud__HeEnDisplay*)params;
 		}
 		void SetOwnership()
 		{

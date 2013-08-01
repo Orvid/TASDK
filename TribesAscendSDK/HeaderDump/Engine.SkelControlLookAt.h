@@ -1,6 +1,8 @@
 #pragma once
+#include "Engine.SkelControlBase.EBoneControlSpace.h"
+#include "Core.Object.Vector.h"
 #include "Engine.SkelControlBase.h"
-#include "Core.Object.h"
+#include "Core.Object.EAxis.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -47,10 +49,10 @@ namespace UnrealScript
 		ADD_BOOL(bDefineUpAxis, 212, 0x2)
 		ADD_BOOL(bInvertLookAtAxis, 212, 0x1)
 		ADD_STRUCT(ScriptName, TargetSpaceBoneName, 204)
-		ADD_STRUCT(SkelControlBase::EBoneControlSpace, AllowRotationSpace, 203)
-		ADD_STRUCT(Object::EAxis, UpAxis, 202)
-		ADD_STRUCT(Object::EAxis, LookAtAxis, 201)
-		ADD_STRUCT(SkelControlBase::EBoneControlSpace, TargetLocationSpace, 200)
+		ADD_STRUCT(SkelControlBase__EBoneControlSpace, AllowRotationSpace, 203)
+		ADD_STRUCT(Object__EAxis, UpAxis, 202)
+		ADD_STRUCT(Object__EAxis, LookAtAxis, 201)
+		ADD_STRUCT(SkelControlBase__EBoneControlSpace, TargetLocationSpace, 200)
 		ADD_STRUCT(Vector, TargetLocation, 188)
 		void SetTargetLocation(Vector NewTargetLocation)
 		{

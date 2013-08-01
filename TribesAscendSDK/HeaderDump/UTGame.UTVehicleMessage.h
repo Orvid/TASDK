@@ -1,9 +1,10 @@
 #pragma once
+#include "Core.Object.Color.h"
 #include "UTGame.UTLocalMessage.h"
-#include "Core.Object.h"
 #include "Engine.SoundNodeWave.h"
 #include "Engine.PlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,7 +15,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<ScriptString*>, MessageText, 100)
-		ADD_STRUCT(ScriptArray<Object::Color>, DrawColors, 112)
+		ADD_STRUCT(ScriptArray<Object__Color>, DrawColors, 112)
 		ADD_STRUCT(ScriptArray<class SoundNodeWave*>, MessageAnnouncements, 124)
 		ADD_STRUCT(ScriptArray<int>, CustomMessageArea, 136)
 		void ClientReceive(class PlayerController* P, int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
@@ -48,7 +49,7 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[20];
 		}
-		Object::Color GetColor(int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
+		Object__Color GetColor(int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(49782);
 			byte params[20] = { NULL };
@@ -57,7 +58,7 @@ namespace UnrealScript
 			*(class PlayerReplicationInfo**)&params[8] = RelatedPRI_2;
 			*(class Object**)&params[12] = OptionalObject;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[16];
+			return *(Object__Color*)&params[16];
 		}
 		class SoundNodeWave* AnnouncementSound(int MessageIndex, class Object* OptionalObject, class PlayerController* PC)
 		{

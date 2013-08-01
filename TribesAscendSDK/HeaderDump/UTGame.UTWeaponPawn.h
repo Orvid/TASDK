@@ -1,14 +1,17 @@
 #pragma once
 #include "UDKBase.UDKWeaponPawn.h"
+#include "Core.Object.Vector.h"
 #include "Engine.HUD.h"
-#include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "Core.Object.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.Weapon.h"
 #include "Engine.Pawn.h"
-#include "UTGame.UTHUD.h"
+#include "Engine.Controller.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "UDKBase.UDKCarriedObject.h"
+#include "Engine.Actor.h"
+#include "UTGame.UTHUD.h"
 #include "Engine.Canvas.h"
+#include "Core.Object.Vector2D.h"
 namespace UnrealScript
 {
 	class UTWeaponPawn : public UDKWeaponPawn
@@ -151,14 +154,14 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(44014);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void AddVelocity(Vector NewVelocity, Vector HitLocation, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo)
+		void AddVelocity(Vector NewVelocity, Vector HitLocation, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(44015);
 			byte params[56] = { NULL };
 			*(Vector*)params = NewVelocity;
 			*(Vector*)&params[12] = HitLocation;
 			*(ScriptClass**)&params[24] = DamageType;
-			*(Actor::TraceHitInfo*)&params[28] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[28] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void JumpOffPawn()
@@ -244,13 +247,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void DisplayHud(class UTHUD* HUD, class Canvas* Canvas, Object::Vector2D HudPOS, int SIndex)
+		void DisplayHud(class UTHUD* HUD, class Canvas* Canvas, Object__Vector2D HudPOS, int SIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(44051);
 			byte params[20] = { NULL };
 			*(class UTHUD**)params = HUD;
 			*(class Canvas**)&params[4] = Canvas;
-			*(Object::Vector2D*)&params[8] = HudPOS;
+			*(Object__Vector2D*)&params[8] = HudPOS;
 			*(int*)&params[16] = SIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

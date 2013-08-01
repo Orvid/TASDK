@@ -1,7 +1,7 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Engine.WaterVolume.h"
 #include "Engine.ParticleSystem.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

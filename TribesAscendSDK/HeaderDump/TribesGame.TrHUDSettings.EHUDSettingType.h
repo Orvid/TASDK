@@ -1,0 +1,25 @@
+#pragma once
+namespace UnrealScript
+{
+	enum TrHUDSettings__EHUDSettingType : byte
+	{
+		EHST_HEROTEXT = 0,
+		EHST_COMBATLOG = 1,
+		EHST_CREDITS = 2,
+		EHST_CHAT = 3,
+		EHST_SCORES = 4,
+		EHST_ACCOLADES = 5,
+		EHST_BADGES = 6,
+		EHST_VISOR = 7,
+		EHST_KILLBOX = 8,
+		EHST_DEATHCAM = 9,
+		EHST_PROMPTPANEL = 10,
+		EHST_RESPAWNTIMER = 11,
+		EHST_HEALTHBAR = 12,
+		EHST_RETICULE = 13,
+		EHST_SKIBARS = 14,
+		EHST_FRIENDCOLOR = 15,
+		EHST_CRACKS = 16,
+		EHST_MAX = 17,
+	};
+}

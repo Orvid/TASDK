@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.MaterialExpression.h"
+#include "Engine.MaterialExpression.ExpressionInput.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,7 +21,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_BOOL(bNormalize, 136, 0x1)
-		ADD_STRUCT(MaterialExpression::ExpressionInput, Coordinates, 108)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, Coordinates, 108)
 	};
 }
 #undef ADD_BOOL

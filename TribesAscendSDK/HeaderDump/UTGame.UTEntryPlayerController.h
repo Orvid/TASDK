@@ -1,8 +1,9 @@
 #pragma once
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "UTGame.UTPlayerController.h"
 #include "Engine.PostProcessChain.h"
 #include "Engine.LocalPlayer.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -50,31 +51,31 @@ namespace UnrealScript
 			*(ScriptString**)&params[4] = RequestingNick;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFriendInviteReceived(byte LocalUserNum, OnlineSubsystem::UniqueNetId RequestingPlayer, ScriptString* RequestingNick, ScriptString* Message)
+		void OnFriendInviteReceived(byte LocalUserNum, OnlineSubsystem__UniqueNetId RequestingPlayer, ScriptString* RequestingNick, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(47427);
 			byte params[33] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = RequestingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = RequestingPlayer;
 			*(ScriptString**)&params[12] = RequestingNick;
 			*(ScriptString**)&params[24] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFriendMessageReceived(byte LocalUserNum, OnlineSubsystem::UniqueNetId SendingPlayer, ScriptString* SendingNick, ScriptString* Message)
+		void OnFriendMessageReceived(byte LocalUserNum, OnlineSubsystem__UniqueNetId SendingPlayer, ScriptString* SendingNick, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(47432);
 			byte params[33] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = SendingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = SendingPlayer;
 			*(ScriptString**)&params[12] = SendingNick;
 			*(ScriptString**)&params[24] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnConnectionStatusChange(OnlineSubsystem::EOnlineServerConnectionStatus ConnectionStatus)
+		void OnConnectionStatusChange(OnlineSubsystem__EOnlineServerConnectionStatus ConnectionStatus)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(47437);
 			byte params[1] = { NULL };
-			*(OnlineSubsystem::EOnlineServerConnectionStatus*)params = ConnectionStatus;
+			*(OnlineSubsystem__EOnlineServerConnectionStatus*)params = ConnectionStatus;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnLinkStatusChanged(bool bConnected)

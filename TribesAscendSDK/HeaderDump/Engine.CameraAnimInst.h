@@ -1,13 +1,16 @@
 #pragma once
-#include "Engine.Actor.h"
 #include "Core.Object.h"
-#include "Engine.Camera.h"
-#include "Engine.PostProcessVolume.h"
-#include "Engine.AnimNodeSequence.h"
-#include "Engine.CameraAnim.h"
-#include "Engine.InterpTrackInstMove.h"
-#include "Engine.InterpTrackMove.h"
+#include "Core.Object.Vector.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #include "Engine.InterpGroupInst.h"
+#include "Core.Object.Matrix.h"
+#include "Engine.InterpTrackInstMove.h"
+#include "Engine.Camera.ECameraAnimPlaySpace.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Engine.InterpTrackMove.h"
+#include "Engine.CameraAnim.h"
+#include "Core.Object.Rotator.h"
+#include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,9 +36,9 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(Vector, LastCameraLoc, 416)
 		ADD_STRUCT(float, LastPPSettingsAlpha, 412)
-		ADD_STRUCT(PostProcessVolume::PostProcessSettings, LastPPSettings, 192)
-		ADD_STRUCT(Object::Matrix, UserPlaySpaceMatrix, 128)
-		ADD_STRUCT(Camera::ECameraAnimPlaySpace, PlaySpace, 124)
+		ADD_STRUCT(PostProcessVolume__PostProcessSettings, LastPPSettings, 192)
+		ADD_STRUCT(Object__Matrix, UserPlaySpaceMatrix, 128)
+		ADD_STRUCT(Camera__ECameraAnimPlaySpace, PlaySpace, 124)
 		ADD_OBJECT(AnimNodeSequence, SourceAnimNode, 120)
 		ADD_OBJECT(InterpTrackInstMove, MoveInst, 116)
 		ADD_OBJECT(InterpTrackMove, MoveTrack, 112)
@@ -56,11 +59,11 @@ namespace UnrealScript
 		ADD_STRUCT(float, CurTime, 68)
 		ADD_OBJECT(InterpGroupInst, InterpGroupInst, 64)
 		ADD_OBJECT(CameraAnim, CamAnim, 60)
-		void SetPlaySpace(Camera::ECameraAnimPlaySpace NewSpace, Rotator UserPlaySpace)
+		void SetPlaySpace(Camera__ECameraAnimPlaySpace NewSpace, Rotator UserPlaySpace)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9499);
 			byte params[13] = { NULL };
-			*(Camera::ECameraAnimPlaySpace*)params = NewSpace;
+			*(Camera__ECameraAnimPlaySpace*)params = NewSpace;
 			*(Rotator*)&params[4] = UserPlaySpace;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

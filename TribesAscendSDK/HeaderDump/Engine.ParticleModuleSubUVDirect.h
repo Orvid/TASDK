@@ -1,5 +1,5 @@
 #pragma once
-#include "Core.DistributionVector.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #include "Engine.ParticleModuleSubUVBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -10,8 +10,8 @@ namespace UnrealScript
 	class ParticleModuleSubUVDirect : public ParticleModuleSubUVBase
 	{
 	public:
-		ADD_STRUCT(DistributionVector::RawDistributionVector, SubUVSize, 100)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, SubUVPosition, 72)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, SubUVSize, 100)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, SubUVPosition, 72)
 	};
 }
 #undef ADD_STRUCT

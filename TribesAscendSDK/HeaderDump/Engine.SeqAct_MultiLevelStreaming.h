@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.SeqAct_LevelStreamingBase.h"
+#include "Engine.SeqAct_MultiLevelStreaming.LevelStreamingNameCombo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,13 +24,7 @@ namespace UnrealScript
 	class SeqAct_MultiLevelStreaming : public SeqAct_LevelStreamingBase
 	{
 	public:
-		struct LevelStreamingNameCombo
-		{
-		public:
-			ADD_STRUCT(ScriptName, LevelName, 4)
-			ADD_OBJECT(LevelStreaming, Level, 0)
-		};
-		ADD_STRUCT(ScriptArray<SeqAct_MultiLevelStreaming::LevelStreamingNameCombo>, Levels, 252)
+		ADD_STRUCT(ScriptArray<SeqAct_MultiLevelStreaming__LevelStreamingNameCombo>, Levels, 252)
 		ADD_BOOL(bStatusIsOk, 264, 0x2)
 		ADD_BOOL(bUnloadAllOtherLevels, 264, 0x1)
 	};

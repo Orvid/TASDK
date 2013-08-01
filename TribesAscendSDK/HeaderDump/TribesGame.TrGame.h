@@ -2,19 +2,19 @@
 #include "Engine.Pawn.h"
 #include "Engine.PlayerController.h"
 #include "UTGame.UTTeamGame.h"
-#include "TribesGame.TrStatsInterface.h"
-#include "Core.Object.h"
 #include "Engine.Controller.h"
+#include "TribesGame.TrStatsInterface.h"
+#include "Core.Object.Vector.h"
 #include "TribesGame.TrSeekingMissileManager.h"
 #include "TribesGame.TrPlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.Actor.h"
 #include "UTGame.UTBot.h"
 #include "UTGame.UTTeamInfo.h"
-#include "UTGame.UTCharInfo.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Engine.NavigationPoint.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
+#include "UTGame.UTCharInfo.CharacterInfo.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.NavigationPoint.h"
 #include "TribesGame.TrPowerGenerator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -1584,15 +1584,15 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class UTBot**)&params[20];
 		}
-		void InitializeBot(class UTBot* NewBot, class UTTeamInfo* BotTeam, UTCharInfo::CharacterInfo& BotInfo)
+		void InitializeBot(class UTBot* NewBot, class UTTeamInfo* BotTeam, UTCharInfo__CharacterInfo& BotInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(90100);
 			byte params[120] = { NULL };
 			*(class UTBot**)params = NewBot;
 			*(class UTTeamInfo**)&params[4] = BotTeam;
-			*(UTCharInfo::CharacterInfo*)&params[8] = BotInfo;
+			*(UTCharInfo__CharacterInfo*)&params[8] = BotInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			BotInfo = *(UTCharInfo::CharacterInfo*)&params[8];
+			BotInfo = *(UTCharInfo__CharacterInfo*)&params[8];
 		}
 		void StartBots()
 		{
@@ -1606,13 +1606,13 @@ namespace UnrealScript
 			*(class PlayerController**)params = PC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		class PlayerController* Login(ScriptString* Portal, ScriptString* Options, OnlineSubsystem::UniqueNetId UniqueId, ScriptString*& ErrorMessage)
+		class PlayerController* Login(ScriptString* Portal, ScriptString* Options, OnlineSubsystem__UniqueNetId UniqueId, ScriptString*& ErrorMessage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(90108);
 			byte params[48] = { NULL };
 			*(ScriptString**)params = Portal;
 			*(ScriptString**)&params[12] = Options;
-			*(OnlineSubsystem::UniqueNetId*)&params[24] = UniqueId;
+			*(OnlineSubsystem__UniqueNetId*)&params[24] = UniqueId;
 			*(ScriptString**)&params[32] = ErrorMessage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			ErrorMessage = *(ScriptString**)&params[32];

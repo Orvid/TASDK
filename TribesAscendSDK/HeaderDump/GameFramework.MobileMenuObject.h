@@ -26,15 +26,6 @@ namespace UnrealScript
 	class MobileMenuObject : public Object
 	{
 	public:
-		struct UVCoords
-		{
-		public:
-			ADD_STRUCT(float, VL, 16)
-			ADD_STRUCT(float, UL, 12)
-			ADD_STRUCT(float, V, 8)
-			ADD_STRUCT(float, U, 4)
-			ADD_BOOL(bCustomCoords, 0, 0x1)
-		};
 		ADD_OBJECT(MobileMenuScene, OwnerScene, 128)
 		ADD_STRUCT(float, Opacity, 124)
 		ADD_OBJECT(MobilePlayerInput, InputOwner, 120)

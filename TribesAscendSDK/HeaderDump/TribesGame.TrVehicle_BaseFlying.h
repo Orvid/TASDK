@@ -1,6 +1,8 @@
 #pragma once
+#include "TribesGame.TrVehicle_BaseFlying.FlyingParticleEffects.h"
 #include "TribesGame.TrVehicle.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,19 +26,12 @@ namespace UnrealScript
 	class TrVehicle_BaseFlying : public TrVehicle
 	{
 	public:
-		struct FlyingParticleEffects
-		{
-		public:
-			ADD_OBJECT(ParticleSystem, ParticleTemplate, 12)
-			ADD_STRUCT(ScriptName, SocketToAttach, 4)
-			ADD_BOOL(bIsAttachedToBoost, 0, 0x1)
-		};
 		ADD_BOOL(m_bCanAutoLevelVehicle, 3288, 0x2)
-		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying::FlyingParticleEffects>, LeftEngineParticles, 3212)
-		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying::FlyingParticleEffects>, MidEngineParticles, 3224)
-		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying::FlyingParticleEffects>, RightEngineParticles, 3236)
-		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying::FlyingParticleEffects>, LeftContrailParticles, 3248)
-		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying::FlyingParticleEffects>, RightContrailParticles, 3260)
+		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying__FlyingParticleEffects>, LeftEngineParticles, 3212)
+		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying__FlyingParticleEffects>, MidEngineParticles, 3224)
+		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying__FlyingParticleEffects>, RightEngineParticles, 3236)
+		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying__FlyingParticleEffects>, LeftContrailParticles, 3248)
+		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying__FlyingParticleEffects>, RightContrailParticles, 3260)
 		ADD_BOOL(m_bFreeLook, 3288, 0x1)
 		ADD_STRUCT(float, m_fBoostThrustInvDuration, 3284)
 		ADD_STRUCT(float, m_fBoostThrustBuildUp, 3280)

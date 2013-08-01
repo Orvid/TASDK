@@ -1,12 +1,12 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Engine.SkeletalMeshActorMAT.h"
 #include "Engine.AnimNodePlayCustomAnim.h"
 #include "TribesGame.TrPlayerController.h"
-#include "TribesGame.TrObject.h"
-#include "Core.Object.h"
+#include "Engine.SkeletalMesh.h"
+#include "TribesGame.TrObject.PaperDollInfo.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.MaterialInstanceConstant.h"
-#include "Engine.SkeletalMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -40,11 +40,11 @@ void*>, m_Lights, 548)
 		ADD_OBJECT(ScriptClass, m_DeviceContentDataClass, 904)
 		ADD_STRUCT(float, m_fLastStreamingCheckTimestamp, 900)
 		ADD_STRUCT(float, m_fCheckStreamingFrequency, 896)
-		ADD_STRUCT(TrObject::PaperDollInfo, m_PendingPaperDollInfoSkin, 840)
-		ADD_STRUCT(TrObject::PaperDollInfo, m_PendingPaperDollInfoDevice, 784)
+		ADD_STRUCT(TrObject__PaperDollInfo, m_PendingPaperDollInfoSkin, 840)
+		ADD_STRUCT(TrObject__PaperDollInfo, m_PendingPaperDollInfoDevice, 784)
 		ADD_STRUCT(int, m_LastSkinIdRequest, 780)
 		ADD_BOOL(m_bWasLastMeshSwapRequestNonWeapon, 764, 0x1)
-		ADD_STRUCT(TrObject::PaperDollInfo, m_CurrentPaperDollInfo, 704)
+		ADD_STRUCT(TrObject__PaperDollInfo, m_CurrentPaperDollInfo, 704)
 		ADD_STRUCT(float, m_fMaxCustomAnimTime, 700)
 		ADD_STRUCT(float, m_fMinCustomAnimTime, 696)
 		ADD_OBJECT(AnimNodePlayCustomAnim, m_SidekickCustomAnimNode, 692)
@@ -63,11 +63,11 @@ void*>, m_Lights, 548)
 		ADD_STRUCT(Vector, m_vViewOffset16x10, 584)
 		ADD_STRUCT(Vector, m_vViewOffset16x9, 572)
 		ADD_STRUCT(Vector, m_vViewOffset4x3, 560)
-		bool IsFullyStreamed(TrObject::PaperDollInfo PaperDoll)
+		bool IsFullyStreamed(TrObject__PaperDollInfo PaperDoll)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(100424);
 			byte params[60] = { NULL };
-			*(TrObject::PaperDollInfo*)params = PaperDoll;
+			*(TrObject__PaperDollInfo*)params = PaperDoll;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[56];
 		}
@@ -168,11 +168,11 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(100468);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnWeaponFinishedStreaming(TrObject::PaperDollInfo NewPaperDollInfo)
+		void OnWeaponFinishedStreaming(TrObject__PaperDollInfo NewPaperDollInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(100469);
 			byte params[56] = { NULL };
-			*(TrObject::PaperDollInfo*)params = NewPaperDollInfo;
+			*(TrObject__PaperDollInfo*)params = NewPaperDollInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetWeaponOnlyMesh(ScriptClass* WeaponClass)
@@ -182,19 +182,19 @@ void**)params = SkelComp;
 			*(ScriptClass**)params = WeaponClass;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		TrObject::PaperDollInfo GetDevicePaperDollInfo(ScriptClass* WeaponClass)
+		TrObject__PaperDollInfo GetDevicePaperDollInfo(ScriptClass* WeaponClass)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(100473);
 			byte params[60] = { NULL };
 			*(ScriptClass**)params = WeaponClass;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(TrObject::PaperDollInfo*)&params[4];
+			return *(TrObject__PaperDollInfo*)&params[4];
 		}
-		void SetMainMesh(TrObject::PaperDollInfo NewInfo)
+		void SetMainMesh(TrObject__PaperDollInfo NewInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(100476);
 			byte params[56] = { NULL };
-			*(TrObject::PaperDollInfo*)params = NewInfo;
+			*(TrObject__PaperDollInfo*)params = NewInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void Destroyed()

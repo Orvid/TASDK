@@ -1,7 +1,8 @@
 #pragma once
 #include "Engine.SequenceAction.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.PlayerController.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,8 +27,8 @@ namespace UnrealScript
 		ADD_BOOL(bPersistFade, 252, 0x1)
 		ADD_STRUCT(float, FadeTime, 248)
 		ADD_STRUCT(float, FadeOpacity, 244)
-		ADD_STRUCT(Object::Vector2D, FadeAlpha, 236)
-		ADD_STRUCT(Object::Color, FadeColor, 232)
+		ADD_STRUCT(Object__Vector2D, FadeAlpha, 236)
+		ADD_STRUCT(Object__Color, FadeColor, 232)
 		int GetObjClassVersion()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25612);

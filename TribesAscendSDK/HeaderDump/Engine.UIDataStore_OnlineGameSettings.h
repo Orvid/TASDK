@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.UIDataStore_Settings.h"
+#include "Engine.UIDataStore_OnlineGameSettings.GameSettingsCfg.h"
 #include "Engine.LocalPlayer.h"
 #include "Engine.UIDataProvider.h"
 #include "Engine.OnlineGameSettings.h"
@@ -17,15 +18,7 @@ namespace UnrealScript
 	class UIDataStore_OnlineGameSettings : public UIDataStore_Settings
 	{
 	public:
-		struct GameSettingsCfg
-		{
-		public:
-			ADD_STRUCT(ScriptName, SettingsName, 12)
-			ADD_OBJECT(OnlineGameSettings, GameSettings, 8)
-			ADD_OBJECT(UIDataProvider_Settings, Provider, 4)
-			ADD_OBJECT(ScriptClass, GameSettingsClass, 0)
-		};
-		ADD_STRUCT(ScriptArray<UIDataStore_OnlineGameSettings::GameSettingsCfg>, GameSettingsCfgList, 120)
+		ADD_STRUCT(ScriptArray<UIDataStore_OnlineGameSettings__GameSettingsCfg>, GameSettingsCfgList, 120)
 		ADD_STRUCT(int, SelectedIndex, 136)
 		ADD_OBJECT(ScriptClass, SettingsProviderClass, 132)
 		void OnSettingProviderChanged(class UIDataProvider* SourceProvider, ScriptName SettingsName)

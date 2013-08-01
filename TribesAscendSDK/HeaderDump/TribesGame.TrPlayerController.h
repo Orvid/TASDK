@@ -1,55 +1,72 @@
 #pragma once
 #include "TribesGame.TrPaperDoll.h"
 #include "UTGame.UTPlayerController.h"
-#include "Engine.CameraActor.h"
+#include "Core.Object.Rotator.h"
 #include "TribesGame.AlienFXManager.h"
+#include "Engine.CameraActor.h"
 #include "TribesGame.TrSeqAct_PlayVGSCommand.h"
 #include "TribesGame.TrDeployable_MotionSensor.h"
 #include "TribesGame.TrEquipInterface.h"
 #include "Engine.MaterialEffect.h"
-#include "TribesGame.TrVGSCommandList.h"
 #include "TribesGame.TrStrings.h"
-#include "Engine.ForceFeedbackWaveform.h"
 #include "TribesGame.TrInventoryHelper.h"
+#include "Core.Object.Color.h"
+#include "Engine.ForceFeedbackWaveform.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
 #include "TribesGame.TrHelpTextManager.h"
-#include "Core.Object.h"
 #include "TribesGame.TrStatsInterface.h"
+#include "Core.Object.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
+#include "TribesGame.TrPlayerController.TrCameraShakeInfo.h"
 #include "TribesGame.TrAccoladeManager.h"
+#include "Core.Object.Vector.h"
 #include "TribesGame.TrSeqAct_GiveCredits.h"
 #include "Engine.Actor.h"
-#include "TribesGame.TrProjectile.h"
-#include "UTGame.UTWeapon.h"
+#include "UTGame.UTWeapon.EZoomState.h"
 #include "TribesGame.TrPawn.h"
 #include "TribesGame.TrChatConsoleCommands.h"
-#include "TribesGame.TrFlagBase.h"
-#include "TribesGame.TrObject.h"
+#include "TribesGame.TrProjectile.h"
+#include "TribesGame.TrObject.TrEventCredits.h"
 #include "TribesGame.TrWeatherVolume.h"
+#include "PlatformCommon.TgSupportCommands.GC_CHAT_CHANNEL.h"
+#include "TribesGame.TrPlayerController.VGSAudioCommand.h"
+#include "TribesGame.TrPlayerController.PendingSkin.h"
 #include "TribesGame.TrPowerGenerator.h"
+#include "TribesGame.TrObject.EArmorType.h"
 #include "TribesGame.TrCTFBase.h"
+#include "TribesGame.TrFlagBase.h"
 #include "TribesGame.TrCamera_SpectatorBookmark.h"
 #include "TribesGame.TrVehicle.h"
+#include "TribesGame.TrPlayerController.SpectatorKeybindViewTargetMap.h"
 #include "TribesGame.TrStation.h"
 #include "TribesGame.TrContentLoader.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "TribesGame.TrFlagCTF.h"
-#include "Engine.PostProcessVolume.h"
 #include "Engine.CameraShake.h"
 #include "UDKBase.UDKEmitCameraEffect.h"
+#include "TribesGame.TrPawn.WalkingDeceleration.h"
 #include "TribesGame.TrCameraModifier_CameraShake.h"
+#include "TribesGame.TrVGSCommandList.EVGSContextLocation.h"
 #include "Engine.Pawn.h"
 #include "Engine.Weapon.h"
 #include "TribesGame.TrAnnouncer.h"
 #include "TribesGame.TrMusicManager.h"
 #include "Engine.SoundCue.h"
-#include "TribesGame.TrVehicleStation.h"
 #include "TribesGame.TrDevice.h"
-#include "PlatformCommon.TgSupportCommands.h"
+#include "TribesGame.TrObject.TrClassType.h"
+#include "TribesGame.TrObject.EMissileLock.h"
+#include "TribesGame.TrObject.TrCreditEventType.h"
+#include "Engine.Actor.RigidBodyState.h"
+#include "TribesGame.TrVGSCommandList.EVGSContextActor.h"
+#include "TribesGame.TrPlayerReplicationInfo.h"
+#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #include "Engine.PlayerInput.h"
 #include "TribesGame.TrPlayerInput_Spectator.h"
-#include "TribesGame.TrPlayerReplicationInfo.h"
+#include "TribesGame.TrFlagCTF.h"
 #include "TribesGame.TrSeqAct_GiveAccolade.h"
 #include "TribesGame.TrSeqAct_RefreshInventory.h"
+#include "TribesGame.TrVehicleStation.h"
 #include "UTGame.UTTeamInfo.h"
+#include "TribesGame.TrObject.EContentDataType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -1446,30 +1463,6 @@ namespace UnrealScript
 		static const auto ITEM_VOICE_T2BDERM01 = 8724;
 		static const auto ITEM_VOICE_T2BDERM02 = 8725;
 		static const auto ITEM_VOICE_T2BDERM03 = 8726;
-		struct TrCameraShakeInfo
-		{
-		public:
-			ADD_STRUCT(ScriptName, ShakeName, 4)
-			ADD_OBJECT(CameraShake, Shake, 0)
-		};
-		struct VGSAudioCommand
-		{
-		public:
-			ADD_OBJECT(SoundCue, QueuedSoundCue, 8)
-			ADD_OBJECT(TrPlayerReplicationInfo, VGSInstigator, 0)
-		};
-		struct SpectatorKeybindViewTargetMap
-		{
-		public:
-			ADD_OBJECT(Actor, ViewTarget, 24)
-			ADD_STRUCT(Input::KeyBind, KeyBinding, 0)
-		};
-		struct PendingSkin
-		{
-		public:
-			ADD_STRUCT(int, skinId, 4)
-			ADD_OBJECT(TrPlayerReplicationInfo, TrPRI, 0)
-		};
 		ADD_BOOL(m_bShowHUDCracks, 2188, 0x100000)
 		ADD_OBJECT(TrEquipInterface, m_TrEquipInterface, 3376)
 		ADD_BOOL(m_bShowSpectatorHUD, 2184, 0x10000000)
@@ -1527,29 +1520,29 @@ namespace UnrealScript
 		ADD_BOOL(m_bEjectedFromVehicle, 2188, 0x10000000)
 		ADD_BOOL(m_bLastDeathWasUserSuicide, 2184, 0x200000)
 		ADD_STRUCT(int, FriendlyFireKills, 3408)
-		ADD_STRUCT(UTWeapon::EZoomState, m_ZoomState, 2324)
+		ADD_STRUCT(UTWeapon__EZoomState, m_ZoomState, 2324)
 		ADD_STRUCT(float, m_fFreeCamYawOffset, 3024)
 		ADD_STRUCT(float, m_fFreeCamPitchOffset, 3028)
 		ADD_STRUCT(float, m_fCallInCooldown, 3328)
 		ADD_STRUCT(byte, r_nCallinCooldownFlash, 2328)
 		ADD_OBJECT(TrChatConsoleCommands, m_PlayerCommands, 3324)
-		ADD_STRUCT(ScriptArray<TrObject::TrEventCredits>, m_EventCreditMap, 2292)
-		ADD_STRUCT(ScriptArray<TrPlayerController::TrCameraShakeInfo>, m_CameraShakes, 2432)
+		ADD_STRUCT(ScriptArray<TrObject__TrEventCredits>, m_EventCreditMap, 2292)
+		ADD_STRUCT(ScriptArray<TrPlayerController__TrCameraShakeInfo>, m_CameraShakes, 2432)
 		ADD_STRUCT(ScriptArray<class TrWeatherVolume*>, m_CurrentWeatherVolumes, 2452)
 		ADD_STRUCT(ScriptArray<float>, m_fLastBroadcastTimes, 3040)
 		ADD_STRUCT(ScriptArray<class Actor*>, m_PotentialSeekingTargets, 3064)
 		ADD_STRUCT(ScriptArray<class TrProjectile*>, m_ProjectilesNeedingTethering, 3084)
-		ADD_STRUCT(ScriptArray<TrPlayerController::VGSAudioCommand>, m_VGSAudioCommands, 3160)
+		ADD_STRUCT(ScriptArray<TrPlayerController__VGSAudioCommand>, m_VGSAudioCommands, 3160)
 		ADD_STRUCT(ScriptArray<class CameraActor*>, m_SpectatorCameraBookmarks, 3176)
 		ADD_STRUCT(ScriptArray<class TrPowerGenerator*>, m_SpectatorGenerators, 3188)
 		ADD_STRUCT(ScriptArray<class TrCTFBase*>, m_SpectatorFlagStands, 3200)
 		ADD_STRUCT(ScriptArray<class TrFlagBase*>, m_SpectatorFlags, 3212)
 		ADD_STRUCT(ScriptArray<class TrVehicle*>, m_SpectatorVehicles, 3224)
-		ADD_STRUCT(ScriptArray<TrPlayerController::SpectatorKeybindViewTargetMap>, m_SpectatorTransientKeybinds, 3312)
+		ADD_STRUCT(ScriptArray<TrPlayerController__SpectatorKeybindViewTargetMap>, m_SpectatorTransientKeybinds, 3312)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, m_CachedPendingClassDeviceContentData, 3352)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, m_PendingLoadoutDeviceClasses, 3364)
-		ADD_STRUCT(ScriptArray<TrPlayerController::PendingSkin>, m_Pending3PSkins, 3384)
-		ADD_STRUCT(ScriptArray<TrPlayerController::PendingSkin>, m_Pending1PSkins, 3396)
+		ADD_STRUCT(ScriptArray<TrPlayerController__PendingSkin>, m_Pending3PSkins, 3384)
+		ADD_STRUCT(ScriptArray<TrPlayerController__PendingSkin>, m_Pending1PSkins, 3396)
 		ADD_STRUCT(float, fSniperRespawnDelay, 3424)
 		ADD_STRUCT(float, m_fLastSuicideTimestamp, 3420)
 		ADD_STRUCT(int, VGSClassId, 3416)
@@ -1613,8 +1606,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_RoundEndedPPTarget, 2916)
 		ADD_STRUCT(float, m_RoundEndedPPAlpha, 2912)
 		ADD_STRUCT(float, m_RoundEndedPPInterpSpeed, 2908)
-		ADD_STRUCT(PostProcessVolume::PostProcessSettings, m_RoundEndedPPSettings, 2688)
-		ADD_STRUCT(PostProcessVolume::PostProcessSettings, m_DefaultPPSettings, 2468)
+		ADD_STRUCT(PostProcessVolume__PostProcessSettings, m_RoundEndedPPSettings, 2688)
+		ADD_STRUCT(PostProcessVolume__PostProcessSettings, m_DefaultPPSettings, 2468)
 		ADD_STRUCT(float, m_fSpeedCameraSpeedSqared, 2464)
 		ADD_OBJECT(UDKEmitCameraEffect, m_WeatherCameraEffect, 2448)
 		ADD_OBJECT(UDKEmitCameraEffect, m_SpeedCameraEffect, 2444)
@@ -1633,7 +1626,7 @@ namespace UnrealScript
 		ADD_OBJECT(TrAnnouncer, m_Announcer, 2352)
 		ADD_OBJECT(TrMusicManager, m_MusicManager, 2344)
 		ADD_STRUCT(float, c_fHUDZoomDuration, 2336)
-		ADD_STRUCT(TrPawn::WalkingDeceleration, m_CurrentDecelerationFactor, 2334)
+		ADD_STRUCT(TrPawn__WalkingDeceleration, m_CurrentDecelerationFactor, 2334)
 		ADD_STRUCT(byte, m_nCallinCooldownFlashStored, 2331)
 		ADD_STRUCT(byte, m_nLastHitEnemyHeadshot, 2327)
 		ADD_STRUCT(byte, r_nHitEnemy, 2325)
@@ -1710,20 +1703,20 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptClass**)&params[4];
 		}
-		class TrDevice* GetDeviceByEquipPoint(TrObject::TR_EQUIP_POINT EquipPoint)
+		class TrDevice* GetDeviceByEquipPoint(TrObject__TR_EQUIP_POINT EquipPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(53730);
 			byte params[5] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class TrDevice**)&params[4];
 		}
-		UTWeapon::EZoomState GetZoomedState()
+		UTWeapon__EZoomState GetZoomedState()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(53735);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(UTWeapon::EZoomState*)params;
+			return *(UTWeapon__EZoomState*)params;
 		}
 		bool InRovingSpectate()
 		{
@@ -1764,11 +1757,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
-		int GetAllowedClassCount(TrObject::TrClassType ClassType)
+		int GetAllowedClassCount(TrObject__TrClassType ClassType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(58399);
 			byte params[5] = { NULL };
-			*(TrObject::TrClassType*)params = ClassType;
+			*(TrObject__TrClassType*)params = ClassType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
@@ -1781,11 +1774,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[24];
 		}
-		bool BroadcastChatMessage(TgSupportCommands::GC_CHAT_CHANNEL Channel, ScriptString* Message)
+		bool BroadcastChatMessage(TgSupportCommands__GC_CHAT_CHANNEL Channel, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(59829);
 			byte params[17] = { NULL };
-			*(TgSupportCommands::GC_CHAT_CHANNEL*)params = Channel;
+			*(TgSupportCommands__GC_CHAT_CHANNEL*)params = Channel;
 			*(ScriptString**)&params[4] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
@@ -2254,11 +2247,11 @@ namespace UnrealScript
 			*(bool*)&params[24] = bIsOccluded;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientMySaberLauncherTargetingUpdated(TrObject::EMissileLock MissileLockValue)
+		void ClientMySaberLauncherTargetingUpdated(TrObject__EMissileLock MissileLockValue)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(76325);
 			byte params[1] = { NULL };
-			*(TrObject::EMissileLock*)params = MissileLockValue;
+			*(TrObject__EMissileLock*)params = MissileLockValue;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ClientSeekingMissileTargetingSelfEvent(int EventSwitch)
@@ -2303,11 +2296,11 @@ namespace UnrealScript
 			*(ScriptName*)params = VarName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ProcessCreditEvent(TrObject::TrCreditEventType EventType, bool bProxyEvent)
+		void ProcessCreditEvent(TrObject__TrCreditEventType EventType, bool bProxyEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(76352);
 			byte params[5] = { NULL };
-			*(TrObject::TrCreditEventType*)params = EventType;
+			*(TrObject__TrCreditEventType*)params = EventType;
 			*(bool*)&params[4] = bProxyEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -2430,12 +2423,12 @@ void**)params = AC;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(76416);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		TrObject::EArmorType GetArmorType()
+		TrObject__EArmorType GetArmorType()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(76417);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(TrObject::EArmorType*)params;
+			return *(TrObject__EArmorType*)params;
 		}
 		float GetRespawnDelayTotalTime()
 		{
@@ -2525,11 +2518,11 @@ void**)params = AC;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(76463);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ActivateDevice(TrObject::TR_EQUIP_POINT EquipPoint)
+		void ActivateDevice(TrObject__TR_EQUIP_POINT EquipPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(76464);
 			byte params[1] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void StartFire(byte FireModeNum)
@@ -2812,7 +2805,7 @@ void**)params = AC;
 			*(class TrVehicle**)params = InVehicle;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerVerifyVehiclePhys(float TimeStamp, float InForward, float InStrafe, float InUp, int View, Actor::RigidBodyState InRBState)
+		void ServerVerifyVehiclePhys(float TimeStamp, float InForward, float InStrafe, float InUp, int View, Actor__RigidBodyState InRBState)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(76688);
 			byte params[84] = { NULL };
@@ -2821,7 +2814,7 @@ void**)params = AC;
 			*(float*)&params[8] = InStrafe;
 			*(float*)&params[12] = InUp;
 			*(int*)&params[16] = View;
-			*(Actor::RigidBodyState*)&params[32] = InRBState;
+			*(Actor__RigidBodyState*)&params[32] = InRBState;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ServerCorrectClientPhys(float TimeStamp)
@@ -3084,11 +3077,11 @@ void**)params = AC;
 			*(bool*)params = bPlayRechargeSoundOnWeapon;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerSetZoom(UTWeapon::EZoomState NewZoomState)
+		void ServerSetZoom(UTWeapon__EZoomState NewZoomState)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(76927);
 			byte params[1] = { NULL };
-			*(UTWeapon::EZoomState*)params = NewZoomState;
+			*(UTWeapon__EZoomState*)params = NewZoomState;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ReceiveLocalizedMessage(ScriptClass* Message, int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
@@ -3287,24 +3280,24 @@ void**)params = AC;
 			*(ScriptString**)params = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		Object::Color GetChatColor(TgSupportCommands::GC_CHAT_CHANNEL Channel, bool bSameTeam, int& ChatColorIdx)
+		Object__Color GetChatColor(TgSupportCommands__GC_CHAT_CHANNEL Channel, bool bSameTeam, int& ChatColorIdx)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77047);
 			byte params[13] = { NULL };
-			*(TgSupportCommands::GC_CHAT_CHANNEL*)params = Channel;
+			*(TgSupportCommands__GC_CHAT_CHANNEL*)params = Channel;
 			*(bool*)&params[4] = bSameTeam;
 			*(int*)&params[8] = ChatColorIdx;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			ChatColorIdx = *(int*)&params[8];
-			return *(Object::Color*)&params[12];
+			return *(Object__Color*)&params[12];
 		}
-		void AddChatToConsole(ScriptString* Sender, ScriptString* ChatMessage, TgSupportCommands::GC_CHAT_CHANNEL Channel)
+		void AddChatToConsole(ScriptString* Sender, ScriptString* ChatMessage, TgSupportCommands__GC_CHAT_CHANNEL Channel)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77059);
 			byte params[25] = { NULL };
 			*(ScriptString**)params = Sender;
 			*(ScriptString**)&params[12] = ChatMessage;
-			*(TgSupportCommands::GC_CHAT_CHANNEL*)&params[24] = Channel;
+			*(TgSupportCommands__GC_CHAT_CHANNEL*)&params[24] = Channel;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		ScriptString* GetLastTellSender()
@@ -3380,39 +3373,39 @@ void**)params = AC;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77098);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ServerRequestVGSContextCommand(TrVGSCommandList::EVGSContextActor ContextActor, TrVGSCommandList::EVGSContextLocation ContextLocation, bool bEnemyLocation, class Actor* SpottedActor)
+		void ServerRequestVGSContextCommand(TrVGSCommandList__EVGSContextActor ContextActor, TrVGSCommandList__EVGSContextLocation ContextLocation, bool bEnemyLocation, class Actor* SpottedActor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77102);
 			byte params[10] = { NULL };
-			*(TrVGSCommandList::EVGSContextActor*)params = ContextActor;
-			*(TrVGSCommandList::EVGSContextLocation*)&params[1] = ContextLocation;
+			*(TrVGSCommandList__EVGSContextActor*)params = ContextActor;
+			*(TrVGSCommandList__EVGSContextLocation*)&params[1] = ContextLocation;
 			*(bool*)&params[4] = bEnemyLocation;
 			*(class Actor**)&params[8] = SpottedActor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerRequestVGSCommand(TrVGSCommandList::VGSCommandType VGSCommandIndex, bool bGlobal)
+		void ServerRequestVGSCommand(TrVGSCommandList__VGSCommandType VGSCommandIndex, bool bGlobal)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77108);
 			byte params[5] = { NULL };
-			*(TrVGSCommandList::VGSCommandType*)params = VGSCommandIndex;
+			*(TrVGSCommandList__VGSCommandType*)params = VGSCommandIndex;
 			*(bool*)&params[4] = bGlobal;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientReceiveVGSCommand(class PlayerReplicationInfo* PRI, TrVGSCommandList::VGSCommandType VGSCommandIndex)
+		void ClientReceiveVGSCommand(class PlayerReplicationInfo* PRI, TrVGSCommandList__VGSCommandType VGSCommandIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77112);
 			byte params[5] = { NULL };
 			*(class PlayerReplicationInfo**)params = PRI;
-			*(TrVGSCommandList::VGSCommandType*)&params[4] = VGSCommandIndex;
+			*(TrVGSCommandList__VGSCommandType*)&params[4] = VGSCommandIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClientReceiveVGSContextCommand(class PlayerReplicationInfo* PRI, TrVGSCommandList::EVGSContextActor ContextActor, TrVGSCommandList::EVGSContextLocation ContextLocation, bool bEnemyLocation)
+		void ClientReceiveVGSContextCommand(class PlayerReplicationInfo* PRI, TrVGSCommandList__EVGSContextActor ContextActor, TrVGSCommandList__EVGSContextLocation ContextLocation, bool bEnemyLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77121);
 			byte params[10] = { NULL };
 			*(class PlayerReplicationInfo**)params = PRI;
-			*(TrVGSCommandList::EVGSContextActor*)&params[4] = ContextActor;
-			*(TrVGSCommandList::EVGSContextLocation*)&params[5] = ContextLocation;
+			*(TrVGSCommandList__EVGSContextActor*)&params[4] = ContextActor;
+			*(TrVGSCommandList__EVGSContextLocation*)&params[5] = ContextLocation;
 			*(bool*)&params[8] = bEnemyLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -4273,28 +4266,28 @@ void**)params = AC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
-		void TestTrainingSlot(TrObject::TR_EQUIP_POINT equipType, int EquipId)
+		void TestTrainingSlot(TrObject__TR_EQUIP_POINT equipType, int EquipId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77691);
 			byte params[5] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = equipType;
+			*(TrObject__TR_EQUIP_POINT*)params = equipType;
 			*(int*)&params[4] = EquipId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TestSlot(TrObject::TR_EQUIP_POINT equipType, int EquipId, bool bTraining)
+		void TestSlot(TrObject__TR_EQUIP_POINT equipType, int EquipId, bool bTraining)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77695);
 			byte params[9] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = equipType;
+			*(TrObject__TR_EQUIP_POINT*)params = equipType;
 			*(int*)&params[4] = EquipId;
 			*(bool*)&params[8] = bTraining;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerTestSlot(TrObject::TR_EQUIP_POINT EquipId, int EquipItem)
+		void ServerTestSlot(TrObject__TR_EQUIP_POINT EquipId, int EquipItem)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77703);
 			byte params[5] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipId;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipId;
 			*(int*)&params[4] = EquipItem;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -4553,11 +4546,11 @@ void**)params = AC;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77838);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void UpdateMainMenuPaperDoll_Mesh(TrObject::EContentDataType Type)
+		void UpdateMainMenuPaperDoll_Mesh(TrObject__EContentDataType Type)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77839);
 			byte params[1] = { NULL };
-			*(TrObject::EContentDataType*)params = Type;
+			*(TrObject__EContentDataType*)params = Type;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ClearMainMenuPaperDoll()

@@ -1,9 +1,10 @@
 #pragma once
+#include "Core.Object.Rotator.h"
 #include "UTGame.UTPawn.h"
 #include "Engine.SoundCue.h"
 #include "UTGame.UTSeqAct_DummyWeaponFire.h"
 #include "Engine.Weapon.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

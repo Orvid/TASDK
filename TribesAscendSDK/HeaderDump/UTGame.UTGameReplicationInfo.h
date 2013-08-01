@@ -1,8 +1,10 @@
 #pragma once
 #include "Engine.GameReplicationInfo.h"
-#include "Engine.MaterialInterface.h"
-#include "Engine.PlayerReplicationInfo.h"
 #include "UTGame.UTPlayerController.h"
+#include "UTGame.UTGameReplicationInfo.MeshEffect.h"
+#include "Engine.MaterialInterface.h"
+#include "UTGame.UTGameReplicationInfo.EFlagState.h"
+#include "Engine.PlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,24 +28,10 @@ namespace UnrealScript
 	class UTGameReplicationInfo : public GameReplicationInfo
 	{
 	public:
-		enum EFlagState : byte
-		{
-			FLAG_Home = 0,
-			FLAG_HeldFriendly = 1,
-			FLAG_HeldEnemy = 2,
-			FLAG_Down = 3,
-			FLAG_MAX = 4,
-		};
-		struct MeshEffect
-		{
-		public:
-			ADD_OBJECT(StaticMesh, Mesh, 0)
-			ADD_OBJECT(MaterialInterface, Material, 4)
-		};
 		ADD_BOOL(bStoryMode, 568, 0x4)
 		ADD_BOOL(bAnnouncementsDisabled, 568, 0x20)
 		ADD_STRUCT(ScriptString*, MessageOfTheDay, 624)
-		ADD_STRUCT(ScriptArray<UTGameReplicationInfo::MeshEffect>, VehicleWeaponEffects, 612)
+		ADD_STRUCT(ScriptArray<UTGameReplicationInfo__MeshEffect>, VehicleWeaponEffects, 612)
 		ADD_BOOL(bConsoleServer, 568, 0x8)
 		ADD_STRUCT(ScriptArray<class MaterialInterface*>, WeaponOverlays, 600)
 		ADD_BOOL(bAllowKeyboardAndMouse, 568, 0x10)
@@ -53,7 +41,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptString*, MutatorList, 576)
 		ADD_STRUCT(ScriptString*, RulesString, 588)
 		ADD_BOOL(bWarmupRound, 568, 0x1)
-		ADD_STRUCT(UTGameReplicationInfo::EFlagState, FlagState, 572)
+		ADD_STRUCT(UTGameReplicationInfo__EFlagState, FlagState, 572)
 		ADD_STRUCT(float, WeaponBerserk, 556)
 		ADD_BOOL(bForceDefaultCharacter, 568, 0x2)
 		void PostBeginPlay()

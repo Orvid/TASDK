@@ -1,6 +1,7 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.SeqAct_Latent.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Color.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,7 +14,7 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, OldFocusPosition, 332)
 		ADD_STRUCT(float, OldFocusDistance, 328)
 		ADD_STRUCT(float, OldFocusInnerRadius, 324)
-		ADD_STRUCT(Object::Color, OldModulateBlurColor, 320)
+		ADD_STRUCT(Object__Color, OldModulateBlurColor, 320)
 		ADD_STRUCT(float, OldMaxFarBlurAmount, 316)
 		ADD_STRUCT(float, OldMinBlurAmount, 312)
 		ADD_STRUCT(float, OldMaxNearBlurAmount, 308)
@@ -24,7 +25,7 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, FocusPosition, 280)
 		ADD_STRUCT(float, FocusDistance, 276)
 		ADD_STRUCT(float, FocusInnerRadius, 272)
-		ADD_STRUCT(Object::Color, ModulateBlurColor, 268)
+		ADD_STRUCT(Object__Color, ModulateBlurColor, 268)
 		ADD_STRUCT(float, MaxFarBlurAmount, 264)
 		ADD_STRUCT(float, MinBlurAmount, 260)
 		ADD_STRUCT(float, MaxNearBlurAmount, 256)

@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.DistributionVector.h"
-#include "Core.Object.h"
+#include "Core.DistributionVector.EDistributionVectorLockFlags.h"
+#include "Core.Object.InterpCurveVector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,9 +21,9 @@ namespace UnrealScript
 	class DistributionVectorConstantCurve : public DistributionVector
 	{
 	public:
-		ADD_STRUCT(DistributionVector::EDistributionVectorLockFlags, LockedAxes, 100)
+		ADD_STRUCT(DistributionVector__EDistributionVectorLockFlags, LockedAxes, 100)
 		ADD_BOOL(bLockAxes, 96, 0x1)
-		ADD_STRUCT(Object::InterpCurveVector, ConstantCurve, 80)
+		ADD_STRUCT(Object__InterpCurveVector, ConstantCurve, 80)
 	};
 }
 #undef ADD_BOOL

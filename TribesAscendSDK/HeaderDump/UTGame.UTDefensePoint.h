@@ -5,6 +5,7 @@
 #include "UDKBase.UDKScriptedNavigationPoint.h"
 #include "UDKBase.UDKGameObjective.h"
 #include "Engine.Texture2D.h"
+#include "UTGame.UTDefensePoint.EDefensePriority.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,12 +29,6 @@ namespace UnrealScript
 	class UTDefensePoint : public UDKScriptedNavigationPoint
 	{
 	public:
-		enum EDefensePriority : byte
-		{
-			DEFPRI_Low = 0,
-			DEFPRI_High = 1,
-			DEFPRI_MAX = 2,
-		};
 		ADD_OBJECT(ScriptClass, WeaponPreference, 712)
 		ADD_BOOL(bSniping, 708, 0x2)
 		ADD_BOOL(bFirstScript, 708, 0x1)
@@ -43,7 +38,7 @@ namespace UnrealScript
 		ADD_OBJECT(UTDefensePoint, NextDefensePoint, 700)
 		ADD_OBJECT(Controller, CurrentUser, 696)
 		ADD_STRUCT(ScriptArray<class Texture2D*>, TeamSprites, 728)
-		ADD_STRUCT(UTDefensePoint::EDefensePriority, DefensePriority, 724)
+		ADD_STRUCT(UTDefensePoint__EDefensePriority, DefensePriority, 724)
 		ADD_BOOL(bOnlySkilled, 708, 0x8)
 		class Actor* GetMoveTarget()
 		{

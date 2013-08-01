@@ -1,11 +1,11 @@
 #pragma once
+#include "UDKBase.UDKSquadAI.AlternateRoute.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
 #include "UTGame.UTBot.h"
 #include "UTGame.UTCTFFlag.h"
 #include "UTGame.UTSquadAI.h"
 #include "Engine.NavigationPoint.h"
-#include "UDKBase.UDKSquadAI.h"
 #include "Engine.Pawn.h"
 #include "UTGame.UTVehicle.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -23,8 +23,8 @@ namespace UnrealScript
 	public:
 		ADD_OBJECT(UTCTFFlag, EnemyFlag, 688)
 		ADD_OBJECT(UTCTFFlag, FriendlyFlag, 684)
-		ADD_STRUCT(ScriptArray<UDKSquadAI::AlternateRoute>, EnemyFlagRoutes, 696)
-		ADD_STRUCT(ScriptArray<UDKSquadAI::AlternateRoute>, FriendlyFlagRoutes, 708)
+		ADD_STRUCT(ScriptArray<UDKSquadAI__AlternateRoute>, EnemyFlagRoutes, 696)
+		ADD_STRUCT(ScriptArray<UDKSquadAI__AlternateRoute>, FriendlyFlagRoutes, 708)
 		ADD_OBJECT(NavigationPoint, HidePath, 692)
 		ADD_STRUCT(float, LastSeeFlagCarrier, 680)
 		void PostBeginPlay()

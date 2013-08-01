@@ -1,11 +1,11 @@
 #pragma once
 #include "TribesGame.TrProjectile.h"
 #include "Engine.CameraAnim.h"
+#include "UDKBase.UDKPawn.MaterialSoundEffect.h"
 #include "Engine.SoundCue.h"
-#include "UDKBase.UDKPawn.h"
 #include "Engine.ParticleSystem.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,7 +33,7 @@ namespace UnrealScript
 		ADD_BOOL(bShrinking, 856, 0x2)
 		ADD_BOOL(bCheckShortRangeKill, 856, 0x1)
 		ADD_OBJECT(SoundCue, HitPawnSound, 852)
-		ADD_STRUCT(UDKPawn::MaterialSoundEffect, DefaultHitSound, 840)
+		ADD_STRUCT(UDKPawn__MaterialSoundEffect, DefaultHitSound, 840)
 		ADD_OBJECT(ParticleSystem, RockSmokeTemplate, 832)
 		ADD_OBJECT(ParticleSystem, BounceTemplate, 828)
 		ADD_STRUCT(float, ShrinkTimer, 824)

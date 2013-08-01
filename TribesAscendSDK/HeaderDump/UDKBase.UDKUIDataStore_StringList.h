@@ -1,6 +1,7 @@
 #pragma once
+#include "Core.Object.Pointer.h"
 #include "Engine.UIDataStore_StringBase.h"
-#include "Core.Object.h"
+#include "UDKBase.UDKUIDataStore_StringList.EStringListData.h"
 #include "Engine.LocalPlayer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -16,19 +17,9 @@ namespace UnrealScript
 	{
 	public:
 		static const auto INVALIDFIELD = -1;
-		struct EStringListData
-		{
-		public:
-			ADD_STRUCT(ScriptArray<ScriptString*>, Strings, 36)
-			ADD_OBJECT(UDKUIDataProvider_StringArray, DataProvider, 48)
-			ADD_STRUCT(int, DefaultValueIndex, 32)
-			ADD_STRUCT(ScriptString*, CurrentValue, 20)
-			ADD_STRUCT(ScriptString*, ColumnHeaderText, 8)
-			ADD_STRUCT(ScriptName, Tag, 0)
-		};
-		ADD_STRUCT(ScriptArray<UDKUIDataStore_StringList::EStringListData>, StringData, 128)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 124)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementProvider, 120)
+		ADD_STRUCT(ScriptArray<UDKUIDataStore_StringList__EStringListData>, StringData, 128)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 124)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementProvider, 120)
 		void Registered(class LocalPlayer* PlayerOwner)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(35705);

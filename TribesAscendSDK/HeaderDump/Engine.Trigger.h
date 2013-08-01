@@ -1,7 +1,8 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Projectile.h"
+#include "Engine.Trigger.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,11 +22,6 @@ namespace UnrealScript
 	class Trigger : public Actor
 	{
 	public:
-		struct CheckpointRecord
-		{
-		public:
-			ADD_BOOL(bCollideActors, 0, 0x1)
-		};
 		ADD_BOOL(bRecentlyTriggered, 480, 0x1)
 		ADD_STRUCT(float, AITriggerDelay, 484)
 		void Touch(class Actor* Other, 
@@ -67,21 +63,21 @@ void**)&params[4] = OtherComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void CreateCheckpointRecord(Trigger::CheckpointRecord& Record)
+		void CreateCheckpointRecord(Trigger__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28031);
 			byte params[4] = { NULL };
-			*(Trigger::CheckpointRecord*)params = Record;
+			*(Trigger__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(Trigger::CheckpointRecord*)params;
+			Record = *(Trigger__CheckpointRecord*)params;
 		}
-		void ApplyCheckpointRecord(Trigger::CheckpointRecord& Record)
+		void ApplyCheckpointRecord(Trigger__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28033);
 			byte params[4] = { NULL };
-			*(Trigger::CheckpointRecord*)params = Record;
+			*(Trigger__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(Trigger::CheckpointRecord*)params;
+			Record = *(Trigger__CheckpointRecord*)params;
 		}
 	};
 }

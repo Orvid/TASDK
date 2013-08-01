@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine.SkelControlSingleBone.h"
-#include "Core.Object.h"
+#include "UDKBase.UDKSkelControl_TurretConstrained.TurretStepData.h"
+#include "Core.Object.Rotator.h"
+#include "UDKBase.UDKSkelControl_TurretConstrained.TurretConstraintData.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,29 +22,14 @@ namespace UnrealScript
 	class UDKSkelControl_TurretConstrained : public SkelControlSingleBone
 	{
 	public:
-		struct TurretConstraintData
-		{
-		public:
-			ADD_STRUCT(int, RollConstraint, 8)
-			ADD_STRUCT(int, YawConstraint, 4)
-			ADD_STRUCT(int, PitchConstraint, 0)
-		};
-		struct TurretStepData
-		{
-		public:
-			ADD_STRUCT(UDKSkelControl_TurretConstrained::TurretConstraintData, MinAngle, 20)
-			ADD_STRUCT(UDKSkelControl_TurretConstrained::TurretConstraintData, MaxAngle, 8)
-			ADD_STRUCT(int, StepEndAngle, 4)
-			ADD_STRUCT(int, StepStartAngle, 0)
-		};
-		ADD_STRUCT(ScriptArray<UDKSkelControl_TurretConstrained::TurretStepData>, Steps, 264)
+		ADD_STRUCT(ScriptArray<UDKSkelControl_TurretConstrained__TurretStepData>, Steps, 264)
 		ADD_STRUCT(Rotator, ConstrainedBoneRotation, 300)
 		ADD_STRUCT(int, AssociatedSeatIndex, 296)
 		ADD_STRUCT(Rotator, DesiredBoneRotation, 284)
 		ADD_STRUCT(float, PitchSpeedScale, 280)
 		ADD_STRUCT(float, LagDegreesPerSecond, 276)
-		ADD_STRUCT(UDKSkelControl_TurretConstrained::TurretConstraintData, MinAngle, 252)
-		ADD_STRUCT(UDKSkelControl_TurretConstrained::TurretConstraintData, MaxAngle, 240)
+		ADD_STRUCT(UDKSkelControl_TurretConstrained__TurretConstraintData, MinAngle, 252)
+		ADD_STRUCT(UDKSkelControl_TurretConstrained__TurretConstraintData, MaxAngle, 240)
 		ADD_BOOL(bIsInMotion, 236, 0x100)
 		ADD_BOOL(bResetWhenUnattended, 236, 0x80)
 		ADD_BOOL(bFixedWhenFiring, 236, 0x40)

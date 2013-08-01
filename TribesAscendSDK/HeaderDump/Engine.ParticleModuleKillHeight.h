@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleKillBase.h"
-#include "Core.DistributionFloat.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,7 +23,7 @@ namespace UnrealScript
 		ADD_BOOL(bApplyPSysScale, 100, 0x4)
 		ADD_BOOL(bFloor, 100, 0x2)
 		ADD_BOOL(bAbsolute, 100, 0x1)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Height, 72)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Height, 72)
 	};
 }
 #undef ADD_BOOL

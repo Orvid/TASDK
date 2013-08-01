@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.TextureRenderTarget2D.h"
 #include "Engine.SequenceAction.h"
+#include "GFxUI.GFxMoviePlayer.GFxRenderTextureMode.h"
 #include "GFxUI.GFxMoviePlayer.h"
 #include "GFxUI.SwfMovie.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -29,7 +30,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<ScriptName>, CaptureKeys, 256)
 		ADD_STRUCT(ScriptArray<ScriptName>, FocusIgnoreKeys, 268)
 		ADD_OBJECT(TextureRenderTarget2D, RenderTexture, 252)
-		ADD_STRUCT(GFxMoviePlayer::GFxRenderTextureMode, RenderTextureMode, 248)
+		ADD_STRUCT(GFxMoviePlayer__GFxRenderTextureMode, RenderTextureMode, 248)
 		ADD_BOOL(bDisplayWithHudOff, 244, 0x10)
 		ADD_BOOL(bEnableGammaCorrection, 244, 0x8)
 		ADD_BOOL(bStartPaused, 244, 0x4)

@@ -1,8 +1,10 @@
 #pragma once
+#include "Core.Object.MultiMap_Mirror.h"
 #include "Engine.UIDataStore.h"
-#include "Core.Object.h"
+#include "Engine.UIDataStore_GameResource.GameResourceDataProvider.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.UIResourceDataProvider.h"
-#include "Engine.UIRoot.h"
+#include "Engine.UIRoot.UIProviderScriptFieldValue.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,17 +28,9 @@ namespace UnrealScript
 	class UIDataStore_GameResource : public UIDataStore
 	{
 	public:
-		struct GameResourceDataProvider
-		{
-		public:
-			ADD_OBJECT(ScriptClass, ProviderClass, 24)
-			ADD_BOOL(bExpandProviders, 20, 0x1)
-			ADD_STRUCT(ScriptString*, ProviderClassName, 8)
-			ADD_STRUCT(ScriptName, ProviderTag, 0)
-		};
-		ADD_STRUCT(ScriptArray<UIDataStore_GameResource::GameResourceDataProvider>, ElementProviderTypes, 124)
-		ADD_STRUCT(Object::MultiMap_Mirror, ListElementProviders, 136)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementProvider, 120)
+		ADD_STRUCT(ScriptArray<UIDataStore_GameResource__GameResourceDataProvider>, ElementProviderTypes, 124)
+		ADD_STRUCT(Object__MultiMap_Mirror, ListElementProviders, 136)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementProvider, 120)
 		int FindProviderTypeIndex(ScriptName ProviderTag)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28526);
@@ -82,27 +76,27 @@ namespace UnrealScript
 			ProviderFieldTags = *(ScriptArray<ScriptName>*)&params[8];
 			return *(bool*)&params[20];
 		}
-		bool GetProviderFieldValue(ScriptName ProviderTag, ScriptName SearchField, int ProviderIndex, UIRoot::UIProviderScriptFieldValue& out_FieldValue)
+		bool GetProviderFieldValue(ScriptName ProviderTag, ScriptName SearchField, int ProviderIndex, UIRoot__UIProviderScriptFieldValue& out_FieldValue)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28546);
 			byte params[108] = { NULL };
 			*(ScriptName*)params = ProviderTag;
 			*(ScriptName*)&params[8] = SearchField;
 			*(int*)&params[16] = ProviderIndex;
-			*(UIRoot::UIProviderScriptFieldValue*)&params[20] = out_FieldValue;
+			*(UIRoot__UIProviderScriptFieldValue*)&params[20] = out_FieldValue;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_FieldValue = *(UIRoot::UIProviderScriptFieldValue*)&params[20];
+			out_FieldValue = *(UIRoot__UIProviderScriptFieldValue*)&params[20];
 			return *(bool*)&params[104];
 		}
-		int FindProviderIndexByFieldValue(ScriptName ProviderTag, ScriptName SearchField, UIRoot::UIProviderScriptFieldValue& ValueToSearchFor)
+		int FindProviderIndexByFieldValue(ScriptName ProviderTag, ScriptName SearchField, UIRoot__UIProviderScriptFieldValue& ValueToSearchFor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28552);
 			byte params[104] = { NULL };
 			*(ScriptName*)params = ProviderTag;
 			*(ScriptName*)&params[8] = SearchField;
-			*(UIRoot::UIProviderScriptFieldValue*)&params[16] = ValueToSearchFor;
+			*(UIRoot__UIProviderScriptFieldValue*)&params[16] = ValueToSearchFor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ValueToSearchFor = *(UIRoot::UIProviderScriptFieldValue*)&params[16];
+			ValueToSearchFor = *(UIRoot__UIProviderScriptFieldValue*)&params[16];
 			return *(int*)&params[100];
 		}
 	};

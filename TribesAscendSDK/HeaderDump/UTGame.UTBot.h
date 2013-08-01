@@ -1,8 +1,7 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "UDKBase.UDKBot.h"
 #include "Engine.Controller.h"
-#include "UTGame.UTPickupFactory.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
 #include "Engine.NavigationPoint.h"
 #include "UTGame.UTDefensePoint.h"
@@ -11,16 +10,18 @@
 #include "Engine.Inventory.h"
 #include "UTGame.UTAvoidMarker.h"
 #include "Engine.InterpActor.h"
+#include "Core.Object.Rotator.h"
 #include "UTGame.UTSeqAct_AIStartFireAt.h"
-#include "UTGame.UTCharInfo.h"
 #include "UTGame.UTSeqAct_AIStopFire.h"
 #include "Engine.HUD.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.PhysicsVolume.h"
+#include "UTGame.UTCharInfo.CharacterInfo.h"
 #include "Engine.Vehicle.h"
 #include "Engine.Projectile.h"
 #include "UDKBase.UDKVehicle.h"
 #include "Engine.PickupFactory.h"
+#include "UTGame.UTPickupFactory.h"
 #include "UTGame.UTSeqAct_AIFreeze.h"
 #include "Engine.LiftCenter.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -618,14 +619,14 @@ namespace UnrealScript
 			*(bool*)&params[4] = bVehicleTransition;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void Initialize(float InSkill, UTCharInfo::CharacterInfo& BotInfo)
+		void Initialize(float InSkill, UTCharInfo__CharacterInfo& BotInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(42757);
 			byte params[116] = { NULL };
 			*(float*)params = InSkill;
-			*(UTCharInfo::CharacterInfo*)&params[4] = BotInfo;
+			*(UTCharInfo__CharacterInfo*)&params[4] = BotInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			BotInfo = *(UTCharInfo::CharacterInfo*)&params[4];
+			BotInfo = *(UTCharInfo__CharacterInfo*)&params[4];
 		}
 		void ResetSkill()
 		{

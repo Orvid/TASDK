@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.Controller.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Engine.Controller.h"
+#include "Engine.Actor.PhysEffectInfo.h"
 #include "Engine.DynamicSMActor.h"
+#include "Core.Object.Rotator.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.PhysicalMaterial.h"
+#include "Engine.Actor.RigidBodyState.h"
 #include "Engine.SeqAct_Toggle.h"
 #include "Engine.SeqAct_Teleport.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -29,13 +33,13 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, InitialLocation, 688)
 		ADD_STRUCT(Vector, ReplicatedDrawScale3D, 676)
 		ADD_STRUCT(float, AngErrorAccumulator, 672)
-		ADD_STRUCT(Actor::RigidBodyState, RBState, 608)
+		ADD_STRUCT(Actor__RigidBodyState, RBState, 608)
 		ADD_STRUCT(float, MaxPhysicsVelocity, 604)
 		ADD_STRUCT(float, StayUprightMaxTorque, 600)
 		ADD_STRUCT(float, StayUprightTorqueFactor, 596)
-		ADD_STRUCT(Actor::PhysEffectInfo, SlideEffectInfo, 580)
+		ADD_STRUCT(Actor__PhysEffectInfo, SlideEffectInfo, 580)
 		ADD_STRUCT(float, LastSlideTime, 576)
-		ADD_STRUCT(Actor::PhysEffectInfo, ImpactEffectInfo, 552)
+		ADD_STRUCT(Actor__PhysEffectInfo, ImpactEffectInfo, 552)
 		ADD_STRUCT(float, LastImpactTime, 548)
 		ADD_BOOL(bDisableClientSidePawnInteractions, 532, 0x80)
 		ADD_BOOL(bNeedsRBStateReplication, 532, 0x40)
@@ -91,18 +95,18 @@ namespace UnrealScript
 			*(ScriptName*)params = VarName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ApplyImpulse(Vector ImpulseDir, float ImpulseMag, Vector HitLocation, Actor::TraceHitInfo HitInfo, ScriptClass* DamageType)
+		void ApplyImpulse(Vector ImpulseDir, float ImpulseMag, Vector HitLocation, Actor__TraceHitInfo HitInfo, ScriptClass* DamageType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(18993);
 			byte params[60] = { NULL };
 			*(Vector*)params = ImpulseDir;
 			*(float*)&params[12] = ImpulseMag;
 			*(Vector*)&params[16] = HitLocation;
-			*(Actor::TraceHitInfo*)&params[28] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[28] = HitInfo;
 			*(ScriptClass**)&params[56] = DamageType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19000);
 			byte params[68] = { NULL };
@@ -111,7 +115,7 @@ namespace UnrealScript
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

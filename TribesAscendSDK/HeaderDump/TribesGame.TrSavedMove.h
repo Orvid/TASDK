@@ -1,10 +1,10 @@
 #pragma once
+#include "Engine.Actor.EDoubleClickDir.h"
 #include "Engine.Pawn.h"
 #include "Engine.PlayerController.h"
-#include "TribesGame.TrPawn.h"
 #include "Engine.SavedMove.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "TribesGame.TrPawn.WalkingDeceleration.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,7 +24,7 @@ namespace UnrealScript
 	class TrSavedMove : public SavedMove
 	{
 	public:
-		ADD_STRUCT(TrPawn::WalkingDeceleration, m_CurrentDecelerationFactor, 236)
+		ADD_STRUCT(TrPawn__WalkingDeceleration, m_CurrentDecelerationFactor, 236)
 		ADD_BOOL(m_bBlink, 232, 0x8)
 		ADD_BOOL(m_bJumpJet, 232, 0x4)
 		ADD_BOOL(m_bPressingJetpack, 232, 0x2)
@@ -51,14 +51,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		void SetMoveFor(class PlayerController* P, float DeltaTime, Vector newAccel, Actor::EDoubleClickDir InDoubleClick)
+		void SetMoveFor(class PlayerController* P, float DeltaTime, Vector newAccel, Actor__EDoubleClickDir InDoubleClick)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(110662);
 			byte params[21] = { NULL };
 			*(class PlayerController**)params = P;
 			*(float*)&params[4] = DeltaTime;
 			*(Vector*)&params[8] = newAccel;
-			*(Actor::EDoubleClickDir*)&params[20] = InDoubleClick;
+			*(Actor__EDoubleClickDir*)&params[20] = InDoubleClick;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		byte CompressedFlags()
@@ -68,14 +68,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *params;
 		}
-		Actor::EDoubleClickDir SetFlags(byte Flags, class PlayerController* PC)
+		Actor__EDoubleClickDir SetFlags(byte Flags, class PlayerController* PC)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(110671);
 			byte params[6] = { NULL };
 			*params = Flags;
 			*(class PlayerController**)&params[4] = PC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Actor::EDoubleClickDir*)&params[8];
+			return *(Actor__EDoubleClickDir*)&params[8];
 		}
 		ScriptString* GetDebugString()
 		{

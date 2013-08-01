@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.Object.h"
-#include "Engine.Scene.h"
+#include "Engine.Scene.ESceneDepthPriorityGroup.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,7 +20,7 @@ namespace UnrealScript
 	class PostProcessEffect : public Object
 	{
 	public:
-		ADD_STRUCT(Scene::ESceneDepthPriorityGroup, SceneDPG, 96)
+		ADD_STRUCT(Scene__ESceneDepthPriorityGroup, SceneDPG, 96)
 		ADD_STRUCT(int, InDrawY, 92)
 		ADD_STRUCT(int, OutDrawY, 88)
 		ADD_STRUCT(int, DrawHeight, 84)

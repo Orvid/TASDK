@@ -1,6 +1,6 @@
 #pragma once
 #include "TribesGame.TrVehicle_BaseFlying.h"
-#include "Core.Object.h"
+#include "Core.Object.Rotator.h"
 #include "UTGame.UTVehicleWeapon.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

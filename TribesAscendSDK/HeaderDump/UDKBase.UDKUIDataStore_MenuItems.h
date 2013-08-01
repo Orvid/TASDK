@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.UIDataStore_GameResource.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #include "UDKBase.UDKUIResourceDataProvider.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -20,7 +20,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<int>, WeaponPriority, 228)
 		ADD_STRUCT(int, GameModeFilter, 240)
 		ADD_OBJECT(ScriptClass, MapInfoDataProviderClass, 200)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 196)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 196)
 		int GetProviderCount(ScriptName FieldName)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(35605);

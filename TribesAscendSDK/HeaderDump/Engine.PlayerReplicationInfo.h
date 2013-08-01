@@ -1,9 +1,10 @@
 #pragma once
 #include "Engine.ReplicationInfo.h"
-#include "Engine.Texture2D.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.TeamInfo.h"
-#include "Engine.AudioDevice.h"
+#include "Engine.PlayerReplicationInfo.AutomatedTestingDatum.h"
+#include "Engine.Texture2D.h"
+#include "Engine.AudioDevice.ETTSSpeaker.h"
 #include "Engine.Controller.h"
 #include "Engine.HUD.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -29,16 +30,10 @@ namespace UnrealScript
 	class PlayerReplicationInfo : public ReplicationInfo
 	{
 	public:
-		struct AutomatedTestingDatum
-		{
-		public:
-			ADD_STRUCT(int, NumberOfMatchesPlayed, 0)
-			ADD_STRUCT(int, NumMapListCyclesDone, 4)
-		};
 		ADD_BOOL(bAdmin, 524, 0x1)
 		ADD_STRUCT(ScriptString*, PlayerName, 492)
 		ADD_STRUCT(int, PlayerID, 516)
-		ADD_STRUCT(OnlineSubsystem::UniqueNetId, UniqueId, 580)
+		ADD_STRUCT(OnlineSubsystem__UniqueNetId, UniqueId, 580)
 		ADD_BOOL(bOnlySpectator, 524, 0x4)
 		ADD_OBJECT(TeamInfo, Team, 520)
 		ADD_STRUCT(ScriptName, SessionName, 588)
@@ -48,7 +43,7 @@ namespace UnrealScript
 		ADD_BOOL(bReadyToPlay, 524, 0x10)
 		ADD_BOOL(bOutOfLives, 524, 0x20)
 		ADD_STRUCT(float, Score, 476)
-		ADD_STRUCT(PlayerReplicationInfo::AutomatedTestingDatum, AutomatedTestingData, 596)
+		ADD_STRUCT(PlayerReplicationInfo__AutomatedTestingDatum, AutomatedTestingData, 596)
 		ADD_STRUCT(int, StartTime, 528)
 		ADD_STRUCT(ScriptString*, SavedNetworkAddress, 568)
 		ADD_BOOL(bWaitingPlayer, 524, 0x8)
@@ -74,7 +69,7 @@ namespace UnrealScript
 		ADD_BOOL(bHasBeenWelcomed, 524, 0x80)
 		ADD_BOOL(bBot, 524, 0x40)
 		ADD_STRUCT(int, NumLives, 488)
-		ADD_STRUCT(AudioDevice::ETTSSpeaker, TTSSpeaker, 485)
+		ADD_STRUCT(AudioDevice__ETTSSpeaker, TTSSpeaker, 485)
 		ADD_STRUCT(int, Deaths, 480)
 		class PlayerReplicationInfo* Duplicate()
 		{
@@ -194,11 +189,11 @@ namespace UnrealScript
 			*(class PlayerReplicationInfo**)params = NewPRI;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetUniqueId(OnlineSubsystem::UniqueNetId PlayerUniqueId)
+		void SetUniqueId(OnlineSubsystem__UniqueNetId PlayerUniqueId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(24640);
 			byte params[8] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerUniqueId;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerUniqueId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		byte GetTeamNum()

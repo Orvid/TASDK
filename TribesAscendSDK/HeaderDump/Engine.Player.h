@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.PlayerController.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -22,7 +23,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, PP_DesaturationMultiplier, 80)
 		ADD_STRUCT(int, ConfiguredLanSpeed, 76)
 		ADD_STRUCT(int, ConfiguredInternetSpeed, 72)
-		ADD_STRUCT(Object::Pointer, VfTable_FExec, 60)
+		ADD_STRUCT(Object__Pointer, VfTable_FExec, 60)
 		void SwitchController(class PlayerController* PC)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19471);

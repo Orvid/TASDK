@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.MaterialExpression.h"
+#include "Engine.MaterialExpression.ExpressionInput.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,8 +20,8 @@ namespace UnrealScript
 	class MaterialExpressionDepthBiasedAlpha : public MaterialExpression
 	{
 	public:
-		ADD_STRUCT(MaterialExpression::ExpressionInput, Bias, 144)
-		ADD_STRUCT(MaterialExpression::ExpressionInput, Alpha, 116)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, Bias, 144)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, Alpha, 116)
 		ADD_STRUCT(float, BiasScale, 112)
 		ADD_BOOL(bNormalize, 108, 0x1)
 	};

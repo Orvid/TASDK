@@ -1,13 +1,15 @@
 #pragma once
 #include "UDKBase.UDKGame.h"
 #include "UTGame.UTVehicle.h"
+#include "UTGame.UTGame.GameMapCycle.h"
+#include "UTGame.UTGame.ActiveBotInfo.h"
 #include "Engine.NavigationPoint.h"
 #include "Engine.GameplayEventsWriter.h"
 #include "Engine.SpeechRecognition.h"
 #include "Engine.Pawn.h"
-#include "UTGame.UTPlayerController.h"
 #include "UTGame.UTTeamInfo.h"
 #include "Engine.Actor.h"
+#include "UTGame.UTPlayerController.h"
 #include "Engine.WorldInfo.h"
 #include "Engine.Controller.h"
 #include "Engine.Vehicle.h"
@@ -15,15 +17,16 @@
 #include "UTGame.UTVehicleFactory.h"
 #include "UTGame.UTGameObjective.h"
 #include "Engine.AIController.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.PlayerStart.h"
 #include "Engine.PickupFactory.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "UTGame.UTPawn.h"
 #include "UTGame.UTBot.h"
-#include "UTGame.UTCharInfo.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
+#include "UTGame.UTCharInfo.CharacterInfo.h"
 #include "UTGame.UTMutator.h"
+#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -47,33 +50,14 @@ namespace UnrealScript
 	class UTGame : public UDKGame
 	{
 	public:
-		enum EVoiceChannel : byte
-		{
-			VC_Spectators = 0,
-			VC_Team1 = 1,
-			VC_Team2 = 2,
-			VC_MAX = 3,
-		};
-		struct GameMapCycle
-		{
-		public:
-			ADD_STRUCT(ScriptArray<ScriptString*>, Maps, 8)
-			ADD_STRUCT(ScriptName, GameClassName, 0)
-		};
-		struct ActiveBotInfo
-		{
-		public:
-			ADD_BOOL(bInUse, 12, 0x1)
-			ADD_STRUCT(ScriptString*, BotName, 0)
-		};
 		ADD_OBJECT(UTVehicle, VehicleList, 1080)
 		ADD_STRUCT(int, ResetTimeDelay, 1076)
 		ADD_BOOL(bWarmupRound, 896, 0x1000)
 		ADD_STRUCT(int, WarmupTime, 956)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, DefaultInventory, 1100)
 		ADD_STRUCT(ScriptArray<ScriptString*>, MapPrefixes, 1116)
-		ADD_STRUCT(ScriptArray<UTGame::GameMapCycle>, GameSpecificMapCycles, 1148)
-		ADD_STRUCT(ScriptArray<UTGame::ActiveBotInfo>, ActiveBots, 1164)
+		ADD_STRUCT(ScriptArray<UTGame__GameMapCycle>, GameSpecificMapCycles, 1148)
+		ADD_STRUCT(ScriptArray<UTGame__ActiveBotInfo>, ActiveBots, 1164)
 		ADD_OBJECT(GameplayEventsWriter, GameplayEventsWriter, 1252)
 		ADD_STRUCT(ScriptString*, GameplayEventsWriterClassName, 1240)
 		ADD_STRUCT(ScriptName, MidgameScorePanelTag, 1232)
@@ -371,13 +355,13 @@ void**)&params[4] = CanUnpauseDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)params;
 		}
-		class PlayerController* Login(ScriptString* Portal, ScriptString* Options, OnlineSubsystem::UniqueNetId UniqueId, ScriptString*& ErrorMessage)
+		class PlayerController* Login(ScriptString* Portal, ScriptString* Options, OnlineSubsystem__UniqueNetId UniqueId, ScriptString*& ErrorMessage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(44711);
 			byte params[48] = { NULL };
 			*(ScriptString**)params = Portal;
 			*(ScriptString**)&params[12] = Options;
-			*(OnlineSubsystem::UniqueNetId*)&params[24] = UniqueId;
+			*(OnlineSubsystem__UniqueNetId*)&params[24] = UniqueId;
 			*(ScriptString**)&params[32] = ErrorMessage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			ErrorMessage = *(ScriptString**)&params[32];
@@ -566,15 +550,15 @@ void**)&params[4] = CanUnpauseDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class UTBot**)&params[20];
 		}
-		void InitializeBot(class UTBot* NewBot, class UTTeamInfo* BotTeam, UTCharInfo::CharacterInfo& BotInfo)
+		void InitializeBot(class UTBot* NewBot, class UTTeamInfo* BotTeam, UTCharInfo__CharacterInfo& BotInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(44825);
 			byte params[120] = { NULL };
 			*(class UTBot**)params = NewBot;
 			*(class UTTeamInfo**)&params[4] = BotTeam;
-			*(UTCharInfo::CharacterInfo*)&params[8] = BotInfo;
+			*(UTCharInfo__CharacterInfo*)&params[8] = BotInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			BotInfo = *(UTCharInfo::CharacterInfo*)&params[8];
+			BotInfo = *(UTCharInfo__CharacterInfo*)&params[8];
 		}
 		void InitGameReplicationInfo()
 		{
@@ -841,14 +825,14 @@ void**)&params[4] = CanUnpauseDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class UTMutator**)params;
 		}
-		void ProcessSpeechRecognition(class UTPlayerController* Speaker, ScriptArray<OnlineSubsystem::SpeechRecognizedWord>& Words)
+		void ProcessSpeechRecognition(class UTPlayerController* Speaker, ScriptArray<OnlineSubsystem__SpeechRecognizedWord>& Words)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45078);
 			byte params[16] = { NULL };
 			*(class UTPlayerController**)params = Speaker;
-			*(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4] = Words;
+			*(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4] = Words;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Words = *(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4];
+			Words = *(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4];
 		}
 		void WriteOnlinePlayerScores()
 		{

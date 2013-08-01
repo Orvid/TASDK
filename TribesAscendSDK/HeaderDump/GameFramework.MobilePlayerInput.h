@@ -2,12 +2,18 @@
 #include "Engine.PlayerInput.h"
 #include "GameFramework.SeqEvent_MobileRawInput.h"
 #include "GameFramework.SeqEvent_MobileBase.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
-#include "GameFramework.MobileMenuObject.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.EInputEvent.h"
+#include "GameFramework.MobilePlayerInput.TouchData.h"
+#include "GameFramework.MobilePlayerInput.MobileInputZoneClassMap.h"
+#include "GameFramework.MobilePlayerInput.MobileInputGroup.h"
+#include "Core.Object.Vector2D.h"
 #include "GameFramework.MobileInputZone.h"
-#include "Engine.Canvas.h"
 #include "GameFramework.MobileMenuScene.h"
+#include "GameFramework.MobileMenuObject.h"
+#include "GameFramework.MobileInputZone.EZoneTouchEvent.h"
+#include "Engine.Canvas.h"
+#include "Engine.Actor.ETravelType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,50 +38,6 @@ namespace UnrealScript
 	{
 	public:
 		static const auto NumTouchDataEntries = 5;
-		enum EUIOrientation : byte
-		{
-			UI_Unknown = 0,
-			UI_Portait = 1,
-			UI_PortaitUpsideDown = 2,
-			UI_LandscapeRight = 3,
-			UI_LandscapeLeft = 4,
-			UI_MAX = 5,
-		};
-		struct MobileInputGroup
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class MobileInputZone*>, AssociatedZones, 12)
-			ADD_STRUCT(ScriptString*, GroupName, 0)
-		};
-		struct MobileInputZoneClassMap
-		{
-		public:
-			ADD_OBJECT(ScriptClass, ClassType, 12)
-			ADD_STRUCT(ScriptString*, Name, 0)
-		};
-		struct TouchDataEvent
-		{
-		public:
-			ADD_STRUCT(Object::Double, DeviceTime, 12)
-			ADD_STRUCT(Object::Vector2D, Location, 4)
-			ADD_STRUCT(MobileInputZone::EZoneTouchEvent, EventType, 0)
-		};
-		struct TouchData
-		{
-		public:
-			ADD_BOOL(bInUse, 40, 0x1)
-			ADD_STRUCT(MobileInputZone::EZoneTouchEvent, State, 48)
-			ADD_OBJECT(MobileInputZone, Zone, 44)
-			ADD_STRUCT(int, Handle, 0)
-			ADD_STRUCT(ScriptArray<MobilePlayerInput::TouchDataEvent>, Events, 52)
-			ADD_STRUCT(float, LastActiveTime, 64)
-			ADD_STRUCT(float, MoveDeltaTime, 36)
-			ADD_STRUCT(Object::Double, MoveEventDeviceTime, 28)
-			ADD_STRUCT(float, TouchDuration, 24)
-			ADD_STRUCT(Object::Double, InitialDeviceTime, 16)
-			ADD_STRUCT(float, TotalMoveDistance, 12)
-			ADD_STRUCT(Object::Vector2D, Location, 4)
-		};
 		ADD_STRUCT(Vector, DeviceAccelerometerRawData, 928)
 		ADD_BOOL(bDeviceHasGyroscope, 764, 0x10)
 		ADD_STRUCT(Vector, DeviceGyroRawData, 916)
@@ -83,16 +45,16 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, DeviceMotionRotationRate, 856)
 		ADD_STRUCT(Vector, DeviceMotionGravity, 868)
 		ADD_STRUCT(Vector, DeviceMotionAcceleration, 880)
-		ADD_STRUCT(MobilePlayerInput::TouchData, Touches, 380)
+		ADD_STRUCT(MobilePlayerInput__TouchData, Touches, 380)
 		ADD_STRUCT(float, MobileYaw, 780)
 		ADD_STRUCT(float, MobileYawCenter, 784)
 		ADD_STRUCT(float, MobileYawMultiplier, 788)
 		ADD_STRUCT(float, MobilePitch, 768)
 		ADD_STRUCT(float, MobilePitchCenter, 772)
 		ADD_STRUCT(float, MobilePitchMultiplier, 776)
-		ADD_STRUCT(ScriptArray<MobilePlayerInput::MobileInputGroup>, MobileInputGroups, 724)
+		ADD_STRUCT(ScriptArray<MobilePlayerInput__MobileInputGroup>, MobileInputGroups, 724)
 		ADD_STRUCT(ScriptArray<class MobileInputZone*>, MobileInputZones, 740)
-		ADD_STRUCT(ScriptArray<MobilePlayerInput::MobileInputZoneClassMap>, MobileInputZoneClasses, 752)
+		ADD_STRUCT(ScriptArray<MobilePlayerInput__MobileInputZoneClassMap>, MobileInputZoneClasses, 752)
 		ADD_STRUCT(ScriptArray<class MobileMenuScene*>, MobileMenuStack, 816)
 		ADD_STRUCT(ScriptArray<class SeqEvent_MobileBase*>, MobileSeqEventHandlers, 892)
 		ADD_STRUCT(ScriptArray<class SeqEvent_MobileRawInput*>, MobileRawInputSeqEventHandlers, 904)
@@ -134,13 +96,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class MobileMenuScene**)&params[16];
 		}
-		void OnInputTouch(int Handle, MobileInputZone::EZoneTouchEvent Type, Object::Vector2D TouchLocation, float DeviceTimestamp)
+		void OnInputTouch(int Handle, MobileInputZone__EZoneTouchEvent Type, Object__Vector2D TouchLocation, float DeviceTimestamp)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32759);
 			byte params[17] = { NULL };
 			*(int*)params = Handle;
-			*(MobileInputZone::EZoneTouchEvent*)&params[4] = Type;
-			*(Object::Vector2D*)&params[8] = TouchLocation;
+			*(MobileInputZone__EZoneTouchEvent*)&params[4] = Type;
+			*(Object__Vector2D*)&params[8] = TouchLocation;
 			*(float*)&params[16] = DeviceTimestamp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -179,12 +141,12 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32799);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void SendInputKey(ScriptName Key, Object::EInputEvent Event, float AmountDepressed)
+		void SendInputKey(ScriptName Key, Object__EInputEvent Event, float AmountDepressed)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32800);
 			byte params[13] = { NULL };
 			*(ScriptName*)params = Key;
-			*(Object::EInputEvent*)&params[8] = Event;
+			*(Object__EInputEvent*)&params[8] = Event;
 			*(float*)&params[12] = AmountDepressed;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -272,12 +234,12 @@ namespace UnrealScript
 			*(float*)&params[4] = RenderDelta;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void PreClientTravel(ScriptString* PendingURL, Actor::ETravelType TravelType, bool bIsSeamlessTravel)
+		void PreClientTravel(ScriptString* PendingURL, Actor__ETravelType TravelType, bool bIsSeamlessTravel)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32852);
 			byte params[17] = { NULL };
 			*(ScriptString**)params = PendingURL;
-			*(Actor::ETravelType*)&params[12] = TravelType;
+			*(Actor__ETravelType*)&params[12] = TravelType;
 			*(bool*)&params[16] = bIsSeamlessTravel;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.BlockingVolume.h"
+#include "Engine.DynamicBlockingVolume.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,36 +20,27 @@ namespace UnrealScript
 	class DynamicBlockingVolume : public BlockingVolume
 	{
 	public:
-		struct CheckpointRecord
-		{
-		public:
-			ADD_BOOL(bNeedsReplication, 24, 0x4)
-			ADD_BOOL(bBlockActors, 24, 0x2)
-			ADD_BOOL(bCollideActors, 24, 0x1)
-			ADD_STRUCT(Rotator, Rotation, 12)
-			ADD_STRUCT(Vector, Location, 0)
-		};
 		ADD_BOOL(bEnabled, 524, 0x1)
 		void PostBeginPlay()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14840);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void CreateCheckpointRecord(DynamicBlockingVolume::CheckpointRecord& Record)
+		void CreateCheckpointRecord(DynamicBlockingVolume__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14841);
 			byte params[28] = { NULL };
-			*(DynamicBlockingVolume::CheckpointRecord*)params = Record;
+			*(DynamicBlockingVolume__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(DynamicBlockingVolume::CheckpointRecord*)params;
+			Record = *(DynamicBlockingVolume__CheckpointRecord*)params;
 		}
-		void ApplyCheckpointRecord(DynamicBlockingVolume::CheckpointRecord& Record)
+		void ApplyCheckpointRecord(DynamicBlockingVolume__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14843);
 			byte params[28] = { NULL };
-			*(DynamicBlockingVolume::CheckpointRecord*)params = Record;
+			*(DynamicBlockingVolume__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(DynamicBlockingVolume::CheckpointRecord*)params;
+			Record = *(DynamicBlockingVolume__CheckpointRecord*)params;
 		}
 	};
 }

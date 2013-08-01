@@ -1,8 +1,9 @@
 #pragma once
+#include "Core.Object.Color.h"
 #include "UTGame.UTLocalMessage.h"
-#include "Core.Object.h"
 #include "Engine.PlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Core.Object.h"
 #include "UTGame.UTAnnouncer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -13,15 +14,8 @@ namespace UnrealScript
 	class TrCTFHUDMessage : public UTLocalMessage
 	{
 	public:
-		enum CTF_HUD_MESSAGE : byte
-		{
-			CTF_YouHaveTheFlag = 0,
-			CTF_EnemyHasTheFlag = 1,
-			CTF_YouAndEnemyHaveTheFlag = 2,
-			CTF_MAX = 3,
-		};
-		ADD_STRUCT(Object::Color, YellowColor, 152)
-		ADD_STRUCT(Object::Color, RedColor, 148)
+		ADD_STRUCT(Object__Color, YellowColor, 152)
+		ADD_STRUCT(Object__Color, RedColor, 148)
 		ADD_STRUCT(ScriptString*, YouHaveFlagReminderString, 136)
 		ADD_STRUCT(ScriptString*, BothFlagsString, 124)
 		ADD_STRUCT(ScriptString*, EnemyHasFlagString, 112)
@@ -37,7 +31,7 @@ namespace UnrealScript
 			*(class Object**)&params[16] = OptionalObject;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		Object::Color GetColor(int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
+		Object__Color GetColor(int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(78306);
 			byte params[20] = { NULL };
@@ -46,7 +40,7 @@ namespace UnrealScript
 			*(class PlayerReplicationInfo**)&params[8] = RelatedPRI_2;
 			*(class Object**)&params[12] = OptionalObject;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[16];
+			return *(Object__Color*)&params[16];
 		}
 		ScriptString* GetString(int Switch, bool bPRI1HUD, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
 		{

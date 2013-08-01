@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "GFxUI.GFxEngine.GCReference.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,14 +14,7 @@ namespace UnrealScript
 	class GFxEngine : public Object
 	{
 	public:
-		struct GCReference
-		{
-		public:
-			ADD_STRUCT(int, m_statid, 8)
-			ADD_STRUCT(int, m_count, 4)
-			ADD_OBJECT(Object, m_object, 0)
-		};
-		ADD_STRUCT(ScriptArray<GFxEngine::GCReference>, GCReferences, 60)
+		ADD_STRUCT(ScriptArray<GFxEngine__GCReference>, GCReferences, 60)
 		ADD_STRUCT(int, RefCount, 72)
 	};
 }

@@ -1,6 +1,7 @@
 #pragma once
+#include "Engine.SkelControlBase.EBoneControlSpace.h"
+#include "Core.Object.Vector.h"
 #include "Engine.SkelControlBase.h"
-#include "Core.Object.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,7 +31,7 @@ namespace UnrealScript
 		ADD_STRUCT(int, NumBones, 224)
 		ADD_STRUCT(Vector, EffectorTranslationFromBone, 212)
 		ADD_STRUCT(ScriptName, EffectorSpaceBoneName, 204)
-		ADD_STRUCT(SkelControlBase::EBoneControlSpace, EffectorLocationSpace, 200)
+		ADD_STRUCT(SkelControlBase__EBoneControlSpace, EffectorLocationSpace, 200)
 		ADD_STRUCT(Vector, EffectorLocation, 188)
 	};
 }

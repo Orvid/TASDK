@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleLocationBase.h"
+#include "Engine.ParticleModuleLocationEmitter.ELocationEmitterSelectionMethod.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,17 +20,11 @@ namespace UnrealScript
 	class ParticleModuleLocationEmitter : public ParticleModuleLocationBase
 	{
 	public:
-		enum ELocationEmitterSelectionMethod : byte
-		{
-			ELESM_Random = 0,
-			ELESM_Sequential = 1,
-			ELESM_MAX = 2,
-		};
 		ADD_STRUCT(float, InheritSourceRotationScale, 92)
 		ADD_STRUCT(float, InheritSourceVelocityScale, 88)
 		ADD_BOOL(bInheritSourceRotation, 84, 0x2)
 		ADD_BOOL(InheritSourceVelocity, 84, 0x1)
-		ADD_STRUCT(ParticleModuleLocationEmitter::ELocationEmitterSelectionMethod, SelectionMethod, 80)
+		ADD_STRUCT(ParticleModuleLocationEmitter__ELocationEmitterSelectionMethod, SelectionMethod, 80)
 		ADD_STRUCT(ScriptName, EmitterName, 72)
 	};
 }

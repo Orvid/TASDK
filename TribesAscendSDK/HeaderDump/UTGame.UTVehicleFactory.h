@@ -1,12 +1,13 @@
 #pragma once
 #include "UDKBase.UDKVehicleFactory.h"
-#include "Core.Object.h"
+#include "Engine.SeqAct_Toggle.h"
+#include "Core.Object.Rotator.h"
 #include "UTGame.UTMapInfo.h"
 #include "UTGame.UTGameObjective.h"
 #include "Engine.Canvas.h"
+#include "Core.Object.LinearColor.h"
 #include "UTGame.UTPlayerController.h"
 #include "UTGame.UTVehicle.h"
-#include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -53,14 +54,14 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(49694);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void RenderMapIcon(class UTMapInfo* MP, class Canvas* Canvas, class UTPlayerController* PlayerOwner, Object::LinearColor FinalColor)
+		void RenderMapIcon(class UTMapInfo* MP, class Canvas* Canvas, class UTPlayerController* PlayerOwner, Object__LinearColor FinalColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(49695);
 			byte params[28] = { NULL };
 			*(class UTMapInfo**)params = MP;
 			*(class Canvas**)&params[4] = Canvas;
 			*(class UTPlayerController**)&params[8] = PlayerOwner;
-			*(Object::LinearColor*)&params[12] = FinalColor;
+			*(Object__LinearColor*)&params[12] = FinalColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void Activate(byte T)

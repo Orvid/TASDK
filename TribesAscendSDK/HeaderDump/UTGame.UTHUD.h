@@ -1,22 +1,26 @@
 #pragma once
-#include "Engine.MaterialInstanceConstant.h"
+#include "Core.Object.Color.h"
 #include "UTGame.UTHUDBase.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.Texture2D.h"
 #include "Engine.Font.h"
 #include "Engine.Weapon.h"
 #include "Engine.Pawn.h"
-#include "Core.Object.h"
-#include "Engine.UIRoot.h"
+#include "UTGame.UTHUD.DamageInfo.h"
+#include "Core.Object.LinearColor.h"
 #include "UTGame.UTWeapon.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "Engine.MaterialInstanceConstant.h"
 #include "Engine.MaterialEffect.h"
 #include "Engine.Material.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #include "UTGame.UTPawn.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "Engine.HUD.h"
+#include "Engine.Canvas.h"
+#include "Engine.HUD.HudLocalizedMessage.h"
 #include "Engine.UIInteraction.h"
 #include "Engine.LocalPlayer.h"
-#include "Engine.Canvas.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -40,35 +44,28 @@ namespace UnrealScript
 	class UTHUD : public UTHUDBase
 	{
 	public:
-		struct DamageInfo
-		{
-		public:
-			ADD_OBJECT(MaterialInstanceConstant, MatConstant, 8)
-			ADD_STRUCT(float, FadeValue, 4)
-			ADD_STRUCT(float, FadeTime, 0)
-		};
 		ADD_OBJECT(Texture2D, AltHudTexture, 1528)
-		ADD_STRUCT(Object::LinearColor, WhiteLinearColor, 2612)
-		ADD_STRUCT(Object::LinearColor, TeamHUDColor, 1664)
+		ADD_STRUCT(Object__LinearColor, WhiteLinearColor, 2612)
+		ADD_STRUCT(Object__LinearColor, TeamHUDColor, 1664)
 		ADD_BOOL(bShowVehicleArmorCount, 1584, 0x40000)
 		ADD_STRUCT(float, TX, 2540)
 		ADD_STRUCT(float, TY, 2544)
-		ADD_STRUCT(Object::LinearColor, GoldLinearColor, 2628)
+		ADD_STRUCT(Object__LinearColor, GoldLinearColor, 2628)
 		ADD_OBJECT(Pawn, PawnOwner, 1572)
 		ADD_STRUCT(float, LastAmmoPickupTime, 1560)
 		ADD_STRUCT(float, LastArmorPickupTime, 1568)
 		ADD_STRUCT(float, MessageOffset, 1844)
 		ADD_BOOL(bIsFirstPlayer, 1584, 0x80000)
 		ADD_STRUCT(ScriptArray<class Font*>, HudFonts, 1588)
-		ADD_STRUCT(ScriptArray<UTHUD::DamageInfo>, DamageData, 1916)
-		ADD_STRUCT(Object::Color, BkgTexColor, 2680)
-		ADD_STRUCT(UIRoot::TextureCoordinates, BkgTexCoords, 2664)
+		ADD_STRUCT(ScriptArray<UTHUD__DamageInfo>, DamageData, 1916)
+		ADD_STRUCT(Object__Color, BkgTexColor, 2680)
+		ADD_STRUCT(UIRoot__TextureCoordinates, BkgTexCoords, 2664)
 		ADD_OBJECT(Texture2D, BkgTexture, 2660)
-		ADD_STRUCT(Object::LinearColor, SilverLinearColor, 2644)
-		ADD_STRUCT(Object::LinearColor, DMLinearColor, 2596)
-		ADD_STRUCT(Object::LinearColor, BlueLinearColor, 2580)
-		ADD_STRUCT(Object::LinearColor, RedLinearColor, 2564)
-		ADD_STRUCT(Object::LinearColor, AmmoBarColor, 2548)
+		ADD_STRUCT(Object__LinearColor, SilverLinearColor, 2644)
+		ADD_STRUCT(Object__LinearColor, DMLinearColor, 2596)
+		ADD_STRUCT(Object__LinearColor, BlueLinearColor, 2580)
+		ADD_STRUCT(Object__LinearColor, RedLinearColor, 2564)
+		ADD_STRUCT(Object__LinearColor, AmmoBarColor, 2548)
 		ADD_STRUCT(float, THeight, 2536)
 		ADD_STRUCT(float, BootHeight, 2532)
 		ADD_STRUCT(float, BootWidth, 2528)
@@ -90,7 +87,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, DollWidth, 2464)
 		ADD_STRUCT(float, DollOffsetY, 2460)
 		ADD_STRUCT(float, DollOffsetX, 2456)
-		ADD_STRUCT(UIRoot::TextureCoordinates, PawnDollBGCoords, 2440)
+		ADD_STRUCT(UIRoot__TextureCoordinates, PawnDollBGCoords, 2440)
 		ADD_STRUCT(ScriptString*, PlaceMarks, 2392)
 		ADD_STRUCT(ScriptString*, YouHaveLost, 2380)
 		ADD_STRUCT(ScriptString*, YouHaveWon, 2368)
@@ -100,30 +97,30 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptString*, PressFireToBegin, 2320)
 		ADD_STRUCT(ScriptString*, WaitingForMatch, 2308)
 		ADD_STRUCT(ScriptString*, WarmupString, 2296)
-		ADD_STRUCT(Object::LinearColor, BlackBackgroundColor, 2280)
-		ADD_STRUCT(UIRoot::TextureCoordinates, NameplateRight, 2264)
-		ADD_STRUCT(UIRoot::TextureCoordinates, NameplateBubble, 2248)
-		ADD_STRUCT(UIRoot::TextureCoordinates, NameplateCenter, 2232)
-		ADD_STRUCT(UIRoot::TextureCoordinates, NameplateLeft, 2216)
+		ADD_STRUCT(Object__LinearColor, BlackBackgroundColor, 2280)
+		ADD_STRUCT(UIRoot__TextureCoordinates, NameplateRight, 2264)
+		ADD_STRUCT(UIRoot__TextureCoordinates, NameplateBubble, 2248)
+		ADD_STRUCT(UIRoot__TextureCoordinates, NameplateCenter, 2232)
+		ADD_STRUCT(UIRoot__TextureCoordinates, NameplateLeft, 2216)
 		ADD_STRUCT(float, NameplateBubbleWidth, 2212)
 		ADD_STRUCT(float, NameplateWidth, 2208)
 		ADD_STRUCT(float, DamageIndicatorSize, 2204)
-		ADD_STRUCT(Object::Vector2D, VehiclePosition, 2196)
+		ADD_STRUCT(Object__Vector2D, VehiclePosition, 2196)
 		ADD_STRUCT(int, LastFragCount, 2192)
 		ADD_STRUCT(float, FragPulseTime, 2188)
-		ADD_STRUCT(Object::Vector2D, ScoringPosition, 2180)
+		ADD_STRUCT(Object__Vector2D, ScoringPosition, 2180)
 		ADD_STRUCT(float, PowerupTransitionTime, 2176)
 		ADD_STRUCT(float, PowerupYPos, 2172)
-		ADD_STRUCT(Object::Vector2D, PowerupDims, 2164)
-		ADD_STRUCT(Object::Vector2D, MapPosition, 2156)
+		ADD_STRUCT(Object__Vector2D, PowerupDims, 2164)
+		ADD_STRUCT(Object__Vector2D, MapPosition, 2156)
 		ADD_STRUCT(float, AmmoPulseTime, 2152)
 		ADD_STRUCT(int, LastAmmoCount, 2148)
 		ADD_OBJECT(UTWeapon, LastWeapon, 2144)
 		ADD_STRUCT(float, AmmoTextOffsetY, 2140)
 		ADD_STRUCT(float, AmmoTextOffsetX, 2136)
-		ADD_STRUCT(UIRoot::TextureCoordinates, AmmoBGCoords, 2120)
+		ADD_STRUCT(UIRoot__TextureCoordinates, AmmoBGCoords, 2120)
 		ADD_STRUCT(float, AmmoBarOffsetY, 2116)
-		ADD_STRUCT(Object::Vector2D, AmmoPosition, 2108)
+		ADD_STRUCT(Object__Vector2D, AmmoPosition, 2108)
 		ADD_STRUCT(float, ArmorPulseTime, 2104)
 		ADD_STRUCT(int, LastArmorAmount, 2100)
 		ADD_STRUCT(float, ArmorTextY, 2096)
@@ -132,7 +129,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, ArmorIconX, 2084)
 		ADD_STRUCT(float, ArmorBGOffsetY, 2080)
 		ADD_STRUCT(float, ArmorBGOffsetX, 2076)
-		ADD_STRUCT(UIRoot::TextureCoordinates, ArmorBGCoords, 2060)
+		ADD_STRUCT(UIRoot__TextureCoordinates, ArmorBGCoords, 2060)
 		ADD_STRUCT(float, HealthPulseTime, 2056)
 		ADD_STRUCT(int, LastHealth, 2052)
 		ADD_STRUCT(float, HealthTextY, 2048)
@@ -142,15 +139,15 @@ namespace UnrealScript
 		ADD_STRUCT(float, HealthBGOffsetY, 2032)
 		ADD_STRUCT(float, HealthBGOffsetX, 2028)
 		ADD_STRUCT(float, HealthOffsetX, 2024)
-		ADD_STRUCT(UIRoot::TextureCoordinates, HealthBGCoords, 2008)
+		ADD_STRUCT(UIRoot__TextureCoordinates, HealthBGCoords, 2008)
 		ADD_STRUCT(float, DollVisibility, 2004)
 		ADD_STRUCT(float, LastDollUpdate, 2000)
-		ADD_STRUCT(Object::Vector2D, DollPosition, 1992)
-		ADD_STRUCT(Object::Vector2D, ClockPosition, 1984)
+		ADD_STRUCT(Object__Vector2D, DollPosition, 1992)
+		ADD_STRUCT(Object__Vector2D, ClockPosition, 1984)
 		ADD_OBJECT(MaterialInstanceConstant, HitEffectMaterialInstance, 1980)
 		ADD_OBJECT(MaterialEffect, HitEffect, 1976)
 		ADD_STRUCT(float, HitEffectFadeTime, 1972)
-		ADD_STRUCT(Object::LinearColor, MaxHitEffectColor, 1956)
+		ADD_STRUCT(Object__LinearColor, MaxHitEffectColor, 1956)
 		ADD_STRUCT(float, HitEffectIntensity, 1952)
 		ADD_STRUCT(ScriptName, FadeParamName, 1944)
 		ADD_STRUCT(ScriptName, PositionalParamName, 1936)
@@ -187,7 +184,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, CurrentWeaponScale, 1728)
 		ADD_OBJECT(UTWeapon, WeaponList, 1688)
 		ADD_STRUCT(float, WeaponBarY, 1684)
-		ADD_STRUCT(Object::Color, TeamTextColor, 1680)
+		ADD_STRUCT(Object__Color, TeamTextColor, 1680)
 		ADD_STRUCT(float, HUDScaleY, 1660)
 		ADD_STRUCT(float, HUDScaleX, 1656)
 		ADD_STRUCT(float, WeaponBoxHeight, 1652)
@@ -195,7 +192,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, WeaponBarScale, 1644)
 		ADD_OBJECT(UTPlayerReplicationInfo, CharPendingPRI, 1640)
 		ADD_OBJECT(UTPlayerReplicationInfo, CharPRI, 1636)
-		ADD_STRUCT(Object::Vector2D, CharPortraitSize, 1628)
+		ADD_STRUCT(Object__Vector2D, CharPortraitSize, 1628)
 		ADD_STRUCT(float, CharPortraitSlideTransitionTime, 1624)
 		ADD_STRUCT(float, CharPortraitSlideTime, 1620)
 		ADD_STRUCT(float, CharPortraitTime, 1616)
@@ -224,12 +221,12 @@ namespace UnrealScript
 		ADD_OBJECT(UTPlayerReplicationInfo, UTOwnerPRI, 1580)
 		ADD_OBJECT(UTPawn, UTPawnOwner, 1576)
 		ADD_STRUCT(float, LastHealthPickupTime, 1564)
-		ADD_STRUCT(Object::Color, GrayColor, 1556)
-		ADD_STRUCT(Object::LinearColor, LC_White, 1540)
+		ADD_STRUCT(Object__Color, GrayColor, 1556)
+		ADD_STRUCT(Object__LinearColor, LC_White, 1540)
 		ADD_OBJECT(Texture2D, UT3GHudTexture, 1536)
 		ADD_OBJECT(Texture2D, TalkingTexture, 1532)
 		ADD_OBJECT(ScriptClass, WeaponSwitchMessage, 1524)
-		void DrawTileCentered(class Texture2D* Tex, float XL, float YL, float U, float V, float UL, float VL, Object::LinearColor C)
+		void DrawTileCentered(class Texture2D* Tex, float XL, float YL, float U, float V, float UL, float VL, Object__LinearColor C)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45714);
 			byte params[44] = { NULL };
@@ -240,7 +237,7 @@ namespace UnrealScript
 			*(float*)&params[16] = V;
 			*(float*)&params[20] = UL;
 			*(float*)&params[24] = VL;
-			*(Object::LinearColor*)&params[28] = C;
+			*(Object__LinearColor*)&params[28] = C;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetDisplayedOrders(ScriptString* OrderText)
@@ -265,34 +262,34 @@ namespace UnrealScript
 			*(float*)&params[24] = Lifetime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		Object::Vector2D ResolveHUDPosition(Object::Vector2D Position, float Width, float Height)
+		Object__Vector2D ResolveHUDPosition(Object__Vector2D Position, float Width, float Height)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45737);
 			byte params[24] = { NULL };
-			*(Object::Vector2D*)params = Position;
+			*(Object__Vector2D*)params = Position;
 			*(float*)&params[8] = Width;
 			*(float*)&params[12] = Height;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Vector2D*)&params[16];
+			return *(Object__Vector2D*)&params[16];
 		}
-		void GetScreenCoords(float PosY, float& ScreenX, float& ScreenY, HUD::HudLocalizedMessage& InMessage)
+		void GetScreenCoords(float PosY, float& ScreenX, float& ScreenY, HUD__HudLocalizedMessage& InMessage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45743);
 			byte params[76] = { NULL };
 			*(float*)params = PosY;
 			*(float*)&params[4] = ScreenX;
 			*(float*)&params[8] = ScreenY;
-			*(HUD::HudLocalizedMessage*)&params[12] = InMessage;
+			*(HUD__HudLocalizedMessage*)&params[12] = InMessage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			ScreenX = *(float*)&params[4];
 			ScreenY = *(float*)&params[8];
-			InMessage = *(HUD::HudLocalizedMessage*)&params[12];
+			InMessage = *(HUD__HudLocalizedMessage*)&params[12];
 		}
-		void DrawMessageText(HUD::HudLocalizedMessage LocalMessage, float ScreenX, float ScreenY)
+		void DrawMessageText(HUD__HudLocalizedMessage LocalMessage, float ScreenX, float ScreenY)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45750);
 			byte params[72] = { NULL };
-			*(HUD::HudLocalizedMessage*)params = LocalMessage;
+			*(HUD__HudLocalizedMessage*)params = LocalMessage;
 			*(float*)&params[64] = ScreenX;
 			*(float*)&params[68] = ScreenY;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -361,16 +358,16 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45840);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void GetTeamColor(int TeamIndex, Object::LinearColor& ImageColor, Object::Color& TextColor)
+		void GetTeamColor(int TeamIndex, Object__LinearColor& ImageColor, Object__Color& TextColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45841);
 			byte params[24] = { NULL };
 			*(int*)params = TeamIndex;
-			*(Object::LinearColor*)&params[4] = ImageColor;
-			*(Object::Color*)&params[20] = TextColor;
+			*(Object__LinearColor*)&params[4] = ImageColor;
+			*(Object__Color*)&params[20] = TextColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ImageColor = *(Object::LinearColor*)&params[4];
-			TextColor = *(Object::Color*)&params[20];
+			ImageColor = *(Object__LinearColor*)&params[4];
+			TextColor = *(Object__Color*)&params[20];
 		}
 		void DisplayHit(Vector HitDir, int Damage, ScriptClass* DamageType)
 		{
@@ -398,7 +395,7 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45874);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void DrawBackground(float X, float Y, float Width, float Height, Object::LinearColor DrawColor, class Canvas* DrawCanvas)
+		void DrawBackground(float X, float Y, float Width, float Height, Object__LinearColor DrawColor, class Canvas* DrawCanvas)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45876);
 			byte params[36] = { NULL };
@@ -406,11 +403,11 @@ namespace UnrealScript
 			*(float*)&params[4] = Y;
 			*(float*)&params[8] = Width;
 			*(float*)&params[12] = Height;
-			*(Object::LinearColor*)&params[16] = DrawColor;
+			*(Object__LinearColor*)&params[16] = DrawColor;
 			*(class Canvas**)&params[32] = DrawCanvas;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawBeaconBackground(float X, float Y, float Width, float Height, Object::LinearColor DrawColor, class Canvas* DrawCanvas)
+		void DrawBeaconBackground(float X, float Y, float Width, float Height, Object__LinearColor DrawColor, class Canvas* DrawCanvas)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45883);
 			byte params[36] = { NULL };
@@ -418,7 +415,7 @@ namespace UnrealScript
 			*(float*)&params[4] = Y;
 			*(float*)&params[8] = Width;
 			*(float*)&params[12] = Height;
-			*(Object::LinearColor*)&params[16] = DrawColor;
+			*(Object__LinearColor*)&params[16] = DrawColor;
 			*(class Canvas**)&params[32] = DrawCanvas;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -435,7 +432,7 @@ namespace UnrealScript
 			params[24] = Alpha;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawBarGraph(float X, float Y, float Width, float MaxWidth, float Height, class Canvas* DrawCanvas, Object::Color BarColor, Object::Color BackColor)
+		void DrawBarGraph(float X, float Y, float Width, float MaxWidth, float Height, class Canvas* DrawCanvas, Object__Color BarColor, Object__Color BackColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45901);
 			byte params[32] = { NULL };
@@ -445,8 +442,8 @@ namespace UnrealScript
 			*(float*)&params[12] = MaxWidth;
 			*(float*)&params[16] = Height;
 			*(class Canvas**)&params[20] = DrawCanvas;
-			*(Object::Color*)&params[24] = BarColor;
-			*(Object::Color*)&params[28] = BackColor;
+			*(Object__Color*)&params[24] = BarColor;
+			*(Object__Color*)&params[28] = BackColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		ScriptString* FormatTime(int Seconds)
@@ -522,28 +519,28 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45966);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void DisplayFragCount(Object::Vector2D pos)
+		void DisplayFragCount(Object__Vector2D pos)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45968);
 			byte params[8] = { NULL };
-			*(Object::Vector2D*)params = pos;
+			*(Object__Vector2D*)params = pos;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawNameplateBackground(Object::Vector2D pos, float WordWidth, Object::LinearColor NameplateColor, float WordHeight)
+		void DrawNameplateBackground(Object__Vector2D pos, float WordWidth, Object__LinearColor NameplateColor, float WordHeight)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45972);
 			byte params[32] = { NULL };
-			*(Object::Vector2D*)params = pos;
+			*(Object__Vector2D*)params = pos;
 			*(float*)&params[8] = WordWidth;
-			*(Object::LinearColor*)&params[12] = NameplateColor;
+			*(Object__LinearColor*)&params[12] = NameplateColor;
 			*(float*)&params[28] = WordHeight;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DisplayLeaderBoard(Object::Vector2D pos)
+		void DisplayLeaderBoard(Object__Vector2D pos)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45979);
 			byte params[8] = { NULL };
-			*(Object::Vector2D*)params = pos;
+			*(Object__Vector2D*)params = pos;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void DisplayConsoleMessages()

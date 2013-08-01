@@ -1,4 +1,5 @@
 #pragma once
+#include "TribesGame.TrAnimNodeBlendByDeviceAnim.DeviceNodeCameraAnimation.h"
 #include "TribesGame.TrAnimNodeBlendList.h"
 #include "GameFramework.GameSkelCtrl_Recoil.h"
 #include "TribesGame.TrPawn.h"
@@ -27,23 +28,10 @@ namespace UnrealScript
 	class TrAnimNodeBlendByDeviceAnim : public TrAnimNodeBlendList
 	{
 	public:
-		struct DeviceNodeCameraAnimation
-		{
-		public:
-			ADD_BOOL(bRandomStartTime, 28, 0x2)
-			ADD_BOOL(bLoop, 28, 0x1)
-			ADD_STRUCT(float, BlendOutTime, 24)
-			ADD_STRUCT(float, BlendInTime, 20)
-			ADD_STRUCT(float, Scale, 16)
-			ADD_STRUCT(float, Rate, 12)
-			ADD_OBJECT(CameraAnimInst, CameraAnimInstance, 8)
-			ADD_OBJECT(CameraAnim, CameraAnim, 4)
-			ADD_STRUCT(int, ChildIndex, 0)
-		};
 		ADD_STRUCT(ScriptArray<ScriptName>, m_nmRecoilControlNames, 312)
 		ADD_STRUCT(ScriptArray<class GameSkelCtrl_Recoil*>, m_RecoilControls, 324)
 		ADD_STRUCT(ScriptArray<class GameSkelCtrl_Recoil*>, m_TinyWeaponsRecoilControls, 336)
-		ADD_STRUCT(ScriptArray<TrAnimNodeBlendByDeviceAnim::DeviceNodeCameraAnimation>, m_CameraAnimations, 408)
+		ADD_STRUCT(ScriptArray<TrAnimNodeBlendByDeviceAnim__DeviceNodeCameraAnimation>, m_CameraAnimations, 408)
 		ADD_STRUCT(int, m_nSocketIndex, 404)
 		ADD_OBJECT(TrAnimNodeBlendByDeviceAnim, m_SecondaryDeviceBlendNode, 400)
 		ADD_STRUCT(ScriptName, m_SecondaryDeviceBlendNodeName, 392)

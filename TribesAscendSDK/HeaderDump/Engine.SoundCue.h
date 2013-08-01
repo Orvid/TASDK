@@ -1,8 +1,8 @@
 #pragma once
+#include "Engine.AudioDevice.ESoundClassName.h"
 #include "Core.Object.h"
 #include "Engine.FaceFXAnimSet.h"
 #include "Engine.SoundNode.h"
-#include "Engine.AudioDevice.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,12 +16,6 @@ namespace UnrealScript
 	class SoundCue : public Object
 	{
 	public:
-		struct SoundNodeEditorData
-		{
-		public:
-			ADD_STRUCT(int, NodePosY, 4)
-			ADD_STRUCT(int, NodePosX, 0)
-		};
 		ADD_STRUCT(ScriptString*, FaceFXAnimName, 168)
 		ADD_OBJECT(FaceFXAnimSet, FaceFXAnimSetRef, 152)
 		ADD_STRUCT(ScriptString*, FaceFXGroupName, 156)
@@ -33,7 +27,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, VolumeMultiplier, 140)
 		ADD_STRUCT(float, MaxAudibleDistance, 136)
 		ADD_OBJECT(SoundNode, FirstNode, 72)
-		ADD_STRUCT(AudioDevice::ESoundClassName, SoundClassName, 68)
+		ADD_STRUCT(AudioDevice__ESoundClassName, SoundClassName, 68)
 		ADD_STRUCT(ScriptName, SoundClass, 60)
 		float GetCueDuration()
 		{

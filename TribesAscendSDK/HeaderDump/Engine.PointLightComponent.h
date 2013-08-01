@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.LightComponent.h"
-#include "Engine.EngineTypes.h"
-#include "Core.Object.h"
+#include "Engine.EngineTypes.LightmassPointLightSettings.h"
+#include "Core.Object.Plane.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Matrix.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,10 +13,10 @@ namespace UnrealScript
 	class PointLightComponent : public LightComponent
 	{
 	public:
-		ADD_STRUCT(EngineTypes::LightmassPointLightSettings, LightmassSettings, 564)
-		ADD_STRUCT(Object::Plane, ShadowPlane, 544)
+		ADD_STRUCT(EngineTypes__LightmassPointLightSettings, LightmassSettings, 564)
+		ADD_STRUCT(Object__Plane, ShadowPlane, 544)
 		ADD_STRUCT(Vector, Translation, 528)
-		ADD_STRUCT(Object::Matrix, CachedParentToWorld, 464)
+		ADD_STRUCT(Object__Matrix, CachedParentToWorld, 464)
 		ADD_STRUCT(float, MinShadowFalloffRadius, 448)
 		ADD_STRUCT(float, ShadowFalloffExponent, 444)
 		ADD_STRUCT(float, FalloffExponent, 440)

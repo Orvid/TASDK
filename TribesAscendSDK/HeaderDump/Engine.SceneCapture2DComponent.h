@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.SceneCaptureComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.Matrix.h"
 #include "Engine.TextureRenderTarget2D.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,8 +27,8 @@ namespace UnrealScript
 	class SceneCapture2DComponent : public SceneCaptureComponent
 	{
 	public:
-		ADD_STRUCT(Object::Matrix, ProjMatrix, 240)
-		ADD_STRUCT(Object::Matrix, ViewMatrix, 176)
+		ADD_STRUCT(Object__Matrix, ProjMatrix, 240)
+		ADD_STRUCT(Object__Matrix, ViewMatrix, 176)
 		ADD_BOOL(bUpdateMatrices, 160, 0x1)
 		ADD_STRUCT(float, FarPlane, 156)
 		ADD_STRUCT(float, NearPlane, 152)

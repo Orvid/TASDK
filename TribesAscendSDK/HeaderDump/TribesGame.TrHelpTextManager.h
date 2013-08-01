@@ -1,5 +1,8 @@
 #pragma once
 #include "Engine.Actor.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
+#include "TribesGame.TrHelpTextManager.HelpTextTypeRemovalTimerInfo.h"
+#include "TribesGame.TrHelpTextManager.HelpTextInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,54 +22,6 @@ namespace UnrealScript
 	class TrHelpTextManager : public Actor
 	{
 	public:
-		enum EHelpTextType : byte
-		{
-			HelpText_SkiingHowTo = 0,
-			HelpText_GeneratorDescriptionLevel1 = 1,
-			HelpText_GeneratorDescriptionLevel2 = 2,
-			HelpText_GeneratorDescriptionLevel3 = 3,
-			HelpText_GeneratorDescriptionLevel4 = 4,
-			HelpText_JetpackHowTo = 5,
-			HelpText_OutOfAmmoNotifier = 6,
-			HelpText_OffhandReminder = 7,
-			HelpText_CTFFlagDescription = 8,
-			HelpText_HoldingEnemyFlagDescription = 9,
-			HelpText_RabbitFlagDescription = 10,
-			HelpText_HoldingRabbitFlagDescription = 11,
-			HelpText_InventoryStationDescription = 12,
-			HelpText_VehicleStationDescription = 13,
-			HelpText_BaseTurretDescriptionLevel1 = 14,
-			HelpText_BaseTurretDescriptionLevel2 = 15,
-			HelpText_BaseTurretDescriptionLevel3 = 16,
-			HelpText_BaseTurretDescriptionLevel4 = 17,
-			HelpText_RadarSensorDescriptionLevel1 = 18,
-			HelpText_RadarSensorDescriptionLevel2 = 19,
-			HelpText_RadarSensorDescriptionLevel3 = 20,
-			HelpText_RadarSensorDescriptionLevel4 = 21,
-			HelpText_RepairStationDescription = 22,
-			HelpText_ArmoredTargetDescription = 23,
-			HelpText_CreditsDescription = 24,
-			HelpText_YouCanPickupPassengerReminder = 25,
-			HelpText_ConduitDescription = 26,
-			HelpText_SpotTargetReminder = 27,
-			HelpText_ChangingClassDescription = 28,
-			HelpText_ChangingClassHowTo = 29,
-			HelpText_MAX = 30,
-		};
-		struct HelpTextInfo
-		{
-		public:
-			ADD_BOOL(bSelfSuppress, 8, 0x1)
-			ADD_STRUCT(int, Priority, 4)
-			ADD_STRUCT(TrHelpTextManager::EHelpTextType, HelpTextType, 0)
-		};
-		struct HelpTextTypeRemovalTimerInfo
-		{
-		public:
-			ADD_BOOL(bSuppress, 8, 0x1)
-			ADD_STRUCT(float, RemainingTime, 4)
-			ADD_STRUCT(TrHelpTextManager::EHelpTextType, HelpTextTypeToRemove, 0)
-		};
 		ADD_BOOL(m_bShowHelpTexts, 476, 0x1)
 		ADD_BOOL(m_bSuppressOffhandReminder, 476, 0x100)
 		ADD_BOOL(m_bSuppressSpotTargetReminder, 476, 0x10000000)
@@ -98,9 +53,9 @@ namespace UnrealScript
 		ADD_BOOL(m_bSuppressConduitDescription, 476, 0x8000000)
 		ADD_BOOL(m_bSuppressChangingClassDescription, 476, 0x20000000)
 		ADD_BOOL(m_bSuppressChangingClassHowTo, 476, 0x40000000)
-		ADD_STRUCT(ScriptArray<TrHelpTextManager::EHelpTextType>, m_HelpTextQueue, 1240)
-		ADD_STRUCT(ScriptArray<TrHelpTextManager::HelpTextTypeRemovalTimerInfo>, m_HelpTextTypesToRemoveOnTimers, 1252)
-		ADD_STRUCT(ScriptArray<TrHelpTextManager::HelpTextInfo>, m_HelpTextConfig, 1228)
+		ADD_STRUCT(ScriptArray<TrHelpTextManager__EHelpTextType>, m_HelpTextQueue, 1240)
+		ADD_STRUCT(ScriptArray<TrHelpTextManager__HelpTextTypeRemovalTimerInfo>, m_HelpTextTypesToRemoveOnTimers, 1252)
+		ADD_STRUCT(ScriptArray<TrHelpTextManager__HelpTextInfo>, m_HelpTextConfig, 1228)
 		ADD_STRUCT(ScriptString*, m_HelpTextSkiingHowTo, 480)
 		ADD_STRUCT(ScriptString*, m_HelpTextSkiingHowToMenuTitle, 840)
 		ADD_STRUCT(ScriptString*, m_HelpTextGeneratorDescriptionLevel1, 492)
@@ -166,11 +121,11 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_SpotTargetReminderRecursiveTime, 1224)
 		ADD_STRUCT(float, m_OffhandReminderInitialTime, 1212)
 		ADD_STRUCT(float, m_SpotTargetReminderInitialTime, 1220)
-		bool RequestHelpText(TrHelpTextManager::EHelpTextType RequestedType)
+		bool RequestHelpText(TrHelpTextManager__EHelpTextType RequestedType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67677);
 			byte params[5] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = RequestedType;
+			*(TrHelpTextManager__EHelpTextType*)params = RequestedType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
@@ -203,28 +158,28 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		bool IsSuppressed(TrHelpTextManager::EHelpTextType RequestedType)
+		bool IsSuppressed(TrHelpTextManager__EHelpTextType RequestedType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(69861);
 			byte params[5] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = RequestedType;
+			*(TrHelpTextManager__EHelpTextType*)params = RequestedType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void RemoveHelpText(TrHelpTextManager::EHelpTextType TypeToRemove, float Time, bool bDoNotSuppress)
+		void RemoveHelpText(TrHelpTextManager__EHelpTextType TypeToRemove, float Time, bool bDoNotSuppress)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(69880);
 			byte params[9] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = TypeToRemove;
+			*(TrHelpTextManager__EHelpTextType*)params = TypeToRemove;
 			*(float*)&params[4] = Time;
 			*(bool*)&params[8] = bDoNotSuppress;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SuppressHelpText(TrHelpTextManager::EHelpTextType TypeToSuppress)
+		void SuppressHelpText(TrHelpTextManager__EHelpTextType TypeToSuppress)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(69887);
 			byte params[1] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = TypeToSuppress;
+			*(TrHelpTextManager__EHelpTextType*)params = TypeToSuppress;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UpdateHUD()
@@ -240,12 +195,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[12];
 		}
-		int HelpTextQueueSort(TrHelpTextManager::EHelpTextType A, TrHelpTextManager::EHelpTextType B)
+		int HelpTextQueueSort(TrHelpTextManager__EHelpTextType A, TrHelpTextManager__EHelpTextType B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(69969);
 			byte params[6] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = A;
-			*(TrHelpTextManager::EHelpTextType*)&params[1] = B;
+			*(TrHelpTextManager__EHelpTextType*)params = A;
+			*(TrHelpTextManager__EHelpTextType*)&params[1] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}

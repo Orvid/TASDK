@@ -3,16 +3,18 @@
 #include "UDKBase.UDKMapInfo.h"
 #include "UTGame.UTGameObjective.h"
 #include "Engine.Texture.h"
-#include "Core.Object.h"
-#include "UDKBase.UDKVehicle.h"
-#include "Engine.UIRoot.h"
-#include "Engine.MaterialInstanceConstant.h"
 #include "Engine.Material.h"
+#include "Core.Object.Vector.h"
+#include "UDKBase.UDKVehicle.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "Engine.MaterialInstanceConstant.h"
 #include "Engine.Actor.h"
 #include "UTGame.UTMapMusicInfo.h"
 #include "Engine.Canvas.h"
 #include "UTGame.UTPlayerController.h"
 #include "UTGame.UTVehicle.h"
+#include "Core.Object.LinearColor.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -45,7 +47,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<class UTGameObjective*>, Objectives, 112)
 		ADD_STRUCT(ScriptArray<class UTGameObjective*>, Sensors, 252)
 		ADD_OBJECT(UDKVehicle, KeyVehicles, 244)
-		ADD_STRUCT(UIRoot::TextureCoordinates, PlayerIconCoords, 228)
+		ADD_STRUCT(UIRoot__TextureCoordinates, PlayerIconCoords, 228)
 		ADD_OBJECT(MaterialInstanceConstant, GreenIconMaterialInstance, 224)
 		ADD_STRUCT(float, ColorPercent, 220)
 		ADD_STRUCT(Vector, CenterPos, 204)
@@ -122,7 +124,7 @@ namespace UnrealScript
 			*(class UTVehicle**)params = V;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawRotatedTile(class Canvas* Canvas, class Texture2D* T, Vector MapLocation, int InYaw, float IconScale, UIRoot::TextureCoordinates TexCoords, Object::LinearColor DrawColor)
+		void DrawRotatedTile(class Canvas* Canvas, class Texture2D* T, Vector MapLocation, int InYaw, float IconScale, UIRoot__TextureCoordinates TexCoords, Object__LinearColor DrawColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(48424);
 			byte params[60] = { NULL };
@@ -131,8 +133,8 @@ namespace UnrealScript
 			*(Vector*)&params[8] = MapLocation;
 			*(int*)&params[20] = InYaw;
 			*(float*)&params[24] = IconScale;
-			*(UIRoot::TextureCoordinates*)&params[28] = TexCoords;
-			*(Object::LinearColor*)&params[44] = DrawColor;
+			*(UIRoot__TextureCoordinates*)&params[28] = TexCoords;
+			*(Object__LinearColor*)&params[44] = DrawColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void DrawRotatedMaterialTile(class Canvas* Canvas, class MaterialInstanceConstant* M, Vector MapLocation, int InYaw, float XWidth, float YWidth, float XStart, float YStart, float XLength, float YLength)

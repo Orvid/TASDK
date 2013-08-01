@@ -1,14 +1,16 @@
 #pragma once
 #include "Engine.Canvas.h"
 #include "UTGame.UTWeapon.h"
-#include "Engine.HUD.h"
+#include "Core.Object.Vector.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
 #include "UTGame.UTVehicle.h"
 #include "Engine.PhysicalMaterial.h"
 #include "Engine.SoundCue.h"
-#include "UDKBase.UDKPawn.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Engine.HUD.h"
 #include "Engine.Projectile.h"
+#include "UTGame.UTWeapon.EZoomState.h"
 #include "UTGame.UTPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -40,8 +42,8 @@ namespace UnrealScript
 		ADD_OBJECT(SoundCue, BulletWhip, 1624)
 		ADD_STRUCT(ScriptArray<ScriptName>, FireTriggerTags, 1480)
 		ADD_STRUCT(ScriptArray<ScriptName>, AltFireTriggerTags, 1492)
-		ADD_STRUCT(ScriptArray<UDKPawn::MaterialImpactEffect>, ImpactEffects, 1504)
-		ADD_STRUCT(ScriptArray<UDKPawn::MaterialImpactEffect>, AltImpactEffects, 1516)
+		ADD_STRUCT(ScriptArray<UDKPawn__MaterialImpactEffect>, ImpactEffects, 1504)
+		ADD_STRUCT(ScriptArray<UDKPawn__MaterialImpactEffect>, AltImpactEffects, 1516)
 		ADD_OBJECT(ScriptClass, VehicleClass, 1648)
 		ADD_BOOL(bDebugTurret, 1644, 0x10)
 		ADD_BOOL(bCurrentlyZoomed, 1644, 0x2)
@@ -50,8 +52,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, CurrentCrosshairScaling, 1636)
 		ADD_STRUCT(float, LastInCorrectAimTime, 1632)
 		ADD_STRUCT(float, LastCorrectAimTime, 1628)
-		ADD_STRUCT(UDKPawn::MaterialImpactEffect, DefaultAltImpactEffect, 1576)
-		ADD_STRUCT(UDKPawn::MaterialImpactEffect, DefaultImpactEffect, 1528)
+		ADD_STRUCT(UDKPawn__MaterialImpactEffect, DefaultAltImpactEffect, 1576)
+		ADD_STRUCT(UDKPawn__MaterialImpactEffect, DefaultImpactEffect, 1528)
 		float GetMaxFinalAimAdjustment()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39530);
@@ -76,7 +78,7 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptName*)&params[8];
 		}
-		UDKPawn::MaterialImpactEffect GetImpactEffect(class Actor* HitActor, class PhysicalMaterial* HitMaterial, byte FireModeNum)
+		UDKPawn__MaterialImpactEffect GetImpactEffect(class Actor* HitActor, class PhysicalMaterial* HitMaterial, byte FireModeNum)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(39974);
 			byte params[57] = { NULL };
@@ -84,7 +86,7 @@ namespace UnrealScript
 			*(class PhysicalMaterial**)&params[4] = HitMaterial;
 			params[8] = FireModeNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(UDKPawn::MaterialImpactEffect*)&params[12];
+			return *(UDKPawn__MaterialImpactEffect*)&params[12];
 		}
 		bool CanHitDesiredTarget(Vector SocketLocation, Rotator SocketRotation, Vector DesiredAimPoint, class Actor* TargetActor, Vector& RealAimPoint)
 		{
@@ -255,12 +257,12 @@ void**)params = MeshCpnt;
 			*(bool*)&params[8] = bStopWhenOwnerDestroyed;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		UTWeapon::EZoomState GetZoomedState()
+		UTWeapon__EZoomState GetZoomedState()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(49931);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(UTWeapon::EZoomState*)params;
+			return *(UTWeapon__EZoomState*)params;
 		}
 		void ServerSetZoom(bool bNowZoomed)
 		{

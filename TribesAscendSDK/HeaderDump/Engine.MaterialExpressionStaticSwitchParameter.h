@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.MaterialExpressionParameter.h"
-#include "Core.Object.h"
-#include "Engine.MaterialExpression.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.MaterialExpression.ExpressionInput.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,9 +21,9 @@ namespace UnrealScript
 	class MaterialExpressionStaticSwitchParameter : public MaterialExpressionParameter
 	{
 	public:
-		ADD_STRUCT(Object::Pointer, InstanceOverride, 192)
-		ADD_STRUCT(MaterialExpression::ExpressionInput, B, 164)
-		ADD_STRUCT(MaterialExpression::ExpressionInput, A, 136)
+		ADD_STRUCT(Object__Pointer, InstanceOverride, 192)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, B, 164)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, A, 136)
 		ADD_BOOL(ExtendedCaptionDisplay, 132, 0x2)
 		ADD_BOOL(DefaultValue, 132, 0x1)
 	};

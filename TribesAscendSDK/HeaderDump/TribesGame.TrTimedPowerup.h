@@ -1,13 +1,13 @@
 #pragma once
 #include "Engine.SoundCue.h"
 #include "TribesGame.TrInventory.h"
+#include "Engine.HUD.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Canvas.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "Engine.Pawn.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
-#include "Engine.UIRoot.h"
-#include "Engine.Pawn.h"
-#include "Engine.Canvas.h"
-#include "Engine.HUD.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -26,7 +26,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, WarningTime, 604)
 		ADD_STRUCT(float, TransitionDuration, 600)
 		ADD_STRUCT(float, TransitionTime, 596)
-		ADD_STRUCT(UIRoot::TextureCoordinates, IconCoords, 580)
+		ADD_STRUCT(UIRoot__TextureCoordinates, IconCoords, 580)
 		ADD_STRUCT(ScriptName, PowerupStatName, 572)
 		ADD_OBJECT(SoundCue, PowerupOverSound, 568)
 		ADD_STRUCT(int, HudIndex, 564)

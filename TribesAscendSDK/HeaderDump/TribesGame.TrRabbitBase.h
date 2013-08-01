@@ -9,7 +9,7 @@
 #include "Engine.Actor.h"
 #include "Engine.PlayerController.h"
 #include "Engine.Pawn.h"
-#include "TribesGame.TrHelpTextManager.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -106,11 +106,11 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109773);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void SpawnHelpTextCollisionProxy(TrHelpTextManager::EHelpTextType HelpTextType)
+		void SpawnHelpTextCollisionProxy(TrHelpTextManager__EHelpTextType HelpTextType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109774);
 			byte params[1] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = HelpTextType;
+			*(TrHelpTextManager__EHelpTextType*)params = HelpTextType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 	};

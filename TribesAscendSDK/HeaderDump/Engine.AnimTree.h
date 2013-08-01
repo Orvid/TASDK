@@ -1,14 +1,21 @@
 #pragma once
+#include "Engine.AnimTree.SkelControlListHead.h"
 #include "Engine.AnimNodeBlendBase.h"
+#include "Engine.AnimTree.AnimGroup.h"
 #include "Engine.MorphNodeBase.h"
-#include "Core.Object.h"
+#include "Core.Object.BoneAtom.h"
 #include "Engine.SkeletalMesh.h"
+#include "Engine.AnimTree.PreviewSocketStruct.h"
 #include "Engine.MorphTargetSet.h"
 #include "Engine.AnimSet.h"
+#include "Engine.StaticMesh.h"
+#include "Engine.AnimTree.PreviewSkelMeshStruct.h"
+#include "Engine.AnimTree.PreviewAnimSetsStruct.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.AnimNode.h"
-#include "Engine.StaticMesh.h"
 #include "Engine.SkelControlBase.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,56 +39,18 @@ namespace UnrealScript
 	class AnimTree : public AnimNodeBlendBase
 	{
 	public:
-		struct AnimGroup
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class AnimNodeSequence*>, SeqNodes, 0)
-			ADD_STRUCT(float, SynchPctPosition, 32)
-			ADD_STRUCT(float, RateScale, 28)
-			ADD_STRUCT(ScriptName, GroupName, 20)
-			ADD_OBJECT(AnimNodeSequence, NotifyMaster, 16)
-			ADD_OBJECT(AnimNodeSequence, SynchMaster, 12)
-		};
-		struct SkelControlListHead
-		{
-		public:
-			ADD_STRUCT(int, DrawY, 12)
-			ADD_OBJECT(SkelControlBase, ControlHead, 8)
-			ADD_STRUCT(ScriptName, BoneName, 0)
-		};
-		struct PreviewSkelMeshStruct
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class MorphTargetSet*>, PreviewMorphSets, 12)
-			ADD_OBJECT(SkeletalMesh, PreviewSkelMesh, 8)
-			ADD_STRUCT(ScriptName, DisplayName, 0)
-		};
-		struct PreviewSocketStruct
-		{
-		public:
-			ADD_OBJECT(StaticMesh, PreviewStaticMesh, 20)
-			ADD_OBJECT(SkeletalMesh, PreviewSkelMesh, 16)
-			ADD_STRUCT(ScriptName, SocketName, 8)
-			ADD_STRUCT(ScriptName, DisplayName, 0)
-		};
-		struct PreviewAnimSetsStruct
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class AnimSet*>, PreviewAnimSets, 8)
-			ADD_STRUCT(ScriptName, DisplayName, 0)
-		};
-		ADD_STRUCT(ScriptArray<AnimTree::AnimGroup>, AnimGroups, 244)
+		ADD_STRUCT(ScriptArray<AnimTree__AnimGroup>, AnimGroups, 244)
 		ADD_STRUCT(ScriptArray<ScriptName>, PrioritizedSkelBranches, 256)
 		ADD_STRUCT(ScriptArray<ScriptName>, ComposePrePassBoneNames, 268)
 		ADD_STRUCT(ScriptArray<ScriptName>, ComposePostPassBoneNames, 280)
 		ADD_STRUCT(ScriptArray<class MorphNodeBase*>, RootMorphNodes, 292)
-		ADD_STRUCT(ScriptArray<AnimTree::SkelControlListHead>, SkelControlLists, 304)
-		ADD_STRUCT(ScriptArray<Object::BoneAtom>, SavedPose, 316)
+		ADD_STRUCT(ScriptArray<AnimTree__SkelControlListHead>, SkelControlLists, 304)
+		ADD_STRUCT(ScriptArray<Object__BoneAtom>, SavedPose, 316)
 		ADD_STRUCT(ScriptArray<class AnimSet*>, PreviewAnimSets, 360)
 		ADD_STRUCT(ScriptArray<class MorphTargetSet*>, PreviewMorphSets, 372)
-		ADD_STRUCT(ScriptArray<AnimTree::PreviewSkelMeshStruct>, PreviewMeshList, 384)
-		ADD_STRUCT(ScriptArray<AnimTree::PreviewSocketStruct>, PreviewSocketList, 400)
-		ADD_STRUCT(ScriptArray<AnimTree::PreviewAnimSetsStruct>, PreviewAnimSetList, 416)
+		ADD_STRUCT(ScriptArray<AnimTree__PreviewSkelMeshStruct>, PreviewMeshList, 384)
+		ADD_STRUCT(ScriptArray<AnimTree__PreviewSocketStruct>, PreviewSocketList, 400)
+		ADD_STRUCT(ScriptArray<AnimTree__PreviewAnimSetsStruct>, PreviewAnimSetList, 416)
 		ADD_STRUCT(ScriptArray<class AnimNode*>, AnimTickArray, 476)
 		ADD_STRUCT(int, PreviewFloorYaw, 472)
 		ADD_STRUCT(Vector, PreviewFloorPos, 460)

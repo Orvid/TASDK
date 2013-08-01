@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine.AnimNodeSynch.SynchGroup.h"
 #include "Engine.AnimNodeBlendBase.h"
 #include "Engine.AnimNodeSequence.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -24,16 +25,7 @@ namespace UnrealScript
 	class AnimNodeSynch : public AnimNodeBlendBase
 	{
 	public:
-		struct SynchGroup
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class AnimNodeSequence*>, SeqNodes, 0)
-			ADD_STRUCT(float, RateScale, 28)
-			ADD_BOOL(bFireSlaveNotifies, 24, 0x1)
-			ADD_STRUCT(ScriptName, GroupName, 16)
-			ADD_OBJECT(AnimNodeSequence, MasterNode, 12)
-		};
-		ADD_STRUCT(ScriptArray<AnimNodeSynch::SynchGroup>, Groups, 244)
+		ADD_STRUCT(ScriptArray<AnimNodeSynch__SynchGroup>, Groups, 244)
 		void AddNodeToGroup(class AnimNodeSequence* SeqNode, ScriptName GroupName)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(11109);

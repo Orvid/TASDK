@@ -1,10 +1,10 @@
 #pragma once
 #include "Engine.SoundNodeWave.h"
+#include "Core.Object.LinearColor.h"
 #include "UDKBase.UDKPickupFactory.h"
 #include "Engine.Projectile.h"
 #include "Engine.ForceFeedbackWaveform.h"
 #include "Engine.SoundCue.h"
-#include "Core.Object.h"
 #include "UTGame.UTBot.h"
 #include "Engine.Controller.h"
 #include "UTGame.UTHUD.h"
@@ -95,11 +95,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void StartPulse(Object::LinearColor TargetEmissive)
+		void StartPulse(Object__LinearColor TargetEmissive)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(40423);
 			byte params[16] = { NULL };
-			*(Object::LinearColor*)params = TargetEmissive;
+			*(Object__LinearColor*)params = TargetEmissive;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetPickupMesh()

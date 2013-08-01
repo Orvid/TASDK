@@ -1,7 +1,8 @@
 #pragma once
-#include "Core.Object.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
 #include "Engine.Actor.h"
-#include "Engine.PrimitiveComponent.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -22,14 +23,14 @@ namespace UnrealScript
 	class NxForceField : public Actor
 	{
 	public:
-		ADD_STRUCT(ScriptArray<Object::Pointer>, ConvexMeshes, 496)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, ExclusionShapes, 508)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, ExclusionShapePoses, 520)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, ConvexMeshes, 496)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, ExclusionShapes, 508)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, ExclusionShapePoses, 520)
 		ADD_STRUCT(int, SceneIndex, 536)
-		ADD_STRUCT(Object::Pointer, U2NRotation, 532)
-		ADD_STRUCT(Object::Pointer, ForceField, 492)
-		ADD_STRUCT(PrimitiveComponent::ERBCollisionChannel, RBChannel, 488)
-		ADD_STRUCT(PrimitiveComponent::RBCollisionChannelContainer, CollideWithChannels, 484)
+		ADD_STRUCT(Object__Pointer, U2NRotation, 532)
+		ADD_STRUCT(Object__Pointer, ForceField, 492)
+		ADD_STRUCT(PrimitiveComponent__ERBCollisionChannel, RBChannel, 488)
+		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, CollideWithChannels, 484)
 		ADD_BOOL(bForceActive, 480, 0x1)
 		ADD_STRUCT(int, ExcludeChannel, 476)
 		void DoInitRBPhys()

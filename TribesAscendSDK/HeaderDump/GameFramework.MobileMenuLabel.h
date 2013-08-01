@@ -1,6 +1,6 @@
 #pragma once
-#include "Core.Object.h"
 #include "GameFramework.MobileMenuObject.h"
+#include "Core.Object.Color.h"
 #include "Engine.Font.h"
 #include "Engine.Canvas.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -29,8 +29,8 @@ namespace UnrealScript
 		ADD_BOOL(bAutoSize, 164, 0x1)
 		ADD_STRUCT(float, TextYScale, 160)
 		ADD_STRUCT(float, TextXScale, 156)
-		ADD_STRUCT(Object::Color, TouchedColor, 152)
-		ADD_STRUCT(Object::Color, TextColor, 148)
+		ADD_STRUCT(Object__Color, TouchedColor, 152)
+		ADD_STRUCT(Object__Color, TextColor, 148)
 		ADD_OBJECT(Font, TextFont, 144)
 		ADD_STRUCT(ScriptString*, Caption, 132)
 		void RenderObject(class Canvas* Canvas)

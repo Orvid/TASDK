@@ -1,8 +1,10 @@
 #pragma once
+#include "Core.Object.IntPoint.h"
 #include "Engine.UIRoot.h"
 #include "Engine.DataStoreClient.h"
-#include "Core.Object.h"
 #include "Engine.PostProcessChain.h"
+#include "Core.Object.Matrix.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -36,12 +38,12 @@ namespace UnrealScript
 		static const auto SCENEFILTER_Any = 0xFFFFFFFF;
 		ADD_BOOL(bEnablePostProcess, 212, 0x1)
 		ADD_OBJECT(PostProcessChain, UIScenePostProcess, 208)
-		ADD_STRUCT(Object::Matrix, InvCanvasToScreen, 144)
-		ADD_STRUCT(Object::Matrix, CanvasToScreen, 80)
+		ADD_STRUCT(Object__Matrix, InvCanvasToScreen, 144)
+		ADD_STRUCT(Object__Matrix, CanvasToScreen, 80)
 		ADD_OBJECT(DataStoreClient, DataStoreManager, 76)
-		ADD_STRUCT(Object::IntPoint, MousePosition, 68)
-		ADD_STRUCT(Object::Pointer, RenderViewport, 64)
-		ADD_STRUCT(Object::Pointer, VfTable_FExec, 60)
+		ADD_STRUCT(Object__IntPoint, MousePosition, 68)
+		ADD_STRUCT(Object__Pointer, RenderViewport, 64)
+		ADD_STRUCT(Object__Pointer, VfTable_FExec, 60)
 		bool IsUIActive(int Flags)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17813);
@@ -50,19 +52,19 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		Object::Matrix GetCanvasToScreen()
+		Object__Matrix GetCanvasToScreen()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17816);
 			byte params[64] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Matrix*)params;
+			return *(Object__Matrix*)params;
 		}
-		Object::Matrix GetInverseCanvasToScreen()
+		Object__Matrix GetInverseCanvasToScreen()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17818);
 			byte params[64] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Matrix*)params;
+			return *(Object__Matrix*)params;
 		}
 		void InitializeSceneClient()
 		{

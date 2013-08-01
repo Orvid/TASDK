@@ -2,7 +2,7 @@
 #include "TribesGame.TrProj_Grenade.h"
 #include "Engine.SoundCue.h"
 #include "Engine.ParticleSystem.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #include "Engine.SkelControlSingleBone.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

@@ -1,8 +1,12 @@
 #pragma once
-#include "PlatformCommon.TgPlayerProfile.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
 #include "Core.Object.h"
-#include "TribesGame.GFxTrMenuMoviePlayer.h"
+#include "TribesGame.TrQueueManager.ServerInfo.h"
+#include "TribesGame.TrQueueManager.ServerConfig.h"
 #include "OnlineSubsystemMcts.OnlineGameInterfaceMcts.h"
+#include "TribesGame.TrQueueManager.RentalItem.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.h"
+#include "TribesGame.TrQueueManager.ProfileConfig.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,68 +30,19 @@ namespace UnrealScript
 	class TrQueueManager : public Object
 	{
 	public:
-		struct ServerInfo
-		{
-		public:
-			ADD_STRUCT(int, PlayerCount, 20)
-			ADD_STRUCT(int, PlayerMax, 16)
-			ADD_STRUCT(ScriptString*, MapName, 56)
-			ADD_STRUCT(ScriptString*, ServerName, 32)
-			ADD_BOOL(bFavorite, 24, 0x2)
-			ADD_STRUCT(int, queueId, 4)
-			ADD_STRUCT(int, Ping, 0)
-			ADD_BOOL(bPrivate, 24, 0x1)
-			ADD_STRUCT(ScriptString*, Ruleset, 68)
-			ADD_STRUCT(int, MinLevel, 8)
-			ADD_STRUCT(int, MaxLevel, 12)
-			ADD_STRUCT(ScriptString*, ServerDesc, 44)
-			ADD_STRUCT(int, GameType, 28)
-		};
-		struct RentalItem
-		{
-		public:
-			ADD_STRUCT(ScriptString*, RentalName, 12)
-			ADD_STRUCT(int, Price, 0)
-			ADD_STRUCT(int, LootId, 4)
-			ADD_STRUCT(int, SortOrder, 8)
-		};
-		struct ProfileConfig
-		{
-		public:
-			ADD_STRUCT(ScriptString*, PasswordPublic, 48)
-			ADD_STRUCT(ScriptString*, PasswordAdmin, 36)
-			ADD_STRUCT(ScriptString*, ProfileDesc, 24)
-			ADD_STRUCT(ScriptString*, ProfileName, 12)
-			ADD_STRUCT(int, QueueCaseId, 8)
-			ADD_STRUCT(int, GameCaseId, 4)
-			ADD_STRUCT(int, Slots, 0)
-		};
-		struct ServerConfig
-		{
-		public:
-			ADD_STRUCT(ScriptArray<TrQueueManager::ProfileConfig>, Profiles, 28)
-			ADD_STRUCT(ScriptString*, ServerName, 16)
-			ADD_BOOL(bCanExpire, 12, 0x8)
-			ADD_BOOL(bActive, 12, 0x4)
-			ADD_BOOL(bOwner, 12, 0x2)
-			ADD_BOOL(bOpen, 12, 0x1)
-			ADD_STRUCT(int, MinutesRented, 8)
-			ADD_STRUCT(int, MatchQueueId, 4)
-			ADD_STRUCT(int, ActiveConfig, 0)
-		};
 		ADD_BOOL(bQueued, 128, 0x1)
 		ADD_BOOL(bJoiningCustom, 128, 0x4)
 		ADD_STRUCT(ScriptArray<int>, RegionFilter, 116)
 		ADD_STRUCT(ScriptString*, QueueFriend, 132)
 		ADD_BOOL(bFilterOwner, 128, 0x8)
-		ADD_STRUCT(ScriptArray<TrQueueManager::ServerInfo>, ServerInfoList, 152)
+		ADD_STRUCT(ScriptArray<TrQueueManager__ServerInfo>, ServerInfoList, 152)
 		ADD_STRUCT(int, GameTypeId, 96)
-		ADD_STRUCT(ScriptArray<TrQueueManager::ServerConfig>, RentedServers, 164)
+		ADD_STRUCT(ScriptArray<TrQueueManager__ServerConfig>, RentedServers, 164)
 		ADD_STRUCT(int, ServerIndex, 104)
 		ADD_STRUCT(int, MapSlots, 64)
-		ADD_STRUCT(ScriptArray<TrQueueManager::RentalItem>, RentalItems, 176)
+		ADD_STRUCT(ScriptArray<TrQueueManager__RentalItem>, RentalItems, 176)
 		ADD_BOOL(bNeedPassword, 128, 0x2)
-		ADD_STRUCT(ScriptArray<TgPlayerProfile::PropertyPair>, FilteredGameTypes, 188)
+		ADD_STRUCT(ScriptArray<TgPlayerProfile__PropertyPair>, FilteredGameTypes, 188)
 		ADD_OBJECT(GFxTrMenuMoviePlayer, TrOuter, 148)
 		ADD_OBJECT(OnlineGameInterfaceMcts, OnlineGameMcts, 144)
 		ADD_BOOL(bFavoriteSort, 128, 0x1000)
@@ -378,165 +333,165 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		int FavoriteSortB(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int FavoriteSortB(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109504);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int PasswordSortB(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int PasswordSortB(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109506);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int SlotsSortB(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int SlotsSortB(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109508);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int RangeSortB(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int RangeSortB(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109510);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int RulesSortB(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int RulesSortB(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109512);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int TypeSortB(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int TypeSortB(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109514);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int PingSortB(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int PingSortB(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109516);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int NameSortB(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int NameSortB(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109518);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int MapSortB(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int MapSortB(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109520);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int FavoriteSortA(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int FavoriteSortA(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109522);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int PasswordSortA(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int PasswordSortA(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109524);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int SlotsSortA(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int SlotsSortA(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109526);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int RangeSortA(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int RangeSortA(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109528);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int RulesSortA(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int RulesSortA(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109530);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int TypeSortA(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int TypeSortA(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109532);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int PingSortA(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int PingSortA(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109534);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int NameSortA(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int NameSortA(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109536);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
-		int MapSortA(TrQueueManager::ServerInfo A, TrQueueManager::ServerInfo B)
+		int MapSortA(TrQueueManager__ServerInfo A, TrQueueManager__ServerInfo B)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109538);
 			byte params[164] = { NULL };
-			*(TrQueueManager::ServerInfo*)params = A;
-			*(TrQueueManager::ServerInfo*)&params[80] = B;
+			*(TrQueueManager__ServerInfo*)params = A;
+			*(TrQueueManager__ServerInfo*)&params[80] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[160];
 		}
@@ -715,12 +670,12 @@ namespace UnrealScript
 			*(int*)params = MatchQueueId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddProfileConfig(int Index, TrQueueManager::ProfileConfig Data)
+		void AddProfileConfig(int Index, TrQueueManager__ProfileConfig Data)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(109716);
 			byte params[64] = { NULL };
 			*(int*)params = Index;
-			*(TrQueueManager::ProfileConfig*)&params[4] = Data;
+			*(TrQueueManager__ProfileConfig*)&params[4] = Data;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ResetRotation()

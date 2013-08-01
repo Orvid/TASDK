@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.Texture.h"
+#include "Engine.Texture.EPixelFormat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,26 +22,26 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(bIsResolveTarget, 252, 0x1)
 		ADD_STRUCT(int, NumMips, 248)
-		ADD_STRUCT(Texture::EPixelFormat, Format, 244)
+		ADD_STRUCT(Texture__EPixelFormat, Format, 244)
 		ADD_STRUCT(int, SizeY, 240)
 		ADD_STRUCT(int, SizeX, 236)
-		void Init(int InSizeX, int InSizeY, Texture::EPixelFormat InFormat, bool InIsResolveTarget)
+		void Init(int InSizeX, int InSizeY, Texture__EPixelFormat InFormat, bool InIsResolveTarget)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(27953);
 			byte params[13] = { NULL };
 			*(int*)params = InSizeX;
 			*(int*)&params[4] = InSizeY;
-			*(Texture::EPixelFormat*)&params[8] = InFormat;
+			*(Texture__EPixelFormat*)&params[8] = InFormat;
 			*(bool*)&params[12] = InIsResolveTarget;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		class Texture2DDynamic* Create(int InSizeX, int InSizeY, Texture::EPixelFormat InFormat, bool InIsResolveTarget)
+		class Texture2DDynamic* Create(int InSizeX, int InSizeY, Texture__EPixelFormat InFormat, bool InIsResolveTarget)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(27958);
 			byte params[17] = { NULL };
 			*(int*)params = InSizeX;
 			*(int*)&params[4] = InSizeY;
-			*(Texture::EPixelFormat*)&params[8] = InFormat;
+			*(Texture__EPixelFormat*)&params[8] = InFormat;
 			*(bool*)&params[12] = InIsResolveTarget;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class Texture2DDynamic**)&params[16];

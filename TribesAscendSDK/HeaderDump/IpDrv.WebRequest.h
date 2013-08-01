@@ -1,5 +1,7 @@
 #pragma once
 #include "Core.Object.h"
+#include "IpDrv.WebRequest.ERequestType.h"
+#include "Core.Object.Map_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -9,21 +11,15 @@ namespace UnrealScript
 	class WebRequest : public Object
 	{
 	public:
-		enum ERequestType : byte
-		{
-			Request_GET = 0,
-			Request_POST = 1,
-			Request_MAX = 2,
-		};
 		ADD_STRUCT(ScriptString*, UserName, 84)
 		ADD_STRUCT(ScriptString*, Password, 96)
 		ADD_STRUCT(ScriptString*, URI, 72)
-		ADD_STRUCT(WebRequest::ERequestType, RequestType, 124)
+		ADD_STRUCT(WebRequest__ERequestType, RequestType, 124)
 		ADD_STRUCT(ScriptString*, RemoteAddr, 60)
 		ADD_STRUCT(int, ContentLength, 108)
 		ADD_STRUCT(ScriptString*, ContentType, 112)
-		ADD_STRUCT(Object::Map_Mirror, VariableMap, 188)
-		ADD_STRUCT(Object::Map_Mirror, HeaderMap, 128)
+		ADD_STRUCT(Object__Map_Mirror, VariableMap, 188)
+		ADD_STRUCT(Object__Map_Mirror, HeaderMap, 128)
 		ScriptString* GetVariable(ScriptString* VariableName, ScriptString* DefaultValue)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33102);

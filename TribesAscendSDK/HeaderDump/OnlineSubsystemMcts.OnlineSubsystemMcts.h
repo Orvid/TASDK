@@ -1,13 +1,25 @@
 #pragma once
+#include "Engine.OnlineSubsystem.ELoginStatus.h"
 #include "OnlineSubsystemMcts.OnlineGameInterfaceMcts.h"
+#include "Engine.OnlineSubsystem.OnlineFriendMessage.h"
 #include "IpDrv.OnlineSubsystemCommonImpl.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Engine.Settings.h"
+#include "OnlineSubsystemMcts.OnlineSubsystemMcts.ControllerConnectionState.h"
 #include "OnlineSubsystemMcts.OnlineVoiceInterfaceMcts.h"
-#include "Engine.OnlineProfileSettings.h"
-#include "Engine.OnlinePlayerStorage.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.OnlineSubsystem.ENetworkNotificationPosition.h"
+#include "Engine.OnlineSubsystem.EFeaturePrivilegeLevel.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.Settings.SettingsProperty.h"
+#include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
+#include "Engine.OnlineSubsystem.FriendsQuery.h"
+#include "Engine.OnlineSubsystem.ENATType.h"
+#include "Core.Object.QWord.h"
 #include "PlatformCommon.TgPlayerProfile.h"
-#include "Core.Object.h"
+#include "Engine.OnlinePlayerStorage.h"
+#include "Engine.OnlineProfileSettings.h"
+#include "Engine.OnlineSubsystem.OnlineFriend.h"
+#include "Engine.Settings.LocalizedStringSetting.h"
+#include "Engine.OnlineSubsystem.AchievementDetails.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,12 +43,6 @@ namespace UnrealScript
 	class OnlineSubsystemMcts : public OnlineSubsystemCommonImpl
 	{
 	public:
-		struct ControllerConnectionState
-		{
-		public:
-			ADD_STRUCT(int, bLastIsControllerConnected, 4)
-			ADD_STRUCT(int, bIsControllerConnected, 0)
-		};
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, ConnectionStatusChangeDelegates, 316)
@@ -60,27 +66,27 @@ void*>, ChatMessageDelegates, 376)
 void*>, KeyboardInputDelegates, 404)
 		ADD_STRUCT(float, ConnectionPresenceElapsedTime, 452)
 		ADD_STRUCT(float, ConnectionPresenceTimeInterval, 448)
-		ADD_STRUCT(OnlineSubsystemMcts::ControllerConnectionState, ControllerStates, 416)
+		ADD_STRUCT(OnlineSubsystemMcts__ControllerConnectionState, ControllerStates, 416)
 		ADD_BOOL(bShouldUseMcp, 400, 0x4)
 		ADD_BOOL(bLastHasConnection, 400, 0x2)
 		ADD_BOOL(bNeedsKeyboardTicking, 400, 0x1)
 		ADD_STRUCT(ScriptString*, KeyboardResultsString, 388)
 		ADD_STRUCT(ScriptString*, ProfileDataExtension, 304)
 		ADD_STRUCT(ScriptString*, ProfileDataDirectory, 292)
-		ADD_STRUCT(OnlineSubsystem::ENetworkNotificationPosition, CurrentNotificationPosition, 290)
+		ADD_STRUCT(OnlineSubsystem__ENetworkNotificationPosition, CurrentNotificationPosition, 290)
 		ADD_STRUCT(byte, bWasKeyboardInputCanceled, 289)
-		ADD_STRUCT(OnlineSubsystem::ELoginStatus, LoggedInStatus, 288)
+		ADD_STRUCT(OnlineSubsystem__ELoginStatus, LoggedInStatus, 288)
 		ADD_STRUCT(int, LoggedInPlayerNum, 284)
-		ADD_STRUCT(OnlineSubsystem::UniqueNetId, LoggedInPlayerId, 276)
+		ADD_STRUCT(OnlineSubsystem__UniqueNetId, LoggedInPlayerId, 276)
 		ADD_STRUCT(ScriptString*, LoggedInPlayerName, 264)
 		ADD_STRUCT(ScriptString*, LocalProfileName, 252)
 		ADD_OBJECT(OnlineVoiceInterfaceMcts, MctsVoiceInt, 248)
 		ADD_OBJECT(OnlineGameInterfaceMcts, MctsGameInt, 244)
-		void OnConnectionStatusChange(OnlineSubsystem::EOnlineServerConnectionStatus ConnectionStatus)
+		void OnConnectionStatusChange(OnlineSubsystem__EOnlineServerConnectionStatus ConnectionStatus)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156507);
 			byte params[1] = { NULL };
-			*(OnlineSubsystem::EOnlineServerConnectionStatus*)params = ConnectionStatus;
+			*(OnlineSubsystem__EOnlineServerConnectionStatus*)params = ConnectionStatus;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnLoginChange(byte LocalUserNum)
@@ -90,12 +96,12 @@ void*>, KeyboardInputDelegates, 404)
 			*params = LocalUserNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnLoginFailed(byte LocalUserNum, OnlineSubsystem::EOnlineServerConnectionStatus ErrorCode)
+		void OnLoginFailed(byte LocalUserNum, OnlineSubsystem__EOnlineServerConnectionStatus ErrorCode)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156513);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineServerConnectionStatus*)&params[1] = ErrorCode;
+			*(OnlineSubsystem__EOnlineServerConnectionStatus*)&params[1] = ErrorCode;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnLogoutCompleted(bool bWasSuccessful)
@@ -142,12 +148,12 @@ void*>, KeyboardInputDelegates, 404)
 			*(bool*)params = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFriendMessageReceived(byte LocalUserNum, OnlineSubsystem::UniqueNetId SendingPlayer, ScriptString* SendingNick, ScriptString* Message)
+		void OnFriendMessageReceived(byte LocalUserNum, OnlineSubsystem__UniqueNetId SendingPlayer, ScriptString* SendingNick, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156531);
 			byte params[33] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = SendingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = SendingPlayer;
 			*(ScriptString**)&params[12] = SendingNick;
 			*(ScriptString**)&params[24] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -167,12 +173,12 @@ void*>, KeyboardInputDelegates, 404)
 			*(ScriptString**)&params[4] = InviterName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFriendInviteReceived(byte LocalUserNum, OnlineSubsystem::UniqueNetId RequestingPlayer, ScriptString* RequestingNick, ScriptString* Message)
+		void OnFriendInviteReceived(byte LocalUserNum, OnlineSubsystem__UniqueNetId RequestingPlayer, ScriptString* RequestingNick, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156537);
 			byte params[33] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = RequestingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = RequestingPlayer;
 			*(ScriptString**)&params[12] = RequestingNick;
 			*(ScriptString**)&params[24] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -204,11 +210,11 @@ void*>, KeyboardInputDelegates, 404)
 			*(bool*)&params[4] = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnReadPlayerStorageForNetIdComplete(OnlineSubsystem::UniqueNetId NetId, bool bWasSuccessful)
+		void OnReadPlayerStorageForNetIdComplete(OnlineSubsystem__UniqueNetId NetId, bool bWasSuccessful)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156548);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = NetId;
+			*(OnlineSubsystem__UniqueNetId*)params = NetId;
 			*(bool*)&params[8] = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -246,12 +252,12 @@ void*>, KeyboardInputDelegates, 404)
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156558);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnLoginStatusChange(OnlineSubsystem::ELoginStatus NewStatus, OnlineSubsystem::UniqueNetId NewId)
+		void OnLoginStatusChange(OnlineSubsystem__ELoginStatus NewStatus, OnlineSubsystem__UniqueNetId NewId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156560);
 			byte params[9] = { NULL };
-			*(OnlineSubsystem::ELoginStatus*)params = NewStatus;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = NewId;
+			*(OnlineSubsystem__ELoginStatus*)params = NewStatus;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = NewId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnStorageDeviceChange()
@@ -366,13 +372,13 @@ void* LogoutDelegate)
 void**)&params[4] = LogoutDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		OnlineSubsystem::ELoginStatus GetLoginStatus(byte LocalUserNum)
+		OnlineSubsystem__ELoginStatus GetLoginStatus(byte LocalUserNum)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156631);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::ELoginStatus*)&params[1];
+			return *(OnlineSubsystem__ELoginStatus*)&params[1];
 		}
 		bool IsGuestLogin(byte LocalUserNum)
 		{
@@ -390,14 +396,14 @@ void**)&params[4] = LogoutDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool GetUniquePlayerId(byte LocalUserNum, OnlineSubsystem::UniqueNetId& PlayerID)
+		bool GetUniquePlayerId(byte LocalUserNum, OnlineSubsystem__UniqueNetId& PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156640);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			PlayerID = *(OnlineSubsystem::UniqueNetId*)&params[4];
+			PlayerID = *(OnlineSubsystem__UniqueNetId*)&params[4];
 			return *(bool*)&params[12];
 		}
 		ScriptString* GetPlayerNickname(byte LocalUserNum)
@@ -408,63 +414,63 @@ void**)&params[4] = LogoutDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}
-		OnlineSubsystem::EFeaturePrivilegeLevel CanPlayOnline(byte LocalUserNum)
+		OnlineSubsystem__EFeaturePrivilegeLevel CanPlayOnline(byte LocalUserNum)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156647);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::EFeaturePrivilegeLevel*)&params[1];
+			return *(OnlineSubsystem__EFeaturePrivilegeLevel*)&params[1];
 		}
-		OnlineSubsystem::EFeaturePrivilegeLevel CanDownloadUserContent(byte LocalUserNum)
+		OnlineSubsystem__EFeaturePrivilegeLevel CanDownloadUserContent(byte LocalUserNum)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156650);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::EFeaturePrivilegeLevel*)&params[1];
+			return *(OnlineSubsystem__EFeaturePrivilegeLevel*)&params[1];
 		}
-		OnlineSubsystem::EFeaturePrivilegeLevel CanPurchaseContent(byte LocalUserNum)
+		OnlineSubsystem__EFeaturePrivilegeLevel CanPurchaseContent(byte LocalUserNum)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156653);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::EFeaturePrivilegeLevel*)&params[1];
+			return *(OnlineSubsystem__EFeaturePrivilegeLevel*)&params[1];
 		}
-		OnlineSubsystem::EFeaturePrivilegeLevel CanViewPlayerProfiles(byte LocalUserNum)
+		OnlineSubsystem__EFeaturePrivilegeLevel CanViewPlayerProfiles(byte LocalUserNum)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156656);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::EFeaturePrivilegeLevel*)&params[1];
+			return *(OnlineSubsystem__EFeaturePrivilegeLevel*)&params[1];
 		}
-		OnlineSubsystem::EFeaturePrivilegeLevel CanShowPresenceInformation(byte LocalUserNum)
+		OnlineSubsystem__EFeaturePrivilegeLevel CanShowPresenceInformation(byte LocalUserNum)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156659);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::EFeaturePrivilegeLevel*)&params[1];
+			return *(OnlineSubsystem__EFeaturePrivilegeLevel*)&params[1];
 		}
-		bool IsFriend(byte LocalUserNum, OnlineSubsystem::UniqueNetId PlayerID)
+		bool IsFriend(byte LocalUserNum, OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156662);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		bool AreAnyFriends(byte LocalUserNum, ScriptArray<OnlineSubsystem::FriendsQuery>& Query)
+		bool AreAnyFriends(byte LocalUserNum, ScriptArray<OnlineSubsystem__FriendsQuery>& Query)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156666);
 			byte params[17] = { NULL };
 			*params = LocalUserNum;
-			*(ScriptArray<OnlineSubsystem::FriendsQuery>*)&params[4] = Query;
+			*(ScriptArray<OnlineSubsystem__FriendsQuery>*)&params[4] = Query;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Query = *(ScriptArray<OnlineSubsystem::FriendsQuery>*)&params[4];
+			Query = *(ScriptArray<OnlineSubsystem__FriendsQuery>*)&params[4];
 			return *(bool*)&params[16];
 		}
 		ScriptString* GetPlayerMctsName()
@@ -511,13 +517,13 @@ void**)params = LoginDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}
-		OnlineSubsystem::UniqueNetId GetPlayerUniqueNetIdFromIndex(int UserIndex)
+		OnlineSubsystem__UniqueNetId GetPlayerUniqueNetIdFromIndex(int UserIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156683);
 			byte params[12] = { NULL };
 			*(int*)params = UserIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::UniqueNetId*)&params[4];
+			return *(OnlineSubsystem__UniqueNetId*)&params[4];
 		}
 		bool HasLinkConnection()
 		{
@@ -570,12 +576,12 @@ void* ExternalUIDelegate)
 void**)params = ExternalUIDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		OnlineSubsystem::ENetworkNotificationPosition GetNetworkNotificationPosition()
+		OnlineSubsystem__ENetworkNotificationPosition GetNetworkNotificationPosition()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156700);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::ENetworkNotificationPosition*)params;
+			return *(OnlineSubsystem__ENetworkNotificationPosition*)params;
 		}
 		void AddControllerChangeDelegate(
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
@@ -629,12 +635,12 @@ void* ConnectionStatusDelegate)
 void**)params = ConnectionStatusDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		OnlineSubsystem::ENATType GetNATType()
+		OnlineSubsystem__ENATType GetNATType()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156717);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::ENATType*)params;
+			return *(OnlineSubsystem__ENATType*)params;
 		}
 		void AddStorageDeviceChangeDelegate(
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
@@ -753,22 +759,22 @@ void**)params = ChatDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[12];
 		}
-		bool IsMuted(byte LocalUserNum, OnlineSubsystem::UniqueNetId PlayerID)
+		bool IsMuted(byte LocalUserNum, OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156759);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		OnlineSubsystem::EFeaturePrivilegeLevel CanCommunicate(byte LocalUserNum)
+		OnlineSubsystem__EFeaturePrivilegeLevel CanCommunicate(byte LocalUserNum)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156763);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::EFeaturePrivilegeLevel*)&params[1];
+			return *(OnlineSubsystem__EFeaturePrivilegeLevel*)&params[1];
 		}
 		void AddLoginStatusChangeDelegate(
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
@@ -946,35 +952,35 @@ void* ReadPlayerStorageCompleteDelegate)
 void**)&params[4] = ReadPlayerStorageCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool ReadPlayerStorageForNetId(byte LocalUserNum, OnlineSubsystem::UniqueNetId NetId, class OnlinePlayerStorage* PlayerStorage)
+		bool ReadPlayerStorageForNetId(byte LocalUserNum, OnlineSubsystem__UniqueNetId NetId, class OnlinePlayerStorage* PlayerStorage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156822);
 			byte params[17] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = NetId;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = NetId;
 			*(class OnlinePlayerStorage**)&params[12] = PlayerStorage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
-		void AddReadPlayerStorageForNetIdCompleteDelegate(OnlineSubsystem::UniqueNetId NetId, 
+		void AddReadPlayerStorageForNetIdCompleteDelegate(OnlineSubsystem__UniqueNetId NetId, 
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void* ReadPlayerStorageForNetIdCompleteDelegate)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156829);
 			byte params[20] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = NetId;
+			*(OnlineSubsystem__UniqueNetId*)params = NetId;
 			*(
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void**)&params[8] = ReadPlayerStorageForNetIdCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ClearReadPlayerStorageForNetIdCompleteDelegate(OnlineSubsystem::UniqueNetId NetId, 
+		void ClearReadPlayerStorageForNetIdCompleteDelegate(OnlineSubsystem__UniqueNetId NetId, 
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void* ReadPlayerStorageForNetIdCompleteDelegate)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156832);
 			byte params[20] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = NetId;
+			*(OnlineSubsystem__UniqueNetId*)params = NetId;
 			*(
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void**)&params[8] = ReadPlayerStorageForNetIdCompleteDelegate;
@@ -1080,29 +1086,29 @@ void* ReadFriendsCompleteDelegate)
 void**)&params[4] = ReadFriendsCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		OnlineSubsystem::EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum, ScriptArray<OnlineSubsystem::OnlineFriend>& Friends, int Count, int StartingAt)
+		OnlineSubsystem__EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum, ScriptArray<OnlineSubsystem__OnlineFriend>& Friends, int Count, int StartingAt)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156869);
 			byte params[22] = { NULL };
 			*params = LocalUserNum;
-			*(ScriptArray<OnlineSubsystem::OnlineFriend>*)&params[4] = Friends;
+			*(ScriptArray<OnlineSubsystem__OnlineFriend>*)&params[4] = Friends;
 			*(int*)&params[16] = Count;
 			*(int*)&params[20] = StartingAt;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Friends = *(ScriptArray<OnlineSubsystem::OnlineFriend>*)&params[4];
-			return *(OnlineSubsystem::EOnlineEnumerationReadState*)&params[24];
+			Friends = *(ScriptArray<OnlineSubsystem__OnlineFriend>*)&params[4];
+			return *(OnlineSubsystem__EOnlineEnumerationReadState*)&params[24];
 		}
-		void SetOnlineStatus(byte LocalUserNum, int StatusId, ScriptArray<Settings::LocalizedStringSetting>& LocalizedStringSettings, ScriptArray<Settings::SettingsProperty>& Properties)
+		void SetOnlineStatus(byte LocalUserNum, int StatusId, ScriptArray<Settings__LocalizedStringSetting>& LocalizedStringSettings, ScriptArray<Settings__SettingsProperty>& Properties)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156876);
 			byte params[29] = { NULL };
 			*params = LocalUserNum;
 			*(int*)&params[4] = StatusId;
-			*(ScriptArray<Settings::LocalizedStringSetting>*)&params[8] = LocalizedStringSettings;
-			*(ScriptArray<Settings::SettingsProperty>*)&params[20] = Properties;
+			*(ScriptArray<Settings__LocalizedStringSetting>*)&params[8] = LocalizedStringSettings;
+			*(ScriptArray<Settings__SettingsProperty>*)&params[20] = Properties;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			LocalizedStringSettings = *(ScriptArray<Settings::LocalizedStringSetting>*)&params[8];
-			Properties = *(ScriptArray<Settings::SettingsProperty>*)&params[20];
+			LocalizedStringSettings = *(ScriptArray<Settings__LocalizedStringSetting>*)&params[8];
+			Properties = *(ScriptArray<Settings__SettingsProperty>*)&params[20];
 		}
 		bool ShowKeyboardUI(byte LocalUserNum, ScriptString* TitleText, ScriptString* DescriptionText, bool bIsPassword, bool bShouldValidate, ScriptString* DefaultText, int MaxResultLength)
 		{
@@ -1149,12 +1155,12 @@ void**)params = InputDelegate;
 			bWasCanceled = *params;
 			return *(ScriptString**)&params[4];
 		}
-		bool AddFriend(byte LocalUserNum, OnlineSubsystem::UniqueNetId NewFriend, ScriptString* Message)
+		bool AddFriend(byte LocalUserNum, OnlineSubsystem__UniqueNetId NewFriend, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156900);
 			byte params[25] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = NewFriend;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = NewFriend;
 			*(ScriptString**)&params[12] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[24];
@@ -1193,30 +1199,30 @@ void* FriendDelegate)
 void**)&params[4] = FriendDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool AcceptFriendInvite(byte LocalUserNum, OnlineSubsystem::UniqueNetId RequestingPlayer)
+		bool AcceptFriendInvite(byte LocalUserNum, OnlineSubsystem__UniqueNetId RequestingPlayer)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156917);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = RequestingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = RequestingPlayer;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		bool DenyFriendInvite(byte LocalUserNum, OnlineSubsystem::UniqueNetId RequestingPlayer)
+		bool DenyFriendInvite(byte LocalUserNum, OnlineSubsystem__UniqueNetId RequestingPlayer)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156921);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = RequestingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = RequestingPlayer;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		bool RemoveFriend(byte LocalUserNum, OnlineSubsystem::UniqueNetId FormerFriend)
+		bool RemoveFriend(byte LocalUserNum, OnlineSubsystem__UniqueNetId FormerFriend)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156925);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = FormerFriend;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = FormerFriend;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
@@ -1244,32 +1250,32 @@ void* InviteDelegate)
 void**)&params[4] = InviteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool SendMessageToFriend(byte LocalUserNum, OnlineSubsystem::UniqueNetId Friend, ScriptString* Message)
+		bool SendMessageToFriend(byte LocalUserNum, OnlineSubsystem__UniqueNetId Friend, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156939);
 			byte params[25] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = Friend;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = Friend;
 			*(ScriptString**)&params[12] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[24];
 		}
-		bool SendGameInviteToFriend(byte LocalUserNum, OnlineSubsystem::UniqueNetId Friend, ScriptString* Text)
+		bool SendGameInviteToFriend(byte LocalUserNum, OnlineSubsystem__UniqueNetId Friend, ScriptString* Text)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156944);
 			byte params[25] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = Friend;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = Friend;
 			*(ScriptString**)&params[12] = Text;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[24];
 		}
-		bool SendGameInviteToFriends(byte LocalUserNum, ScriptArray<OnlineSubsystem::UniqueNetId> Friends, ScriptString* Text)
+		bool SendGameInviteToFriends(byte LocalUserNum, ScriptArray<OnlineSubsystem__UniqueNetId> Friends, ScriptString* Text)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156949);
 			byte params[29] = { NULL };
 			*params = LocalUserNum;
-			*(ScriptArray<OnlineSubsystem::UniqueNetId>*)&params[4] = Friends;
+			*(ScriptArray<OnlineSubsystem__UniqueNetId>*)&params[4] = Friends;
 			*(ScriptString**)&params[16] = Text;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[28];
@@ -1298,12 +1304,12 @@ void* ReceivedGameInviteDelegate)
 void**)&params[4] = ReceivedGameInviteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool JoinFriendGame(byte LocalUserNum, OnlineSubsystem::UniqueNetId Friend)
+		bool JoinFriendGame(byte LocalUserNum, OnlineSubsystem__UniqueNetId Friend)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156963);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = Friend;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = Friend;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
@@ -1329,14 +1335,14 @@ void* JoinFriendGameCompleteDelegate)
 void**)params = JoinFriendGameCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void GetFriendMessages(byte LocalUserNum, ScriptArray<OnlineSubsystem::OnlineFriendMessage>& FriendMessages)
+		void GetFriendMessages(byte LocalUserNum, ScriptArray<OnlineSubsystem__OnlineFriendMessage>& FriendMessages)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156972);
 			byte params[13] = { NULL };
 			*params = LocalUserNum;
-			*(ScriptArray<OnlineSubsystem::OnlineFriendMessage>*)&params[4] = FriendMessages;
+			*(ScriptArray<OnlineSubsystem__OnlineFriendMessage>*)&params[4] = FriendMessages;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			FriendMessages = *(ScriptArray<OnlineSubsystem::OnlineFriendMessage>*)&params[4];
+			FriendMessages = *(ScriptArray<OnlineSubsystem__OnlineFriendMessage>*)&params[4];
 		}
 		void AddFriendMessageReceivedDelegate(byte LocalUserNum, 
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
@@ -1382,16 +1388,16 @@ void**)&params[4] = MessageDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
-		OnlineSubsystem::EOnlineEnumerationReadState GetAchievements(byte LocalUserNum, ScriptArray<OnlineSubsystem::AchievementDetails>& Achievements, int TitleId)
+		OnlineSubsystem__EOnlineEnumerationReadState GetAchievements(byte LocalUserNum, ScriptArray<OnlineSubsystem__AchievementDetails>& Achievements, int TitleId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(156996);
 			byte params[18] = { NULL };
 			*params = LocalUserNum;
-			*(ScriptArray<OnlineSubsystem::AchievementDetails>*)&params[4] = Achievements;
+			*(ScriptArray<OnlineSubsystem__AchievementDetails>*)&params[4] = Achievements;
 			*(int*)&params[16] = TitleId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Achievements = *(ScriptArray<OnlineSubsystem::AchievementDetails>*)&params[4];
-			return *(OnlineSubsystem::EOnlineEnumerationReadState*)&params[20];
+			Achievements = *(ScriptArray<OnlineSubsystem__AchievementDetails>*)&params[4];
+			return *(OnlineSubsystem__EOnlineEnumerationReadState*)&params[20];
 		}
 		void AddUnlockAchievementCompleteDelegate(byte LocalUserNum, 
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
@@ -1466,11 +1472,11 @@ void**)&params[4] = ReadAchievementsCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void SetNetworkNotificationPosition(OnlineSubsystem::ENetworkNotificationPosition NewPos)
+		void SetNetworkNotificationPosition(OnlineSubsystem__ENetworkNotificationPosition NewPos)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(157026);
 			byte params[1] = { NULL };
-			*(OnlineSubsystem::ENetworkNotificationPosition*)params = NewPos;
+			*(OnlineSubsystem__ENetworkNotificationPosition*)params = NewPos;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		int GetLocale()

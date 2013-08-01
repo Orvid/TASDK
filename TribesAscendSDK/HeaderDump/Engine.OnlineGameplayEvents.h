@@ -1,5 +1,9 @@
 #pragma once
 #include "Core.Object.h"
+#include "Engine.OnlineGameplayEvents.PlayerInformation.h"
+#include "Engine.OnlineGameplayEvents.GameplayEvent.h"
+#include "Engine.OnlineGameplayEvents.PlayerEvent.h"
+#include "Core.Object.Guid.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,35 +23,12 @@ namespace UnrealScript
 	class OnlineGameplayEvents : public Object
 	{
 	public:
-		struct PlayerInformation
-		{
-		public:
-			ADD_STRUCT(int, LastPlayerEventIdx, 36)
-			ADD_BOOL(bIsBot, 32, 0x1)
-			ADD_STRUCT(OnlineSubsystem::UniqueNetId, UniqueId, 24)
-			ADD_STRUCT(ScriptString*, PlayerName, 12)
-			ADD_STRUCT(ScriptString*, ControllerName, 0)
-		};
-		struct GameplayEvent
-		{
-		public:
-			ADD_STRUCT(int, EventNameAndDesc, 4)
-			ADD_STRUCT(int, PlayerEventAndTarget, 0)
-		};
-		struct PlayerEvent
-		{
-		public:
-			ADD_STRUCT(int, PlayerPitchAndRoll, 20)
-			ADD_STRUCT(int, PlayerIndexAndYaw, 16)
-			ADD_STRUCT(Vector, EventLocation, 4)
-			ADD_STRUCT(float, EventTime, 0)
-		};
-		ADD_STRUCT(ScriptArray<OnlineGameplayEvents::PlayerInformation>, PlayerList, 60)
+		ADD_STRUCT(ScriptArray<OnlineGameplayEvents__PlayerInformation>, PlayerList, 60)
 		ADD_STRUCT(ScriptArray<ScriptString*>, EventDescList, 72)
 		ADD_STRUCT(ScriptArray<ScriptName>, EventNames, 84)
-		ADD_STRUCT(ScriptArray<OnlineGameplayEvents::GameplayEvent>, GameplayEvents, 96)
-		ADD_STRUCT(ScriptArray<OnlineGameplayEvents::PlayerEvent>, PlayerEvents, 108)
-		ADD_STRUCT(Object::Guid, GameplaySessionID, 136)
+		ADD_STRUCT(ScriptArray<OnlineGameplayEvents__GameplayEvent>, GameplayEvents, 96)
+		ADD_STRUCT(ScriptArray<OnlineGameplayEvents__PlayerEvent>, PlayerEvents, 108)
+		ADD_STRUCT(Object__Guid, GameplaySessionID, 136)
 		ADD_BOOL(bGameplaySessionInProgress, 132, 0x1)
 		ADD_STRUCT(ScriptString*, GameplaySessionStartTime, 120)
 	};

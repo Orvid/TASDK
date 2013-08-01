@@ -2,8 +2,10 @@
 #include "Engine.BroadcastHandler.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "TribesGame.TrSpottedTarget.h"
-#include "TribesGame.TrVGSCommandList.h"
+#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #include "Engine.Actor.h"
+#include "TribesGame.TrVGSCommandList.EVGSContextActor.h"
+#include "TribesGame.TrVGSCommandList.EVGSContextLocation.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,29 +17,29 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(ScriptArray<class TrSpottedTarget*>, m_SpottedTargets, 484)
 		ADD_STRUCT(float, m_fSpottedActorsUpdateFrequency, 496)
-		void TeamBroadcastVGSCommand(class PlayerReplicationInfo* SenderPRI, TrVGSCommandList::VGSCommandType VGSCommandIndex)
+		void TeamBroadcastVGSCommand(class PlayerReplicationInfo* SenderPRI, TrVGSCommandList__VGSCommandType VGSCommandIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(73676);
 			byte params[5] = { NULL };
 			*(class PlayerReplicationInfo**)params = SenderPRI;
-			*(TrVGSCommandList::VGSCommandType*)&params[4] = VGSCommandIndex;
+			*(TrVGSCommandList__VGSCommandType*)&params[4] = VGSCommandIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void GlobalBroadcastVGSCommand(class PlayerReplicationInfo* SenderPRI, TrVGSCommandList::VGSCommandType VGSCommandIndex)
+		void GlobalBroadcastVGSCommand(class PlayerReplicationInfo* SenderPRI, TrVGSCommandList__VGSCommandType VGSCommandIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(73680);
 			byte params[5] = { NULL };
 			*(class PlayerReplicationInfo**)params = SenderPRI;
-			*(TrVGSCommandList::VGSCommandType*)&params[4] = VGSCommandIndex;
+			*(TrVGSCommandList__VGSCommandType*)&params[4] = VGSCommandIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TeamBroadcastVGSContextCommand(class PlayerReplicationInfo* SenderPRI, TrVGSCommandList::EVGSContextActor ContextActor, TrVGSCommandList::EVGSContextLocation ContextLocation, bool bEnemyLocation)
+		void TeamBroadcastVGSContextCommand(class PlayerReplicationInfo* SenderPRI, TrVGSCommandList__EVGSContextActor ContextActor, TrVGSCommandList__EVGSContextLocation ContextLocation, bool bEnemyLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(73684);
 			byte params[10] = { NULL };
 			*(class PlayerReplicationInfo**)params = SenderPRI;
-			*(TrVGSCommandList::EVGSContextActor*)&params[4] = ContextActor;
-			*(TrVGSCommandList::EVGSContextLocation*)&params[5] = ContextLocation;
+			*(TrVGSCommandList__EVGSContextActor*)&params[4] = ContextActor;
+			*(TrVGSCommandList__EVGSContextLocation*)&params[5] = ContextLocation;
 			*(bool*)&params[8] = bEnemyLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

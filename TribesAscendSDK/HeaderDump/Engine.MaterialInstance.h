@@ -1,10 +1,13 @@
 #pragma once
+#include "Core.Object.Guid.h"
 #include "Engine.MaterialInterface.h"
+#include "Core.Object.InterpCurveFloat.h"
 #include "Engine.PhysicalMaterial.h"
 #include "Engine.Texture.h"
-#include "Core.Object.h"
-#include "Engine.Font.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.Texture2D.h"
+#include "Engine.Font.h"
+#include "Core.Object.LinearColor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,11 +32,11 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<class Texture*>, ReferencedTextures, 392)
-		ADD_STRUCT(ScriptArray<Object::Guid>, ReferencedTextureGuids, 404)
-		ADD_STRUCT(Object::Guid, ParentLightingGuid, 416)
-		ADD_STRUCT(Object::Pointer, Resources, 380)
-		ADD_STRUCT(Object::Pointer, StaticPermutationResources, 372)
-		ADD_STRUCT(Object::Pointer, StaticParameters, 364)
+		ADD_STRUCT(ScriptArray<Object__Guid>, ReferencedTextureGuids, 404)
+		ADD_STRUCT(Object__Guid, ParentLightingGuid, 416)
+		ADD_STRUCT(Object__Pointer, Resources, 380)
+		ADD_STRUCT(Object__Pointer, StaticPermutationResources, 372)
+		ADD_STRUCT(Object__Pointer, StaticParameters, 364)
 		ADD_BOOL(bNeedsMaterialFlattening, 360, 0x8)
 		ADD_BOOL(ReentrantFlag, 360, 0x4)
 		ADD_BOOL(bStaticPermutationDirty, 360, 0x2)
@@ -51,14 +54,14 @@ namespace UnrealScript
 			*(class MaterialInterface**)params = NewParent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetVectorParameterValue(ScriptName ParameterName, Object::LinearColor& Value)
+		void SetVectorParameterValue(ScriptName ParameterName, Object__LinearColor& Value)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19791);
 			byte params[24] = { NULL };
 			*(ScriptName*)params = ParameterName;
-			*(Object::LinearColor*)&params[8] = Value;
+			*(Object__LinearColor*)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Value = *(Object::LinearColor*)&params[8];
+			Value = *(Object__LinearColor*)&params[8];
 		}
 		void SetScalarParameterValue(ScriptName ParameterName, float Value)
 		{
@@ -68,14 +71,14 @@ namespace UnrealScript
 			*(float*)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetScalarCurveParameterValue(ScriptName ParameterName, Object::InterpCurveFloat& Value)
+		void SetScalarCurveParameterValue(ScriptName ParameterName, Object__InterpCurveFloat& Value)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19797);
 			byte params[24] = { NULL };
 			*(ScriptName*)params = ParameterName;
-			*(Object::InterpCurveFloat*)&params[8] = Value;
+			*(Object__InterpCurveFloat*)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Value = *(Object::InterpCurveFloat*)&params[8];
+			Value = *(Object__InterpCurveFloat*)&params[8];
 		}
 		void SetTextureParameterValue(ScriptName ParameterName, class Texture* Value)
 		{

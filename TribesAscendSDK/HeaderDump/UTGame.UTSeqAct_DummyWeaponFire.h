@@ -1,8 +1,8 @@
 #pragma once
 #include "UTGame.UTDummyPawn.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
 #include "Engine.SeqAct_Latent.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,8 +1,10 @@
 #pragma once
 #include "Engine.UIDataStore_Remote.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Core.Object.h"
 #include "Engine.OnlineGameSearch.h"
+#include "Engine.UIDataStore_OnlineGameSearch.GameSearchCfg.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,24 +18,13 @@ namespace UnrealScript
 	class UIDataStore_OnlineGameSearch : public UIDataStore_Remote
 	{
 	public:
-		struct GameSearchCfg
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class UIDataProvider_Settings*>, SearchResults, 16)
-			ADD_STRUCT(ScriptName, SearchName, 32)
-			ADD_OBJECT(OnlineGameSearch, Search, 28)
-			ADD_OBJECT(UIDataProvider_Settings, DesiredSettingsProvider, 12)
-			ADD_OBJECT(ScriptClass, SearchResultsProviderClass, 8)
-			ADD_OBJECT(ScriptClass, DefaultGameSettingsClass, 4)
-			ADD_OBJECT(ScriptClass, GameSearchClass, 0)
-		};
-		ADD_STRUCT(ScriptArray<UIDataStore_OnlineGameSearch::GameSearchCfg>, GameSearchCfgList, 148)
+		ADD_STRUCT(ScriptArray<UIDataStore_OnlineGameSearch__GameSearchCfg>, GameSearchCfgList, 148)
 		ADD_STRUCT(int, ActiveSearchIndex, 164)
 		ADD_STRUCT(int, SelectedIndex, 160)
 		ADD_OBJECT(OnlineSubsystem, OnlineSub, 136)
 		ADD_STRUCT(ScriptName, SearchResultsName, 128)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 124)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementProvider, 120)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 124)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementProvider, 120)
 		void Init()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28644);
@@ -71,14 +62,14 @@ namespace UnrealScript
 			*(bool*)params = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool GetSearchResultFromIndex(int ListIndex, OnlineGameSearch::OnlineGameSearchResult& Result)
+		bool GetSearchResultFromIndex(int ListIndex, OnlineGameSearch__OnlineGameSearchResult& Result)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28659);
 			byte params[16] = { NULL };
 			*(int*)params = ListIndex;
-			*(OnlineGameSearch::OnlineGameSearchResult*)&params[4] = Result;
+			*(OnlineGameSearch__OnlineGameSearchResult*)&params[4] = Result;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Result = *(OnlineGameSearch::OnlineGameSearchResult*)&params[4];
+			Result = *(OnlineGameSearch__OnlineGameSearchResult*)&params[4];
 			return *(bool*)&params[12];
 		}
 		bool ShowHostGamercard(byte ControllerIndex, int ListIndex)

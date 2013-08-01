@@ -3,6 +3,7 @@
 #include "Engine.SequenceVariable.h"
 #include "Engine.InterpGroup.h"
 #include "Engine.InterpCurveEdSetup.h"
+#include "Engine.InterpData.AnimSetBakeAndPruneStatus.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,17 +27,10 @@ namespace UnrealScript
 	class InterpData : public SequenceVariable
 	{
 	public:
-		struct AnimSetBakeAndPruneStatus
-		{
-		public:
-			ADD_BOOL(bSkipBakeAndPrune, 12, 0x2)
-			ADD_BOOL(bReferencedButUnused, 12, 0x1)
-			ADD_STRUCT(ScriptString*, AnimSetName, 0)
-		};
 		ADD_STRUCT(ScriptArray<class InterpGroup*>, InterpGroups, 156)
 		ADD_STRUCT(ScriptArray<class InterpFilter*>, InterpFilters, 172)
 		ADD_STRUCT(ScriptArray<class InterpFilter*>, DefaultFilters, 188)
-		ADD_STRUCT(ScriptArray<InterpData::AnimSetBakeAndPruneStatus>, BakeAndPruneStatus, 212)
+		ADD_STRUCT(ScriptArray<InterpData__AnimSetBakeAndPruneStatus>, BakeAndPruneStatus, 212)
 		ADD_BOOL(bShouldBakeAndPrune, 208, 0x1)
 		ADD_STRUCT(float, EdSectionEnd, 204)
 		ADD_STRUCT(float, EdSectionStart, 200)

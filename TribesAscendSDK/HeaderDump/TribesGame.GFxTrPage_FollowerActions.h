@@ -1,6 +1,6 @@
 #pragma once
 #include "TribesGame.GFxTrPage.h"
-#include "TribesGame.TrFriendManager.h"
+#include "TribesGame.TrFriendManager.EOnlineState.h"
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.GFxTrAction.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -30,7 +30,7 @@ namespace UnrealScript
 		static const auto _InviteToTribe = 5;
 		static const auto _BlockPlayer = 6;
 		ADD_STRUCT(ScriptString*, AlreadyFriendText, 384)
-		ADD_STRUCT(TrFriendManager::EOnlineState, TargetOnlineState, 380)
+		ADD_STRUCT(TrFriendManager__EOnlineState, TargetOnlineState, 380)
 		ADD_STRUCT(int, TargetPlayerIndex, 376)
 		ADD_STRUCT(ScriptString*, TargetPlayer, 364)
 		ADD_BOOL(bWaitingForFriendActionPopup, 360, 0x1)

@@ -1,4 +1,7 @@
 #pragma once
+#include "Engine.CameraShake.FOscillator.h"
+#include "Engine.CameraShake.ROscillator.h"
+#include "Engine.CameraShake.VOscillator.h"
 #include "Core.Object.h"
 #include "Engine.CameraAnim.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -24,41 +27,14 @@ namespace UnrealScript
 	class CameraShake : public Object
 	{
 	public:
-		enum EInitialOscillatorOffset : byte
-		{
-			EOO_OffsetRandom = 0,
-			EOO_OffsetZero = 1,
-			EOO_MAX = 2,
-		};
-		struct FOscillator
-		{
-		public:
-			ADD_STRUCT(float, Amplitude, 0)
-			ADD_STRUCT(float, Frequency, 4)
-			ADD_STRUCT(CameraShake::EInitialOscillatorOffset, InitialOffset, 8)
-		};
-		struct VOscillator
-		{
-		public:
-			ADD_STRUCT(CameraShake::FOscillator, X, 0)
-			ADD_STRUCT(CameraShake::FOscillator, Y, 12)
-			ADD_STRUCT(CameraShake::FOscillator, Z, 24)
-		};
-		struct ROscillator
-		{
-		public:
-			ADD_STRUCT(CameraShake::FOscillator, Pitch, 0)
-			ADD_STRUCT(CameraShake::FOscillator, Yaw, 12)
-			ADD_STRUCT(CameraShake::FOscillator, Roll, 24)
-		};
-		ADD_STRUCT(CameraShake::VOscillator, LocOscillation, 112)
-		ADD_STRUCT(CameraShake::ROscillator, RotOscillation, 76)
+		ADD_STRUCT(CameraShake__VOscillator, LocOscillation, 112)
+		ADD_STRUCT(CameraShake__ROscillator, RotOscillation, 76)
 		ADD_BOOL(bSingleInstance, 60, 0x1)
 		ADD_BOOL(bRandomAnimSegment, 60, 0x2)
 		ADD_STRUCT(float, OscillationDuration, 64)
 		ADD_STRUCT(float, OscillationBlendInTime, 68)
 		ADD_STRUCT(float, OscillationBlendOutTime, 72)
-		ADD_STRUCT(CameraShake::FOscillator, FOVOscillation, 148)
+		ADD_STRUCT(CameraShake__FOscillator, FOVOscillation, 148)
 		ADD_OBJECT(CameraAnim, Anim, 160)
 		ADD_STRUCT(float, AnimPlayRate, 164)
 		ADD_STRUCT(float, AnimScale, 168)

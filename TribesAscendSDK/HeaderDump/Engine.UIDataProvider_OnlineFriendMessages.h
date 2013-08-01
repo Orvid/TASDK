@@ -1,8 +1,9 @@
 #pragma once
+#include "Engine.OnlineSubsystem.OnlineFriendMessage.h"
 #include "Engine.UIDataProvider_OnlinePlayerDataBase.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.LocalPlayer.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,14 +13,14 @@ namespace UnrealScript
 	class UIDataProvider_OnlineFriendMessages : public UIDataProvider_OnlinePlayerDataBase
 	{
 	public:
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::OnlineFriendMessage>, Messages, 96)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__OnlineFriendMessage>, Messages, 96)
 		ADD_STRUCT(ScriptString*, LastInviteFrom, 168)
 		ADD_STRUCT(ScriptString*, MessageCol, 156)
 		ADD_STRUCT(ScriptString*, bWasDeniedCol, 144)
 		ADD_STRUCT(ScriptString*, bWasAcceptedCol, 132)
 		ADD_STRUCT(ScriptString*, bIsFriendInviteCol, 120)
 		ADD_STRUCT(ScriptString*, SendingPlayerNameCol, 108)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 92)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 92)
 		void OnRegister(class LocalPlayer* InPlayer)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28164);
@@ -37,22 +38,22 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28171);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnFriendInviteReceived(byte LocalUserNum, OnlineSubsystem::UniqueNetId RequestingPlayer, ScriptString* RequestingNick, ScriptString* Message)
+		void OnFriendInviteReceived(byte LocalUserNum, OnlineSubsystem__UniqueNetId RequestingPlayer, ScriptString* RequestingNick, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28174);
 			byte params[33] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = RequestingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = RequestingPlayer;
 			*(ScriptString**)&params[12] = RequestingNick;
 			*(ScriptString**)&params[24] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFriendMessageReceived(byte LocalUserNum, OnlineSubsystem::UniqueNetId SendingPlayer, ScriptString* SendingNick, ScriptString* Message)
+		void OnFriendMessageReceived(byte LocalUserNum, OnlineSubsystem__UniqueNetId SendingPlayer, ScriptString* SendingNick, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28179);
 			byte params[33] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = SendingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = SendingPlayer;
 			*(ScriptString**)&params[12] = SendingNick;
 			*(ScriptString**)&params[24] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);

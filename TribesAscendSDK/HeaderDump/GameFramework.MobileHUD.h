@@ -1,10 +1,11 @@
 #pragma once
 #include "GameFramework.SeqEvent_HudRender.h"
 #include "Engine.HUD.h"
+#include "GameFramework.MobileInputZone.TextureUVs.h"
+#include "GameFramework.MobileInputZone.h"
 #include "Engine.Font.h"
 #include "Engine.Texture2D.h"
-#include "GameFramework.MobileInputZone.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #include "GameFramework.MobilePlayerInput.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -33,19 +34,19 @@ namespace UnrealScript
 		ADD_STRUCT(float, MobileTiltSize, 1344)
 		ADD_STRUCT(float, MobileTiltY, 1340)
 		ADD_STRUCT(float, MobileTiltX, 1336)
-		ADD_STRUCT(MobileInputZone::TextureUVs, SliderUVs, 1272)
+		ADD_STRUCT(MobileInputZone__TextureUVs, SliderUVs, 1272)
 		ADD_OBJECT(Texture2D, SliderImages, 1256)
-		ADD_STRUCT(MobileInputZone::TextureUVs, TrackballTouchIndicatorUVs, 1240)
+		ADD_STRUCT(MobileInputZone__TextureUVs, TrackballTouchIndicatorUVs, 1240)
 		ADD_OBJECT(Texture2D, TrackballTouchIndicator, 1236)
-		ADD_STRUCT(MobileInputZone::TextureUVs, TrackballBackgroundUVs, 1220)
+		ADD_STRUCT(MobileInputZone__TextureUVs, TrackballBackgroundUVs, 1220)
 		ADD_OBJECT(Texture2D, TrackballBackground, 1216)
-		ADD_STRUCT(Object::Color, ButtonCaptionColor, 1212)
+		ADD_STRUCT(Object__Color, ButtonCaptionColor, 1212)
 		ADD_OBJECT(Font, ButtonFont, 1208)
-		ADD_STRUCT(MobileInputZone::TextureUVs, ButtonUVs, 1176)
+		ADD_STRUCT(MobileInputZone__TextureUVs, ButtonUVs, 1176)
 		ADD_OBJECT(Texture2D, ButtonImages, 1168)
-		ADD_STRUCT(MobileInputZone::TextureUVs, JoystickHatUVs, 1152)
+		ADD_STRUCT(MobileInputZone__TextureUVs, JoystickHatUVs, 1152)
 		ADD_OBJECT(Texture2D, JoystickHat, 1148)
-		ADD_STRUCT(MobileInputZone::TextureUVs, JoystickBackgroundUVs, 1132)
+		ADD_STRUCT(MobileInputZone__TextureUVs, JoystickBackgroundUVs, 1132)
 		ADD_OBJECT(Texture2D, JoystickBackground, 1128)
 		ADD_BOOL(bShowMotionDebug, 1124, 0x80)
 		ADD_BOOL(bDebugZonePresses, 1124, 0x40)

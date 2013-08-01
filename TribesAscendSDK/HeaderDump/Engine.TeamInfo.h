@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.ReplicationInfo.h"
+#include "Core.Object.Color.h"
 #include "Engine.Controller.h"
-#include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,7 +13,7 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(int, TeamIndex, 496)
 		ADD_STRUCT(float, Score, 492)
-		ADD_STRUCT(Object::Color, TeamColor, 500)
+		ADD_STRUCT(Object__Color, TeamColor, 500)
 		ADD_STRUCT(int, Size, 488)
 		ADD_STRUCT(ScriptString*, TeamName, 476)
 		ScriptString* GetHumanReadableName()

@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.SeqCond_SwitchBase.h"
+#include "Engine.SeqCond_SwitchObject.SwitchObjectCase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,14 +24,7 @@ namespace UnrealScript
 	class SeqCond_SwitchObject : public SeqCond_SwitchBase
 	{
 	public:
-		struct SwitchObjectCase
-		{
-		public:
-			ADD_BOOL(bDefaultValue, 4, 0x2)
-			ADD_BOOL(bFallThru, 4, 0x1)
-			ADD_OBJECT(Object, ObjectValue, 0)
-		};
-		ADD_STRUCT(ScriptArray<SeqCond_SwitchObject::SwitchObjectCase>, SupportedValues, 208)
+		ADD_STRUCT(ScriptArray<SeqCond_SwitchObject__SwitchObjectCase>, SupportedValues, 208)
 		void VerifyDefaultCaseValue()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(26066);

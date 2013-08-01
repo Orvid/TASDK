@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -9,7 +10,7 @@ namespace UnrealScript
 	class MCPBase : public Object
 	{
 	public:
-		ADD_STRUCT(Object::Pointer, VfTable_FTickableObject, 60)
+		ADD_STRUCT(Object__Pointer, VfTable_FTickableObject, 60)
 	};
 }
 #undef ADD_STRUCT

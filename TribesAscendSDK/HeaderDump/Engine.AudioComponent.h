@@ -1,13 +1,17 @@
 #pragma once
-#include "Engine.SoundNodeWave.h"
 #include "Engine.ActorComponent.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
-#include "Engine.ReverbVolume.h"
+#include "Core.Object.Double.h"
+#include "Engine.EngineTypes.SubtitleCue.h"
+#include "Core.Object.Vector.h"
+#include "Engine.AudioComponent.AudioComponentParam.h"
 #include "Engine.SoundCue.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.ReverbVolume.InteriorSettings.h"
 #include "Engine.SoundNode.h"
+#include "Engine.Actor.h"
 #include "Engine.PortalVolume.h"
-#include "Engine.EngineTypes.h"
+#include "Core.Object.MultiMap_Mirror.h"
+#include "Engine.SoundNodeWave.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,13 +35,6 @@ namespace UnrealScript
 	class AudioComponent : public ActorComponent
 	{
 	public:
-		struct AudioComponentParam
-		{
-		public:
-			ADD_OBJECT(SoundNodeWave, WaveParam, 12)
-			ADD_STRUCT(float, FloatParam, 8)
-			ADD_STRUCT(ScriptName, ParamName, 0)
-		};
 		ADD_BOOL(bUseOwnerLocation, 108, 0x1)
 		ADD_STRUCT(Vector, Location, 280)
 		ADD_BOOL(bAllowSpatialization, 108, 0x100)
@@ -47,20 +44,20 @@ namespace UnrealScript
 		ADD_STRUCT(float, SubtitlePriority, 308)
 		ADD_BOOL(bSuppressSubtitles, 108, 0x40)
 		ADD_OBJECT(SoundCue, SoundCue, 88)
-		ADD_STRUCT(ScriptArray<AudioComponent::AudioComponentParam>, InstanceParameters, 96)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, WaveInstances, 124)
+		ADD_STRUCT(ScriptArray<AudioComponent__AudioComponentParam>, InstanceParameters, 96)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, WaveInstances, 124)
 		ADD_STRUCT(ScriptArray<byte>, SoundNodeData, 136)
 		ADD_STRUCT(float, LastOcclusionCheckTime, 504)
 		ADD_STRUCT(float, OcclusionCheckInterval, 500)
 		ADD_STRUCT(float, HighFrequencyGainMultiplier, 496)
 		ADD_STRUCT(int, LastReverbVolumeIndex, 484)
-		ADD_STRUCT(ReverbVolume::InteriorSettings, LastInteriorSettings, 448)
+		ADD_STRUCT(ReverbVolume__InteriorSettings, LastInteriorSettings, 448)
 		ADD_STRUCT(Vector, LastLocation, 436)
 		ADD_STRUCT(float, CurrentInteriorLPF, 432)
 		ADD_STRUCT(float, CurrentInteriorVolume, 428)
 		ADD_STRUCT(float, SourceInteriorLPF, 424)
 		ADD_STRUCT(float, SourceInteriorVolume, 420)
-		ADD_STRUCT(Object::Double, LastUpdateTime, 412)
+		ADD_STRUCT(Object__Double, LastUpdateTime, 412)
 		ADD_STRUCT(float, CurrentRadioFilterVolumeThreshold, 408)
 		ADD_STRUCT(float, CurrentRadioFilterVolume, 404)
 		ADD_STRUCT(float, CurrentVoiceCenterChannelVolume, 400)
@@ -88,8 +85,8 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, ComponentLocation, 292)
 		ADD_OBJECT(PortalVolume, PortalVolume, 276)
 		ADD_STRUCT(float, PlaybackTime, 272)
-		ADD_STRUCT(Object::Pointer, Listener, 268)
-		ADD_STRUCT(Object::MultiMap_Mirror, SoundNodeResetWaveMap, 208)
+		ADD_STRUCT(Object__Pointer, Listener, 268)
+		ADD_STRUCT(Object__MultiMap_Mirror, SoundNodeResetWaveMap, 208)
 		ADD_BOOL(bBassBoost, 120, 0x40)
 		ADD_BOOL(bCenterChannelOnly, 120, 0x20)
 		ADD_BOOL(bReverb, 120, 0x10)
@@ -134,11 +131,11 @@ namespace UnrealScript
 			*(float*)&params[4] = FadeVolumeLevel;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnQueueSubtitles(ScriptArray<EngineTypes::SubtitleCue> Subtitles, float CueDuration)
+		void OnQueueSubtitles(ScriptArray<EngineTypes__SubtitleCue> Subtitles, float CueDuration)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(10200);
 			byte params[16] = { NULL };
-			*(ScriptArray<EngineTypes::SubtitleCue>*)params = Subtitles;
+			*(ScriptArray<EngineTypes__SubtitleCue>*)params = Subtitles;
 			*(float*)&params[12] = CueDuration;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

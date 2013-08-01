@@ -1,6 +1,7 @@
 #pragma once
 #include "IpDrv.MCPBase.h"
-#include "Engine.OnlineSubsystem.h"
+#include "IpDrv.OnlineNewsInterfaceMcp.NewsCacheEntry.h"
+#include "Engine.OnlineSubsystem.EOnlineNewsType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,36 +21,25 @@ namespace UnrealScript
 	class OnlineNewsInterfaceMcp : public MCPBase
 	{
 	public:
-		struct NewsCacheEntry
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, HttpDownloader, 36)
-			ADD_BOOL(bIsUnicode, 32, 0x1)
-			ADD_STRUCT(float, TimeOut, 28)
-			ADD_STRUCT(ScriptString*, NewsItem, 16)
-			ADD_STRUCT(OnlineSubsystem::EOnlineNewsType, NewsType, 13)
-			ADD_STRUCT(OnlineSubsystem::EOnlineEnumerationReadState, ReadState, 12)
-			ADD_STRUCT(ScriptString*, NewsUrl, 0)
-		};
-		ADD_STRUCT(ScriptArray<OnlineNewsInterfaceMcp::NewsCacheEntry>, NewsItems, 64)
+		ADD_STRUCT(ScriptArray<OnlineNewsInterfaceMcp__NewsCacheEntry>, NewsItems, 64)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, ReadNewsDelegates, 76)
 		ADD_BOOL(bNeedsTicking, 88, 0x1)
-		void OnReadNewsCompleted(bool bWasSuccessful, OnlineSubsystem::EOnlineNewsType NewsType)
+		void OnReadNewsCompleted(bool bWasSuccessful, OnlineSubsystem__EOnlineNewsType NewsType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33649);
 			byte params[5] = { NULL };
 			*(bool*)params = bWasSuccessful;
-			*(OnlineSubsystem::EOnlineNewsType*)&params[4] = NewsType;
+			*(OnlineSubsystem__EOnlineNewsType*)&params[4] = NewsType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool ReadNews(byte LocalUserNum, OnlineSubsystem::EOnlineNewsType NewsType)
+		bool ReadNews(byte LocalUserNum, OnlineSubsystem__EOnlineNewsType NewsType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33659);
 			byte params[6] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineNewsType*)&params[1] = NewsType;
+			*(OnlineSubsystem__EOnlineNewsType*)&params[1] = NewsType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
@@ -75,12 +65,12 @@ void* ReadGameNewsDelegate)
 void**)params = ReadGameNewsDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		ScriptString* GetNews(byte LocalUserNum, OnlineSubsystem::EOnlineNewsType NewsType)
+		ScriptString* GetNews(byte LocalUserNum, OnlineSubsystem__EOnlineNewsType NewsType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33670);
 			byte params[14] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineNewsType*)&params[1] = NewsType;
+			*(OnlineSubsystem__EOnlineNewsType*)&params[1] = NewsType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}

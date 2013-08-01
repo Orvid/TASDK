@@ -1,7 +1,10 @@
 #pragma once
 #include "Engine.UIDataStore_Remote.h"
 #include "Engine.OnlineStatsRead.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.UIDataStore_OnlineStats.EStatsFetchType.h"
+#include "Engine.UIDataStore_OnlineStats.RankMetaData.h"
+#include "Engine.UIDataStore_OnlineStats.PlayerNickMetaData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,36 +18,16 @@ namespace UnrealScript
 	class UIDataStore_OnlineStats : public UIDataStore_Remote
 	{
 	public:
-		enum EStatsFetchType : byte
-		{
-			SFT_Player = 0,
-			SFT_CenteredOnPlayer = 1,
-			SFT_Friends = 2,
-			SFT_TopRankings = 3,
-			SFT_MAX = 4,
-		};
-		struct RankMetaData
-		{
-		public:
-			ADD_STRUCT(ScriptString*, RankColumnName, 8)
-			ADD_STRUCT(ScriptName, RankName, 0)
-		};
-		struct PlayerNickMetaData
-		{
-		public:
-			ADD_STRUCT(ScriptString*, PlayerNickColumnName, 8)
-			ADD_STRUCT(ScriptName, PlayerNickName, 0)
-		};
 		ADD_STRUCT(ScriptArray<ScriptClass*>, StatsReadClasses, 128)
 		ADD_STRUCT(ScriptArray<class OnlineStatsRead*>, StatsReadObjects, 196)
-		ADD_STRUCT(UIDataStore_OnlineStats::EStatsFetchType, CurrentReadType, 212)
+		ADD_STRUCT(UIDataStore_OnlineStats__EStatsFetchType, CurrentReadType, 212)
 		ADD_OBJECT(OnlineStatsRead, StatsRead, 208)
 		ADD_STRUCT(ScriptName, TotalRowsName, 188)
-		ADD_STRUCT(UIDataStore_OnlineStats::RankMetaData, RankNameMetaData, 168)
-		ADD_STRUCT(UIDataStore_OnlineStats::PlayerNickMetaData, PlayerNickData, 148)
+		ADD_STRUCT(UIDataStore_OnlineStats__RankMetaData, RankNameMetaData, 168)
+		ADD_STRUCT(UIDataStore_OnlineStats__PlayerNickMetaData, PlayerNickData, 148)
 		ADD_STRUCT(ScriptName, StatsReadName, 140)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 124)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementProvider, 120)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 124)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementProvider, 120)
 		void Init()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28847);

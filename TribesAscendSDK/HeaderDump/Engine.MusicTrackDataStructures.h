@@ -23,18 +23,6 @@ namespace UnrealScript
 	class MusicTrackDataStructures : public Object
 	{
 	public:
-		struct MusicTrackStruct
-		{
-		public:
-			ADD_STRUCT(ScriptString*, MP3Filename, 24)
-			ADD_STRUCT(float, FadeOutVolumeLevel, 20)
-			ADD_STRUCT(float, FadeOutTime, 16)
-			ADD_STRUCT(float, FadeInVolumeLevel, 12)
-			ADD_STRUCT(float, FadeInTime, 8)
-			ADD_BOOL(bPersistentAcrossLevels, 4, 0x2)
-			ADD_BOOL(bAutoPlay, 4, 0x1)
-			ADD_OBJECT(SoundCue, TheSoundCue, 0)
-		};
 	};
 }
 #undef ADD_BOOL

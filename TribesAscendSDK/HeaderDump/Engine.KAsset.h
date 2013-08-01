@@ -1,12 +1,13 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
 #include "Engine.PhysicsAsset.h"
 #include "Engine.SeqAct_Toggle.h"
 #include "Engine.SkeletalMesh.h"
-#include "Engine.SeqAct_Teleport.h"
 #include "Engine.SeqAct_AttachToActor.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.SeqAct_Teleport.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -51,7 +52,7 @@ namespace UnrealScript
 			*(ScriptName*)params = VarName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19098);
 			byte params[68] = { NULL };
@@ -60,7 +61,7 @@ namespace UnrealScript
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

@@ -1,20 +1,23 @@
 #pragma once
 #include "Engine.Actor.h"
+#include "Engine.SeqAct_Toggle.h"
+#include "Engine.SkeletalMeshActor.SkelMeshActorControlTarget.h"
+#include "Engine.SkeletalMesh.h"
 #include "Engine.InterpGroup.h"
 #include "Engine.SeqAct_SetMaterial.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.SeqAct_Toggle.h"
-#include "Engine.SkeletalMesh.h"
+#include "Core.Object.Vector.h"
 #include "Engine.FaceFXAnimSet.h"
-#include "Engine.SeqAct_PlayFaceFXAnim.h"
 #include "Engine.SoundCue.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.SeqAct_PlayFaceFXAnim.h"
 #include "Engine.FaceFXAsset.h"
 #include "Engine.SeqAct_AttachToActor.h"
 #include "Engine.SeqAct_SetMesh.h"
 #include "Engine.SeqAct_UpdatePhysBonesFromAnim.h"
 #include "Engine.SeqAct_SetSkelControlTarget.h"
 #include "Engine.Controller.h"
-#include "Core.Object.h"
+#include "Engine.SkeletalMeshActor.CheckpointRecord.h"
 #include "Engine.AnimNotify_PlayParticleEffect.h"
 #include "Engine.AnimNotify_ForceField.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -40,22 +43,7 @@ namespace UnrealScript
 	class SkeletalMeshActor : public Actor
 	{
 	public:
-		struct SkelMeshActorControlTarget
-		{
-		public:
-			ADD_OBJECT(Actor, TargetActor, 8)
-			ADD_STRUCT(ScriptName, ControlName, 0)
-		};
-		struct CheckpointRecord
-		{
-		public:
-			ADD_STRUCT(Rotator, Rotation, 16)
-			ADD_STRUCT(Vector, Location, 4)
-			ADD_BOOL(bSavedPosition, 0, 0x4)
-			ADD_BOOL(bHidden, 0, 0x2)
-			ADD_BOOL(bReplicated, 0, 0x1)
-		};
-		ADD_STRUCT(ScriptArray<SkeletalMeshActor::SkelMeshActorControlTarget>, ControlTargets, 500)
+		ADD_STRUCT(ScriptArray<SkeletalMeshActor__SkelMeshActorControlTarget>, ControlTargets, 500)
 		ADD_STRUCT(ScriptArray<class InterpGroup*>, InterpGroupList, 512)
 		ADD_STRUCT(float, SavedCurrentTime, 532)
 		ADD_STRUCT(ScriptName, SavedAnimSeqName, 524)
@@ -219,7 +207,7 @@ void**)params;
 			*(class SeqAct_AttachToActor**)&params[4] = Action;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(26711);
 			byte params[68] = { NULL };
@@ -228,7 +216,7 @@ void**)params;
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -239,21 +227,21 @@ void**)params;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void CreateCheckpointRecord(SkeletalMeshActor::CheckpointRecord& Record)
+		void CreateCheckpointRecord(SkeletalMeshActor__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(26722);
 			byte params[28] = { NULL };
-			*(SkeletalMeshActor::CheckpointRecord*)params = Record;
+			*(SkeletalMeshActor__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(SkeletalMeshActor::CheckpointRecord*)params;
+			Record = *(SkeletalMeshActor__CheckpointRecord*)params;
 		}
-		void ApplyCheckpointRecord(SkeletalMeshActor::CheckpointRecord& Record)
+		void ApplyCheckpointRecord(SkeletalMeshActor__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(26724);
 			byte params[28] = { NULL };
-			*(SkeletalMeshActor::CheckpointRecord*)params = Record;
+			*(SkeletalMeshActor__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(SkeletalMeshActor::CheckpointRecord*)params;
+			Record = *(SkeletalMeshActor__CheckpointRecord*)params;
 		}
 		bool PlayParticleEffect(class AnimNotify_PlayParticleEffect* AnimNotifyData)
 		{

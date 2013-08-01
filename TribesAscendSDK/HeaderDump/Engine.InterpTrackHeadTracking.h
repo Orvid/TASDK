@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.InterpTrack.h"
+#include "Engine.InterpTrackHeadTracking.HeadTrackingKey.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,19 +20,7 @@ namespace UnrealScript
 	class InterpTrackHeadTracking : public InterpTrack
 	{
 	public:
-		enum EHeadTrackingAction : byte
-		{
-			EHTA_DisableHeadTracking = 0,
-			EHTA_EnableHeadTracking = 1,
-			EHTA_MAX = 2,
-		};
-		struct HeadTrackingKey
-		{
-		public:
-			ADD_STRUCT(InterpTrackHeadTracking::EHeadTrackingAction, Action, 4)
-			ADD_STRUCT(float, Time, 0)
-		};
-		ADD_STRUCT(ScriptArray<InterpTrackHeadTracking::HeadTrackingKey>, HeadTrackingTrack, 128)
+		ADD_STRUCT(ScriptArray<InterpTrackHeadTracking__HeadTrackingKey>, HeadTrackingTrack, 128)
 		ADD_STRUCT(ScriptArray<ScriptName>, TrackControllerName, 140)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, ActorClassesToLookAt, 172)
 		ADD_STRUCT(ScriptArray<ScriptName>, TargetBoneNames, 184)

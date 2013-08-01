@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.SequenceAction.h"
-#include "Engine.CoverLink.h"
+#include "Engine.CoverLink.ECoverType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,7 +21,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<int>, Slots, 232)
-		ADD_STRUCT(CoverLink::ECoverType, ManualCoverType, 244)
+		ADD_STRUCT(CoverLink__ECoverType, ManualCoverType, 244)
 		ADD_BOOL(bManualAdjustPlayersOnly, 248, 0x1)
 	};
 }

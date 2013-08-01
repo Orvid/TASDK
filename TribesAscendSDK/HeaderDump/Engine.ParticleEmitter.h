@@ -1,6 +1,8 @@
 #pragma once
 #include "Core.Object.h"
 #include "Engine.ParticleLODLevel.h"
+#include "Core.Object.Color.h"
+#include "Engine.ParticleEmitter.EEmitterRenderMode.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,36 +22,6 @@ namespace UnrealScript
 	class ParticleEmitter : public Object
 	{
 	public:
-		enum EEmitterRenderMode : byte
-		{
-			ERM_Normal = 0,
-			ERM_Point = 1,
-			ERM_Cross = 2,
-			ERM_None = 3,
-			ERM_MAX = 4,
-		};
-		enum EParticleSubUVInterpMethod : byte
-		{
-			PSUVIM_None = 0,
-			PSUVIM_Linear = 1,
-			PSUVIM_Linear_Blend = 2,
-			PSUVIM_Random = 3,
-			PSUVIM_Random_Blend = 4,
-			PSUVIM_MAX = 5,
-		};
-		enum EParticleBurstMethod : byte
-		{
-			EPBM_Instant = 0,
-			EPBM_Interpolated = 1,
-			EPBM_MAX = 2,
-		};
-		struct ParticleBurst
-		{
-		public:
-			ADD_STRUCT(float, Time, 8)
-			ADD_STRUCT(int, CountLow, 4)
-			ADD_STRUCT(int, Count, 0)
-		};
 		ADD_STRUCT(ScriptArray<class ParticleLODLevel*>, LODLevels, 80)
 		ADD_STRUCT(int, InitialAllocationCount, 100)
 		ADD_STRUCT(int, PeakActiveParticles, 96)
@@ -57,8 +29,8 @@ namespace UnrealScript
 		ADD_BOOL(bIsSoloing, 92, 0x4)
 		ADD_BOOL(bCollapsed, 92, 0x2)
 		ADD_BOOL(ConvertedModules, 92, 0x1)
-		ADD_STRUCT(Object::Color, EmitterEditorColor, 76)
-		ADD_STRUCT(ParticleEmitter::EEmitterRenderMode, EmitterRenderMode, 72)
+		ADD_STRUCT(Object__Color, EmitterEditorColor, 76)
+		ADD_STRUCT(ParticleEmitter__EEmitterRenderMode, EmitterRenderMode, 72)
 		ADD_STRUCT(int, SubUVDataOffset, 68)
 		ADD_STRUCT(ScriptName, EmitterName, 60)
 	};

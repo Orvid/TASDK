@@ -1,11 +1,14 @@
 #pragma once
-#include "UTGame.UTPawn.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.Texture.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "UTGame.UTSquadAI.h"
+#include "Core.Object.Vector.h"
+#include "UTGame.UTPlayerReplicationInfo.IntStat.h"
+#include "UTGame.UTPlayerReplicationInfo.TimeStat.h"
 #include "UTGame.UTCarriedObject.h"
+#include "Core.Object.Color.h"
+#include "UTGame.UTPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,19 +32,6 @@ namespace UnrealScript
 	class UTPlayerReplicationInfo : public PlayerReplicationInfo
 	{
 	public:
-		struct IntStat
-		{
-		public:
-			ADD_STRUCT(int, StatValue, 8)
-			ADD_STRUCT(ScriptName, StatName, 0)
-		};
-		struct TimeStat
-		{
-		public:
-			ADD_STRUCT(float, CurrentStart, 12)
-			ADD_STRUCT(float, TotalTime, 8)
-			ADD_STRUCT(ScriptName, StatName, 0)
-		};
 		ADD_OBJECT(ScriptClass, CharClassInfo, 700)
 		ADD_BOOL(bHasFlag, 652, 0x1)
 		ADD_OBJECT(ScriptClass, VoiceClass, 676)
@@ -53,18 +43,18 @@ namespace UnrealScript
 		ADD_BOOL(bHolding, 652, 0x2)
 		ADD_STRUCT(int, MultiKillLevel, 660)
 		ADD_STRUCT(float, LastKillTime, 664)
-		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo::IntStat>, KillStats, 708)
-		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo::IntStat>, DeathStats, 720)
-		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo::IntStat>, SuicideStats, 732)
-		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo::IntStat>, EventStats, 744)
-		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo::IntStat>, VehicleKillStats, 756)
-		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo::IntStat>, PickupStats, 768)
-		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo::TimeStat>, DrivingStats, 780)
-		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo::TimeStat>, PowerupTimeStats, 792)
+		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo__IntStat>, KillStats, 708)
+		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo__IntStat>, DeathStats, 720)
+		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo__IntStat>, SuicideStats, 732)
+		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo__IntStat>, EventStats, 744)
+		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo__IntStat>, VehicleKillStats, 756)
+		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo__IntStat>, PickupStats, 768)
+		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo__TimeStat>, DrivingStats, 780)
+		ADD_STRUCT(ScriptArray<UTPlayerReplicationInfo__TimeStat>, PowerupTimeStats, 792)
 		ADD_STRUCT(byte, OrdersIndex, 900)
 		ADD_STRUCT(ScriptString*, OrdersString, 804)
 		ADD_STRUCT(Vector, HUDLocation, 688)
-		ADD_STRUCT(Object::Color, DefaultHudColor, 684)
+		ADD_STRUCT(Object__Color, DefaultHudColor, 684)
 		ADD_OBJECT(UTCarriedObject, HasFlag, 672)
 		int IncrementEventStat(ScriptName NewStatName)
 		{

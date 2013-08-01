@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.UIResourceDataProvider.h"
-#include "Engine.UIRoot.h"
+#include "Engine.UIRoot.UIRangeData.h"
+#include "Engine.UIDataProvider_MenuItem.EMenuOptionType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,22 +21,10 @@ namespace UnrealScript
 	class UIDataProvider_MenuItem : public UIResourceDataProvider
 	{
 	public:
-		enum EMenuOptionType : byte
-		{
-			MENUOT_ComboReadOnly = 0,
-			MENUOT_ComboNumeric = 1,
-			MENUOT_CheckBox = 2,
-			MENUOT_Slider = 3,
-			MENUOT_Spinner = 4,
-			MENUOT_EditBox = 5,
-			MENUOT_CollectionCheckBox = 6,
-			MENUOT_CollapsingList = 7,
-			MENUOT_MAX = 8,
-		};
 		ADD_STRUCT(ScriptArray<ScriptName>, OptionSet, 128)
 		ADD_STRUCT(ScriptArray<ScriptName>, SchemaCellFields, 236)
 		ADD_STRUCT(ScriptString*, IniName, 248)
-		ADD_STRUCT(UIRoot::UIRangeData, RangeData, 216)
+		ADD_STRUCT(UIRoot__UIRangeData, RangeData, 216)
 		ADD_STRUCT(int, EditBoxMaxLength, 212)
 		ADD_BOOL(bRemoveOnPS3, 208, 0x100)
 		ADD_BOOL(bRemoveOnPC, 208, 0x80)
@@ -52,7 +41,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptName, RequiredGameMode, 164)
 		ADD_STRUCT(ScriptString*, DescriptionMarkup, 152)
 		ADD_STRUCT(ScriptString*, DataStoreMarkup, 140)
-		ADD_STRUCT(UIDataProvider_MenuItem::EMenuOptionType, OptionType, 124)
+		ADD_STRUCT(UIDataProvider_MenuItem__EMenuOptionType, OptionType, 124)
 		bool IsFiltered()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28149);

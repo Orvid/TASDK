@@ -1,9 +1,11 @@
 #pragma once
 #include "Engine.Actor.h"
 #include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #include "Engine.CameraShake.h"
 #include "Engine.SoundCue.h"
 #include "Engine.ParticleSystem.h"
+#include "Core.Object.Vector2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -48,7 +50,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, ExplosionEmitterScale, 128)
 		ADD_OBJECT(ParticleSystem, ParticleEmitterTemplate, 124)
 		ADD_STRUCT(float, MomentumTransferScale, 120)
-		ADD_STRUCT(Object::Vector2D, CringeDuration, 112)
+		ADD_STRUCT(Object__Vector2D, CringeDuration, 112)
 		ADD_STRUCT(float, CringeRadius, 108)
 		ADD_STRUCT(float, KnockDownStrength, 104)
 		ADD_STRUCT(float, KnockDownRadius, 100)

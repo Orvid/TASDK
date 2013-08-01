@@ -1,6 +1,7 @@
 #pragma once
 #include "GFxUI.GFxRawData.h"
-#include "Core.Object.h"
+#include "Core.Object.QWord.h"
+#include "GFxUI.SwfMovie.FlashTextureRescale.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,20 +21,12 @@ namespace UnrealScript
 	class SwfMovie : public GFxRawData
 	{
 	public:
-		enum FlashTextureRescale : byte
-		{
-			FlashTextureScale_High = 0,
-			FlashTextureScale_Low = 1,
-			FlashTextureScale_NextLow = 2,
-			FlashTextureScale_Mult4 = 3,
-			FlashTextureScale_MAX = 4,
-		};
 		ADD_STRUCT(QWord, ImportTimeStamp, 164)
 		ADD_STRUCT(int, RTVideoTextures, 160)
 		ADD_STRUCT(int, RTTextures, 156)
 		ADD_STRUCT(ScriptString*, SourceFileTimestamp, 144)
 		ADD_STRUCT(ScriptString*, TextureFormat, 132)
-		ADD_STRUCT(SwfMovie::FlashTextureRescale, TextureRescale, 128)
+		ADD_STRUCT(SwfMovie__FlashTextureRescale, TextureRescale, 128)
 		ADD_STRUCT(int, PackTextureSize, 124)
 		ADD_STRUCT(ScriptString*, SourceFile, 112)
 		ADD_BOOL(bPackTextures, 108, 0x4)

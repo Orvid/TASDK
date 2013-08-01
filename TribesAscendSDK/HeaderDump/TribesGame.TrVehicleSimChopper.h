@@ -1,4 +1,5 @@
 #pragma once
+#include "UDKBase.UDKVehicleSimChopper.AnglePID.h"
 #include "UDKBase.UDKVehicleSimChopper.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -19,8 +20,8 @@ namespace UnrealScript
 	class TrVehicleSimChopper : public UDKVehicleSimChopper
 	{
 	public:
-		ADD_STRUCT(UDKVehicleSimChopper::AnglePID, RollGain, 348)
-		ADD_STRUCT(UDKVehicleSimChopper::AnglePID, PitchGain, 328)
+		ADD_STRUCT(UDKVehicleSimChopper__AnglePID, RollGain, 348)
+		ADD_STRUCT(UDKVehicleSimChopper__AnglePID, PitchGain, 328)
 		ADD_BOOL(bShouldStabilizeRotation, 324, 0x2)
 		ADD_BOOL(m_bInvertFlight, 324, 0x1)
 		ADD_STRUCT(int, m_nLastYawInput, 320)

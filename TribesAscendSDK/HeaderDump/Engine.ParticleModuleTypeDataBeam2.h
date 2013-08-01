@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine.ParticleModuleTypeDataBase.h"
-#include "Core.DistributionFloat.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Engine.ParticleModuleTypeDataBeam2.EBeamTaperMethod.h"
+#include "Engine.ParticleModuleTypeDataBeam2.EBeam2Method.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,29 +22,9 @@ namespace UnrealScript
 	class ParticleModuleTypeDataBeam2 : public ParticleModuleTypeDataBase
 	{
 	public:
-		enum EBeam2Method : byte
-		{
-			PEB2M_Distance = 0,
-			PEB2M_Target = 1,
-			PEB2M_Branch = 2,
-			PEB2M_MAX = 3,
-		};
-		enum EBeamTaperMethod : byte
-		{
-			PEBTM_None = 0,
-			PEBTM_Full = 1,
-			PEBTM_Partial = 2,
-			PEBTM_MAX = 3,
-		};
-		struct BeamTargetData
-		{
-		public:
-			ADD_STRUCT(float, TargetPercentage, 8)
-			ADD_STRUCT(ScriptName, TargetName, 0)
-		};
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, TaperScale, 172)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, TaperFactor, 144)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, Distance, 116)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, TaperScale, 172)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, TaperFactor, 144)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Distance, 116)
 		ADD_STRUCT(ScriptName, BranchParentName, 108)
 		ADD_STRUCT(int, UpVectorStepSize, 104)
 		ADD_BOOL(RenderTessellation, 100, 0x10)
@@ -56,8 +38,8 @@ namespace UnrealScript
 		ADD_STRUCT(int, Sheets, 84)
 		ADD_STRUCT(float, TextureTileDistance, 80)
 		ADD_STRUCT(int, TextureTile, 76)
-		ADD_STRUCT(ParticleModuleTypeDataBeam2::EBeamTaperMethod, TaperMethod, 73)
-		ADD_STRUCT(ParticleModuleTypeDataBeam2::EBeam2Method, BeamMethod, 72)
+		ADD_STRUCT(ParticleModuleTypeDataBeam2__EBeamTaperMethod, TaperMethod, 73)
+		ADD_STRUCT(ParticleModuleTypeDataBeam2__EBeam2Method, BeamMethod, 72)
 	};
 }
 #undef ADD_BOOL

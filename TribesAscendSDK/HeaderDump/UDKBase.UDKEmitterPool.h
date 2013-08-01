@@ -1,8 +1,10 @@
 #pragma once
 #include "Engine.EmitterPool.h"
+#include "UDKBase.UDKEmitterPool.AttachedExplosionLight.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.ParticleSystem.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,13 +18,7 @@ namespace UnrealScript
 	class UDKEmitterPool : public EmitterPool
 	{
 	public:
-		struct AttachedExplosionLight
-		{
-		public:
-			ADD_STRUCT(Vector, RelativeLocation, 8)
-			ADD_OBJECT(Actor, Base, 4)
-		};
-		ADD_STRUCT(ScriptArray<UDKEmitterPool::AttachedExplosionLight>, RelativeExplosionLights, 564)
+		ADD_STRUCT(ScriptArray<UDKEmitterPool__AttachedExplosionLight>, RelativeExplosionLights, 564)
 		
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void* SpawnEmitter(class ParticleSystem* EmitterTemplate, Vector SpawnLocation, Rotator SpawnRotation, class Actor* AttachToActor, bool bInheritScaleFromBase)

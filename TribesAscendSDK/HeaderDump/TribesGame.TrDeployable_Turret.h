@@ -1,12 +1,14 @@
 #pragma once
+#include "Core.Object.Color.h"
 #include "Engine.SkelControlLookAt.h"
 #include "TribesGame.TrDeployable.h"
 #include "GameFramework.GameSkelCtrl_Recoil.h"
+#include "TribesGame.TrDeployable_Turret.IgnorePawn.h"
 #include "Engine.SoundCue.h"
-#include "Engine.Texture2D.h"
-#include "Engine.Weapon.h"
 #include "Engine.Pawn.h"
-#include "Core.Object.h"
+#include "Engine.Weapon.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,17 +32,11 @@ namespace UnrealScript
 	class TrDeployable_Turret : public TrDeployable
 	{
 	public:
-		struct IgnorePawn
-		{
-		public:
-			ADD_STRUCT(float, UnignoreTime, 4)
-			ADD_OBJECT(TrPawn, PawnToIgnore, 0)
-		};
 		ADD_STRUCT(ScriptArray<class SkelControlLookAt*>, m_LookAtSkelControls, 1528)
 		ADD_STRUCT(ScriptArray<ScriptName>, m_LookAtSkelControlNames, 1540)
 		ADD_STRUCT(ScriptArray<class GameSkelCtrl_Recoil*>, m_RecoilSkelControls, 1552)
 		ADD_STRUCT(ScriptArray<ScriptName>, m_RecoilSkelControlNames, 1564)
-		ADD_STRUCT(ScriptArray<TrDeployable_Turret::IgnorePawn>, m_IgnorePawnList, 1604)
+		ADD_STRUCT(ScriptArray<TrDeployable_Turret__IgnorePawn>, m_IgnorePawnList, 1604)
 		ADD_STRUCT(float, m_fLastStallTime, 1624)
 		ADD_STRUCT(float, m_fFireStallRestoreTime, 1620)
 		ADD_STRUCT(float, m_fTimeToIgnoreInvulnerable, 1616)
@@ -139,14 +135,14 @@ void**)params = SkelComp;
 		}
 		void SetMuzzleFlashParams(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
-void* PSC, Object::Color MuzzleFlashColor)
+void* PSC, Object__Color MuzzleFlashColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72019);
 			byte params[8] = { NULL };
 			*(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void**)params = PSC;
-			*(Object::Color*)&params[4] = MuzzleFlashColor;
+			*(Object__Color*)&params[4] = MuzzleFlashColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		Vector GetWeaponStartTraceLocation(class Weapon* CurrentWeapon)

@@ -1,10 +1,16 @@
 #pragma once
 #include "Engine.DroppedPickup.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Guid.h"
 #include "Engine.ReachSpec.h"
+#include "Engine.Actor.ActorReference.h"
+#include "Engine.NavigationPoint.DebugNavCost.h"
+#include "Engine.NavigationPoint.NavigationOctreeObject.h"
 #include "Engine.Pawn.h"
 #include "Engine.SeqAct_Toggle.h"
+#include "Core.Object.Cylinder.h"
+#include "Core.Object.Vector.h"
+#include "Engine.NavigationPoint.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,37 +35,16 @@ namespace UnrealScript
 	{
 	public:
 		static const auto INFINITE_PATH_COST = 10000000;
-		struct DebugNavCost
-		{
-		public:
-			ADD_STRUCT(int, Cost, 12)
-			ADD_STRUCT(ScriptString*, Desc, 0)
-		};
-		struct NavigationOctreeObject
-		{
-		public:
-			ADD_STRUCT(byte, OwnerType, 48)
-			ADD_OBJECT(Object, Owner, 44)
-			ADD_STRUCT(Object::Pointer, OctreeNode, 40)
-			ADD_STRUCT(Vector, BoxCenter, 28)
-			ADD_STRUCT(Object::Box, BoundingBox, 0)
-		};
-		struct CheckpointRecord
-		{
-		public:
-			ADD_BOOL(bBlocked, 0, 0x2)
-			ADD_BOOL(bDisabled, 0, 0x1)
-		};
 		ADD_STRUCT(ScriptArray<class ReachSpec*>, PathList, 532)
-		ADD_STRUCT(ScriptArray<Actor::ActorReference>, EditorProscribedPaths, 544)
-		ADD_STRUCT(ScriptArray<Actor::ActorReference>, EditorForcedPaths, 556)
-		ADD_STRUCT(ScriptArray<Actor::ActorReference>, Volumes, 568)
-		ADD_STRUCT(ScriptArray<NavigationPoint::DebugNavCost>, CostArray, 620)
+		ADD_STRUCT(ScriptArray<Actor__ActorReference>, EditorProscribedPaths, 544)
+		ADD_STRUCT(ScriptArray<Actor__ActorReference>, EditorForcedPaths, 556)
+		ADD_STRUCT(ScriptArray<Actor__ActorReference>, Volumes, 568)
+		ADD_STRUCT(ScriptArray<NavigationPoint__DebugNavCost>, CostArray, 620)
 		ADD_STRUCT(float, LastAnchoredPawnTime, 688)
 		ADD_OBJECT(Pawn, AnchoredPawn, 684)
 		ADD_STRUCT(int, NetworkID, 680)
-		ADD_STRUCT(Object::Guid, NavGuid, 656)
-		ADD_STRUCT(Object::Cylinder, MaxPathSize, 648)
+		ADD_STRUCT(Object__Guid, NavGuid, 656)
+		ADD_STRUCT(Object__Cylinder, MaxPathSize, 648)
 		ADD_STRUCT(float, LastDetourWeight, 640)
 		ADD_STRUCT(float, InventoryDist, 636)
 		ADD_OBJECT(DroppedPickup, InventoryCache, 632)
@@ -73,7 +58,7 @@ namespace UnrealScript
 		ADD_OBJECT(NavigationPoint, nextNavigationPoint, 588)
 		ADD_STRUCT(int, bestPathWeight, 584)
 		ADD_STRUCT(int, visitedWeight, 580)
-		ADD_STRUCT(NavigationPoint::NavigationOctreeObject, NavOctreeObject, 480)
+		ADD_STRUCT(NavigationPoint__NavigationOctreeObject, NavOctreeObject, 480)
 		ADD_BOOL(bShouldSaveForCheckpoint, 476, 0x40000000)
 		ADD_BOOL(bHasCrossLevelPaths, 476, 0x20000000)
 		ADD_BOOL(bPreferredVehiclePath, 476, 0x10000000)
@@ -205,7 +190,7 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class NavigationPoint**)&params[32];
 		}
-		bool GetAllNavInRadius(class Actor* ChkActor, Vector ChkPoint, float Radius, ScriptArray<class NavigationPoint*>& out_NavList, bool bSkipBlocked, int inNetworkID, Object::Cylinder MinSize)
+		bool GetAllNavInRadius(class Actor* ChkActor, Vector ChkPoint, float Radius, ScriptArray<class NavigationPoint*>& out_NavList, bool bSkipBlocked, int inNetworkID, Object__Cylinder MinSize)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9894);
 			byte params[52] = { NULL };
@@ -215,7 +200,7 @@ namespace UnrealScript
 			*(ScriptArray<class NavigationPoint*>*)&params[20] = out_NavList;
 			*(bool*)&params[32] = bSkipBlocked;
 			*(int*)&params[36] = inNetworkID;
-			*(Object::Cylinder*)&params[40] = MinSize;
+			*(Object__Cylinder*)&params[40] = MinSize;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			out_NavList = *(ScriptArray<class NavigationPoint*>*)&params[20];
 			return *(bool*)&params[48];
@@ -247,21 +232,21 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void CreateCheckpointRecord(NavigationPoint::CheckpointRecord& Record)
+		void CreateCheckpointRecord(NavigationPoint__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9912);
 			byte params[4] = { NULL };
-			*(NavigationPoint::CheckpointRecord*)params = Record;
+			*(NavigationPoint__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(NavigationPoint::CheckpointRecord*)params;
+			Record = *(NavigationPoint__CheckpointRecord*)params;
 		}
-		void ApplyCheckpointRecord(NavigationPoint::CheckpointRecord& Record)
+		void ApplyCheckpointRecord(NavigationPoint__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9914);
 			byte params[4] = { NULL };
-			*(NavigationPoint::CheckpointRecord*)params = Record;
+			*(NavigationPoint__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(NavigationPoint::CheckpointRecord*)params;
+			Record = *(NavigationPoint__CheckpointRecord*)params;
 		}
 		ScriptString* GetDebugAbbrev()
 		{

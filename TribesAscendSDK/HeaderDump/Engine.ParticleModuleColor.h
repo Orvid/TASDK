@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.ParticleModuleColorBase.h"
-#include "Core.DistributionVector.h"
-#include "Core.DistributionFloat.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,8 +22,8 @@ namespace UnrealScript
 	{
 	public:
 		ADD_BOOL(bClampAlpha, 128, 0x1)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, StartAlpha, 100)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, StartColor, 72)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, StartAlpha, 100)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, StartColor, 72)
 	};
 }
 #undef ADD_BOOL

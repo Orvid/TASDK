@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleKillBase.h"
-#include "Core.DistributionVector.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,8 +22,8 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(bKillInside, 128, 0x2)
 		ADD_BOOL(bAbsolute, 128, 0x1)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, UpperRightCorner, 100)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, LowerLeftCorner, 72)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, UpperRightCorner, 100)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, LowerLeftCorner, 72)
 	};
 }
 #undef ADD_BOOL

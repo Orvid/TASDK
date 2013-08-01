@@ -1,6 +1,8 @@
 #pragma once
-#include "PlatformCommon.TgPlayerProfile.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.TrVideoSettings.EVideoSettingType.h"
+#include "TribesGame.TrVideoSettings.ResolutionData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,48 +16,6 @@ namespace UnrealScript
 	class TrVideoSettings : public GFxObject
 	{
 	public:
-		enum EVideoSettingType : byte
-		{
-			EVST_ShadowDetail = 0,
-			EVST_TextureDetail = 1,
-			EVST_ScreenType = 2,
-			EVST_MotionBlur = 3,
-			EVST_VerticalSync = 4,
-			EVST_AntiAliasing = 5,
-			EVST_Resolution = 6,
-			EVST_SmoothFramerate = 7,
-			EVST_MAX = 8,
-		};
-		enum EScreenFrameType : byte
-		{
-			ESFT_FullScreen = 0,
-			ESFT_Windowed = 1,
-			ESFT_Borderless = 2,
-			ESFT_MAX = 3,
-		};
-		enum EAntiAliasing : byte
-		{
-			EAA_Off = 0,
-			EAA_1X = 1,
-			EAA_2X = 2,
-			EAA_4X = 3,
-			EAA_MAX = 4,
-		};
-		enum EVisualDetail : byte
-		{
-			EVQ_Off = 0,
-			EVQ_Low = 1,
-			EVQ_Med = 2,
-			EVQ_High = 3,
-			EVQ_VHigh = 4,
-			EVQ_MAX = 5,
-		};
-		struct ResolutionData
-		{
-		public:
-			ADD_STRUCT(int, ResY, 4)
-			ADD_STRUCT(int, ResX, 0)
-		};
 		ADD_STRUCT(int, m_Cached_Resolution, 156)
 		ADD_STRUCT(int, m_VideoSettingsCount, 124)
 		ADD_OBJECT(GFxObject, m_VideoSettingsList, 132)
@@ -67,11 +27,11 @@ namespace UnrealScript
 		ADD_STRUCT(int, m_Cached_MotionBlur, 148)
 		ADD_STRUCT(int, m_Cached_VerticalSync, 152)
 		ADD_STRUCT(int, m_Cached_SmoothFramerate, 160)
-		int GetCurrentSettingValue(TrVideoSettings::EVideoSettingType Type)
+		int GetCurrentSettingValue(TrVideoSettings__EVideoSettingType Type)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(61372);
 			byte params[5] = { NULL };
-			*(TrVideoSettings::EVideoSettingType*)params = Type;
+			*(TrVideoSettings__EVideoSettingType*)params = Type;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
@@ -82,13 +42,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)params;
 		}
-		void GetAllowedResolutions(ScriptArray<TrVideoSettings::ResolutionData>& ResolutionList)
+		void GetAllowedResolutions(ScriptArray<TrVideoSettings__ResolutionData>& ResolutionList)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(115534);
 			byte params[12] = { NULL };
-			*(ScriptArray<TrVideoSettings::ResolutionData>*)params = ResolutionList;
+			*(ScriptArray<TrVideoSettings__ResolutionData>*)params = ResolutionList;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ResolutionList = *(ScriptArray<TrVideoSettings::ResolutionData>*)params;
+			ResolutionList = *(ScriptArray<TrVideoSettings__ResolutionData>*)params;
 		}
 		void ApplyVideoSettings()
 		{
@@ -123,13 +83,13 @@ namespace UnrealScript
 			*(int*)params = Index;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void GetResolutions(ScriptArray<TgPlayerProfile::PropertyPair>& ResolutionList)
+		void GetResolutions(ScriptArray<TgPlayerProfile__PropertyPair>& ResolutionList)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(115546);
 			byte params[12] = { NULL };
-			*(ScriptArray<TgPlayerProfile::PropertyPair>*)params = ResolutionList;
+			*(ScriptArray<TgPlayerProfile__PropertyPair>*)params = ResolutionList;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ResolutionList = *(ScriptArray<TgPlayerProfile::PropertyPair>*)params;
+			ResolutionList = *(ScriptArray<TgPlayerProfile__PropertyPair>*)params;
 		}
 		void SetVSync(bool bEnable)
 		{
@@ -181,21 +141,21 @@ namespace UnrealScript
 			*(ScriptString**)params = Resolution;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		ScriptString* GetSettingNameFromType(TrVideoSettings::EVideoSettingType Index)
+		ScriptString* GetSettingNameFromType(TrVideoSettings__EVideoSettingType Index)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(115577);
 			byte params[13] = { NULL };
-			*(TrVideoSettings::EVideoSettingType*)params = Index;
+			*(TrVideoSettings__EVideoSettingType*)params = Index;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}
-		TrVideoSettings::EVideoSettingType GetSettingTypeFromName(ScriptString* val)
+		TrVideoSettings__EVideoSettingType GetSettingTypeFromName(ScriptString* val)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(115580);
 			byte params[13] = { NULL };
 			*(ScriptString**)params = val;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(TrVideoSettings::EVideoSettingType*)&params[12];
+			return *(TrVideoSettings__EVideoSettingType*)&params[12];
 		}
 		void CacheVideoSetting(int Index, int val)
 		{

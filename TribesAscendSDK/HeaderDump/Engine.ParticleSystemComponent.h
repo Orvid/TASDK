@@ -1,10 +1,22 @@
 #pragma once
+#include "Engine.ParticleSystemComponent.ViewParticleEmitterInstanceMotionBlurInfo.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.PrimitiveComponent.h"
 #include "Engine.ParticleSystem.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
-#include "Engine.ParticleSystemReplay.h"
 #include "Engine.MaterialInterface.h"
+#include "Engine.ParticleSystemComponent.ParticleSysParam.h"
+#include "Core.Object.Vector.h"
+#include "Engine.ParticleSystem.ParticleSystemLODMethod.h"
+#include "Engine.ParticleSystemComponent.ParticleReplayState.h"
+#include "Engine.PrimitiveComponent.MaterialViewRelevance.h"
+#include "Engine.ParticleSystemComponent.ParticleEventKismetData.h"
+#include "Engine.ParticleSystemReplay.h"
+#include "Engine.ParticleSystemComponent.ParticleEventSpawnData.h"
+#include "Engine.ParticleSystemComponent.ParticleEventDeathData.h"
+#include "Engine.ParticleSystemComponent.ParticleEventCollideData.h"
+#include "Core.Object.Color.h"
+#include "Engine.Actor.h"
+#include "Engine.ParticleSystemComponent.EParticleSysParamType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,96 +40,9 @@ namespace UnrealScript
 	class ParticleSystemComponent : public PrimitiveComponent
 	{
 	public:
-		enum EParticleSysParamType : byte
-		{
-			PSPT_None = 0,
-			PSPT_Scalar = 1,
-			PSPT_ScalarRand = 2,
-			PSPT_Vector = 3,
-			PSPT_VectorRand = 4,
-			PSPT_Color = 5,
-			PSPT_Actor = 6,
-			PSPT_Material = 7,
-			PSPT_MAX = 8,
-		};
-		enum ParticleReplayState : byte
-		{
-			PRS_Disabled = 0,
-			PRS_Capturing = 1,
-			PRS_Replaying = 2,
-			PRS_MAX = 3,
-		};
-		enum EParticleEventType : byte
-		{
-			EPET_Any = 0,
-			EPET_Spawn = 1,
-			EPET_Death = 2,
-			EPET_Collision = 3,
-			EPET_Kismet = 4,
-			EPET_MAX = 5,
-		};
-		struct ViewParticleEmitterInstanceMotionBlurInfo
-		{
-		public:
-			ADD_STRUCT(Object::Map_Mirror, EmitterInstanceMBInfoMap, 0)
-		};
-		struct ParticleEventData
-		{
-		public:
-			ADD_STRUCT(Vector, Velocity, 40)
-			ADD_STRUCT(Vector, Direction, 28)
-			ADD_STRUCT(Vector, Location, 16)
-			ADD_STRUCT(float, EmitterTime, 12)
-			ADD_STRUCT(ScriptName, EventName, 4)
-			ADD_STRUCT(int, Type, 0)
-		};
-		struct ParticleEventSpawnData : public ParticleEventData
-		{
-		};
-		struct ParticleEventDeathData : public ParticleEventData
-		{
-		public:
-			ADD_STRUCT(float, ParticleTime, 52)
-		};
-		struct ParticleEventCollideData : public ParticleEventData
-		{
-		public:
-			ADD_STRUCT(ScriptName, BoneName, 76)
-			ADD_STRUCT(int, Item, 72)
-			ADD_STRUCT(float, Time, 68)
-			ADD_STRUCT(Vector, Normal, 56)
-			ADD_STRUCT(float, ParticleTime, 52)
-		};
-		struct ParticleEventKismetData : public ParticleEventData
-		{
-		public:
-			ADD_STRUCT(Vector, Normal, 56)
-			ADD_BOOL(UsePSysCompLocation, 52, 0x1)
-		};
-		struct ParticleEmitterInstanceMotionBlurInfo
-		{
-		public:
-			ADD_STRUCT(Object::Map_Mirror, ParticleMBInfoMap, 0)
-		};
-		struct ParticleEmitterInstance
-		{
-		};
-		struct ParticleSysParam
-		{
-		public:
-			ADD_OBJECT(MaterialInterface, Material, 52)
-			ADD_OBJECT(Actor, Actor, 48)
-			ADD_STRUCT(Object::Color, Color, 44)
-			ADD_STRUCT(Vector, Vector_Low, 32)
-			ADD_STRUCT(Vector, Vector, 20)
-			ADD_STRUCT(float, Scalar_Low, 16)
-			ADD_STRUCT(float, Scalar, 12)
-			ADD_STRUCT(ParticleSystemComponent::EParticleSysParamType, ParamType, 8)
-			ADD_STRUCT(ScriptName, Name, 0)
-		};
 		ADD_OBJECT(ParticleSystem, Template, 488)
 		ADD_OBJECT(ScriptClass, LightEnvironmentClass, 492)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, EmitterInstances, 496)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, EmitterInstances, 496)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, SMComponents, 508)
@@ -125,7 +50,7 @@ void*>, SMComponents, 508)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, SkelMeshComponents, 532)
-		ADD_STRUCT(ScriptArray<ParticleSystemComponent::ViewParticleEmitterInstanceMotionBlurInfo>, ViewMBInfoArray, 544)
+		ADD_STRUCT(ScriptArray<ParticleSystemComponent__ViewParticleEmitterInstanceMotionBlurInfo>, ViewMBInfoArray, 544)
 		ADD_BOOL(bAutoActivate, 556, 0x1)
 		ADD_BOOL(bWasCompleted, 556, 0x2)
 		ADD_BOOL(bSuppressSpawning, 556, 0x4)
@@ -146,7 +71,7 @@ void*>, SkelMeshComponents, 532)
 		ADD_BOOL(bRecacheViewRelevance, 556, 0x20000)
 		ADD_BOOL(bLODUpdatePending, 556, 0x40000)
 		ADD_BOOL(bSkipSpawnCountCheck, 556, 0x80000)
-		ADD_STRUCT(ScriptArray<ParticleSystemComponent::ParticleSysParam>, InstanceParameters, 560)
+		ADD_STRUCT(ScriptArray<ParticleSystemComponent__ParticleSysParam>, InstanceParameters, 560)
 		ADD_STRUCT(Vector, OldPosition, 572)
 		ADD_STRUCT(Vector, PartSysVelocity, 584)
 		ADD_STRUCT(float, WarmupTime, 596)
@@ -156,18 +81,18 @@ void*>, SkelMeshComponents, 532)
 		ADD_STRUCT(float, MaxTimeBeforeForceUpdateTransform, 612)
 		ADD_STRUCT(int, EditorLODLevel, 616)
 		ADD_STRUCT(float, AccumTickTime, 620)
-		ADD_STRUCT(ParticleSystem::ParticleSystemLODMethod, LODMethod, 624)
-		ADD_STRUCT(ParticleSystemComponent::ParticleReplayState, ReplayState, 625)
-		ADD_STRUCT(ScriptArray<PrimitiveComponent::MaterialViewRelevance>, CachedViewRelevanceFlags, 628)
+		ADD_STRUCT(ParticleSystem__ParticleSystemLODMethod, LODMethod, 624)
+		ADD_STRUCT(ParticleSystemComponent__ParticleReplayState, ReplayState, 625)
+		ADD_STRUCT(ScriptArray<PrimitiveComponent__MaterialViewRelevance>, CachedViewRelevanceFlags, 628)
 		ADD_STRUCT(ScriptArray<class ParticleSystemReplay*>, ReplayClips, 640)
 		ADD_STRUCT(int, ReplayClipIDNumber, 652)
 		ADD_STRUCT(int, ReplayFrameIndex, 656)
 		ADD_STRUCT(float, AccumLODDistanceCheckTime, 660)
-		ADD_STRUCT(ScriptArray<ParticleSystemComponent::ParticleEventSpawnData>, SpawnEvents, 664)
-		ADD_STRUCT(ScriptArray<ParticleSystemComponent::ParticleEventDeathData>, DeathEvents, 676)
-		ADD_STRUCT(ScriptArray<ParticleSystemComponent::ParticleEventCollideData>, CollisionEvents, 688)
-		ADD_STRUCT(ScriptArray<ParticleSystemComponent::ParticleEventKismetData>, KismetEvents, 700)
-		ADD_STRUCT(Object::Pointer, ReleaseResourcesFence, 712)
+		ADD_STRUCT(ScriptArray<ParticleSystemComponent__ParticleEventSpawnData>, SpawnEvents, 664)
+		ADD_STRUCT(ScriptArray<ParticleSystemComponent__ParticleEventDeathData>, DeathEvents, 676)
+		ADD_STRUCT(ScriptArray<ParticleSystemComponent__ParticleEventCollideData>, CollisionEvents, 688)
+		ADD_STRUCT(ScriptArray<ParticleSystemComponent__ParticleEventKismetData>, KismetEvents, 700)
+		ADD_STRUCT(Object__Pointer, ReleaseResourcesFence, 712)
 		ADD_STRUCT(float, CustomTimeDilation, 716)
 		ADD_STRUCT(float, EmitterDelay, 720)
 		void SetTemplate(class ParticleSystem* NewTemplate)
@@ -421,12 +346,12 @@ void**)params = PSystem;
 			Param = *(Vector*)&params[8];
 			ParamLow = *(Vector*)&params[20];
 		}
-		void SetColorParameter(ScriptName ParameterName, Object::Color Param)
+		void SetColorParameter(ScriptName ParameterName, Object__Color Param)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(15033);
 			byte params[12] = { NULL };
 			*(ScriptName*)params = ParameterName;
-			*(Object::Color*)&params[8] = Param;
+			*(Object__Color*)&params[8] = Param;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetActorParameter(ScriptName ParameterName, class Actor* Param)
@@ -465,14 +390,14 @@ void**)params = PSystem;
 			OutVector = *(Vector*)&params[8];
 			return *(bool*)&params[20];
 		}
-		bool GetColorParameter(ScriptName InName, Object::Color& OutColor)
+		bool GetColorParameter(ScriptName InName, Object__Color& OutColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(15050);
 			byte params[16] = { NULL };
 			*(ScriptName*)params = InName;
-			*(Object::Color*)&params[8] = OutColor;
+			*(Object__Color*)&params[8] = OutColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutColor = *(Object::Color*)&params[8];
+			OutColor = *(Object__Color*)&params[8];
 			return *(bool*)&params[12];
 		}
 		bool GetActorParameter(ScriptName InName, class Actor*& OutActor)
@@ -495,12 +420,12 @@ void**)params = PSystem;
 			OutMaterial = *(class MaterialInterface**)&params[8];
 			return *(bool*)&params[12];
 		}
-		void ClearParameter(ScriptName ParameterName, ParticleSystemComponent::EParticleSysParamType ParameterType)
+		void ClearParameter(ScriptName ParameterName, ParticleSystemComponent__EParticleSysParamType ParameterType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(15062);
 			byte params[9] = { NULL };
 			*(ScriptName*)params = ParameterName;
-			*(ParticleSystemComponent::EParticleSysParamType*)&params[8] = ParameterType;
+			*(ParticleSystemComponent__EParticleSysParamType*)&params[8] = ParameterType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ResetToDefaults()

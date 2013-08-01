@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,7 +31,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, DiffuseBoost, 76)
 		ADD_STRUCT(float, EmissiveBoost, 72)
 		ADD_STRUCT(float, EnvironmentIntensity, 68)
-		ADD_STRUCT(Object::Color, EnvironmentColor, 64)
+		ADD_STRUCT(Object__Color, EnvironmentColor, 64)
 		ADD_STRUCT(int, NumIndirectLightingBounces, 60)
 	};
 }

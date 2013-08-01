@@ -1,8 +1,8 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Engine.Teleporter.h"
 #include "UTGame.UTPawn.h"
 #include "Engine.SoundCue.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

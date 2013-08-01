@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.Pawn.h"
-#include "Core.Object.h"
+#include "Engine.Scout.PathSizeInfo.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,17 +25,8 @@ namespace UnrealScript
 	class Scout : public Pawn
 	{
 	public:
-		struct PathSizeInfo
-		{
-		public:
-			ADD_STRUCT(byte, PathColor, 20)
-			ADD_STRUCT(float, CrouchHeight, 16)
-			ADD_STRUCT(float, Height, 12)
-			ADD_STRUCT(float, Radius, 8)
-			ADD_STRUCT(ScriptName, Desc, 0)
-		};
-		ADD_STRUCT(ScriptArray<Scout::PathSizeInfo>, PathSizes, 1144)
-		ADD_STRUCT(ScriptArray<Object::Color>, EdgePathColors, 1184)
+		ADD_STRUCT(ScriptArray<Scout__PathSizeInfo>, PathSizes, 1144)
+		ADD_STRUCT(ScriptArray<Object__Color>, EdgePathColors, 1184)
 		ADD_STRUCT(float, MaxMantleFallTime, 1280)
 		ADD_STRUCT(float, MaxMantleLateralDist, 1276)
 		ADD_STRUCT(float, MinMantleLateralDist, 1272)

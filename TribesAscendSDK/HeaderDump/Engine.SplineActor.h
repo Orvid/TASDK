@@ -1,6 +1,9 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.InterpCurveFloat.h"
+#include "Engine.SplineActor.SplineConnection.h"
+#include "Core.Object.Color.h"
+#include "Core.Object.Vector.h"
 #include "Engine.SeqAct_Toggle.h"
 #include "Engine.SeqAct_ToggleHidden.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -26,14 +29,9 @@ namespace UnrealScript
 	class SplineActor : public Actor
 	{
 	public:
-		struct SplineConnection
-		{
-		public:
-			ADD_OBJECT(SplineActor, ConnectTo, 4)
-		};
-		ADD_STRUCT(ScriptArray<SplineActor::SplineConnection>, Connections, 476)
+		ADD_STRUCT(ScriptArray<SplineActor__SplineConnection>, Connections, 476)
 		ADD_STRUCT(ScriptArray<class SplineActor*>, LinksFrom, 508)
-		ADD_STRUCT(Object::InterpCurveFloat, SplineVelocityOverTime, 540)
+		ADD_STRUCT(Object__InterpCurveFloat, SplineVelocityOverTime, 540)
 		ADD_STRUCT(int, visitedWeight, 536)
 		ADD_STRUCT(int, bestPathWeight, 532)
 		ADD_OBJECT(SplineActor, previousPath, 528)
@@ -41,7 +39,7 @@ namespace UnrealScript
 		ADD_OBJECT(SplineActor, nextOrdered, 520)
 		ADD_BOOL(bAlreadyVisited, 504, 0x2)
 		ADD_BOOL(bDisableDestination, 504, 0x1)
-		ADD_STRUCT(Object::Color, SplineColor, 500)
+		ADD_STRUCT(Object__Color, SplineColor, 500)
 		ADD_STRUCT(Vector, SplineActorTangent, 488)
 		Vector GetWorldSpaceTangent()
 		{

@@ -1,16 +1,22 @@
 #pragma once
-#include "Core.Object.h"
 #include "GameFramework.GamePawn.h"
 #include "Engine.SkelControlFootPlacement.h"
 #include "Engine.MaterialInstanceConstant.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Material.h"
 #include "UDKBase.UDKBot.h"
 #include "Engine.AnimNodeAimOffset.h"
-#include "GameFramework.GameSkelCtrl_Recoil.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.SkelControlLimb.h"
 #include "Engine.SoundCue.h"
+#include "Core.Object.Rotator.h"
+#include "Core.Object.LinearColor.h"
+#include "GameFramework.GameSkelCtrl_Recoil.h"
 #include "Engine.SkelControlSingleBone.h"
 #include "Engine.MaterialInterface.h"
+#include "UDKBase.UDKPawn.DrivenWeaponPawnInfo.h"
+#include "UDKBase.UDKPawn.UTTakeHitInfo.h"
+#include "UDKBase.UDKPawn.PlayEmoteInfo.h"
 #include "Engine.Actor.h"
 #include "UDKBase.UDKCarriedObject.h"
 #include "Engine.PlayerController.h"
@@ -38,78 +44,12 @@ namespace UnrealScript
 	class UDKPawn : public GamePawn
 	{
 	public:
-		struct DrivenWeaponPawnInfo
-		{
-		public:
-			ADD_OBJECT(PlayerReplicationInfo, PRI, 8)
-			ADD_STRUCT(byte, SeatIndex, 4)
-			ADD_OBJECT(UDKVehicle, BaseVehicle, 0)
-		};
-		struct UTTakeHitInfo
-		{
-		public:
-			ADD_BOOL(m_bDamagedSelf, 40, 0x1)
-			ADD_STRUCT(ScriptName, HitBone, 32)
-			ADD_OBJECT(ScriptClass, DamageType, 28)
-			ADD_STRUCT(Vector, Momentum, 16)
-			ADD_STRUCT(Vector, HitLocation, 4)
-			ADD_STRUCT(int, Damage, 0)
-		};
-		struct PlayEmoteInfo
-		{
-		public:
-			ADD_BOOL(bNewData, 12, 0x1)
-			ADD_STRUCT(int, EmoteID, 8)
-			ADD_STRUCT(ScriptName, EmoteTag, 0)
-		};
-		struct MaterialImpactEffect
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class MaterialInterface*>, DecalMaterials, 12)
-			ADD_OBJECT(ParticleSystem, ParticleTemplate, 44)
-			ADD_STRUCT(float, DecalHeight, 40)
-			ADD_STRUCT(float, DecalWidth, 36)
-			ADD_STRUCT(ScriptName, DecalDissolveParamName, 28)
-			ADD_STRUCT(float, DurationOfDecal, 24)
-			ADD_OBJECT(SoundCue, Sound, 8)
-			ADD_STRUCT(ScriptName, MaterialType, 0)
-		};
-		struct MaterialSoundEffect
-		{
-		public:
-			ADD_OBJECT(SoundCue, Sound, 8)
-			ADD_STRUCT(ScriptName, MaterialType, 0)
-		};
-		struct MaterialParticleEffect
-		{
-		public:
-			ADD_OBJECT(ParticleSystem, ParticleTemplate, 8)
-			ADD_STRUCT(ScriptName, MaterialType, 0)
-		};
-		struct DistanceBasedParticleTemplate
-		{
-		public:
-			ADD_STRUCT(float, MinDistance, 4)
-			ADD_OBJECT(ParticleSystem, Template, 0)
-		};
-		struct EmoteInfo
-		{
-		public:
-			ADD_BOOL(bRequiresPlayer, 48, 0x1)
-			ADD_STRUCT(ScriptName, Command, 40)
-			ADD_BOOL(bTopHalfEmote, 36, 0x2)
-			ADD_BOOL(bVictoryEmote, 36, 0x1)
-			ADD_STRUCT(ScriptName, EmoteAnim, 28)
-			ADD_STRUCT(ScriptString*, EmoteName, 16)
-			ADD_STRUCT(ScriptName, EmoteTag, 8)
-			ADD_STRUCT(ScriptName, CategoryName, 0)
-		};
 		ADD_BOOL(bNotifyStopFalling, 1148, 0x40)
 		ADD_BOOL(bReadyToDoubleJump, 1148, 0x1)
 		ADD_STRUCT(ScriptArray<class MaterialInstanceConstant*>, BodyMaterialInstances, 1316)
 		ADD_STRUCT(ScriptArray<class UDKBot*>, Trackers, 1352)
 		ADD_STRUCT(Vector, HUDLocation, 1604)
-		ADD_STRUCT(Object::Vector2D, CurrentSkelAim, 1596)
+		ADD_STRUCT(Object__Vector2D, CurrentSkelAim, 1596)
 		ADD_STRUCT(int, MaxYawAim, 1592)
 		ADD_STRUCT(float, RootYawSpeed, 1588)
 		ADD_STRUCT(int, RootYaw, 1584)
@@ -144,10 +84,10 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptName, TorsoBoneName, 1424)
 		ADD_STRUCT(float, StartFallImpactTime, 1420)
 		ADD_STRUCT(Rotator, CompressedBodyMatColor, 1408)
-		ADD_STRUCT(Object::LinearColor, BodyMatColor, 1392)
+		ADD_STRUCT(Object__LinearColor, BodyMatColor, 1392)
 		ADD_STRUCT(float, ClientBodyMatDuration, 1388)
 		ADD_STRUCT(float, RemainingBodyMatDuration, 1384)
-		ADD_STRUCT(Object::LinearColor, CurrentBodyMatColor, 1368)
+		ADD_STRUCT(Object__LinearColor, CurrentBodyMatColor, 1368)
 		ADD_STRUCT(float, BodyMatFadeDuration, 1364)
 		ADD_OBJECT(GameSkelCtrl_Recoil, RightRecoilNode, 1348)
 		ADD_OBJECT(GameSkelCtrl_Recoil, LeftRecoilNode, 1344)
@@ -157,7 +97,7 @@ namespace UnrealScript
 		ADD_OBJECT(MaterialInterface, OverlayMaterialInstance, 1328)
 		ADD_OBJECT(Material, ReplicatedBodyMaterial, 1312)
 		ADD_OBJECT(SoundCue, WeaponAmbientSoundCue, 1308)
-		ADD_STRUCT(UDKPawn::DrivenWeaponPawnInfo, DrivenWeaponPawn, 1292)
+		ADD_STRUCT(UDKPawn__DrivenWeaponPawnInfo, DrivenWeaponPawn, 1292)
 		ADD_OBJECT(SoundCue, PawnAmbientSoundCue, 1288)
 		ADD_STRUCT(float, OldZ, 1280)
 		ADD_STRUCT(Vector, MeshTranslationOffset, 1268)
@@ -167,12 +107,12 @@ namespace UnrealScript
 		ADD_STRUCT(float, HeadScale, 1252)
 		ADD_STRUCT(float, FireRateMultiplier, 1248)
 		ADD_STRUCT(float, LastTakeHitTimeout, 1244)
-		ADD_STRUCT(UDKPawn::UTTakeHitInfo, LastTakeHitInfo, 1200)
+		ADD_STRUCT(UDKPawn__UTTakeHitInfo, LastTakeHitInfo, 1200)
 		ADD_STRUCT(byte, WeaponOverlayFlags, 1197)
 		ADD_STRUCT(byte, BigTeleportCount, 1196)
 		ADD_STRUCT(float, MinTimeBetweenEmotes, 1192)
 		ADD_STRUCT(float, LastEmoteTime, 1188)
-		ADD_STRUCT(UDKPawn::PlayEmoteInfo, EmoteRepInfo, 1172)
+		ADD_STRUCT(UDKPawn__PlayEmoteInfo, EmoteRepInfo, 1172)
 		ADD_STRUCT(float, CustomGravityScaling, 1168)
 		ADD_STRUCT(int, MultiJumpBoost, 1164)
 		ADD_STRUCT(int, MaxMultiJump, 1160)

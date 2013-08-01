@@ -1,6 +1,8 @@
 #pragma once
+#include "UTGame.UTGFxTweenableMoviePlayer.GFxTween.h"
 #include "GFxUI.GFxMoviePlayer.h"
 #include "GFxUI.GFxObject.h"
+#include "UTGame.UTGFxTweenableMoviePlayer.TweenType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,30 +26,8 @@ namespace UnrealScript
 	class UTGFxTweenableMoviePlayer : public GFxMoviePlayer
 	{
 	public:
-		enum TweenType : byte
-		{
-			TWEEN_EaseOut = 0,
-			TWEEN_EaseIn = 1,
-			TWEEN_Linear = 2,
-			TWEEN_MAX = 3,
-		};
-		struct GFxTween
-		{
-		public:
-			ADD_STRUCT(UTGFxTweenableMoviePlayer::TweenType, ThisTweenType, 96)
-			ADD_BOOL(bFinished, 92, 0x1)
-			ADD_STRUCT(GFxObject::ASDisplayInfo, displayInfo, 48)
-			ADD_STRUCT(ScriptString*, Callback, 36)
-			ADD_STRUCT(ScriptString*, MemberName, 24)
-			ADD_STRUCT(float, DesiredValue, 20)
-			ADD_STRUCT(float, Delta, 16)
-			ADD_STRUCT(float, StartValue, 12)
-			ADD_STRUCT(float, Duration, 8)
-			ADD_STRUCT(float, TweenTime, 4)
-			ADD_OBJECT(GFxObject, TargetMC, 0)
-		};
-		ADD_STRUCT(ScriptArray<UTGFxTweenableMoviePlayer::GFxTween>, TweenList, 380)
-		void TweenTo(class GFxObject* MC, float Duration, ScriptString* Member, float Target, UTGFxTweenableMoviePlayer::TweenType NewTweenType, ScriptString* Callback)
+		ADD_STRUCT(ScriptArray<UTGFxTweenableMoviePlayer__GFxTween>, TweenList, 380)
+		void TweenTo(class GFxObject* MC, float Duration, ScriptString* Member, float Target, UTGFxTweenableMoviePlayer__TweenType NewTweenType, ScriptString* Callback)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37559);
 			byte params[37] = { NULL };
@@ -55,7 +35,7 @@ namespace UnrealScript
 			*(float*)&params[4] = Duration;
 			*(ScriptString**)&params[8] = Member;
 			*(float*)&params[20] = Target;
-			*(UTGFxTweenableMoviePlayer::TweenType*)&params[24] = NewTweenType;
+			*(UTGFxTweenableMoviePlayer__TweenType*)&params[24] = NewTweenType;
 			*(ScriptString**)&params[28] = Callback;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

@@ -2,16 +2,19 @@
 #include "Core.Object.h"
 #include "Engine.SkeletalMesh.h"
 #include "Engine.ParticleSystem.h"
-#include "UTGame.UTPawn.h"
 #include "Engine.AnimSet.h"
-#include "UDKBase.UDKPawn.h"
+#include "UTGame.UTPawn.GibInfo.h"
 #include "Engine.PhysicsAsset.h"
 #include "Engine.MaterialInstance.h"
+#include "Engine.MaterialInterface.h"
+#include "UDKBase.UDKPawn.EmoteInfo.h"
 #include "Engine.StaticMesh.h"
+#include "UDKBase.UDKPawn.DistanceBasedParticleTemplate.h"
 #include "Engine.MaterialInstanceTimeVarying.h"
 #include "Engine.Texture.h"
-#include "Engine.MaterialInterface.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.MaterialInstanceConstant.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -47,15 +50,15 @@ namespace UnrealScript
 		ADD_STRUCT(float, DefaultMeshScale, 404)
 		ADD_STRUCT(float, BaseTranslationOffset, 408)
 		ADD_OBJECT(MaterialInstance, BloodSplatterDecalMaterial, 248)
-		ADD_STRUCT(ScriptArray<UDKPawn::EmoteInfo>, FamilyEmotes, 284)
+		ADD_STRUCT(ScriptArray<UDKPawn__EmoteInfo>, FamilyEmotes, 284)
 		ADD_STRUCT(float, DrivingDrawScale, 396)
-		ADD_STRUCT(UTPawn::GibInfo, HeadGib, 308)
+		ADD_STRUCT(UTPawn__GibInfo, HeadGib, 308)
 		ADD_OBJECT(ParticleSystem, HeadShotEffect, 360)
 		ADD_OBJECT(ParticleSystem, GibExplosionTemplate, 392)
-		ADD_STRUCT(ScriptArray<UTPawn::GibInfo>, Gibs, 296)
+		ADD_STRUCT(ScriptArray<UTPawn__GibInfo>, Gibs, 296)
 		ADD_STRUCT(ScriptName, HeadShotGoreSocketName, 364)
 		ADD_OBJECT(StaticMesh, HeadShotNeckGoreAttachment, 372)
-		ADD_STRUCT(ScriptArray<UDKPawn::DistanceBasedParticleTemplate>, BloodEffects, 380)
+		ADD_STRUCT(ScriptArray<UDKPawn__DistanceBasedParticleTemplate>, BloodEffects, 380)
 		ADD_OBJECT(ScriptClass, BloodEmitterClass, 376)
 		ADD_STRUCT(ScriptString*, FamilyID, 76)
 		ADD_OBJECT(SkeletalMesh, DeathMeshSkelMesh, 324)
@@ -66,8 +69,8 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<class Texture*>, DefaultTeamHeadPortrait, 64)
 		ADD_STRUCT(ScriptArray<class MaterialInterface*>, CharacterTeamBodyMaterials, 104)
 		ADD_STRUCT(ScriptArray<class MaterialInterface*>, CharacterTeamHeadMaterials, 116)
-		ADD_STRUCT(Object::LinearColor, NonTeamTintColor, 268)
-		ADD_STRUCT(Object::LinearColor, NonTeamEmissiveColor, 252)
+		ADD_STRUCT(Object__LinearColor, NonTeamTintColor, 268)
+		ADD_STRUCT(Object__LinearColor, NonTeamEmissiveColor, 252)
 		ADD_OBJECT(MaterialInstanceConstant, BioDeathMICParent, 244)
 		ADD_OBJECT(MaterialInstanceConstant, BaseMICParent, 240)
 		ADD_OBJECT(ScriptClass, VoiceClass, 236)

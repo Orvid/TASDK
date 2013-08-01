@@ -21,19 +21,6 @@ namespace UnrealScript
 	class GFxTrPage_Class : public GFxTrPage
 	{
 	public:
-		enum MENU_ACTION_CLASS : byte
-		{
-			MAC_PRIMARY = 0,
-			MAC_SECONDARY = 1,
-			MAC_BELT = 2,
-			MAC_PACK = 3,
-			MAC_ARMOR = 4,
-			MAC_PERKA = 5,
-			MAC_PERKB = 6,
-			MAC_SKIN = 7,
-			MAC_VOICE = 8,
-			MAC_MAX = 9,
-		};
 		ADD_BOOL(bViewingEquip, 364, 0x2)
 		ADD_BOOL(bClassLocked, 364, 0x1)
 		ADD_STRUCT(int, NumRenameLoadout, 360)

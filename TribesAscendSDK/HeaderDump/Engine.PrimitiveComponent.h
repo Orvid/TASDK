@@ -1,10 +1,19 @@
 #pragma once
+#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #include "Engine.ActorComponent.h"
-#include "Core.Object.h"
-#include "Engine.Scene.h"
-#include "Engine.RB_BodyInstance.h"
-#include "Engine.LightComponent.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
+#include "Core.Object.Matrix.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.BoxSphereBounds.h"
+#include "Engine.Scene.ESceneDepthPriorityGroup.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
+#include "Engine.Scene.EDetailMode.h"
 #include "Engine.PhysicalMaterial.h"
+#include "Engine.RB_BodyInstance.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Rotator.h"
+#include "Engine.PrimitiveComponent.ERadialImpulseFalloff.h"
+#include "Engine.PrimitiveComponent.GJKResult.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,84 +37,15 @@ namespace UnrealScript
 	class PrimitiveComponent : public ActorComponent
 	{
 	public:
-		enum GJKResult : byte
-		{
-			GJK_Intersect = 0,
-			GJK_NoIntersection = 1,
-			GJK_Fail = 2,
-			GJK_MAX = 3,
-		};
-		enum ERBCollisionChannel : byte
-		{
-			RBCC_Default = 0,
-			RBCC_Nothing = 1,
-			RBCC_Pawn = 2,
-			RBCC_Vehicle = 3,
-			RBCC_Water = 4,
-			RBCC_GameplayPhysics = 5,
-			RBCC_EffectPhysics = 6,
-			RBCC_Untitled1 = 7,
-			RBCC_Untitled2 = 8,
-			RBCC_Untitled3 = 9,
-			RBCC_Untitled4 = 10,
-			RBCC_Cloth = 11,
-			RBCC_FluidDrain = 12,
-			RBCC_SoftBody = 13,
-			RBCC_FracturedMeshPart = 14,
-			RBCC_BlockingVolume = 15,
-			RBCC_DeadPawn = 16,
-			RBCC_Clothing = 17,
-			RBCC_ClothingCollision = 18,
-			RBCC_MAX = 19,
-		};
-		enum ERadialImpulseFalloff : byte
-		{
-			RIF_Constant = 0,
-			RIF_Linear = 1,
-			RIF_MAX = 2,
-		};
-		struct RBCollisionChannelContainer
-		{
-		public:
-			ADD_BOOL(Default, 0, 0x1)
-			ADD_BOOL(Nothing, 0, 0x2)
-			ADD_BOOL(Pawn, 0, 0x4)
-			ADD_BOOL(Vehicle, 0, 0x8)
-			ADD_BOOL(Water, 0, 0x10)
-			ADD_BOOL(GameplayPhysics, 0, 0x20)
-			ADD_BOOL(EffectPhysics, 0, 0x40)
-			ADD_BOOL(Untitled1, 0, 0x80)
-			ADD_BOOL(Untitled2, 0, 0x100)
-			ADD_BOOL(Untitled3, 0, 0x200)
-			ADD_BOOL(Untitled4, 0, 0x400)
-			ADD_BOOL(Cloth, 0, 0x800)
-			ADD_BOOL(FluidDrain, 0, 0x1000)
-			ADD_BOOL(SoftBody, 0, 0x2000)
-			ADD_BOOL(FracturedMeshPart, 0, 0x4000)
-			ADD_BOOL(BlockingVolume, 0, 0x8000)
-			ADD_BOOL(DeadPawn, 0, 0x10000)
-			ADD_BOOL(Clothing, 0, 0x20000)
-			ADD_BOOL(ClothingCollision, 0, 0x40000)
-		};
-		struct MaterialViewRelevance
-		{
-		public:
-			ADD_BOOL(bOpaque, 0, 0x1)
-			ADD_BOOL(bTranslucent, 0, 0x2)
-			ADD_BOOL(bDistortion, 0, 0x4)
-			ADD_BOOL(bOneLayerDistortionRelevance, 0, 0x8)
-			ADD_BOOL(bLit, 0, 0x10)
-			ADD_BOOL(bUsesSceneColor, 0, 0x20)
-		};
 		ADD_STRUCT(int, Tag, 88)
-		ADD_STRUCT(Object::Matrix, LocalToWorld, 160)
+		ADD_STRUCT(Object__Matrix, LocalToWorld, 160)
 		ADD_STRUCT(int, ThreadTag, 92)
-		ADD_STRUCT(Object::BoxSphereBounds, Bounds, 120)
-		ADD_STRUCT(Object::Pointer, SceneInfo, 148)
+		ADD_STRUCT(Object__BoxSphereBounds, Bounds, 120)
+		ADD_STRUCT(Object__Pointer, SceneInfo, 148)
 		ADD_STRUCT(int, DetachFence, 152)
 		ADD_STRUCT(float, LocalToWorldDeterminant, 156)
 		ADD_STRUCT(int, MotionBlurInfoIndex, 224)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, DecalList, 228)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, DecalList, 228)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, DecalsToReattach, 240)
@@ -115,10 +55,10 @@ void*>, DecalsToReattach, 240)
 		ADD_STRUCT(float, CachedMaxDrawDistance, 288)
 		ADD_STRUCT(float, CullDistance, 292)
 		ADD_STRUCT(float, CachedCullDistance, 296)
-		ADD_STRUCT(Scene::ESceneDepthPriorityGroup, DepthPriorityGroup, 300)
-		ADD_STRUCT(Scene::ESceneDepthPriorityGroup, ViewOwnerDepthPriorityGroup, 301)
-		ADD_STRUCT(Scene::EDetailMode, DetailMode, 302)
-		ADD_STRUCT(PrimitiveComponent::ERBCollisionChannel, RBChannel, 303)
+		ADD_STRUCT(Scene__ESceneDepthPriorityGroup, DepthPriorityGroup, 300)
+		ADD_STRUCT(Scene__ESceneDepthPriorityGroup, ViewOwnerDepthPriorityGroup, 301)
+		ADD_STRUCT(Scene__EDetailMode, DetailMode, 302)
+		ADD_STRUCT(PrimitiveComponent__ERBCollisionChannel, RBChannel, 303)
 		ADD_STRUCT(byte, RBDominanceGroup, 304)
 		ADD_STRUCT(byte, PreviewEnvironmentShadowing, 305)
 		ADD_STRUCT(float, MotionBlurScale, 308)
@@ -184,11 +124,11 @@ void*>, DecalsToReattach, 240)
 		ADD_STRUCT(ScriptArray<int>, OctreeNodes, 320)
 		ADD_STRUCT(int, TranslucencySortPriority, 332)
 		ADD_STRUCT(int, VisibilityId, 336)
-		ADD_STRUCT(LightComponent::LightingChannelContainer, LightingChannels, 340)
-		ADD_STRUCT(PrimitiveComponent::RBCollisionChannelContainer, RBCollideWithChannels, 344)
+		ADD_STRUCT(LightComponent__LightingChannelContainer, LightingChannels, 340)
+		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, RBCollideWithChannels, 344)
 		ADD_OBJECT(PhysicalMaterial, PhysMaterialOverride, 348)
 		ADD_OBJECT(RB_BodyInstance, BodyInstance, 352)
-		ADD_STRUCT(Object::Matrix, CachedParentToWorld, 368)
+		ADD_STRUCT(Object__Matrix, CachedParentToWorld, 368)
 		ADD_STRUCT(Vector, Translation, 432)
 		ADD_STRUCT(Rotator, Rotation, 444)
 		ADD_STRUCT(float, Scale, 456)
@@ -222,14 +162,14 @@ void*>, DecalsToReattach, 240)
 			*(bool*)&params[32] = bVelChange;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddRadialImpulse(Vector Origin, float Radius, float Strength, PrimitiveComponent::ERadialImpulseFalloff Falloff, bool bVelChange)
+		void AddRadialImpulse(Vector Origin, float Radius, float Strength, PrimitiveComponent__ERadialImpulseFalloff Falloff, bool bVelChange)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4754);
 			byte params[25] = { NULL };
 			*(Vector*)params = Origin;
 			*(float*)&params[12] = Radius;
 			*(float*)&params[16] = Strength;
-			*(PrimitiveComponent::ERadialImpulseFalloff*)&params[20] = Falloff;
+			*(PrimitiveComponent__ERadialImpulseFalloff*)&params[20] = Falloff;
 			*(bool*)&params[24] = bVelChange;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -242,14 +182,14 @@ void*>, DecalsToReattach, 240)
 			*(ScriptName*)&params[24] = BoneName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddRadialForce(Vector Origin, float Radius, float Strength, PrimitiveComponent::ERadialImpulseFalloff Falloff)
+		void AddRadialForce(Vector Origin, float Radius, float Strength, PrimitiveComponent__ERadialImpulseFalloff Falloff)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4764);
 			byte params[21] = { NULL };
 			*(Vector*)params = Origin;
 			*(float*)&params[12] = Radius;
 			*(float*)&params[16] = Strength;
-			*(PrimitiveComponent::ERadialImpulseFalloff*)&params[20] = Falloff;
+			*(PrimitiveComponent__ERadialImpulseFalloff*)&params[20] = Falloff;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void AddTorque(Vector Torque, ScriptName BoneName)
@@ -314,26 +254,26 @@ void*>, DecalsToReattach, 240)
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
-		void SetRBCollidesWithChannel(PrimitiveComponent::ERBCollisionChannel Channel, bool bNewCollides)
+		void SetRBCollidesWithChannel(PrimitiveComponent__ERBCollisionChannel Channel, bool bNewCollides)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4794);
 			byte params[5] = { NULL };
-			*(PrimitiveComponent::ERBCollisionChannel*)params = Channel;
+			*(PrimitiveComponent__ERBCollisionChannel*)params = Channel;
 			*(bool*)&params[4] = bNewCollides;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetRBCollisionChannels(PrimitiveComponent::RBCollisionChannelContainer Channels)
+		void SetRBCollisionChannels(PrimitiveComponent__RBCollisionChannelContainer Channels)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4797);
 			byte params[4] = { NULL };
-			*(PrimitiveComponent::RBCollisionChannelContainer*)params = Channels;
+			*(PrimitiveComponent__RBCollisionChannelContainer*)params = Channels;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetRBChannel(PrimitiveComponent::ERBCollisionChannel Channel)
+		void SetRBChannel(PrimitiveComponent__ERBCollisionChannel Channel)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4818);
 			byte params[1] = { NULL };
-			*(PrimitiveComponent::ERBCollisionChannel*)params = Channel;
+			*(PrimitiveComponent__ERBCollisionChannel*)params = Channel;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetNotifyRigidBodyCollision(bool bNewNotifyRigidBodyCollision)
@@ -433,26 +373,26 @@ void**)params = NewLightEnvironment;
 			*(float*)params = NewCullDistance;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetLightingChannels(LightComponent::LightingChannelContainer NewLightingChannels)
+		void SetLightingChannels(LightComponent__LightingChannelContainer NewLightingChannels)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4873);
 			byte params[4] = { NULL };
-			*(LightComponent::LightingChannelContainer*)params = NewLightingChannels;
+			*(LightComponent__LightingChannelContainer*)params = NewLightingChannels;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetDepthPriorityGroup(Scene::ESceneDepthPriorityGroup NewDepthPriorityGroup)
+		void SetDepthPriorityGroup(Scene__ESceneDepthPriorityGroup NewDepthPriorityGroup)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4875);
 			byte params[1] = { NULL };
-			*(Scene::ESceneDepthPriorityGroup*)params = NewDepthPriorityGroup;
+			*(Scene__ESceneDepthPriorityGroup*)params = NewDepthPriorityGroup;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetViewOwnerDepthPriorityGroup(bool bNewUseViewOwnerDepthPriorityGroup, Scene::ESceneDepthPriorityGroup NewViewOwnerDepthPriorityGroup)
+		void SetViewOwnerDepthPriorityGroup(bool bNewUseViewOwnerDepthPriorityGroup, Scene__ESceneDepthPriorityGroup NewViewOwnerDepthPriorityGroup)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4877);
 			byte params[5] = { NULL };
 			*(bool*)params = bNewUseViewOwnerDepthPriorityGroup;
-			*(Scene::ESceneDepthPriorityGroup*)&params[4] = NewViewOwnerDepthPriorityGroup;
+			*(Scene__ESceneDepthPriorityGroup*)&params[4] = NewViewOwnerDepthPriorityGroup;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetTraceBlocking(bool NewBlockZeroExtent, bool NewBlockNonZeroExtent)
@@ -523,7 +463,7 @@ void**)params = NewLightEnvironment;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Rotator*)params;
 		}
-		PrimitiveComponent::GJKResult ClosestPointOnComponentToPoint(Vector& POI, Vector& Extent, Vector& OutPointA, Vector& OutPointB)
+		PrimitiveComponent__GJKResult ClosestPointOnComponentToPoint(Vector& POI, Vector& Extent, Vector& OutPointA, Vector& OutPointB)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4905);
 			byte params[49] = { NULL };
@@ -536,9 +476,9 @@ void**)params = NewLightEnvironment;
 			Extent = *(Vector*)&params[12];
 			OutPointA = *(Vector*)&params[24];
 			OutPointB = *(Vector*)&params[36];
-			return *(PrimitiveComponent::GJKResult*)&params[48];
+			return *(PrimitiveComponent__GJKResult*)&params[48];
 		}
-		PrimitiveComponent::GJKResult ClosestPointOnComponentToComponent(
+		PrimitiveComponent__GJKResult ClosestPointOnComponentToComponent(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*& OtherComponent, Vector& PointOnComponentA, Vector& PointOnComponentB)
 		{
@@ -555,7 +495,7 @@ void**)params = OtherComponent;
 void**)params;
 			PointOnComponentA = *(Vector*)&params[4];
 			PointOnComponentB = *(Vector*)&params[16];
-			return *(PrimitiveComponent::GJKResult*)&params[28];
+			return *(PrimitiveComponent__GJKResult*)&params[28];
 		}
 	};
 }

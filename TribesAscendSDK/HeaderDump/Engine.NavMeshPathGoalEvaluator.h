@@ -23,12 +23,6 @@ namespace UnrealScript
 	class NavMeshPathGoalEvaluator : public Object
 	{
 	public:
-		struct BiasedGoalActor
-		{
-		public:
-			ADD_STRUCT(int, ExtraCost, 4)
-			ADD_OBJECT(Actor, Goal, 0)
-		};
 		ADD_STRUCT(int, NumNodesProcessed, 76)
 		ADD_STRUCT(int, NumNodesThrownOut, 72)
 		ADD_BOOL(bAlwaysCallEvaluateGoal, 68, 0x1)

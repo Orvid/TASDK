@@ -1,6 +1,8 @@
 #pragma once
+#include "Core.Object.Vector.h"
+#include "Engine.SkelControlBase.EBoneControlSpace.h"
 #include "Engine.SkelControlBase.h"
-#include "Core.Object.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,8 +25,8 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptName, RotationSpaceBoneName, 228)
 		ADD_STRUCT(Rotator, BoneRotation, 216)
 		ADD_STRUCT(ScriptName, TranslationSpaceBoneName, 208)
-		ADD_STRUCT(SkelControlBase::EBoneControlSpace, BoneRotationSpace, 205)
-		ADD_STRUCT(SkelControlBase::EBoneControlSpace, BoneTranslationSpace, 204)
+		ADD_STRUCT(SkelControlBase__EBoneControlSpace, BoneRotationSpace, 205)
+		ADD_STRUCT(SkelControlBase__EBoneControlSpace, BoneTranslationSpace, 204)
 		ADD_STRUCT(Vector, BoneTranslation, 192)
 		ADD_BOOL(bRemoveMeshRotation, 188, 0x10)
 		ADD_BOOL(bAddRotation, 188, 0x8)

@@ -1,7 +1,7 @@
 #pragma once
+#include "Engine.UIRoot.UIProviderScriptFieldValue.h"
 #include "Core.Property.h"
 #include "Engine.UIDataProvider.h"
-#include "Engine.UIRoot.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -20,14 +20,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool GetCustomPropertyValue(UIRoot::UIProviderScriptFieldValue& PropertyValue, int ArrayIndex)
+		bool GetCustomPropertyValue(UIRoot__UIProviderScriptFieldValue& PropertyValue, int ArrayIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22599);
 			byte params[92] = { NULL };
-			*(UIRoot::UIProviderScriptFieldValue*)params = PropertyValue;
+			*(UIRoot__UIProviderScriptFieldValue*)params = PropertyValue;
 			*(int*)&params[84] = ArrayIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			PropertyValue = *(UIRoot::UIProviderScriptFieldValue*)params;
+			PropertyValue = *(UIRoot__UIProviderScriptFieldValue*)params;
 			return *(bool*)&params[88];
 		}
 	};

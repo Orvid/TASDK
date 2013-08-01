@@ -1,7 +1,8 @@
 #pragma once
 #include "Engine.NavMeshPathGoalEvaluator.h"
-#include "Core.Object.h"
 #include "Engine.NavigationHandle.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,7 +24,7 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(bShowDebug, 96, 0x1)
 		ADD_STRUCT(Vector, OutOfViewLocation, 84)
-		ADD_STRUCT(Object::Pointer, GoalPoly, 80)
+		ADD_STRUCT(Object__Pointer, GoalPoly, 80)
 		void RecycleNative()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32860);

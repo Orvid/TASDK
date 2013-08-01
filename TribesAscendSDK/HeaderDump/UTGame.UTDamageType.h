@@ -1,15 +1,17 @@
 #pragma once
 #include "Engine.DamageType.h"
-#include "UTGame.UTGib.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.CameraAnim.h"
-#include "Core.Object.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "UTGame.UTPawn.h"
 #include "Engine.Pawn.h"
+#include "Core.Object.Vector.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
-#include "Engine.Actor.h"
+#include "UTGame.UTGib.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.Canvas.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -48,14 +50,14 @@ namespace UnrealScript
 		ADD_STRUCT(float, StopAnimAfterDamageInterval, 188)
 		ADD_STRUCT(float, DamageOverlayTime, 116)
 		ADD_STRUCT(float, XRayEffectTime, 124)
-		ADD_STRUCT(Object::LinearColor, DamageBodyMatColor, 100)
+		ADD_STRUCT(Object__LinearColor, DamageBodyMatColor, 100)
 		ADD_BOOL(bCausesBloodSplatterDecals, 128, 0x80000)
 		ADD_BOOL(bCausesBlood, 128, 0x1)
 		ADD_STRUCT(float, PhysicsTakeHitMomentumThreshold, 148)
 		ADD_BOOL(bSpecialDeathCamera, 128, 0x4000)
 		ADD_BOOL(bThrowRagdoll, 128, 0x100)
 		ADD_BOOL(bOverrideHitEffectColor, 128, 0x20000)
-		ADD_STRUCT(Object::LinearColor, HitEffectColor, 248)
+		ADD_STRUCT(Object__LinearColor, HitEffectColor, 248)
 		ADD_STRUCT(ScriptString*, MaleSuicide, 288)
 		ADD_STRUCT(ScriptString*, FemaleSuicide, 276)
 		ADD_STRUCT(ScriptString*, DeathString, 264)
@@ -200,27 +202,27 @@ namespace UnrealScript
 			*(class UTGib**)params = Gib;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DoCustomDamageEffects(class UTPawn* ThePawn, ScriptClass* TheDamageType, Actor::TraceHitInfo& HitInfo, Vector HitLocation)
+		void DoCustomDamageEffects(class UTPawn* ThePawn, ScriptClass* TheDamageType, Actor__TraceHitInfo& HitInfo, Vector HitLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(46815);
 			byte params[48] = { NULL };
 			*(class UTPawn**)params = ThePawn;
 			*(ScriptClass**)&params[4] = TheDamageType;
-			*(Actor::TraceHitInfo*)&params[8] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[8] = HitInfo;
 			*(Vector*)&params[36] = HitLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			HitInfo = *(Actor::TraceHitInfo*)&params[8];
+			HitInfo = *(Actor__TraceHitInfo*)&params[8];
 		}
-		void CreateDeathSkeleton(class UTPawn* ThePawn, ScriptClass* TheDamageType, Actor::TraceHitInfo& HitInfo, Vector HitLocation)
+		void CreateDeathSkeleton(class UTPawn* ThePawn, ScriptClass* TheDamageType, Actor__TraceHitInfo& HitInfo, Vector HitLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(46820);
 			byte params[48] = { NULL };
 			*(class UTPawn**)params = ThePawn;
 			*(ScriptClass**)&params[4] = TheDamageType;
-			*(Actor::TraceHitInfo*)&params[8] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[8] = HitInfo;
 			*(Vector*)&params[36] = HitLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			HitInfo = *(Actor::TraceHitInfo*)&params[8];
+			HitInfo = *(Actor__TraceHitInfo*)&params[8];
 		}
 		void BoneBreaker(class UTPawn* ThePawn, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
@@ -237,16 +239,16 @@ void**)&params[4] = TheMesh;
 			*(ScriptName*)&params[32] = BoneName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void CreateDeathGoreChunks(class UTPawn* ThePawn, ScriptClass* TheDamageType, Actor::TraceHitInfo& HitInfo, Vector HitLocation)
+		void CreateDeathGoreChunks(class UTPawn* ThePawn, ScriptClass* TheDamageType, Actor__TraceHitInfo& HitInfo, Vector HitLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(46846);
 			byte params[48] = { NULL };
 			*(class UTPawn**)params = ThePawn;
 			*(ScriptClass**)&params[4] = TheDamageType;
-			*(Actor::TraceHitInfo*)&params[8] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[8] = HitInfo;
 			*(Vector*)&params[36] = HitLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			HitInfo = *(Actor::TraceHitInfo*)&params[8];
+			HitInfo = *(Actor__TraceHitInfo*)&params[8];
 		}
 		void SpawnExtraGibEffects(class UTGib* TheGib)
 		{

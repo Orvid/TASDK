@@ -1,6 +1,9 @@
 #pragma once
 #include "Engine.PrimitiveComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.InterpCurveFloat.h"
+#include "Core.Object.Color.h"
+#include "Core.Object.InterpCurveVector.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,13 +23,13 @@ namespace UnrealScript
 	class SplineComponent : public PrimitiveComponent
 	{
 	public:
-		ADD_STRUCT(Object::InterpCurveFloat, SplineReparamTable, 524)
+		ADD_STRUCT(Object__InterpCurveFloat, SplineReparamTable, 524)
 		ADD_BOOL(bSplineDisabled, 520, 0x1)
 		ADD_STRUCT(float, SplineArrowSize, 516)
 		ADD_STRUCT(float, SplineDrawRes, 512)
-		ADD_STRUCT(Object::Color, SplineColor, 508)
+		ADD_STRUCT(Object__Color, SplineColor, 508)
 		ADD_STRUCT(float, SplineCurviness, 504)
-		ADD_STRUCT(Object::InterpCurveVector, SplineInfo, 488)
+		ADD_STRUCT(Object__InterpCurveVector, SplineInfo, 488)
 		void UpdateSplineCurviness()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(27150);

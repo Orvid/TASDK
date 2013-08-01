@@ -1,22 +1,26 @@
 #pragma once
-#include "Engine.SoundCue.h"
 #include "UTGame.UTGameObjective.h"
 #include "TribesGame.TrPlayerController.h"
-#include "Engine.PhysicsAsset.h"
+#include "Engine.SoundCue.h"
+#include "TribesGame.TrGameObjective.ObjectiveDamageAssist.h"
+#include "TribesGame.TrObject.EMissileLock.h"
+#include "TribesGame.TrGameObjective.UpgradeSelectionList.h"
 #include "Engine.MaterialInstanceConstant.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.Controller.h"
-#include "TribesGame.TrStatsInterface.h"
-#include "Core.Object.h"
-#include "TribesGame.TrObject.h"
+#include "Engine.PhysicsAsset.h"
 #include "Engine.CameraAnim.h"
 #include "Engine.Texture2D.h"
-#include "TribesGame.TrHelpTextManager.h"
 #include "Engine.Material.h"
+#include "Core.Object.Vector.h"
+#include "TribesGame.TrStatsInterface.h"
 #include "Engine.Actor.h"
 #include "Engine.Pawn.h"
 #include "Engine.PlayerController.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.Canvas.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -1413,23 +1417,8 @@ namespace UnrealScript
 		static const auto ITEM_VOICE_T2BDERM01 = 8724;
 		static const auto ITEM_VOICE_T2BDERM02 = 8725;
 		static const auto ITEM_VOICE_T2BDERM03 = 8726;
-		struct UpgradeSelectionList
-		{
-		public:
-			ADD_STRUCT(ScriptName, PropertyName, 16)
-			ADD_STRUCT(float, NewValue, 12)
-			ADD_STRUCT(int, UpgradeCreditCost, 8)
-			ADD_STRUCT(int, UpgradeLevel, 4)
-			ADD_OBJECT(ScriptClass, UpgradeClass, 0)
-		};
-		struct ObjectiveDamageAssist
-		{
-		public:
-			ADD_STRUCT(int, DamageAmount, 4)
-			ADD_OBJECT(TrPlayerController, Damager, 0)
-		};
-		ADD_STRUCT(ScriptArray<TrGameObjective::UpgradeSelectionList>, m_UpgradeList, 1260)
-		ADD_STRUCT(ScriptArray<TrGameObjective::ObjectiveDamageAssist>, DamageAssistList, 1324)
+		ADD_STRUCT(ScriptArray<TrGameObjective__UpgradeSelectionList>, m_UpgradeList, 1260)
+		ADD_STRUCT(ScriptArray<TrGameObjective__ObjectiveDamageAssist>, DamageAssistList, 1324)
 		ADD_STRUCT(ScriptArray<class TrPlayerController*>, m_Upgraders, 1348)
 		ADD_OBJECT(ScriptClass, m_AssistAccolade, 1344)
 		ADD_STRUCT(float, fUpgradeAssistTime, 1340)
@@ -1452,7 +1441,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fRemainingSeekingTargetHUDZoomTime, 1248)
 		ADD_STRUCT(Rotator, m_rPotentialSeekingTargetHUDRotation, 1236)
 		ADD_STRUCT(float, m_fRemainingPotentialSeekingTargetHUDZoomTime, 1232)
-		ADD_STRUCT(TrObject::EMissileLock, m_MissileLockStatus, 1229)
+		ADD_STRUCT(TrObject__EMissileLock, m_MissileLockStatus, 1229)
 		ADD_STRUCT(byte, r_bReset, 1228)
 		ADD_OBJECT(ParticleSystem, DestroyedTemplate, 1220)
 		ADD_STRUCT(float, m_fLifeAfterDeathSecs, 1212)
@@ -1592,7 +1581,7 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(71512);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void DoRepairs(int HealAmount, class Controller* EventInstigator, class Actor* DamageCauser, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo)
+		void DoRepairs(int HealAmount, class Controller* EventInstigator, class Actor* DamageCauser, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(71513);
 			byte params[44] = { NULL };
@@ -1600,10 +1589,10 @@ namespace UnrealScript
 			*(class Controller**)&params[4] = EventInstigator;
 			*(class Actor**)&params[8] = DamageCauser;
 			*(ScriptClass**)&params[12] = DamageType;
-			*(Actor::TraceHitInfo*)&params[16] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[16] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(71519);
 			byte params[68] = { NULL };
@@ -1612,7 +1601,7 @@ namespace UnrealScript
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1719,18 +1708,18 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(71631);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void SpawnHelpTextCollisionProxy(TrHelpTextManager::EHelpTextType HelpTextType)
+		void SpawnHelpTextCollisionProxy(TrHelpTextManager__EHelpTextType HelpTextType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(71632);
 			byte params[1] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = HelpTextType;
+			*(TrHelpTextManager__EHelpTextType*)params = HelpTextType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool ShouldShowHelpText(TrHelpTextManager::EHelpTextType HelpTextType)
+		bool ShouldShowHelpText(TrHelpTextManager__EHelpTextType HelpTextType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(71639);
 			byte params[5] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = HelpTextType;
+			*(TrHelpTextManager__EHelpTextType*)params = HelpTextType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}

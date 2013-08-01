@@ -1,6 +1,9 @@
 #pragma once
 #include "Core.Object.h"
 #include "Engine.MaterialInterface.h"
+#include "Core.Object.Guid.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,7 +27,7 @@ namespace UnrealScript
 	class SpeedTree : public Object
 	{
 	public:
-		ADD_STRUCT(Object::Guid, LightingGuid, 112)
+		ADD_STRUCT(Object__Guid, LightingGuid, 112)
 		ADD_STRUCT(Vector, WindDirection, 100)
 		ADD_STRUCT(float, WindStrength, 96)
 		ADD_OBJECT(MaterialInterface, BillboardMaterial, 92)
@@ -34,7 +37,7 @@ namespace UnrealScript
 		ADD_OBJECT(MaterialInterface, Branch2Material, 76)
 		ADD_OBJECT(MaterialInterface, Branch1Material, 72)
 		ADD_STRUCT(float, LeafStaticShadowOpacity, 68)
-		ADD_STRUCT(Object::Pointer, SRH, 64)
+		ADD_STRUCT(Object__Pointer, SRH, 64)
 		ADD_BOOL(bLegacySpeedTree, 60, 0x1)
 	};
 }

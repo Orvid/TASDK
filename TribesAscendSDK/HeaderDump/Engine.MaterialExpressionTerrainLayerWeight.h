@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine.MaterialExpression.h"
-#include "Core.Object.h"
+#include "Core.Object.Guid.h"
+#include "Engine.MaterialExpression.ExpressionInput.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,12 +12,12 @@ namespace UnrealScript
 	class MaterialExpressionTerrainLayerWeight : public MaterialExpression
 	{
 	public:
-		ADD_STRUCT(Object::Guid, ExpressionGUID, 180)
+		ADD_STRUCT(Object__Guid, ExpressionGUID, 180)
 		ADD_STRUCT(float, PreviewWeight, 176)
 		ADD_STRUCT(ScriptName, ParameterName, 168)
-		ADD_STRUCT(MaterialExpression::ExpressionInput, Layer, 140)
-		ADD_STRUCT(MaterialExpression::ExpressionInput, Base, 112)
-		ADD_STRUCT(Object::Pointer, InstanceOverride, 108)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, Layer, 140)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, Base, 112)
+		ADD_STRUCT(Object__Pointer, InstanceOverride, 108)
 	};
 }
 #undef ADD_STRUCT

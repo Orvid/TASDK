@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "Core.Object.Color.h"
 #include "Engine.Sequence.h"
 #include "Engine.WorldInfo.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -35,7 +36,7 @@ namespace UnrealScript
 		ADD_BOOL(bDrawFirst, 128, 0x2)
 		ADD_BOOL(bDeletable, 128, 0x1)
 		ADD_STRUCT(ScriptString*, ObjComment, 116)
-		ADD_STRUCT(Object::Color, ObjColor, 112)
+		ADD_STRUCT(Object__Color, ObjColor, 112)
 		ADD_STRUCT(ScriptString*, ObjCategory, 88)
 		ADD_STRUCT(ScriptString*, ObjName, 76)
 		ADD_STRUCT(int, ObjPosY, 72)

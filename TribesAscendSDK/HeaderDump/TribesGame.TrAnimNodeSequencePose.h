@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.BoneAtom.h"
 #include "Engine.AnimNodeSequence.h"
-#include "Core.Object.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -11,7 +11,7 @@ namespace UnrealScript
 	class TrAnimNodeSequencePose : public AnimNodeSequence
 	{
 	public:
-		ADD_STRUCT(ScriptArray<Object::BoneAtom>, m_PoseSpaceBases, 320)
+		ADD_STRUCT(ScriptArray<Object__BoneAtom>, m_PoseSpaceBases, 320)
 		void FillWithPose(class TrPawn* P)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(66481);

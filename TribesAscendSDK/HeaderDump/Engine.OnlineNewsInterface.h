@@ -1,26 +1,26 @@
 #pragma once
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.EOnlineNewsType.h"
 namespace UnrealScript
 {
 	class OnlineNewsInterface : public Interface
 	{
 	public:
-		bool ReadNews(byte LocalUserNum, OnlineSubsystem::EOnlineNewsType NewsType)
+		bool ReadNews(byte LocalUserNum, OnlineSubsystem__EOnlineNewsType NewsType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21865);
 			byte params[6] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineNewsType*)&params[1] = NewsType;
+			*(OnlineSubsystem__EOnlineNewsType*)&params[1] = NewsType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void OnReadNewsCompleted(bool bWasSuccessful, OnlineSubsystem::EOnlineNewsType NewsType)
+		void OnReadNewsCompleted(bool bWasSuccessful, OnlineSubsystem__EOnlineNewsType NewsType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21869);
 			byte params[5] = { NULL };
 			*(bool*)params = bWasSuccessful;
-			*(OnlineSubsystem::EOnlineNewsType*)&params[4] = NewsType;
+			*(OnlineSubsystem__EOnlineNewsType*)&params[4] = NewsType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void AddReadNewsCompletedDelegate(
@@ -45,12 +45,12 @@ void* ReadNewsDelegate)
 void**)params = ReadNewsDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		ScriptString* GetNews(byte LocalUserNum, OnlineSubsystem::EOnlineNewsType NewsType)
+		ScriptString* GetNews(byte LocalUserNum, OnlineSubsystem__EOnlineNewsType NewsType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21877);
 			byte params[14] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineNewsType*)&params[1] = NewsType;
+			*(OnlineSubsystem__EOnlineNewsType*)&params[1] = NewsType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}

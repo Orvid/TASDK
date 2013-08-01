@@ -1,6 +1,8 @@
 #pragma once
 #include "Core.Object.h"
 #include "Engine.GameplayEventsWriter.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,7 +17,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_OBJECT(GameplayEventsWriter, Writer, 64)
-		ADD_STRUCT(Object::Pointer, StatEvent, 60)
+		ADD_STRUCT(Object__Pointer, StatEvent, 60)
 		void AddFloat(ScriptName ParamName, float Value)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(18131);

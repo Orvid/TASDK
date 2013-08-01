@@ -1,5 +1,7 @@
 #pragma once
 #include "TribesGame.TrHelpTextManager.h"
+#include "TribesGame.TrHelpTextManager_Training.EHelpTextTrainingType.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -9,25 +11,8 @@ namespace UnrealScript
 	class TrHelpTextManager_Training : public TrHelpTextManager
 	{
 	public:
-		enum EHelpTextTrainingType : byte
-		{
-			HelpTextTraining_None = 0,
-			HelpTextTraining_Example1 = 1,
-			HelpTextTraining_Example2 = 2,
-			HelpTextTraining_Ski1 = 3,
-			HelpTextTraining_Ski2 = 4,
-			HelpTextTraining_Ski3 = 5,
-			HelpTextTraining_Ski4 = 6,
-			HelpTextTraining_Ski5 = 7,
-			HelpTextTraining_SkiAdv1 = 8,
-			HelpTextTraining_SkiAdv2 = 9,
-			HelpTextTraining_SkiAdv3 = 10,
-			HelpTextTraining_SkiAdv4 = 11,
-			HelpTextTraining_SkiAdv5 = 12,
-			HelpTextTraining_MAX = 13,
-		};
 		ADD_STRUCT(ScriptString*, m_TrainingHelpTextExample1, 1264)
-		ADD_STRUCT(TrHelpTextManager_Training::EHelpTextTrainingType, m_CurrentHelpTextTrainingType, 1552)
+		ADD_STRUCT(TrHelpTextManager_Training__EHelpTextTrainingType, m_CurrentHelpTextTrainingType, 1552)
 		ADD_STRUCT(ScriptString*, m_TrainingHelpTextExample1MenuTitle, 1408)
 		ADD_STRUCT(ScriptString*, m_TrainingHelpTextExample2, 1276)
 		ADD_STRUCT(ScriptString*, m_TrainingHelpTextExample2MenuTitle, 1420)
@@ -70,28 +55,28 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		bool RequestHelpText(TrHelpTextManager::EHelpTextType RequestedType)
+		bool RequestHelpText(TrHelpTextManager__EHelpTextType RequestedType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(95430);
 			byte params[5] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = RequestedType;
+			*(TrHelpTextManager__EHelpTextType*)params = RequestedType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void RemoveHelpText(TrHelpTextManager::EHelpTextType TypeToRemove, float Time, bool bDoNotSuppress)
+		void RemoveHelpText(TrHelpTextManager__EHelpTextType TypeToRemove, float Time, bool bDoNotSuppress)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(95433);
 			byte params[9] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = TypeToRemove;
+			*(TrHelpTextManager__EHelpTextType*)params = TypeToRemove;
 			*(float*)&params[4] = Time;
 			*(bool*)&params[8] = bDoNotSuppress;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void RequestHelpText_Training(TrHelpTextManager_Training::EHelpTextTrainingType RequestedType)
+		void RequestHelpText_Training(TrHelpTextManager_Training__EHelpTextTrainingType RequestedType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(95437);
 			byte params[1] = { NULL };
-			*(TrHelpTextManager_Training::EHelpTextTrainingType*)params = RequestedType;
+			*(TrHelpTextManager_Training__EHelpTextTrainingType*)params = RequestedType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UpdateHUD()

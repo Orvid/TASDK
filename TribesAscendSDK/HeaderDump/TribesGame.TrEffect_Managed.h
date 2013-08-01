@@ -1,6 +1,7 @@
 #pragma once
 #include "TribesGame.TrEffect.h"
 #include "TribesGame.TrPawn.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -17,12 +18,12 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(float, m_fLifeTime, 84)
 		ADD_OBJECT(TrPawn, m_PawnTarget, 80)
-		void Apply(class Actor* Target, Actor::ImpactInfo Impact)
+		void Apply(class Actor* Target, Actor__ImpactInfo Impact)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87092);
 			byte params[84] = { NULL };
 			*(class Actor**)params = Target;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void RemoveEffect()

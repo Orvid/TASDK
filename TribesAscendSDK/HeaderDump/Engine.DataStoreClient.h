@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.UIRoot.h"
+#include "Engine.DataStoreClient.PlayerDataStoreGroup.h"
 #include "Engine.UIDataStore.h"
 #include "Engine.LocalPlayer.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -15,17 +16,11 @@ namespace UnrealScript
 	class DataStoreClient : public UIRoot
 	{
 	public:
-		struct PlayerDataStoreGroup
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class UIDataStore*>, DataStores, 4)
-			ADD_OBJECT(LocalPlayer, PlayerOwner, 0)
-		};
 		ADD_STRUCT(ScriptArray<ScriptString*>, GlobalDataStoreClasses, 60)
 		ADD_STRUCT(ScriptArray<class UIDataStore*>, GlobalDataStores, 72)
 		ADD_STRUCT(ScriptArray<ScriptString*>, PlayerDataStoreClassNames, 84)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, PlayerDataStoreClasses, 96)
-		ADD_STRUCT(ScriptArray<DataStoreClient::PlayerDataStoreGroup>, PlayerDataStores, 108)
+		ADD_STRUCT(ScriptArray<DataStoreClient__PlayerDataStoreGroup>, PlayerDataStores, 108)
 		class UIDataStore* FindDataStore(ScriptName DataStoreTag, class LocalPlayer* PlayerOwner)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7802);

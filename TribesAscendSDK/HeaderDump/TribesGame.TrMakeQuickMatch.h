@@ -4,8 +4,8 @@
 #include "TribesGame.TrGameSettingsCommon.h"
 #include "Engine.PlayerController.h"
 #include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
 #include "Engine.LocalPlayer.h"
-#include "Engine.OnlineGameSearch.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -1465,11 +1465,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[12];
 		}
-		bool RequestJoin(OnlineGameSearch::OnlineGameSearchResult GameToJoin)
+		bool RequestJoin(OnlineGameSearch__OnlineGameSearchResult GameToJoin)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(100110);
 			byte params[12] = { NULL };
-			*(OnlineGameSearch::OnlineGameSearchResult*)params = GameToJoin;
+			*(OnlineGameSearch__OnlineGameSearchResult*)params = GameToJoin;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}

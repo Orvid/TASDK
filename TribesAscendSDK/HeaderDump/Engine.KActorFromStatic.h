@@ -1,8 +1,9 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Engine.KActor.h"
 #include "Engine.Controller.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.Pawn.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -56,14 +57,14 @@ void**)params = MovableMesh;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19040);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ApplyImpulse(Vector ImpulseDir, float ImpulseMag, Vector HitLocation, Actor::TraceHitInfo HitInfo, ScriptClass* DamageType)
+		void ApplyImpulse(Vector ImpulseDir, float ImpulseMag, Vector HitLocation, Actor__TraceHitInfo HitInfo, ScriptClass* DamageType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19042);
 			byte params[60] = { NULL };
 			*(Vector*)params = ImpulseDir;
 			*(float*)&params[12] = ImpulseMag;
 			*(Vector*)&params[16] = HitLocation;
-			*(Actor::TraceHitInfo*)&params[28] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[28] = HitInfo;
 			*(ScriptClass**)&params[56] = DamageType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

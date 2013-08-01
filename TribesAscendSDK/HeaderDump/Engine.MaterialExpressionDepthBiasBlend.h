@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.MaterialExpressionTextureSample.h"
-#include "Engine.MaterialExpression.h"
+#include "Engine.MaterialExpression.ExpressionInput.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,7 +20,7 @@ namespace UnrealScript
 	class MaterialExpressionDepthBiasBlend : public MaterialExpressionTextureSample
 	{
 	public:
-		ADD_STRUCT(MaterialExpression::ExpressionInput, Bias, 148)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, Bias, 148)
 		ADD_STRUCT(float, BiasScale, 144)
 		ADD_BOOL(bNormalize, 140, 0x1)
 	};

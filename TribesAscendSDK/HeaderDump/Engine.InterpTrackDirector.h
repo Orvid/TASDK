@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.InterpTrack.h"
+#include "Engine.InterpTrackDirector.DirectorTrackCut.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,14 +20,7 @@ namespace UnrealScript
 	class InterpTrackDirector : public InterpTrack
 	{
 	public:
-		struct DirectorTrackCut
-		{
-		public:
-			ADD_STRUCT(ScriptName, TargetCamGroup, 8)
-			ADD_STRUCT(float, TransitionTime, 4)
-			ADD_STRUCT(float, Time, 0)
-		};
-		ADD_STRUCT(ScriptArray<InterpTrackDirector::DirectorTrackCut>, CutTrack, 128)
+		ADD_STRUCT(ScriptArray<InterpTrackDirector__DirectorTrackCut>, CutTrack, 128)
 		ADD_BOOL(bSimulateCameraCutsOnClients, 140, 0x1)
 	};
 }

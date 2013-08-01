@@ -1,8 +1,8 @@
 #pragma once
 #include "Engine.PortalMarker.h"
 #include "Engine.SceneCapturePortalActor.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Vector.h"
 #include "Engine.TextureRenderTarget2D.h"
 #include "Engine.Projectile.h"
 #define ADD_BOOL(name, offset, mask) \

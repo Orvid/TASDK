@@ -1,7 +1,9 @@
 #pragma once
+#include "Core.Object.Pointer.h"
 #include "Engine.PrimitiveComponent.h"
+#include "Engine.LensFlareComponent.LensFlareElementMaterials.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.LensFlare.h"
-#include "Core.Object.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,18 +27,10 @@ namespace UnrealScript
 	class LensFlareComponent : public PrimitiveComponent
 	{
 	public:
-		struct LensFlareElementMaterials
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class MaterialInterface*>, ElementMaterials, 0)
-		};
-		struct LensFlareElementInstance
-		{
-		};
-		ADD_STRUCT(ScriptArray<LensFlareComponent::LensFlareElementMaterials>, Materials, 540)
+		ADD_STRUCT(ScriptArray<LensFlareComponent__LensFlareElementMaterials>, Materials, 540)
 		ADD_STRUCT(float, NextTraceTime, 556)
-		ADD_STRUCT(Object::Pointer, ReleaseResourcesFence, 552)
-		ADD_STRUCT(Object::LinearColor, SourceColor, 524)
+		ADD_STRUCT(Object__Pointer, ReleaseResourcesFence, 552)
+		ADD_STRUCT(Object__LinearColor, SourceColor, 524)
 		ADD_STRUCT(float, Radius, 520)
 		ADD_STRUCT(float, ConeFudgeFactor, 516)
 		ADD_STRUCT(float, InnerCone, 512)
@@ -57,11 +51,11 @@ namespace UnrealScript
 			*(bool*)&params[4] = bForceSet;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetSourceColor(Object::LinearColor InSourceColor)
+		void SetSourceColor(Object__LinearColor InSourceColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19317);
 			byte params[16] = { NULL };
-			*(Object::LinearColor*)params = InSourceColor;
+			*(Object__LinearColor*)params = InSourceColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetIsActive(bool bInIsActive)

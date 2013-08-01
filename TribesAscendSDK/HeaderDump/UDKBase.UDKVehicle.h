@@ -1,13 +1,23 @@
 #pragma once
-#include "UDKBase.UDKBot.h"
+#include "Core.Object.Vector.h"
+#include "UDKBase.UDKVehicle.VehicleEffect.h"
+#include "UDKBase.UDKPawn.MaterialParticleEffect.h"
 #include "UDKBase.UDKVehicleBase.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "UDKBase.UDKPawn.h"
-#include "UDKBase.UDKSkelControl_Damage.h"
+#include "UDKBase.UDKVehicle.BurnOutDatum.h"
+#include "UDKBase.UDKPawn.MaterialSoundEffect.h"
+#include "UDKBase.UDKVehicle.VehicleAnim.h"
+#include "UDKBase.UDKVehicle.VehicleSeat.h"
 #include "Engine.ParticleSystem.h"
+#include "UDKBase.UDKVehicle.VehicleSound.h"
+#include "UDKBase.UDKSkelControl_Damage.h"
+#include "UDKBase.UDKVehicle.DamageParamScales.h"
+#include "UDKBase.UDKVehicle.FDamageMorphTargets.h"
+#include "UDKBase.UDKBot.h"
 #include "Engine.Controller.h"
-#include "Core.Object.h"
+#include "UDKBase.UDKPawn.UTTakeHitInfo.h"
+#include "Engine.MaterialInstanceConstant.h"
 #include "Engine.SoundCue.h"
+#include "Core.Object.Rotator.h"
 #include "UDKBase.UDKPlayerController.h"
 #include "UDKBase.UDKForcedDirectionVolume.h"
 #include "Engine.Pawn.h"
@@ -39,147 +49,19 @@ namespace UnrealScript
 	class UDKVehicle : public UDKVehicleBase
 	{
 	public:
-		struct BurnOutDatum
-		{
-		public:
-			ADD_STRUCT(float, CurrValue, 4)
-			ADD_OBJECT(MaterialInstanceTimeVarying, MITV, 0)
-		};
-		struct VehicleAnim
-		{
-		public:
-			ADD_STRUCT(ScriptArray<ScriptName>, AnimSeqs, 8)
-			ADD_STRUCT(ScriptName, AnimPlayerName, 28)
-			ADD_BOOL(bAnimLoopLastSeq, 24, 0x1)
-			ADD_STRUCT(float, AnimRate, 20)
-			ADD_STRUCT(ScriptName, AnimTag, 0)
-		};
-		struct VehicleSound
-		{
-		public:
-			ADD_OBJECT(SoundCue, SoundTemplate, 16)
-			ADD_STRUCT(ScriptName, SoundEndTag, 8)
-			ADD_STRUCT(ScriptName, SoundStartTag, 0)
-		};
-		struct DamageParamScales
-		{
-		public:
-			ADD_STRUCT(float, Scale, 8)
-			ADD_STRUCT(ScriptName, DamageParamName, 0)
-		};
-		struct FDamageMorphTargets
-		{
-		public:
-			ADD_STRUCT(ScriptArray<ScriptName>, DamagePropNames, 36)
-			ADD_STRUCT(int, Health, 32)
-			ADD_STRUCT(ScriptName, InfluenceBone, 24)
-			ADD_STRUCT(int, LinkedMorphNodeIndex, 20)
-			ADD_STRUCT(ScriptName, LinkedMorphNodeName, 12)
-			ADD_OBJECT(MorphNodeWeight, MorphNode, 8)
-			ADD_STRUCT(ScriptName, MorphNodeName, 0)
-		};
-		struct VehicleEffect
-		{
-		public:
-			ADD_STRUCT(ScriptName, EffectSocket, 28)
-			ADD_OBJECT(ParticleSystem, EffectTemplate_Blue, 24)
-			ADD_OBJECT(ParticleSystem, EffectTemplate, 20)
-			ADD_BOOL(bHighDetailOnly, 16, 0x2)
-			ADD_BOOL(bRestartRunning, 16, 0x1)
-			ADD_STRUCT(ScriptName, EffectEndTag, 8)
-			ADD_STRUCT(ScriptName, EffectStartTag, 0)
-		};
-		struct WeaponEffectInfo
-		{
-		public:
-			ADD_STRUCT(Vector, Scale3D, 20)
-			ADD_STRUCT(Vector, Offset, 8)
-			ADD_STRUCT(ScriptName, SocketName, 0)
-		};
-		struct VehicleSeatAnimInfo
-		{
-		public:
-			ADD_OBJECT(AnimTree, SeatAnimTree, 16)
-			ADD_OBJECT(AnimSet, SeatAnimSet, 12)
-			ADD_STRUCT(int, TeamType, 8)
-			ADD_STRUCT(int, ArmorType, 4)
-			ADD_BOOL(bClearAnimSet, 0, 0x4)
-			ADD_BOOL(bIsFactionDependent, 0, 0x2)
-			ADD_BOOL(bIsArmorDependent, 0, 0x1)
-		};
-		struct VehicleSeat
-		{
-		public:
-			ADD_STRUCT(ScriptArray<ScriptName>, GunSocket, 16)
-			ADD_STRUCT(ScriptArray<ScriptName>, GunPivotPoints, 28)
-			ADD_STRUCT(ScriptArray<UDKVehicle::WeaponEffectInfo>, WeaponEffects, 56)
-			ADD_STRUCT(ScriptArray<ScriptName>, TurretControls, 128)
-			ADD_STRUCT(ScriptArray<class UDKSkelControl_TurretConstrained*>, TurretControllers, 140)
-			ADD_STRUCT(ScriptArray<UDKVehicle::VehicleSeatAnimInfo>, m_SeatAnimInfo, 324)
-			ADD_STRUCT(ScriptArray<class GameSkelCtrl_Recoil*>, m_TurretRecoilControls, 368)
-			ADD_STRUCT(ScriptArray<ScriptName>, m_TurretRecoilControlNames, 380)
-			ADD_BOOL(ValidFlagSeat, 428, 0x1)
-			ADD_STRUCT(Rotator, FlagRotation, 416)
-			ADD_STRUCT(Vector, FlagOffset, 404)
-			ADD_STRUCT(ScriptName, FlagSocketName, 396)
-			ADD_STRUCT(float, m_fTurnInterpSpeed, 392)
-			ADD_STRUCT(Vector, m_vIdealExitLocation, 356)
-			ADD_STRUCT(Vector, m_vRidingPassengerMeshOffset, 344)
-			ADD_STRUCT(float, m_fViewYawLimit, 340)
-			ADD_BOOL(m_bAttachPawnDirectly, 336, 0x1)
-			ADD_STRUCT(Object::Vector2D, SeatIconPOS, 316)
-			ADD_OBJECT(UDKVehicleMovementEffect, SeatMovementEffect, 312)
-			ADD_STRUCT(float, DriverDamageMult, 304)
-			ADD_OBJECT(ScriptClass, ImpactFlashLightClass, 300)
-			ADD_OBJECT(ScriptClass, MuzzleFlashLightClass, 292)
-			ADD_STRUCT(ScriptName, SeatSocket, 284)
-			ADD_STRUCT(Rotator, SeatRotation, 272)
-			ADD_STRUCT(Vector, SeatOffset, 260)
-			ADD_STRUCT(ScriptName, SeatBone, 252)
-			ADD_BOOL(bSeatVisible, 248, 0x1)
-			ADD_STRUCT(float, ViewPitchMax, 244)
-			ADD_STRUCT(float, ViewPitchMin, 240)
-			ADD_STRUCT(float, CameraZoomOffset, 236)
-			ADD_STRUCT(Vector, CameraZoomBaseOffset, 224)
-			ADD_STRUCT(ScriptName, CameraZoomTag, 216)
-			ADD_STRUCT(float, CameraEyeHeight, 212)
-			ADD_STRUCT(float, CameraOffset, 208)
-			ADD_STRUCT(Vector, CameraSafeOffset, 196)
-			ADD_STRUCT(Vector, CameraBaseOffset, 184)
-			ADD_STRUCT(ScriptName, CameraTag, 176)
-			ADD_BOOL(bDisableOffsetZAdjust, 172, 0x1)
-			ADD_STRUCT(float, PivotFireOffsetZ, 168)
-			ADD_OBJECT(Actor, AimTarget, 164)
-			ADD_STRUCT(Vector, AimPoint, 152)
-			ADD_STRUCT(Rotator, LastWeaponRotation, 116)
-			ADD_STRUCT(Object::Pointer, FiringModeProperty, 112)
-			ADD_STRUCT(Object::Pointer, FlashCountProperty, 108)
-			ADD_STRUCT(Object::Pointer, FlashLocationProperty, 104)
-			ADD_STRUCT(Object::Pointer, WeaponRotationProperty, 100)
-			ADD_STRUCT(ScriptName, FiringModeName, 92)
-			ADD_STRUCT(ScriptName, FlashCountName, 84)
-			ADD_STRUCT(ScriptName, FlashLocationName, 76)
-			ADD_STRUCT(ScriptName, WeaponRotationName, 68)
-			ADD_STRUCT(ScriptString*, TurretVarPrefix, 44)
-			ADD_STRUCT(int, BarrelIndex, 40)
-			ADD_OBJECT(UDKWeapon, Gun, 12)
-			ADD_OBJECT(ScriptClass, GunClass, 8)
-			ADD_OBJECT(Vehicle, SeatPawn, 4)
-			ADD_OBJECT(Pawn, StoragePawn, 0)
-		};
 		ADD_BOOL(bAllowedExit, 1548, 0x8000)
 		ADD_BOOL(bEjectKilledBodies, 1548, 0x1)
-		ADD_STRUCT(ScriptArray<UDKVehicle::BurnOutDatum>, BurnOutMaterialInstances, 1556)
-		ADD_STRUCT(ScriptArray<UDKPawn::MaterialSoundEffect>, TireSoundList, 1572)
-		ADD_STRUCT(ScriptArray<UDKPawn::MaterialParticleEffect>, WheelParticleEffects, 1596)
+		ADD_STRUCT(ScriptArray<UDKVehicle__BurnOutDatum>, BurnOutMaterialInstances, 1556)
+		ADD_STRUCT(ScriptArray<UDKPawn__MaterialSoundEffect>, TireSoundList, 1572)
+		ADD_STRUCT(ScriptArray<UDKPawn__MaterialParticleEffect>, WheelParticleEffects, 1596)
 		ADD_STRUCT(ScriptArray<int>, GroundEffectIndices, 1648)
-		ADD_STRUCT(ScriptArray<UDKVehicle::VehicleSeat>, Seats, 1688)
-		ADD_STRUCT(ScriptArray<UDKVehicle::VehicleAnim>, VehicleAnims, 1704)
-		ADD_STRUCT(ScriptArray<UDKVehicle::VehicleSound>, VehicleSounds, 1716)
-		ADD_STRUCT(ScriptArray<UDKVehicle::DamageParamScales>, DamageParamScaleLevels, 1768)
+		ADD_STRUCT(ScriptArray<UDKVehicle__VehicleSeat>, Seats, 1688)
+		ADD_STRUCT(ScriptArray<UDKVehicle__VehicleAnim>, VehicleAnims, 1704)
+		ADD_STRUCT(ScriptArray<UDKVehicle__VehicleSound>, VehicleSounds, 1716)
+		ADD_STRUCT(ScriptArray<UDKVehicle__DamageParamScales>, DamageParamScaleLevels, 1768)
 		ADD_STRUCT(ScriptArray<class UDKSkelControl_Damage*>, DamageSkelControls, 1780)
-		ADD_STRUCT(ScriptArray<UDKVehicle::FDamageMorphTargets>, DamageMorphTargets, 1792)
-		ADD_STRUCT(ScriptArray<UDKVehicle::VehicleEffect>, VehicleEffects, 1860)
+		ADD_STRUCT(ScriptArray<UDKVehicle__FDamageMorphTargets>, DamageMorphTargets, 1792)
+		ADD_STRUCT(ScriptArray<UDKVehicle__VehicleEffect>, VehicleEffects, 1860)
 		ADD_STRUCT(ScriptArray<int>, ContrailEffectIndices, 1888)
 		ADD_STRUCT(ScriptArray<class UDKBot*>, Trackers, 1912)
 		ADD_STRUCT(Vector, HUDLocation, 1960)
@@ -198,7 +80,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, LastJumpOutCheck, 1876)
 		ADD_OBJECT(Controller, KillerController, 1872)
 		ADD_STRUCT(float, LastTakeHitTimeout, 1856)
-		ADD_STRUCT(UDKPawn::UTTakeHitInfo, LastTakeHitInfo, 1812)
+		ADD_STRUCT(UDKPawn__UTTakeHitInfo, LastTakeHitInfo, 1812)
 		ADD_OBJECT(MaterialInstanceConstant, DamageMaterialInstance, 1804)
 		ADD_STRUCT(float, CustomGravityScaling, 1764)
 		ADD_OBJECT(SoundCue, SmallChunkImpactSound, 1760)

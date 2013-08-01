@@ -1,7 +1,8 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.PickupFactory.h"
 #include "Engine.MaterialInstanceConstant.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.LinearColor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -36,13 +37,13 @@ namespace UnrealScript
 		ADD_STRUCT(float, BobOffset, 820)
 		ADD_STRUCT(float, BobTimer, 816)
 		ADD_STRUCT(ScriptName, BaseMaterialParamName, 808)
-		ADD_STRUCT(Object::LinearColor, BaseEmissive, 792)
-		ADD_STRUCT(Object::LinearColor, BaseTargetEmissive, 776)
+		ADD_STRUCT(Object__LinearColor, BaseEmissive, 792)
+		ADD_STRUCT(Object__LinearColor, BaseTargetEmissive, 776)
 		ADD_STRUCT(float, PulseThreshold, 772)
 		ADD_STRUCT(float, BasePulseTime, 768)
 		ADD_STRUCT(float, BasePulseRate, 764)
-		ADD_STRUCT(Object::LinearColor, BaseDimEmissive, 748)
-		ADD_STRUCT(Object::LinearColor, BaseBrightEmissive, 732)
+		ADD_STRUCT(Object__LinearColor, BaseDimEmissive, 748)
+		ADD_STRUCT(Object__LinearColor, BaseBrightEmissive, 732)
 		ADD_OBJECT(MaterialInstanceConstant, BaseMaterialInstance, 728)
 		ADD_BOOL(bDoVisibilityFadeIn, 720, 0x80)
 		ADD_BOOL(bUpdatingPickup, 720, 0x40)

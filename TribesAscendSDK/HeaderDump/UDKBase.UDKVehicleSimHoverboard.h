@@ -1,9 +1,10 @@
 #pragma once
 #include "Engine.SVehicleSimBase.h"
-#include "Engine.RB_ConstraintInstance.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.InterpCurveFloat.h"
 #include "Engine.SoundCue.h"
 #include "UDKBase.UDKVehicle.h"
+#include "Engine.RB_ConstraintInstance.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -44,7 +45,7 @@ namespace UnrealScript
 		ADD_BOOL(bLeftGround, 200, 0x4)
 		ADD_BOOL(bInAJump, 200, 0x2)
 		ADD_BOOL(bIsOverDeepWater, 200, 0x1)
-		ADD_STRUCT(Object::InterpCurveFloat, TurnDampingSpeedFunc, 184)
+		ADD_STRUCT(Object__InterpCurveFloat, TurnDampingSpeedFunc, 184)
 		ADD_STRUCT(float, MaxTurnTorque, 180)
 		ADD_STRUCT(float, SpinTurnTorqueScale, 176)
 		ADD_STRUCT(float, TurnTorqueFactor, 172)

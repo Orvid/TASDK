@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.InterpTrackInstProperty.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,7 +11,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(float, ResetFloat, 72)
-		ADD_STRUCT(Object::Pointer, FloatProp, 68)
+		ADD_STRUCT(Object__Pointer, FloatProp, 68)
 	};
 }
 #undef ADD_STRUCT

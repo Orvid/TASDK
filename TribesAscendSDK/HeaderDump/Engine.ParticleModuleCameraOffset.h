@@ -1,6 +1,7 @@
 #pragma once
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModuleCameraBase.h"
-#include "Core.DistributionFloat.h"
+#include "Engine.ParticleModuleCameraOffset.EParticleCameraOffsetUpdateMethod.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,15 +21,8 @@ namespace UnrealScript
 	class ParticleModuleCameraOffset : public ParticleModuleCameraBase
 	{
 	public:
-		enum EParticleCameraOffsetUpdateMethod : byte
-		{
-			EPCOUM_DirectSet = 0,
-			EPCOUM_Additive = 1,
-			EPCOUM_Scalar = 2,
-			EPCOUM_MAX = 3,
-		};
-		ADD_STRUCT(ParticleModuleCameraOffset::EParticleCameraOffsetUpdateMethod, UpdateMethod, 104)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, CameraOffset, 72)
+		ADD_STRUCT(ParticleModuleCameraOffset__EParticleCameraOffsetUpdateMethod, UpdateMethod, 104)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, CameraOffset, 72)
 		ADD_BOOL(bSpawnTimeOnly, 100, 0x1)
 	};
 }

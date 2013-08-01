@@ -1,8 +1,8 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.NavMeshPathConstraint.h"
-#include "Engine.Pylon.h"
+#include "Engine.Pylon.ENavMeshEdgeType.h"
 #include "Engine.NavigationHandle.h"
+#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,16 +12,16 @@ namespace UnrealScript
 	class NavMeshPath_MinDistBetweenSpecsOfType : public NavMeshPathConstraint
 	{
 	public:
-		ADD_STRUCT(Pylon::ENavMeshEdgeType, EdgeType, 96)
+		ADD_STRUCT(Pylon__ENavMeshEdgeType, EdgeType, 96)
 		ADD_STRUCT(Vector, InitLocation, 84)
 		ADD_STRUCT(float, MinDistBetweenEdgeTypes, 80)
-		bool EnforceMinDist(class NavigationHandle* NavHandle, float InMinDist, Pylon::ENavMeshEdgeType InEdgeType, Vector LastLocation)
+		bool EnforceMinDist(class NavigationHandle* NavHandle, float InMinDist, Pylon__ENavMeshEdgeType InEdgeType, Vector LastLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21063);
 			byte params[25] = { NULL };
 			*(class NavigationHandle**)params = NavHandle;
 			*(float*)&params[4] = InMinDist;
-			*(Pylon::ENavMeshEdgeType*)&params[8] = InEdgeType;
+			*(Pylon__ENavMeshEdgeType*)&params[8] = InEdgeType;
 			*(Vector*)&params[12] = LastLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[24];

@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.AnimNodeSequenceBlendBase.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -19,11 +19,11 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptName, AnimName_LD, 388)
 		ADD_STRUCT(ScriptName, AnimName_LC, 380)
 		ADD_STRUCT(ScriptName, AnimName_LU, 372)
-		ADD_STRUCT(Object::Vector2D, AngleOffset, 364)
-		ADD_STRUCT(Object::Vector2D, VerticalRange, 356)
-		ADD_STRUCT(Object::Vector2D, HorizontalRange, 348)
-		ADD_STRUCT(Object::Vector2D, PreviousAim, 340)
-		ADD_STRUCT(Object::Vector2D, Aim, 332)
+		ADD_STRUCT(Object__Vector2D, AngleOffset, 364)
+		ADD_STRUCT(Object__Vector2D, VerticalRange, 356)
+		ADD_STRUCT(Object__Vector2D, HorizontalRange, 348)
+		ADD_STRUCT(Object__Vector2D, PreviousAim, 340)
+		ADD_STRUCT(Object__Vector2D, Aim, 332)
 		void CheckAnimsUpToDate()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(11050);

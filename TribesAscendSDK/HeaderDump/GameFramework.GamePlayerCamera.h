@@ -2,9 +2,12 @@
 #include "Engine.Pawn.h"
 #include "GameFramework.GameCameraBase.h"
 #include "Engine.Camera.h"
+#include "Core.Object.Matrix.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Engine.Camera.TViewTarget.h"
+#include "Core.Object.Vector.h"
 #include "Engine.HUD.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,7 +31,7 @@ namespace UnrealScript
 	class GamePlayerCamera : public Camera
 	{
 	public:
-		ADD_STRUCT(Object::Matrix, LastTargetBaseTM, 1136)
+		ADD_STRUCT(Object__Matrix, LastTargetBaseTM, 1136)
 		ADD_OBJECT(Actor, LastTargetBase, 1124)
 		ADD_STRUCT(float, SplitScreenShakeScale, 1120)
 		ADD_OBJECT(Actor, LastViewTarget, 1116)
@@ -81,14 +84,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void UpdateViewTarget(Camera::TViewTarget& OutVT, float DeltaTime)
+		void UpdateViewTarget(Camera__TViewTarget& OutVT, float DeltaTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31759);
 			byte params[48] = { NULL };
-			*(Camera::TViewTarget*)params = OutVT;
+			*(Camera__TViewTarget*)params = OutVT;
 			*(float*)&params[44] = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutVT = *(Camera::TViewTarget*)params;
+			OutVT = *(Camera__TViewTarget*)params;
 		}
 		float AdjustFOVForViewport(float inHorizFOV, class Pawn* CameraTargetPawn)
 		{
@@ -99,13 +102,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[8];
 		}
-		void UpdateCameraLensEffects(Camera::TViewTarget& OutVT)
+		void UpdateCameraLensEffects(Camera__TViewTarget& OutVT)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31766);
 			byte params[44] = { NULL };
-			*(Camera::TViewTarget*)params = OutVT;
+			*(Camera__TViewTarget*)params = OutVT;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutVT = *(Camera::TViewTarget*)params;
+			OutVT = *(Camera__TViewTarget*)params;
 		}
 		void DisplayDebug(class HUD* HUD, float& out_YL, float& out_YPos)
 		{

@@ -1,0 +1,17 @@
+#pragma once
+namespace UnrealScript
+{
+	enum AnimNodeAimOffset__EAnimAimDir : byte
+	{
+		ANIMAIM_LEFTUP = 0,
+		ANIMAIM_CENTERUP = 1,
+		ANIMAIM_RIGHTUP = 2,
+		ANIMAIM_LEFTCENTER = 3,
+		ANIMAIM_CENTERCENTER = 4,
+		ANIMAIM_RIGHTCENTER = 5,
+		ANIMAIM_LEFTDOWN = 6,
+		ANIMAIM_CENTERDOWN = 7,
+		ANIMAIM_RIGHTDOWN = 8,
+		ANIMAIM_MAX = 9,
+	};
+}

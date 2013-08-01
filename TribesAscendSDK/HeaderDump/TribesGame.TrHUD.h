@@ -1,32 +1,41 @@
 #pragma once
-#include "UTGame.UTGFxHudWrapper.h"
-#include "Core.Object.h"
 #include "TribesGame.TrSpectatorHUDCache.h"
+#include "Core.Object.h"
+#include "UTGame.UTGFxHudWrapper.h"
 #include "TribesGame.TrCamera_SpectatorBookmark.h"
 #include "TribesGame.TrVehicle.h"
 #include "Engine.Canvas.h"
 #include "TribesGame.GFxTrUI_TeamSelectionMenu.h"
 #include "TribesGame.TrPlayerController.h"
-#include "TribesGame.TrDeployable.h"
+#include "Core.Object.Color.h"
 #include "Engine.MaterialInstanceConstant.h"
-#include "Engine.Texture2D.h"
 #include "TribesGame.GfxTrHud.h"
+#include "Core.Object.LinearColor.h"
+#include "Engine.Texture2D.h"
+#include "TribesGame.TrDeployable.h"
 #include "TribesGame.TrCaHStats.h"
 #include "TribesGame.TrProj_Mine.h"
+#include "TribesGame.TrHUD.QueuedAccolade.h"
+#include "Engine.Canvas.FontRenderInfo.h"
+#include "TribesGame.TrHUD.OverheadNumber.h"
 #include "Engine.UberPostProcessEffect.h"
 #include "Engine.MaterialEffect.h"
 #include "TribesGame.TrDaDStats.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "TribesGame.TrArenaStats.h"
-#include "PlatformCommon.TgSupportCommands.h"
 #include "TribesGame.TrTeamRabbitStats.h"
 #include "TribesGame.TrHUDTeamCTFStats.h"
 #include "TribesGame.TrRabbitLeaderboard.h"
 #include "TribesGame.TrScoreboard.h"
 #include "TribesGame.GFxTrUI_VehicleMenu.h"
 #include "Engine.Material.h"
+#include "Core.Object.Vector.h"
 #include "TribesGame.TrPawn.h"
+#include "Core.Object.Vector2D.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.Actor.h"
+#include "PlatformCommon.TgSupportCommands.GC_ALERT_PRIORITY.h"
+#include "Core.Object.Vector4.h"
 #include "Engine.PlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -551,23 +560,6 @@ namespace UnrealScript
 		static const auto MOD_TYPE_IGNOREPULSESTEALTHTIME = 90;
 		static const auto MOD_TYPE_RAGEMASSREDUCTION = 91;
 		static const auto MOD_TYPE_REPAIRDEPLOYABLERATEPCT = 92;
-		struct QueuedAccolade
-		{
-		public:
-			ADD_STRUCT(ScriptString*, Subtitle, 20)
-			ADD_STRUCT(ScriptString*, Title, 8)
-			ADD_BOOL(bIsBadge, 4, 0x1)
-			ADD_STRUCT(int, Icon, 0)
-		};
-		struct OverheadNumber
-		{
-		public:
-			ADD_STRUCT(float, CurrentScale, 36)
-			ADD_STRUCT(Object::Color, CurrentColor, 32)
-			ADD_STRUCT(Object::Vector4, WorldSpaceLocation, 16)
-			ADD_STRUCT(float, RemainingTime, 4)
-			ADD_STRUCT(int, NumberValue, 0)
-		};
 		ADD_BOOL(m_bIsControllerSkiing, 1548, 0x8)
 		ADD_OBJECT(TrSpectatorHUDCache, m_SpectatorHUDCache, 2424)
 		ADD_OBJECT(GFxTrUI_TeamSelectionMenu, TeamSelectionMenuMovie, 2044)
@@ -575,8 +567,8 @@ namespace UnrealScript
 		ADD_BOOL(bIsMainMenuOpen, 1548, 0x1000)
 		ADD_OBJECT(MaterialInstanceConstant, MarkerBaseMIC, 1632)
 		ADD_BOOL(bShowObjectives, 1548, 0x4)
-		ADD_STRUCT(Object::LinearColor, MarkerColorFriendly, 1668)
-		ADD_STRUCT(Object::LinearColor, MarkerColorEnemy, 1636)
+		ADD_STRUCT(Object__LinearColor, MarkerColorFriendly, 1668)
+		ADD_STRUCT(Object__LinearColor, MarkerColorEnemy, 1636)
 		ADD_OBJECT(Texture2D, BaseDeployableLevel1, 1820)
 		ADD_OBJECT(Texture2D, BaseDeployableLevel2, 1824)
 		ADD_OBJECT(Texture2D, BaseDeployableLevel3, 1828)
@@ -622,21 +614,21 @@ namespace UnrealScript
 		ADD_OBJECT(Texture2D, FlagHeldLight, 1756)
 		ADD_OBJECT(Texture2D, FlagHeldMedium, 1760)
 		ADD_OBJECT(Texture2D, FlagHeldHeavy, 1764)
-		ADD_STRUCT(Object::LinearColor, MarkerColorEnemy_IsFriend, 1652)
+		ADD_STRUCT(Object__LinearColor, MarkerColorEnemy_IsFriend, 1652)
 		ADD_STRUCT(float, m_fNamePlacementX, 2340)
 		ADD_STRUCT(float, m_fNamePlacementY, 2344)
 		ADD_STRUCT(float, m_fHealthBarPlacementX, 2324)
 		ADD_STRUCT(float, m_fHealthBarPlacementY, 2328)
 		ADD_STRUCT(float, m_fHealthBarWidth, 2332)
 		ADD_STRUCT(float, m_fHealthBarHeight, 2336)
-		ADD_STRUCT(Object::LinearColor, MarkerColorFriendly_IsFriend, 1684)
+		ADD_STRUCT(Object__LinearColor, MarkerColorFriendly_IsFriend, 1684)
 		ADD_OBJECT(GfxTrHud, m_GFxHud, 2076)
 		ADD_STRUCT(int, FriendlyChatColorIdx, 2004)
-		ADD_STRUCT(Object::Color, FriendlyChatColor, 2016)
+		ADD_STRUCT(Object__Color, FriendlyChatColor, 2016)
 		ADD_STRUCT(int, EnemyChatColorIdx, 2000)
-		ADD_STRUCT(Object::Color, EnemyChatColor, 2020)
+		ADD_STRUCT(Object__Color, EnemyChatColor, 2020)
 		ADD_STRUCT(int, WhisperChatColorIdx, 2012)
-		ADD_STRUCT(Object::Color, WhisperChatColor, 2028)
+		ADD_STRUCT(Object__Color, WhisperChatColor, 2028)
 		ADD_STRUCT(int, InfoChatColorIdx, 1996)
 		ADD_BOOL(bVotePending, 1548, 0x800)
 		ADD_OBJECT(Texture2D, FlagEmptyBase, 1772)
@@ -656,26 +648,26 @@ namespace UnrealScript
 		ADD_OBJECT(Texture2D, BaseSensorLevel5_Down, 1916)
 		ADD_OBJECT(Texture2D, HUDMarkerLaserTargetAimPoint, 1800)
 		ADD_OBJECT(Texture2D, HUDMarkerLaserTarget, 1796)
-		ADD_STRUCT(Object::Color, LaserTargetTracePossible, 1592)
-		ADD_STRUCT(Object::Color, LaserTargetTraceImprobable, 1596)
+		ADD_STRUCT(Object__Color, LaserTargetTracePossible, 1592)
+		ADD_STRUCT(Object__Color, LaserTargetTraceImprobable, 1596)
 		ADD_OBJECT(Texture2D, AmmoDropPickup, 1984)
 		ADD_OBJECT(Texture2D, FlagAtBase, 1748)
 		ADD_OBJECT(Texture2D, FlagDropped, 1752)
 		ADD_STRUCT(ScriptArray<class TrDeployable*>, m_OwnedDeployables, 1600)
 		ADD_STRUCT(ScriptArray<class TrProj_Mine*>, m_OwnedMines, 1612)
-		ADD_STRUCT(ScriptArray<TrHUD::QueuedAccolade>, QueuedAccolades, 2428)
-		ADD_STRUCT(ScriptArray<TrHUD::OverheadNumber>, m_OverheadNumbers, 2440)
+		ADD_STRUCT(ScriptArray<TrHUD__QueuedAccolade>, QueuedAccolades, 2428)
+		ADD_STRUCT(ScriptArray<TrHUD__OverheadNumber>, m_OverheadNumbers, 2440)
 		ADD_STRUCT(float, m_fOverheadNumberColorizeTimeMax, 2484)
 		ADD_STRUCT(float, m_fOverheadNumberColorizeTimeMin, 2480)
 		ADD_STRUCT(float, m_fOverheadNumberMaxScaleAmount, 2476)
 		ADD_STRUCT(float, m_fOverheadNumberScaleTime, 2472)
 		ADD_STRUCT(float, m_fOverheadNumberFadeTime, 2468)
 		ADD_STRUCT(float, m_fOverheadNumberTotalTime, 2464)
-		ADD_STRUCT(Object::Color, m_OverheadNumberColorMax, 2460)
-		ADD_STRUCT(Object::Color, m_OverheadNumberColorMin, 2456)
+		ADD_STRUCT(Object__Color, m_OverheadNumberColorMax, 2460)
+		ADD_STRUCT(Object__Color, m_OverheadNumberColorMin, 2456)
 		ADD_STRUCT(float, m_fOverheadNumberZSpeed, 2452)
 		ADD_OBJECT(UberPostProcessEffect, m_UperPPEffect, 2420)
-		ADD_STRUCT(Canvas::FontRenderInfo, m_nNameFontRenderInfo, 2380)
+		ADD_STRUCT(Canvas__FontRenderInfo, m_nNameFontRenderInfo, 2380)
 		ADD_STRUCT(float, m_fMineDeployerNamePlacementY, 2376)
 		ADD_STRUCT(float, m_fMineDeployerNamePlacementX, 2372)
 		ADD_STRUCT(float, m_fMineNamePlacementY, 2368)
@@ -739,7 +731,7 @@ namespace UnrealScript
 		ADD_OBJECT(GFxTrUI_VehicleMenu, VehicleMenuMovie, 2040)
 		ADD_OBJECT(Material, MapMaterialReference, 2036)
 		ADD_OBJECT(MaterialInstanceConstant, LowAmmoMic, 2032)
-		ADD_STRUCT(Object::Color, TeamChatColor, 2024)
+		ADD_STRUCT(Object__Color, TeamChatColor, 2024)
 		ADD_STRUCT(int, SelfChatColorIdx, 2008)
 		ADD_OBJECT(Texture2D, SpottedTarget_MotionMine, 1992)
 		ADD_OBJECT(Texture2D, SpottedTarget, 1988)
@@ -763,11 +755,11 @@ namespace UnrealScript
 		ADD_OBJECT(Texture2D, VehicleMarkerMedium, 1736)
 		ADD_OBJECT(Texture2D, VehicleMarkerLight, 1732)
 		ADD_OBJECT(Texture2D, VehicleMarker, 1728)
-		ADD_STRUCT(Object::LinearColor, MarkerColorNone, 1700)
+		ADD_STRUCT(Object__LinearColor, MarkerColorNone, 1700)
 		ADD_STRUCT(int, m_LastDeployableCount, 1628)
 		ADD_STRUCT(int, m_LastMineCount, 1624)
-		ADD_STRUCT(Object::Color, ColorEnemy, 1588)
-		ADD_STRUCT(Object::Color, ColorFriend, 1584)
+		ADD_STRUCT(Object__Color, ColorEnemy, 1588)
+		ADD_STRUCT(Object__Color, ColorFriend, 1584)
 		ADD_STRUCT(float, ObjectiveInfoMaxDist, 1580)
 		ADD_STRUCT(ScriptString*, m_sLastClassName, 1564)
 		ADD_STRUCT(ScriptString*, m_sWinningPlayer, 1552)
@@ -801,14 +793,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[36];
 		}
-		Vector DrawMICMarker(class MaterialInstanceConstant* MarkerMIC, Vector Placement, class Canvas* DrawCanvas, Object::Vector2D MarkerSize, ScriptString* markText, bool bFriend, float distScale)
+		Vector DrawMICMarker(class MaterialInstanceConstant* MarkerMIC, Vector Placement, class Canvas* DrawCanvas, Object__Vector2D MarkerSize, ScriptString* markText, bool bFriend, float distScale)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(71612);
 			byte params[60] = { NULL };
 			*(class MaterialInstanceConstant**)params = MarkerMIC;
 			*(Vector*)&params[4] = Placement;
 			*(class Canvas**)&params[16] = DrawCanvas;
-			*(Object::Vector2D*)&params[20] = MarkerSize;
+			*(Object__Vector2D*)&params[20] = MarkerSize;
 			*(ScriptString**)&params[28] = markText;
 			*(bool*)&params[40] = bFriend;
 			*(float*)&params[44] = distScale;
@@ -993,21 +985,21 @@ namespace UnrealScript
 			*(ScriptString**)&params[20] = Victim;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddToPromptPanel(ScriptString* Message, TgSupportCommands::GC_ALERT_PRIORITY Priority)
+		void AddToPromptPanel(ScriptString* Message, TgSupportCommands__GC_ALERT_PRIORITY Priority)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(96181);
 			byte params[13] = { NULL };
 			*(ScriptString**)params = Message;
-			*(TgSupportCommands::GC_ALERT_PRIORITY*)&params[12] = Priority;
+			*(TgSupportCommands__GC_ALERT_PRIORITY*)&params[12] = Priority;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddToPromptPanelTime(ScriptString* Message, float EndTime, TgSupportCommands::GC_ALERT_PRIORITY Priority)
+		void AddToPromptPanelTime(ScriptString* Message, float EndTime, TgSupportCommands__GC_ALERT_PRIORITY Priority)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(96184);
 			byte params[17] = { NULL };
 			*(ScriptString**)params = Message;
 			*(float*)&params[12] = EndTime;
-			*(TgSupportCommands::GC_ALERT_PRIORITY*)&params[16] = Priority;
+			*(TgSupportCommands__GC_ALERT_PRIORITY*)&params[16] = Priority;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ClearPromptPanel()
@@ -1268,12 +1260,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		Vector DrawColoredMarkerText(ScriptString* ShowText, Object::Color TextColor, Vector Placement, class Canvas* DrawCanvas, float ScaleX, float ScaleY)
+		Vector DrawColoredMarkerText(ScriptString* ShowText, Object__Color TextColor, Vector Placement, class Canvas* DrawCanvas, float ScaleX, float ScaleY)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(96323);
 			byte params[52] = { NULL };
 			*(ScriptString**)params = ShowText;
-			*(Object::Color*)&params[12] = TextColor;
+			*(Object__Color*)&params[12] = TextColor;
 			*(Vector*)&params[16] = Placement;
 			*(class Canvas**)&params[28] = DrawCanvas;
 			*(float*)&params[32] = ScaleX;
@@ -1397,7 +1389,7 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(96402);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void LocalizedMessage(ScriptClass* InMessageClass, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, ScriptString* CriticalString, int Switch, float Position, float Lifetime, int FontSize, Object::Color DrawColor, class Object* OptionalObject)
+		void LocalizedMessage(ScriptClass* InMessageClass, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, ScriptString* CriticalString, int Switch, float Position, float Lifetime, int FontSize, Object__Color DrawColor, class Object* OptionalObject)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(96403);
 			byte params[48] = { NULL };
@@ -1409,7 +1401,7 @@ namespace UnrealScript
 			*(float*)&params[28] = Position;
 			*(float*)&params[32] = Lifetime;
 			*(int*)&params[36] = FontSize;
-			*(Object::Color*)&params[40] = DrawColor;
+			*(Object__Color*)&params[40] = DrawColor;
 			*(class Object**)&params[44] = OptionalObject;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1573,12 +1565,12 @@ namespace UnrealScript
 			*(int*)params = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddOverheadNumber(int Value, Object::Vector4 WorldLocation)
+		void AddOverheadNumber(int Value, Object__Vector4 WorldLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(96492);
 			byte params[20] = { NULL };
 			*(int*)params = Value;
-			*(Object::Vector4*)&params[16] = WorldLocation;
+			*(Object__Vector4*)&params[16] = WorldLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UpdateOverheadNumbers(float DeltaTime)

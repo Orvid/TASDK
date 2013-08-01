@@ -1,11 +1,11 @@
 #pragma once
 #include "GameFramework.MobileMenuObject.h"
 #include "Core.Object.h"
-#include "GameFramework.MobileInputZone.h"
 #include "Engine.Font.h"
 #include "Engine.SoundCue.h"
 #include "GameFramework.MobilePlayerInput.h"
 #include "Engine.Canvas.h"
+#include "GameFramework.MobileInputZone.EZoneTouchEvent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -91,11 +91,11 @@ namespace UnrealScript
 			*(bool*)&params[12] = bCancel;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool OnSceneTouch(MobileInputZone::EZoneTouchEvent EventType, float TouchX, float TouchY)
+		bool OnSceneTouch(MobileInputZone__EZoneTouchEvent EventType, float TouchX, float TouchY)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32710);
 			byte params[13] = { NULL };
-			*(MobileInputZone::EZoneTouchEvent*)params = EventType;
+			*(MobileInputZone__EZoneTouchEvent*)params = EventType;
 			*(float*)&params[4] = TouchX;
 			*(float*)&params[8] = TouchY;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);

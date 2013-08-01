@@ -1,8 +1,12 @@
 #pragma once
 #include "Engine.RB_ConstraintSetup.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Quat.h"
 #include "Core.Object.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Vector.h"
 #include "Engine.PhysicsAssetInstance.h"
+#include "Core.Object.Matrix.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,18 +32,18 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(bTerminated, 76, 0x1000)
 		ADD_STRUCT(int, ConstraintIndex, 68)
-		ADD_STRUCT(Object::Pointer, DummyKinActor, 168)
+		ADD_STRUCT(Object__Pointer, DummyKinActor, 168)
 		ADD_STRUCT(float, AngularDriveForceLimit, 164)
 		ADD_STRUCT(float, AngularDriveDamping, 160)
 		ADD_STRUCT(float, AngularDriveSpring, 156)
 		ADD_STRUCT(Vector, AngularVelocityTarget, 144)
-		ADD_STRUCT(Object::Quat, AngularPositionTarget, 128)
+		ADD_STRUCT(Object__Quat, AngularPositionTarget, 128)
 		ADD_STRUCT(float, LinearDriveForceLimit, 116)
 		ADD_STRUCT(float, LinearDriveDamping, 112)
 		ADD_STRUCT(float, LinearDriveSpring, 108)
 		ADD_STRUCT(Vector, LinearVelocityTarget, 96)
 		ADD_STRUCT(Vector, LinearPositionTarget, 84)
-		ADD_STRUCT(Object::Pointer, ConstraintData, 80)
+		ADD_STRUCT(Object__Pointer, ConstraintData, 80)
 		ADD_BOOL(bAngularSlerpDrive, 76, 0x800)
 		ADD_BOOL(bTwistVelocityDrive, 76, 0x400)
 		ADD_BOOL(bTwistPositionDrive, 76, 0x200)
@@ -155,13 +159,13 @@ void**)&params[20] = InPrimComp;
 			*(float*)&params[8] = InForceLimit;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetAngularPositionTarget(Object::Quat& InPosTarget)
+		void SetAngularPositionTarget(Object__Quat& InPosTarget)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25117);
 			byte params[16] = { NULL };
-			*(Object::Quat*)params = InPosTarget;
+			*(Object__Quat*)params = InPosTarget;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			InPosTarget = *(Object::Quat*)params;
+			InPosTarget = *(Object__Quat*)params;
 		}
 		void SetAngularVelocityTarget(Vector InVelTarget)
 		{
@@ -196,13 +200,13 @@ void**)&params[20] = InPrimComp;
 			*(float*)params = NewLimitSize;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void MoveKinActorTransform(Object::Matrix& NewTM)
+		void MoveKinActorTransform(Object__Matrix& NewTM)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25132);
 			byte params[64] = { NULL };
-			*(Object::Matrix*)params = NewTM;
+			*(Object__Matrix*)params = NewTM;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			NewTM = *(Object::Matrix*)params;
+			NewTM = *(Object__Matrix*)params;
 		}
 	};
 }

@@ -1,13 +1,15 @@
 #pragma once
 #include "UDKBase.UDKCarriedObject.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+#include "Core.Object.Rotator.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Controller.h"
-#include "Core.Object.h"
-#include "UDKBase.UDKPlayerController.h"
 #include "Engine.ForceFeedbackWaveform.h"
-#include "Engine.Texture2D.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.Pawn.h"
 #include "Engine.SoundCue.h"
-#include "Engine.UIRoot.h"
+#include "Engine.Texture2D.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #include "Engine.PlayerController.h"
 #include "Engine.Canvas.h"
@@ -45,11 +47,11 @@ namespace UnrealScript
 		ADD_STRUCT(Rotator, GameObjRot1P, 640)
 		ADD_STRUCT(Vector, GameObjOffset1P, 628)
 		ADD_STRUCT(ScriptArray<class Controller*>, Assists, 560)
-		ADD_STRUCT(ScriptArray<UDKPlayerController::ObjectiveAnnouncementInfo>, NeedToPickUpAnnouncements, 680)
+		ADD_STRUCT(ScriptArray<UDKPlayerController__ObjectiveAnnouncementInfo>, NeedToPickUpAnnouncements, 680)
 		ADD_OBJECT(ForceFeedbackWaveform, PickUpWaveForm, 764)
-		ADD_STRUCT(Object::LinearColor, GoldColor, 748)
-		ADD_STRUCT(Object::LinearColor, BlueColor, 732)
-		ADD_STRUCT(Object::LinearColor, RedColor, 716)
+		ADD_STRUCT(Object__LinearColor, GoldColor, 748)
+		ADD_STRUCT(Object__LinearColor, BlueColor, 732)
+		ADD_STRUCT(Object__LinearColor, RedColor, 716)
 		ADD_STRUCT(int, LastSeeMessageIndex, 712)
 		ADD_STRUCT(float, LastFlagSeeTime, 708)
 		ADD_STRUCT(float, LastHighlightUpdate, 704)
@@ -63,7 +65,7 @@ namespace UnrealScript
 		ADD_OBJECT(SoundCue, DroppedSound, 656)
 		ADD_OBJECT(SoundCue, PickupSound, 652)
 		ADD_OBJECT(Texture2D, IconTexture, 592)
-		ADD_STRUCT(UIRoot::TextureCoordinates, IconCoords, 576)
+		ADD_STRUCT(UIRoot__TextureCoordinates, IconCoords, 576)
 		ADD_STRUCT(float, MapSize, 572)
 		ADD_OBJECT(Controller, FirstTouch, 556)
 		ADD_STRUCT(float, MaxDropTime, 552)

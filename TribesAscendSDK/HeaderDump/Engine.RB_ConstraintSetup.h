@@ -1,5 +1,7 @@
 #pragma once
 #include "Core.Object.h"
+#include "Engine.RB_ConstraintSetup.LinearDOFSetup.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,12 +21,6 @@ namespace UnrealScript
 	class RB_ConstraintSetup : public Object
 	{
 	public:
-		struct LinearDOFSetup
-		{
-		public:
-			ADD_STRUCT(float, LimitSize, 4)
-			ADD_STRUCT(byte, bLimited, 0)
-		};
 		ADD_STRUCT(ScriptName, JointName, 60)
 		ADD_STRUCT(ScriptName, ConstraintBone1, 68)
 		ADD_STRUCT(ScriptName, ConstraintBone2, 76)
@@ -40,9 +36,9 @@ namespace UnrealScript
 		ADD_STRUCT(float, LinearBreakThreshold, 216)
 		ADD_STRUCT(float, LinearLimitDamping, 212)
 		ADD_STRUCT(float, LinearLimitStiffness, 208)
-		ADD_STRUCT(RB_ConstraintSetup::LinearDOFSetup, LinearZSetup, 200)
-		ADD_STRUCT(RB_ConstraintSetup::LinearDOFSetup, LinearYSetup, 192)
-		ADD_STRUCT(RB_ConstraintSetup::LinearDOFSetup, LinearXSetup, 184)
+		ADD_STRUCT(RB_ConstraintSetup__LinearDOFSetup, LinearZSetup, 200)
+		ADD_STRUCT(RB_ConstraintSetup__LinearDOFSetup, LinearYSetup, 192)
+		ADD_STRUCT(RB_ConstraintSetup__LinearDOFSetup, LinearXSetup, 184)
 		ADD_BOOL(bMaintainMinDistance, 180, 0x200)
 		ADD_BOOL(bIsPulley, 180, 0x100)
 		ADD_BOOL(bAngularBreakable, 180, 0x80)

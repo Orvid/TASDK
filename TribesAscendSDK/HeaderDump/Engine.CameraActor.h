@@ -1,7 +1,7 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
-#include "Engine.PostProcessVolume.h"
+#include "Core.Object.TPOV.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #include "Engine.HUD.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -25,17 +25,17 @@ namespace UnrealScript
 		ADD_BOOL(bConstrainAspectRatio, 476, 0x1)
 		ADD_STRUCT(float, AspectRatio, 480)
 		ADD_STRUCT(float, CamOverridePostProcessAlpha, 488)
-		ADD_STRUCT(PostProcessVolume::PostProcessSettings, CamOverridePostProcess, 492)
+		ADD_STRUCT(PostProcessVolume__PostProcessSettings, CamOverridePostProcess, 492)
 		ADD_STRUCT(float, FOVAngle, 484)
 		ADD_BOOL(bCamOverridePostProcess, 476, 0x2)
-		void GetCameraView(float DeltaTime, Object::TPOV& OutPOV)
+		void GetCameraView(float DeltaTime, Object__TPOV& OutPOV)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12119);
 			byte params[32] = { NULL };
 			*(float*)params = DeltaTime;
-			*(Object::TPOV*)&params[4] = OutPOV;
+			*(Object__TPOV*)&params[4] = OutPOV;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutPOV = *(Object::TPOV*)&params[4];
+			OutPOV = *(Object__TPOV*)&params[4];
 		}
 		void DisplayDebug(class HUD* HUD, float& out_YL, float& out_YPos)
 		{

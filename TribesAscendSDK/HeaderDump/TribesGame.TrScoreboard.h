@@ -1,7 +1,9 @@
 #pragma once
 #include "Core.Object.h"
 #include "TribesGame.TrPlayerReplicationInfo.h"
+#include "TribesGame.TrScoreboard.TrScoreSlot.h"
 #include "TribesGame.GfxTrHud.h"
+#include "TribesGame.TrScoreboard.TrScoreboardState.h"
 #include "TribesGame.TrPlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "TribesGame.TrGameReplicationInfo.h"
@@ -28,30 +30,11 @@ namespace UnrealScript
 	class TrScoreboard : public Object
 	{
 	public:
-		struct TrScoreboardState
-		{
-		public:
-			ADD_STRUCT(int, DiamondSwordScore, 8)
-			ADD_STRUCT(int, BloodEagleScore, 4)
-			ADD_STRUCT(int, RemainingTime, 0)
-		};
-		struct TrScoreSlot
-		{
-		public:
-			ADD_STRUCT(int, RankIcon, 44)
-			ADD_STRUCT(int, Rank, 40)
-			ADD_STRUCT(int, Ping, 36)
-			ADD_STRUCT(int, Score, 32)
-			ADD_STRUCT(int, Assists, 28)
-			ADD_STRUCT(int, Kills, 24)
-			ADD_STRUCT(ScriptString*, ClassAbb, 12)
-			ADD_STRUCT(ScriptString*, PlayerName, 0)
-		};
 		ADD_OBJECT(GfxTrHud, m_MoviePlayer, 100)
 		ADD_BOOL(bIsActive, 96, 0x8)
 		ADD_OBJECT(TrPlayerController, TrPC, 1652)
-		ADD_STRUCT(TrScoreboard::TrScoreboardState, PreviousState, 1640)
-		ADD_STRUCT(TrScoreboard::TrScoreSlot, ScoreboardSlots, 104)
+		ADD_STRUCT(TrScoreboard__TrScoreboardState, PreviousState, 1640)
+		ADD_STRUCT(TrScoreboard__TrScoreSlot, ScoreboardSlots, 104)
 		ADD_BOOL(bCheckPing, 96, 0x10)
 		ADD_BOOL(bInitialized, 96, 0x4)
 		ADD_BOOL(bUpdated, 96, 0x2)

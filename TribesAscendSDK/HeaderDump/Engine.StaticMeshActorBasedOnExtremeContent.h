@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine.StaticMeshActorBasedOnExtremeContent.SMMaterialSetterDatum.h"
 #include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -13,14 +14,8 @@ namespace UnrealScript
 	class StaticMeshActorBasedOnExtremeContent : public Actor
 	{
 	public:
-		struct SMMaterialSetterDatum
-		{
-		public:
-			ADD_OBJECT(MaterialInterface, TheMaterial, 4)
-			ADD_STRUCT(int, MaterialIndex, 0)
-		};
-		ADD_STRUCT(ScriptArray<StaticMeshActorBasedOnExtremeContent::SMMaterialSetterDatum>, ExtremeContent, 480)
-		ADD_STRUCT(ScriptArray<StaticMeshActorBasedOnExtremeContent::SMMaterialSetterDatum>, NonExtremeContent, 492)
+		ADD_STRUCT(ScriptArray<StaticMeshActorBasedOnExtremeContent__SMMaterialSetterDatum>, ExtremeContent, 480)
+		ADD_STRUCT(ScriptArray<StaticMeshActorBasedOnExtremeContent__SMMaterialSetterDatum>, NonExtremeContent, 492)
 		void PostBeginPlay()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(27212);

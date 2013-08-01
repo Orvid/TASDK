@@ -1,8 +1,12 @@
 #pragma once
 #include "Engine.MaterialInstance.h"
+#include "Engine.MaterialInstanceConstant.FontParameterValue.h"
 #include "Engine.MaterialInterface.h"
+#include "Engine.MaterialInstanceConstant.ScalarParameterValue.h"
+#include "Engine.MaterialInstanceConstant.TextureParameterValue.h"
+#include "Engine.MaterialInstanceConstant.VectorParameterValue.h"
 #include "Engine.Texture.h"
-#include "Core.Object.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.Font.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -17,39 +21,10 @@ namespace UnrealScript
 	class MaterialInstanceConstant : public MaterialInstance
 	{
 	public:
-		struct FontParameterValue
-		{
-		public:
-			ADD_STRUCT(Object::Guid, ExpressionGUID, 16)
-			ADD_STRUCT(int, FontPage, 12)
-			ADD_OBJECT(Font, FontValue, 8)
-			ADD_STRUCT(ScriptName, ParameterName, 0)
-		};
-		struct ScalarParameterValue
-		{
-		public:
-			ADD_STRUCT(Object::Guid, ExpressionGUID, 12)
-			ADD_STRUCT(float, ParameterValue, 8)
-			ADD_STRUCT(ScriptName, ParameterName, 0)
-		};
-		struct TextureParameterValue
-		{
-		public:
-			ADD_STRUCT(Object::Guid, ExpressionGUID, 12)
-			ADD_OBJECT(Texture, ParameterValue, 8)
-			ADD_STRUCT(ScriptName, ParameterName, 0)
-		};
-		struct VectorParameterValue
-		{
-		public:
-			ADD_STRUCT(Object::Guid, ExpressionGUID, 24)
-			ADD_STRUCT(Object::LinearColor, ParameterValue, 8)
-			ADD_STRUCT(ScriptName, ParameterName, 0)
-		};
-		ADD_STRUCT(ScriptArray<MaterialInstanceConstant::FontParameterValue>, FontParameterValues, 432)
-		ADD_STRUCT(ScriptArray<MaterialInstanceConstant::ScalarParameterValue>, ScalarParameterValues, 444)
-		ADD_STRUCT(ScriptArray<MaterialInstanceConstant::TextureParameterValue>, TextureParameterValues, 456)
-		ADD_STRUCT(ScriptArray<MaterialInstanceConstant::VectorParameterValue>, VectorParameterValues, 468)
+		ADD_STRUCT(ScriptArray<MaterialInstanceConstant__FontParameterValue>, FontParameterValues, 432)
+		ADD_STRUCT(ScriptArray<MaterialInstanceConstant__ScalarParameterValue>, ScalarParameterValues, 444)
+		ADD_STRUCT(ScriptArray<MaterialInstanceConstant__TextureParameterValue>, TextureParameterValues, 456)
+		ADD_STRUCT(ScriptArray<MaterialInstanceConstant__VectorParameterValue>, VectorParameterValues, 468)
 		void SetParent(class MaterialInterface* NewParent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19836);
@@ -73,14 +48,14 @@ namespace UnrealScript
 			*(class Texture**)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetVectorParameterValue(ScriptName ParameterName, Object::LinearColor& Value)
+		void SetVectorParameterValue(ScriptName ParameterName, Object__LinearColor& Value)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19844);
 			byte params[24] = { NULL };
 			*(ScriptName*)params = ParameterName;
-			*(Object::LinearColor*)&params[8] = Value;
+			*(Object__LinearColor*)&params[8] = Value;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Value = *(Object::LinearColor*)&params[8];
+			Value = *(Object__LinearColor*)&params[8];
 		}
 		void SetFontParameterValue(ScriptName ParameterName, class Font* FontValue, int FontPage)
 		{

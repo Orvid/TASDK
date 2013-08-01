@@ -1,6 +1,7 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Core.DistributionVector.h"
-#include "Core.Object.h"
+#include "Core.DistributionVector.EDistributionVectorLockFlags.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,7 +21,7 @@ namespace UnrealScript
 	class DistributionVectorConstant : public DistributionVector
 	{
 	public:
-		ADD_STRUCT(DistributionVector::EDistributionVectorLockFlags, LockedAxes, 96)
+		ADD_STRUCT(DistributionVector__EDistributionVectorLockFlags, LockedAxes, 96)
 		ADD_BOOL(bLockAxes, 92, 0x1)
 		ADD_STRUCT(Vector, Constant, 80)
 	};

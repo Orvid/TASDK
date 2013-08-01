@@ -1,11 +1,12 @@
 #pragma once
+#include "GameFramework.SeqAct_GameCrowdSpawner.AgentArchetypeInfo.h"
 #include "Engine.Actor.h"
 #include "Engine.SeqAct_Latent.h"
 #include "GameFramework.GameCrowdAgent.h"
 #include "GameFramework.GameCrowd_ListOfAgents.h"
 #include "GameFramework.GameCrowdReplicationActor.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
 #include "GameFramework.GameCrowdGroup.h"
-#include "Engine.LightComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,21 +30,12 @@ namespace UnrealScript
 	class SeqAct_GameCrowdSpawner : public SeqAct_Latent
 	{
 	public:
-		struct AgentArchetypeInfo
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class Object*>, GroupMembers, 16)
-			ADD_STRUCT(int, CurrSpawned, 12)
-			ADD_STRUCT(int, MaxAllowed, 8)
-			ADD_STRUCT(float, FrequencyModifier, 4)
-			ADD_OBJECT(Object, AgentArchetype, 0)
-		};
 		ADD_STRUCT(ScriptArray<class Actor*>, SpawnLocs, 256)
-		ADD_STRUCT(ScriptArray<SeqAct_GameCrowdSpawner::AgentArchetypeInfo>, AgentArchetypes, 300)
+		ADD_STRUCT(ScriptArray<SeqAct_GameCrowdSpawner__AgentArchetypeInfo>, AgentArchetypes, 300)
 		ADD_STRUCT(ScriptArray<class GameCrowdAgent*>, SpawnedList, 312)
 		ADD_STRUCT(float, AgentWarmupTime, 332)
 		ADD_OBJECT(GameCrowdReplicationActor, RepActor, 328)
-		ADD_STRUCT(LightComponent::LightingChannelContainer, AgentLightingChannel, 324)
+		ADD_STRUCT(LightComponent__LightingChannelContainer, AgentLightingChannel, 324)
 		ADD_OBJECT(GameCrowd_ListOfAgents, CrowdAgentList, 296)
 		ADD_STRUCT(float, AgentFrequencySum, 292)
 		ADD_STRUCT(float, Remainder, 288)

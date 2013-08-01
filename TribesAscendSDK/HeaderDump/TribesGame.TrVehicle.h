@@ -1,13 +1,14 @@
 #pragma once
 #include "UTGame.UTVehicle.h"
 #include "TribesGame.TrVehicleStation.h"
+#include "Core.Object.Vector.h"
+#include "TribesGame.TrObject.EMissileLock.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
+#include "Engine.Actor.RigidBodyState.h"
 #include "TribesGame.TrStatsInterface.h"
-#include "Core.Object.h"
-#include "Engine.Actor.h"
-#include "UDKBase.UDKCarriedObject.h"
-#include "TribesGame.TrObject.h"
+#include "TribesGame.TrObject.EVehicleTypes.h"
 #include "Engine.MaterialInstanceConstant.h"
-#include "UDKBase.UDKPawn.h"
+#include "Core.Object.Rotator.h"
 #include "TribesGame.TrPawn.h"
 #include "Engine.Pawn.h"
 #include "Engine.Controller.h"
@@ -16,12 +17,17 @@
 #include "Engine.PlayerController.h"
 #include "TribesGame.TrProj_Tracer.h"
 #include "Engine.Canvas.h"
+#include "Engine.Actor.CollisionImpactData.h"
+#include "Engine.Actor.h"
 #include "UTGame.UTPawn.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "TribesGame.TrHUD.h"
+#include "UDKBase.UDKCarriedObject.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "UTGame.UTVehicleWeapon.h"
+#include "TribesGame.TrObject.EWeaponTracerType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -50,14 +56,14 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptString*, m_sName, 2932)
 		ADD_STRUCT(int, m_nIconIndex, 2944)
 		ADD_BOOL(m_bClientPhysDirty, 2776, 0x100)
-		ADD_STRUCT(Actor::RigidBodyState, m_ClientRBState, 3136)
+		ADD_STRUCT(Actor__RigidBodyState, m_ClientRBState, 3136)
 		ADD_BOOL(m_bServerCorrectionForce, 2776, 0x200)
 		ADD_BOOL(m_bImprovedLagSupport, 2776, 0x4)
-		ADD_STRUCT(TrObject::EVehicleTypes, m_VehicleType, 2780)
+		ADD_STRUCT(TrObject__EVehicleTypes, m_VehicleType, 2780)
 		ADD_BOOL(m_bUsesArmoredMultiplier, 2776, 0x80)
 		ADD_STRUCT(ScriptString*, m_sWeapon1Name, 3092)
 		ADD_STRUCT(ScriptString*, m_sWeapon2Name, 3104)
-		ADD_STRUCT(ScriptArray<UDKPawn::MaterialImpactEffect>, m_DustEffects, 2948)
+		ADD_STRUCT(ScriptArray<UDKPawn__MaterialImpactEffect>, m_DustEffects, 2948)
 		ADD_STRUCT(float, m_fMaxPawnLeaveSpeed, 3208)
 		ADD_STRUCT(int, m_nDetectedByEnemyScannerCount, 3204)
 		ADD_STRUCT(int, m_nServerTickCount, 3200)
@@ -79,7 +85,7 @@ namespace UnrealScript
 		ADD_STRUCT(Rotator, m_rPotentialSeekingTargetHUDRotation, 3020)
 		ADD_STRUCT(float, m_fRemainingPotentialSeekingTargetHUDZoomTime, 3016)
 		ADD_STRUCT(float, m_fContrailSpeed, 3012)
-		ADD_STRUCT(UDKPawn::MaterialImpactEffect, m_DefaultDustEffect, 2960)
+		ADD_STRUCT(UDKPawn__MaterialImpactEffect, m_DefaultDustEffect, 2960)
 		ADD_STRUCT(float, ShowHeaderUntil, 2928)
 		ADD_STRUCT(float, m_fBoostFadeOutTime, 2920)
 		ADD_STRUCT(float, m_fBoostFadeInTime, 2916)
@@ -114,8 +120,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fBoostMultiplier, 2792)
 		ADD_STRUCT(float, m_fTimeToReset, 2788)
 		ADD_OBJECT(TrVehicleStation, m_OwnerStation, 2784)
-		ADD_STRUCT(TrObject::EMissileLock, m_MissileLockStatus, 2782)
-		ADD_STRUCT(TrObject::EMissileLock, r_MissileLock, 2781)
+		ADD_STRUCT(TrObject__EMissileLock, m_MissileLockStatus, 2782)
+		ADD_STRUCT(TrObject__EMissileLock, r_MissileLock, 2781)
 		ADD_BOOL(r_bDetectedByEnemyScanner, 2776, 0x400)
 		ADD_BOOL(r_LevelFlightEnabled, 2776, 0x40)
 		ADD_BOOL(m_bLowPowerPool, 2776, 0x20)
@@ -279,7 +285,7 @@ void**)params = SkelComp;
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void* HitComponent, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
-void* OtherComponent, Actor::CollisionImpactData& Collision, int ContactIndex)
+void* OtherComponent, Actor__CollisionImpactData& Collision, int ContactIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(114106);
 			byte params[48] = { NULL };
@@ -289,10 +295,10 @@ void**)params = HitComponent;
 			*(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void**)&params[4] = OtherComponent;
-			*(Actor::CollisionImpactData*)&params[8] = Collision;
+			*(Actor__CollisionImpactData*)&params[8] = Collision;
 			*(int*)&params[44] = ContactIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Collision = *(Actor::CollisionImpactData*)&params[8];
+			Collision = *(Actor__CollisionImpactData*)&params[8];
 		}
 		void RanInto(class Actor* Other)
 		{
@@ -413,14 +419,14 @@ void**)&params[4] = OtherComponent;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(114201);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void HandleMomentum(Vector Momentum, Vector HitLocation, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo)
+		void HandleMomentum(Vector Momentum, Vector HitLocation, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(114202);
 			byte params[56] = { NULL };
 			*(Vector*)params = Momentum;
 			*(Vector*)&params[12] = HitLocation;
 			*(ScriptClass**)&params[24] = DamageType;
-			*(Actor::TraceHitInfo*)&params[28] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[28] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ToggleBoosters(bool bEnabled, bool ToggleTimer)
@@ -703,7 +709,7 @@ void**)params = AC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		void DoRepairs(int HealAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void DoRepairs(int HealAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(114395);
 			byte params[68] = { NULL };
@@ -712,7 +718,7 @@ void**)params = AC;
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -750,7 +756,7 @@ void**)params = AC;
 			*(float*)&params[40] = DamageFalloffExponent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(114440);
 			byte params[68] = { NULL };
@@ -759,7 +765,7 @@ void**)params = AC;
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -806,11 +812,11 @@ void**)params = AC;
 			*(class ParticleSystem**)&params[24] = TracerBeamTemplate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		class TrProj_Tracer* SpawnTracerEffect(TrObject::EWeaponTracerType TracerType, Vector EffectLocation, Vector HitLocation, float HitDistance)
+		class TrProj_Tracer* SpawnTracerEffect(TrObject__EWeaponTracerType TracerType, Vector EffectLocation, Vector HitLocation, float HitDistance)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(114501);
 			byte params[33] = { NULL };
-			*(TrObject::EWeaponTracerType*)params = TracerType;
+			*(TrObject__EWeaponTracerType*)params = TracerType;
 			*(Vector*)&params[4] = EffectLocation;
 			*(Vector*)&params[16] = HitLocation;
 			*(float*)&params[28] = HitDistance;

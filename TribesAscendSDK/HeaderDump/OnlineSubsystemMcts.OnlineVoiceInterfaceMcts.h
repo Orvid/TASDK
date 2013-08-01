@@ -1,7 +1,11 @@
 #pragma once
 #include "Core.Object.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.RemoteTalker.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.SpeechRecognition.h"
+#include "OnlineSubsystemMcts.OnlineVoiceInterfaceMcts.LocalTalkerMcts.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,45 +25,27 @@ namespace UnrealScript
 	class OnlineVoiceInterfaceMcts : public Object
 	{
 	public:
-		enum EMuteType : byte
-		{
-			MUTE_None = 0,
-			MUTE_AllButFriends = 1,
-			MUTE_All = 2,
-			MUTE_MAX = 3,
-		};
-		struct LocalTalkerMcts
-		{
-		public:
-			ADD_STRUCT(OnlineVoiceInterfaceMcts::EMuteType, MuteType, 4)
-			ADD_BOOL(bIsRegistered, 0, 0x20)
-			ADD_BOOL(bIsTalking, 0, 0x10)
-			ADD_BOOL(bWasTalking, 0, 0x8)
-			ADD_BOOL(bIsRecognizingSpeech, 0, 0x4)
-			ADD_BOOL(bHasNetworkedVoice, 0, 0x2)
-			ADD_BOOL(bHasVoice, 0, 0x1)
-		};
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::RemoteTalker>, RemoteTalkers, 76)
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::UniqueNetId>, MuteList, 88)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__RemoteTalker>, RemoteTalkers, 76)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__UniqueNetId>, MuteList, 88)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, SpeechRecognitionCompleteDelegates, 100)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, TalkingDelegates, 112)
-		ADD_STRUCT(OnlineVoiceInterfaceMcts::LocalTalkerMcts, CurrentLocalTalker, 68)
-		ADD_STRUCT(Object::Pointer, VoiceEnginePtr, 64)
-		ADD_STRUCT(Object::Pointer, MctsSubsystem, 60)
+		ADD_STRUCT(OnlineVoiceInterfaceMcts__LocalTalkerMcts, CurrentLocalTalker, 68)
+		ADD_STRUCT(Object__Pointer, VoiceEnginePtr, 64)
+		ADD_STRUCT(Object__Pointer, MctsSubsystem, 60)
 		void OnRecognitionComplete()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(157037);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnPlayerTalkingStateChange(OnlineSubsystem::UniqueNetId Player, bool bIsTalking)
+		void OnPlayerTalkingStateChange(OnlineSubsystem__UniqueNetId Player, bool bIsTalking)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(157040);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = Player;
+			*(OnlineSubsystem__UniqueNetId*)params = Player;
 			*(bool*)&params[8] = bIsTalking;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -79,19 +65,19 @@ void*>, TalkingDelegates, 112)
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool RegisterRemoteTalker(OnlineSubsystem::UniqueNetId PlayerID)
+		bool RegisterRemoteTalker(OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(157060);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
-		bool UnregisterRemoteTalker(OnlineSubsystem::UniqueNetId PlayerID)
+		bool UnregisterRemoteTalker(OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(157063);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
@@ -103,11 +89,11 @@ void*>, TalkingDelegates, 112)
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool IsRemotePlayerTalking(OnlineSubsystem::UniqueNetId PlayerID)
+		bool IsRemotePlayerTalking(OnlineSubsystem__UniqueNetId PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(157069);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
@@ -119,32 +105,32 @@ void*>, TalkingDelegates, 112)
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool SetRemoteTalkerPriority(byte LocalUserNum, OnlineSubsystem::UniqueNetId PlayerID, int Priority)
+		bool SetRemoteTalkerPriority(byte LocalUserNum, OnlineSubsystem__UniqueNetId PlayerID, int Priority)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(157075);
 			byte params[17] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = PlayerID;
 			*(int*)&params[12] = Priority;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
-		bool MuteRemoteTalker(byte LocalUserNum, OnlineSubsystem::UniqueNetId PlayerID, bool bIsSystemWide)
+		bool MuteRemoteTalker(byte LocalUserNum, OnlineSubsystem__UniqueNetId PlayerID, bool bIsSystemWide)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(157080);
 			byte params[17] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = PlayerID;
 			*(bool*)&params[12] = bIsSystemWide;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
-		bool UnmuteRemoteTalker(byte LocalUserNum, OnlineSubsystem::UniqueNetId PlayerID, bool bIsSystemWide)
+		bool UnmuteRemoteTalker(byte LocalUserNum, OnlineSubsystem__UniqueNetId PlayerID, bool bIsSystemWide)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(157085);
 			byte params[17] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = PlayerID;
 			*(bool*)&params[12] = bIsSystemWide;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
@@ -201,14 +187,14 @@ void**)params = TalkerDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool GetRecognitionResults(byte LocalUserNum, ScriptArray<OnlineSubsystem::SpeechRecognizedWord>& Words)
+		bool GetRecognitionResults(byte LocalUserNum, ScriptArray<OnlineSubsystem__SpeechRecognizedWord>& Words)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(157108);
 			byte params[17] = { NULL };
 			*params = LocalUserNum;
-			*(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4] = Words;
+			*(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4] = Words;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Words = *(ScriptArray<OnlineSubsystem::SpeechRecognizedWord>*)&params[4];
+			Words = *(ScriptArray<OnlineSubsystem__SpeechRecognizedWord>*)&params[4];
 			return *(bool*)&params[16];
 		}
 		void AddRecognitionCompleteDelegate(byte LocalUserNum, 

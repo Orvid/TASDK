@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.SequenceAction.h"
-#include "Engine.ParticleSystemComponent.h"
+#include "Engine.ParticleSystemComponent.ParticleSysParam.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,7 +20,7 @@ namespace UnrealScript
 	class SeqAct_SetParticleSysParam : public SequenceAction
 	{
 	public:
-		ADD_STRUCT(ScriptArray<ParticleSystemComponent::ParticleSysParam>, InstanceParameters, 232)
+		ADD_STRUCT(ScriptArray<ParticleSystemComponent__ParticleSysParam>, InstanceParameters, 232)
 		ADD_BOOL(bOverrideScalar, 244, 0x1)
 		ADD_STRUCT(float, ScalarValue, 248)
 	};

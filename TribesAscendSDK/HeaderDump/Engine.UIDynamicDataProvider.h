@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.UIPropertyDataProvider.h"
 #include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,7 +17,7 @@ namespace UnrealScript
 	public:
 		ADD_OBJECT(Object, DataSource, 120)
 		ADD_OBJECT(ScriptClass, DataClass, 116)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 112)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 112)
 		bool BindProviderInstance(class Object* DataSourceInstance)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28389);

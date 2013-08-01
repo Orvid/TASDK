@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.PrimitiveComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,7 +13,7 @@ namespace UnrealScript
 		ADD_STRUCT(int, ConeSides, 500)
 		ADD_STRUCT(float, ConeAngle, 496)
 		ADD_STRUCT(float, ConeRadius, 492)
-		ADD_STRUCT(Object::Color, ConeColor, 488)
+		ADD_STRUCT(Object__Color, ConeColor, 488)
 	};
 }
 #undef ADD_STRUCT

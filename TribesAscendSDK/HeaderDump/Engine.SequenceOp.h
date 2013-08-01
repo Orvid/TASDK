@@ -2,10 +2,14 @@
 #include "Engine.Pawn.h"
 #include "Engine.InterpData.h"
 #include "Engine.SequenceObject.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.h"
+#include "Engine.SequenceOp.SeqEventLink.h"
+#include "Engine.SequenceOp.SeqOpInputLink.h"
+#include "Engine.SequenceOp.SeqOpOutputLink.h"
+#include "Engine.SequenceOp.SeqVarLink.h"
 #include "Core.Object.h"
 #include "Engine.SequenceVariable.h"
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,85 +33,10 @@ namespace UnrealScript
 	class SequenceOp : public SequenceObject
 	{
 	public:
-		struct SeqOpInputLink
-		{
-		public:
-			ADD_BOOL(bHasImpulse, 12, 0x1)
-			ADD_STRUCT(int, OverrideDelta, 44)
-			ADD_BOOL(bClampedMin, 40, 0x4)
-			ADD_BOOL(bClampedMax, 40, 0x2)
-			ADD_BOOL(bMoving, 40, 0x1)
-			ADD_STRUCT(float, ActivateDelay, 36)
-			ADD_BOOL(bHidden, 32, 0x1)
-			ADD_STRUCT(int, DrawY, 28)
-			ADD_OBJECT(SequenceOp, LinkedOp, 24)
-			ADD_BOOL(bDisabledPIE, 20, 0x2)
-			ADD_BOOL(bDisabled, 20, 0x1)
-			ADD_STRUCT(int, QueuedActivations, 16)
-			ADD_STRUCT(ScriptString*, LinkDesc, 0)
-		};
-		struct SeqVarLink
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class SequenceVariable*>, LinkedVariables, 4)
-			ADD_STRUCT(int, OverrideDelta, 68)
-			ADD_BOOL(bClampedMin, 64, 0x8)
-			ADD_BOOL(bClampedMax, 64, 0x4)
-			ADD_BOOL(bMoving, 64, 0x2)
-			ADD_BOOL(bAllowAnyType, 64, 0x1)
-			ADD_OBJECT(Property, CachedProperty, 60)
-			ADD_STRUCT(int, DrawX, 56)
-			ADD_STRUCT(int, MaxVars, 52)
-			ADD_STRUCT(int, MinVars, 48)
-			ADD_BOOL(bHidden, 44, 0x8)
-			ADD_BOOL(bModifiesLinkedObject, 44, 0x4)
-			ADD_BOOL(bSequenceNeverReadsOnlyWritesToThisVar, 44, 0x2)
-			ADD_BOOL(bWriteable, 44, 0x1)
-			ADD_STRUCT(ScriptName, PropertyName, 36)
-			ADD_STRUCT(ScriptName, LinkVar, 28)
-			ADD_STRUCT(ScriptString*, LinkDesc, 16)
-			ADD_OBJECT(ScriptClass, ExpectedType, 0)
-		};
-		struct SeqEventLink
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class SequenceEvent*>, LinkedEvents, 4)
-			ADD_STRUCT(int, OverrideDelta, 36)
-			ADD_BOOL(bClampedMin, 32, 0x8)
-			ADD_BOOL(bClampedMax, 32, 0x4)
-			ADD_BOOL(bMoving, 32, 0x2)
-			ADD_BOOL(bHidden, 32, 0x1)
-			ADD_STRUCT(int, DrawX, 28)
-			ADD_STRUCT(ScriptString*, LinkDesc, 16)
-			ADD_OBJECT(ScriptClass, ExpectedType, 0)
-		};
-		struct SeqOpOutputInputLink
-		{
-		public:
-			ADD_STRUCT(int, InputLinkIdx, 4)
-			ADD_OBJECT(SequenceOp, LinkedOp, 0)
-		};
-		struct SeqOpOutputLink
-		{
-		public:
-			ADD_STRUCT(ScriptArray<SequenceOp::SeqOpOutputInputLink>, Links, 0)
-			ADD_STRUCT(int, OverrideDelta, 44)
-			ADD_BOOL(bClampedMin, 40, 0x8)
-			ADD_BOOL(bClampedMax, 40, 0x4)
-			ADD_BOOL(bMoving, 40, 0x2)
-			ADD_BOOL(bHidden, 40, 0x1)
-			ADD_STRUCT(int, DrawY, 36)
-			ADD_STRUCT(float, ActivateDelay, 32)
-			ADD_OBJECT(SequenceOp, LinkedOp, 28)
-			ADD_BOOL(bDisabledPIE, 24, 0x4)
-			ADD_BOOL(bDisabled, 24, 0x2)
-			ADD_BOOL(bHasImpulse, 24, 0x1)
-			ADD_STRUCT(ScriptString*, LinkDesc, 12)
-		};
-		ADD_STRUCT(ScriptArray<SequenceOp::SeqOpInputLink>, InputLinks, 144)
-		ADD_STRUCT(ScriptArray<SequenceOp::SeqOpOutputLink>, OutputLinks, 156)
-		ADD_STRUCT(ScriptArray<SequenceOp::SeqVarLink>, VariableLinks, 168)
-		ADD_STRUCT(ScriptArray<SequenceOp::SeqEventLink>, EventLinks, 180)
+		ADD_STRUCT(ScriptArray<SequenceOp__SeqOpInputLink>, InputLinks, 144)
+		ADD_STRUCT(ScriptArray<SequenceOp__SeqOpOutputLink>, OutputLinks, 156)
+		ADD_STRUCT(ScriptArray<SequenceOp__SeqVarLink>, VariableLinks, 168)
+		ADD_STRUCT(ScriptArray<SequenceOp__SeqEventLink>, EventLinks, 180)
 		ADD_STRUCT(int, SearchTag, 204)
 		ADD_STRUCT(int, ActivateCount, 200)
 		ADD_STRUCT(byte, GamepadID, 196)

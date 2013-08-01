@@ -1,16 +1,22 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
-#include "Engine.InterpGroup.h"
 #include "Engine.Weapon.h"
 #include "Engine.Pawn.h"
+#include "Engine.CoverLink.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.NavigationPoint.h"
-#include "Engine.InterpActor.h"
-#include "Engine.ReachSpec.h"
-#include "Engine.NavigationHandle.h"
+#include "Engine.Controller.VisiblePortalInfo.h"
 #include "Engine.SeqAct_ModifyHealth.h"
 #include "Engine.FaceFXAnimSet.h"
+#include "Core.Object.Vector.h"
+#include "Engine.InterpActor.h"
+#include "Engine.ReachSpec.h"
+#include "Engine.SeqAct_Interp.h"
+#include "Engine.Actor.BasedPosition.h"
+#include "Engine.NavigationHandle.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.InterpGroup.h"
 #include "Engine.SeqAct_SetPhysics.h"
 #include "Engine.SoundCue.h"
 #include "Engine.SeqAct_Possess.h"
@@ -22,9 +28,7 @@
 #include "Engine.SeqAct_Teleport.h"
 #include "Engine.SeqAct_ToggleGodMode.h"
 #include "Engine.SeqAct_SetVelocity.h"
-#include "Engine.CoverLink.h"
 #include "Engine.SeqAct_ToggleHidden.h"
-#include "Engine.SeqAct_Interp.h"
 #include "Engine.InterpGroupInst.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -50,17 +54,11 @@ namespace UnrealScript
 	{
 	public:
 		static const auto LATENT_MOVETOWARD = 503;
-		struct VisiblePortalInfo
-		{
-		public:
-			ADD_OBJECT(Actor, Destination, 4)
-			ADD_OBJECT(Actor, Source, 0)
-		};
 		ADD_OBJECT(Pawn, Pawn, 480)
 		ADD_OBJECT(PlayerReplicationInfo, PlayerReplicationInfo, 484)
 		ADD_BOOL(bGodMode, 496, 0x2)
 		ADD_STRUCT(ScriptArray<class NavigationPoint*>, RouteCache, 716)
-		ADD_STRUCT(ScriptArray<Controller::VisiblePortalInfo>, VisiblePortals, 860)
+		ADD_STRUCT(ScriptArray<Controller__VisiblePortalInfo>, VisiblePortals, 860)
 		ADD_STRUCT(Vector, NavMeshPath_SearchExtent_Modifier, 888)
 		ADD_STRUCT(Rotator, OldBasedRotation, 876)
 		ADD_STRUCT(float, LaneOffset, 872)
@@ -88,11 +86,11 @@ namespace UnrealScript
 		ADD_OBJECT(ReachSpec, NextRoutePath, 732)
 		ADD_OBJECT(ReachSpec, CurrentPath, 728)
 		ADD_OBJECT(NavigationPoint, StartSpot, 712)
-		ADD_STRUCT(Actor::BasedPosition, AdjustPosition, 660)
+		ADD_STRUCT(Actor__BasedPosition, AdjustPosition, 660)
 		ADD_OBJECT(Actor, GoalList, 644)
 		ADD_OBJECT(Actor, Focus, 640)
-		ADD_STRUCT(Actor::BasedPosition, FocalPosition, 588)
-		ADD_STRUCT(Actor::BasedPosition, DestinationPosition, 536)
+		ADD_STRUCT(Actor__BasedPosition, FocalPosition, 588)
+		ADD_STRUCT(Actor__BasedPosition, DestinationPosition, 536)
 		ADD_OBJECT(Actor, MoveTarget, 532)
 		ADD_STRUCT(float, MoveTimer, 528)
 		ADD_STRUCT(Vector, OverrideSearchStart, 516)
@@ -120,7 +118,7 @@ namespace UnrealScript
 		ADD_BOOL(bIsPlayer, 496, 0x1)
 		ADD_OBJECT(Controller, NextController, 492)
 		ADD_STRUCT(int, PlayerNum, 488)
-		ADD_STRUCT(Object::Pointer, VfTable_IInterface_NavigationHandle, 476)
+		ADD_STRUCT(Object__Pointer, VfTable_IInterface_NavigationHandle, 476)
 		bool IsLocalPlayerController()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(5932);

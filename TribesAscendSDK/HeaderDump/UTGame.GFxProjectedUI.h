@@ -1,9 +1,10 @@
 #pragma once
 #include "UTGame.UTGFxTweenableMoviePlayer.h"
 #include "UTGame.GFxUI_InventoryButton.h"
+#include "UTGame.GFxProjectedUI.ItemData.h"
+#include "Core.Object.Rotator.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
-#include "Core.Object.h"
-#include "GFxUI.GFxClikWidget.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,15 +28,8 @@ namespace UnrealScript
 	class GFxProjectedUI : public UTGFxTweenableMoviePlayer
 	{
 	public:
-		struct ItemData
-		{
-		public:
-			ADD_STRUCT(byte, ItemFrame, 24)
-			ADD_STRUCT(ScriptString*, ItemName, 12)
-			ADD_STRUCT(ScriptString*, ItemInfo, 0)
-		};
 		ADD_STRUCT(ScriptArray<class GFxUI_InventoryButton*>, Buttons, 412)
-		ADD_STRUCT(ScriptArray<GFxProjectedUI::ItemData>, Items, 424)
+		ADD_STRUCT(ScriptArray<GFxProjectedUI__ItemData>, Items, 424)
 		ADD_STRUCT(ScriptString*, CancelString, 644)
 		ADD_STRUCT(ScriptString*, AcceptString, 632)
 		ADD_STRUCT(Rotator, StartRotation, 620)
@@ -156,53 +150,53 @@ namespace UnrealScript
 			*params = Index;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFocusInSelection(GFxClikWidget::EventData ev)
+		void OnFocusInSelection(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37668);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFocusOutSelection(GFxClikWidget::EventData ev)
+		void OnFocusOutSelection(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37671);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnClickWeaponButton(GFxClikWidget::EventData ev)
+		void OnClickWeaponButton(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37674);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFocusUpdateInfo(GFxClikWidget::EventData ev)
+		void OnFocusUpdateInfo(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37677);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFocusArsenalTab(GFxClikWidget::EventData ev)
+		void OnFocusArsenalTab(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37680);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFocusBackpackTab(GFxClikWidget::EventData ev)
+		void OnFocusBackpackTab(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37682);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnClickFakeItem(GFxClikWidget::EventData ev)
+		void OnClickFakeItem(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(37684);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetInfo(int Index)

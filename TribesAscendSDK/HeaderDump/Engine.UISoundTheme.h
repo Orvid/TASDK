@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
+#include "Engine.UISoundTheme.SoundEventMapping.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,13 +15,7 @@ namespace UnrealScript
 	class UISoundTheme : public Object
 	{
 	public:
-		struct SoundEventMapping
-		{
-		public:
-			ADD_OBJECT(SoundCue, SoundToPlay, 8)
-			ADD_STRUCT(ScriptName, SoundEventName, 0)
-		};
-		ADD_STRUCT(ScriptArray<UISoundTheme::SoundEventMapping>, SoundEventBindings, 60)
+		ADD_STRUCT(ScriptArray<UISoundTheme__SoundEventMapping>, SoundEventBindings, 60)
 		void ProcessSoundEvent(ScriptName SoundEventName, class PlayerController* SoundOwner)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29228);

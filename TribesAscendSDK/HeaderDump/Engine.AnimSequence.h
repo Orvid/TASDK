@@ -1,7 +1,18 @@
 #pragma once
 #include "Engine.AnimationCompressionAlgorithm.h"
+#include "Engine.AnimSequence.AnimNotifyEvent.h"
 #include "Core.Object.h"
 #include "Engine.AnimMetaData.h"
+#include "Engine.AnimSequence.SkelControlModifier.h"
+#include "Engine.AnimSequence.TranslationTrack.h"
+#include "Engine.AnimSequence.RawAnimSequenceTrack.h"
+#include "Engine.AnimSequence.CurveTrack.h"
+#include "Engine.AnimSequence.RotationTrack.h"
+#include "Engine.AnimSequence.AnimationCompressionFormat.h"
+#include "Engine.AnimSequence.AnimationKeyFormat.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.BoneAtom.h"
+#include "Engine.AnimSequence.AnimTag.h"
 #include "Engine.AnimNotify.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -26,109 +37,33 @@ namespace UnrealScript
 	class AnimSequence : public Object
 	{
 	public:
-		enum AnimationCompressionFormat : byte
-		{
-			ACF_None = 0,
-			ACF_Float96NoW = 1,
-			ACF_Fixed48NoW = 2,
-			ACF_IntervalFixed32NoW = 3,
-			ACF_Fixed32NoW = 4,
-			ACF_Float32NoW = 5,
-			ACF_Identity = 6,
-			ACF_MAX = 7,
-		};
-		enum AnimationKeyFormat : byte
-		{
-			AKF_ConstantKeyLerp = 0,
-			AKF_VariableKeyLerp = 1,
-			AKF_PerTrackCompression = 2,
-			AKF_MAX = 3,
-		};
-		struct CompressedTrack
-		{
-		public:
-			ADD_STRUCT(ScriptArray<byte>, ByteStream, 0)
-			ADD_STRUCT(ScriptArray<float>, Times, 12)
-			ADD_STRUCT(float, Ranges, 36)
-			ADD_STRUCT(float, Mins, 24)
-		};
-		struct AnimTag
-		{
-		public:
-			ADD_STRUCT(ScriptArray<ScriptString*>, Contains, 12)
-			ADD_STRUCT(ScriptString*, Tag, 0)
-		};
-		struct CurveTrack
-		{
-		public:
-			ADD_STRUCT(ScriptName, CurveName, 0)
-			ADD_STRUCT(ScriptArray<float>, CurveWeights, 8)
-		};
-		struct RotationTrack
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Object::Quat>, RotKeys, 0)
-			ADD_STRUCT(ScriptArray<float>, Times, 12)
-		};
-		struct TranslationTrack
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Vector>, PosKeys, 0)
-			ADD_STRUCT(ScriptArray<float>, Times, 12)
-		};
-		struct TimeModifier
-		{
-		public:
-			ADD_STRUCT(float, Time, 0)
-			ADD_STRUCT(float, TargetStrength, 4)
-		};
-		struct AnimNotifyEvent
-		{
-		public:
-			ADD_STRUCT(float, Time, 0)
-			ADD_OBJECT(AnimNotify, Notify, 4)
-			ADD_STRUCT(ScriptName, Comment, 8)
-			ADD_STRUCT(float, Duration, 16)
-		};
-		struct RawAnimSequenceTrack
-		{
-		public:
-			ADD_STRUCT(ScriptArray<Vector>, PosKeys, 0)
-			ADD_STRUCT(ScriptArray<Object::Quat>, RotKeys, 12)
-		};
-		struct SkelControlModifier
-		{
-		public:
-			ADD_STRUCT(ScriptName, SkelControlName, 0)
-			ADD_STRUCT(ScriptArray<AnimSequence::TimeModifier>, Modifiers, 8)
-		};
 		ADD_STRUCT(float, SequenceLength, 104)
 		ADD_STRUCT(float, RateScale, 112)
 		ADD_STRUCT(ScriptName, SequenceName, 60)
-		ADD_STRUCT(ScriptArray<AnimSequence::AnimNotifyEvent>, Notifies, 68)
+		ADD_STRUCT(ScriptArray<AnimSequence__AnimNotifyEvent>, Notifies, 68)
 		ADD_STRUCT(ScriptArray<class AnimMetaData*>, MetaData, 80)
-		ADD_STRUCT(ScriptArray<AnimSequence::SkelControlModifier>, BoneControlModifiers, 92)
+		ADD_STRUCT(ScriptArray<AnimSequence__SkelControlModifier>, BoneControlModifiers, 92)
 		ADD_STRUCT(int, NumFrames, 108)
 		ADD_BOOL(bNoLoopingInterpolation, 116, 0x1)
 		ADD_BOOL(bIsAdditive, 116, 0x2)
 		ADD_BOOL(bAdditiveBuiltLooping, 116, 0x4)
 		ADD_BOOL(bDoNotOverrideCompression, 116, 0x8)
 		ADD_BOOL(bHasBeenUsed, 116, 0x10)
-		ADD_STRUCT(ScriptArray<AnimSequence::RawAnimSequenceTrack>, RawAnimData, 120)
-		ADD_STRUCT(ScriptArray<AnimSequence::RawAnimSequenceTrack>, RawAnimationData, 132)
-		ADD_STRUCT(ScriptArray<AnimSequence::TranslationTrack>, TranslationData, 144)
-		ADD_STRUCT(ScriptArray<AnimSequence::RotationTrack>, RotationData, 156)
-		ADD_STRUCT(ScriptArray<AnimSequence::CurveTrack>, CurveData, 168)
+		ADD_STRUCT(ScriptArray<AnimSequence__RawAnimSequenceTrack>, RawAnimData, 120)
+		ADD_STRUCT(ScriptArray<AnimSequence__RawAnimSequenceTrack>, RawAnimationData, 132)
+		ADD_STRUCT(ScriptArray<AnimSequence__TranslationTrack>, TranslationData, 144)
+		ADD_STRUCT(ScriptArray<AnimSequence__RotationTrack>, RotationData, 156)
+		ADD_STRUCT(ScriptArray<AnimSequence__CurveTrack>, CurveData, 168)
 		ADD_OBJECT(AnimationCompressionAlgorithm, CompressionScheme, 180)
-		ADD_STRUCT(AnimSequence::AnimationCompressionFormat, TranslationCompressionFormat, 184)
-		ADD_STRUCT(AnimSequence::AnimationCompressionFormat, RotationCompressionFormat, 185)
-		ADD_STRUCT(AnimSequence::AnimationKeyFormat, KeyEncodingFormat, 186)
+		ADD_STRUCT(AnimSequence__AnimationCompressionFormat, TranslationCompressionFormat, 184)
+		ADD_STRUCT(AnimSequence__AnimationCompressionFormat, RotationCompressionFormat, 185)
+		ADD_STRUCT(AnimSequence__AnimationKeyFormat, KeyEncodingFormat, 186)
 		ADD_STRUCT(ScriptArray<int>, CompressedTrackOffsets, 188)
 		ADD_STRUCT(ScriptArray<byte>, CompressedByteStream, 200)
-		ADD_STRUCT(Object::Pointer, TranslationCodec, 212)
-		ADD_STRUCT(Object::Pointer, RotationCodec, 216)
-		ADD_STRUCT(ScriptArray<Object::BoneAtom>, AdditiveRefPose, 220)
-		ADD_STRUCT(ScriptArray<AnimSequence::RawAnimSequenceTrack>, AdditiveBasePose, 232)
+		ADD_STRUCT(Object__Pointer, TranslationCodec, 212)
+		ADD_STRUCT(Object__Pointer, RotationCodec, 216)
+		ADD_STRUCT(ScriptArray<Object__BoneAtom>, AdditiveRefPose, 220)
+		ADD_STRUCT(ScriptArray<AnimSequence__RawAnimSequenceTrack>, AdditiveBasePose, 232)
 		ADD_STRUCT(ScriptName, AdditiveRefName, 244)
 		ADD_STRUCT(ScriptArray<class AnimSequence*>, AdditiveBasePoseAnimSeq, 252)
 		ADD_STRUCT(ScriptArray<class AnimSequence*>, AdditiveTargetPoseAnimSeq, 264)
@@ -136,7 +71,7 @@ namespace UnrealScript
 		ADD_STRUCT(int, EncodingPkgVersion, 288)
 		ADD_STRUCT(int, CompressCommandletVersion, 292)
 		ADD_STRUCT(float, UseScore, 296)
-		ADD_STRUCT(ScriptArray<AnimSequence::AnimTag>, AnimTags, 300)
+		ADD_STRUCT(ScriptArray<AnimSequence__AnimTag>, AnimTags, 300)
 		float GetNotifyTimeByClass(ScriptClass* NotifyClass, float PlayRate, float StartPosition, class AnimNotify*& out_Notify, float& out_Duration)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(10514);

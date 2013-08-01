@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.FracturedBaseComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.Matrix.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,13 +21,13 @@ namespace UnrealScript
 	class FracturedSkinnedMeshComponent : public FracturedBaseComponent
 	{
 	public:
-		ADD_STRUCT(ScriptArray<Object::Matrix>, FragmentTransforms, 644)
+		ADD_STRUCT(ScriptArray<Object__Matrix>, FragmentTransforms, 644)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, DependentComponents, 656)
 		ADD_BOOL(bFragmentTransformsChanged, 668, 0x2)
 		ADD_BOOL(bBecameVisible, 668, 0x1)
-		ADD_STRUCT(Object::Pointer, ComponentSkinResources, 640)
+		ADD_STRUCT(Object__Pointer, ComponentSkinResources, 640)
 	};
 }
 #undef ADD_BOOL

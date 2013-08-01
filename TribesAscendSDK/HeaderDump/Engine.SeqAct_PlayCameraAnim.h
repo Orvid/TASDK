@@ -1,8 +1,8 @@
 #pragma once
 #include "Engine.SequenceAction.h"
 #include "Engine.Actor.h"
-#include "Engine.Camera.h"
 #include "Engine.CameraAnim.h"
+#include "Engine.Camera.ECameraAnimPlaySpace.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,7 +27,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_OBJECT(Actor, UserDefinedSpaceActor, 260)
-		ADD_STRUCT(Camera::ECameraAnimPlaySpace, PlaySpace, 256)
+		ADD_STRUCT(Camera__ECameraAnimPlaySpace, PlaySpace, 256)
 		ADD_STRUCT(float, IntensityScale, 252)
 		ADD_STRUCT(float, Rate, 248)
 		ADD_STRUCT(float, BlendOutTime, 244)

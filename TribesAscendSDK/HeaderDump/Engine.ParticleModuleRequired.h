@@ -1,10 +1,14 @@
 #pragma once
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModule.h"
-#include "Engine.ParticleEmitter.h"
-#include "Core.Object.h"
-#include "Core.DistributionFloat.h"
+#include "Engine.ParticleModuleRequired.EParticleSortMode.h"
+#include "Engine.ParticleEmitter.ParticleBurst.h"
+#include "Core.Object.Vector.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.ParticleSpriteEmitter.h"
+#include "Engine.ParticleEmitter.EParticleSubUVInterpMethod.h"
+#include "Engine.ParticleModuleRequired.EEmitterNormalsMode.h"
+#include "Engine.ParticleEmitter.EParticleBurstMethod.h"
+#include "Engine.ParticleSpriteEmitter.EParticleScreenAlignment.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,23 +32,7 @@ namespace UnrealScript
 	class ParticleModuleRequired : public ParticleModule
 	{
 	public:
-		enum EEmitterNormalsMode : byte
-		{
-			ENM_CameraFacing = 0,
-			ENM_Spherical = 1,
-			ENM_Cylindrical = 2,
-			ENM_MAX = 3,
-		};
-		enum EParticleSortMode : byte
-		{
-			PSORTMODE_None = 0,
-			PSORTMODE_ViewProjDepth = 1,
-			PSORTMODE_DistanceToView = 2,
-			PSORTMODE_Age_OldestFirst = 3,
-			PSORTMODE_Age_NewestFirst = 4,
-			PSORTMODE_MAX = 5,
-		};
-		ADD_STRUCT(ScriptArray<ParticleEmitter::ParticleBurst>, BurstList, 128)
+		ADD_STRUCT(ScriptArray<ParticleEmitter__ParticleBurst>, BurstList, 128)
 		ADD_STRUCT(Vector, NormalsCylinderDirection, 184)
 		ADD_STRUCT(Vector, NormalsSphereCenter, 172)
 		ADD_STRUCT(float, DownsampleThresholdScreenFraction, 168)
@@ -55,7 +43,7 @@ namespace UnrealScript
 		ADD_STRUCT(int, SubImages_Horizontal, 148)
 		ADD_STRUCT(float, EmitterDelayLow, 144)
 		ADD_STRUCT(float, EmitterDelay, 140)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, SpawnRate, 100)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, SpawnRate, 100)
 		ADD_STRUCT(int, EmitterLoops, 96)
 		ADD_STRUCT(float, EmitterDurationLow, 92)
 		ADD_STRUCT(float, EmitterDuration, 88)
@@ -71,12 +59,12 @@ namespace UnrealScript
 		ADD_BOOL(bKillOnCompleted, 84, 0x4)
 		ADD_BOOL(bKillOnDeactivate, 84, 0x2)
 		ADD_BOOL(bUseLocalSpace, 84, 0x1)
-		ADD_STRUCT(ParticleModuleRequired::EEmitterNormalsMode, EmitterNormalsMode, 80)
-		ADD_STRUCT(ParticleEmitter::EParticleSubUVInterpMethod, InterpolationMethod, 79)
-		ADD_STRUCT(ParticleEmitter::EParticleBurstMethod, ParticleBurstMethod, 78)
-		ADD_STRUCT(ParticleModuleRequired::EParticleSortMode, SortMode, 77)
+		ADD_STRUCT(ParticleModuleRequired__EEmitterNormalsMode, EmitterNormalsMode, 80)
+		ADD_STRUCT(ParticleEmitter__EParticleSubUVInterpMethod, InterpolationMethod, 79)
+		ADD_STRUCT(ParticleEmitter__EParticleBurstMethod, ParticleBurstMethod, 78)
+		ADD_STRUCT(ParticleModuleRequired__EParticleSortMode, SortMode, 77)
 		ADD_OBJECT(MaterialInterface, Material, 72)
-		ADD_STRUCT(ParticleSpriteEmitter::EParticleScreenAlignment, ScreenAlignment, 76)
+		ADD_STRUCT(ParticleSpriteEmitter__EParticleScreenAlignment, ScreenAlignment, 76)
 	};
 }
 #undef ADD_BOOL

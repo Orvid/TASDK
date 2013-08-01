@@ -1,0 +1,12 @@
+#pragma once
+namespace UnrealScript
+{
+	enum EngineTypes__EPathFindingError : byte
+	{
+		PATHERROR_STARTPOLYNOTFOUND = 0,
+		PATHERROR_GOALPOLYNOTFOUND = 1,
+		PATHERROR_ANCHORPYLONNOTFOUND = 2,
+		PATHERROR_NOPATHFOUND = 3,
+		PATHERROR_MAX = 4,
+	};
+}

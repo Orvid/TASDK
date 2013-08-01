@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Engine.ActorFactory.h"
-#include "Core.Object.h"
 #include "Engine.SkeletalMesh.h"
 #include "Engine.PhysicsAsset.h"
 #define ADD_BOOL(name, offset, mask) \

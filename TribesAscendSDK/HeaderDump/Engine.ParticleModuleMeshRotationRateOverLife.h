@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleRotationRateBase.h"
-#include "Core.DistributionVector.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,7 +21,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_BOOL(bScaleRotRate, 100, 0x1)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, RotRate, 72)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, RotRate, 72)
 	};
 }
 #undef ADD_BOOL

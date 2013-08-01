@@ -24,17 +24,6 @@ namespace UnrealScript
 	class MaterialExpression : public Object
 	{
 	public:
-		struct ExpressionInput
-		{
-		public:
-			ADD_STRUCT(int, GCC64_Padding, 24)
-			ADD_STRUCT(int, MaskA, 20)
-			ADD_STRUCT(int, MaskB, 16)
-			ADD_STRUCT(int, MaskG, 12)
-			ADD_STRUCT(int, MaskR, 8)
-			ADD_STRUCT(int, Mask, 4)
-			ADD_OBJECT(MaterialExpression, Expression, 0)
-		};
 		ADD_STRUCT(ScriptArray<ScriptName>, MenuCategories, 96)
 		ADD_STRUCT(ScriptString*, Desc, 84)
 		ADD_OBJECT(MaterialExpressionCompound, Compound, 80)

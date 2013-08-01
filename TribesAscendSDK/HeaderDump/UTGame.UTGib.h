@@ -1,14 +1,17 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "UTGame.UTGib.StaticMeshDatum.h"
 #include "Engine.ParticleSystem.h"
+#include "Core.Object.Rotator.h"
+#include "Engine.MaterialInstance.h"
+#include "Core.Object.Vector.h"
 #include "Engine.SoundCue.h"
 #include "Engine.MaterialInstanceTimeVarying.h"
-#include "Engine.HUD.h"
-#include "Engine.MaterialInstance.h"
 #include "Engine.MaterialInstanceConstant.h"
+#include "Engine.HUD.h"
 #include "Engine.StaticMesh.h"
 #include "Engine.PlayerController.h"
+#include "Engine.Actor.CollisionImpactData.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,19 +35,10 @@ namespace UnrealScript
 	class UTGib : public Actor
 	{
 	public:
-		struct StaticMeshDatum
-		{
-		public:
-			ADD_BOOL(bUseSecondaryGibMeshMITV, 16, 0x1)
-			ADD_STRUCT(float, DrawScale, 12)
-			ADD_OBJECT(PhysicsAsset, ThePhysAsset, 8)
-			ADD_OBJECT(SkeletalMesh, TheSkelMesh, 4)
-			ADD_OBJECT(StaticMesh, TheStaticMesh, 0)
-		};
 		ADD_STRUCT(ScriptName, DecalDissolveParamName, 500)
 		ADD_STRUCT(float, DecalWaitTimeBeforeDissolve, 508)
 		ADD_BOOL(bUseUnrealPhysics, 540, 0x1)
-		ADD_STRUCT(ScriptArray<UTGib::StaticMeshDatum>, GibMeshesData, 544)
+		ADD_STRUCT(ScriptArray<UTGib__StaticMeshDatum>, GibMeshesData, 544)
 		ADD_STRUCT(Rotator, OldCamRot, 568)
 		ADD_STRUCT(Vector, OldCamLoc, 556)
 		ADD_BOOL(bStopMovingCamera, 540, 0x2)
@@ -127,7 +121,7 @@ namespace UnrealScript
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void* HitComponent, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
-void* OtherComponent, Actor::CollisionImpactData& RigidCollisionData, int ContactIndex)
+void* OtherComponent, Actor__CollisionImpactData& RigidCollisionData, int ContactIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(47914);
 			byte params[48] = { NULL };
@@ -137,10 +131,10 @@ void**)params = HitComponent;
 			*(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void**)&params[4] = OtherComponent;
-			*(Actor::CollisionImpactData*)&params[8] = RigidCollisionData;
+			*(Actor__CollisionImpactData*)&params[8] = RigidCollisionData;
 			*(int*)&params[44] = ContactIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			RigidCollisionData = *(Actor::CollisionImpactData*)&params[8];
+			RigidCollisionData = *(Actor__CollisionImpactData*)&params[8];
 		}
 		void LeaveADecal(Vector HitLoc, Vector HitNorm)
 		{

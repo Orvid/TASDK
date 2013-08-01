@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.AnimNodeBlend.h"
 #include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimNodeSequence.ERootBoneAxis.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -75,13 +76,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class AnimNodeSequence**)params;
 		}
-		void SetRootBoneAxisOption(AnimNodeSequence::ERootBoneAxis AxisX, AnimNodeSequence::ERootBoneAxis AxisY, AnimNodeSequence::ERootBoneAxis AxisZ)
+		void SetRootBoneAxisOption(AnimNodeSequence__ERootBoneAxis AxisX, AnimNodeSequence__ERootBoneAxis AxisY, AnimNodeSequence__ERootBoneAxis AxisZ)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(11005);
 			byte params[3] = { NULL };
-			*(AnimNodeSequence::ERootBoneAxis*)params = AxisX;
-			*(AnimNodeSequence::ERootBoneAxis*)&params[1] = AxisY;
-			*(AnimNodeSequence::ERootBoneAxis*)&params[2] = AxisZ;
+			*(AnimNodeSequence__ERootBoneAxis*)params = AxisX;
+			*(AnimNodeSequence__ERootBoneAxis*)&params[1] = AxisY;
+			*(AnimNodeSequence__ERootBoneAxis*)&params[2] = AxisZ;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 	};

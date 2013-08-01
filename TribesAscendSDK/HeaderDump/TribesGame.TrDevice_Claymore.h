@@ -1,6 +1,6 @@
 #pragma once
 #include "TribesGame.TrDevice_AutoFire.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Projectile.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

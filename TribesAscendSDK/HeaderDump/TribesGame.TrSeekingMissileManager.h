@@ -1,11 +1,14 @@
 #pragma once
-#include "Engine.Pawn.h"
 #include "Engine.Info.h"
-#include "TribesGame.TrVehicle.h"
-#include "TribesGame.TrObject.h"
+#include "TribesGame.TrSeekingMissileManager.TargetingSaberLauncherInfo.h"
 #include "TribesGame.TrDevice_SaberLauncher.h"
-#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrVehicle.h"
+#include "TribesGame.TrSeekingMissileManager.SeekingMissileInfo.h"
 #include "TribesGame.TrProj_TrackingMissile.h"
+#include "TribesGame.TrObject.EMissileLock.h"
+#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrSeekingMissileManager.ETrackingMissileEvent.h"
+#include "Engine.Pawn.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -19,30 +22,8 @@ namespace UnrealScript
 	class TrSeekingMissileManager : public Info
 	{
 	public:
-		enum ETrackingMissileEvent : byte
-		{
-			MissileEvent_NewMissileTracking = 0,
-			MissileEvent_MissileStoppedTracking = 1,
-			MissileEvent_NewSaberLauncherTargeting = 2,
-			MissileEvent_SaberLauncherStoppedTargeting = 3,
-			MissileEvent_NotifyClientAboutSaberLauncher = 4,
-			MissileEvent_MAX = 5,
-		};
-		struct TargetingSaberLauncherInfo
-		{
-		public:
-			ADD_OBJECT(TrDevice_SaberLauncher, SaberLauncher, 0)
-			ADD_STRUCT(float, RemainingClientNotificationTime, 8)
-			ADD_OBJECT(TrPlayerController, VictimController, 4)
-		};
-		struct SeekingMissileInfo
-		{
-		public:
-			ADD_OBJECT(TrProj_TrackingMissile, Missile, 0)
-			ADD_OBJECT(TrPlayerController, VictimController, 4)
-		};
-		ADD_STRUCT(ScriptArray<TrSeekingMissileManager::TargetingSaberLauncherInfo>, ActiveTargetingSaberLaunchers, 488)
-		ADD_STRUCT(ScriptArray<TrSeekingMissileManager::SeekingMissileInfo>, ActiveSeekingMissiles, 476)
+		ADD_STRUCT(ScriptArray<TrSeekingMissileManager__TargetingSaberLauncherInfo>, ActiveTargetingSaberLaunchers, 488)
+		ADD_STRUCT(ScriptArray<TrSeekingMissileManager__SeekingMissileInfo>, ActiveSeekingMissiles, 476)
 		ADD_STRUCT(int, RepCounter, 500)
 		void Tick(float DeltaTime)
 		{
@@ -51,12 +32,12 @@ namespace UnrealScript
 			*(float*)params = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddSaberLauncher(class TrDevice_SaberLauncher* SaberLauncherToAdd, TrObject::EMissileLock MissileLockValue)
+		void AddSaberLauncher(class TrDevice_SaberLauncher* SaberLauncherToAdd, TrObject__EMissileLock MissileLockValue)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(110792);
 			byte params[5] = { NULL };
 			*(class TrDevice_SaberLauncher**)params = SaberLauncherToAdd;
-			*(TrObject::EMissileLock*)&params[4] = MissileLockValue;
+			*(TrObject__EMissileLock*)&params[4] = MissileLockValue;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void RemoveSaberLauncher(class TrDevice_SaberLauncher* SaberLauncherToRemove)
@@ -114,20 +95,20 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
-		void VictimControllerUpdated(class TrPlayerController* VictimController, TrSeekingMissileManager::ETrackingMissileEvent MissileEvent)
+		void VictimControllerUpdated(class TrPlayerController* VictimController, TrSeekingMissileManager__ETrackingMissileEvent MissileEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(110847);
 			byte params[5] = { NULL };
 			*(class TrPlayerController**)params = VictimController;
-			*(TrSeekingMissileManager::ETrackingMissileEvent*)&params[4] = MissileEvent;
+			*(TrSeekingMissileManager__ETrackingMissileEvent*)&params[4] = MissileEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TargetVehicleUpdated(class TrVehicle* targetVehicle, TrSeekingMissileManager::ETrackingMissileEvent MissileEvent)
+		void TargetVehicleUpdated(class TrVehicle* targetVehicle, TrSeekingMissileManager__ETrackingMissileEvent MissileEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(110852);
 			byte params[5] = { NULL };
 			*(class TrVehicle**)params = targetVehicle;
-			*(TrSeekingMissileManager::ETrackingMissileEvent*)&params[4] = MissileEvent;
+			*(TrSeekingMissileManager__ETrackingMissileEvent*)&params[4] = MissileEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void BeginSaberLauncherTargeting(class TrPlayerController* VictimController)

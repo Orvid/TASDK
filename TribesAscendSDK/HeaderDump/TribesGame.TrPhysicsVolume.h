@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.PhysicsVolume.h"
-#include "TribesGame.TrVGSCommandList.h"
+#include "TribesGame.TrVGSCommandList.EVGSContextLocation.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,7 +10,7 @@ namespace UnrealScript
 	class TrPhysicsVolume : public PhysicsVolume
 	{
 	public:
-		ADD_STRUCT(TrVGSCommandList::EVGSContextLocation, m_ContextLocation, 584)
+		ADD_STRUCT(TrVGSCommandList__EVGSContextLocation, m_ContextLocation, 584)
 		ADD_STRUCT(byte, m_DefenderTeamIndex, 585)
 	};
 }

@@ -1,12 +1,16 @@
 #pragma once
-#include "Engine.PostProcessVolume.h"
-#include "Engine.Camera.h"
 #include "Engine.Pawn.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #include "GameFramework.GameCameraBase.h"
-#include "Engine.Actor.h"
-#include "GameFramework.GameThirdPersonCameraMode.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "GameFramework.GameThirdPersonCamera.PenetrationAvoidanceFeeler.h"
 #include "GameFramework.GamePlayerCamera.h"
+#include "Core.Object.Rotator.h"
+#include "GameFramework.GameThirdPersonCamera.CamFocusPointParams.h"
+#include "GameFramework.GameThirdPersonCameraMode.h"
+#include "Engine.Camera.TViewTarget.h"
+#include "Core.Object.Vector2D.h"
+#include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,31 +34,7 @@ namespace UnrealScript
 	class GameThirdPersonCamera : public GameCameraBase
 	{
 	public:
-		struct PenetrationAvoidanceFeeler
-		{
-		public:
-			ADD_STRUCT(int, FramesUntilNextTrace, 36)
-			ADD_STRUCT(int, TraceInterval, 32)
-			ADD_STRUCT(Vector, Extent, 20)
-			ADD_STRUCT(float, PawnWeight, 16)
-			ADD_STRUCT(float, WorldWeight, 12)
-			ADD_STRUCT(Rotator, AdjustmentRot, 0)
-		};
-		struct CamFocusPointParams
-		{
-		public:
-			ADD_STRUCT(float, FocusPitchOffsetDeg, 48)
-			ADD_BOOL(bIgnoreTrace, 44, 0x4)
-			ADD_BOOL(bAdjustCamera, 44, 0x2)
-			ADD_BOOL(bAlwaysFocus, 44, 0x1)
-			ADD_STRUCT(Object::Vector2D, InFocusFOV, 36)
-			ADD_STRUCT(Object::Vector2D, InterpSpeedRange, 28)
-			ADD_STRUCT(float, CameraFOV, 24)
-			ADD_STRUCT(Vector, FocusWorldLoc, 12)
-			ADD_STRUCT(ScriptName, FocusBoneName, 4)
-			ADD_OBJECT(Actor, FocusActor, 0)
-		};
-		ADD_STRUCT(ScriptArray<GameThirdPersonCamera::PenetrationAvoidanceFeeler>, PenetrationAvoidanceFeelers, 348)
+		ADD_STRUCT(ScriptArray<GameThirdPersonCamera__PenetrationAvoidanceFeeler>, PenetrationAvoidanceFeelers, 348)
 		ADD_STRUCT(Vector, LastOffsetAdjustment, 360)
 		ADD_STRUCT(Rotator, LastPreModifierCameraRot, 336)
 		ADD_STRUCT(Vector, LastPreModifierCameraLoc, 324)
@@ -75,7 +55,7 @@ namespace UnrealScript
 		ADD_BOOL(bDoingACameraTurn, 272, 0x4)
 		ADD_BOOL(bFocusPointSuccessful, 272, 0x2)
 		ADD_BOOL(bFocusPointSet, 272, 0x1)
-		ADD_STRUCT(GameThirdPersonCamera::CamFocusPointParams, FocusPoint, 220)
+		ADD_STRUCT(GameThirdPersonCamera__CamFocusPointParams, FocusPoint, 220)
 		ADD_STRUCT(Vector, LastFocusPointLoc, 208)
 		ADD_STRUCT(Vector, ActualFocusPointWorldLoc, 196)
 		ADD_STRUCT(float, LastFocusChangeTime, 192)
@@ -128,16 +108,16 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[4];
 		}
-		void UpdateCamera(class Pawn* P, class GamePlayerCamera* CameraActor, float DeltaTime, Camera::TViewTarget& OutVT)
+		void UpdateCamera(class Pawn* P, class GamePlayerCamera* CameraActor, float DeltaTime, Camera__TViewTarget& OutVT)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32119);
 			byte params[56] = { NULL };
 			*(class Pawn**)params = P;
 			*(class GamePlayerCamera**)&params[4] = CameraActor;
 			*(float*)&params[8] = DeltaTime;
-			*(Camera::TViewTarget*)&params[12] = OutVT;
+			*(Camera__TViewTarget*)&params[12] = OutVT;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutVT = *(Camera::TViewTarget*)&params[12];
+			OutVT = *(Camera__TViewTarget*)&params[12];
 		}
 		void UpdateCameraMode(class Pawn* P)
 		{
@@ -146,16 +126,16 @@ namespace UnrealScript
 			*(class Pawn**)params = P;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void PlayerUpdateCamera(class Pawn* P, class GamePlayerCamera* CameraActor, float DeltaTime, Camera::TViewTarget& OutVT)
+		void PlayerUpdateCamera(class Pawn* P, class GamePlayerCamera* CameraActor, float DeltaTime, Camera__TViewTarget& OutVT)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32125);
 			byte params[56] = { NULL };
 			*(class Pawn**)params = P;
 			*(class GamePlayerCamera**)&params[4] = CameraActor;
 			*(float*)&params[8] = DeltaTime;
-			*(Camera::TViewTarget*)&params[12] = OutVT;
+			*(Camera__TViewTarget*)&params[12] = OutVT;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutVT = *(Camera::TViewTarget*)&params[12];
+			OutVT = *(Camera__TViewTarget*)&params[12];
 		}
 		void BeginTurn(int StartAngle, int EndAngle, float TimeSec, float DelaySec, bool bAlignTargetWhenFinished)
 		{
@@ -180,13 +160,13 @@ namespace UnrealScript
 			*(int*)params = AngleOffset;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetFocusOnLoc(Vector FocusWorldLoc, Object::Vector2D InterpSpeedRange, Object::Vector2D InFocusFOV, float CameraFOV, bool bAlwaysFocus, bool bAdjustCamera, bool bIgnoreTrace, float FocusPitchOffsetDeg)
+		void SetFocusOnLoc(Vector FocusWorldLoc, Object__Vector2D InterpSpeedRange, Object__Vector2D InFocusFOV, float CameraFOV, bool bAlwaysFocus, bool bAdjustCamera, bool bIgnoreTrace, float FocusPitchOffsetDeg)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32139);
 			byte params[48] = { NULL };
 			*(Vector*)params = FocusWorldLoc;
-			*(Object::Vector2D*)&params[12] = InterpSpeedRange;
-			*(Object::Vector2D*)&params[20] = InFocusFOV;
+			*(Object__Vector2D*)&params[12] = InterpSpeedRange;
+			*(Object__Vector2D*)&params[20] = InFocusFOV;
 			*(float*)&params[28] = CameraFOV;
 			*(bool*)&params[32] = bAlwaysFocus;
 			*(bool*)&params[36] = bAdjustCamera;
@@ -194,14 +174,14 @@ namespace UnrealScript
 			*(float*)&params[44] = FocusPitchOffsetDeg;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetFocusOnActor(class Actor* FocusActor, ScriptName FocusBoneName, Object::Vector2D InterpSpeedRange, Object::Vector2D InFocusFOV, float CameraFOV, bool bAlwaysFocus, bool bAdjustCamera, bool bIgnoreTrace, float FocusPitchOffsetDeg)
+		void SetFocusOnActor(class Actor* FocusActor, ScriptName FocusBoneName, Object__Vector2D InterpSpeedRange, Object__Vector2D InFocusFOV, float CameraFOV, bool bAlwaysFocus, bool bAdjustCamera, bool bIgnoreTrace, float FocusPitchOffsetDeg)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32148);
 			byte params[48] = { NULL };
 			*(class Actor**)params = FocusActor;
 			*(ScriptName*)&params[4] = FocusBoneName;
-			*(Object::Vector2D*)&params[12] = InterpSpeedRange;
-			*(Object::Vector2D*)&params[20] = InFocusFOV;
+			*(Object__Vector2D*)&params[12] = InterpSpeedRange;
+			*(Object__Vector2D*)&params[20] = InFocusFOV;
 			*(float*)&params[28] = CameraFOV;
 			*(bool*)&params[32] = bAlwaysFocus;
 			*(bool*)&params[36] = bAdjustCamera;
@@ -271,13 +251,13 @@ namespace UnrealScript
 			*(class GameCameraBase**)params = OldCamera;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ModifyPostProcessSettings(PostProcessVolume::PostProcessSettings& PP)
+		void ModifyPostProcessSettings(PostProcessVolume__PostProcessSettings& PP)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32184);
 			byte params[220] = { NULL };
-			*(PostProcessVolume::PostProcessSettings*)params = PP;
+			*(PostProcessVolume__PostProcessSettings*)params = PP;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			PP = *(PostProcessVolume::PostProcessSettings*)params;
+			PP = *(PostProcessVolume__PostProcessSettings*)params;
 		}
 		void ResetInterpolation()
 		{

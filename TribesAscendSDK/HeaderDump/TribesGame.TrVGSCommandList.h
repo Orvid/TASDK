@@ -1,5 +1,7 @@
 #pragma once
 #include "Core.Object.h"
+#include "TribesGame.TrVGSCommandList.TrVGSCommand.h"
+#include "TribesGame.TrVGSCommandList.EVGSContextLocation.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,201 +21,6 @@ namespace UnrealScript
 	class TrVGSCommandList : public Object
 	{
 	public:
-		enum EVGSContextLocation : byte
-		{
-			VGSContext_None = 0,
-			VGSContext_InsideBase = 1,
-			VGSContext_AroundBase = 2,
-			VGSContext_BehindBase = 3,
-			VGSContext_Midfield = 4,
-			VGSContext_NearGenerator = 5,
-			VGSContext_NearFlag = 6,
-			VGSContext_NearBaseTurret = 7,
-			VGSContext_NearVehiclePad = 8,
-			VGSContext_MAX = 9,
-		};
-		enum EVGSScope : byte
-		{
-			VGSScope_Team = 0,
-			VGSScope_Global = 1,
-			VGSScope_MAX = 2,
-		};
-		enum VGSCommandType : byte
-		{
-			VGSCommandType_GlobalYes = 0,
-			VGSCommandType_GlobalNo = 1,
-			VGSCommandType_GlobalHi = 2,
-			VGSCommandType_GlobalBye = 3,
-			VGSCommandType_GlobalOoops = 4,
-			VGSCommandType_GlobalQuiet = 5,
-			VGSCommandType_GlobalShazbot = 6,
-			VGSCommandType_GlobalWoohoo = 7,
-			VGSCommandType_GlobalComplimentAwesome = 8,
-			VGSCommandType_GlobalComplimentGoodGame = 9,
-			VGSCommandType_GlobalComplimentNiceMove = 10,
-			VGSCommandType_GlobalComplimentYouRock = 11,
-			VGSCommandType_GlobalComplimentGreatShot = 12,
-			VGSCommandType_GlobalRespondAnyTime = 13,
-			VGSCommandType_GlobalRespondDontKnow = 14,
-			VGSCommandType_GlobalRespondThanks = 15,
-			VGSCommandType_GlobalRespondWait = 16,
-			VGSCommandType_GlobalTauntAww = 17,
-			VGSCommandType_GlobalTauntObnoxious = 18,
-			VGSCommandType_GlobalTauntBrag = 19,
-			VGSCommandType_GlobalTauntSarcasm = 20,
-			VGSCommandType_GlobalTauntLearn = 21,
-			VGSCommandType_Attack = 22,
-			VGSCommandType_AttackBase = 23,
-			VGSCommandType_AttackChase = 24,
-			VGSCommandType_AttackDisrupt = 25,
-			VGSCommandType_AttackFlag = 26,
-			VGSCommandType_AttackGenerator = 27,
-			VGSCommandType_AttackReinforce = 28,
-			VGSCommandType_AttackSensors = 29,
-			VGSCommandType_AttackTurrets = 30,
-			VGSCommandType_AttackVehicle = 31,
-			VGSCommandType_AttackWait = 32,
-			VGSCommandType_AttackPointA = 33,
-			VGSCommandType_AttackPointB = 34,
-			VGSCommandType_AttackPointC = 35,
-			VGSCommandType_AttackPointD = 36,
-			VGSCommandType_AttackPointE = 37,
-			VGSCommandType_DefendBase = 38,
-			VGSCommandType_DefendFlagCarrier = 39,
-			VGSCommandType_DefendEntrances = 40,
-			VGSCommandType_DefendFlag = 41,
-			VGSCommandType_DefendGenerator = 42,
-			VGSCommandType_DefendMe = 43,
-			VGSCommandType_DefendReinforce = 44,
-			VGSCommandType_DefendSensors = 45,
-			VGSCommandType_DefendTurrets = 46,
-			VGSCommandType_DefendVehicle = 47,
-			VGSCommandType_DefendPointA = 48,
-			VGSCommandType_DefendPointB = 49,
-			VGSCommandType_DefendPointC = 50,
-			VGSCommandType_DefendPointD = 51,
-			VGSCommandType_DefendPointE = 52,
-			VGSCommandType_RepairGenerator = 53,
-			VGSCommandType_RepairSensors = 54,
-			VGSCommandType_RepairTurrets = 55,
-			VGSCommandType_RepairVehicle = 56,
-			VGSCommandType_BaseClear = 57,
-			VGSCommandType_EnemyInBase = 58,
-			VGSCommandType_BaseRetake = 59,
-			VGSCommandType_BaseSecure = 60,
-			VGSCommandType_CommandAcknowledged = 61,
-			VGSCommandType_CommandCompleted = 62,
-			VGSCommandType_CommandDeclined = 63,
-			VGSCommandType_CommandAssignment = 64,
-			VGSCommandType_EnemyDisarray = 65,
-			VGSCommandType_EnemyGeneratorDestroyed = 66,
-			VGSCommandType_EnemySensorsDestroyed = 67,
-			VGSCommandType_EnemyTurretsDestroyed = 68,
-			VGSCommandType_EnemyVehicleDestroyed = 69,
-			VGSCommandType_FlagDefend = 70,
-			VGSCommandType_FlagIHave = 71,
-			VGSCommandType_FlagGiveMe = 72,
-			VGSCommandType_FlagSecure = 73,
-			VGSCommandType_FlagRetrieve = 74,
-			VGSCommandType_FlagSelfRetrieve = 75,
-			VGSCommandType_FlagTake = 76,
-			VGSCommandType_NeedCover = 77,
-			VGSCommandType_NeedDriver = 78,
-			VGSCommandType_NeedEscort = 79,
-			VGSCommandType_NeedHoldVehicle = 80,
-			VGSCommandType_NeedRide = 81,
-			VGSCommandType_NeedSupport = 82,
-			VGSCommandType_NeedVehicleReady = 83,
-			VGSCommandType_NeedWhereTo = 84,
-			VGSCommandType_SelfAttack = 85,
-			VGSCommandType_SelfAttackBase = 86,
-			VGSCommandType_SelfAttackFlag = 87,
-			VGSCommandType_SelfAttackGenerator = 88,
-			VGSCommandType_SelfAttackSensors = 89,
-			VGSCommandType_SelfAttackTurrets = 90,
-			VGSCommandType_SelfAttackVehicle = 91,
-			VGSCommandType_SelfAttackPointA = 92,
-			VGSCommandType_SelfAttackPointB = 93,
-			VGSCommandType_SelfAttackPointC = 94,
-			VGSCommandType_SelfAttackPointD = 95,
-			VGSCommandType_SelfAttackPointE = 96,
-			VGSCommandType_SelfDefendBase = 97,
-			VGSCommandType_SelfDefend = 98,
-			VGSCommandType_SelfDefendFlag = 99,
-			VGSCommandType_SelfDefendGenerator = 100,
-			VGSCommandType_SelfDefendSensors = 101,
-			VGSCommandType_SelfDefendTurrets = 102,
-			VGSCommandType_SelfDefendVehicle = 103,
-			VGSCommandType_SelfDefendPointA = 104,
-			VGSCommandType_SelfDefendPointB = 105,
-			VGSCommandType_SelfDefendPointC = 106,
-			VGSCommandType_SelfDefendPointD = 107,
-			VGSCommandType_SelfDefendPointE = 108,
-			VGSCommandType_SelfRepairBase = 109,
-			VGSCommandType_SelfRepairGenerator = 110,
-			VGSCommandType_SelfRepairSensors = 111,
-			VGSCommandType_SelfRepairTurrets = 112,
-			VGSCommandType_SelfRepairVehicle = 113,
-			VGSCommandType_SelfTaskCover = 114,
-			VGSCommandType_SelfTaskDefenses = 115,
-			VGSCommandType_SelfTaskForcefield = 116,
-			VGSCommandType_SelfTaskOnIt = 117,
-			VGSCommandType_SelfTaskDeploySensors = 118,
-			VGSCommandType_SelfTaskDeployTurrets = 119,
-			VGSCommandType_SelfTaskVehicle = 120,
-			VGSCommandType_SelfUpgradeGenerator = 121,
-			VGSCommandType_SelfUpgradeSensors = 122,
-			VGSCommandType_SelfUpgradeTurrets = 123,
-			VGSCommandType_TargetAcquired = 124,
-			VGSCommandType_TargetBase = 125,
-			VGSCommandType_TargetDestroyed = 126,
-			VGSCommandType_TargetFlag = 127,
-			VGSCommandType_TargetFireOnMy = 128,
-			VGSCommandType_TargetNeed = 129,
-			VGSCommandType_TargetSensors = 130,
-			VGSCommandType_TargetTurret = 131,
-			VGSCommandType_TargetVehicle = 132,
-			VGSCommandType_TargetWait = 133,
-			VGSCommandType_UpgradeGenerator = 134,
-			VGSCommandType_UpgradeSensors = 135,
-			VGSCommandType_UpgradeTurrets = 136,
-			VGSCommandType_WarnEnemies = 137,
-			VGSCommandType_WarnVehicle = 138,
-			VGSCommandType_TeamYes = 139,
-			VGSCommandType_TeamNo = 140,
-			VGSCommandType_TeamAnytime = 141,
-			VGSCommandType_TeamBaseSecure = 142,
-			VGSCommandType_TeamCeaseFire = 143,
-			VGSCommandType_TeamDontKnow = 144,
-			VGSCommandType_TeamHelp = 145,
-			VGSCommandType_TeamMove = 146,
-			VGSCommandType_TeamSorry = 147,
-			VGSCommandType_TeamThanks = 148,
-			VGSCommandType_TeamWait = 149,
-			VGSCommandType_MAX = 150,
-		};
-		enum EVGSContextActor : byte
-		{
-			VGSContextActors_None = 0,
-			VGSContextActors_ActorLightPawn = 1,
-			VGSContextActors_ActorMediumPawn = 2,
-			VGSContextActors_ActorHeavyPawn = 3,
-			VGSContextActors_ActorTurret = 4,
-			VGSContextActors_ActorSensor = 5,
-			VGSContextActors_ActorVehicle = 6,
-			VGSContextActors_ActorDeployable = 7,
-			VGSContextActors_MAX = 8,
-		};
-		struct TrVGSCommand
-		{
-		public:
-			ADD_BOOL(bIsContext, 48, 0x1)
-			ADD_STRUCT(ScriptString*, MenuString, 36)
-			ADD_STRUCT(ScriptString*, ChatString, 24)
-			ADD_STRUCT(ScriptString*, KeyBindPath, 12)
-			ADD_STRUCT(ScriptName, KeyBind, 4)
-			ADD_STRUCT(TrVGSCommandList::EVGSScope, VGSScope, 0)
-		};
 		ADD_STRUCT(ScriptString*, MenuString_TeamWait, 11724)
 		ADD_STRUCT(ScriptString*, MenuString_TeamThanks, 11712)
 		ADD_STRUCT(ScriptString*, MenuString_TeamSorry, 11700)
@@ -537,17 +344,17 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptString*, ChatString_GlobalHi, 7884)
 		ADD_STRUCT(ScriptString*, ChatString_GlobalNo, 7872)
 		ADD_STRUCT(ScriptString*, ChatString_GlobalYes, 7860)
-		ADD_STRUCT(TrVGSCommandList::TrVGSCommand, m_CommandList, 60)
+		ADD_STRUCT(TrVGSCommandList__TrVGSCommand, m_CommandList, 60)
 		void Init()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(51398);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		ScriptString* GetContextLocationString(TrVGSCommandList::EVGSContextLocation Loc, bool bEnemyLocation)
+		ScriptString* GetContextLocationString(TrVGSCommandList__EVGSContextLocation Loc, bool bEnemyLocation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(51399);
 			byte params[17] = { NULL };
-			*(TrVGSCommandList::EVGSContextLocation*)params = Loc;
+			*(TrVGSCommandList__EVGSContextLocation*)params = Loc;
 			*(bool*)&params[4] = bEnemyLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[8];

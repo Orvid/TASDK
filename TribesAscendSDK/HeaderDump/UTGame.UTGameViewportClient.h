@@ -1,8 +1,8 @@
 #pragma once
 #include "Engine.Canvas.h"
 #include "UDKBase.UDKGameViewportClient.h"
-#include "Engine.PlayerController.h"
 #include "Engine.Font.h"
+#include "Engine.PlayerController.EProgressMessageType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -48,11 +48,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(47800);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void SetProgressMessage(PlayerController::EProgressMessageType MessageType, ScriptString* Message, ScriptString* Title, bool bIgnoreFutureNetworkMessages)
+		void SetProgressMessage(PlayerController__EProgressMessageType MessageType, ScriptString* Message, ScriptString* Title, bool bIgnoreFutureNetworkMessages)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(47801);
 			byte params[29] = { NULL };
-			*(PlayerController::EProgressMessageType*)params = MessageType;
+			*(PlayerController__EProgressMessageType*)params = MessageType;
 			*(ScriptString**)&params[4] = Message;
 			*(ScriptString**)&params[16] = Title;
 			*(bool*)&params[28] = bIgnoreFutureNetworkMessages;

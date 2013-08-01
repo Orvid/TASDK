@@ -1,7 +1,8 @@
 #pragma once
 #include "Engine.UIDataStore_StringBase.h"
-#include "Core.Object.h"
 #include "Engine.LocalPlayer.h"
+#include "Engine.UIDataStore_StringAliasMap.UIMenuInputMap.h"
+#include "Core.Object.Map_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,16 +12,9 @@ namespace UnrealScript
 	class UIDataStore_StringAliasMap : public UIDataStore_StringBase
 	{
 	public:
-		struct UIMenuInputMap
-		{
-		public:
-			ADD_STRUCT(ScriptString*, MappedText, 16)
-			ADD_STRUCT(ScriptName, Set, 8)
-			ADD_STRUCT(ScriptName, FieldName, 0)
-		};
-		ADD_STRUCT(ScriptArray<UIDataStore_StringAliasMap::UIMenuInputMap>, MenuInputMapArray, 120)
+		ADD_STRUCT(ScriptArray<UIDataStore_StringAliasMap__UIMenuInputMap>, MenuInputMapArray, 120)
 		ADD_STRUCT(int, PlayerIndex, 192)
-		ADD_STRUCT(Object::Map_Mirror, MenuInputSets, 132)
+		ADD_STRUCT(Object__Map_Mirror, MenuInputSets, 132)
 		class LocalPlayer* GetPlayerOwner()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28877);

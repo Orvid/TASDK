@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.AnimNodeBlendList.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,9 +31,9 @@ namespace UnrealScript
 		ADD_STRUCT(float, FloatPropMin, 316)
 		ADD_STRUCT(float, BlendTime, 312)
 		ADD_OBJECT(Actor, CachedOwner, 308)
-		ADD_STRUCT(Object::Pointer, CachedByteProperty, 304)
-		ADD_STRUCT(Object::Pointer, CachedBoolProperty, 300)
-		ADD_STRUCT(Object::Pointer, CachedFloatProperty, 296)
+		ADD_STRUCT(Object__Pointer, CachedByteProperty, 304)
+		ADD_STRUCT(Object__Pointer, CachedBoolProperty, 300)
+		ADD_STRUCT(Object__Pointer, CachedFloatProperty, 296)
 		ADD_STRUCT(ScriptName, CachedPropertyName, 288)
 		ADD_BOOL(bSynchronizeNodesInEditor, 284, 0x8)
 		ADD_BOOL(bUseSpecificBlendTimes, 284, 0x4)

@@ -1,8 +1,8 @@
 #pragma once
 #include "UTGame.GFxUDKFrontEnd.h"
 #include "UTGame.GFxUIView.h"
-#include "GFxUI.GFxClikWidget.h"
 #include "GFxUI.GFxObject.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -58,11 +58,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38004);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void Select_Back(GFxClikWidget::EventData ev)
+		void Select_Back(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38005);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void MoveBackImpl()

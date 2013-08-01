@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.SequenceAction.h"
-#include "TribesGame.TrHelpTextManager_Training.h"
+#include "TribesGame.TrHelpTextManager_Training.EHelpTextTrainingType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,7 +10,7 @@ namespace UnrealScript
 	class TrSeqAct_TrainingMessage : public SequenceAction
 	{
 	public:
-		ADD_STRUCT(TrHelpTextManager_Training::EHelpTextTrainingType, m_MessageType, 232)
+		ADD_STRUCT(TrHelpTextManager_Training__EHelpTextTrainingType, m_MessageType, 232)
 		void Activated()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(110921);

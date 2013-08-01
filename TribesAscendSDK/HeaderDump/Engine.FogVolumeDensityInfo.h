@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.Info.h"
 #include "Engine.SeqAct_Toggle.h"
+#include "Engine.FogVolumeDensityInfo.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -16,11 +17,6 @@ namespace UnrealScript
 	class FogVolumeDensityInfo : public Info
 	{
 	public:
-		struct CheckpointRecord
-		{
-		public:
-			ADD_BOOL(bEnabled, 0, 0x1)
-		};
 		ADD_BOOL(bEnabled, 484, 0x1)
 		void PostBeginPlay()
 		{
@@ -48,21 +44,21 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void CreateCheckpointRecord(FogVolumeDensityInfo::CheckpointRecord& Record)
+		void CreateCheckpointRecord(FogVolumeDensityInfo__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(15873);
 			byte params[4] = { NULL };
-			*(FogVolumeDensityInfo::CheckpointRecord*)params = Record;
+			*(FogVolumeDensityInfo__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(FogVolumeDensityInfo::CheckpointRecord*)params;
+			Record = *(FogVolumeDensityInfo__CheckpointRecord*)params;
 		}
-		void ApplyCheckpointRecord(FogVolumeDensityInfo::CheckpointRecord& Record)
+		void ApplyCheckpointRecord(FogVolumeDensityInfo__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(15875);
 			byte params[4] = { NULL };
-			*(FogVolumeDensityInfo::CheckpointRecord*)params = Record;
+			*(FogVolumeDensityInfo__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(FogVolumeDensityInfo::CheckpointRecord*)params;
+			Record = *(FogVolumeDensityInfo__CheckpointRecord*)params;
 		}
 	};
 }

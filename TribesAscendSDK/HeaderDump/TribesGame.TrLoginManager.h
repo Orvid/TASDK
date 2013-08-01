@@ -1,7 +1,7 @@
 #pragma once
 #include "GFxUI.GFxObject.h"
 #include "Core.Object.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -40,12 +40,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[28];
 		}
-		void OnUserLoginFailed(byte LocalUserNum, OnlineSubsystem::EOnlineServerConnectionStatus ErrorCode)
+		void OnUserLoginFailed(byte LocalUserNum, OnlineSubsystem__EOnlineServerConnectionStatus ErrorCode)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(98665);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineServerConnectionStatus*)&params[1] = ErrorCode;
+			*(OnlineSubsystem__EOnlineServerConnectionStatus*)&params[1] = ErrorCode;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void RetryLogin()

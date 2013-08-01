@@ -1,6 +1,7 @@
 #pragma once
 #include "UTGame.GFxUDKFrontEnd_View.h"
 #include "GFxUI.GFxClikWidget.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
@@ -16,11 +17,11 @@ namespace UnrealScript
 		ADD_OBJECT(GFxObject, InfoTxt, 144)
 		ADD_OBJECT(GFxObject, TitleTxt, 140)
 		ADD_OBJECT(GFxObject, DialogMC, 136)
-		void AcceptDelegate(GFxClikWidget::EventData ev)
+		void AcceptDelegate(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38016);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnViewClosed()
@@ -70,11 +71,11 @@ void* EventListener)
 void**)params = EventListener;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void Select_Back(GFxClikWidget::EventData ev)
+		void Select_Back(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38034);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool WidgetInitialized(ScriptName WidgetName, ScriptName WidgetPath, class GFxObject* Widget)

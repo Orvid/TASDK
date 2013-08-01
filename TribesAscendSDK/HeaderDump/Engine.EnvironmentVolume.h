@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.Volume.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,8 +21,8 @@ namespace UnrealScript
 	{
 	public:
 		ADD_BOOL(bSplitNavMesh, 528, 0x1)
-		ADD_STRUCT(Object::Pointer, VfTable_IInterface_NavMeshPathObject, 524)
-		ADD_STRUCT(Object::Pointer, VfTable_IInterface_NavMeshPathObstacle, 520)
+		ADD_STRUCT(Object__Pointer, VfTable_IInterface_NavMeshPathObject, 524)
+		ADD_STRUCT(Object__Pointer, VfTable_IInterface_NavMeshPathObstacle, 520)
 		void SetSplitNavMesh(bool bNewValue)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(15594);

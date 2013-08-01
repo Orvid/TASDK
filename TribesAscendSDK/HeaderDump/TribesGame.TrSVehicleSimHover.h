@@ -1,6 +1,6 @@
 #pragma once
 #include "UDKBase.UDKVehicleSimHover.h"
-#include "UDKBase.UDKVehicleSimChopper.h"
+#include "UDKBase.UDKVehicleSimChopper.AnglePID.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,7 +21,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_BOOL(bShouldStabilizeRotation, 332, 0x1)
-		ADD_STRUCT(UDKVehicleSimChopper::AnglePID, RollGain, 312)
+		ADD_STRUCT(UDKVehicleSimChopper__AnglePID, RollGain, 312)
 	};
 }
 #undef ADD_BOOL

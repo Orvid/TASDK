@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.Object.h"
-#include "TribesGame.TrObject.h"
+#include "TribesGame.TrMainMenuMeshInfo.ParticleSystemInfo.h"
+#include "TribesGame.TrObject.PaperDollInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,16 +15,10 @@ namespace UnrealScript
 	class TrMainMenuMeshInfo : public Object
 	{
 	public:
-		struct ParticleSystemInfo
-		{
-		public:
-			ADD_STRUCT(ScriptName, SocketName, 4)
-			ADD_OBJECT(ParticleSystem, ParticleSystem, 0)
-		};
 		ADD_STRUCT(ScriptArray<class TrMainMenuMeshInfo*>, Children, 116)
-		ADD_STRUCT(ScriptArray<TrMainMenuMeshInfo::ParticleSystemInfo>, AttachedParticleSystems, 136)
+		ADD_STRUCT(ScriptArray<TrMainMenuMeshInfo__ParticleSystemInfo>, AttachedParticleSystems, 136)
 		ADD_STRUCT(ScriptName, ParentSocketName, 128)
-		ADD_STRUCT(TrObject::PaperDollInfo, MeshInfo, 60)
+		ADD_STRUCT(TrObject__PaperDollInfo, MeshInfo, 60)
 		void PreloadTextures(float ForceDuration)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(98700);

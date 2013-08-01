@@ -3,6 +3,7 @@
 #include "UTGame.UTUIDataStore_StringList.h"
 #include "UTGame.UTUIDataProvider_GameModeInfo.h"
 #include "GFxUI.GFxClikWidget.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "Engine.UIDataStore_OnlineGameSettings.h"
 #include "GFxUI.GFxObject.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -62,18 +63,18 @@ namespace UnrealScript
 			*(int*)params = SelectedIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnListItemPress(GFxClikWidget::EventData ev)
+		void OnListItemPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38178);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnListChange(GFxClikWidget::EventData ev)
+		void OnListChange(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38181);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UpdateDescription()

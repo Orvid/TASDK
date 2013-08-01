@@ -1,6 +1,7 @@
 #pragma once
+#include "Engine.SeqEvent_ParticleEvent.EParticleEventOutputType.h"
 #include "Engine.SequenceEvent.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,21 +21,13 @@ namespace UnrealScript
 	class SeqEvent_ParticleEvent : public SequenceEvent
 	{
 	public:
-		enum EParticleEventOutputType : byte
-		{
-			ePARTICLEOUT_Spawn = 0,
-			ePARTICLEOUT_Death = 1,
-			ePARTICLEOUT_Collision = 2,
-			ePARTICLEOUT_Kismet = 3,
-			ePARTICLEOUT_MAX = 4,
-		};
 		ADD_BOOL(UseRelfectedImpactVector, 304, 0x1)
 		ADD_STRUCT(Vector, EventNormal, 292)
 		ADD_STRUCT(float, EventParticleTime, 288)
 		ADD_STRUCT(Vector, EventVelocity, 276)
 		ADD_STRUCT(float, EventEmitterTime, 272)
 		ADD_STRUCT(Vector, EventPosition, 260)
-		ADD_STRUCT(SeqEvent_ParticleEvent::EParticleEventOutputType, EventType, 256)
+		ADD_STRUCT(SeqEvent_ParticleEvent__EParticleEventOutputType, EventType, 256)
 		int GetObjClassVersion()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(26138);

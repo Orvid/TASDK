@@ -1,13 +1,16 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
-#include "UDKBase.UDKPawn.h"
-#include "Engine.ParticleSystem.h"
-#include "UTGame.UTPawn.h"
-#include "Engine.PhysicalMaterial.h"
-#include "Engine.SoundCue.h"
 #include "Engine.Material.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
 #include "Engine.Weapon.h"
+#include "UTGame.UTPawn.EWeapAnimType.h"
+#include "Engine.SoundCue.h"
+#include "Core.Object.Color.h"
+#include "UTGame.UTPawn.h"
+#include "Engine.ParticleSystem.h"
+#include "Core.Object.Vector.h"
+#include "Engine.PhysicalMaterial.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,9 +35,9 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(float, MaxFireEffectDistance, 668)
-		ADD_STRUCT(ScriptArray<UDKPawn::MaterialImpactEffect>, ImpactEffects, 540)
-		ADD_STRUCT(ScriptArray<UDKPawn::MaterialImpactEffect>, AltImpactEffects, 552)
-		ADD_STRUCT(UTPawn::EWeapAnimType, WeapAnimType, 700)
+		ADD_STRUCT(ScriptArray<UDKPawn__MaterialImpactEffect>, ImpactEffects, 540)
+		ADD_STRUCT(ScriptArray<UDKPawn__MaterialImpactEffect>, AltImpactEffects, 552)
+		ADD_STRUCT(UTPawn__EWeapAnimType, WeapAnimType, 700)
 		ADD_STRUCT(ScriptName, AltFireAnim, 692)
 		ADD_STRUCT(ScriptName, FireAnim, 684)
 		ADD_STRUCT(float, DistFactorForRefPose, 680)
@@ -42,8 +45,8 @@ namespace UnrealScript
 		ADD_OBJECT(ScriptClass, WeaponClass, 672)
 		ADD_STRUCT(float, MaxImpactEffectDistance, 664)
 		ADD_OBJECT(SoundCue, BulletWhip, 660)
-		ADD_STRUCT(UDKPawn::MaterialImpactEffect, DefaultAltImpactEffect, 612)
-		ADD_STRUCT(UDKPawn::MaterialImpactEffect, DefaultImpactEffect, 564)
+		ADD_STRUCT(UDKPawn__MaterialImpactEffect, DefaultAltImpactEffect, 612)
+		ADD_STRUCT(UDKPawn__MaterialImpactEffect, DefaultImpactEffect, 564)
 		ADD_STRUCT(ScriptName, AttachmentSocket, 532)
 		ADD_STRUCT(float, MuzzleFlashDuration, 524)
 		ADD_OBJECT(ScriptClass, MuzzleFlashLightClass, 516)
@@ -51,7 +54,7 @@ namespace UnrealScript
 		ADD_BOOL(bSuppressSounds, 512, 0x4)
 		ADD_BOOL(bAlignToSurfaceNormal, 512, 0x2)
 		ADD_BOOL(bMuzzleFlashPSCLoops, 512, 0x1)
-		ADD_STRUCT(Object::Color, MuzzleFlashColor, 508)
+		ADD_STRUCT(Object__Color, MuzzleFlashColor, 508)
 		ADD_OBJECT(ParticleSystem, MuzzleFlashAltPSCTemplate, 504)
 		ADD_OBJECT(ParticleSystem, MuzzleFlashPSCTemplate, 500)
 		ADD_STRUCT(ScriptName, MuzzleFlashSocket, 488)
@@ -156,13 +159,13 @@ void**)params = MeshCpnt;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(42358);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		UDKPawn::MaterialImpactEffect GetImpactEffect(class PhysicalMaterial* HitMaterial)
+		UDKPawn__MaterialImpactEffect GetImpactEffect(class PhysicalMaterial* HitMaterial)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(42359);
 			byte params[52] = { NULL };
 			*(class PhysicalMaterial**)params = HitMaterial;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(UDKPawn::MaterialImpactEffect*)&params[4];
+			return *(UDKPawn__MaterialImpactEffect*)&params[4];
 		}
 		bool AllowImpactEffects(class Actor* HitActor, Vector HitLocation, Vector HitNormal)
 		{
@@ -174,14 +177,14 @@ void**)params = MeshCpnt;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[28];
 		}
-		void SetImpactedActor(class Actor* HitActor, Vector HitLocation, Vector HitNormal, Actor::TraceHitInfo HitInfo)
+		void SetImpactedActor(class Actor* HitActor, Vector HitLocation, Vector HitNormal, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(42369);
 			byte params[56] = { NULL };
 			*(class Actor**)params = HitActor;
 			*(Vector*)&params[4] = HitLocation;
 			*(Vector*)&params[16] = HitNormal;
-			*(Actor::TraceHitInfo*)&params[28] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[28] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void PlayImpactEffects(Vector HitLocation)

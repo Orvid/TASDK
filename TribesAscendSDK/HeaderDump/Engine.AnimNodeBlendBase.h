@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.AnimNode.h"
-#include "Core.Object.h"
+#include "Engine.AnimNodeBlendBase.AnimBlendChild.h"
+#include "Core.Object.AlphaBlendType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,19 +25,8 @@ namespace UnrealScript
 	class AnimNodeBlendBase : public AnimNode
 	{
 	public:
-		struct AnimBlendChild
-		{
-		public:
-			ADD_OBJECT(AnimNode, Anim, 8)
-			ADD_STRUCT(int, DrawY, 24)
-			ADD_BOOL(bIsAdditive, 20, 0x2)
-			ADD_BOOL(bMirrorSkeleton, 20, 0x1)
-			ADD_STRUCT(float, BlendWeight, 16)
-			ADD_STRUCT(float, Weight, 12)
-			ADD_STRUCT(ScriptName, Name, 0)
-		};
-		ADD_STRUCT(ScriptArray<AnimNodeBlendBase::AnimBlendChild>, Children, 224)
-		ADD_STRUCT(Object::AlphaBlendType, BlendType, 240)
+		ADD_STRUCT(ScriptArray<AnimNodeBlendBase__AnimBlendChild>, Children, 224)
+		ADD_STRUCT(Object__AlphaBlendType, BlendType, 240)
 		ADD_BOOL(bFixNumChildren, 236, 0x1)
 		void PlayAnim(bool bLoop, float Rate, float StartTime)
 		{

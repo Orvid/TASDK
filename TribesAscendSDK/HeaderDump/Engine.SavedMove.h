@@ -1,9 +1,13 @@
 #pragma once
 #include "Engine.Actor.h"
 #include "Core.Object.h"
-#include "Engine.SkeletalMeshComponent.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Pawn.h"
+#include "Engine.SkeletalMeshComponent.ERootMotionMode.h"
 #include "Engine.PlayerController.h"
+#include "Engine.Actor.EDoubleClickDir.h"
+#include "Core.Object.Rotator.h"
+#include "Engine.Actor.EPhysics.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -36,7 +40,7 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, SavedVelocity, 140)
 		ADD_BOOL(bForceRMVelocity, 72, 0x20)
 		ADD_STRUCT(float, Delta, 68)
-		ADD_STRUCT(Actor::EDoubleClickDir, DoubleClickMove, 76)
+		ADD_STRUCT(Actor__EDoubleClickDir, DoubleClickMove, 76)
 		ADD_STRUCT(Vector, StartVelocity, 104)
 		ADD_OBJECT(Actor, StartBase, 200)
 		ADD_STRUCT(Vector, StartFloor, 116)
@@ -48,8 +52,8 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, RMVelocity, 164)
 		ADD_STRUCT(Vector, StartRelativeLocation, 92)
 		ADD_STRUCT(Vector, StartLocation, 80)
-		ADD_STRUCT(SkeletalMeshComponent::ERootMotionMode, RootMotionMode, 78)
-		ADD_STRUCT(Actor::EPhysics, SavedPhysics, 77)
+		ADD_STRUCT(SkeletalMeshComponent__ERootMotionMode, RootMotionMode, 78)
+		ADD_STRUCT(Actor__EPhysics, SavedPhysics, 77)
 		ADD_BOOL(bRootMotionFromInterpCurve, 72, 0x80)
 		ADD_BOOL(bForceMaxAccel, 72, 0x40)
 		ADD_BOOL(bPreciseDestination, 72, 0x10)
@@ -57,14 +61,14 @@ namespace UnrealScript
 		ADD_BOOL(bPressedJump, 72, 0x4)
 		ADD_BOOL(bDuck, 72, 0x2)
 		ADD_BOOL(bRun, 72, 0x1)
-		Actor::EDoubleClickDir SetFlags(byte Flags, class PlayerController* PC)
+		Actor__EDoubleClickDir SetFlags(byte Flags, class PlayerController* PC)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(8150);
 			byte params[6] = { NULL };
 			*params = Flags;
 			*(class PlayerController**)&params[4] = PC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Actor::EDoubleClickDir*)&params[8];
+			return *(Actor__EDoubleClickDir*)&params[8];
 		}
 		byte CompressedFlags()
 		{
@@ -117,14 +121,14 @@ namespace UnrealScript
 			*(class Pawn**)params = P;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetMoveFor(class PlayerController* P, float DeltaTime, Vector newAccel, Actor::EDoubleClickDir InDoubleClick)
+		void SetMoveFor(class PlayerController* P, float DeltaTime, Vector newAccel, Actor__EDoubleClickDir InDoubleClick)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25405);
 			byte params[21] = { NULL };
 			*(class PlayerController**)params = P;
 			*(float*)&params[4] = DeltaTime;
 			*(Vector*)&params[8] = newAccel;
-			*(Actor::EDoubleClickDir*)&params[20] = InDoubleClick;
+			*(Actor__EDoubleClickDir*)&params[20] = InDoubleClick;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void PrepMoveFor(class Pawn* P)

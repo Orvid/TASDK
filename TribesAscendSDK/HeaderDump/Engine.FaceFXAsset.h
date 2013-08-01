@@ -4,6 +4,7 @@
 #include "Engine.MorphTargetSet.h"
 #include "Engine.FaceFXAnimSet.h"
 #include "Engine.SoundCue.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -23,7 +24,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<class FaceFXAnimSet*>, MountedFaceFXAnimSets, 104)
 		ADD_STRUCT(ScriptArray<class SoundCue*>, ReferencedSoundCues, 116)
 		ADD_STRUCT(int, NumLoadErrors, 128)
-		ADD_STRUCT(Object::Pointer, FaceFXActor, 64)
+		ADD_STRUCT(Object__Pointer, FaceFXActor, 64)
 		ADD_OBJECT(SkeletalMesh, DefaultSkelMesh, 60)
 		void MountFaceFXAnimSet(class FaceFXAnimSet* AnimSet)
 		{

@@ -1,7 +1,8 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Core.Interface.h"
+#include "Core.Object.Rotator.h"
 #include "GameFramework.SeqAct_GameCrowdSpawner.h"
-#include "Core.Object.h"
 namespace UnrealScript
 {
 	class GameCrowdSpawnInterface : public Interface

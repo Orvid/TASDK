@@ -10,13 +10,6 @@ namespace UnrealScript
 	class SeqAct_ControlMovieTexture : public SequenceAction
 	{
 	public:
-		enum EMovieControlType : byte
-		{
-			MCT_Play = 0,
-			MCT_Stop = 1,
-			MCT_Pause = 2,
-			MCT_MAX = 3,
-		};
 		ADD_OBJECT(TextureMovie, MovieTexture, 232)
 		void Activated()
 		{

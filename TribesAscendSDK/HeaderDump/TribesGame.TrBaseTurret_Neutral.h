@@ -1,17 +1,17 @@
 #pragma once
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
 #include "TribesGame.TrDeployable_BaseTurret.h"
-#include "TribesGame.TrHelpTextManager.h"
 #include "Engine.Texture2D.h"
 namespace UnrealScript
 {
 	class TrBaseTurret_Neutral : public TrDeployable_BaseTurret
 	{
 	public:
-		bool ShouldShowHelpText(TrHelpTextManager::EHelpTextType HelpTextType)
+		bool ShouldShowHelpText(TrHelpTextManager__EHelpTextType HelpTextType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72148);
 			byte params[5] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = HelpTextType;
+			*(TrHelpTextManager__EHelpTextType*)params = HelpTextType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}

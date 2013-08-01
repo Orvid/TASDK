@@ -1,8 +1,8 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.GameEngine.h"
 #include "Engine.PlayerController.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,27 +22,16 @@ namespace UnrealScript
 	class TgGameEngine : public GameEngine
 	{
 	public:
-		struct MAR_EVENT
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, pMarshal, 40)
-			ADD_STRUCT(ScriptString*, fsMessage, 28)
-			ADD_STRUCT(int, nStmMsgId, 24)
-			ADD_STRUCT(QWord, qwInfo, 16)
-			ADD_STRUCT(QWord, qwId, 8)
-			ADD_STRUCT(int, nFunction, 4)
-			ADD_BOOL(bSuccess, 0, 0x1)
-		};
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, MarshalEventDelegates, 1808)
-		ADD_STRUCT(Object::Pointer, pEventMarshal, 1824)
-		ADD_STRUCT(Object::Pointer, pOutgoingMarshal, 1820)
-		void OnMarshalEvent(Object::Pointer pMarEvent)
+		ADD_STRUCT(Object__Pointer, pEventMarshal, 1824)
+		ADD_STRUCT(Object__Pointer, pOutgoingMarshal, 1820)
+		void OnMarshalEvent(Object__Pointer pMarEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(34270);
 			byte params[4] = { NULL };
-			*(Object::Pointer*)params = pMarEvent;
+			*(Object__Pointer*)params = pMarEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool SetFunction(int nFunction)
@@ -85,11 +74,11 @@ void*>, MarshalEventDelegates, 1808)
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(34297);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void SendMarshal(OnlineSubsystem::UniqueNetId qwPlayerId, bool bLowPriority)
+		void SendMarshal(OnlineSubsystem__UniqueNetId qwPlayerId, bool bLowPriority)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(34298);
 			byte params[12] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = qwPlayerId;
+			*(OnlineSubsystem__UniqueNetId*)params = qwPlayerId;
 			*(bool*)&params[8] = bLowPriority;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

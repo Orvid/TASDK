@@ -1,11 +1,11 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
 #include "Engine.SoundCue.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.InventoryManager.h"
 #include "Engine.Pawn.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

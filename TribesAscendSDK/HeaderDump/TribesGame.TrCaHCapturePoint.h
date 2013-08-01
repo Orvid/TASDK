@@ -1,13 +1,14 @@
 #pragma once
-#include "Core.Object.h"
 #include "TribesGame.TrRepairStation_Neutral.h"
 #include "Engine.Actor.h"
 #include "TribesGame.TrGameObjective.h"
 #include "TribesGame.TrRadarStation_Neutral.h"
 #include "TribesGame.TrBaseTurret_Neutral.h"
 #include "TribesGame.TrInventoryStation_Neutral.h"
+#include "TribesGame.TrCaHCapturePoint.NearbyPlayer.h"
 #include "TribesGame.TrPlayerController.h"
-#include "TribesGame.TrObject.h"
+#include "TribesGame.TrObject.CaHCapturePointLabel.h"
+#include "Core.Object.Vector.h"
 #include "Engine.SkelControlSingleBone.h"
 #include "Engine.MaterialInstanceConstant.h"
 #include "TribesGame.TrPawn.h"
@@ -36,18 +37,11 @@ namespace UnrealScript
 	class TrCaHCapturePoint : public TrGameObjective
 	{
 	public:
-		struct NearbyPlayer
-		{
-		public:
-			ADD_STRUCT(float, LastCheckedTimestamp, 8)
-			ADD_STRUCT(float, Time, 4)
-			ADD_OBJECT(TrPlayerController, NearbyPC, 0)
-		};
 		ADD_STRUCT(ScriptArray<class TrBaseTurret_Neutral*>, m_BaseTurrets, 1372)
 		ADD_STRUCT(ScriptArray<class TrRadarStation_Neutral*>, m_BaseSensors, 1384)
 		ADD_STRUCT(ScriptArray<class TrInventoryStation_Neutral*>, m_InventoryStations, 1396)
 		ADD_STRUCT(ScriptArray<class TrRepairStation_Neutral*>, m_RepairStations, 1408)
-		ADD_STRUCT(ScriptArray<TrCaHCapturePoint::NearbyPlayer>, m_NearbyPlayers, 1580)
+		ADD_STRUCT(ScriptArray<TrCaHCapturePoint__NearbyPlayer>, m_NearbyPlayers, 1580)
 		ADD_STRUCT(float, m_HoldTheLineAccoladeTime, 1596)
 		ADD_STRUCT(float, m_fNearbyPawnCheckTime, 1592)
 		ADD_OBJECT(TrPlayerController, m_LastCapturedBy, 1576)
@@ -59,7 +53,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fRemainingPulseMarkerTime, 1552)
 		ADD_STRUCT(float, m_MarkerSize, 1548)
 		ADD_STRUCT(byte, r_nFlashPointPulse, 1545)
-		ADD_STRUCT(TrObject::CaHCapturePointLabel, m_CapturePointLabel, 1544)
+		ADD_STRUCT(TrObject__CaHCapturePointLabel, m_CapturePointLabel, 1544)
 		ADD_BOOL(r_bIsHeld, 1540, 0x1)
 		ADD_STRUCT(Vector, LastCameraPos, 1528)
 		ADD_STRUCT(Vector, LastCameraDir, 1516)

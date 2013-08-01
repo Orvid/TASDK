@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "UDKBase.UDKSkelControl_DamageSpring.h"
-#include "Core.Object.h"
 namespace UnrealScript
 {
 	class UTSkelControl_DamageSpring : public UDKSkelControl_DamageSpring

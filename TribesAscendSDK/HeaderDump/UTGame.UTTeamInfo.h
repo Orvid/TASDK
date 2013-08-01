@@ -1,12 +1,12 @@
 #pragma once
+#include "Core.Object.Color.h"
 #include "UTGame.UTCarriedObject.h"
 #include "Engine.TeamInfo.h"
-#include "UTGame.UTCharInfo.h"
 #include "UTGame.UTTeamAI.h"
 #include "UTGame.UTGameObjective.h"
+#include "UTGame.UTCharInfo.CharacterInfo.h"
 #include "Engine.Controller.h"
 #include "UTGame.UTBot.h"
-#include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -25,15 +25,15 @@ namespace UnrealScript
 		ADD_OBJECT(UTTeamAI, AI, 508)
 		ADD_OBJECT(UTGameObjective, HomeBase, 512)
 		ADD_STRUCT(ScriptString*, TeamColorNames, 548)
-		ADD_STRUCT(Object::Color, BaseTeamColor, 532)
+		ADD_STRUCT(Object__Color, BaseTeamColor, 532)
 		ADD_STRUCT(int, DesiredTeamSize, 504)
-		UTCharInfo::CharacterInfo GetBotInfo(ScriptString* BotName)
+		UTCharInfo__CharacterInfo GetBotInfo(ScriptString* BotName)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(44823);
 			byte params[124] = { NULL };
 			*(ScriptString**)params = BotName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(UTCharInfo::CharacterInfo*)&params[12];
+			return *(UTCharInfo__CharacterInfo*)&params[12];
 		}
 		bool AllBotsSpawned()
 		{
@@ -42,12 +42,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		Object::Color GetHUDColor()
+		Object__Color GetHUDColor()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45835);
 			byte params[4] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)params;
+			return *(Object__Color*)params;
 		}
 		void ReplicatedEvent(ScriptName VarName)
 		{

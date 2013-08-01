@@ -1,12 +1,13 @@
 #pragma once
 #include "GameFramework.GamePawn.h"
-#include "Core.Object.h"
 #include "GameFramework.GameExplosion.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
-#include "Engine.PhysicalMaterial.h"
-#include "Engine.ParticleSystem.h"
 #include "Engine.CameraShake.h"
+#include "Core.Object.Vector.h"
+#include "Engine.PhysicalMaterial.h"
+#include "Core.Object.Box.h"
+#include "Engine.ParticleSystem.h"
 #include "Engine.PlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -76,12 +77,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		float BoxDistanceToPoint(Vector Start, Object::Box BBox)
+		float BoxDistanceToPoint(Vector Start, Object__Box BBox)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31605);
 			byte params[44] = { NULL };
 			*(Vector*)params = Start;
-			*(Object::Box*)&params[12] = BBox;
+			*(Object__Box*)&params[12] = BBox;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[40];
 		}

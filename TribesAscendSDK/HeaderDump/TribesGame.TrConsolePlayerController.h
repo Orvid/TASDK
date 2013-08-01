@@ -1,5 +1,6 @@
 #pragma once
 #include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrConsolePlayerController.ProfileSettingToUE3BindingDatum.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -20,14 +21,8 @@ namespace UnrealScript
 	class TrConsolePlayerController : public TrPlayerController
 	{
 	public:
-		struct ProfileSettingToUE3BindingDatum
-		{
-		public:
-			ADD_STRUCT(ScriptName, UE3BindingName, 8)
-			ADD_STRUCT(ScriptName, ProfileSettingName, 0)
-		};
-		ADD_STRUCT(ScriptArray<TrConsolePlayerController::ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMapping360, 3436)
-		ADD_STRUCT(ScriptArray<TrConsolePlayerController::ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMappingPS3, 3448)
+		ADD_STRUCT(ScriptArray<TrConsolePlayerController__ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMapping360, 3436)
+		ADD_STRUCT(ScriptArray<TrConsolePlayerController__ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMappingPS3, 3448)
 		ADD_BOOL(bDebugTargetAdhesion, 3432, 0x2)
 		ADD_BOOL(bTargetAdhesionEnabled, 3432, 0x1)
 		void UpdateRotation(float DeltaTime)

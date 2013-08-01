@@ -1,6 +1,6 @@
 #pragma once
-#include "Engine.AnimSequence.h"
 #include "Core.Object.h"
+#include "Engine.AnimSequence.AnimationCompressionFormat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,8 +20,8 @@ namespace UnrealScript
 	class AnimationCompressionAlgorithm : public Object
 	{
 	public:
-		ADD_STRUCT(AnimSequence::AnimationCompressionFormat, RotationCompressionFormat, 77)
-		ADD_STRUCT(AnimSequence::AnimationCompressionFormat, TranslationCompressionFormat, 76)
+		ADD_STRUCT(AnimSequence__AnimationCompressionFormat, RotationCompressionFormat, 77)
+		ADD_STRUCT(AnimSequence__AnimationCompressionFormat, TranslationCompressionFormat, 76)
 		ADD_BOOL(bNeedsSkeleton, 72, 0x1)
 		ADD_STRUCT(ScriptString*, Description, 60)
 	};

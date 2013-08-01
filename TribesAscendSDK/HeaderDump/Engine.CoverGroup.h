@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.Info.h"
-#include "Engine.Actor.h"
+#include "Engine.Actor.ActorReference.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -11,16 +11,7 @@ namespace UnrealScript
 	class CoverGroup : public Info
 	{
 	public:
-		enum ECoverGroupFillAction : byte
-		{
-			CGFA_Overwrite = 0,
-			CGFA_Add = 1,
-			CGFA_Remove = 2,
-			CGFA_Clear = 3,
-			CGFA_Cylinder = 4,
-			CGFA_MAX = 5,
-		};
-		ADD_STRUCT(ScriptArray<Actor::ActorReference>, CoverLinkRefs, 476)
+		ADD_STRUCT(ScriptArray<Actor__ActorReference>, CoverLinkRefs, 476)
 		ADD_STRUCT(float, AutoSelectHeight, 492)
 		ADD_STRUCT(float, AutoSelectRadius, 488)
 		void EnableGroup()

@@ -1,10 +1,11 @@
 #pragma once
 #include "Engine.Actor.h"
 #include "Core.Object.h"
+#include "Core.Object.Rotator.h"
 #include "GameFramework.GamePlayerCamera.h"
-#include "Engine.PostProcessVolume.h"
-#include "Engine.Camera.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #include "Engine.Pawn.h"
+#include "Engine.Camera.TViewTarget.h"
 #include "Engine.HUD.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -46,16 +47,16 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30883);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void UpdateCamera(class Pawn* P, class GamePlayerCamera* CameraActor, float DeltaTime, Camera::TViewTarget& OutVT)
+		void UpdateCamera(class Pawn* P, class GamePlayerCamera* CameraActor, float DeltaTime, Camera__TViewTarget& OutVT)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30884);
 			byte params[56] = { NULL };
 			*(class Pawn**)params = P;
 			*(class GamePlayerCamera**)&params[4] = CameraActor;
 			*(float*)&params[8] = DeltaTime;
-			*(Camera::TViewTarget*)&params[12] = OutVT;
+			*(Camera__TViewTarget*)&params[12] = OutVT;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutVT = *(Camera::TViewTarget*)&params[12];
+			OutVT = *(Camera__TViewTarget*)&params[12];
 		}
 		void ProcessViewRotation(float DeltaTime, class Actor* ViewTarget, Rotator& out_ViewRotation, Rotator& out_DeltaRot)
 		{
@@ -85,13 +86,13 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30898);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ModifyPostProcessSettings(PostProcessVolume::PostProcessSettings& PP)
+		void ModifyPostProcessSettings(PostProcessVolume__PostProcessSettings& PP)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30899);
 			byte params[220] = { NULL };
-			*(PostProcessVolume::PostProcessSettings*)params = PP;
+			*(PostProcessVolume__PostProcessSettings*)params = PP;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			PP = *(PostProcessVolume::PostProcessSettings*)params;
+			PP = *(PostProcessVolume__PostProcessSettings*)params;
 		}
 	};
 }

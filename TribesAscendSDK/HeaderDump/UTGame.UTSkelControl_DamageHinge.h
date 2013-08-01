@@ -1,6 +1,6 @@
 #pragma once
 #include "UDKBase.UDKSkelControl_DamageHinge.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 namespace UnrealScript
 {
 	class UTSkelControl_DamageHinge : public UDKSkelControl_DamageHinge

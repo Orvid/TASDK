@@ -1,7 +1,7 @@
 #pragma once
 #include "UTGame.UTLocalMessage.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "UDKBase.UDKPlayerController.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
 #include "Engine.PlayerController.h"
 #include "Core.Object.h"
 #include "Engine.SoundNodeWave.h"
@@ -14,7 +14,7 @@ namespace UnrealScript
 	class UTTimerMessage : public UTLocalMessage
 	{
 	public:
-		ADD_STRUCT(ScriptArray<UDKPlayerController::ObjectiveAnnouncementInfo>, Announcements, 100)
+		ADD_STRUCT(ScriptArray<UDKPlayerController__ObjectiveAnnouncementInfo>, Announcements, 100)
 		void ClientReceive(class PlayerController* P, int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(49545);

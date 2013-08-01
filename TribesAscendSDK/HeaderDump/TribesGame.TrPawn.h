@@ -1,35 +1,49 @@
 #pragma once
-#include "TribesGame.AlienFXManager.h"
 #include "UTGame.UTWeaponAttachment.h"
+#include "TribesGame.TrPawn.FootstepParticleInfo.h"
 #include "TribesGame.TrEffectForm.h"
 #include "UTGame.UTPawn.h"
-#include "UDKBase.UDKCarriedObject.h"
-#include "TribesGame.TrObject.h"
 #include "Engine.Canvas.h"
 #include "TribesGame.TrVehicle.h"
-#include "TribesGame.TrAnimNodeBlendByRidingPassenger.h"
-#include "TribesGame.TrStatsInterface.h"
-#include "Core.Object.h"
-#include "TribesGame.TrAnimNodeAimOffset.h"
-#include "TribesGame.TrPlayerReplicationInfo.h"
-#include "TribesGame.TrEffect.h"
+#include "TribesGame.TrPawn.AssistInfo.h"
 #include "TribesGame.TrDeployable_DropJammer.h"
+#include "TribesGame.TrObject.EffectFormOverwrite.h"
+#include "TribesGame.TrAnimNodeBlendByRidingPassenger.h"
+#include "TribesGame.TrAnimNodeAimOffset.h"
+#include "Core.Object.Vector.h"
+#include "TribesGame.TrEffect.h"
+#include "TribesGame.TrPlayerReplicationInfo.h"
+#include "TribesGame.TrPawn.StickyGrenadeSocketInfo.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.SkeletalMesh.h"
+#include "TribesGame.TrStatsInterface.h"
+#include "UDKBase.UDKCarriedObject.h"
 #include "Engine.MaterialInstanceConstant.h"
 #include "TribesGame.TrValueModifier.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
 #include "Engine.Material.h"
 #include "TribesGame.TrPawnCollisionProxy.h"
 #include "Engine.MorphNodeWeight.h"
 #include "TribesGame.TrAnimNodeBlendByVehicle.h"
+#include "TribesGame.TrObject.TrTakeEffectInfo.h"
+#include "TribesGame.TrObject.TR_HUD_INFO.h"
+#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.AlienFXManager.FXOverlay.h"
+#include "TribesGame.TrObject.EMissileLock.h"
+#include "TribesGame.TrPawn.PhysicsType.h"
 #include "Engine.Actor.h"
+#include "Engine.Controller.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "TribesGame.TrHUD.h"
 #include "Engine.MaterialInterface.h"
 #include "Engine.PlayerController.h"
-#include "Engine.Controller.h"
-#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrObject.EArmorType.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.HUD.h"
+#include "TribesGame.TrObject.TrCreditEventType.h"
 #include "Engine.Pawn.h"
 #include "Engine.Weapon.h"
+#include "Engine.Actor.EDoubleClickDir.h"
 #include "Engine.Vehicle.h"
 #include "Engine.SVehicle.h"
 #include "TribesGame.TrProjectile.h"
@@ -61,43 +75,6 @@ namespace UnrealScript
 		static const auto MAX_SCANNER_DISPLAY_FLAG = 3;
 		static const auto MAX_MULTISHOT_LOCATIONS = 8;
 		static const auto VELOCITY_HISTORY_SIZE = 3;
-		enum PhysicsType : byte
-		{
-			PhysType_SpeedCap = 0,
-			PhysType_AccelCap = 1,
-			PhysType_NoCap = 2,
-			PhysType_MAX = 3,
-		};
-		enum WalkingDeceleration : byte
-		{
-			WalkingDeceleration_None = 0,
-			WalkingDeceleration_A = 1,
-			WalkingDeceleration_B = 2,
-			WalkingDeceleration_C = 3,
-			WalkingDeceleration_D = 4,
-			WalkingDeceleration_E = 5,
-			WalkingDeceleration_MAX = 6,
-		};
-		struct AssistInfo
-		{
-		public:
-			ADD_STRUCT(float, m_fDamagerTime, 8)
-			ADD_STRUCT(int, m_AccumulatedDamage, 4)
-			ADD_OBJECT(TrPlayerController, m_Damager, 0)
-		};
-		struct FootstepParticleInfo
-		{
-		public:
-			ADD_OBJECT(ParticleSystem, FootParticle, 8)
-			ADD_STRUCT(ScriptName, MaterialType, 0)
-		};
-		struct StickyGrenadeSocketInfo
-		{
-		public:
-			ADD_STRUCT(Vector, ViewOffset, 16)
-			ADD_OBJECT(TrProjectile, Projectile, 8)
-			ADD_STRUCT(ScriptName, SocketName, 0)
-		};
 		ADD_OBJECT(TrVehicle, m_RidingVehicle, 3096)
 		ADD_STRUCT(float, m_fCurrentPowerPool, 2320)
 		ADD_STRUCT(float, m_fHeadShotDamageMultiple, 2348)
@@ -114,15 +91,15 @@ namespace UnrealScript
 		ADD_BOOL(r_bIsJetting, 2220, 0x8000)
 		ADD_STRUCT(ScriptArray<class TrEffect*>, m_AppliedEffects, 2476)
 		ADD_STRUCT(ScriptArray<class TrEffectForm*>, m_AppliedEffectForms, 2488)
-		ADD_STRUCT(ScriptArray<TrPawn::AssistInfo>, m_KillAssisters, 2572)
-		ADD_STRUCT(ScriptArray<TrObject::EffectFormOverwrite>, m_EffectFormOverwrite, 2752)
+		ADD_STRUCT(ScriptArray<TrPawn__AssistInfo>, m_KillAssisters, 2572)
+		ADD_STRUCT(ScriptArray<TrObject__EffectFormOverwrite>, m_EffectFormOverwrite, 2752)
 		ADD_STRUCT(ScriptArray<class TrPawn*>, m_JammedFriends, 2776)
 		ADD_STRUCT(ScriptArray<class TrPawn*>, m_JammedEnemies, 2788)
 		ADD_STRUCT(ScriptArray<class TrPlayerReplicationInfo*>, m_FriendJammingList, 2808)
 		ADD_STRUCT(ScriptArray<class TrDeployable_DropJammer*>, m_FriendlyDropJammerList, 2832)
 		ADD_STRUCT(ScriptArray<class TrDeployable_DropJammer*>, m_EnemyDropJammerList, 2844)
-		ADD_STRUCT(ScriptArray<TrPawn::FootstepParticleInfo>, m_SkiParticles, 2944)
-		ADD_STRUCT(ScriptArray<TrPawn::StickyGrenadeSocketInfo>, m_StickyGrenadeSocketList, 2968)
+		ADD_STRUCT(ScriptArray<TrPawn__FootstepParticleInfo>, m_SkiParticles, 2944)
+		ADD_STRUCT(ScriptArray<TrPawn__StickyGrenadeSocketInfo>, m_StickyGrenadeSocketList, 2968)
 		ADD_STRUCT(ScriptArray<Vector>, m_aPreviousVelocities, 3048)
 		ADD_STRUCT(ScriptArray<Vector>, m_aPreviousLocations, 3060)
 		ADD_STRUCT(ScriptArray<float>, m_aPreviousTickTimes, 3072)
@@ -209,9 +186,9 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fMaxSkiControlPct, 2524)
 		ADD_STRUCT(float, m_fSkiControlSigmaSquare, 2520)
 		ADD_STRUCT(float, m_fPeakSkiControlSpeed, 2516)
-		ADD_STRUCT(TrObject::TrTakeEffectInfo, r_LastTakeEffectInfo, 2500)
+		ADD_STRUCT(TrObject__TrTakeEffectInfo, r_LastTakeEffectInfo, 2500)
 		ADD_STRUCT(float, ShowHeaderUntil, 2472)
-		ADD_STRUCT(TrObject::TR_HUD_INFO, m_HudInfo, 2404)
+		ADD_STRUCT(TrObject__TR_HUD_INFO, m_HudInfo, 2404)
 		ADD_STRUCT(int, r_nSensorAlertLevel, 2400)
 		ADD_STRUCT(float, m_fDecelerationRateWithFlag, 2396)
 		ADD_STRUCT(float, m_fMaxSpeedWithFlag, 2392)
@@ -249,15 +226,15 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fMinStealthVisibilityParamValue, 2256)
 		ADD_STRUCT(float, m_fDisableStealthVisibilityInterpSpeed, 2252)
 		ADD_STRUCT(float, m_fEnableStealthVisibilityInterpSpeed, 2248)
-		ADD_STRUCT(AlienFXManager::FXOverlay, LastFXOverlay, 2247)
+		ADD_STRUCT(AlienFXManager__FXOverlay, LastFXOverlay, 2247)
 		ADD_STRUCT(byte, r_nWhiteOut, 2246)
-		ADD_STRUCT(TrObject::EMissileLock, m_MissileLockStatus, 2245)
+		ADD_STRUCT(TrObject__EMissileLock, m_MissileLockStatus, 2245)
 		ADD_STRUCT(byte, r_RemoteViewYaw, 2244)
-		ADD_STRUCT(TrPawn::PhysicsType, PhysType, 2243)
+		ADD_STRUCT(TrPawn__PhysicsType, PhysType, 2243)
 		ADD_STRUCT(int, r_nFactionId, 2208)
 		ADD_STRUCT(byte, r_nBlinked, 2242)
 		ADD_STRUCT(byte, r_nPulseStealth, 2241)
-		ADD_STRUCT(TrObject::EMissileLock, r_MissileLock, 2240)
+		ADD_STRUCT(TrObject__EMissileLock, r_MissileLock, 2240)
 		ADD_OBJECT(Actor, r_LockedTarget, 2224)
 		ADD_BOOL(m_bUseSmoothNetReceiveRotation, 2220, 0x1000000)
 		ADD_BOOL(r_bDetectedByEnemyScanner, 2220, 0x800000)
@@ -331,13 +308,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class TrPlayerReplicationInfo**)params;
 		}
-		bool CheckHeadShot(Actor::ImpactInfo& Impact)
+		bool CheckHeadShot(Actor__ImpactInfo& Impact)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67478);
 			byte params[84] = { NULL };
-			*(Actor::ImpactInfo*)params = Impact;
+			*(Actor__ImpactInfo*)params = Impact;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Impact = *(Actor::ImpactInfo*)params;
+			Impact = *(Actor__ImpactInfo*)params;
 			return *(bool*)&params[80];
 		}
 		Vector GetPawnViewLocation()
@@ -512,12 +489,12 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72476);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		TrObject::EArmorType GetArmorType()
+		TrObject__EArmorType GetArmorType()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72479);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(TrObject::EArmorType*)params;
+			return *(TrObject__EArmorType*)params;
 		}
 		void ReplicatedEvent(ScriptName VarName)
 		{
@@ -534,11 +511,11 @@ void**)params = SkelComp;
 			*(Vector*)&params[4] = HitLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void EquipBestPossibleDevice(TrObject::TR_EQUIP_POINT eqpPoint)
+		void EquipBestPossibleDevice(TrObject__TR_EQUIP_POINT eqpPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72490);
 			byte params[1] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = eqpPoint;
+			*(TrObject__TR_EQUIP_POINT*)params = eqpPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void InitDefaultAnims(ScriptClass* Info)
@@ -719,14 +696,14 @@ void**)params = SkelComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)params;
 		}
-		TrPawn::AssistInfo CreateAssistRecord(class Controller* Damager, int DamageAmount)
+		TrPawn__AssistInfo CreateAssistRecord(class Controller* Damager, int DamageAmount)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72710);
 			byte params[20] = { NULL };
 			*(class Controller**)params = Damager;
 			*(int*)&params[4] = DamageAmount;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(TrPawn::AssistInfo*)&params[8];
+			return *(TrPawn__AssistInfo*)&params[8];
 		}
 		class TrPlayerController* GetLastDamager()
 		{
@@ -792,7 +769,7 @@ void**)params = SkelComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class Controller**)&params[8];
 		}
-		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72762);
 			byte params[68] = { NULL };
@@ -801,7 +778,7 @@ void**)params = SkelComp;
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -896,11 +873,11 @@ void**)params = SkelComp;
 			*(Vector*)&params[20] = Momentum;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ProcessCreditEvent(TrObject::TrCreditEventType EventType, bool bProxyEvent)
+		void ProcessCreditEvent(TrObject__TrCreditEventType EventType, bool bProxyEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72973);
 			byte params[5] = { NULL };
-			*(TrObject::TrCreditEventType*)params = EventType;
+			*(TrObject__TrCreditEventType*)params = EventType;
 			*(bool*)&params[4] = bProxyEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -922,19 +899,19 @@ void**)params = SkelComp;
 			*(Vector*)&params[8] = HitLocation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool Dodge(Actor::EDoubleClickDir DoubleClickMove)
+		bool Dodge(Actor__EDoubleClickDir DoubleClickMove)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72984);
 			byte params[5] = { NULL };
-			*(Actor::EDoubleClickDir*)params = DoubleClickMove;
+			*(Actor__EDoubleClickDir*)params = DoubleClickMove;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool PerformDodge(Actor::EDoubleClickDir DoubleClickMove, Vector Dir, Vector Cross)
+		bool PerformDodge(Actor__EDoubleClickDir DoubleClickMove, Vector Dir, Vector Cross)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72987);
 			byte params[29] = { NULL };
-			*(Actor::EDoubleClickDir*)params = DoubleClickMove;
+			*(Actor__EDoubleClickDir*)params = DoubleClickMove;
 			*(Vector*)&params[4] = Dir;
 			*(Vector*)&params[16] = Cross;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -1370,7 +1347,7 @@ void**)&params[4] = RunOverComponent;
 			*(class UDKCarriedObject**)params = GameObj;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AdjustDamage(int& InDamage, Vector& Momentum, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void AdjustDamage(int& InDamage, Vector& Momentum, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(73244);
 			byte params[68] = { NULL };
@@ -1379,7 +1356,7 @@ void**)&params[4] = RunOverComponent;
 			*(class Controller**)&params[16] = InstigatedBy;
 			*(Vector*)&params[20] = HitLocation;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			InDamage = *(int*)params;
@@ -1550,11 +1527,11 @@ void**)&params[4] = RunOverComponent;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(73361);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void AlienFXOverlay(AlienFXManager::FXOverlay Type)
+		void AlienFXOverlay(AlienFXManager__FXOverlay Type)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(73362);
 			byte params[1] = { NULL };
-			*(AlienFXManager::FXOverlay*)params = Type;
+			*(AlienFXManager__FXOverlay*)params = Type;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 	};

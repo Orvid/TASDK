@@ -1,13 +1,14 @@
 #pragma once
 #include "UTGame.UTVehicleWeapon.h"
-#include "TribesGame.TrProj_Tracer.h"
-#include "TribesGame.TrObject.h"
-#include "Engine.ParticleSystem.h"
-#include "Engine.CameraShake.h"
 #include "Engine.Projectile.h"
 #include "Engine.MaterialInstanceConstant.h"
+#include "TribesGame.TrObject.EWeaponTracerType.h"
+#include "Engine.ParticleSystem.h"
+#include "Core.Object.Vector.h"
+#include "Engine.CameraShake.h"
 #include "Engine.SoundCue.h"
-#include "Core.Object.h"
+#include "TribesGame.TrProj_Tracer.h"
+#include "Core.Object.Rotator.h"
 #include "UTGame.UTPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -39,7 +40,7 @@ namespace UnrealScript
 		ADD_BOOL(r_bIsReloading, 1712, 0x40)
 		ADD_STRUCT(ScriptName, m_WeaponSpinControl, 1772)
 		ADD_BOOL(m_bSpawnTracers, 1712, 0x1)
-		ADD_STRUCT(TrObject::EWeaponTracerType, m_TracerType, 1708)
+		ADD_STRUCT(TrObject__EWeaponTracerType, m_TracerType, 1708)
 		ADD_BOOL(m_bSpawnTracerBeams, 1712, 0x2)
 		ADD_OBJECT(ParticleSystem, m_TracerBeamTemplate, 1724)
 		ADD_STRUCT(float, m_fShowTracerDistance, 1720)

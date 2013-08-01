@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleSubUV.h"
-#include "Core.DistributionFloat.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,7 +21,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(int, StartingFrame, 132)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, FrameRate, 104)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, FrameRate, 104)
 		ADD_BOOL(bUseEmitterTime, 100, 0x1)
 	};
 }

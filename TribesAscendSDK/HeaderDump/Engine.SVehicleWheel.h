@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.SkelControlWheel.h"
 #include "Core.Component.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.SVehicleWheel.EWheelSide.h"
 #include "Engine.ParticleSystem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -26,13 +28,6 @@ namespace UnrealScript
 	class SVehicleWheel : public Component
 	{
 	public:
-		enum EWheelSide : byte
-		{
-			SIDE_None = 0,
-			SIDE_Left = 1,
-			SIDE_Right = 2,
-			SIDE_MAX = 3,
-		};
 		ADD_OBJECT(SkelControlWheel, WheelControl, 104)
 		ADD_STRUCT(ScriptName, SkelControlName, 96)
 		ADD_STRUCT(Vector, WheelPosition, 168)
@@ -49,7 +44,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptName, SlipParticleParamName, 268)
 		ADD_OBJECT(ScriptClass, WheelPSCClass, 260)
 		ADD_STRUCT(int, WheelMaterialIndex, 256)
-		ADD_STRUCT(Object::Pointer, WheelShape, 252)
+		ADD_STRUCT(Object__Pointer, WheelShape, 252)
 		ADD_STRUCT(float, CurrentRotation, 248)
 		ADD_STRUCT(float, SuspensionPosition, 244)
 		ADD_STRUCT(float, DesiredSuspensionPosition, 240)
@@ -59,7 +54,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, HandbrakeLongSlipFactor, 156)
 		ADD_STRUCT(float, LatSlipFactor, 152)
 		ADD_STRUCT(float, LongSlipFactor, 148)
-		ADD_STRUCT(SVehicleWheel::EWheelSide, Side, 144)
+		ADD_STRUCT(SVehicleWheel__EWheelSide, Side, 144)
 		ADD_OBJECT(ParticleSystem, WheelParticleSystem, 140)
 		ADD_STRUCT(float, SuspensionSpeed, 136)
 		ADD_STRUCT(float, SuspensionTravel, 132)

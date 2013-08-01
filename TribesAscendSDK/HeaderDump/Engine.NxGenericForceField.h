@@ -1,7 +1,8 @@
 #pragma once
+#include "Engine.NxForceFieldGeneric.FFG_ForceFieldCoordinates.h"
 #include "Engine.NxForceField.h"
-#include "Core.Object.h"
-#include "Engine.NxForceFieldGeneric.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,7 +12,7 @@ namespace UnrealScript
 	class NxGenericForceField : public NxForceField
 	{
 	public:
-		ADD_STRUCT(Object::Pointer, LinearKernel, 692)
+		ADD_STRUCT(Object__Pointer, LinearKernel, 692)
 		ADD_STRUCT(float, TorusRadius, 688)
 		ADD_STRUCT(Vector, FalloffQuadratic, 676)
 		ADD_STRUCT(Vector, FalloffLinear, 664)
@@ -25,7 +26,7 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, PositionMultiplierY, 568)
 		ADD_STRUCT(Vector, PositionMultiplierX, 556)
 		ADD_STRUCT(Vector, Constant, 544)
-		ADD_STRUCT(NxForceFieldGeneric::FFG_ForceFieldCoordinates, Coordinates, 540)
+		ADD_STRUCT(NxForceFieldGeneric__FFG_ForceFieldCoordinates, Coordinates, 540)
 	};
 }
 #undef ADD_STRUCT

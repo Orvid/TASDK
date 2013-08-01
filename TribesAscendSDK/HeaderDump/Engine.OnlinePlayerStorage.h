@@ -1,6 +1,9 @@
 #pragma once
+#include "Engine.OnlinePlayerStorage.OnlineProfileSetting.h"
 #include "Core.Object.h"
-#include "Engine.Settings.h"
+#include "Engine.Settings.SettingsPropertyPropertyMetaData.h"
+#include "Engine.OnlinePlayerStorage.EOnlinePlayerStorageAsyncState.h"
+#include "Engine.Settings.EPropertyValueMappingType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,30 +13,10 @@ namespace UnrealScript
 	class OnlinePlayerStorage : public Object
 	{
 	public:
-		enum EOnlineProfilePropertyOwner : byte
-		{
-			OPPO_None = 0,
-			OPPO_OnlineService = 1,
-			OPPO_Game = 2,
-			OPPO_MAX = 3,
-		};
-		enum EOnlinePlayerStorageAsyncState : byte
-		{
-			OPAS_None = 0,
-			OPAS_Read = 1,
-			OPAS_Write = 2,
-			OPAS_MAX = 3,
-		};
-		struct OnlineProfileSetting
-		{
-		public:
-			ADD_STRUCT(Settings::SettingsProperty, ProfileSetting, 4)
-			ADD_STRUCT(OnlinePlayerStorage::EOnlineProfilePropertyOwner, Owner, 0)
-		};
-		ADD_STRUCT(ScriptArray<OnlinePlayerStorage::OnlineProfileSetting>, ProfileSettings, 68)
-		ADD_STRUCT(ScriptArray<Settings::SettingsPropertyPropertyMetaData>, ProfileMappings, 80)
+		ADD_STRUCT(ScriptArray<OnlinePlayerStorage__OnlineProfileSetting>, ProfileSettings, 68)
+		ADD_STRUCT(ScriptArray<Settings__SettingsPropertyPropertyMetaData>, ProfileMappings, 80)
 		ADD_STRUCT(int, DeviceID, 96)
-		ADD_STRUCT(OnlinePlayerStorage::EOnlinePlayerStorageAsyncState, AsyncState, 92)
+		ADD_STRUCT(OnlinePlayerStorage__EOnlinePlayerStorageAsyncState, AsyncState, 92)
 		ADD_STRUCT(int, VersionNumber, 60)
 		ADD_STRUCT(int, VersionSettingsId, 64)
 		bool GetProfileSettingId(ScriptName ProfileSettingName, int& ProfileSettingId)
@@ -231,14 +214,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
-		bool GetProfileSettingMappingType(int ProfileId, Settings::EPropertyValueMappingType& OutType)
+		bool GetProfileSettingMappingType(int ProfileId, Settings__EPropertyValueMappingType& OutType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22490);
 			byte params[9] = { NULL };
 			*(int*)params = ProfileId;
-			*(Settings::EPropertyValueMappingType*)&params[4] = OutType;
+			*(Settings__EPropertyValueMappingType*)&params[4] = OutType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutType = *(Settings::EPropertyValueMappingType*)&params[4];
+			OutType = *(Settings__EPropertyValueMappingType*)&params[4];
 			return *(bool*)&params[8];
 		}
 		bool GetProfileSettingMappingIds(int ProfileId, ScriptArray<int>& Ids)

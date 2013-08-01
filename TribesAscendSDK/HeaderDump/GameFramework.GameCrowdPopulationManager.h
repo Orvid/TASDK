@@ -1,13 +1,14 @@
 #pragma once
 #include "Engine.CrowdPopulationManagerBase.h"
-#include "GameFramework.SeqAct_GameCrowdPopulationManagerToggle.h"
-#include "GameFramework.SeqAct_GameCrowdSpawner.h"
+#include "GameFramework.SeqAct_GameCrowdSpawner.AgentArchetypeInfo.h"
 #include "GameFramework.GameCrowdAgent.h"
-#include "Engine.LightComponent.h"
 #include "GameFramework.GameCrowdDestination.h"
 #include "Engine.HUD.h"
 #include "Engine.NavigationHandle.h"
-#include "Core.Object.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
+#include "Core.Object.Pointer.h"
+#include "GameFramework.SeqAct_GameCrowdPopulationManagerToggle.h"
+#include "Core.Object.Vector.h"
 #include "GameFramework.GameCrowdGroup.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -32,7 +33,7 @@ namespace UnrealScript
 	class GameCrowdPopulationManager : public CrowdPopulationManagerBase
 	{
 	public:
-		ADD_STRUCT(ScriptArray<SeqAct_GameCrowdSpawner::AgentArchetypeInfo>, AgentArchetypes, 504)
+		ADD_STRUCT(ScriptArray<SeqAct_GameCrowdSpawner__AgentArchetypeInfo>, AgentArchetypes, 504)
 		ADD_STRUCT(ScriptArray<class GameCrowdAgent*>, AgentPool, 516)
 		ADD_STRUCT(ScriptArray<class GameCrowdDestination*>, PrioritizedSpawnPoints, 556)
 		ADD_STRUCT(ScriptArray<class GameCrowdDestination*>, PotentialSpawnPoints, 572)
@@ -52,7 +53,7 @@ namespace UnrealScript
 		ADD_STRUCT(int, PrioritizationIndex, 548)
 		ADD_STRUCT(float, SpawnPrioritizationInterval, 544)
 		ADD_STRUCT(float, AgentWarmupTime, 540)
-		ADD_STRUCT(LightComponent::LightingChannelContainer, AgentLightingChannel, 536)
+		ADD_STRUCT(LightComponent__LightingChannelContainer, AgentLightingChannel, 536)
 		ADD_STRUCT(int, AgentCount, 532)
 		ADD_STRUCT(int, MaxAgentPoolSize, 528)
 		ADD_STRUCT(float, AgentFrequencySum, 500)
@@ -67,7 +68,7 @@ namespace UnrealScript
 		ADD_BOOL(bCastShadows, 480, 0x4)
 		ADD_BOOL(bEnableCrowdLightEnvironment, 480, 0x2)
 		ADD_BOOL(bSpawningActive, 480, 0x1)
-		ADD_STRUCT(Object::Pointer, VfTable_IInterface_NavigationHandle, 476)
+		ADD_STRUCT(Object__Pointer, VfTable_IInterface_NavigationHandle, 476)
 		void PostBeginPlay()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31372);

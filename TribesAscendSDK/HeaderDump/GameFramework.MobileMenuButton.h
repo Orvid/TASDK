@@ -1,8 +1,9 @@
 #pragma once
-#include "Core.Object.h"
 #include "GameFramework.MobileMenuObject.h"
-#include "Engine.Texture2D.h"
 #include "GameFramework.MobilePlayerInput.h"
+#include "Core.Object.LinearColor.h"
+#include "Engine.Texture2D.h"
+#include "GameFramework.MobileMenuObject.UVCoords.h"
 #include "Engine.Canvas.h"
 #include "GameFramework.MobileMenuScene.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -18,10 +19,10 @@ namespace UnrealScript
 	class MobileMenuButton : public MobileMenuObject
 	{
 	public:
-		ADD_STRUCT(Object::LinearColor, CaptionColor, 208)
+		ADD_STRUCT(Object__LinearColor, CaptionColor, 208)
 		ADD_STRUCT(ScriptString*, Caption, 196)
-		ADD_STRUCT(Object::LinearColor, ImageColor, 180)
-		ADD_STRUCT(MobileMenuObject::UVCoords, ImagesUVs, 140)
+		ADD_STRUCT(Object__LinearColor, ImageColor, 180)
+		ADD_STRUCT(MobileMenuObject__UVCoords, ImagesUVs, 140)
 		ADD_OBJECT(Texture2D, Images, 132)
 		void InitMenuObject(class MobilePlayerInput* PlayerInput, class MobileMenuScene* Scene, int ScreenWidth, int ScreenHeight)
 		{

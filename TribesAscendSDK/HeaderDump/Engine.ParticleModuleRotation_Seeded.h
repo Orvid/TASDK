@@ -1,6 +1,6 @@
 #pragma once
+#include "Engine.ParticleModule.ParticleRandomSeedInfo.h"
 #include "Engine.ParticleModuleRotation.h"
-#include "Engine.ParticleModule.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,7 +10,7 @@ namespace UnrealScript
 	class ParticleModuleRotation_Seeded : public ParticleModuleRotation
 	{
 	public:
-		ADD_STRUCT(ParticleModule::ParticleRandomSeedInfo, RandomSeedInfo, 100)
+		ADD_STRUCT(ParticleModule__ParticleRandomSeedInfo, RandomSeedInfo, 100)
 	};
 }
 #undef ADD_STRUCT

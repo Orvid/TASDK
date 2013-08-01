@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.OnlinePlayerScore.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.OnlineStatsRead.h"
 #include "Engine.OnlineStatsWrite.h"
 namespace UnrealScript
@@ -8,15 +9,15 @@ namespace UnrealScript
 	class OnlineStatsInterface : public Interface
 	{
 	public:
-		bool WriteOnlinePlayerScores(ScriptName SessionName, int LeaderboardId, ScriptArray<OnlineSubsystem::OnlinePlayerScore>& PlayerScores)
+		bool WriteOnlinePlayerScores(ScriptName SessionName, int LeaderboardId, ScriptArray<OnlineSubsystem__OnlinePlayerScore>& PlayerScores)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9304);
 			byte params[28] = { NULL };
 			*(ScriptName*)params = SessionName;
 			*(int*)&params[8] = LeaderboardId;
-			*(ScriptArray<OnlineSubsystem::OnlinePlayerScore>*)&params[12] = PlayerScores;
+			*(ScriptArray<OnlineSubsystem__OnlinePlayerScore>*)&params[12] = PlayerScores;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			PlayerScores = *(ScriptArray<OnlineSubsystem::OnlinePlayerScore>*)&params[12];
+			PlayerScores = *(ScriptArray<OnlineSubsystem__OnlinePlayerScore>*)&params[12];
 			return *(bool*)&params[24];
 		}
 		bool RegisterHostStatGuid(ScriptString*& HostStatGuid)
@@ -35,11 +36,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)params;
 		}
-		bool RegisterStatGuid(OnlineSubsystem::UniqueNetId PlayerID, ScriptString*& ClientStatGuid)
+		bool RegisterStatGuid(OnlineSubsystem__UniqueNetId PlayerID, ScriptString*& ClientStatGuid)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9369);
 			byte params[24] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = PlayerID;
+			*(OnlineSubsystem__UniqueNetId*)params = PlayerID;
 			*(ScriptString**)&params[8] = ClientStatGuid;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			ClientStatGuid = *(ScriptString**)&params[8];
@@ -52,14 +53,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)params;
 		}
-		bool ReadOnlineStats(ScriptArray<OnlineSubsystem::UniqueNetId>& Players, class OnlineStatsRead* StatsRead)
+		bool ReadOnlineStats(ScriptArray<OnlineSubsystem__UniqueNetId>& Players, class OnlineStatsRead* StatsRead)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22756);
 			byte params[20] = { NULL };
-			*(ScriptArray<OnlineSubsystem::UniqueNetId>*)params = Players;
+			*(ScriptArray<OnlineSubsystem__UniqueNetId>*)params = Players;
 			*(class OnlineStatsRead**)&params[12] = StatsRead;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Players = *(ScriptArray<OnlineSubsystem::UniqueNetId>*)params;
+			Players = *(ScriptArray<OnlineSubsystem__UniqueNetId>*)params;
 			return *(bool*)&params[16];
 		}
 		bool ReadOnlineStatsForFriends(byte LocalUserNum, class OnlineStatsRead* StatsRead)
@@ -142,12 +143,12 @@ void**)params = ReadOnlineStatsCompleteDelegate;
 			*(class OnlineStatsRead**)params = StatsRead;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool WriteOnlineStats(ScriptName SessionName, OnlineSubsystem::UniqueNetId Player, class OnlineStatsWrite* StatsWrite)
+		bool WriteOnlineStats(ScriptName SessionName, OnlineSubsystem__UniqueNetId Player, class OnlineStatsWrite* StatsWrite)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22788);
 			byte params[24] = { NULL };
 			*(ScriptName*)params = SessionName;
-			*(OnlineSubsystem::UniqueNetId*)&params[8] = Player;
+			*(OnlineSubsystem__UniqueNetId*)&params[8] = Player;
 			*(class OnlineStatsWrite**)&params[16] = StatsWrite;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[20];

@@ -10,14 +10,22 @@
 #include "Engine.AccessControl.h"
 #include "Engine.CoverReplicator.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Engine.GameInfo.GameClassShortName.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.GameInfo.GameTypePrefix.h"
 #include "Engine.Actor.h"
 #include "Engine.Controller.h"
 #include "Engine.Pawn.h"
 #include "Engine.NavigationPoint.h"
-#include "Core.Object.h"
+#include "Core.Object.Guid.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.PlayerStart.h"
 #include "Engine.PickupFactory.h"
+#include "Core.Object.h"
 #include "Engine.Vehicle.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.GameInfo.EStandbyType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -41,28 +49,6 @@ namespace UnrealScript
 	class GameInfo : public Info
 	{
 	public:
-		enum EStandbyType : byte
-		{
-			STDBY_Rx = 0,
-			STDBY_Tx = 1,
-			STDBY_BadPing = 2,
-			STDBY_MAX = 3,
-		};
-		struct GameClassShortName
-		{
-		public:
-			ADD_STRUCT(ScriptString*, GameClassName, 12)
-			ADD_STRUCT(ScriptString*, ShortName, 0)
-		};
-		struct GameTypePrefix
-		{
-		public:
-			ADD_STRUCT(ScriptArray<ScriptString*>, AdditionalGameTypes, 28)
-			ADD_STRUCT(ScriptArray<ScriptString*>, ForcedObjects, 40)
-			ADD_STRUCT(ScriptString*, GameType, 16)
-			ADD_BOOL(bUsesCommonPackage, 12, 0x1)
-			ADD_STRUCT(ScriptString*, Prefix, 0)
-		};
 		ADD_STRUCT(int, NumPlayers, 584)
 		ADD_OBJECT(ScriptClass, GameMessageClass, 644)
 		ADD_OBJECT(ScriptClass, PlayerReplicationInfoClass, 680)
@@ -155,10 +141,10 @@ void*>, Pausers, 720)
 		ADD_STRUCT(float, PercentMissingForTxStandby, 812)
 		ADD_STRUCT(float, PercentForBadPing, 816)
 		ADD_STRUCT(float, JoinInProgressStandbyWaitTime, 820)
-		ADD_STRUCT(ScriptArray<GameInfo::GameClassShortName>, GameInfoClassAliases, 824)
+		ADD_STRUCT(ScriptArray<GameInfo__GameClassShortName>, GameInfoClassAliases, 824)
 		ADD_STRUCT(ScriptString*, DefaultGameType, 836)
-		ADD_STRUCT(ScriptArray<GameInfo::GameTypePrefix>, DefaultMapPrefixes, 848)
-		ADD_STRUCT(ScriptArray<GameInfo::GameTypePrefix>, CustomMapPrefixes, 860)
+		ADD_STRUCT(ScriptArray<GameInfo__GameTypePrefix>, DefaultMapPrefixes, 848)
+		ADD_STRUCT(ScriptArray<GameInfo__GameTypePrefix>, CustomMapPrefixes, 860)
 		bool CheckRelevance(class Actor* Other)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4029);
@@ -270,16 +256,16 @@ void**)&params[4] = CanUnpauseDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		bool GetSupportedGameTypes(ScriptString*& InFilename, GameInfo::GameTypePrefix& OutGameType, bool bCheckExt)
+		bool GetSupportedGameTypes(ScriptString*& InFilename, GameInfo__GameTypePrefix& OutGameType, bool bCheckExt)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16748);
 			byte params[72] = { NULL };
 			*(ScriptString**)params = InFilename;
-			*(GameInfo::GameTypePrefix*)&params[12] = OutGameType;
+			*(GameInfo__GameTypePrefix*)&params[12] = OutGameType;
 			*(bool*)&params[64] = bCheckExt;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			InFilename = *(ScriptString**)params;
-			OutGameType = *(GameInfo::GameTypePrefix*)&params[12];
+			OutGameType = *(GameInfo__GameTypePrefix*)&params[12];
 			return *(bool*)&params[68];
 		}
 		bool GetMapCommonPackageName(ScriptString*& InFilename, ScriptString*& OutCommonPackageName)
@@ -510,12 +496,12 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(bool*)&params[12] = bAbsolute;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		class PlayerController* ProcessClientTravel(ScriptString*& URL, Object::Guid NextMapGuid, bool bSeamless, bool bAbsolute)
+		class PlayerController* ProcessClientTravel(ScriptString*& URL, Object__Guid NextMapGuid, bool bSeamless, bool bAbsolute)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16904);
 			byte params[40] = { NULL };
 			*(ScriptString**)params = URL;
-			*(Object::Guid*)&params[12] = NextMapGuid;
+			*(Object__Guid*)&params[12] = NextMapGuid;
 			*(bool*)&params[28] = bSeamless;
 			*(bool*)&params[32] = bAbsolute;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -555,13 +541,13 @@ void**)&params[4] = CanUnpauseDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class PlayerController**)&params[24];
 		}
-		class PlayerController* Login(ScriptString* Portal, ScriptString* Options, OnlineSubsystem::UniqueNetId UniqueId, ScriptString*& ErrorMessage)
+		class PlayerController* Login(ScriptString* Portal, ScriptString* Options, OnlineSubsystem__UniqueNetId UniqueId, ScriptString*& ErrorMessage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16930);
 			byte params[48] = { NULL };
 			*(ScriptString**)params = Portal;
 			*(ScriptString**)&params[12] = Options;
-			*(OnlineSubsystem::UniqueNetId*)&params[24] = UniqueId;
+			*(OnlineSubsystem__UniqueNetId*)&params[24] = UniqueId;
 			*(ScriptString**)&params[32] = ErrorMessage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			ErrorMessage = *(ScriptString**)&params[32];
@@ -1240,12 +1226,12 @@ void**)&params[4] = CanUnpauseDelegate;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17370);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnLoginFailed(byte LocalUserNum, OnlineSubsystem::EOnlineServerConnectionStatus ErrorCode)
+		void OnLoginFailed(byte LocalUserNum, OnlineSubsystem__EOnlineServerConnectionStatus ErrorCode)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17371);
 			byte params[2] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::EOnlineServerConnectionStatus*)&params[1] = ErrorCode;
+			*(OnlineSubsystem__EOnlineServerConnectionStatus*)&params[1] = ErrorCode;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnLoginChange(byte LocalUserNum)
@@ -1329,11 +1315,11 @@ void**)&params[4] = CanUnpauseDelegate;
 			*(bool*)params = bIsEnabled;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void StandbyCheatDetected(GameInfo::EStandbyType StandbyType)
+		void StandbyCheatDetected(GameInfo__EStandbyType StandbyType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17408);
 			byte params[1] = { NULL };
-			*(GameInfo::EStandbyType*)params = StandbyType;
+			*(GameInfo__EStandbyType*)params = StandbyType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnEngineHasLoaded()

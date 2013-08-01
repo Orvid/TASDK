@@ -1,7 +1,7 @@
 #pragma once
+#include "Engine.PrimitiveComponent.ERadialImpulseFalloff.h"
 #include "Engine.NxForceField.h"
-#include "Core.Object.h"
-#include "Engine.PrimitiveComponent.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.ForceFieldShape.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -16,8 +16,8 @@ namespace UnrealScript
 	class NxForceFieldRadial : public NxForceField
 	{
 	public:
-		ADD_STRUCT(Object::Pointer, Kernel, 564)
-		ADD_STRUCT(PrimitiveComponent::ERadialImpulseFalloff, ForceFalloff, 560)
+		ADD_STRUCT(Object__Pointer, Kernel, 564)
+		ADD_STRUCT(PrimitiveComponent__ERadialImpulseFalloff, ForceFalloff, 560)
 		ADD_STRUCT(float, SelfRotationStrength, 556)
 		ADD_STRUCT(float, ForceRadius, 552)
 		ADD_STRUCT(float, ForceStrength, 548)

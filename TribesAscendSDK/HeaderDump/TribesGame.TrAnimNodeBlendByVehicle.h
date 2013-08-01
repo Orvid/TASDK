@@ -10,15 +10,6 @@ namespace UnrealScript
 	class TrAnimNodeBlendByVehicle : public TrAnimNodeBlendList
 	{
 	public:
-		enum EVehicleAnims : byte
-		{
-			VANIM_NoVehicle = 0,
-			VANIM_Driving = 1,
-			VANIM_Enter = 2,
-			VANIM_Exit = 3,
-			VANIM_ChangeSeat = 4,
-			VANIM_MAX = 5,
-		};
 		ADD_OBJECT(TrPawn, m_TrPawn, 292)
 		void PlayNoVehicleAnim()
 		{

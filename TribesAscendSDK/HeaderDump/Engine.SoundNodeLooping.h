@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.SoundNode.h"
-#include "Core.DistributionFloat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,7 +20,7 @@ namespace UnrealScript
 	class SoundNodeLooping : public SoundNode
 	{
 	public:
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, LoopCount, 88)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, LoopCount, 88)
 		ADD_STRUCT(float, LoopCountMax, 84)
 		ADD_STRUCT(float, LoopCountMin, 80)
 		ADD_BOOL(bLoopIndefinitely, 76, 0x1)

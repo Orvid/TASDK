@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "Engine.StaticMesh.StaticMeshLODInfo.h"
 #include "Engine.RB_BodySetup.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -24,18 +25,6 @@ namespace UnrealScript
 	class StaticMesh : public Object
 	{
 	public:
-		struct StaticMeshLODElement
-		{
-		public:
-			ADD_OBJECT(MaterialInterface, Material, 0)
-			ADD_BOOL(bEnableShadowCasting, 4, 0x1)
-			ADD_BOOL(bEnableCollision, 12, 0x1)
-		};
-		struct StaticMeshLODInfo
-		{
-		public:
-			ADD_STRUCT(ScriptArray<StaticMesh::StaticMeshLODElement>, Elements, 0)
-		};
 		ADD_BOOL(UseSimpleLineCollision, 252, 0x1)
 		ADD_BOOL(UseSimpleBoxCollision, 256, 0x1)
 		ADD_BOOL(UseSimpleRigidBodyCollision, 260, 0x1)
@@ -49,7 +38,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, LODDistanceRatio, 84)
 		ADD_STRUCT(float, LODMaxRange, 88)
 		ADD_STRUCT(float, StreamingDistanceMultiplier, 288)
-		ADD_STRUCT(ScriptArray<StaticMesh::StaticMeshLODInfo>, LODInfo, 72)
+		ADD_STRUCT(ScriptArray<StaticMesh__StaticMeshLODInfo>, LODInfo, 72)
 		ADD_OBJECT(RB_BodySetup, BodySetup, 196)
 		ADD_STRUCT(ScriptString*, SourceFilePath, 324)
 		ADD_STRUCT(ScriptString*, SourceFileTimestamp, 336)

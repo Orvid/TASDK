@@ -2,7 +2,7 @@
 #include "Engine.Texture2D.h"
 #include "Engine.SequenceObject.h"
 #include "Engine.Material.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,8 +28,8 @@ namespace UnrealScript
 	public:
 		ADD_OBJECT(Material, FillMaterial, 168)
 		ADD_OBJECT(Texture2D, FillTexture, 164)
-		ADD_STRUCT(Object::Color, FillColor, 160)
-		ADD_STRUCT(Object::Color, BorderColor, 156)
+		ADD_STRUCT(Object__Color, FillColor, 160)
+		ADD_STRUCT(Object__Color, BorderColor, 156)
 		ADD_BOOL(bTileFill, 152, 0x4)
 		ADD_BOOL(bFilled, 152, 0x2)
 		ADD_BOOL(bDrawBox, 152, 0x1)

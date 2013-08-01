@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.PrimitiveComponent.h"
-#include "Core.Object.h"
+#include "Engine.PrimitiveComponent.ERadialImpulseFalloff.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,7 +25,7 @@ namespace UnrealScript
 		ADD_BOOL(bVelChange, 500, 0x1)
 		ADD_STRUCT(float, ImpulseRadius, 496)
 		ADD_STRUCT(float, ImpulseStrength, 492)
-		ADD_STRUCT(PrimitiveComponent::ERadialImpulseFalloff, ImpulseFalloff, 488)
+		ADD_STRUCT(PrimitiveComponent__ERadialImpulseFalloff, ImpulseFalloff, 488)
 		void FireImpulse(Vector Origin)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25317);

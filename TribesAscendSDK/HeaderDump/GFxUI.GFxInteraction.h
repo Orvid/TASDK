@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.LocalPlayer.h"
 #include "Engine.Interaction.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #include "GFxUI.GFxMoviePlayer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -12,7 +12,7 @@ namespace UnrealScript
 	class GFxInteraction : public Interaction
 	{
 	public:
-		ADD_STRUCT(Object::Pointer, VfTable_FCallbackEventDevice, 108)
+		ADD_STRUCT(Object__Pointer, VfTable_FCallbackEventDevice, 108)
 		class GFxMoviePlayer* GetFocusMovie(int ControllerId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30303);

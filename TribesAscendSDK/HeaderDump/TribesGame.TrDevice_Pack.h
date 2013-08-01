@@ -1,5 +1,6 @@
 #pragma once
 #include "TribesGame.TrDevice.h"
+#include "TribesGame.TrDevice_Pack.PowerPoolCostInfo.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -14,13 +15,7 @@ namespace UnrealScript
 	class TrDevice_Pack : public TrDevice
 	{
 	public:
-		struct PowerPoolCostInfo
-		{
-		public:
-			ADD_OBJECT(ScriptClass, m_TrFamilyInfo, 4)
-			ADD_STRUCT(float, m_fPowerPoolCostPerSec, 0)
-		};
-		ADD_STRUCT(ScriptArray<TrDevice_Pack::PowerPoolCostInfo>, m_PowerPoolInfo, 2152)
+		ADD_STRUCT(ScriptArray<TrDevice_Pack__PowerPoolCostInfo>, m_PowerPoolInfo, 2152)
 		ADD_STRUCT(float, m_CachedPowerPoolCostPerSec, 2164)
 		ADD_STRUCT(float, m_fDefaultPowerPoolCostPerSec, 2148)
 		bool UsesPower()

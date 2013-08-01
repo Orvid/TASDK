@@ -1,8 +1,8 @@
 #pragma once
 #include "TribesGame.GFxTrPage.h"
 #include "TribesGame.GFxTrAction.h"
-#include "PlatformCommon.TgPlayerProfile.h"
 #include "GFxUI.GFxObject.h"
+#include "PlatformCommon.TgPlayerProfile.AccoladeStruct.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -322,11 +322,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class GFxObject**)params;
 		}
-		class GFxObject* FillAccolade(TgPlayerProfile::AccoladeStruct Accolade)
+		class GFxObject* FillAccolade(TgPlayerProfile__AccoladeStruct Accolade)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(57174);
 			byte params[20] = { NULL };
-			*(TgPlayerProfile::AccoladeStruct*)params = Accolade;
+			*(TgPlayerProfile__AccoladeStruct*)params = Accolade;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class GFxObject**)&params[16];
 		}

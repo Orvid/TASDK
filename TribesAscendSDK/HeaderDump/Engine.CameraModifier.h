@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.Actor.h"
 #include "Core.Object.h"
+#include "Core.Object.TPOV.h"
 #include "Engine.Camera.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -61,15 +63,15 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12200);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		bool ModifyCamera(class Camera* Camera, float DeltaTime, Object::TPOV& OutPOV)
+		bool ModifyCamera(class Camera* Camera, float DeltaTime, Object__TPOV& OutPOV)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12201);
 			byte params[40] = { NULL };
 			*(class Camera**)params = Camera;
 			*(float*)&params[4] = DeltaTime;
-			*(Object::TPOV*)&params[8] = OutPOV;
+			*(Object__TPOV*)&params[8] = OutPOV;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutPOV = *(Object::TPOV*)&params[8];
+			OutPOV = *(Object__TPOV*)&params[8];
 			return *(bool*)&params[36];
 		}
 		bool IsDisabled()

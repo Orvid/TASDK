@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine.PBRuleNodeBase.PBRuleLink.h"
 #include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -13,14 +14,7 @@ namespace UnrealScript
 	class PBRuleNodeBase : public Object
 	{
 	public:
-		struct PBRuleLink
-		{
-		public:
-			ADD_STRUCT(int, DrawY, 12)
-			ADD_STRUCT(ScriptName, LinkName, 4)
-			ADD_OBJECT(PBRuleNodeBase, NextRule, 0)
-		};
-		ADD_STRUCT(ScriptArray<PBRuleNodeBase::PBRuleLink>, NextRules, 60)
+		ADD_STRUCT(ScriptArray<PBRuleNodeBase__PBRuleLink>, NextRules, 60)
 		ADD_STRUCT(int, DrawHeight, 100)
 		ADD_STRUCT(int, DrawWidth, 96)
 		ADD_STRUCT(int, InDrawY, 92)

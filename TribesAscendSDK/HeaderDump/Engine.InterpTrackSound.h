@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.InterpTrackVectorBase.h"
+#include "Engine.InterpTrackSound.SoundTrackKey.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,15 +24,7 @@ namespace UnrealScript
 	class InterpTrackSound : public InterpTrackVectorBase
 	{
 	public:
-		struct SoundTrackKey
-		{
-		public:
-			ADD_OBJECT(SoundCue, Sound, 12)
-			ADD_STRUCT(float, Pitch, 8)
-			ADD_STRUCT(float, Volume, 4)
-			ADD_STRUCT(float, Time, 0)
-		};
-		ADD_STRUCT(ScriptArray<InterpTrackSound::SoundTrackKey>, Sounds, 148)
+		ADD_STRUCT(ScriptArray<InterpTrackSound__SoundTrackKey>, Sounds, 148)
 		ADD_BOOL(bTreatAsDialogue, 160, 0x8)
 		ADD_BOOL(bSuppressSubtitles, 160, 0x4)
 		ADD_BOOL(bContinueSoundOnMatineeEnd, 160, 0x2)

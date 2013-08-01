@@ -1,8 +1,11 @@
 #pragma once
 #include "Core.Object.h"
 #include "Engine.PhysicalMaterial.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Vector.h"
 #include "Engine.RB_BodySetup.h"
 #include "Engine.PhysicsAssetInstance.h"
+#include "Core.Object.Matrix.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -49,9 +52,9 @@ namespace UnrealScript
 		ADD_BOOL(bDisableOnOverextension, 108, 0x4)
 		ADD_BOOL(bEnableBoneSpringAngular, 108, 0x2)
 		ADD_BOOL(bEnableBoneSpringLinear, 108, 0x1)
-		ADD_STRUCT(Object::Pointer, BoneSpringKinActor, 104)
-		ADD_STRUCT(Object::Pointer, BoneSpring, 100)
-		ADD_STRUCT(Object::Pointer, BodyData, 96)
+		ADD_STRUCT(Object__Pointer, BoneSpringKinActor, 104)
+		ADD_STRUCT(Object__Pointer, BoneSpring, 100)
+		ADD_STRUCT(Object__Pointer, BodyData, 96)
 		ADD_STRUCT(int, SceneIndex, 92)
 		ADD_STRUCT(Vector, PreviousVelocity, 80)
 		ADD_STRUCT(Vector, Velocity, 68)
@@ -91,12 +94,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class PhysicsAssetInstance**)params;
 		}
-		Object::Matrix GetUnrealWorldTM()
+		Object__Matrix GetUnrealWorldTM()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(24996);
 			byte params[64] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Matrix*)params;
+			return *(Object__Matrix*)params;
 		}
 		Vector GetUnrealWorldVelocity()
 		{
@@ -120,15 +123,15 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[12];
 		}
-		void EnableBoneSpring(bool bInEnableLinear, bool bInEnableAngular, Object::Matrix& InBoneTarget)
+		void EnableBoneSpring(bool bInEnableLinear, bool bInEnableAngular, Object__Matrix& InBoneTarget)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25005);
 			byte params[72] = { NULL };
 			*(bool*)params = bInEnableLinear;
 			*(bool*)&params[4] = bInEnableAngular;
-			*(Object::Matrix*)&params[16] = InBoneTarget;
+			*(Object__Matrix*)&params[16] = InBoneTarget;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			InBoneTarget = *(Object::Matrix*)&params[16];
+			InBoneTarget = *(Object__Matrix*)&params[16];
 		}
 		void SetBoneSpringParams(float InLinearSpring, float InLinearDamping, float InAngularSpring, float InAngularDamping)
 		{
@@ -140,14 +143,14 @@ namespace UnrealScript
 			*(float*)&params[12] = InAngularDamping;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetBoneSpringTarget(Object::Matrix& InBoneTarget, bool bTeleport)
+		void SetBoneSpringTarget(Object__Matrix& InBoneTarget, bool bTeleport)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(25014);
 			byte params[68] = { NULL };
-			*(Object::Matrix*)params = InBoneTarget;
+			*(Object__Matrix*)params = InBoneTarget;
 			*(bool*)&params[64] = bTeleport;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			InBoneTarget = *(Object::Matrix*)params;
+			InBoneTarget = *(Object__Matrix*)params;
 		}
 		void SetBlockRigidBody(bool bNewBlockRigidBody)
 		{

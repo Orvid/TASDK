@@ -1,8 +1,8 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
 #include "TribesGame.TrGameObjective.h"
 #include "TribesGame.TrStormControlPoint.h"
+#include "Core.Object.Vector.h"
 #include "Engine.PlayerController.h"
 #include "Engine.Canvas.h"
 #define ADD_OBJECT(x, y, offset) \

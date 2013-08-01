@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "TribesGame.TrUser.NewItem.h"
 #include "TribesGame.GFxTrMenuMoviePlayer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -24,13 +25,6 @@ namespace UnrealScript
 	class TrUser : public Object
 	{
 	public:
-		struct NewItem
-		{
-		public:
-			ADD_STRUCT(int, ItemId, 8)
-			ADD_STRUCT(int, Type, 4)
-			ADD_STRUCT(int, ClassId, 0)
-		};
 		ADD_BOOL(m_DidLogin, 80, 0x1)
 		ADD_STRUCT(int, m_ClassId, 76)
 		ADD_STRUCT(ScriptString*, CurrencyName, 64)
@@ -40,9 +34,9 @@ namespace UnrealScript
 		ADD_BOOL(m_ChoseRegion, 80, 0x2)
 		ADD_BOOL(m_ChoseRegion2, 80, 0x4)
 		ADD_BOOL(m_SeenNewBundlesMain, 80, 0x40)
-		ADD_STRUCT(ScriptArray<TrUser::NewItem>, NewItems, 120)
-		ADD_STRUCT(ScriptArray<TrUser::NewItem>, NewBundles, 132)
-		ADD_STRUCT(ScriptArray<TrUser::NewItem>, SeenNewItems, 144)
+		ADD_STRUCT(ScriptArray<TrUser__NewItem>, NewItems, 120)
+		ADD_STRUCT(ScriptArray<TrUser__NewItem>, NewBundles, 132)
+		ADD_STRUCT(ScriptArray<TrUser__NewItem>, SeenNewItems, 144)
 		ADD_STRUCT(ScriptArray<int>, FavServers, 156)
 		ADD_OBJECT(GFxTrMenuMoviePlayer, MainMenu, 168)
 		ADD_STRUCT(ScriptString*, m_GameType, 84)

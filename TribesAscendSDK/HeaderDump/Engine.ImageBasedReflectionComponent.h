@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.StaticMeshComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -25,7 +25,7 @@ namespace UnrealScript
 	class ImageBasedReflectionComponent : public StaticMeshComponent
 	{
 	public:
-		ADD_STRUCT(Object::LinearColor, ReflectionColor, 616)
+		ADD_STRUCT(Object__LinearColor, ReflectionColor, 616)
 		ADD_OBJECT(Texture2D, ReflectionTexture, 612)
 		ADD_BOOL(bTwoSided, 608, 0x2)
 		ADD_BOOL(bEnabled, 608, 0x1)

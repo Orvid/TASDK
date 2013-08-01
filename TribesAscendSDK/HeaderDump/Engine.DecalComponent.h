@@ -1,7 +1,14 @@
 #pragma once
+#include "Core.Object.Pointer.h"
 #include "Engine.PrimitiveComponent.h"
+#include "Core.Object.Rotator.h"
+#include "Core.Object.Plane.h"
+#include "Engine.DecalComponent.DecalReceiver.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Engine.DecalComponent.EFilterMode.h"
+#include "Engine.DecalComponent.EDecalTransform.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.MaterialInterface.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -26,29 +33,10 @@ namespace UnrealScript
 	class DecalComponent : public PrimitiveComponent
 	{
 	public:
-		enum EFilterMode : byte
-		{
-			FM_None = 0,
-			FM_Ignore = 1,
-			FM_Affect = 2,
-			FM_MAX = 3,
-		};
-		enum EDecalTransform : byte
-		{
-			DecalTransform_OwnerAbsolute = 0,
-			DecalTransform_OwnerRelative = 1,
-			DecalTransform_SpawnRelative = 2,
-			DecalTransform_MAX = 3,
-		};
-		struct DecalReceiver
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, RenderData, 4)
-		};
 		ADD_STRUCT(ScriptArray<int>, HitNodeIndices, 632)
-		ADD_STRUCT(ScriptArray<DecalComponent::DecalReceiver>, DecalReceivers, 644)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, StaticReceivers, 656)
-		ADD_STRUCT(ScriptArray<Object::Plane>, Planes, 672)
+		ADD_STRUCT(ScriptArray<DecalComponent__DecalReceiver>, DecalReceivers, 644)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, StaticReceivers, 656)
+		ADD_STRUCT(ScriptArray<Object__Plane>, Planes, 672)
 		ADD_STRUCT(ScriptArray<class Actor*>, Filter, 712)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
@@ -57,14 +45,14 @@ void*>, ReceiverImages, 724)
 		ADD_STRUCT(Vector, OriginalParentRelativeLocation, 760)
 		ADD_STRUCT(Rotator, ParentRelativeOrientation, 748)
 		ADD_STRUCT(Vector, ParentRelativeLocation, 736)
-		ADD_STRUCT(DecalComponent::EFilterMode, FilterMode, 709)
-		ADD_STRUCT(DecalComponent::EDecalTransform, DecalTransform, 708)
-		ADD_STRUCT(Object::Vector2D, BlendRange, 700)
+		ADD_STRUCT(DecalComponent__EFilterMode, FilterMode, 709)
+		ADD_STRUCT(DecalComponent__EDecalTransform, DecalTransform, 708)
+		ADD_STRUCT(Object__Vector2D, BlendRange, 700)
 		ADD_STRUCT(float, BackfaceAngle, 696)
 		ADD_STRUCT(int, SortOrder, 692)
 		ADD_STRUCT(float, SlopeScaleDepthBias, 688)
 		ADD_STRUCT(float, DepthBias, 684)
-		ADD_STRUCT(Object::Pointer, ReleaseResourcesFence, 668)
+		ADD_STRUCT(Object__Pointer, ReleaseResourcesFence, 668)
 		ADD_STRUCT(int, FracturedStaticMeshComponentIndex, 628)
 		ADD_STRUCT(int, HitLevelIndex, 624)
 		ADD_STRUCT(int, HitNodeIndex, 620)

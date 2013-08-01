@@ -1,10 +1,14 @@
 #pragma once
 #include "Core.Subsystem.h"
-#include "Engine.SoundClass.h"
-#include "Core.Object.h"
-#include "Engine.ReverbVolume.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.SoundMode.h"
+#include "Engine.AudioDevice.Listener.h"
+#include "Engine.ReverbVolume.InteriorSettings.h"
+#include "Engine.AudioDevice.EDebugState.h"
+#include "Core.Object.Double.h"
 #include "Engine.SoundNodeWave.h"
+#include "Core.Object.QWord.h"
+#include "Engine.SoundClass.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,106 +32,37 @@ namespace UnrealScript
 	class AudioDevice : public Subsystem
 	{
 	public:
-		enum EDebugState : byte
-		{
-			DEBUGSTATE_None = 0,
-			DEBUGSTATE_IsolateDryAudio = 1,
-			DEBUGSTATE_IsolateReverb = 2,
-			DEBUGSTATE_TestLPF = 3,
-			DEBUGSTATE_TestStereoBleed = 4,
-			DEBUGSTATE_TestLFEBleed = 5,
-			DEBUGSTATE_DisableLPF = 6,
-			DEBUGSTATE_DisableRadio = 7,
-			DEBUGSTATE_MAX = 8,
-		};
-		enum ESoundClassName : byte
-		{
-			World_Props = 0,
-			WeaponFoley = 1,
-			WeaponFire = 2,
-			WeaponExplosion = 3,
-			Weapon = 4,
-			VoxRadio = 5,
-			VoxIngame = 6,
-			VoxHelp = 7,
-			VoxExceptions = 8,
-			VoxAnnouncer = 9,
-			Vox2 = 10,
-			VOX = 11,
-			Vehicle = 12,
-			UI = 13,
-			Tutorial_VOX_Reverb = 14,
-			Tutorial_SFX_Reverb = 15,
-			SFXExceptions = 16,
-			SFX = 17,
-			Music = 18,
-			Master = 19,
-			Concussion = 20,
-			Character = 21,
-			Ambient = 22,
-			ESoundClassName_MAX = 23,
-		};
-		enum ETTSSpeaker : byte
-		{
-			TTSSPEAKER_Paul = 0,
-			TTSSPEAKER_Harry = 1,
-			TTSSPEAKER_Frank = 2,
-			TTSSPEAKER_Dennis = 3,
-			TTSSPEAKER_Kit = 4,
-			TTSSPEAKER_Betty = 5,
-			TTSSPEAKER_Ursula = 6,
-			TTSSPEAKER_Rita = 7,
-			TTSSPEAKER_Wendy = 8,
-			TTSSPEAKER_MAX = 9,
-		};
-		struct Listener
-		{
-		public:
-			ADD_STRUCT(Vector, Front, 40)
-			ADD_STRUCT(Vector, Right, 28)
-			ADD_STRUCT(Vector, Up, 16)
-			ADD_STRUCT(Vector, Location, 4)
-			ADD_OBJECT(PortalVolume, PortalVolume, 0)
-		};
-		struct AudioClassInfo
-		{
-		public:
-			ADD_STRUCT(int, SizeRealTime, 12)
-			ADD_STRUCT(int, NumRealTime, 8)
-			ADD_STRUCT(int, SizeResident, 4)
-			ADD_STRUCT(int, NumResident, 0)
-		};
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, AudioComponents, 128)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, Sources, 140)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, FreeSources, 152)
-		ADD_STRUCT(ScriptArray<AudioDevice::Listener>, Listeners, 224)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, Sources, 140)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, FreeSources, 152)
+		ADD_STRUCT(ScriptArray<AudioDevice__Listener>, Listeners, 224)
 		ADD_STRUCT(float, LastUpdateTime, 704)
 		ADD_STRUCT(float, TransientMasterVolume, 700)
-		ADD_STRUCT(AudioDevice::EDebugState, DebugState, 696)
-		ADD_STRUCT(Object::Pointer, TextToSpeech, 692)
+		ADD_STRUCT(AudioDevice__EDebugState, DebugState, 696)
+		ADD_STRUCT(Object__Pointer, TextToSpeech, 692)
 		ADD_STRUCT(float, ExteriorLPFInterp, 684)
 		ADD_STRUCT(float, ExteriorVolumeInterp, 680)
 		ADD_STRUCT(float, InteriorLPFInterp, 676)
 		ADD_STRUCT(float, InteriorVolumeInterp, 672)
-		ADD_STRUCT(Object::Double, ExteriorLPFEndTime, 664)
-		ADD_STRUCT(Object::Double, InteriorLPFEndTime, 656)
-		ADD_STRUCT(Object::Double, ExteriorEndTime, 648)
-		ADD_STRUCT(Object::Double, InteriorEndTime, 640)
-		ADD_STRUCT(Object::Double, InteriorStartTime, 632)
-		ADD_STRUCT(ReverbVolume::InteriorSettings, ListenerInteriorSettings, 596)
+		ADD_STRUCT(Object__Double, ExteriorLPFEndTime, 664)
+		ADD_STRUCT(Object__Double, InteriorLPFEndTime, 656)
+		ADD_STRUCT(Object__Double, ExteriorEndTime, 648)
+		ADD_STRUCT(Object__Double, InteriorEndTime, 640)
+		ADD_STRUCT(Object__Double, InteriorStartTime, 632)
+		ADD_STRUCT(ReverbVolume__InteriorSettings, ListenerInteriorSettings, 596)
 		ADD_STRUCT(int, ListenerVolumeIndex, 592)
-		ADD_STRUCT(Object::Double, SoundModeEndTime, 584)
-		ADD_STRUCT(Object::Double, SoundModeFadeInEndTime, 576)
-		ADD_STRUCT(Object::Double, SoundModeFadeInStartTime, 568)
-		ADD_STRUCT(Object::Double, SoundModeStartTime, 560)
+		ADD_STRUCT(Object__Double, SoundModeEndTime, 584)
+		ADD_STRUCT(Object__Double, SoundModeFadeInEndTime, 576)
+		ADD_STRUCT(Object__Double, SoundModeFadeInStartTime, 568)
+		ADD_STRUCT(Object__Double, SoundModeStartTime, 560)
 		ADD_OBJECT(SoundMode, CurrentMode, 556)
 		ADD_STRUCT(ScriptName, BaseSoundModeName, 548)
-		ADD_STRUCT(Object::Pointer, Effects, 544)
+		ADD_STRUCT(Object__Pointer, Effects, 544)
 		ADD_STRUCT(QWord, CurrentTick, 236)
 		ADD_STRUCT(int, CommonAudioPoolFreeBytes, 124)
-		ADD_STRUCT(Object::Pointer, CommonAudioPool, 120)
+		ADD_STRUCT(Object__Pointer, CommonAudioPool, 120)
 		ADD_BOOL(bGameWasTicking, 116, 0x2)
 		ADD_BOOL(m_bEnableBassBoost, 116, 0x1)
 		ADD_OBJECT(SoundNodeWave, ChirpOutSoundNodeWave, 112)

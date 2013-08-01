@@ -1,7 +1,8 @@
 #pragma once
 #include "TribesGame.GFxTrScene.h"
 #include "GFxUI.GFxObject.h"
-#include "PlatformCommon.TgPlayerProfile.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
+#include "PlatformCommon.TgPlayerProfile.BadgeStruct.h"
 #include "TribesGame.TrSummaryHelper.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -31,9 +32,9 @@ namespace UnrealScript
 		ADD_BOOL(bSummaryXPTweened, 228, 0x10)
 		ADD_BOOL(bFirstWin, 228, 0x2)
 		ADD_BOOL(bUseSNS, 228, 0x1)
-		ADD_STRUCT(ScriptArray<TgPlayerProfile::PropertyPair>, AwardData, 232)
-		ADD_STRUCT(ScriptArray<TgPlayerProfile::PropertyPair>, accoladeData, 244)
-		ADD_STRUCT(ScriptArray<TgPlayerProfile::BadgeStruct>, EarnedBadges, 256)
+		ADD_STRUCT(ScriptArray<TgPlayerProfile__PropertyPair>, AwardData, 232)
+		ADD_STRUCT(ScriptArray<TgPlayerProfile__PropertyPair>, accoladeData, 244)
+		ADD_STRUCT(ScriptArray<TgPlayerProfile__BadgeStruct>, EarnedBadges, 256)
 		ADD_OBJECT(TrSummaryHelper, SummaryHelper, 268)
 		ADD_STRUCT(int, EarnedBadgeValue, 224)
 		ADD_STRUCT(int, XPBoost, 220)
@@ -113,11 +114,11 @@ namespace UnrealScript
 			*(int*)&params[4] = val;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddBadge(TgPlayerProfile::BadgeStruct Badge)
+		void AddBadge(TgPlayerProfile__BadgeStruct Badge)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(63734);
 			byte params[52] = { NULL };
-			*(TgPlayerProfile::BadgeStruct*)params = Badge;
+			*(TgPlayerProfile__BadgeStruct*)params = Badge;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void AddAccolade(int AccoladeId, int val)

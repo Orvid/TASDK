@@ -1,14 +1,16 @@
 #pragma once
-#include "TribesGame.TrObject.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #include "TribesGame.TrStatsInterface.h"
 #include "Engine.Actor.h"
 #include "TribesGame.TrValueModifier.h"
-#include "Engine.TeamInfo.h"
-#include "TribesGame.TrInventoryHelper.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "Engine.SkeletalMesh.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.SkeletalMesh.h"
+#include "TribesGame.TrPlayerReplicationInfo.EquipLevel.h"
+#include "TribesGame.TrInventoryHelper.h"
+#include "TribesGame.TrObject.EArmorType.h"
+#include "Engine.TeamInfo.h"
 #include "UTGame.UTCarriedObject.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -533,12 +535,6 @@ namespace UnrealScript
 		static const auto MOD_TYPE_IGNOREPULSESTEALTHTIME = 90;
 		static const auto MOD_TYPE_RAGEMASSREDUCTION = 91;
 		static const auto MOD_TYPE_REPAIRDEPLOYABLERATEPCT = 92;
-		struct EquipLevel
-		{
-		public:
-			ADD_STRUCT(byte, UpgradeLevel, 4)
-			ADD_STRUCT(int, EquipId, 0)
-		};
 		ADD_STRUCT(int, m_nCreditsEarned, 948)
 		ADD_STRUCT(int, m_nKills, 940)
 		ADD_STRUCT(int, m_nAssists, 944)
@@ -557,14 +553,14 @@ namespace UnrealScript
 		ADD_OBJECT(ScriptClass, c_Cached1PSkin, 1124)
 		ADD_OBJECT(ScriptClass, c_Cached3PSkin, 1120)
 		ADD_OBJECT(TrValueModifier, m_ValueModifier, 1116)
-		ADD_STRUCT(TrPlayerReplicationInfo::EquipLevel, r_EquipLevels, 1012)
+		ADD_STRUCT(TrPlayerReplicationInfo__EquipLevel, r_EquipLevels, 1012)
 		ADD_STRUCT(float, c_fRedFlagTimeStamp, 1008)
 		ADD_STRUCT(float, c_fRedFlagPingTime, 1004)
 		ADD_STRUCT(float, c_fRedFlagPingThreshold, 1000)
 		ADD_STRUCT(float, c_fCurrentPingMS, 996)
 		ADD_OBJECT(TrInventoryHelper, InvHelper, 992)
 		ADD_OBJECT(TrStatsInterface, Stats, 988)
-		ADD_STRUCT(TrObject::EArmorType, m_ArmorType, 980)
+		ADD_STRUCT(TrObject__EArmorType, m_ArmorType, 980)
 		ADD_BOOL(bDevUpgrades, 972, 0x1)
 		ADD_STRUCT(int, m_nPlayerClassId, 960)
 		ADD_STRUCT(int, m_nBaseXP, 956)
@@ -590,12 +586,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptClass**)params;
 		}
-		ScriptClass* GetEquipDevice(ScriptClass* FamilyInfo, TrObject::TR_EQUIP_POINT equipSlot)
+		ScriptClass* GetEquipDevice(ScriptClass* FamilyInfo, TrObject__TR_EQUIP_POINT equipSlot)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(54016);
 			byte params[9] = { NULL };
 			*(ScriptClass**)params = FamilyInfo;
-			*(TrObject::TR_EQUIP_POINT*)&params[4] = equipSlot;
+			*(TrObject__TR_EQUIP_POINT*)&params[4] = equipSlot;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptClass**)&params[8];
 		}
@@ -613,20 +609,20 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class TrValueModifier**)params;
 		}
-		TrObject::TR_EQUIP_POINT GetEquipPointByWeaponId(int WeaponId)
+		TrObject__TR_EQUIP_POINT GetEquipPointByWeaponId(int WeaponId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67918);
 			byte params[5] = { NULL };
 			*(int*)params = WeaponId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(TrObject::TR_EQUIP_POINT*)&params[4];
+			return *(TrObject__TR_EQUIP_POINT*)&params[4];
 		}
-		TrObject::EArmorType GetArmorType()
+		TrObject__EArmorType GetArmorType()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(72482);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(TrObject::EArmorType*)params;
+			return *(TrObject__EArmorType*)params;
 		}
 		ScriptClass* GetCurrentSkinClass(ScriptClass* FamilyInfo)
 		{
@@ -851,11 +847,11 @@ namespace UnrealScript
 			*(ScriptClass**)params = FamilyInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetActiveEquip(TrObject::TR_EQUIP_POINT EquipId, int ItemId)
+		void SetActiveEquip(TrObject__TR_EQUIP_POINT EquipId, int ItemId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(101486);
 			byte params[5] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipId;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipId;
 			*(int*)&params[4] = ItemId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

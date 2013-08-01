@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine.NavMeshPathGoalEvaluator.h"
-#include "Core.Object.h"
+#include "Engine.NavMeshPathGoalEvaluator.BiasedGoalActor.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.MultiMap_Mirror.h"
 #include "Engine.NavigationHandle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -11,17 +13,17 @@ namespace UnrealScript
 	class NavMeshGoal_ClosestActorInList : public NavMeshPathGoalEvaluator
 	{
 	public:
-		ADD_STRUCT(ScriptArray<NavMeshPathGoalEvaluator::BiasedGoalActor>, GoalList, 80)
-		ADD_STRUCT(Object::Pointer, CachedAnchorPoly, 152)
-		ADD_STRUCT(Object::MultiMap_Mirror, PolyToGoalActorMap, 92)
-		class NavMeshGoal_ClosestActorInList* ClosestActorInList(class NavigationHandle* NavHandle, ScriptArray<NavMeshPathGoalEvaluator::BiasedGoalActor>& InGoalList)
+		ADD_STRUCT(ScriptArray<NavMeshPathGoalEvaluator__BiasedGoalActor>, GoalList, 80)
+		ADD_STRUCT(Object__Pointer, CachedAnchorPoly, 152)
+		ADD_STRUCT(Object__MultiMap_Mirror, PolyToGoalActorMap, 92)
+		class NavMeshGoal_ClosestActorInList* ClosestActorInList(class NavigationHandle* NavHandle, ScriptArray<NavMeshPathGoalEvaluator__BiasedGoalActor>& InGoalList)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(20946);
 			byte params[20] = { NULL };
 			*(class NavigationHandle**)params = NavHandle;
-			*(ScriptArray<NavMeshPathGoalEvaluator::BiasedGoalActor>*)&params[4] = InGoalList;
+			*(ScriptArray<NavMeshPathGoalEvaluator__BiasedGoalActor>*)&params[4] = InGoalList;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			InGoalList = *(ScriptArray<NavMeshPathGoalEvaluator::BiasedGoalActor>*)&params[4];
+			InGoalList = *(ScriptArray<NavMeshPathGoalEvaluator__BiasedGoalActor>*)&params[4];
 			return *(class NavMeshGoal_ClosestActorInList**)&params[16];
 		}
 		void Recycle()

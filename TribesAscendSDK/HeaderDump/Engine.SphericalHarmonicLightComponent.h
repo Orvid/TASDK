@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.SHVectorRGB.h"
 #include "Engine.LightComponent.h"
-#include "Core.Object.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,7 +21,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_BOOL(bRenderBeforeModShadows, 576, 0x1)
-		ADD_STRUCT(Object::SHVectorRGB, WorldSpaceIncidentLighting, 432)
+		ADD_STRUCT(Object__SHVectorRGB, WorldSpaceIncidentLighting, 432)
 	};
 }
 #undef ADD_BOOL

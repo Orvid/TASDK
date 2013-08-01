@@ -1,6 +1,7 @@
 #pragma once
 #include "TribesGame.TrGameObjective.h"
 #include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,7 +18,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fNewValue, 68)
 		ADD_STRUCT(ScriptName, m_nmClassPropertyName, 60)
 		ADD_OBJECT(TrGameObjective, m_Owner, 76)
-		ADD_STRUCT(Object::Pointer, m_ClassPropertyPointer, 72)
+		ADD_STRUCT(Object__Pointer, m_ClassPropertyPointer, 72)
 		void InitUpgrade(class TrGameObjective* OwnerObject)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(91139);

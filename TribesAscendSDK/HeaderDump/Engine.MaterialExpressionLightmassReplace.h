@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.MaterialExpression.h"
+#include "Engine.MaterialExpression.ExpressionInput.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -9,8 +10,8 @@ namespace UnrealScript
 	class MaterialExpressionLightmassReplace : public MaterialExpression
 	{
 	public:
-		ADD_STRUCT(MaterialExpression::ExpressionInput, Lightmass, 136)
-		ADD_STRUCT(MaterialExpression::ExpressionInput, Realtime, 108)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, Lightmass, 136)
+		ADD_STRUCT(MaterialExpression__ExpressionInput, Realtime, 108)
 	};
 }
 #undef ADD_STRUCT

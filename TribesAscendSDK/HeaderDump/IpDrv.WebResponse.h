@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.Object.h"
 #include "IpDrv.WebConnection.h"
+#include "Core.Object.Map_Mirror.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,7 +31,7 @@ namespace UnrealScript
 		ADD_BOOL(bSentText, 160, 0x1)
 		ADD_STRUCT(ScriptString*, CharSet, 144)
 		ADD_STRUCT(ScriptString*, IncludePath, 132)
-		ADD_STRUCT(Object::Map_Mirror, ReplacementMap, 72)
+		ADD_STRUCT(Object__Map_Mirror, ReplacementMap, 72)
 		void Subst(ScriptString* Variable, ScriptString* Value, bool bClear)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(33108);

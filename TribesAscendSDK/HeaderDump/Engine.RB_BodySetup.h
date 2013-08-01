@@ -1,7 +1,10 @@
 #pragma once
-#include "Core.Object.h"
+#include "Engine.RB_BodySetup.KCachedConvexData.h"
 #include "Engine.KMeshProps.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Vector.h"
 #include "Engine.PhysicalMaterial.h"
+#include "Engine.RB_BodySetup.ESleepFamily.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,26 +28,10 @@ namespace UnrealScript
 	class RB_BodySetup : public KMeshProps
 	{
 	public:
-		enum ESleepFamily : byte
-		{
-			SF_Normal = 0,
-			SF_Sensitive = 1,
-			SF_MAX = 2,
-		};
-		struct KCachedConvexDataElement
-		{
-		public:
-			ADD_STRUCT(ScriptArray<byte>, ConvexElementData, 0)
-		};
-		struct KCachedConvexData
-		{
-		public:
-			ADD_STRUCT(ScriptArray<RB_BodySetup::KCachedConvexDataElement>, CachedConvexElements, 0)
-		};
-		ADD_STRUCT(ScriptArray<Object::Pointer>, CollisionGeom, 152)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, CollisionGeom, 152)
 		ADD_STRUCT(ScriptArray<Vector>, CollisionGeomScale3D, 164)
 		ADD_STRUCT(ScriptArray<Vector>, PreCachedPhysScale, 176)
-		ADD_STRUCT(ScriptArray<RB_BodySetup::KCachedConvexData>, PreCachedPhysData, 188)
+		ADD_STRUCT(ScriptArray<RB_BodySetup__KCachedConvexData>, PreCachedPhysData, 188)
 		ADD_STRUCT(int, PreCachedPhysDataVersion, 200)
 		ADD_STRUCT(float, MassScale, 148)
 		ADD_OBJECT(PhysicalMaterial, PhysMaterial, 144)
@@ -56,7 +43,7 @@ namespace UnrealScript
 		ADD_BOOL(bNoCollision, 140, 0x2)
 		ADD_BOOL(bFixed, 140, 0x1)
 		ADD_STRUCT(ScriptName, BoneName, 132)
-		ADD_STRUCT(RB_BodySetup::ESleepFamily, SleepFamily, 128)
+		ADD_STRUCT(RB_BodySetup__ESleepFamily, SleepFamily, 128)
 	};
 }
 #undef ADD_BOOL

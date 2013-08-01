@@ -1,6 +1,6 @@
 #pragma once
 #include "UTGame.UTObjectiveSpecificMessage.h"
-#include "UDKBase.UDKPlayerController.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
 namespace UnrealScript
@@ -8,7 +8,7 @@ namespace UnrealScript
 	class UTKismetAnnouncement : public UTObjectiveSpecificMessage
 	{
 	public:
-		UDKPlayerController::ObjectiveAnnouncementInfo GetObjectiveAnnouncement(byte MessageIndex, class Object* Objective, class PlayerController* PC)
+		UDKPlayerController__ObjectiveAnnouncementInfo GetObjectiveAnnouncement(byte MessageIndex, class Object* Objective, class PlayerController* PC)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(48265);
 			byte params[25] = { NULL };
@@ -16,7 +16,7 @@ namespace UnrealScript
 			*(class Object**)&params[4] = Objective;
 			*(class PlayerController**)&params[8] = PC;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(UDKPlayerController::ObjectiveAnnouncementInfo*)&params[12];
+			return *(UDKPlayerController__ObjectiveAnnouncementInfo*)&params[12];
 		}
 		byte AnnouncementLevel(byte MessageIndex)
 		{

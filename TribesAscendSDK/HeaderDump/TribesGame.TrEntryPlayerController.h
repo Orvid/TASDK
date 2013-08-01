@@ -1,12 +1,14 @@
 #pragma once
 #include "TribesGame.TrPlayerController.h"
-#include "Core.Object.h"
 #include "Engine.PostProcessChain.h"
-#include "TribesGame.TrObject.h"
 #include "Engine.LocalPlayer.h"
 #include "TribesGame.TrPaperDollMainMenu.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Core.Object.Rotator.h"
+#include "Core.Object.Vector.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "TribesGame.TrObject.EContentDataType.h"
 #include "TribesGame.TrMainMenuContentData.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -40,7 +42,7 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, m_CameraLocation16x10, 3508)
 		ADD_STRUCT(Vector, m_CameraLocation16x9, 3496)
 		ADD_STRUCT(float, m_PreloadTextureTime, 3492)
-		ADD_STRUCT(TrObject::EContentDataType, m_ContentDataType, 3488)
+		ADD_STRUCT(TrObject__EContentDataType, m_ContentDataType, 3488)
 		ADD_OBJECT(TrPaperDollMainMenu, m_MainMenuPaperDoll, 3484)
 		ADD_STRUCT(ScriptString*, MainMenuContentClassName, 3472)
 		ADD_OBJECT(TrMainMenuContentData, m_MainMenuContentData, 3468)
@@ -194,31 +196,31 @@ namespace UnrealScript
 			*(ScriptString**)&params[4] = RequestingNick;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFriendInviteReceived(byte LocalUserNum, OnlineSubsystem::UniqueNetId RequestingPlayer, ScriptString* RequestingNick, ScriptString* Message)
+		void OnFriendInviteReceived(byte LocalUserNum, OnlineSubsystem__UniqueNetId RequestingPlayer, ScriptString* RequestingNick, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87356);
 			byte params[33] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = RequestingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = RequestingPlayer;
 			*(ScriptString**)&params[12] = RequestingNick;
 			*(ScriptString**)&params[24] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFriendMessageReceived(byte LocalUserNum, OnlineSubsystem::UniqueNetId SendingPlayer, ScriptString* SendingNick, ScriptString* Message)
+		void OnFriendMessageReceived(byte LocalUserNum, OnlineSubsystem__UniqueNetId SendingPlayer, ScriptString* SendingNick, ScriptString* Message)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87361);
 			byte params[33] = { NULL };
 			*params = LocalUserNum;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = SendingPlayer;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = SendingPlayer;
 			*(ScriptString**)&params[12] = SendingNick;
 			*(ScriptString**)&params[24] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnConnectionStatusChange(OnlineSubsystem::EOnlineServerConnectionStatus ConnectionStatus)
+		void OnConnectionStatusChange(OnlineSubsystem__EOnlineServerConnectionStatus ConnectionStatus)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87366);
 			byte params[1] = { NULL };
-			*(OnlineSubsystem::EOnlineServerConnectionStatus*)params = ConnectionStatus;
+			*(OnlineSubsystem__EOnlineServerConnectionStatus*)params = ConnectionStatus;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnLinkStatusChanged(bool bConnected)
@@ -286,11 +288,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87394);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void UpdateMainMenuPaperDoll_Mesh(TrObject::EContentDataType Type)
+		void UpdateMainMenuPaperDoll_Mesh(TrObject__EContentDataType Type)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87395);
 			byte params[1] = { NULL };
-			*(TrObject::EContentDataType*)params = Type;
+			*(TrObject__EContentDataType*)params = Type;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UpdatePaperDoll(ScriptClass* FamilyInfoClass, ScriptClass* DeviceClass, ScriptClass* skinClass, int TeamNum)

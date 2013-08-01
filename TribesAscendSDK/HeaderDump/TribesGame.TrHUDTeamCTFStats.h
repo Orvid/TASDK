@@ -1,10 +1,10 @@
 #pragma once
-#include "UTGame.UTGameReplicationInfo.h"
 #include "Core.Object.h"
 #include "TribesGame.GfxTrHud.h"
 #include "TribesGame.TrPlayerController.h"
 #include "TribesGame.TrGameReplicationInfo.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "UTGame.UTGameReplicationInfo.EFlagState.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,7 +33,7 @@ namespace UnrealScript
 		ADD_OBJECT(TrPlayerController, TrPC, 120)
 		ADD_OBJECT(PlayerReplicationInfo, FlagHolderPRI, 108)
 		ADD_STRUCT(byte, bEmptyFlagStatus, 106)
-		ADD_STRUCT(UTGameReplicationInfo::EFlagState, FlagState, 104)
+		ADD_STRUCT(UTGameReplicationInfo__EFlagState, FlagState, 104)
 		ADD_STRUCT(int, GeneratorDowntime, 96)
 		ADD_STRUCT(int, GeneratorPower, 88)
 		ADD_STRUCT(int, TeamScore, 80)

@@ -1,13 +1,15 @@
 #pragma once
 #include "TribesGame.TrPawn.h"
-#include "TribesGame.TrPlayerController.h"
 #include "Engine.SoundCue.h"
 #include "TribesGame.TrAnimNodeBlendBy3pDevice.h"
-#include "Engine.AnimNodeSequence.h"
-#include "Core.Object.h"
-#include "Engine.Actor.h"
 #include "Engine.ParticleSystem.h"
-#include "TribesGame.TrObject.h"
+#include "Core.Object.Rotator.h"
+#include "TribesGame.TrPawn.FootstepParticleInfo.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Engine.Actor.h"
+#include "Core.Object.Vector.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
+#include "TribesGame.TrPlayerController.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -31,8 +33,8 @@ void*>, m_JetpackPSCs, 3216)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, m_JetpackRibbonPSCs, 3228)
-		ADD_STRUCT(ScriptArray<TrPawn::FootstepParticleInfo>, m_HardLandingParticles, 3240)
-		ADD_STRUCT(ScriptArray<TrPawn::FootstepParticleInfo>, m_StepParticles, 3252)
+		ADD_STRUCT(ScriptArray<TrPawn__FootstepParticleInfo>, m_HardLandingParticles, 3240)
+		ADD_STRUCT(ScriptArray<TrPawn__FootstepParticleInfo>, m_StepParticles, 3252)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, m_FootThrusterPSCs, 3268)
@@ -198,11 +200,11 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(73542);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void PlayReload(TrObject::TR_EQUIP_POINT EquipPoint)
+		void PlayReload(TrObject__TR_EQUIP_POINT EquipPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(73544);
 			byte params[1] = { NULL };
-			*(TrObject::TR_EQUIP_POINT*)params = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)params = EquipPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void Tick(float DeltaTime)

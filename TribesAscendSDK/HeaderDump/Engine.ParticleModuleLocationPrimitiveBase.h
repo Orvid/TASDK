@@ -1,7 +1,7 @@
 #pragma once
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModuleLocationBase.h"
-#include "Core.DistributionFloat.h"
-#include "Core.DistributionVector.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,8 +21,8 @@ namespace UnrealScript
 	class ParticleModuleLocationPrimitiveBase : public ParticleModuleLocationBase
 	{
 	public:
-		ADD_STRUCT(DistributionVector::RawDistributionVector, StartLocation, 104)
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, VelocityScale, 76)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, StartLocation, 104)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, VelocityScale, 76)
 		ADD_BOOL(Velocity, 72, 0x80)
 		ADD_BOOL(SurfaceOnly, 72, 0x40)
 		ADD_BOOL(Negative_Z, 72, 0x20)

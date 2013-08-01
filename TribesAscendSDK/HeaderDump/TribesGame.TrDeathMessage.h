@@ -1,7 +1,8 @@
 #pragma once
+#include "Core.Object.Color.h"
 #include "UTGame.UTLocalMessage.h"
-#include "Core.Object.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Core.Object.h"
 #include "Engine.PlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -25,13 +26,13 @@ namespace UnrealScript
 		ADD_BOOL(bNoConsoleDeathMessages, 124, 0x1)
 		ADD_STRUCT(ScriptString*, SomeoneString, 112)
 		ADD_STRUCT(ScriptString*, KilledString, 100)
-		Object::Color GetConsoleColor(class PlayerReplicationInfo* RelatedPRI_1)
+		Object__Color GetConsoleColor(class PlayerReplicationInfo* RelatedPRI_1)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(79802);
 			byte params[8] = { NULL };
 			*(class PlayerReplicationInfo**)params = RelatedPRI_1;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[4];
+			return *(Object__Color*)&params[4];
 		}
 		ScriptString* GetString(int Switch, bool bPRI1HUD, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
 		{

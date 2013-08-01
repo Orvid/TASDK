@@ -1,7 +1,7 @@
 #pragma once
 #include "UTGame.UTBot.h"
 #include "UTGame.UTPickupFactory.h"
-#include "UTGame.UTWeaponLocker.h"
+#include "UTGame.UTWeaponLocker.PawnToucher.h"
 #include "Engine.PlayerController.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -27,7 +27,7 @@ namespace UnrealScript
 	class UTWeaponPickupFactory : public UTPickupFactory
 	{
 	public:
-		ADD_STRUCT(ScriptArray<UTWeaponLocker::PawnToucher>, Customers, 960)
+		ADD_STRUCT(ScriptArray<UTWeaponLocker__PawnToucher>, Customers, 960)
 		ADD_STRUCT(float, WeaponPickupScaling, 956)
 		ADD_BOOL(bIsActive, 948, 0x2)
 		ADD_BOOL(bWeaponStay, 948, 0x1)

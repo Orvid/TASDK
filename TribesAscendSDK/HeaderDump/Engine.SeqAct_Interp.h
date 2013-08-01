@@ -1,4 +1,5 @@
 #pragma once
+#include "Engine.SeqAct_Interp.CameraCutInfo.h"
 #include "Engine.SeqAct_Latent.h"
 #include "Engine.InterpGroupInst.h"
 #include "Engine.CoverLink.h"
@@ -28,18 +29,6 @@ namespace UnrealScript
 	class SeqAct_Interp : public SeqAct_Latent
 	{
 	public:
-		struct CameraCutInfo
-		{
-		public:
-			ADD_STRUCT(float, TimeStamp, 12)
-			ADD_STRUCT(Vector, Location, 0)
-		};
-		struct SavedTransform
-		{
-		public:
-			ADD_STRUCT(Rotator, Rotation, 12)
-			ADD_STRUCT(Vector, Location, 0)
-		};
 		ADD_BOOL(bReversePlayback, 380, 0x80)
 		ADD_BOOL(bNoResetOnRewind, 380, 0x20)
 		ADD_BOOL(bRewindOnPlay, 380, 0x10)
@@ -49,7 +38,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, Position, 372)
 		ADD_STRUCT(ScriptArray<class InterpGroupInst*>, GroupInst, 400)
 		ADD_STRUCT(ScriptArray<class CoverLink*>, LinkedCover, 384)
-		ADD_STRUCT(ScriptArray<SeqAct_Interp::CameraCutInfo>, CameraCuts, 424)
+		ADD_STRUCT(ScriptArray<SeqAct_Interp__CameraCutInfo>, CameraCuts, 424)
 		ADD_STRUCT(float, TerminationTime, 436)
 		ADD_STRUCT(int, PreferredSplitScreenNum, 420)
 		ADD_OBJECT(MatineeActor, ReplicatedActor, 416)

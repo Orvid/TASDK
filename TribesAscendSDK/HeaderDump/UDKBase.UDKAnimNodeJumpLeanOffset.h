@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.Vector2D.h"
 #include "Engine.AnimNodeAimOffset.h"
-#include "Core.Object.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,7 +27,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, BlendTimeToGo, 356)
 		ADD_STRUCT(float, LeanWeightTarget, 352)
 		ADD_STRUCT(float, LeanWeight, 348)
-		ADD_STRUCT(Object::Vector2D, PreBlendAim, 340)
+		ADD_STRUCT(Object__Vector2D, PreBlendAim, 340)
 		ADD_STRUCT(ScriptName, OldAimProfileName, 332)
 		ADD_OBJECT(AnimNodeAimOffset, CachedAimNode, 328)
 		ADD_BOOL(bOldDoubleJumping, 324, 0x10)

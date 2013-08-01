@@ -1,6 +1,6 @@
 #pragma once
 #include "TribesGame.TrCollisionProxy.h"
-#include "TribesGame.TrHelpTextManager.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
 #include "Engine.Pawn.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -15,14 +15,14 @@ namespace UnrealScript
 	class TrCollisionProxy_HelpText : public TrCollisionProxy
 	{
 	public:
-		ADD_STRUCT(TrHelpTextManager::EHelpTextType, m_HelpTextType, 496)
+		ADD_STRUCT(TrHelpTextManager__EHelpTextType, m_HelpTextType, 496)
 		ADD_OBJECT(Pawn, m_LocalPawn, 504)
 		ADD_STRUCT(float, m_fHelpTextRemovalTime, 500)
-		bool ShouldShowHelpText_Delegate(TrHelpTextManager::EHelpTextType HelpTextType)
+		bool ShouldShowHelpText_Delegate(TrHelpTextManager__EHelpTextType HelpTextType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(74564);
 			byte params[5] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = HelpTextType;
+			*(TrHelpTextManager__EHelpTextType*)params = HelpTextType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}

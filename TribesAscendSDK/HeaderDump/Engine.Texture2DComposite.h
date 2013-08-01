@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.Texture.h"
+#include "Engine.Texture2DComposite.SourceTexture2DRegion.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,16 +14,7 @@ namespace UnrealScript
 	class Texture2DComposite : public Texture
 	{
 	public:
-		struct SourceTexture2DRegion
-		{
-		public:
-			ADD_OBJECT(Texture2D, Texture2D, 16)
-			ADD_STRUCT(int, SizeY, 12)
-			ADD_STRUCT(int, SizeX, 8)
-			ADD_STRUCT(int, OffsetY, 4)
-			ADD_STRUCT(int, OffsetX, 0)
-		};
-		ADD_STRUCT(ScriptArray<Texture2DComposite::SourceTexture2DRegion>, SourceRegions, 236)
+		ADD_STRUCT(ScriptArray<Texture2DComposite__SourceTexture2DRegion>, SourceRegions, 236)
 		ADD_STRUCT(int, MaxTextureSize, 248)
 		bool SourceTexturesFullyStreamedIn()
 		{

@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleTypeDataBase.h"
+#include "Engine.ParticleModuleTypeDataPhysX.PhysXEmitterVerticalLodProperties.h"
 #include "Engine.PhysXParticleSystem.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -14,15 +15,7 @@ namespace UnrealScript
 	class ParticleModuleTypeDataPhysX : public ParticleModuleTypeDataBase
 	{
 	public:
-		struct PhysXEmitterVerticalLodProperties
-		{
-		public:
-			ADD_STRUCT(float, RelativeFadeoutTime, 12)
-			ADD_STRUCT(float, SpawnLodRateVsLifeBias, 8)
-			ADD_STRUCT(float, WeightForSpawnLod, 4)
-			ADD_STRUCT(float, WeightForFifo, 0)
-		};
-		ADD_STRUCT(ParticleModuleTypeDataPhysX::PhysXEmitterVerticalLodProperties, VerticalLod, 76)
+		ADD_STRUCT(ParticleModuleTypeDataPhysX__PhysXEmitterVerticalLodProperties, VerticalLod, 76)
 		ADD_OBJECT(PhysXParticleSystem, PhysXParSys, 72)
 	};
 }

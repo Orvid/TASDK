@@ -1,6 +1,7 @@
 #pragma once
 #include "TribesGame.GFxTrPage.h"
 #include "TribesGame.GFxTrAction.h"
+#include "TribesGame.GFxTrPage_Vehicle.VehicleOption.h"
 #include "GFxUI.GFxObject.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -11,18 +12,8 @@ namespace UnrealScript
 	class GFxTrPage_Vehicle : public GFxTrPage
 	{
 	public:
-		struct VehicleOption
-		{
-		public:
-			ADD_STRUCT(ScriptString*, DisplayName, 28)
-			ADD_STRUCT(ScriptString*, ClassName, 16)
-			ADD_STRUCT(int, MaxCount, 12)
-			ADD_STRUCT(int, Count, 8)
-			ADD_STRUCT(int, Icon, 4)
-			ADD_STRUCT(int, Cost, 0)
-		};
 		ADD_STRUCT(int, PlayerCredits, 356)
-		ADD_STRUCT(ScriptArray<GFxTrPage_Vehicle::VehicleOption>, VehicleOptions, 360)
+		ADD_STRUCT(ScriptArray<GFxTrPage_Vehicle__VehicleOption>, VehicleOptions, 360)
 		void Initialize()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(61332);

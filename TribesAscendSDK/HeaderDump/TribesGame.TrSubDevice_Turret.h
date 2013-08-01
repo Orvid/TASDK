@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "TribesGame.TrSubDevice.h"
-#include "Core.Object.h"
 namespace UnrealScript
 {
 	class TrSubDevice_Turret : public TrSubDevice

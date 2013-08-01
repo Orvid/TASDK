@@ -1,9 +1,9 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "UDKBase.UDKVehicleBase.h"
 #include "UDKBase.UDKWeapon.h"
 #include "UDKBase.UDKVehicle.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

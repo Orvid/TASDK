@@ -5,7 +5,7 @@
 #include "TribesGame.TrServerSettingsInfo.h"
 #include "TribesGame.TrPlayerReplicationInfo.h"
 #include "TribesGame.TrObjectPool.h"
-#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrPawn.PhysicsType.h"
 #include "TribesGame.TrFlagBase.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "TribesGame.TrDaDCapacitor.h"
@@ -1417,7 +1417,7 @@ namespace UnrealScript
 		ADD_STRUCT(int, r_nCurrentRound, 772)
 		ADD_OBJECT(TrObjectPool, m_TrObjectPool, 636)
 		ADD_STRUCT(ScriptArray<class TrDeployable*>, m_Deployables, 640)
-		ADD_STRUCT(TrPawn::PhysicsType, r_PhysType, 711)
+		ADD_STRUCT(TrPawn__PhysicsType, r_PhysType, 711)
 		ADD_STRUCT(float, m_fCurrentSensorBlipOpacity, 724)
 		ADD_OBJECT(TrFlagBase, m_Flags, 676)
 		ADD_BOOL(r_bSkiEnabled, 704, 0x10)

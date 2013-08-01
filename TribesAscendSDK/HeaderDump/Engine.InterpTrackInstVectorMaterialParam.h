@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.InterpTrackInst.h"
+#include "Engine.InterpTrackInstVectorMaterialParam.VectorMaterialParamMICData.h"
 #include "Engine.InterpTrackVectorMaterialParam.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -14,13 +15,7 @@ namespace UnrealScript
 	class InterpTrackInstVectorMaterialParam : public InterpTrackInst
 	{
 	public:
-		struct VectorMaterialParamMICData
-		{
-		public:
-			ADD_STRUCT(ScriptArray<class MaterialInstanceConstant*>, MICs, 0)
-			ADD_STRUCT(ScriptArray<Vector>, MICResetVectors, 12)
-		};
-		ADD_STRUCT(ScriptArray<InterpTrackInstVectorMaterialParam::VectorMaterialParamMICData>, MICInfos, 60)
+		ADD_STRUCT(ScriptArray<InterpTrackInstVectorMaterialParam__VectorMaterialParamMICData>, MICInfos, 60)
 		ADD_OBJECT(InterpTrackVectorMaterialParam, InstancedTrack, 72)
 	};
 }

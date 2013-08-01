@@ -2,6 +2,7 @@
 #include "TribesGame.TrHUD.h"
 #include "Engine.PlayerInput.h"
 #include "TribesGame.TrVGSCommandList.h"
+#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -100,11 +101,11 @@ namespace UnrealScript
 			*(int*)params = Index;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void PlayVGSCommand(TrVGSCommandList::VGSCommandType VGSCommandIndex)
+		void PlayVGSCommand(TrVGSCommandList__VGSCommandType VGSCommandIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(77992);
 			byte params[1] = { NULL };
-			*(TrVGSCommandList::VGSCommandType*)params = VGSCommandIndex;
+			*(TrVGSCommandList__VGSCommandType*)params = VGSCommandIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool IsValidVGSTarget(class Actor* ActorUnderReticule)

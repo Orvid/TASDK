@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.UIDataProvider_OnlinePlayerDataBase.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Core.Object.h"
+#include "Engine.OnlineSubsystem.AchievementDetails.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.LocalPlayer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -12,8 +12,8 @@ namespace UnrealScript
 	class UIDataProvider_PlayerAchievements : public UIDataProvider_OnlinePlayerDataBase
 	{
 	public:
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::AchievementDetails>, Achievements, 96)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 92)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__AchievementDetails>, Achievements, 96)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 92)
 		int GetTotalGamerScore()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28358);
@@ -42,14 +42,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[8];
 		}
-		void GetAchievementDetails(int AchievementId, OnlineSubsystem::AchievementDetails& OutAchievementDetails)
+		void GetAchievementDetails(int AchievementId, OnlineSubsystem__AchievementDetails& OutAchievementDetails)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28367);
 			byte params[56] = { NULL };
 			*(int*)params = AchievementId;
-			*(OnlineSubsystem::AchievementDetails*)&params[4] = OutAchievementDetails;
+			*(OnlineSubsystem__AchievementDetails*)&params[4] = OutAchievementDetails;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutAchievementDetails = *(OnlineSubsystem::AchievementDetails*)&params[4];
+			OutAchievementDetails = *(OnlineSubsystem__AchievementDetails*)&params[4];
 		}
 		void OnPlayerAchievementsChanged(int TitleId)
 		{

@@ -1,10 +1,14 @@
 #pragma once
-#include "GameFramework.GameCrowdDestinationQueuePoint.h"
 #include "GameFramework.GameCrowdPopulationManager.h"
+#include "Core.Object.Vector.h"
+#include "GameFramework.GameCrowdDestinationQueuePoint.h"
+#include "GameFramework.GameCrowdAgent.BehaviorEntry.h"
 #include "GameFramework.GameCrowdInteractionPoint.h"
 #include "Core.Object.h"
 #include "GameFramework.GameCrowdAgent.h"
+#include "Core.Object.Pointer.h"
 #include "GameFramework.SeqAct_GameCrowdSpawner.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,7 +37,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<class Object*>, SupportedArchetypes, 532)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, RestrictedAgentClasses, 544)
 		ADD_STRUCT(ScriptArray<class Object*>, RestrictedArchetypes, 556)
-		ADD_STRUCT(ScriptArray<GameCrowdAgent::BehaviorEntry>, ReachedBehaviors, 588)
+		ADD_STRUCT(ScriptArray<GameCrowdAgent__BehaviorEntry>, ReachedBehaviors, 588)
 		ADD_OBJECT(GameCrowdPopulationManager, MyPopMgr, 612)
 		ADD_STRUCT(float, LastSpawnTime, 608)
 		ADD_STRUCT(float, Priority, 604)
@@ -64,7 +68,7 @@ namespace UnrealScript
 		ADD_BOOL(bLastAllowableResult, 488, 0x4)
 		ADD_BOOL(bAllowAsPreviousDestination, 488, 0x2)
 		ADD_BOOL(bKillWhenReached, 488, 0x1)
-		ADD_STRUCT(Object::Pointer, VfTable_IEditorLinkSelectionInterface, 484)
+		ADD_STRUCT(Object__Pointer, VfTable_IEditorLinkSelectionInterface, 484)
 		bool ReachedByAgent(class GameCrowdAgent* Agent, Vector TestPosition, bool bTestExactly)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30478);

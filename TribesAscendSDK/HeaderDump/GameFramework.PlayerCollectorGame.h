@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.GameInfo.h"
-#include "Engine.OnlineSubsystem.h"
 #include "Engine.PlayerController.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -14,13 +14,13 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(ScriptString*, URLToLoad, 888)
 		ADD_STRUCT(int, NumberOfClientsToWaitFor, 884)
-		class PlayerController* Login(ScriptString* Portal, ScriptString* Options, OnlineSubsystem::UniqueNetId UniqueId, ScriptString*& ErrorMessage)
+		class PlayerController* Login(ScriptString* Portal, ScriptString* Options, OnlineSubsystem__UniqueNetId UniqueId, ScriptString*& ErrorMessage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32885);
 			byte params[48] = { NULL };
 			*(ScriptString**)params = Portal;
 			*(ScriptString**)&params[12] = Options;
-			*(OnlineSubsystem::UniqueNetId*)&params[24] = UniqueId;
+			*(OnlineSubsystem__UniqueNetId*)&params[24] = UniqueId;
 			*(ScriptString**)&params[32] = ErrorMessage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			ErrorMessage = *(ScriptString**)&params[32];

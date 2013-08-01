@@ -5,6 +5,7 @@
 #include "Engine.PlayerStart.h"
 #include "Engine.Controller.h"
 #include "UTGame.UTTeamInfo.h"
+#include "TribesGame.TrGame_TRRabbit.ScoreStruct.h"
 #include "TribesGame.TrPlayerController.h"
 #include "Engine.Pawn.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -20,12 +21,6 @@ namespace UnrealScript
 	class TrGame_TRRabbit : public TrGame
 	{
 	public:
-		struct ScoreStruct
-		{
-		public:
-			ADD_STRUCT(float, Score, 4)
-			ADD_OBJECT(TrPlayerController, C, 0)
-		};
 		ADD_OBJECT(PlayerReplicationInfo, m_HolderPRI, 1464)
 		ADD_OBJECT(PlayerReplicationInfo, m_Leader, 1468)
 		ADD_STRUCT(float, m_fScoreInterval, 1460)
@@ -88,14 +83,14 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(90801);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		TrGame_TRRabbit::ScoreStruct MakeScoreStruct(class TrPlayerController* C, float Score)
+		TrGame_TRRabbit__ScoreStruct MakeScoreStruct(class TrPlayerController* C, float Score)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(90802);
 			byte params[16] = { NULL };
 			*(class TrPlayerController**)params = C;
 			*(float*)&params[4] = Score;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(TrGame_TRRabbit::ScoreStruct*)&params[8];
+			return *(TrGame_TRRabbit__ScoreStruct*)&params[8];
 		}
 		bool SortPlayerScores(class PlayerReplicationInfo* Scorer)
 		{

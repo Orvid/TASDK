@@ -1,5 +1,7 @@
 #pragma once
 #include "IpDrv.InternetLink.h"
+#include "IpDrv.InternetLink.IpAddr.h"
+#include "IpDrv.TcpLink.ELinkState.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,24 +15,11 @@ namespace UnrealScript
 	class TcpLink : public InternetLink
 	{
 	public:
-		enum ELinkState : byte
-		{
-			STATE_Initialized = 0,
-			STATE_Ready = 1,
-			STATE_Listening = 2,
-			STATE_Connecting = 3,
-			STATE_Connected = 4,
-			STATE_ListenClosePending = 5,
-			STATE_ConnectClosePending = 6,
-			STATE_ListenClosing = 7,
-			STATE_ConnectClosing = 8,
-			STATE_MAX = 9,
-		};
 		ADD_STRUCT(ScriptArray<byte>, SendFIFO, 516)
 		ADD_STRUCT(ScriptString*, RecvBuf, 528)
 		ADD_OBJECT(ScriptClass, AcceptClass, 512)
-		ADD_STRUCT(InternetLink::IpAddr, RemoteAddr, 504)
-		ADD_STRUCT(TcpLink::ELinkState, LinkState, 500)
+		ADD_STRUCT(InternetLink__IpAddr, RemoteAddr, 504)
+		ADD_STRUCT(TcpLink__ELinkState, LinkState, 500)
 		int BindPort(int PortNum, bool bUseNextAvailable)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(34054);
@@ -47,11 +36,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		bool Open(InternetLink::IpAddr Addr)
+		bool Open(InternetLink__IpAddr Addr)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(34060);
 			byte params[12] = { NULL };
-			*(InternetLink::IpAddr*)params = Addr;
+			*(InternetLink__IpAddr*)params = Addr;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}

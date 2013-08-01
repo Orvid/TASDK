@@ -1,4 +1,5 @@
 #pragma once
+#include "Core.Object.Pointer.h"
 #include "Engine.PrimitiveComponent.h"
 #include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -14,8 +15,8 @@ namespace UnrealScript
 	class ModelComponent : public PrimitiveComponent
 	{
 	public:
-		ADD_STRUCT(ScriptArray<Object::Pointer>, Nodes, 500)
-		ADD_STRUCT(ScriptArray<Object::Pointer>, Elements, 512)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, Nodes, 500)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, Elements, 512)
 		ADD_STRUCT(int, ComponentIndex, 496)
 		ADD_STRUCT(int, ZoneIndex, 492)
 		ADD_OBJECT(Object, Model, 488)

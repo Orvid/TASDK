@@ -1,9 +1,9 @@
 #pragma once
 #include "TribesGame.TrGame.h"
 #include "TribesGame.TrFlagTeamRabbit.h"
+#include "Core.Object.Vector.h"
 #include "Engine.PlayerStart.h"
 #include "Engine.Controller.h"
-#include "Core.Object.h"
 #include "Engine.Pawn.h"
 #include "Engine.PlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \

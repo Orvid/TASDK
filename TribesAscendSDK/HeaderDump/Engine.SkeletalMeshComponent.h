@@ -4,21 +4,38 @@
 #include "Engine.PhysicsAsset.h"
 #include "Engine.AnimNode.h"
 #include "Engine.PhysicsAssetInstance.h"
-#include "Engine.AnimSet.h"
 #include "Engine.SkeletalMesh.h"
+#include "Engine.SkeletalMeshComponent.SkelMeshComponentLODInfo.h"
 #include "Engine.AnimTree.h"
-#include "Core.Object.h"
+#include "Engine.SkeletalMeshComponent.EFaceFXRegOp.h"
 #include "Engine.FaceFXAnimSet.h"
+#include "Core.Object.Vector.h"
 #include "Engine.SkelControlBase.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Color.h"
+#include "Core.Object.BoneAtom.h"
+#include "Core.Object.EAxis.h"
+#include "Engine.AnimSet.h"
 #include "Engine.MorphTargetSet.h"
-#include "Engine.PrimitiveComponent.h"
+#include "Engine.SkeletalMeshComponent.ActiveMorph.h"
+#include "Engine.AnimNotify_ForceField.h"
+#include "Engine.SkeletalMeshComponent.EPhysBodyOp.h"
+#include "Engine.SkeletalMeshComponent.Attachment.h"
+#include "Engine.SkeletalMeshComponent.ERootMotionMode.h"
+#include "Engine.SkeletalMeshComponent.BonePair.h"
+#include "Core.Object.Rotator.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
+#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #include "Engine.Material.h"
+#include "Engine.SkeletalMeshComponent.ERootMotionRotationMode.h"
+#include "Engine.SkeletalMeshComponent.EFaceFXBlendMode.h"
 #include "Engine.SkeletalMeshSocket.h"
+#include "Core.Object.Matrix.h"
 #include "Engine.AnimSequence.h"
 #include "Engine.MorphTarget.h"
 #include "Engine.MorphNodeBase.h"
+#include "Core.Object.Quat.h"
 #include "Engine.RB_BodyInstance.h"
-#include "Engine.AnimNotify_ForceField.h"
 #include "Engine.AnimNotify_PlayParticleEffect.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -43,84 +60,9 @@ namespace UnrealScript
 	class SkeletalMeshComponent : public MeshComponent
 	{
 	public:
-		enum EPhysBodyOp : byte
-		{
-			PBO_None = 0,
-			PBO_Term = 1,
-			PBO_Disable = 2,
-			PBO_MAX = 3,
-		};
-		enum EFaceFXRegOp : byte
-		{
-			FXRO_Add = 0,
-			FXRO_Multiply = 1,
-			FXRO_Replace = 2,
-			FXRO_MAX = 3,
-		};
-		enum EFaceFXBlendMode : byte
-		{
-			FXBM_Overwrite = 0,
-			FXBM_Additive = 1,
-			FXBM_MAX = 2,
-		};
-		enum EInstanceWeightUsage : byte
-		{
-			IWU_PartialSwap = 0,
-			IWU_FullSwap = 1,
-			IWU_MAX = 2,
-		};
-		enum ERootMotionRotationMode : byte
-		{
-			RMRM_Ignore = 0,
-			RMRM_RotateActor = 1,
-			RMRM_MAX = 2,
-		};
-		enum ERootMotionMode : byte
-		{
-			RMM_Translate = 0,
-			RMM_Velocity = 1,
-			RMM_Ignore = 2,
-			RMM_Accel = 3,
-			RMM_Relative = 4,
-			RMM_MAX = 5,
-		};
-		enum EMaxDistanceScaleMode : byte
-		{
-			MDSM_Multiply = 0,
-			MDSM_Substract = 1,
-			MDSM_MAX = 2,
-		};
-		struct BonePair
-		{
-		public:
-			ADD_STRUCT(ScriptName, Bones, 0)
-		};
-		struct Attachment
-		{
-		public:
-			ADD_STRUCT(ScriptName, BoneName, 4)
-			ADD_STRUCT(Vector, RelativeLocation, 12)
-			ADD_STRUCT(Rotator, RelativeRotation, 24)
-			ADD_STRUCT(Vector, RelativeScale, 36)
-		};
-		struct ActiveMorph
-		{
-		public:
-			ADD_OBJECT(MorphTarget, Target, 0)
-			ADD_STRUCT(float, Weight, 4)
-		};
-		struct SkelMeshComponentLODInfo
-		{
-		public:
-			ADD_STRUCT(SkeletalMeshComponent::EInstanceWeightUsage, InstanceWeightUsage, 16)
-			ADD_STRUCT(ScriptArray<bool>, HiddenMaterials, 0)
-			ADD_BOOL(bNeedsInstanceWeightUpdate, 12, 0x1)
-			ADD_BOOL(bAlwaysUseInstanceWeights, 12, 0x2)
-			ADD_STRUCT(int, InstanceWeightIdx, 20)
-		};
 		ADD_OBJECT(AnimNode, Animations, 512)
 		ADD_OBJECT(PhysicsAssetInstance, PhysicsAssetInstance, 580)
-		ADD_STRUCT(ScriptArray<SkeletalMeshComponent::SkelMeshComponentLODInfo>, LODInfo, 976)
+		ADD_STRUCT(ScriptArray<SkeletalMeshComponent__SkelMeshComponentLODInfo>, LODInfo, 976)
 		ADD_OBJECT(PhysicsAsset, PhysicsAsset, 576)
 		ADD_OBJECT(SkeletalMesh, SkeletalMesh, 500)
 		ADD_OBJECT(AnimTree, AnimTreeTemplate, 508)
@@ -129,15 +71,15 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<int>, AnimTickRelevancyArray, 540)
 		ADD_STRUCT(ScriptArray<float>, AnimTickWeightsArray, 552)
 		ADD_STRUCT(ScriptArray<class SkelControlBase*>, SkelControlTickArray, 564)
-		ADD_STRUCT(Object::Pointer, ApexClothing, 584)
+		ADD_STRUCT(Object__Pointer, ApexClothing, 584)
 		ADD_STRUCT(float, PhysicsWeight, 588)
 		ADD_STRUCT(float, GlobalAnimRateScale, 592)
-		ADD_STRUCT(Object::Pointer, MeshObject, 596)
-		ADD_STRUCT(Object::Color, WireframeColor, 600)
-		ADD_STRUCT(ScriptArray<Object::BoneAtom>, SpaceBases, 604)
-		ADD_STRUCT(ScriptArray<Object::BoneAtom>, LocalAtoms, 616)
-		ADD_STRUCT(ScriptArray<Object::BoneAtom>, CachedLocalAtoms, 628)
-		ADD_STRUCT(ScriptArray<Object::BoneAtom>, CachedSpaceBases, 640)
+		ADD_STRUCT(Object__Pointer, MeshObject, 596)
+		ADD_STRUCT(Object__Color, WireframeColor, 600)
+		ADD_STRUCT(ScriptArray<Object__BoneAtom>, SpaceBases, 604)
+		ADD_STRUCT(ScriptArray<Object__BoneAtom>, LocalAtoms, 616)
+		ADD_STRUCT(ScriptArray<Object__BoneAtom>, CachedLocalAtoms, 628)
+		ADD_STRUCT(ScriptArray<Object__BoneAtom>, CachedSpaceBases, 640)
 		ADD_STRUCT(int, LowUpdateFrameRate, 652)
 		ADD_STRUCT(ScriptArray<byte>, RequiredBones, 656)
 		ADD_STRUCT(ScriptArray<byte>, ComposeOrderedRequiredBones, 668)
@@ -146,9 +88,9 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<class AnimSet*>, AnimSets, 700)
 		ADD_STRUCT(ScriptArray<class AnimSet*>, TemporarySavedAnimSets, 712)
 		ADD_STRUCT(ScriptArray<class MorphTargetSet*>, MorphSets, 724)
-		ADD_STRUCT(ScriptArray<SkeletalMeshComponent::ActiveMorph>, ActiveMorphs, 736)
-		ADD_STRUCT(ScriptArray<SkeletalMeshComponent::ActiveMorph>, ActiveCurveMorphs, 748)
-		ADD_STRUCT(ScriptArray<SkeletalMeshComponent::Attachment>, Attachments, 820)
+		ADD_STRUCT(ScriptArray<SkeletalMeshComponent__ActiveMorph>, ActiveMorphs, 736)
+		ADD_STRUCT(ScriptArray<SkeletalMeshComponent__ActiveMorph>, ActiveCurveMorphs, 748)
+		ADD_STRUCT(ScriptArray<SkeletalMeshComponent__Attachment>, Attachments, 820)
 		ADD_STRUCT(ScriptArray<byte>, SkelControlIndex, 832)
 		ADD_STRUCT(ScriptArray<byte>, PostPhysSkelControlIndex, 844)
 		ADD_STRUCT(int, ForcedLodModel, 856)
@@ -222,7 +164,7 @@ namespace UnrealScript
 		ADD_BOOL(bAlwaysUseInstanceWeights, 960, 0x8000)
 		ADD_BOOL(bUpdateComposeSkeletonPasses, 960, 0x10000)
 		ADD_BOOL(bValidTemporarySavedAnimSets, 960, 0x20000)
-		ADD_STRUCT(ScriptArray<SkeletalMeshComponent::BonePair>, InstanceVertexWeightBones, 964)
+		ADD_STRUCT(ScriptArray<SkeletalMeshComponent__BonePair>, InstanceVertexWeightBones, 964)
 		ADD_STRUCT(Vector, FrozenLocalToWorldPos, 988)
 		ADD_STRUCT(Rotator, FrozenLocalToWorldRot, 1000)
 		ADD_STRUCT(Vector, ClothExternalForce, 1012)
@@ -236,7 +178,7 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, MaxPosDampRange, 1076)
 		ADD_STRUCT(Vector, MinPosDampScale, 1088)
 		ADD_STRUCT(Vector, MaxPosDampScale, 1100)
-		ADD_STRUCT(Object::Pointer, ClothSim, 1112)
+		ADD_STRUCT(Object__Pointer, ClothSim, 1112)
 		ADD_STRUCT(int, SceneIndex, 1116)
 		ADD_STRUCT(ScriptArray<Vector>, ClothMeshPosData, 1120)
 		ADD_STRUCT(ScriptArray<Vector>, ClothMeshNormalData, 1132)
@@ -249,21 +191,21 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptArray<Vector>, ClothMeshWeldedNormalData, 1192)
 		ADD_STRUCT(ScriptArray<int>, ClothMeshWeldedIndexData, 1204)
 		ADD_STRUCT(int, ClothDirtyBufferFlag, 1216)
-		ADD_STRUCT(PrimitiveComponent::ERBCollisionChannel, ClothRBChannel, 1220)
-		ADD_STRUCT(PrimitiveComponent::RBCollisionChannelContainer, ClothRBCollideWithChannels, 1224)
+		ADD_STRUCT(PrimitiveComponent__ERBCollisionChannel, ClothRBChannel, 1220)
+		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, ClothRBCollideWithChannels, 1224)
 		ADD_STRUCT(float, ClothForceScale, 1228)
 		ADD_STRUCT(float, ClothImpulseScale, 1232)
 		ADD_STRUCT(float, ClothAttachmentTearFactor, 1236)
 		ADD_BOOL(bClothUseCompartment, 1240, 0x1)
 		ADD_STRUCT(float, MinDistanceForClothReset, 1244)
 		ADD_STRUCT(Vector, LastClothLocation, 1248)
-		ADD_STRUCT(PrimitiveComponent::ERBCollisionChannel, ApexClothingRBChannel, 1260)
-		ADD_STRUCT(PrimitiveComponent::RBCollisionChannelContainer, ApexClothingRBCollideWithChannels, 1264)
+		ADD_STRUCT(PrimitiveComponent__ERBCollisionChannel, ApexClothingRBChannel, 1260)
+		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, ApexClothingRBCollideWithChannels, 1264)
 		ADD_BOOL(bAutoFreezeApexClothingWhenNotRendered, 1268, 0x1)
 		ADD_STRUCT(Vector, WindVelocity, 1272)
 		ADD_STRUCT(float, WindVelocityBlendTime, 1284)
 		ADD_BOOL(bSkipInitClothing, 1288, 0x1)
-		ADD_STRUCT(Object::Pointer, SoftBodySim, 1292)
+		ADD_STRUCT(Object__Pointer, SoftBodySim, 1292)
 		ADD_STRUCT(int, SoftBodySceneIndex, 1296)
 		ADD_BOOL(bEnableSoftBodySimulation, 1300, 0x1)
 		ADD_STRUCT(ScriptArray<Vector>, SoftBodyTetraPosData, 1304)
@@ -275,24 +217,24 @@ namespace UnrealScript
 		ADD_BOOL(bAutoFreezeSoftBodyWhenNotRendered, 1340, 0x2)
 		ADD_BOOL(bSoftBodyAwakeOnStartup, 1340, 0x4)
 		ADD_BOOL(bSoftBodyUseCompartment, 1340, 0x8)
-		ADD_STRUCT(PrimitiveComponent::ERBCollisionChannel, SoftBodyRBChannel, 1344)
-		ADD_STRUCT(PrimitiveComponent::RBCollisionChannelContainer, SoftBodyRBCollideWithChannels, 1348)
-		ADD_STRUCT(Object::Pointer, SoftBodyASVPlane, 1352)
+		ADD_STRUCT(PrimitiveComponent__ERBCollisionChannel, SoftBodyRBChannel, 1344)
+		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, SoftBodyRBCollideWithChannels, 1348)
+		ADD_STRUCT(Object__Pointer, SoftBodyASVPlane, 1352)
 		ADD_OBJECT(Material, LimitMaterial, 1356)
-		ADD_STRUCT(Object::BoneAtom, RootMotionDelta, 1360)
+		ADD_STRUCT(Object__BoneAtom, RootMotionDelta, 1360)
 		ADD_STRUCT(Vector, RootMotionVelocity, 1392)
 		ADD_STRUCT(Vector, RootBoneTranslation, 1404)
 		ADD_STRUCT(Vector, RootMotionAccelScale, 1416)
-		ADD_STRUCT(SkeletalMeshComponent::ERootMotionMode, RootMotionMode, 1428)
-		ADD_STRUCT(SkeletalMeshComponent::ERootMotionMode, PreviousRMM, 1429)
-		ADD_STRUCT(SkeletalMeshComponent::ERootMotionMode, PendingRMM, 1430)
-		ADD_STRUCT(SkeletalMeshComponent::ERootMotionMode, OldPendingRMM, 1431)
+		ADD_STRUCT(SkeletalMeshComponent__ERootMotionMode, RootMotionMode, 1428)
+		ADD_STRUCT(SkeletalMeshComponent__ERootMotionMode, PreviousRMM, 1429)
+		ADD_STRUCT(SkeletalMeshComponent__ERootMotionMode, PendingRMM, 1430)
+		ADD_STRUCT(SkeletalMeshComponent__ERootMotionMode, OldPendingRMM, 1431)
 		ADD_STRUCT(int, bRMMOneFrameDelay, 1432)
-		ADD_STRUCT(SkeletalMeshComponent::ERootMotionRotationMode, RootMotionRotationMode, 1436)
-		ADD_STRUCT(SkeletalMeshComponent::EFaceFXBlendMode, FaceFXBlendMode, 1437)
-		ADD_STRUCT(Object::Pointer, FaceFXActorInstance, 1440)
+		ADD_STRUCT(SkeletalMeshComponent__ERootMotionRotationMode, RootMotionRotationMode, 1436)
+		ADD_STRUCT(SkeletalMeshComponent__EFaceFXBlendMode, FaceFXBlendMode, 1437)
+		ADD_STRUCT(Object__Pointer, FaceFXActorInstance, 1440)
 		ADD_STRUCT(ScriptArray<byte>, BoneVisibility, 1448)
-		ADD_STRUCT(Object::BoneAtom, LocalToWorldBoneAtom, 1472)
+		ADD_STRUCT(Object__BoneAtom, LocalToWorldBoneAtom, 1472)
 		ADD_STRUCT(float, ProgressiveDrawingFraction, 1504)
 		ADD_STRUCT(byte, CustomSortAlternateIndexMode, 1508)
 		void AttachComponent(
@@ -402,12 +344,12 @@ void**)&params[4] = OutComponent;
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void**)&params[4];
 		}
-		Object::Matrix GetTransformMatrix()
+		Object__Matrix GetTransformMatrix()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(6979);
 			byte params[64] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Matrix*)params;
+			return *(Object__Matrix*)params;
 		}
 		void SetSkeletalMesh(class SkeletalMesh* NewMesh, bool bKeepSpaceBases)
 		{
@@ -796,14 +738,14 @@ void**)&params[4];
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class MorphNodeBase**)&params[8];
 		}
-		Object::Quat GetBoneQuaternion(ScriptName BoneName, int Space)
+		Object__Quat GetBoneQuaternion(ScriptName BoneName, int Space)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7102);
 			byte params[28] = { NULL };
 			*(ScriptName*)params = BoneName;
 			*(int*)&params[8] = Space;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Quat*)&params[16];
+			return *(Object__Quat*)&params[16];
 		}
 		Vector GetBoneLocation(ScriptName BoneName, int Space)
 		{
@@ -830,13 +772,13 @@ void**)&params[4];
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptName*)&params[4];
 		}
-		Object::Matrix GetBoneMatrix(int BoneIndex)
+		Object__Matrix GetBoneMatrix(int BoneIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7116);
 			byte params[68] = { NULL };
 			*(int*)params = BoneIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Matrix*)&params[16];
+			return *(Object__Matrix*)&params[16];
 		}
 		ScriptName GetParentBone(ScriptName BoneName)
 		{
@@ -871,12 +813,12 @@ void**)&params[4];
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[4];
 		}
-		Vector GetBoneAxis(ScriptName BoneName, Object::EAxis Axis)
+		Vector GetBoneAxis(ScriptName BoneName, Object__EAxis Axis)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7132);
 			byte params[21] = { NULL };
 			*(ScriptName*)params = BoneName;
-			*(Object::EAxis*)&params[8] = Axis;
+			*(Object__EAxis*)&params[8] = Axis;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[12];
 		}
@@ -1036,19 +978,19 @@ void**)params = NewParentAnimComp;
 			*(ScriptName*)params = BoneName;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		int FindInstanceVertexweightBonePair(SkeletalMeshComponent::BonePair Bones)
+		int FindInstanceVertexweightBonePair(SkeletalMeshComponent__BonePair Bones)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7193);
 			byte params[20] = { NULL };
-			*(SkeletalMeshComponent::BonePair*)params = Bones;
+			*(SkeletalMeshComponent__BonePair*)params = Bones;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[16];
 		}
-		void UpdateInstanceVertexWeightBones(ScriptArray<SkeletalMeshComponent::BonePair> BonePairs)
+		void UpdateInstanceVertexWeightBones(ScriptArray<SkeletalMeshComponent__BonePair> BonePairs)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7199);
 			byte params[12] = { NULL };
-			*(ScriptArray<SkeletalMeshComponent::BonePair>*)params = BonePairs;
+			*(ScriptArray<SkeletalMeshComponent__BonePair>*)params = BonePairs;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ToggleInstanceVertexWeights(bool bEnable, int LODIdx)
@@ -1097,34 +1039,34 @@ void**)params = NewParentAnimComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[12];
 		}
-		void SetFaceFXRegister(ScriptString* RegName, float RegVal, SkeletalMeshComponent::EFaceFXRegOp RegOp, float InterpDuration)
+		void SetFaceFXRegister(ScriptString* RegName, float RegVal, SkeletalMeshComponent__EFaceFXRegOp RegOp, float InterpDuration)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7219);
 			byte params[21] = { NULL };
 			*(ScriptString**)params = RegName;
 			*(float*)&params[12] = RegVal;
-			*(SkeletalMeshComponent::EFaceFXRegOp*)&params[16] = RegOp;
+			*(SkeletalMeshComponent__EFaceFXRegOp*)&params[16] = RegOp;
 			*(float*)&params[20] = InterpDuration;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetFaceFXRegisterEx(ScriptString* RegName, SkeletalMeshComponent::EFaceFXRegOp RegOp, float FirstValue, float FirstInterpDuration, float NextValue, float NextInterpDuration)
+		void SetFaceFXRegisterEx(ScriptString* RegName, SkeletalMeshComponent__EFaceFXRegOp RegOp, float FirstValue, float FirstInterpDuration, float NextValue, float NextInterpDuration)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7224);
 			byte params[29] = { NULL };
 			*(ScriptString**)params = RegName;
-			*(SkeletalMeshComponent::EFaceFXRegOp*)&params[12] = RegOp;
+			*(SkeletalMeshComponent__EFaceFXRegOp*)&params[12] = RegOp;
 			*(float*)&params[16] = FirstValue;
 			*(float*)&params[20] = FirstInterpDuration;
 			*(float*)&params[24] = NextValue;
 			*(float*)&params[28] = NextInterpDuration;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void HideBone(int BoneIndex, SkeletalMeshComponent::EPhysBodyOp PhysBodyOption)
+		void HideBone(int BoneIndex, SkeletalMeshComponent__EPhysBodyOp PhysBodyOption)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7231);
 			byte params[5] = { NULL };
 			*(int*)params = BoneIndex;
-			*(SkeletalMeshComponent::EPhysBodyOp*)&params[4] = PhysBodyOption;
+			*(SkeletalMeshComponent__EPhysBodyOp*)&params[4] = PhysBodyOption;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UnHideBone(int BoneIndex)
@@ -1142,12 +1084,12 @@ void**)params = NewParentAnimComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void HideBoneByName(ScriptName BoneName, SkeletalMeshComponent::EPhysBodyOp PhysBodyOption)
+		void HideBoneByName(ScriptName BoneName, SkeletalMeshComponent__EPhysBodyOp PhysBodyOption)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7239);
 			byte params[9] = { NULL };
 			*(ScriptName*)params = BoneName;
-			*(SkeletalMeshComponent::EPhysBodyOp*)&params[8] = PhysBodyOption;
+			*(SkeletalMeshComponent__EPhysBodyOp*)&params[8] = PhysBodyOption;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UnHideBoneByName(ScriptName BoneName)

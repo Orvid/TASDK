@@ -1,6 +1,7 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.PostProcessEffect.h"
+#include "Engine.AmbientOcclusionEffect.EAmbientOcclusionQuality.h"
+#include "Core.Object.LinearColor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,13 +21,6 @@ namespace UnrealScript
 	class AmbientOcclusionEffect : public PostProcessEffect
 	{
 	public:
-		enum EAmbientOcclusionQuality : byte
-		{
-			AO_High = 0,
-			AO_Medium = 1,
-			AO_Low = 2,
-			AO_MAX = 3,
-		};
 		ADD_STRUCT(float, HistoryWeightConvergenceTime, 188)
 		ADD_STRUCT(float, HistoryConvergenceTime, 184)
 		ADD_STRUCT(int, FilterSize, 180)
@@ -38,8 +32,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, HaloDistanceThreshold, 156)
 		ADD_STRUCT(float, OcclusionFadeoutMaxDistance, 152)
 		ADD_STRUCT(float, OcclusionFadeoutMinDistance, 148)
-		ADD_STRUCT(AmbientOcclusionEffect::EAmbientOcclusionQuality, OcclusionQuality, 144)
-		ADD_STRUCT(Object::LinearColor, OcclusionColor, 100)
+		ADD_STRUCT(AmbientOcclusionEffect__EAmbientOcclusionQuality, OcclusionQuality, 144)
+		ADD_STRUCT(Object__LinearColor, OcclusionColor, 100)
 		ADD_STRUCT(float, OcclusionAttenuation, 140)
 		ADD_STRUCT(float, OcclusionRadius, 136)
 		ADD_BOOL(bAngleBasedSSAO, 132, 0x2)

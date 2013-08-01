@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.Info.h"
+#include "UTGame.UTMusicManager.EMusicState.h"
 #include "UTGame.UTPlayerController.h"
 #include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -25,18 +26,9 @@ namespace UnrealScript
 	class UTMusicManager : public Info
 	{
 	public:
-		enum EMusicState : byte
-		{
-			MST_Ambient = 0,
-			MST_Tension = 1,
-			MST_Suspense = 2,
-			MST_Action = 3,
-			MST_Victory = 4,
-			MST_MAX = 5,
-		};
 		ADD_STRUCT(float, MusicStartTime, 476)
 		ADD_STRUCT(int, LastBeat, 480)
-		ADD_STRUCT(UTMusicManager::EMusicState, CurrentState, 512)
+		ADD_STRUCT(UTMusicManager__EMusicState, CurrentState, 512)
 		ADD_STRUCT(float, MusicVolume, 496)
 		ADD_OBJECT(UTPlayerController, PlayerOwner, 492)
 		ADD_STRUCT(float, CurrTempo, 484)
@@ -106,11 +98,11 @@ void**)&params[4];
 			*(float*)params = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ChangeTrack(UTMusicManager::EMusicState NewState)
+		void ChangeTrack(UTMusicManager__EMusicState NewState)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(48546);
 			byte params[1] = { NULL };
-			*(UTMusicManager::EMusicState*)params = NewState;
+			*(UTMusicManager__EMusicState*)params = NewState;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 	};

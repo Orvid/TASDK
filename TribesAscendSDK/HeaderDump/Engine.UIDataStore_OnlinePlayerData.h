@@ -1,10 +1,10 @@
 #pragma once
 #include "Engine.UIDataProvider_OnlineFriends.h"
 #include "Engine.UIDataStore_Remote.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.UIDataProvider_OnlineProfileSettings.h"
 #include "Engine.UIDataProvider_PlayerAchievements.h"
 #include "Engine.UIDataProvider_OnlinePartyChatList.h"
-#include "Core.Object.h"
 #include "Engine.UIDataProvider_OnlineFriendMessages.h"
 #include "Engine.UIDataProvider_OnlinePlayerStorage.h"
 #include "Engine.UIDataProvider.h"
@@ -44,7 +44,7 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptString*, PlayerNick, 132)
 		ADD_STRUCT(int, PlayerControllerId, 128)
 		ADD_OBJECT(UIDataProvider_OnlineFriends, FriendsProvider, 124)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementProvider, 120)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementProvider, 120)
 		void OnSettingProviderChanged(class UIDataProvider* SourceProvider, ScriptName SettingsName)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28750);

@@ -1,7 +1,8 @@
 #pragma once
+#include "Core.Object.QWord.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.Settings.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Core.Object.h"
+#include "Engine.OnlineSubsystem.EOnlineGameState.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,8 +25,8 @@ namespace UnrealScript
 		ADD_BOOL(bUsesArbitration, 132, 0x100)
 		ADD_STRUCT(int, NumOpenPrivateConnections, 120)
 		ADD_STRUCT(int, NumOpenPublicConnections, 116)
-		ADD_STRUCT(OnlineSubsystem::EOnlineGameState, GameState, 164)
-		ADD_STRUCT(OnlineSubsystem::UniqueNetId, OwningPlayerId, 148)
+		ADD_STRUCT(OnlineSubsystem__EOnlineGameState, GameState, 164)
+		ADD_STRUCT(OnlineSubsystem__UniqueNetId, OwningPlayerId, 148)
 		ADD_BOOL(bIsLanMatch, 132, 0x2)
 		ADD_BOOL(bUsesStats, 132, 0x4)
 		ADD_STRUCT(int, NumPublicConnections, 108)

@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.LinearColor.h"
 #include "Engine.ActorComponent.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
 #include "Engine.MaterialInterface.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -28,8 +28,8 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(ScriptArray<class Actor*>, FogVolumeActors, 136)
 		ADD_STRUCT(float, StartDistance, 132)
-		ADD_STRUCT(Object::LinearColor, ApproxFogLightColor, 116)
-		ADD_STRUCT(Object::LinearColor, SimpleLightColor, 100)
+		ADD_STRUCT(Object__LinearColor, ApproxFogLightColor, 116)
+		ADD_STRUCT(Object__LinearColor, SimpleLightColor, 100)
 		ADD_BOOL(bOnlyAffectsTranslucency, 96, 0x4)
 		ADD_BOOL(bAffectsTranslucency, 96, 0x2)
 		ADD_BOOL(bEnabled, 96, 0x1)

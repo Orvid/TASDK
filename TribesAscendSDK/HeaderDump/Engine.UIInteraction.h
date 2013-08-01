@@ -1,12 +1,15 @@
 #pragma once
 #include "Engine.LocalPlayer.h"
 #include "Engine.Interaction.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.ENATType.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.GameUISceneClient.h"
-#include "Engine.UIManager.h"
-#include "Engine.UIRoot.h"
-#include "Core.Object.h"
+#include "Engine.UIInteraction.UIKeyRepeatData.h"
+#include "Engine.UIRoot.UIAxisEmulationDefinition.h"
 #include "Engine.DataStoreClient.h"
+#include "Engine.UIInteraction.UIAxisEmulationData.h"
+#include "Engine.UIManager.h"
+#include "Engine.OnlineSubsystem.ELoginStatus.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,22 +33,11 @@ namespace UnrealScript
 	class UIInteraction : public Interaction
 	{
 	public:
-		struct UIKeyRepeatData
-		{
-		public:
-			ADD_STRUCT(Object::Double, NextRepeatTime, 8)
-			ADD_STRUCT(ScriptName, CurrentRepeatKey, 0)
-		};
-		struct UIAxisEmulationData : public UIKeyRepeatData
-		{
-		public:
-			ADD_BOOL(bEnabled, 16, 0x1)
-		};
 		ADD_OBJECT(GameUISceneClient, SceneClient, 132)
 		ADD_STRUCT(ScriptArray<ScriptName>, SupportedDoubleClickKeys, 136)
-		ADD_STRUCT(ScriptArray<UIRoot::UIAxisEmulationDefinition>, ConfiguredAxisEmulationDefinitions, 196)
-		ADD_STRUCT(UIInteraction::UIAxisEmulationData, AxisInputEmulation, 268)
-		ADD_STRUCT(UIInteraction::UIKeyRepeatData, MouseButtonRepeatInfo, 180)
+		ADD_STRUCT(ScriptArray<UIRoot__UIAxisEmulationDefinition>, ConfiguredAxisEmulationDefinitions, 196)
+		ADD_STRUCT(UIInteraction__UIAxisEmulationData, AxisInputEmulation, 268)
+		ADD_STRUCT(UIInteraction__UIKeyRepeatData, MouseButtonRepeatInfo, 180)
 		ADD_STRUCT(int, DoubleClickPixelTolerance, 176)
 		ADD_STRUCT(float, DoubleClickTriggerSeconds, 172)
 		ADD_STRUCT(float, MouseButtonRepeatDelay, 168)
@@ -57,9 +49,9 @@ namespace UnrealScript
 		ADD_OBJECT(ScriptClass, SceneClientClass, 128)
 		ADD_OBJECT(ScriptClass, UIManagerClass, 124)
 		ADD_OBJECT(UIManager, UIManager, 120)
-		ADD_STRUCT(Object::Pointer, VfTable_FCallbackEventDevice, 116)
-		ADD_STRUCT(Object::Pointer, VfTable_FGlobalDataStoreClientManager, 112)
-		ADD_STRUCT(Object::Pointer, VfTable_FExec, 108)
+		ADD_STRUCT(Object__Pointer, VfTable_FCallbackEventDevice, 116)
+		ADD_STRUCT(Object__Pointer, VfTable_FGlobalDataStoreClientManager, 112)
+		ADD_STRUCT(Object__Pointer, VfTable_FExec, 108)
 		class DataStoreClient* GetDataStoreClient()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(7799);
@@ -131,20 +123,20 @@ namespace UnrealScript
 			*(class LocalPlayer**)&params[4] = RemovedPlayer;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		OnlineSubsystem::ELoginStatus GetLoginStatus(int ControllerId)
+		OnlineSubsystem__ELoginStatus GetLoginStatus(int ControllerId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29080);
 			byte params[5] = { NULL };
 			*(int*)params = ControllerId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::ELoginStatus*)&params[4];
+			return *(OnlineSubsystem__ELoginStatus*)&params[4];
 		}
-		OnlineSubsystem::ELoginStatus GetLowestLoginStatusOfControllers()
+		OnlineSubsystem__ELoginStatus GetLowestLoginStatusOfControllers()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29086);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::ELoginStatus*)params;
+			return *(OnlineSubsystem__ELoginStatus*)params;
 		}
 		bool HasLinkConnection()
 		{
@@ -176,12 +168,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[12];
 		}
-		OnlineSubsystem::ENATType GetNATType()
+		OnlineSubsystem__ENATType GetNATType()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29120);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::ENATType*)params;
+			return *(OnlineSubsystem__ENATType*)params;
 		}
 		void NotifyGameSessionEnded()
 		{

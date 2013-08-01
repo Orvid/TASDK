@@ -3,6 +3,7 @@
 #include "TribesGame.TrPawn.h"
 #include "Engine.Camera.h"
 #include "TribesGame.TrFlagBase.h"
+#include "Engine.Camera.TViewTarget.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -57,14 +58,14 @@ namespace UnrealScript
 			*(float*)params = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void UpdateViewTarget(Camera::TViewTarget& OutVT, float DeltaTime)
+		void UpdateViewTarget(Camera__TViewTarget& OutVT, float DeltaTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(74264);
 			byte params[48] = { NULL };
-			*(Camera::TViewTarget*)params = OutVT;
+			*(Camera__TViewTarget*)params = OutVT;
 			*(float*)&params[44] = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			OutVT = *(Camera::TViewTarget*)params;
+			OutVT = *(Camera__TViewTarget*)params;
 		}
 		void ShowHiddenPawn()
 		{

@@ -1,6 +1,8 @@
 #pragma once
-#include "Engine.PrimitiveComponent.h"
 #include "Engine.RigidBodyBase.h"
+#include "Engine.PrimitiveComponent.ERadialImpulseFalloff.h"
+#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
+#include "Engine.RB_RadialForceActor.ERadialForceType.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -21,20 +23,14 @@ namespace UnrealScript
 	class RB_RadialForceActor : public RigidBodyBase
 	{
 	public:
-		enum ERadialForceType : byte
-		{
-			RFT_Force = 0,
-			RFT_Impulse = 1,
-			RFT_MAX = 2,
-		};
 		ADD_BOOL(bForceActive, 500, 0x1)
-		ADD_STRUCT(PrimitiveComponent::RBCollisionChannelContainer, CollideWithChannels, 504)
+		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, CollideWithChannels, 504)
 		ADD_BOOL(bForceApplyToProjectiles, 500, 0x10)
 		ADD_BOOL(bForceApplyToRigidBodies, 500, 0x8)
 		ADD_BOOL(bForceApplyToFluid, 500, 0x4)
 		ADD_BOOL(bForceApplyToCloth, 500, 0x2)
-		ADD_STRUCT(RB_RadialForceActor::ERadialForceType, RadialForceMode, 497)
-		ADD_STRUCT(PrimitiveComponent::ERadialImpulseFalloff, ForceFalloff, 496)
+		ADD_STRUCT(RB_RadialForceActor__ERadialForceType, RadialForceMode, 497)
+		ADD_STRUCT(PrimitiveComponent__ERadialImpulseFalloff, ForceFalloff, 496)
 		ADD_STRUCT(float, SpinTorque, 492)
 		ADD_STRUCT(float, SwirlStrength, 488)
 		ADD_STRUCT(float, ForceRadius, 484)

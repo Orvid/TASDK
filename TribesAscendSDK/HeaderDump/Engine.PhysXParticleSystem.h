@@ -1,6 +1,11 @@
 #pragma once
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
+#include "Engine.PhysXParticleSystem.EPacketSizeMultiplier.h"
 #include "Core.Object.h"
-#include "Engine.PrimitiveComponent.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.PhysXParticleSystem.ESimulationMethod.h"
+#include "Core.Object.Vector.h"
+#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,25 +25,8 @@ namespace UnrealScript
 	class PhysXParticleSystem : public Object
 	{
 	public:
-		enum ESimulationMethod : byte
-		{
-			ESM_SPH = 0,
-			ESM_NO_PARTICLE_INTERACTION = 1,
-			ESM_MIXED_MODE = 2,
-			ESM_MAX = 3,
-		};
-		enum EPacketSizeMultiplier : byte
-		{
-			EPSM_4 = 0,
-			EPSM_8 = 1,
-			EPSM_16 = 2,
-			EPSM_32 = 3,
-			EPSM_64 = 4,
-			EPSM_128 = 5,
-			EPSM_MAX = 6,
-		};
-		ADD_STRUCT(Object::Pointer, PSys, 156)
-		ADD_STRUCT(Object::Pointer, CascadeScene, 152)
+		ADD_STRUCT(Object__Pointer, PSys, 156)
+		ADD_STRUCT(Object__Pointer, CascadeScene, 152)
 		ADD_STRUCT(float, CollisionResponseCoefficient, 148)
 		ADD_STRUCT(float, Viscosity, 144)
 		ADD_STRUCT(float, Stiffness, 140)
@@ -62,10 +50,10 @@ namespace UnrealScript
 		ADD_STRUCT(float, RestitutionWithDynamicShapes, 84)
 		ADD_STRUCT(float, RestitutionWithStaticShapes, 80)
 		ADD_STRUCT(float, CollisionDistance, 76)
-		ADD_STRUCT(PrimitiveComponent::RBCollisionChannelContainer, RBCollideWithChannels, 72)
-		ADD_STRUCT(PhysXParticleSystem::EPacketSizeMultiplier, PacketSizeMultiplier, 70)
-		ADD_STRUCT(PhysXParticleSystem::ESimulationMethod, SimulationMethod, 69)
-		ADD_STRUCT(PrimitiveComponent::ERBCollisionChannel, RBChannel, 68)
+		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, RBCollideWithChannels, 72)
+		ADD_STRUCT(PhysXParticleSystem__EPacketSizeMultiplier, PacketSizeMultiplier, 70)
+		ADD_STRUCT(PhysXParticleSystem__ESimulationMethod, SimulationMethod, 69)
+		ADD_STRUCT(PrimitiveComponent__ERBCollisionChannel, RBChannel, 68)
 		ADD_STRUCT(int, ParticleSpawnReserve, 64)
 		ADD_STRUCT(int, MaxParticles, 60)
 	};

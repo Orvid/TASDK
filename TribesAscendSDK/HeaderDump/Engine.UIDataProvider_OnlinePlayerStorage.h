@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.UIDataProvider_OnlinePlayerDataBase.h"
+#include "Engine.UIDataProvider_OnlinePlayerStorage.PlayerStorageArrayProvider.h"
 #include "Engine.OnlinePlayerStorage.h"
 #include "Engine.UIDataProvider.h"
 #include "Engine.LocalPlayer.h"
@@ -26,14 +27,7 @@ namespace UnrealScript
 	class UIDataProvider_OnlinePlayerStorage : public UIDataProvider_OnlinePlayerDataBase
 	{
 	public:
-		struct PlayerStorageArrayProvider
-		{
-		public:
-			ADD_OBJECT(UIDataProvider_OnlinePlayerStorageArray, Provider, 12)
-			ADD_STRUCT(ScriptName, PlayerStorageName, 4)
-			ADD_STRUCT(int, PlayerStorageId, 0)
-		};
-		ADD_STRUCT(ScriptArray<UIDataProvider_OnlinePlayerStorage::PlayerStorageArrayProvider>, PlayerStorageArrayProviders, 108)
+		ADD_STRUCT(ScriptArray<UIDataProvider_OnlinePlayerStorage__PlayerStorageArrayProvider>, PlayerStorageArrayProviders, 108)
 		ADD_STRUCT(int, DeviceStorageSizeNeeded, 120)
 		ADD_BOOL(bWasErrorLastRead, 104, 0x1)
 		ADD_STRUCT(ScriptName, ProviderName, 96)

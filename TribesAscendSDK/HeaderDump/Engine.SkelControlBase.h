@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.AnimObject.h"
 #include "Engine.AnimNode.h"
-#include "Core.Object.h"
+#include "Core.Object.AlphaBlendType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,17 +25,6 @@ namespace UnrealScript
 	class SkelControlBase : public AnimObject
 	{
 	public:
-		enum EBoneControlSpace : byte
-		{
-			BCS_WorldSpace = 0,
-			BCS_ActorSpace = 1,
-			BCS_ComponentSpace = 2,
-			BCS_ParentBoneSpace = 3,
-			BCS_BoneSpace = 4,
-			BCS_OtherBoneSpace = 5,
-			BCS_BaseMeshSpace = 6,
-			BCS_MAX = 7,
-		};
 		ADD_STRUCT(ScriptArray<ScriptName>, StrengthAnimNodeNameList, 132)
 		ADD_STRUCT(ScriptArray<class AnimNode*>, CachedNodeList, 144)
 		ADD_STRUCT(int, ControlPosY, 184)
@@ -56,7 +45,7 @@ namespace UnrealScript
 		ADD_BOOL(bInitializedCachedNodeList, 120, 0x4)
 		ADD_BOOL(bSetStrengthFromAnimNode, 120, 0x2)
 		ADD_BOOL(bPostPhysicsController, 120, 0x1)
-		ADD_STRUCT(Object::AlphaBlendType, BlendType, 116)
+		ADD_STRUCT(Object__AlphaBlendType, BlendType, 116)
 		ADD_STRUCT(float, BlendOutTime, 112)
 		ADD_STRUCT(float, BlendInTime, 108)
 		ADD_STRUCT(float, ControlStrength, 104)

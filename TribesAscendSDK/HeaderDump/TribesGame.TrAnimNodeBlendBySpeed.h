@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.AnimNodeBlendBySpeed.h"
-#include "Engine.Actor.h"
+#include "Engine.Actor.EPhysics.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -26,7 +26,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<float>, m_BaseSpeed, 328)
-		ADD_STRUCT(ScriptArray<Actor::EPhysics>, m_IgnoredPhysics, 344)
+		ADD_STRUCT(ScriptArray<Actor__EPhysics>, m_IgnoredPhysics, 344)
 		ADD_BOOL(m_bIgnoreZVelocity, 340, 0x1)
 		ADD_OBJECT(TrPawn, m_TrPawn, 324)
 	};

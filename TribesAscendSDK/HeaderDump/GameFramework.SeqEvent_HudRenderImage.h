@@ -1,8 +1,9 @@
 #pragma once
 #include "Engine.HUD.h"
+#include "Core.Object.Vector.h"
 #include "GameFramework.SeqEvent_HudRender.h"
 #include "Engine.Texture2D.h"
-#include "Core.Object.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.Canvas.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -25,7 +26,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, XL, 308)
 		ADD_OBJECT(Texture2D, DisplayTexture, 304)
 		ADD_STRUCT(Vector, DisplayLocation, 292)
-		ADD_STRUCT(Object::LinearColor, DisplayColor, 276)
+		ADD_STRUCT(Object__LinearColor, DisplayColor, 276)
 		void Render(class Canvas* TargetCanvas, class HUD* TargetHud)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(32987);

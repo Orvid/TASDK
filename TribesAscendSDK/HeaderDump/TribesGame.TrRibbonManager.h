@@ -1,4 +1,5 @@
 #pragma once
+#include "TribesGame.TrRibbonManager.RibbonData.h"
 #include "Core.Object.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -19,21 +20,14 @@ namespace UnrealScript
 	class TrRibbonManager : public Object
 	{
 	public:
-		struct RibbonData
-		{
-		public:
-			ADD_STRUCT(int, Ribbon, 8)
-			ADD_STRUCT(int, Type, 4)
-			ADD_STRUCT(int, Id, 0)
-		};
 		ADD_BOOL(bDirty, 68, 0x1)
 		ADD_BOOL(bHaveUnlocks, 68, 0x2)
 		ADD_BOOL(bOnlyUnlocks, 68, 0x4)
 		ADD_BOOL(bHaveUpgrades, 68, 0x8)
 		ADD_BOOL(bOnlyUpgrades, 68, 0x10)
-		ADD_STRUCT(ScriptArray<TrRibbonManager::RibbonData>, ClassRibbons, 72)
-		ADD_STRUCT(ScriptArray<TrRibbonManager::RibbonData>, TypeRibbons, 84)
-		ADD_STRUCT(ScriptArray<TrRibbonManager::RibbonData>, EquipRibbons, 96)
+		ADD_STRUCT(ScriptArray<TrRibbonManager__RibbonData>, ClassRibbons, 72)
+		ADD_STRUCT(ScriptArray<TrRibbonManager__RibbonData>, TypeRibbons, 84)
+		ADD_STRUCT(ScriptArray<TrRibbonManager__RibbonData>, EquipRibbons, 96)
 		ADD_STRUCT(int, PreviousGold, 64)
 		ADD_STRUCT(int, PreviousXP, 60)
 		int GetClassRibbon(int ClassId)

@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.ParticleModuleVelocityBase.h"
-#include "Core.DistributionVector.h"
-#include "Core.DistributionFloat.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,8 +11,8 @@ namespace UnrealScript
 	class ParticleModuleVelocity : public ParticleModuleVelocityBase
 	{
 	public:
-		ADD_STRUCT(DistributionFloat::RawDistributionFloat, StartVelocityRadial, 104)
-		ADD_STRUCT(DistributionVector::RawDistributionVector, StartVelocity, 76)
+		ADD_STRUCT(DistributionFloat__RawDistributionFloat, StartVelocityRadial, 104)
+		ADD_STRUCT(DistributionVector__RawDistributionVector, StartVelocity, 76)
 	};
 }
 #undef ADD_STRUCT

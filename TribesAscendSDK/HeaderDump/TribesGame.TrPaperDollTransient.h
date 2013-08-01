@@ -1,7 +1,8 @@
 #pragma once
 #include "TribesGame.TrPaperDoll.h"
 #include "Engine.MaterialInstanceConstant.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Rotator.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,18 +1,23 @@
 #pragma once
 #include "Engine.ForceFeedbackWaveform.h"
 #include "UDKBase.UDKPawn.h"
-#include "Engine.Actor.h"
-#include "UTGame.UTAnimBlendByHoverboarding.h"
-#include "Core.Object.h"
-#include "Engine.UIRoot.h"
+#include "Engine.SeqAct_ModifyHealth.h"
+#include "Core.Object.Vector.h"
 #include "UTGame.UTAnimBlendByDriving.h"
 #include "UTGame.UTSeqAct_ExitVehicle.h"
 #include "UTGame.UTSeqAct_PlayAnim.h"
 #include "UTGame.UTWeaponAttachment.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.Vehicle.h"
 #include "Engine.AnimNodeBlend.h"
+#include "UTGame.UTWeapon.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
 #include "UTGame.UTAnimBlendByVehicle.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.AnimNodeSlot.h"
+#include "Engine.Actor.h"
+#include "UTGame.UTAnimBlendByHoverboarding.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.Texture.h"
 #include "Engine.SoundCue.h"
 #include "UTGame.UTPlayerController.h"
@@ -20,23 +25,27 @@
 #include "Engine.Teleporter.h"
 #include "Engine.Material.h"
 #include "UTGame.UTClientSideWeaponPawn.h"
+#include "Engine.Actor.EDoubleClickDir.h"
+#include "UDKBase.UDKPawn.EmoteInfo.h"
 #include "Engine.MaterialInterface.h"
+#include "UDKBase.UDKPawn.DrivenWeaponPawnInfo.h"
 #include "UTGame.UTProjectile.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #include "Engine.PhysicsVolume.h"
 #include "UTGame.UTMapInfo.h"
 #include "Engine.Canvas.h"
 #include "Engine.SkeletalMesh.h"
+#include "UTGame.UTPawn.EWeapAnimType.h"
 #include "UTGame.UTSeqAct_UseHoverboard.h"
 #include "Engine.Weapon.h"
 #include "Engine.Pawn.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "Engine.Controller.h"
-#include "Engine.SeqAct_ModifyHealth.h"
 #include "Engine.PlayerController.h"
 #include "UDKBase.UDKCarriedObject.h"
 #include "UTGame.UTGib.h"
 #include "Engine.HUD.h"
-#include "UTGame.UTWeapon.h"
+#include "Engine.Actor.CollisionImpactData.h"
 #include "Engine.SVehicle.h"
 #include "UTGame.UTSeqAct_InfiniteAmmo.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -63,22 +72,6 @@ namespace UnrealScript
 	{
 	public:
 		static const float MINTIMEBETWEENPAINSOUNDS;
-		enum EWeapAnimType : byte
-		{
-			EWAT_Default = 0,
-			EWAT_Pistol = 1,
-			EWAT_DualPistols = 2,
-			EWAT_ShoulderRocket = 3,
-			EWAT_Stinger = 4,
-			EWAT_MAX = 5,
-		};
-		struct GibInfo
-		{
-		public:
-			ADD_OBJECT(ScriptClass, GibClass, 8)
-			ADD_STRUCT(ScriptName, BoneName, 0)
-			ADD_BOOL(bHighDetailOnly, 12, 0x1)
-		};
 		ADD_STRUCT(float, CurrentCameraScale, 1700)
 		ADD_STRUCT(float, CameraScale, 1696)
 		ADD_STRUCT(Vector, WalkBob, 1780)
@@ -97,7 +90,7 @@ namespace UnrealScript
 		ADD_BOOL(bStopDeathCamera, 1616, 0x2000)
 		ADD_STRUCT(float, LastPainSound, 2052)
 		ADD_STRUCT(float, MapSize, 2032)
-		ADD_STRUCT(UIRoot::TextureCoordinates, IconCoords, 2036)
+		ADD_STRUCT(UIRoot__TextureCoordinates, IconCoords, 2036)
 		ADD_OBJECT(UTWeaponAttachment, CurrentWeaponAttachment, 1884)
 		ADD_OBJECT(ScriptClass, CurrCharClassInfo, 1812)
 		ADD_STRUCT(ScriptArray<ScriptName>, TakeHitPhysicsFixedBones, 1816)
@@ -120,9 +113,9 @@ namespace UnrealScript
 		ADD_BOOL(bWeaponAttachmentVisible, 1616, 0x40000)
 		ADD_BOOL(bSpawnDone, 1616, 0x2)
 		ADD_BOOL(bSpawnIn, 1616, 0x4)
-		ADD_STRUCT(Object::LinearColor, SpawnProtectionColor, 2008)
+		ADD_STRUCT(Object__LinearColor, SpawnProtectionColor, 2008)
 		ADD_OBJECT(SoundCue, SpawnSound, 2000)
-		ADD_STRUCT(Object::LinearColor, TranslocateColor, 1952)
+		ADD_STRUCT(Object__LinearColor, TranslocateColor, 1952)
 		ADD_OBJECT(SoundCue, TeleportSound, 2004)
 		ADD_OBJECT(CameraAnim, TransCameraAnim, 1984)
 		ADD_OBJECT(ScriptClass, TransInEffects, 1944)
@@ -154,7 +147,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, DodgeSpeedZ, 1740)
 		ADD_BOOL(bDodging, 1616, 0x10)
 		ADD_STRUCT(int, JumpBootCharge, 2112)
-		ADD_STRUCT(Actor::EDoubleClickDir, CurrentDir, 1744)
+		ADD_STRUCT(Actor__EDoubleClickDir, CurrentDir, 1744)
 		ADD_STRUCT(float, DoubleJumpEyeHeight, 1748)
 		ADD_STRUCT(float, DoubleJumpThreshold, 1752)
 		ADD_BOOL(bStopOnDoubleLanding, 1616, 0x20)
@@ -167,7 +160,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, FeignDeathRecoveryStartTime, 1800)
 		ADD_STRUCT(ScriptName, HeadBone, 1932)
 		ADD_BOOL(bKillsAffectHead, 1616, 0x400000)
-		ADD_STRUCT(UDKPawn::DrivenWeaponPawnInfo, LastDrivenWeaponPawn, 2076)
+		ADD_STRUCT(UDKPawn__DrivenWeaponPawnInfo, LastDrivenWeaponPawn, 2076)
 		ADD_OBJECT(ScriptClass, m_ClientSideWeaponPawnClass, 2204)
 		ADD_OBJECT(UTProjectile, AttachedProj, 2060)
 		ADD_STRUCT(float, AccumulationTime, 1848)
@@ -274,14 +267,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void RenderMapIcon(class UTMapInfo* MP, class Canvas* Canvas, class UTPlayerController* PlayerOwner, Object::LinearColor FinalColor)
+		void RenderMapIcon(class UTMapInfo* MP, class Canvas* Canvas, class UTPlayerController* PlayerOwner, Object__LinearColor FinalColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41378);
 			byte params[28] = { NULL };
 			*(class UTMapInfo**)params = MP;
 			*(class Canvas**)&params[4] = Canvas;
 			*(class UTPlayerController**)&params[8] = PlayerOwner;
-			*(Object::LinearColor*)&params[12] = FinalColor;
+			*(Object__LinearColor*)&params[12] = FinalColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetWalking(bool bNewIsWalking)
@@ -296,11 +289,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41387);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void SetBodyMatColor(Object::LinearColor NewBodyMatColor, float NewOverlayDuration)
+		void SetBodyMatColor(Object__LinearColor NewBodyMatColor, float NewOverlayDuration)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41388);
 			byte params[20] = { NULL };
-			*(Object::LinearColor*)params = NewBodyMatColor;
+			*(Object__LinearColor*)params = NewBodyMatColor;
 			*(float*)&params[16] = NewOverlayDuration;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -421,11 +414,11 @@ void**)params = SkelComp;
 			*(float*)params = RateScale;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetWeapAnimType(UTPawn::EWeapAnimType AnimType)
+		void SetWeapAnimType(UTPawn__EWeapAnimType AnimType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41477);
 			byte params[1] = { NULL };
-			*(UTPawn::EWeapAnimType*)params = AnimType;
+			*(UTPawn__EWeapAnimType*)params = AnimType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void LeaveABloodSplatterDecal(Vector HitLoc, Vector HitNorm)
@@ -436,11 +429,11 @@ void**)params = SkelComp;
 			*(Vector*)&params[12] = HitNorm;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void PerformEmoteCommand(UDKPawn::EmoteInfo EInfo, int PlayerID)
+		void PerformEmoteCommand(UDKPawn__EmoteInfo EInfo, int PlayerID)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41494);
 			byte params[56] = { NULL };
-			*(UDKPawn::EmoteInfo*)params = EInfo;
+			*(UDKPawn__EmoteInfo*)params = EInfo;
 			*(int*)&params[52] = PlayerID;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -524,14 +517,14 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41567);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void AddVelocity(Vector NewVelocity, Vector HitLocation, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo)
+		void AddVelocity(Vector NewVelocity, Vector HitLocation, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41568);
 			byte params[56] = { NULL };
 			*(Vector*)params = NewVelocity;
 			*(Vector*)&params[12] = HitLocation;
 			*(ScriptClass**)&params[24] = DamageType;
-			*(Actor::TraceHitInfo*)&params[28] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[28] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool Died(class Controller* Killer, ScriptClass* DamageType, Vector HitLocation)
@@ -735,7 +728,7 @@ void**)params = SkelComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
-		void AdjustDamage(int& InDamage, Vector& Momentum, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void AdjustDamage(int& InDamage, Vector& Momentum, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41690);
 			byte params[68] = { NULL };
@@ -744,7 +737,7 @@ void**)params = SkelComp;
 			*(class Controller**)&params[16] = InstigatedBy;
 			*(Vector*)&params[20] = HitLocation;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			InDamage = *(int*)params;
@@ -951,11 +944,11 @@ void**)params = SkelComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[4];
 		}
-		bool Dodge(Actor::EDoubleClickDir DoubleClickMove)
+		bool Dodge(Actor__EDoubleClickDir DoubleClickMove)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41896);
 			byte params[5] = { NULL };
-			*(Actor::EDoubleClickDir*)params = DoubleClickMove;
+			*(Actor__EDoubleClickDir*)params = DoubleClickMove;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
@@ -967,11 +960,11 @@ void**)params = SkelComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Vector*)&params[12];
 		}
-		bool PerformDodge(Actor::EDoubleClickDir DoubleClickMove, Vector Dir, Vector Cross)
+		bool PerformDodge(Actor__EDoubleClickDir DoubleClickMove, Vector Dir, Vector Cross)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(41916);
 			byte params[29] = { NULL };
-			*(Actor::EDoubleClickDir*)params = DoubleClickMove;
+			*(Actor__EDoubleClickDir*)params = DoubleClickMove;
 			*(Vector*)&params[4] = Dir;
 			*(Vector*)&params[16] = Cross;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -1210,7 +1203,7 @@ void**)params = SkelComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int Damage, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(42033);
 			byte params[68] = { NULL };
@@ -1219,7 +1212,7 @@ void**)params = SkelComp;
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1252,7 +1245,7 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(42056);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void PlayHit(float Damage, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Vector Momentum, Actor::TraceHitInfo HitInfo)
+		void PlayHit(float Damage, class Controller* InstigatedBy, Vector HitLocation, ScriptClass* DamageType, Vector Momentum, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(42057);
 			byte params[64] = { NULL };
@@ -1261,7 +1254,7 @@ void**)params = SkelComp;
 			*(Vector*)&params[8] = HitLocation;
 			*(ScriptClass**)&params[20] = DamageType;
 			*(Vector*)&params[24] = Momentum;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void PlayTakeHitEffects()
@@ -1298,14 +1291,14 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(42099);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		bool IsLocationOnHead(Actor::ImpactInfo& Impact, float AdditionalScale)
+		bool IsLocationOnHead(Actor__ImpactInfo& Impact, float AdditionalScale)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(42100);
 			byte params[88] = { NULL };
-			*(Actor::ImpactInfo*)params = Impact;
+			*(Actor__ImpactInfo*)params = Impact;
 			*(float*)&params[80] = AdditionalScale;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Impact = *(Actor::ImpactInfo*)params;
+			Impact = *(Actor__ImpactInfo*)params;
 			return *(bool*)&params[84];
 		}
 		void ModifyRotForDebugFreeCam(Rotator& out_CamRot)
@@ -1351,7 +1344,7 @@ void**)params = SkelComp;
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void* HitComponent, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
-void* OtherComponent, Actor::CollisionImpactData& RigidCollisionData, int ContactIndex)
+void* OtherComponent, Actor__CollisionImpactData& RigidCollisionData, int ContactIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(42126);
 			byte params[48] = { NULL };
@@ -1361,10 +1354,10 @@ void**)params = HitComponent;
 			*(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void**)&params[4] = OtherComponent;
-			*(Actor::CollisionImpactData*)&params[8] = RigidCollisionData;
+			*(Actor__CollisionImpactData*)&params[8] = RigidCollisionData;
 			*(int*)&params[44] = ContactIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			RigidCollisionData = *(Actor::CollisionImpactData*)&params[8];
+			RigidCollisionData = *(Actor__CollisionImpactData*)&params[8];
 		}
 		void OnRanOver(class SVehicle* Vehicle, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!

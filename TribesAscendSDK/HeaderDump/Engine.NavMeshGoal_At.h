@@ -1,8 +1,9 @@
 #pragma once
 #include "Engine.NavMeshPathGoalEvaluator.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.NavigationHandle.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,8 +23,8 @@ namespace UnrealScript
 	class NavMeshGoal_At : public NavMeshPathGoalEvaluator
 	{
 	public:
-		ADD_STRUCT(Object::Pointer, PartialGoal, 104)
-		ADD_STRUCT(Object::Pointer, GoalPoly, 100)
+		ADD_STRUCT(Object__Pointer, PartialGoal, 104)
+		ADD_STRUCT(Object__Pointer, GoalPoly, 100)
 		ADD_BOOL(bKeepPartial, 96, 0x1)
 		ADD_STRUCT(float, GoalDist, 92)
 		ADD_STRUCT(Vector, Goal, 80)

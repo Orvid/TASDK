@@ -11,13 +11,6 @@ namespace UnrealScript
 	class GFxTrPage_VideoWindow : public GFxTrPage
 	{
 	public:
-		enum MENU_ACTION_VIDEOWINDOW : byte
-		{
-			MAVW_FULLSCREEN = 0,
-			MAVW_WINDOWED = 1,
-			MAVW_BORDERLESS = 2,
-			MAVW_MAX = 3,
-		};
 		ADD_STRUCT(int, CurrWindow, 356)
 		void Initialize()
 		{

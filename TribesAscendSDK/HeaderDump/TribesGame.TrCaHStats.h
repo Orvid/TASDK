@@ -2,6 +2,7 @@
 #include "Core.Object.h"
 #include "TribesGame.TrPlayerController.h"
 #include "TribesGame.TrCaHCapturePoint.h"
+#include "TribesGame.TrCaHStats.CapturePointInfo.h"
 #include "TribesGame.GfxTrHud.h"
 #include "TribesGame.TrGameReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -27,16 +28,7 @@ namespace UnrealScript
 	class TrCaHStats : public Object
 	{
 	public:
-		struct CapturePointInfo
-		{
-		public:
-			ADD_STRUCT(float, RemainingHeldTime, 24)
-			ADD_STRUCT(int, PctHeld, 20)
-			ADD_STRUCT(int, PointOwnershipType, 16)
-			ADD_STRUCT(ScriptString*, LabelString, 4)
-			ADD_STRUCT(TrObject::CaHCapturePointLabel, PointLabel, 0)
-		};
-		ADD_STRUCT(ScriptArray<TrCaHStats::CapturePointInfo>, m_CapturePointData, 108)
+		ADD_STRUCT(ScriptArray<TrCaHStats__CapturePointInfo>, m_CapturePointData, 108)
 		ADD_STRUCT(ScriptArray<class TrCaHCapturePoint*>, m_CapturePoints, 120)
 		ADD_OBJECT(TrPlayerController, TrPC, 104)
 		ADD_OBJECT(GfxTrHud, m_MoviePlayer, 100)

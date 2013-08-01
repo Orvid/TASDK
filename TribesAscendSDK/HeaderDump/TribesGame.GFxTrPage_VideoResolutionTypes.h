@@ -1,7 +1,8 @@
 #pragma once
 #include "TribesGame.GFxTrPage.h"
 #include "GFxUI.GFxObject.h"
-#include "PlatformCommon.TgPlayerProfile.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
+#include "TribesGame.GFxTrPage.ResolutionSet.h"
 #include "TribesGame.GFxTrAction.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -22,11 +23,11 @@ namespace UnrealScript
 	class GFxTrPage_VideoResolutionTypes : public GFxTrPage
 	{
 	public:
-		ADD_STRUCT(ScriptArray<TgPlayerProfile::PropertyPair>, AllResolutions, 372)
-		ADD_STRUCT(ScriptArray<GFxTrPage::ResolutionSet>, FourByThreeGroup, 384)
-		ADD_STRUCT(ScriptArray<GFxTrPage::ResolutionSet>, SixteenByNineGroup, 396)
-		ADD_STRUCT(ScriptArray<GFxTrPage::ResolutionSet>, SixteenbyTenGroup, 408)
-		ADD_STRUCT(ScriptArray<GFxTrPage::ResolutionSet>, OtherGroup, 420)
+		ADD_STRUCT(ScriptArray<TgPlayerProfile__PropertyPair>, AllResolutions, 372)
+		ADD_STRUCT(ScriptArray<GFxTrPage__ResolutionSet>, FourByThreeGroup, 384)
+		ADD_STRUCT(ScriptArray<GFxTrPage__ResolutionSet>, SixteenByNineGroup, 396)
+		ADD_STRUCT(ScriptArray<GFxTrPage__ResolutionSet>, SixteenbyTenGroup, 408)
+		ADD_STRUCT(ScriptArray<GFxTrPage__ResolutionSet>, OtherGroup, 420)
 		ADD_BOOL(bShowingSixteenbyTen, 368, 0x4)
 		ADD_BOOL(bShowingSixteenByNine, 368, 0x2)
 		ADD_BOOL(bShowingFourByThree, 368, 0x1)

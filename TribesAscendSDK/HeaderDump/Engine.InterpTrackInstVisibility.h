@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.InterpTrackInst.h"
-#include "Engine.InterpTrackVisibility.h"
+#include "Engine.InterpTrackVisibility.EVisibilityTrackAction.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,7 +11,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(float, LastUpdatePosition, 64)
-		ADD_STRUCT(InterpTrackVisibility::EVisibilityTrackAction, Action, 60)
+		ADD_STRUCT(InterpTrackVisibility__EVisibilityTrackAction, Action, 60)
 	};
 }
 #undef ADD_STRUCT

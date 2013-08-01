@@ -1,8 +1,11 @@
 #pragma once
+#include "Engine.EngineTypes.LocalizedSubtitle.h"
 #include "Engine.SoundNode.h"
-#include "Engine.EngineTypes.h"
-#include "Core.Object.h"
-#include "Engine.AudioDevice.h"
+#include "Engine.EngineTypes.SubtitleCue.h"
+#include "Engine.SoundNodeWave.EDecompressionType.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.UntypedBulkData_Mirror.h"
+#include "Engine.AudioDevice.ETTSSpeaker.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,42 +25,31 @@ namespace UnrealScript
 	class SoundNodeWave : public SoundNode
 	{
 	public:
-		enum EDecompressionType : byte
-		{
-			DTYPE_Setup = 0,
-			DTYPE_Invalid = 1,
-			DTYPE_Preview = 2,
-			DTYPE_Native = 3,
-			DTYPE_RealTime = 4,
-			DTYPE_Procedural = 5,
-			DTYPE_Xenon = 6,
-			DTYPE_MAX = 7,
-		};
 		ADD_STRUCT(ScriptArray<int>, ChannelOffsets, 120)
 		ADD_STRUCT(ScriptArray<int>, ChannelSizes, 132)
-		ADD_STRUCT(ScriptArray<EngineTypes::SubtitleCue>, Subtitles, 376)
-		ADD_STRUCT(ScriptArray<EngineTypes::LocalizedSubtitle>, LocalizedSubtitles, 400)
+		ADD_STRUCT(ScriptArray<EngineTypes__SubtitleCue>, Subtitles, 376)
+		ADD_STRUCT(ScriptArray<EngineTypes__LocalizedSubtitle>, LocalizedSubtitles, 400)
 		ADD_STRUCT(ScriptString*, SourceFileTimestamp, 424)
 		ADD_STRUCT(ScriptString*, SourceFilePath, 412)
 		ADD_STRUCT(ScriptString*, Comment, 388)
-		ADD_STRUCT(Object::Pointer, ResourceData, 372)
+		ADD_STRUCT(Object__Pointer, ResourceData, 372)
 		ADD_STRUCT(int, ResourceSize, 368)
 		ADD_STRUCT(int, ResourceID, 364)
-		ADD_STRUCT(Object::UntypedBulkData_Mirror, CompressedPS3Data, 312)
-		ADD_STRUCT(Object::UntypedBulkData_Mirror, CompressedXbox360Data, 260)
-		ADD_STRUCT(Object::UntypedBulkData_Mirror, CompressedPCData, 208)
+		ADD_STRUCT(Object__UntypedBulkData_Mirror, CompressedPS3Data, 312)
+		ADD_STRUCT(Object__UntypedBulkData_Mirror, CompressedXbox360Data, 260)
+		ADD_STRUCT(Object__UntypedBulkData_Mirror, CompressedPCData, 208)
 		ADD_STRUCT(int, RawPCMDataSize, 204)
-		ADD_STRUCT(Object::Pointer, RawPCMData, 200)
-		ADD_STRUCT(Object::Pointer, VorbisDecompressor, 196)
-		ADD_STRUCT(Object::UntypedBulkData_Mirror, RawData, 144)
+		ADD_STRUCT(Object__Pointer, RawPCMData, 200)
+		ADD_STRUCT(Object__Pointer, VorbisDecompressor, 196)
+		ADD_STRUCT(Object__UntypedBulkData_Mirror, RawData, 144)
 		ADD_STRUCT(int, SampleRate, 116)
 		ADD_STRUCT(int, NumChannels, 112)
 		ADD_STRUCT(float, Duration, 108)
 		ADD_STRUCT(float, Pitch, 104)
 		ADD_STRUCT(float, Volume, 100)
 		ADD_STRUCT(ScriptString*, SpokenText, 88)
-		ADD_STRUCT(SoundNodeWave::EDecompressionType, DecompressionType, 85)
-		ADD_STRUCT(AudioDevice::ETTSSpeaker, TTSSpeaker, 84)
+		ADD_STRUCT(SoundNodeWave__EDecompressionType, DecompressionType, 85)
+		ADD_STRUCT(AudioDevice__ETTSSpeaker, TTSSpeaker, 84)
 		ADD_BOOL(bManualWordWrap, 80, 0x40)
 		ADD_BOOL(bMature, 80, 0x20)
 		ADD_BOOL(bProcedural, 80, 0x10)

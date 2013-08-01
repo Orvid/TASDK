@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.AnimNotify_Sound.h"
+#include "TribesGame.TrAnimNotify_Sound.DeviceOverride.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,13 +14,7 @@ namespace UnrealScript
 	class TrAnimNotify_Sound : public AnimNotify_Sound
 	{
 	public:
-		struct DeviceOverride
-		{
-		public:
-			ADD_OBJECT(ScriptClass, DeviceClass, 4)
-			ADD_OBJECT(SoundCue, SoundCue, 0)
-		};
-		ADD_STRUCT(ScriptArray<TrAnimNotify_Sound::DeviceOverride>, m_DeviceOverrides, 92)
+		ADD_STRUCT(ScriptArray<TrAnimNotify_Sound__DeviceOverride>, m_DeviceOverrides, 92)
 		ADD_OBJECT(ScriptClass, m_PreviewDeviceClass, 104)
 	};
 }

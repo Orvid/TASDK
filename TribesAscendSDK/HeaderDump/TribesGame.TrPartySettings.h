@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.OnlineGameSettings.h"
+#include "Engine.OnlineSubsystem.OnlinePartyMember.h"
 #include "Engine.OnlineSubsystem.h"
 #include "Engine.LocalPlayer.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -15,7 +16,7 @@ namespace UnrealScript
 	class TrPartySettings : public OnlineGameSettings
 	{
 	public:
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::OnlinePartyMember>, MemberList, 184)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__OnlinePartyMember>, MemberList, 184)
 		ADD_OBJECT(OnlineSubsystem, OnlineSub, 172)
 		void Init(class LocalPlayer* InPlayer)
 		{

@@ -1,13 +1,25 @@
 #pragma once
-#include "GFxUI.GFxObject.h"
+#include "GFxUI.GFxMoviePlayer.GFxDataStoreBinding.h"
+#include "GFxUI.GFxMoviePlayer.SoundThemeBinding.h"
 #include "Core.Object.h"
 #include "GFxUI.SwfMovie.h"
-#include "Engine.Texture.h"
-#include "Engine.TextureRenderTarget2D.h"
-#include "GFxUI.GFxDataStoreSubscriber.h"
 #include "Engine.PlayerController.h"
+#include "GFxUI.GFxMoviePlayer.ExternalTexture.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.TextureRenderTarget2D.h"
+#include "GFxUI.GFxMoviePlayer.GFxTimingMode.h"
+#include "GFxUI.GFxMoviePlayer.GFxRenderTextureMode.h"
+#include "GFxUI.GFxDataStoreSubscriber.h"
+#include "GFxUI.GFxMoviePlayer.GFxWidgetBinding.h"
+#include "GFxUI.GFxObject.h"
 #include "Engine.LocalPlayer.h"
+#include "GFxUI.GFxMoviePlayer.ASValue.h"
+#include "Core.Object.EInputEvent.h"
+#include "Core.Object.Matrix.h"
+#include "GFxUI.GFxMoviePlayer.GFxAlign.h"
+#include "GFxUI.GFxMoviePlayer.GFxScaleMode.h"
 #include "Engine.GameViewportClient.h"
+#include "Engine.Texture.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,98 +43,14 @@ namespace UnrealScript
 	class GFxMoviePlayer : public Object
 	{
 	public:
-		enum ASType : byte
-		{
-			AS_Undefined = 0,
-			AS_Null = 1,
-			AS_Number = 2,
-			AS_String = 3,
-			AS_Boolean = 4,
-			AS_MAX = 5,
-		};
-		enum GFxAlign : byte
-		{
-			Align_Center = 0,
-			Align_TopCenter = 1,
-			Align_BottomCenter = 2,
-			Align_CenterLeft = 3,
-			Align_CenterRight = 4,
-			Align_TopLeft = 5,
-			Align_TopRight = 6,
-			Align_BottomLeft = 7,
-			Align_BottomRight = 8,
-			Align_MAX = 9,
-		};
-		enum GFxScaleMode : byte
-		{
-			SM_NoScale = 0,
-			SM_ShowAll = 1,
-			SM_ExactFit = 2,
-			SM_NoBorder = 3,
-			SM_MAX = 4,
-		};
-		enum GFxTimingMode : byte
-		{
-			TM_Game = 0,
-			TM_Real = 1,
-			TM_MAX = 2,
-		};
-		enum GFxRenderTextureMode : byte
-		{
-			RTM_Opaque = 0,
-			RTM_Alpha = 1,
-			RTM_AlphaComposite = 2,
-			RTM_MAX = 3,
-		};
-		struct GFxWidgetBinding
-		{
-		public:
-			ADD_STRUCT(ScriptName, WidgetName, 0)
-			ADD_OBJECT(ScriptClass, WidgetClass, 8)
-		};
-		struct SoundThemeBinding
-		{
-		public:
-			ADD_STRUCT(ScriptName, ThemeName, 0)
-			ADD_OBJECT(UISoundTheme, Theme, 8)
-		};
-		struct GFxDataStoreBinding
-		{
-		public:
-			ADD_STRUCT(UIRoot::UIDataStoreBinding, DataSource, 0)
-			ADD_STRUCT(ScriptString*, VarPath, 48)
-			ADD_STRUCT(ScriptString*, ModelId, 60)
-			ADD_STRUCT(ScriptString*, ControlId, 72)
-			ADD_BOOL(bEditable, 84, 0x1)
-			ADD_STRUCT(ScriptArray<ScriptName>, CellTags, 88)
-			ADD_STRUCT(ScriptArray<byte>, ModelIdUtf8, 100)
-			ADD_STRUCT(ScriptArray<byte>, ControlIdUtf8, 112)
-			ADD_STRUCT(ScriptArray<ScriptName>, FullCellTags, 132)
-			ADD_STRUCT(Object::Pointer, ModelRef, 144)
-			ADD_STRUCT(Object::Pointer, ControlRef, 148)
-		};
-		struct ExternalTexture
-		{
-		public:
-			ADD_STRUCT(ScriptString*, Resource, 0)
-			ADD_OBJECT(Texture, Texture, 12)
-		};
-		struct ASValue
-		{
-		public:
-			ADD_STRUCT(GFxMoviePlayer::ASType, Type, 0)
-			ADD_BOOL(B, 4, 0x1)
-			ADD_STRUCT(float, N, 8)
-			ADD_STRUCT(ScriptString*, S, 12)
-		};
 		ADD_STRUCT(int, LocalPlayerOwnerIndex, 208)
 		ADD_OBJECT(SwfMovie, MovieInfo, 196)
 		ADD_BOOL(bAutoPlay, 200, 0x80)
 		ADD_OBJECT(Object, ExternalInterface, 212)
 		ADD_BOOL(bPauseGameWhileActive, 200, 0x100)
-		ADD_STRUCT(Object::Pointer, pMovie, 60)
-		ADD_STRUCT(Object::Pointer, pCaptureKeys, 64)
-		ADD_STRUCT(Object::Pointer, pFocusIgnoreKeys, 68)
+		ADD_STRUCT(Object__Pointer, pMovie, 60)
+		ADD_STRUCT(Object__Pointer, pCaptureKeys, 64)
+		ADD_STRUCT(Object__Pointer, pFocusIgnoreKeys, 68)
 		ADD_STRUCT(int, NextASUObject, 192)
 		ADD_BOOL(bMovieIsOpen, 200, 0x1)
 		ADD_BOOL(bDisplayWithHudOff, 200, 0x2)
@@ -140,14 +68,14 @@ namespace UnrealScript
 		ADD_OBJECT(TextureRenderTarget2D, RenderTexture, 204)
 		ADD_STRUCT(ScriptArray<ScriptName>, CaptureKeys, 216)
 		ADD_STRUCT(ScriptArray<ScriptName>, FocusIgnoreKeys, 228)
-		ADD_STRUCT(ScriptArray<GFxMoviePlayer::ExternalTexture>, ExternalTextures, 240)
-		ADD_STRUCT(ScriptArray<GFxMoviePlayer::SoundThemeBinding>, SoundThemes, 252)
-		ADD_STRUCT(GFxMoviePlayer::GFxTimingMode, TimingMode, 264)
-		ADD_STRUCT(GFxMoviePlayer::GFxRenderTextureMode, RenderTextureMode, 265)
+		ADD_STRUCT(ScriptArray<GFxMoviePlayer__ExternalTexture>, ExternalTextures, 240)
+		ADD_STRUCT(ScriptArray<GFxMoviePlayer__SoundThemeBinding>, SoundThemes, 252)
+		ADD_STRUCT(GFxMoviePlayer__GFxTimingMode, TimingMode, 264)
+		ADD_STRUCT(GFxMoviePlayer__GFxRenderTextureMode, RenderTextureMode, 265)
 		ADD_STRUCT(byte, Priority, 266)
-		ADD_STRUCT(ScriptArray<GFxMoviePlayer::GFxDataStoreBinding>, DataStoreBindings, 268)
+		ADD_STRUCT(ScriptArray<GFxMoviePlayer__GFxDataStoreBinding>, DataStoreBindings, 268)
 		ADD_OBJECT(GFxDataStoreSubscriber, DataStoreSubscriber, 280)
-		ADD_STRUCT(ScriptArray<GFxMoviePlayer::GFxWidgetBinding>, WidgetBindings, 284)
+		ADD_STRUCT(ScriptArray<GFxMoviePlayer__GFxWidgetBinding>, WidgetBindings, 284)
 		ADD_STRUCT(ScriptArray<class GFxObject*>, ObjectValues, 356)
 		void OnFocusLost(int LocalPlayerIndex)
 		{
@@ -270,14 +198,14 @@ namespace UnrealScript
 			*(ScriptString**)params = Path;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		GFxMoviePlayer::ASValue Invoke(ScriptString* method, ScriptArray<GFxMoviePlayer::ASValue> args)
+		GFxMoviePlayer__ASValue Invoke(ScriptString* method, ScriptArray<GFxMoviePlayer__ASValue> args)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29702);
 			byte params[48] = { NULL };
 			*(ScriptString**)params = method;
-			*(ScriptArray<GFxMoviePlayer::ASValue>*)&params[12] = args;
+			*(ScriptArray<GFxMoviePlayer__ASValue>*)&params[12] = args;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(GFxMoviePlayer::ASValue*)&params[24];
+			return *(GFxMoviePlayer__ASValue*)&params[24];
 		}
 		void ActionScriptSetFunction(class GFxObject* Object, ScriptString* Member)
 		{
@@ -333,13 +261,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[28];
 		}
-		bool SetVariableArray(ScriptString* Path, int Index, ScriptArray<GFxMoviePlayer::ASValue> Arg)
+		bool SetVariableArray(ScriptString* Path, int Index, ScriptArray<GFxMoviePlayer__ASValue> Arg)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29737);
 			byte params[32] = { NULL };
 			*(ScriptString**)params = Path;
 			*(int*)&params[12] = Index;
-			*(ScriptArray<GFxMoviePlayer::ASValue>*)&params[16] = Arg;
+			*(ScriptArray<GFxMoviePlayer__ASValue>*)&params[16] = Arg;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[28];
 		}
@@ -376,15 +304,15 @@ namespace UnrealScript
 			Arg = *(ScriptArray<int>*)&params[16];
 			return *(bool*)&params[28];
 		}
-		bool GetVariableArray(ScriptString* Path, int Index, ScriptArray<GFxMoviePlayer::ASValue>& Arg)
+		bool GetVariableArray(ScriptString* Path, int Index, ScriptArray<GFxMoviePlayer__ASValue>& Arg)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29761);
 			byte params[32] = { NULL };
 			*(ScriptString**)params = Path;
 			*(int*)&params[12] = Index;
-			*(ScriptArray<GFxMoviePlayer::ASValue>*)&params[16] = Arg;
+			*(ScriptArray<GFxMoviePlayer__ASValue>*)&params[16] = Arg;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Arg = *(ScriptArray<GFxMoviePlayer::ASValue>*)&params[16];
+			Arg = *(ScriptArray<GFxMoviePlayer__ASValue>*)&params[16];
 			return *(bool*)&params[28];
 		}
 		void SetVariableObject(ScriptString* Path, class GFxObject* Object)
@@ -419,12 +347,12 @@ namespace UnrealScript
 			*(bool*)&params[12] = B;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetVariable(ScriptString* Path, GFxMoviePlayer::ASValue Arg)
+		void SetVariable(ScriptString* Path, GFxMoviePlayer__ASValue Arg)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29782);
 			byte params[36] = { NULL };
 			*(ScriptString**)params = Path;
-			*(GFxMoviePlayer::ASValue*)&params[12] = Arg;
+			*(GFxMoviePlayer__ASValue*)&params[12] = Arg;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		class GFxObject* GetVariableObject(ScriptString* Path, ScriptClass* Type)
@@ -460,21 +388,21 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		GFxMoviePlayer::ASValue GetVariable(ScriptString* Path)
+		GFxMoviePlayer__ASValue GetVariable(ScriptString* Path)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29798);
 			byte params[36] = { NULL };
 			*(ScriptString**)params = Path;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(GFxMoviePlayer::ASValue*)&params[12];
+			return *(GFxMoviePlayer__ASValue*)&params[12];
 		}
-		bool FilterButtonInput(int ControllerId, ScriptName ButtonName, Object::EInputEvent InputEvent)
+		bool FilterButtonInput(int ControllerId, ScriptName ButtonName, Object__EInputEvent InputEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29801);
 			byte params[17] = { NULL };
 			*(int*)params = ControllerId;
 			*(ScriptName*)&params[4] = ButtonName;
-			*(Object::EInputEvent*)&params[12] = InputEvent;
+			*(Object__EInputEvent*)&params[12] = InputEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
@@ -523,21 +451,21 @@ namespace UnrealScript
 			*(bool*)params = bCanReceiveFocus;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetPerspective3D(Object::Matrix& matPersp)
+		void SetPerspective3D(Object__Matrix& matPersp)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29819);
 			byte params[64] = { NULL };
-			*(Object::Matrix*)params = matPersp;
+			*(Object__Matrix*)params = matPersp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			matPersp = *(Object::Matrix*)params;
+			matPersp = *(Object__Matrix*)params;
 		}
-		void SetView3D(Object::Matrix& matView)
+		void SetView3D(Object__Matrix& matView)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29821);
 			byte params[64] = { NULL };
-			*(Object::Matrix*)params = matView;
+			*(Object__Matrix*)params = matView;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			matView = *(Object::Matrix*)params;
+			matView = *(Object__Matrix*)params;
 		}
 		void GetVisibleFrameRect(float& x0, float& y0, float& X1, float& Y1)
 		{
@@ -553,18 +481,18 @@ namespace UnrealScript
 			X1 = *(float*)&params[8];
 			Y1 = *(float*)&params[12];
 		}
-		void SetAlignment(GFxMoviePlayer::GFxAlign A)
+		void SetAlignment(GFxMoviePlayer__GFxAlign A)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29825);
 			byte params[1] = { NULL };
-			*(GFxMoviePlayer::GFxAlign*)params = A;
+			*(GFxMoviePlayer__GFxAlign*)params = A;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetViewScaleMode(GFxMoviePlayer::GFxScaleMode SM)
+		void SetViewScaleMode(GFxMoviePlayer__GFxScaleMode SM)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29830);
 			byte params[1] = { NULL };
-			*(GFxMoviePlayer::GFxScaleMode*)params = SM;
+			*(GFxMoviePlayer__GFxScaleMode*)params = SM;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetViewport(int X, int Y, int Width, int Height)
@@ -624,11 +552,11 @@ namespace UnrealScript
 			*(bool*)params = bEnable;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetTimingMode(GFxMoviePlayer::GFxTimingMode Mode)
+		void SetTimingMode(GFxMoviePlayer__GFxTimingMode Mode)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(29854);
 			byte params[1] = { NULL };
-			*(GFxMoviePlayer::GFxTimingMode*)params = Mode;
+			*(GFxMoviePlayer__GFxTimingMode*)params = Mode;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetMovieInfo(class SwfMovie* Data)

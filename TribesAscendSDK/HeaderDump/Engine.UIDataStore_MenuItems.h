@@ -1,7 +1,7 @@
 #pragma once
 #include "Engine.UIDataStore_GameResource.h"
 #include "Engine.UIDataProvider_MenuItem.h"
-#include "Core.Object.h"
+#include "Core.Object.MultiMap_Mirror.h"
 #include "Engine.LocalPlayer.h"
 #include "Engine.UIDataProvider.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -14,7 +14,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptArray<class UIDataProvider_MenuItem*>, DynamicProviders, 264)
-		ADD_STRUCT(Object::MultiMap_Mirror, OptionProviders, 204)
+		ADD_STRUCT(Object__MultiMap_Mirror, OptionProviders, 204)
 		ADD_STRUCT(ScriptName, CurrentGameSettingsTag, 196)
 		void ClearSet(ScriptName SetName)
 		{

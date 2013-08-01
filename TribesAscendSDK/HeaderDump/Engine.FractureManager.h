@@ -1,9 +1,11 @@
 #pragma once
-#include "Core.Object.h"
 #include "Engine.Actor.h"
 #include "Engine.FracturedStaticMeshPart.h"
 #include "Engine.FracturedStaticMeshActor.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.ParticleSystem.h"
+#include "Core.Object.Box.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -47,12 +49,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)params;
 		}
-		void SpawnChunkDestroyEffect(class ParticleSystem* Effect, Object::Box ChunkBox, Vector ChunkDir, float Scale)
+		void SpawnChunkDestroyEffect(class ParticleSystem* Effect, Object__Box ChunkBox, Vector ChunkDir, float Scale)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16637);
 			byte params[48] = { NULL };
 			*(class ParticleSystem**)params = Effect;
-			*(Object::Box*)&params[4] = ChunkBox;
+			*(Object__Box*)&params[4] = ChunkBox;
 			*(Vector*)&params[32] = ChunkDir;
 			*(float*)&params[44] = Scale;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);

@@ -1,8 +1,13 @@
 #pragma once
+#include "Core.Object.Pointer.h"
 #include "Engine.PrimitiveComponent.h"
-#include "Engine.EngineTypes.h"
+#include "Engine.TerrainComponent.TerrainMaterialMask.h"
+#include "Core.Object.Guid.h"
 #include "Engine.ShadowMap2D.h"
-#include "Core.Object.h"
+#include "Engine.TerrainComponent.TerrainPatchBounds.h"
+#include "Core.Object.Vector.h"
+#include "Engine.TerrainComponent.TerrainBVTree.h"
+#include "Engine.EngineTypes.LightMapRef.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,41 +27,23 @@ namespace UnrealScript
 	class TerrainComponent : public PrimitiveComponent
 	{
 	public:
-		struct TerrainPatchBounds
-		{
-		public:
-			ADD_STRUCT(float, MaxDisplacement, 8)
-			ADD_STRUCT(float, MaxHeight, 4)
-			ADD_STRUCT(float, MinHeight, 0)
-		};
-		struct TerrainMaterialMask
-		{
-		public:
-			ADD_STRUCT(int, NumBits, 8)
-			ADD_STRUCT(QWord, BitMask, 0)
-		};
-		struct TerrainBVTree
-		{
-		public:
-			ADD_STRUCT(ScriptArray<int>, Nodes, 0)
-		};
 		ADD_STRUCT(ScriptArray<class ShadowMap2D*>, ShadowMaps, 488)
-		ADD_STRUCT(ScriptArray<Object::Guid>, IrrelevantLights, 500)
-		ADD_STRUCT(ScriptArray<TerrainComponent::TerrainPatchBounds>, PatchBounds, 544)
-		ADD_STRUCT(ScriptArray<TerrainComponent::TerrainMaterialMask>, BatchMaterials, 556)
+		ADD_STRUCT(ScriptArray<Object__Guid>, IrrelevantLights, 500)
+		ADD_STRUCT(ScriptArray<TerrainComponent__TerrainPatchBounds>, PatchBounds, 544)
+		ADD_STRUCT(ScriptArray<TerrainComponent__TerrainMaterialMask>, BatchMaterials, 556)
 		ADD_STRUCT(ScriptArray<Vector>, CollisionVertices, 584)
 		ADD_BOOL(bDisplayCollisionLevel, 600, 0x1)
-		ADD_STRUCT(Object::Pointer, RBHeightfield, 596)
-		ADD_STRUCT(TerrainComponent::TerrainBVTree, BVTree, 572)
+		ADD_STRUCT(Object__Pointer, RBHeightfield, 596)
+		ADD_STRUCT(TerrainComponent__TerrainBVTree, BVTree, 572)
 		ADD_STRUCT(int, FullBatch, 568)
-		ADD_STRUCT(EngineTypes::LightMapRef, LightMap, 540)
+		ADD_STRUCT(EngineTypes__LightMapRef, LightMap, 540)
 		ADD_STRUCT(int, TrueSectionSizeY, 536)
 		ADD_STRUCT(int, TrueSectionSizeX, 532)
 		ADD_STRUCT(int, SectionSizeY, 528)
 		ADD_STRUCT(int, SectionSizeX, 524)
 		ADD_STRUCT(int, SectionBaseY, 520)
 		ADD_STRUCT(int, SectionBaseX, 516)
-		ADD_STRUCT(Object::Pointer, TerrainObject, 512)
+		ADD_STRUCT(Object__Pointer, TerrainObject, 512)
 	};
 }
 #undef ADD_BOOL

@@ -2,7 +2,7 @@
 #include "Engine.ApexGenericAsset.h"
 #include "Engine.MaterialInterface.h"
 #include "Engine.ApexAsset.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -40,7 +40,7 @@ namespace UnrealScript
 		ADD_BOOL(bFallbackSkinning, 128, 0x2)
 		ADD_BOOL(bUseHardwareCloth, 128, 0x1)
 		ADD_OBJECT(ApexGenericAsset, ApexClothingLibrary, 124)
-		ADD_STRUCT(Object::Pointer, MApexAsset, 108)
+		ADD_STRUCT(Object__Pointer, MApexAsset, 108)
 	};
 }
 #undef ADD_BOOL

@@ -1,7 +1,13 @@
 #pragma once
+#include "Engine.LightComponent.EShadowFilterQuality.h"
+#include "Core.Object.Vector.h"
+#include "Engine.LightComponent.ELightShadowMode.h"
 #include "Engine.LightEnvironmentComponent.h"
-#include "Engine.LightComponent.h"
-#include "Core.Object.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.DynamicLightEnvironmentComponent.EDynamicLightEnvironmentBoundsMethod.h"
+#include "Core.Object.BoxSphereBounds.h"
+#include "Core.Object.LinearColor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,30 +27,23 @@ namespace UnrealScript
 	class DynamicLightEnvironmentComponent : public LightEnvironmentComponent
 	{
 	public:
-		enum EDynamicLightEnvironmentBoundsMethod : byte
-		{
-			DLEB_OwnerComponents = 0,
-			DLEB_ManualOverride = 1,
-			DLEB_ActiveComponents = 2,
-			DLEB_MAX = 3,
-		};
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, OverriddenLightComponents, 284)
-		ADD_STRUCT(LightComponent::LightingChannelContainer, OverriddenLightingChannels, 280)
-		ADD_STRUCT(Object::BoxSphereBounds, OverriddenBounds, 252)
+		ADD_STRUCT(LightComponent__LightingChannelContainer, OverriddenLightingChannels, 280)
+		ADD_STRUCT(Object__BoxSphereBounds, OverriddenBounds, 252)
 		ADD_STRUCT(float, MinShadowAngle, 248)
 		ADD_STRUCT(float, BouncedLightingFactor, 244)
-		ADD_STRUCT(DynamicLightEnvironmentComponent::EDynamicLightEnvironmentBoundsMethod, BoundsMethod, 242)
-		ADD_STRUCT(Object::Pointer, State, 112)
-		ADD_STRUCT(LightComponent::ELightShadowMode, LightShadowMode, 241)
-		ADD_STRUCT(LightComponent::EShadowFilterQuality, ShadowFilterQuality, 240)
+		ADD_STRUCT(DynamicLightEnvironmentComponent__EDynamicLightEnvironmentBoundsMethod, BoundsMethod, 242)
+		ADD_STRUCT(Object__Pointer, State, 112)
+		ADD_STRUCT(LightComponent__ELightShadowMode, LightShadowMode, 241)
+		ADD_STRUCT(LightComponent__EShadowFilterQuality, ShadowFilterQuality, 240)
 		ADD_STRUCT(int, ShadowFadeResolution, 236)
 		ADD_STRUCT(int, MaxShadowResolution, 232)
 		ADD_STRUCT(int, MinShadowResolution, 228)
 		ADD_STRUCT(float, DominantShadowTransitionEndDistance, 224)
 		ADD_STRUCT(float, DominantShadowTransitionStartDistance, 220)
-		ADD_STRUCT(Object::LinearColor, MaxModulatedShadowColor, 204)
+		ADD_STRUCT(Object__LinearColor, MaxModulatedShadowColor, 204)
 		ADD_STRUCT(float, ModShadowFadeoutExponent, 200)
 		ADD_STRUCT(float, ModShadowFadeoutTime, 196)
 		ADD_BOOL(bOverrideOwnerLightingChannels, 192, 0x2000)
@@ -64,9 +63,9 @@ void*>, OverriddenLightComponents, 284)
 		ADD_STRUCT(float, ShadowDistance, 188)
 		ADD_STRUCT(float, LightDistance, 184)
 		ADD_STRUCT(float, LightDesaturation, 180)
-		ADD_STRUCT(Object::LinearColor, AmbientGlow, 164)
+		ADD_STRUCT(Object__LinearColor, AmbientGlow, 164)
 		ADD_STRUCT(Vector, AmbientShadowSourceDirection, 152)
-		ADD_STRUCT(Object::LinearColor, AmbientShadowColor, 136)
+		ADD_STRUCT(Object__LinearColor, AmbientShadowColor, 136)
 		ADD_STRUCT(float, LightingBoundsScale, 132)
 		ADD_STRUCT(int, NumVolumeVisibilitySamples, 128)
 		ADD_STRUCT(float, ShadowInterpolationSpeed, 124)

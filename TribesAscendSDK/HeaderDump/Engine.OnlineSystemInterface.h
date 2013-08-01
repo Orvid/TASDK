@@ -1,6 +1,8 @@
 #pragma once
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.ENATType.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.OnlineSubsystem.ENetworkNotificationPosition.h"
 namespace UnrealScript
 {
 	class OnlineSystemInterface : public Interface
@@ -25,11 +27,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22925);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnConnectionStatusChange(OnlineSubsystem::EOnlineServerConnectionStatus ConnectionStatus)
+		void OnConnectionStatusChange(OnlineSubsystem__EOnlineServerConnectionStatus ConnectionStatus)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22927);
 			byte params[1] = { NULL };
-			*(OnlineSubsystem::EOnlineServerConnectionStatus*)params = ConnectionStatus;
+			*(OnlineSubsystem__EOnlineServerConnectionStatus*)params = ConnectionStatus;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnControllerChange(int ControllerId, bool bIsConnected)
@@ -91,18 +93,18 @@ void* ExternalUIDelegate)
 void**)params = ExternalUIDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		OnlineSubsystem::ENetworkNotificationPosition GetNetworkNotificationPosition()
+		OnlineSubsystem__ENetworkNotificationPosition GetNetworkNotificationPosition()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22942);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::ENetworkNotificationPosition*)params;
+			return *(OnlineSubsystem__ENetworkNotificationPosition*)params;
 		}
-		void SetNetworkNotificationPosition(OnlineSubsystem::ENetworkNotificationPosition NewPos)
+		void SetNetworkNotificationPosition(OnlineSubsystem__ENetworkNotificationPosition NewPos)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22944);
 			byte params[1] = { NULL };
-			*(OnlineSubsystem::ENetworkNotificationPosition*)params = NewPos;
+			*(OnlineSubsystem__ENetworkNotificationPosition*)params = NewPos;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void AddControllerChangeDelegate(
@@ -157,12 +159,12 @@ void* ConnectionStatusDelegate)
 void**)params = ConnectionStatusDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		OnlineSubsystem::ENATType GetNATType()
+		OnlineSubsystem__ENATType GetNATType()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22960);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::ENATType*)params;
+			return *(OnlineSubsystem__ENATType*)params;
 		}
 		void AddStorageDeviceChangeDelegate(
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!

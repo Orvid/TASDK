@@ -1,8 +1,11 @@
 #pragma once
 #include "Engine.Actor.h"
 #include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Actor.ActorReference.h"
 #include "Engine.NavigationPoint.h"
 #include "Engine.Pawn.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -40,11 +43,11 @@ namespace UnrealScript
 		ADD_STRUCT(int, reachFlags, 112)
 		ADD_STRUCT(int, CollisionHeight, 108)
 		ADD_STRUCT(int, CollisionRadius, 104)
-		ADD_STRUCT(Actor::ActorReference, End, 84)
+		ADD_STRUCT(Actor__ActorReference, End, 84)
 		ADD_OBJECT(NavigationPoint, Start, 80)
 		ADD_STRUCT(Vector, Direction, 68)
 		ADD_STRUCT(int, Distance, 64)
-		ADD_STRUCT(Object::Pointer, NavOctreeObject, 60)
+		ADD_STRUCT(Object__Pointer, NavOctreeObject, 60)
 		int CostFor(class Pawn* P)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9671);

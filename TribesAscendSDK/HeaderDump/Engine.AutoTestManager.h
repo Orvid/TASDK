@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.PlayerController.h"
 #include "Engine.Info.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Rotator.h"
+#include "Core.Object.EAutomatedRunResult.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -88,11 +90,11 @@ namespace UnrealScript
 			*(Rotator*)&params[12] = InRotation;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void EndSentinelRun(Object::EAutomatedRunResult RunResult)
+		void EndSentinelRun(Object__EAutomatedRunResult RunResult)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(11947);
 			byte params[1] = { NULL };
-			*(Object::EAutomatedRunResult*)params = RunResult;
+			*(Object__EAutomatedRunResult*)params = RunResult;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void DoTravelTheWorld()

@@ -1,7 +1,7 @@
 #pragma once
 #include "UTGame.UTVehicle.h"
 #include "UDKBase.UDKProjectile.h"
-#include "Engine.Actor.h"
+#include "Engine.Actor.EDoubleClickDir.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -46,11 +46,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		bool Dodge(Actor::EDoubleClickDir DoubleClickMove)
+		bool Dodge(Actor__EDoubleClickDir DoubleClickMove)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(40379);
 			byte params[5] = { NULL };
-			*(Actor::EDoubleClickDir*)params = DoubleClickMove;
+			*(Actor__EDoubleClickDir*)params = DoubleClickMove;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}

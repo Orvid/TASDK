@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.Actor.h"
 #include "Engine.DynamicSMActor.h"
+#include "Engine.InterpActor.CheckpointRecord.h"
 #include "Engine.SoundCue.h"
 #include "Engine.NavigationPoint.h"
 #include "Engine.SeqAct_Interp.h"
@@ -28,16 +29,6 @@ namespace UnrealScript
 	class InterpActor : public DynamicSMActor
 	{
 	public:
-		struct CheckpointRecord
-		{
-		public:
-			ADD_BOOL(bNeedsPositionReplication, 28, 0x4)
-			ADD_BOOL(bIsShutdown, 28, 0x2)
-			ADD_BOOL(bHidden, 28, 0x1)
-			ADD_STRUCT(Actor::ECollisionType, CollisionType, 24)
-			ADD_STRUCT(Rotator, Rotation, 12)
-			ADD_STRUCT(Vector, Location, 0)
-		};
 		ADD_BOOL(bMonitorMover, 532, 0x2)
 		ADD_OBJECT(NavigationPoint, MyMarker, 536)
 		ADD_OBJECT(SoundCue, ClosedSound, 568)
@@ -145,21 +136,21 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void CreateCheckpointRecord(InterpActor::CheckpointRecord& Record)
+		void CreateCheckpointRecord(InterpActor__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(18432);
 			byte params[32] = { NULL };
-			*(InterpActor::CheckpointRecord*)params = Record;
+			*(InterpActor__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(InterpActor::CheckpointRecord*)params;
+			Record = *(InterpActor__CheckpointRecord*)params;
 		}
-		void ApplyCheckpointRecord(InterpActor::CheckpointRecord& Record)
+		void ApplyCheckpointRecord(InterpActor__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(18434);
 			byte params[32] = { NULL };
-			*(InterpActor::CheckpointRecord*)params = Record;
+			*(InterpActor__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(InterpActor::CheckpointRecord*)params;
+			Record = *(InterpActor__CheckpointRecord*)params;
 		}
 	};
 }

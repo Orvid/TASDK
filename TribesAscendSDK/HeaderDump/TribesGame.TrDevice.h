@@ -1,25 +1,37 @@
 #pragma once
-#include "TribesGame.TrObject.h"
 #include "UTGame.UTWeapon.h"
+#include "TribesGame.TrObject.DeviceAttackType.h"
+#include "TribesGame.TrObject.DeviceTargeterType.h"
+#include "TribesGame.TrDevice.DeviceUpgrade.h"
+#include "TribesGame.TrDevice.EffectInfo.h"
+#include "TribesGame.TrObject.EffectFormOverwrite.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Core.Object.Vector.h"
+#include "TribesGame.TrDeviceContentData.h"
+#include "TribesGame.TrObject.PaperDollInfo.h"
+#include "Engine.AnimSet.h"
 #include "TribesGame.TrAnimNodeBlendByDeviceAnim.h"
 #include "Engine.MaterialInstanceConstant.h"
-#include "Engine.AnimNodeSequence.h"
-#include "TribesGame.TrDeviceContentData.h"
-#include "Core.Object.h"
-#include "Engine.AnimSet.h"
-#include "Engine.Material.h"
 #include "Engine.CameraShake.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
+#include "Engine.Material.h"
+#include "TribesGame.TrPawn.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.Actor.h"
+#include "UTGame.UTPlayerController.h"
+#include "TribesGame.TrDevice.ReplicatedAmmoCount.h"
 #include "Engine.SoundCue.h"
 #include "TribesGame.TrDeployable.h"
+#include "TribesGame.TrObject.EWeaponTracerType.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "TribesGame.TrProj_Tracer.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.Weapon.h"
+#include "TribesGame.TrObject.EffectType.h"
 #include "Engine.Projectile.h"
 #include "UDKBase.UDKPawn.h"
-#include "TribesGame.TrPawn.h"
-#include "UTGame.UTPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -546,38 +558,9 @@ namespace UnrealScript
 		static const auto VALIDATE_HIT_DEFER = -1;
 		static const auto VALIDATE_HIT_REJECT = 0;
 		static const auto VALIDATE_HIT_APPROVE = 1;
-		struct EffectInfo
-		{
-		public:
-			ADD_STRUCT(float, interval, 20)
-			ADD_STRUCT(float, Value, 16)
-			ADD_STRUCT(float, Lifetime, 12)
-			ADD_STRUCT(TrObject::EffectType, Type, 8)
-			ADD_OBJECT(ScriptClass, effectClass, 4)
-			ADD_STRUCT(byte, FireModeNum, 0)
-		};
-		struct ReplicatedAmmoCount
-		{
-		public:
-			ADD_STRUCT(int, ClipAmmoCount, 4)
-			ADD_STRUCT(int, CarriedAmmoCount, 0)
-		};
-		struct DeviceModification
-		{
-		public:
-			ADD_STRUCT(float, Value, 4)
-			ADD_STRUCT(int, ModType, 0)
-		};
-		struct DeviceUpgrade
-		{
-		public:
-			ADD_STRUCT(int, DatabaseItemId, 4)
-			ADD_STRUCT(int, IconId, 0)
-			ADD_STRUCT(ScriptArray<TrDevice::DeviceModification>, Modifications, 8)
-		};
 		ADD_STRUCT(int, m_nCarriedAmmo, 1596)
 		ADD_STRUCT(int, m_nIconIndex, 1688)
-		ADD_STRUCT(ScriptArray<TrDevice::DeviceUpgrade>, Upgrades, 2088)
+		ADD_STRUCT(ScriptArray<TrDevice__DeviceUpgrade>, Upgrades, 2088)
 		ADD_STRUCT(ScriptString*, UpgradeDescription, 2028)
 		ADD_STRUCT(int, DBXPActivityId, 1484)
 		ADD_STRUCT(ScriptString*, InfoPanelDescription, 2000)
@@ -588,19 +571,19 @@ namespace UnrealScript
 		ADD_STRUCT(int, DBWeaponId, 1472)
 		ADD_STRUCT(int, m_nReticuleIndex, 1584)
 		ADD_BOOL(m_bAllowFireWhileZoomed, 1548, 0x100000)
-		ADD_STRUCT(ScriptArray<TrDevice::EffectInfo>, m_EffectInfo, 1492)
-		ADD_STRUCT(ScriptArray<TrObject::DeviceTargeterType>, m_eTargetType, 1504)
-		ADD_STRUCT(ScriptArray<TrObject::DeviceAttackType>, m_eAttackType, 1516)
+		ADD_STRUCT(ScriptArray<TrDevice__EffectInfo>, m_EffectInfo, 1492)
+		ADD_STRUCT(ScriptArray<TrObject__DeviceTargeterType>, m_eTargetType, 1504)
+		ADD_STRUCT(ScriptArray<TrObject__DeviceAttackType>, m_eAttackType, 1516)
 		ADD_STRUCT(ScriptArray<int>, m_PowerPoolCost, 1528)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, m_WeaponDeployables, 1656)
-		ADD_STRUCT(ScriptArray<TrObject::EffectFormOverwrite>, m_EffectFormOverwrite, 1768)
+		ADD_STRUCT(ScriptArray<TrObject__EffectFormOverwrite>, m_EffectFormOverwrite, 1768)
 		ADD_STRUCT(ScriptArray<class AnimNodeSequence*>, m_MeshAnimSequenceNodes, 1840)
 		ADD_STRUCT(Vector, m_vClientSideFireOffset, 2136)
 		ADD_OBJECT(TrDeviceContentData, m_ContentData, 2132)
 		ADD_STRUCT(ScriptString*, m_sContentDataClassName, 2120)
-		ADD_STRUCT(TrDevice::DeviceUpgrade, BaseMod, 2100)
-		ADD_STRUCT(TrObject::PaperDollInfo, m_InGamePaperDollInfo, 1944)
-		ADD_STRUCT(TrObject::PaperDollInfo, m_MainMenuPaperDollInfo, 1888)
+		ADD_STRUCT(TrDevice__DeviceUpgrade, BaseMod, 2100)
+		ADD_STRUCT(TrObject__PaperDollInfo, m_InGamePaperDollInfo, 1944)
+		ADD_STRUCT(TrObject__PaperDollInfo, m_MainMenuPaperDollInfo, 1888)
 		ADD_STRUCT(Vector, m_TinyWeaponsOffset, 1876)
 		ADD_STRUCT(float, m_fTimeBeforeInactiveReload, 1872)
 		ADD_STRUCT(float, m_fLastActiveTime, 1868)
@@ -617,18 +600,18 @@ namespace UnrealScript
 		ADD_STRUCT(Vector, m_vPositionPivotOffset, 1792)
 		ADD_OBJECT(CameraShake, m_FireCameraShake, 1788)
 		ADD_OBJECT(Material, r_ReplicatedMaterial, 1764)
-		ADD_STRUCT(Object::Vector2D, m_v2WeaponLagSmoothingFactor, 1756)
-		ADD_STRUCT(Object::Vector2D, m_v2WeaponLagInterpSpeed, 1748)
+		ADD_STRUCT(Object__Vector2D, m_v2WeaponLagSmoothingFactor, 1756)
+		ADD_STRUCT(Object__Vector2D, m_v2WeaponLagInterpSpeed, 1748)
 		ADD_STRUCT(int, m_nMaxWeaponLagPitch, 1744)
 		ADD_STRUCT(int, m_nMaxWeaponLagYaw, 1740)
-		ADD_STRUCT(Object::Vector2D, m_v2WeaponLagAimOffset, 1732)
+		ADD_STRUCT(Object__Vector2D, m_v2WeaponLagAimOffset, 1732)
 		ADD_STRUCT(float, m_fMaxKickbackDistanceY, 1728)
 		ADD_STRUCT(float, m_fMaxKickbackDistanceX, 1724)
 		ADD_STRUCT(float, m_fKickbackBlendOutTime, 1720)
 		ADD_STRUCT(float, m_fLastKickbackTime, 1716)
-		ADD_STRUCT(Object::Vector2D, m_v2KickbackAmount, 1708)
-		ADD_STRUCT(Object::Vector2D, m_v2MinMaxKickbackY, 1700)
-		ADD_STRUCT(Object::Vector2D, m_v2MinMaxKickbackX, 1692)
+		ADD_STRUCT(Object__Vector2D, m_v2KickbackAmount, 1708)
+		ADD_STRUCT(Object__Vector2D, m_v2MinMaxKickbackY, 1700)
+		ADD_STRUCT(Object__Vector2D, m_v2MinMaxKickbackX, 1692)
 		ADD_STRUCT(int, m_nCreditCost, 1684)
 		ADD_OBJECT(ParticleSystem, m_TracerBeamTemplate, 1680)
 		ADD_STRUCT(float, m_fShowTracerDistance, 1676)
@@ -637,7 +620,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, m_fLockTargetTime, 1652)
 		ADD_OBJECT(Actor, c_LockedActor, 1648)
 		ADD_STRUCT(float, c_fLockTime, 1644)
-		ADD_STRUCT(TrDevice::ReplicatedAmmoCount, r_AmmoCount, 1636)
+		ADD_STRUCT(TrDevice__ReplicatedAmmoCount, r_AmmoCount, 1636)
 		ADD_STRUCT(int, s_iCheatCountAmmo, 1632)
 		ADD_OBJECT(SoundCue, m_ZoomOutSoundCue, 1628)
 		ADD_OBJECT(SoundCue, m_ZoomInSoundCue, 1624)
@@ -685,8 +668,8 @@ namespace UnrealScript
 		ADD_BOOL(m_bAllowMultipleTargets, 1548, 0x1)
 		ADD_STRUCT(float, m_fConeAttackAngle, 1544)
 		ADD_STRUCT(float, m_fDamageRadius, 1540)
-		ADD_STRUCT(TrObject::EWeaponTracerType, m_TracerType, 1489)
-		ADD_STRUCT(TrObject::TR_EQUIP_POINT, r_eEquipAt, 1488)
+		ADD_STRUCT(TrObject__EWeaponTracerType, m_TracerType, 1489)
+		ADD_STRUCT(TrObject__TR_EQUIP_POINT, r_eEquipAt, 1488)
 		ADD_STRUCT(int, DBWeaponTypeId, 1480)
 		ADD_STRUCT(int, DBWeaponBaseId, 1476)
 		float CalcHUDAimChargePercent()
@@ -738,12 +721,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[32];
 		}
-		bool ShouldAddToImpactList(class Actor* HitActor, ScriptArray<Actor::ImpactInfo> ImpactList)
+		bool ShouldAddToImpactList(class Actor* HitActor, ScriptArray<Actor__ImpactInfo> ImpactList)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67293);
 			byte params[20] = { NULL };
 			*(class Actor**)params = HitActor;
-			*(ScriptArray<Actor::ImpactInfo>*)&params[4] = ImpactList;
+			*(ScriptArray<Actor__ImpactInfo>*)&params[4] = ImpactList;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
@@ -816,23 +799,23 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class TrDeviceContentData**)params;
 		}
-		int ValidateClientReportedHit(byte FiringMode, Actor::ImpactInfo Impact, bool bHeadShot, bool bDeviceIsFiring)
+		int ValidateClientReportedHit(byte FiringMode, Actor__ImpactInfo Impact, bool bHeadShot, bool bDeviceIsFiring)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67319);
 			byte params[93] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(bool*)&params[84] = bHeadShot;
 			*(bool*)&params[88] = bDeviceIsFiring;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[92];
 		}
-		int ValidateClientReportedHitInternal(byte FiringMode, Actor::ImpactInfo Impact, bool bHeadShot, bool bDeviceIsFiring)
+		int ValidateClientReportedHitInternal(byte FiringMode, Actor__ImpactInfo Impact, bool bHeadShot, bool bDeviceIsFiring)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67325);
 			byte params[93] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(bool*)&params[84] = bHeadShot;
 			*(bool*)&params[88] = bDeviceIsFiring;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -1096,50 +1079,50 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67463);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ProcessInstantHit(byte FiringMode, Actor::ImpactInfo Impact, int NumHits)
+		void ProcessInstantHit(byte FiringMode, Actor__ImpactInfo Impact, int NumHits)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67472);
 			byte params[85] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(int*)&params[84] = NumHits;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ServerNotifyHit(byte FiringMode, Actor::ImpactInfo Impact, bool bHeadShot)
+		void ServerNotifyHit(byte FiringMode, Actor__ImpactInfo Impact, bool bHeadShot)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67480);
 			byte params[85] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(bool*)&params[84] = bHeadShot;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ProcessInstantHit_Internal(byte FiringMode, Actor::ImpactInfo Impact, bool bHeadShot)
+		void ProcessInstantHit_Internal(byte FiringMode, Actor__ImpactInfo Impact, bool bHeadShot)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67489);
 			byte params[85] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(bool*)&params[84] = bHeadShot;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		float ModifyInstantHitDamage(byte FiringMode, Actor::ImpactInfo Impact, float Damage)
+		float ModifyInstantHitDamage(byte FiringMode, Actor__ImpactInfo Impact, float Damage)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67497);
 			byte params[89] = { NULL };
 			*params = FiringMode;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			*(float*)&params[84] = Damage;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[88];
 		}
-		void ProcessEffect(class Actor* Target, byte FiringMode, TrObject::EffectType efType, bool bRemove)
+		void ProcessEffect(class Actor* Target, byte FiringMode, TrObject__EffectType efType, bool bRemove)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67502);
 			byte params[10] = { NULL };
 			*(class Actor**)params = Target;
 			params[4] = FiringMode;
-			*(TrObject::EffectType*)&params[5] = efType;
+			*(TrObject__EffectType*)&params[5] = efType;
 			*(bool*)&params[8] = bRemove;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -1205,12 +1188,12 @@ void**)params = SkelComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(Rotator*)&params[12];
 		}
-		Object::Vector2D GetCurrentKickbackAmount()
+		Object__Vector2D GetCurrentKickbackAmount()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67544);
 			byte params[8] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Vector2D*)params;
+			return *(Object__Vector2D*)params;
 		}
 		bool AddKickback()
 		{
@@ -1321,12 +1304,12 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67623);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		float GetReloadTime(class PlayerReplicationInfo* PRI, TrObject::TR_EQUIP_POINT EquipPoint)
+		float GetReloadTime(class PlayerReplicationInfo* PRI, TrObject__TR_EQUIP_POINT EquipPoint)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67654);
 			byte params[9] = { NULL };
 			*(class PlayerReplicationInfo**)params = PRI;
-			*(TrObject::TR_EQUIP_POINT*)&params[4] = EquipPoint;
+			*(TrObject__TR_EQUIP_POINT*)&params[4] = EquipPoint;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[8];
 		}
@@ -1613,17 +1596,17 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67879);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		Actor::ImpactInfo CalcWeaponFire(Vector StartTrace, Vector EndTrace, ScriptArray<Actor::ImpactInfo>& ImpactList, Vector Extent)
+		Actor__ImpactInfo CalcWeaponFire(Vector StartTrace, Vector EndTrace, ScriptArray<Actor__ImpactInfo>& ImpactList, Vector Extent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67884);
 			byte params[128] = { NULL };
 			*(Vector*)params = StartTrace;
 			*(Vector*)&params[12] = EndTrace;
-			*(ScriptArray<Actor::ImpactInfo>*)&params[24] = ImpactList;
+			*(ScriptArray<Actor__ImpactInfo>*)&params[24] = ImpactList;
 			*(Vector*)&params[36] = Extent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ImpactList = *(ScriptArray<Actor::ImpactInfo>*)&params[24];
-			return *(Actor::ImpactInfo*)&params[48];
+			ImpactList = *(ScriptArray<Actor__ImpactInfo>*)&params[24];
+			return *(Actor__ImpactInfo*)&params[48];
 		}
 		void PlayDryFireZoom()
 		{

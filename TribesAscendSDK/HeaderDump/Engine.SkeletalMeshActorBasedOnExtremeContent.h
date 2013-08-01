@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.SkeletalMeshActor.h"
+#include "Engine.SkeletalMeshActorBasedOnExtremeContent.SkelMaterialSetterDatum.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,14 +14,8 @@ namespace UnrealScript
 	class SkeletalMeshActorBasedOnExtremeContent : public SkeletalMeshActor
 	{
 	public:
-		struct SkelMaterialSetterDatum
-		{
-		public:
-			ADD_OBJECT(MaterialInterface, TheMaterial, 4)
-			ADD_STRUCT(int, MaterialIndex, 0)
-		};
-		ADD_STRUCT(ScriptArray<SkeletalMeshActorBasedOnExtremeContent::SkelMaterialSetterDatum>, ExtremeContent, 536)
-		ADD_STRUCT(ScriptArray<SkeletalMeshActorBasedOnExtremeContent::SkelMaterialSetterDatum>, NonExtremeContent, 548)
+		ADD_STRUCT(ScriptArray<SkeletalMeshActorBasedOnExtremeContent__SkelMaterialSetterDatum>, ExtremeContent, 536)
+		ADD_STRUCT(ScriptArray<SkeletalMeshActorBasedOnExtremeContent__SkelMaterialSetterDatum>, NonExtremeContent, 548)
 		void PostBeginPlay()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(26749);

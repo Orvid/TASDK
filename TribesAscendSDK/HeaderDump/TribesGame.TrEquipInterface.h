@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.Object.h"
-#include "TribesGame.TrObject.h"
+#include "TribesGame.TrObject.ReticuleDataType.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -216,21 +217,21 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];
 		}
-		int GetReticuleValue(int EquipId, TrObject::ReticuleDataType Type)
+		int GetReticuleValue(int EquipId, TrObject__ReticuleDataType Type)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(58603);
 			byte params[9] = { NULL };
 			*(int*)params = EquipId;
-			*(TrObject::ReticuleDataType*)&params[4] = Type;
+			*(TrObject__ReticuleDataType*)&params[4] = Type;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[8];
 		}
-		ScriptString* GetReticuleString(int EquipId, TrObject::ReticuleDataType Type)
+		ScriptString* GetReticuleString(int EquipId, TrObject__ReticuleDataType Type)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(58605);
 			byte params[17] = { NULL };
 			*(int*)params = EquipId;
-			*(TrObject::ReticuleDataType*)&params[4] = Type;
+			*(TrObject__ReticuleDataType*)&params[4] = Type;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[8];
 		}
@@ -325,22 +326,22 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
-		bool SetReticuleValue(int EquipId, TrObject::ReticuleDataType Type, int nValue)
+		bool SetReticuleValue(int EquipId, TrObject__ReticuleDataType Type, int nValue)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(58766);
 			byte params[13] = { NULL };
 			*(int*)params = EquipId;
-			*(TrObject::ReticuleDataType*)&params[4] = Type;
+			*(TrObject__ReticuleDataType*)&params[4] = Type;
 			*(int*)&params[8] = nValue;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		bool SetReticuleString(int EquipId, TrObject::ReticuleDataType Type, ScriptString* sValue)
+		bool SetReticuleString(int EquipId, TrObject__ReticuleDataType Type, ScriptString* sValue)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(58768);
 			byte params[21] = { NULL };
 			*(int*)params = EquipId;
-			*(TrObject::ReticuleDataType*)&params[4] = Type;
+			*(TrObject__ReticuleDataType*)&params[4] = Type;
 			*(ScriptString**)&params[8] = sValue;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[20];
@@ -430,11 +431,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void DelegateOnMarshalEvent(Object::Pointer pMarEvent)
+		void DelegateOnMarshalEvent(Object__Pointer pMarEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87425);
 			byte params[4] = { NULL };
-			*(Object::Pointer*)params = pMarEvent;
+			*(Object__Pointer*)params = pMarEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void LoadInventory()
@@ -458,11 +459,11 @@ namespace UnrealScript
 			*(int*)&params[8] = equip;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnMarshalEvent(Object::Pointer pMarEvent)
+		void OnMarshalEvent(Object__Pointer pMarEvent)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87435);
 			byte params[4] = { NULL };
-			*(Object::Pointer*)params = pMarEvent;
+			*(Object__Pointer*)params = pMarEvent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool RegisterMarshalCallback(

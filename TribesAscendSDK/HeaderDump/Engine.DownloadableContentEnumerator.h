@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.Object.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.OnlineContent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,7 +10,7 @@ namespace UnrealScript
 	class DownloadableContentEnumerator : public Object
 	{
 	public:
-		ADD_STRUCT(ScriptArray<OnlineSubsystem::OnlineContent>, DLCBundles, 60)
+		ADD_STRUCT(ScriptArray<OnlineSubsystem__OnlineContent>, DLCBundles, 60)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, FindDLCDelegates, 84)

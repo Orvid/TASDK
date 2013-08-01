@@ -1,10 +1,10 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "TribesGame.TrDevice.h"
 #include "Engine.SoundCue.h"
 #include "Engine.SkelControlSingleBone.h"
 #include "TribesGame.TrSkelControl_SpinControl.h"
 #include "Engine.AnimNodeSequence.h"
-#include "Core.Object.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

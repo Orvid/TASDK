@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.DistributionFloatConstant.h"
+#include "Engine.DistributionFloatParameterBase.DistributionParamMode.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -9,14 +10,7 @@ namespace UnrealScript
 	class DistributionFloatParameterBase : public DistributionFloatConstant
 	{
 	public:
-		enum DistributionParamMode : byte
-		{
-			DPM_Normal = 0,
-			DPM_Abs = 1,
-			DPM_Direct = 2,
-			DPM_MAX = 3,
-		};
-		ADD_STRUCT(DistributionFloatParameterBase::DistributionParamMode, ParamMode, 108)
+		ADD_STRUCT(DistributionFloatParameterBase__DistributionParamMode, ParamMode, 108)
 		ADD_STRUCT(ScriptName, ParameterName, 84)
 		ADD_STRUCT(float, MaxOutput, 104)
 		ADD_STRUCT(float, MinOutput, 100)

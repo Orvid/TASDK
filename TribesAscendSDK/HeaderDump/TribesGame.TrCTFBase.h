@@ -4,8 +4,8 @@
 #include "Engine.MaterialInstanceConstant.h"
 #include "Engine.PlayerController.h"
 #include "Engine.Canvas.h"
-#include "Core.Object.h"
-#include "TribesGame.TrHelpTextManager.h"
+#include "Core.Object.Vector.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -83,11 +83,11 @@ void**)params = SkelComp;
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(78268);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void SpawnHelpTextCollisionProxy(TrHelpTextManager::EHelpTextType HelpTextType)
+		void SpawnHelpTextCollisionProxy(TrHelpTextManager__EHelpTextType HelpTextType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(78269);
 			byte params[1] = { NULL };
-			*(TrHelpTextManager::EHelpTextType*)params = HelpTextType;
+			*(TrHelpTextManager__EHelpTextType*)params = HelpTextType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 	};

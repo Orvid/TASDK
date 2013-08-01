@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.FracturedBaseComponent.h"
+#include "Core.Object.Box.h"
 #include "Engine.MaterialInterface.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
+#include "Engine.FracturedStaticMeshComponent.FragmentGroup.h"
 #include "Engine.PhysicalMaterial.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -26,12 +28,6 @@ namespace UnrealScript
 	class FracturedStaticMeshComponent : public FracturedBaseComponent
 	{
 	public:
-		struct FragmentGroup
-		{
-		public:
-			ADD_STRUCT(ScriptArray<int>, FragmentIndices, 0)
-			ADD_BOOL(bGroupIsRooted, 12, 0x1)
-		};
 		ADD_STRUCT(ScriptArray<byte>, FragmentNeighborsVisible, 640)
 		ADD_STRUCT(float, FragmentBoundsMinZ, 696)
 		ADD_STRUCT(float, FragmentBoundsMaxZ, 692)
@@ -41,7 +37,7 @@ namespace UnrealScript
 		ADD_BOOL(bTopFragmentsRootNonDestroyable, 680, 0x4)
 		ADD_BOOL(bUseVisibleVertsForBounds, 680, 0x2)
 		ADD_BOOL(bUseSkinnedRendering, 680, 0x1)
-		ADD_STRUCT(Object::Box, VisibleBox, 652)
+		ADD_STRUCT(Object__Box, VisibleBox, 652)
 		void SetVisibleFragments(ScriptArray<byte> VisibilityFactors)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16040);
@@ -73,13 +69,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		Object::Box GetFragmentBox(int FragmentIndex)
+		Object__Box GetFragmentBox(int FragmentIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16052);
 			byte params[32] = { NULL };
 			*(int*)params = FragmentIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Box*)&params[4];
+			return *(Object__Box*)&params[4];
 		}
 		Vector GetFragmentAverageExteriorNormal(int FragmentIndex)
 		{
@@ -96,14 +92,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)params;
 		}
-		ScriptArray<FracturedStaticMeshComponent::FragmentGroup> GetFragmentGroups(ScriptArray<int> IgnoreFragments, float MinConnectionArea)
+		ScriptArray<FracturedStaticMeshComponent__FragmentGroup> GetFragmentGroups(ScriptArray<int> IgnoreFragments, float MinConnectionArea)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(16060);
 			byte params[28] = { NULL };
 			*(ScriptArray<int>*)params = IgnoreFragments;
 			*(float*)&params[12] = MinConnectionArea;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(ScriptArray<FracturedStaticMeshComponent::FragmentGroup>*)&params[16];
+			return *(ScriptArray<FracturedStaticMeshComponent__FragmentGroup>*)&params[16];
 		}
 		ScriptArray<int> GetBoundaryHiddenFragments(ScriptArray<int> AdditionalVisibleFragments)
 		{

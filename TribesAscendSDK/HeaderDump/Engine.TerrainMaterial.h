@@ -1,7 +1,9 @@
 #pragma once
 #include "Core.Object.h"
 #include "Engine.Texture2D.h"
+#include "Core.Object.Matrix.h"
 #include "Engine.MaterialInterface.h"
+#include "Engine.TerrainMaterial.ETerrainMappingType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,14 +17,6 @@ namespace UnrealScript
 	class TerrainMaterial : public Object
 	{
 	public:
-		enum ETerrainMappingType : byte
-		{
-			TMT_Auto = 0,
-			TMT_XY = 1,
-			TMT_XZ = 2,
-			TMT_YZ = 3,
-			TMT_MAX = 4,
-		};
 		ADD_STRUCT(float, DisplacementScale, 156)
 		ADD_OBJECT(Texture2D, DisplacementMap, 152)
 		ADD_OBJECT(MaterialInterface, Material, 148)
@@ -30,8 +24,8 @@ namespace UnrealScript
 		ADD_STRUCT(float, MappingPanU, 140)
 		ADD_STRUCT(float, MappingRotation, 136)
 		ADD_STRUCT(float, MappingScale, 132)
-		ADD_STRUCT(TerrainMaterial::ETerrainMappingType, MappingType, 128)
-		ADD_STRUCT(Object::Matrix, LocalToMapping, 64)
+		ADD_STRUCT(TerrainMaterial__ETerrainMappingType, MappingType, 128)
+		ADD_STRUCT(Object__Matrix, LocalToMapping, 64)
 	};
 }
 #undef ADD_STRUCT

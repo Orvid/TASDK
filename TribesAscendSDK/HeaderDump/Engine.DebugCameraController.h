@@ -1,8 +1,10 @@
 #pragma once
 #include "Engine.PlayerController.h"
+#include "Core.Object.EInputEvent.h"
 #include "Engine.Player.h"
-#include "Core.Object.h"
 #include "Engine.Actor.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -34,22 +36,22 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptName, UnselectKey, 1464)
 		ADD_STRUCT(ScriptName, SecondaryKey, 1456)
 		ADD_STRUCT(ScriptName, PrimaryKey, 1448)
-		void PrimarySelect(Vector HitLoc, Vector HitNormal, Actor::TraceHitInfo HitInfo)
+		void PrimarySelect(Vector HitLoc, Vector HitNormal, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13678);
 			byte params[52] = { NULL };
 			*(Vector*)params = HitLoc;
 			*(Vector*)&params[12] = HitNormal;
-			*(Actor::TraceHitInfo*)&params[24] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[24] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SecondarySelect(Vector HitLoc, Vector HitNormal, Actor::TraceHitInfo HitInfo)
+		void SecondarySelect(Vector HitLoc, Vector HitNormal, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13682);
 			byte params[52] = { NULL };
 			*(Vector*)params = HitLoc;
 			*(Vector*)&params[12] = HitNormal;
-			*(Actor::TraceHitInfo*)&params[24] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[24] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void Unselect()
@@ -90,13 +92,13 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13695);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		bool NativeInputKey(int ControllerId, ScriptName Key, Object::EInputEvent Event, float AmountDepressed, bool bGamepad)
+		bool NativeInputKey(int ControllerId, ScriptName Key, Object__EInputEvent Event, float AmountDepressed, bool bGamepad)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13700);
 			byte params[25] = { NULL };
 			*(int*)params = ControllerId;
 			*(ScriptName*)&params[4] = Key;
-			*(Object::EInputEvent*)&params[12] = Event;
+			*(Object__EInputEvent*)&params[12] = Event;
 			*(float*)&params[16] = AmountDepressed;
 			*(bool*)&params[20] = bGamepad;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);

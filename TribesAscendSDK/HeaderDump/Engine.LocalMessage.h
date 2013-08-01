@@ -1,5 +1,6 @@
 #pragma once
 #include "Core.Object.h"
+#include "Core.Object.Color.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.PlayerController.h"
 #include "Engine.HUD.h"
@@ -30,15 +31,15 @@ namespace UnrealScript
 		ADD_BOOL(bIsPartiallyUnique, 60, 0x4)
 		ADD_STRUCT(int, FontSize, 76)
 		ADD_STRUCT(float, PosY, 72)
-		ADD_STRUCT(Object::Color, DrawColor, 68)
+		ADD_STRUCT(Object__Color, DrawColor, 68)
 		ADD_BOOL(bIsConsoleMessage, 60, 0x8)
-		Object::Color GetConsoleColor(class PlayerReplicationInfo* RelatedPRI_1)
+		Object__Color GetConsoleColor(class PlayerReplicationInfo* RelatedPRI_1)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13793);
 			byte params[8] = { NULL };
 			*(class PlayerReplicationInfo**)params = RelatedPRI_1;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[4];
+			return *(Object__Color*)&params[4];
 		}
 		bool PartiallyDuplicates(int Switch1, int Switch2, class Object* OptionalObject1, class Object* OptionalObject2)
 		{
@@ -74,7 +75,7 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[20];
 		}
-		Object::Color GetColor(int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
+		Object__Color GetColor(int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(15665);
 			byte params[20] = { NULL };
@@ -83,7 +84,7 @@ namespace UnrealScript
 			*(class PlayerReplicationInfo**)&params[8] = RelatedPRI_2;
 			*(class Object**)&params[12] = OptionalObject;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[16];
+			return *(Object__Color*)&params[16];
 		}
 		float GetPos(int Switch, class HUD* myHUD)
 		{

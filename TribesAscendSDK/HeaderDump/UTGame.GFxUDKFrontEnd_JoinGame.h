@@ -3,11 +3,13 @@
 #include "UDKBase.UDKDataStore_GameSearchBase.h"
 #include "UTGame.GFxUDKFrontEnd_Screen.h"
 #include "UTGame.UTUIDataStore_StringList.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
 #include "UTGame.UTUIDataStore_MenuItems.h"
 #include "GFxUI.GFxClikWidget.h"
+#include "UTGame.GFxUDKFrontEnd_JoinGame.EQueryCompletionAction.h"
 #include "UTGame.GFxUDKFrontEnd_PasswordDialog.h"
-#include "Engine.OnlineGameSearch.h"
+#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
 #include "UTGame.GFxUDKFrontEnd_JoinDialog.h"
 #include "UTGame.UTDataStore_GameSearchDM.h"
 #include "UDKBase.UDKUIDataProvider_SearchResult.h"
@@ -37,15 +39,6 @@ namespace UnrealScript
 		static const auto SERVERBROWSER_SERVERTYPE_RANKED = 2;
 		static const auto SERVERBROWSER_SERVERTYPE_UNRANKED = 1;
 		static const auto SERVERBROWSER_SERVERTYPE_LAN = 0;
-		enum EQueryCompletionAction : byte
-		{
-			QUERYACTION_None = 0,
-			QUERYACTION_Default = 1,
-			QUERYACTION_CloseScene = 2,
-			QUERYACTION_JoinServer = 3,
-			QUERYACTION_RefreshAll = 4,
-			QUERYACTION_MAX = 5,
-		};
 		ADD_OBJECT(UDKDataStore_GameSearchBase, SearchDataStore, 220)
 		ADD_STRUCT(ScriptName, SearchDSName, 264)
 		ADD_OBJECT(UTUIDataStore_StringList, StringListDataStore, 224)
@@ -67,9 +60,9 @@ namespace UnrealScript
 		ADD_OBJECT(GFxObject, StatusTxt, 356)
 		ADD_OBJECT(GFxObject, ServerCountTxt, 364)
 		ADD_BOOL(bSpectate, 260, 0x2)
-		ADD_STRUCT(GFxUDKFrontEnd_JoinGame::EQueryCompletionAction, QueryCompletionAction, 280)
+		ADD_STRUCT(GFxUDKFrontEnd_JoinGame__EQueryCompletionAction, QueryCompletionAction, 280)
 		ADD_BOOL(bQueryDialogShowing, 260, 0x8)
-		ADD_STRUCT(ScriptArray<OnlineGameSearch::OnlineGameSearchResult>, ServerInfoList, 232)
+		ADD_STRUCT(ScriptArray<OnlineGameSearch__OnlineGameSearchResult>, ServerInfoList, 232)
 		ADD_OBJECT(GFxObject, HeaderBarMC, 324)
 		ADD_STRUCT(int, SelectedIndex, 372)
 		ADD_OBJECT(GFxUDKFrontEnd_JoinDialog, JoinDialogMC, 276)
@@ -178,11 +171,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[24];
 		}
-		void OnPasswordDialog_OK(GFxClikWidget::EventData ev)
+		void OnPasswordDialog_OK(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38473);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ProcessJoin()
@@ -239,18 +232,18 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)params;
 		}
-		void OnRefreshButtonPress(GFxClikWidget::EventData ev)
+		void OnRefreshButtonPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38506);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnFilterButtonPress(GFxClikWidget::EventData ev)
+		void OnFilterButtonPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38508);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ServerFilterChangedGameType()
@@ -263,53 +256,53 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38512);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void OnServerHeaderPress(GFxClikWidget::EventData ev)
+		void OnServerHeaderPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38523);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnMapHeaderPress(GFxClikWidget::EventData ev)
+		void OnMapHeaderPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38525);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnPlayersHeaderPress(GFxClikWidget::EventData ev)
+		void OnPlayersHeaderPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38527);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnPingHeaderPress(GFxClikWidget::EventData ev)
+		void OnPingHeaderPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38529);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnServerListItemPress(GFxClikWidget::EventData ev)
+		void OnServerListItemPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38531);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SpectateServer(GFxClikWidget::EventData ev)
+		void SpectateServer(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38538);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void JoinServerClikListener(GFxClikWidget::EventData ev)
+		void JoinServerClikListener(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38540);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void JoinServer()
@@ -332,11 +325,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void CancelQuery(GFxUDKFrontEnd_JoinGame::EQueryCompletionAction DesiredCancelAction)
+		void CancelQuery(GFxUDKFrontEnd_JoinGame__EQueryCompletionAction DesiredCancelAction)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38558);
 			byte params[1] = { NULL };
-			*(GFxUDKFrontEnd_JoinGame::EQueryCompletionAction*)params = DesiredCancelAction;
+			*(GFxUDKFrontEnd_JoinGame__EQueryCompletionAction*)params = DesiredCancelAction;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetRefreshing(bool IsRefreshing)

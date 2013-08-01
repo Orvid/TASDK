@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.UIPropertyDataProvider.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,8 +22,8 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(bSkipDuringEnumeration, 120, 0x2)
 		ADD_BOOL(bDataBindingPropertiesOnly, 120, 0x1)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementCellProvider, 116)
-		ADD_STRUCT(Object::Pointer, VfTable_IUIListElementProvider, 112)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 116)
+		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementProvider, 112)
 		void InitializeProvider(bool bIsEditor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(22607);

@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.Object.h"
 #include "TribesGame.GfxTrHud.h"
+#include "TribesGame.TrRabbitLeaderboard.LeaderboardSlot.h"
 #include "TribesGame.TrPlayerController.h"
 #include "TribesGame.TrGameReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -26,15 +27,9 @@ namespace UnrealScript
 	class TrRabbitLeaderboard : public Object
 	{
 	public:
-		struct LeaderboardSlot
-		{
-		public:
-			ADD_STRUCT(int, Score, 8)
-			ADD_STRUCT(ScriptName, PRIName, 0)
-		};
 		ADD_OBJECT(GfxTrHud, m_MoviePlayer, 72)
 		ADD_BOOL(bIsActive, 68, 0x4)
-		ADD_STRUCT(TrRabbitLeaderboard::LeaderboardSlot, LeaderboardSlots, 80)
+		ADD_STRUCT(TrRabbitLeaderboard__LeaderboardSlot, LeaderboardSlots, 80)
 		ADD_OBJECT(TrPlayerController, TrPC, 76)
 		ADD_BOOL(bInitialized, 68, 0x2)
 		ADD_BOOL(bUpdated, 68, 0x1)

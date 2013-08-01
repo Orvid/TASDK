@@ -1,7 +1,8 @@
 #pragma once
 #include "Core.Object.h"
+#include "Engine.Font.FontCharacter.h"
 #include "Engine.Texture2D.h"
-#include "Engine.FontImportOptions.h"
+#include "Engine.FontImportOptions.FontImportOptionsData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,21 +13,11 @@ namespace UnrealScript
 	{
 	public:
 		static const auto NULLCHARACTER = 127;
-		struct FontCharacter
-		{
-		public:
-			ADD_STRUCT(int, VerticalOffset, 20)
-			ADD_STRUCT(byte, TextureIndex, 16)
-			ADD_STRUCT(int, VSize, 12)
-			ADD_STRUCT(int, USize, 8)
-			ADD_STRUCT(int, StartV, 4)
-			ADD_STRUCT(int, StartU, 0)
-		};
-		ADD_STRUCT(ScriptArray<Font::FontCharacter>, Characters, 60)
+		ADD_STRUCT(ScriptArray<Font__FontCharacter>, Characters, 60)
 		ADD_STRUCT(ScriptArray<class Texture2D*>, Textures, 72)
 		ADD_STRUCT(ScriptArray<int>, MaxCharHeight, 320)
 		ADD_STRUCT(int, NumCharacters, 316)
-		ADD_STRUCT(FontImportOptions::FontImportOptionsData, ImportOptions, 168)
+		ADD_STRUCT(FontImportOptions__FontImportOptionsData, ImportOptions, 168)
 		ADD_STRUCT(int, Kerning, 164)
 		ADD_STRUCT(float, Leading, 160)
 		ADD_STRUCT(float, Descent, 156)

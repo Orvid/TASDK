@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.ActorComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,9 +20,9 @@ namespace UnrealScript
 	class ExponentialHeightFogComponent : public ActorComponent
 	{
 	public:
-		ADD_STRUCT(Object::Color, LightInscatteringColor, 128)
+		ADD_STRUCT(Object__Color, LightInscatteringColor, 128)
 		ADD_STRUCT(float, LightInscatteringBrightness, 124)
-		ADD_STRUCT(Object::Color, OppositeLightColor, 120)
+		ADD_STRUCT(Object__Color, OppositeLightColor, 120)
 		ADD_STRUCT(float, OppositeLightBrightness, 116)
 		ADD_STRUCT(float, LightTerminatorAngle, 112)
 		ADD_STRUCT(float, StartDistance, 108)

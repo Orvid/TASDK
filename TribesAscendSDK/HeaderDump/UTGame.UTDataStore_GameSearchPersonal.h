@@ -1,7 +1,7 @@
 #pragma once
-#include "Engine.OnlineSubsystem.h"
 #include "UDKBase.UDKDataStore_GameSearchBase.h"
 #include "UTGame.UTDataStore_GameSearchDM.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.OnlineGameSearch.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -44,14 +44,14 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}
-		bool GetPlayerNetId(OnlineSubsystem::UniqueNetId& out_PlayerId, int ControllerId)
+		bool GetPlayerNetId(OnlineSubsystem__UniqueNetId& out_PlayerId, int ControllerId)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(46956);
 			byte params[16] = { NULL };
-			*(OnlineSubsystem::UniqueNetId*)params = out_PlayerId;
+			*(OnlineSubsystem__UniqueNetId*)params = out_PlayerId;
 			*(int*)&params[8] = ControllerId;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_PlayerId = *(OnlineSubsystem::UniqueNetId*)params;
+			out_PlayerId = *(OnlineSubsystem__UniqueNetId*)params;
 			return *(bool*)&params[12];
 		}
 		int FindServerIndexByString(int ControllerId, ScriptString* IdToFind)
@@ -63,41 +63,41 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[16];
 		}
-		int FindServerIndexById(int ControllerId, OnlineSubsystem::UniqueNetId& IdToFind)
+		int FindServerIndexById(int ControllerId, OnlineSubsystem__UniqueNetId& IdToFind)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(46968);
 			byte params[16] = { NULL };
 			*(int*)params = ControllerId;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = IdToFind;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = IdToFind;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			IdToFind = *(OnlineSubsystem::UniqueNetId*)&params[4];
+			IdToFind = *(OnlineSubsystem__UniqueNetId*)&params[4];
 			return *(int*)&params[12];
 		}
-		bool AddServer(int ControllerId, OnlineSubsystem::UniqueNetId IdToAdd)
+		bool AddServer(int ControllerId, OnlineSubsystem__UniqueNetId IdToAdd)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(46972);
 			byte params[16] = { NULL };
 			*(int*)params = ControllerId;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = IdToAdd;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = IdToAdd;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		bool RemoveServer(int ControllerId, OnlineSubsystem::UniqueNetId IdToRemove)
+		bool RemoveServer(int ControllerId, OnlineSubsystem__UniqueNetId IdToRemove)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(46980);
 			byte params[16] = { NULL };
 			*(int*)params = ControllerId;
-			*(OnlineSubsystem::UniqueNetId*)&params[4] = IdToRemove;
+			*(OnlineSubsystem__UniqueNetId*)&params[4] = IdToRemove;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[12];
 		}
-		void GetServerIdList(ScriptArray<OnlineSubsystem::UniqueNetId>& out_ServerList)
+		void GetServerIdList(ScriptArray<OnlineSubsystem__UniqueNetId>& out_ServerList)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(46987);
 			byte params[12] = { NULL };
-			*(ScriptArray<OnlineSubsystem::UniqueNetId>*)params = out_ServerList;
+			*(ScriptArray<OnlineSubsystem__UniqueNetId>*)params = out_ServerList;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_ServerList = *(ScriptArray<OnlineSubsystem::UniqueNetId>*)params;
+			out_ServerList = *(ScriptArray<OnlineSubsystem__UniqueNetId>*)params;
 		}
 		void GetServerStringList(ScriptArray<ScriptString*>& out_ServerList)
 		{

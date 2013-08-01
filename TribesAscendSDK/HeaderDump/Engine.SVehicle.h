@@ -1,15 +1,19 @@
 #pragma once
 #include "Engine.Vehicle.h"
+#include "Engine.SVehicle.VehicleState.h"
+#include "Engine.SoundCue.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Actor.h"
 #include "Engine.Controller.h"
 #include "Engine.RB_ConstraintInstance.h"
-#include "Core.Object.h"
-#include "Engine.SoundCue.h"
 #include "Engine.Pawn.h"
 #include "Engine.RB_StayUprightSetup.h"
 #include "Engine.SkeletalMesh.h"
 #include "Engine.PhysicsAsset.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Core.Object.Rotator.h"
 #include "Engine.PlayerController.h"
+#include "Engine.Actor.CollisionImpactData.h"
 #include "Engine.Teleporter.h"
 #include "Engine.HUD.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -35,23 +39,12 @@ namespace UnrealScript
 	class SVehicle : public Vehicle
 	{
 	public:
-		struct VehicleState
-		{
-		public:
-			ADD_STRUCT(int, ServerView, 72)
-			ADD_BOOL(bServerHandbrake, 68, 0x1)
-			ADD_STRUCT(byte, ServerRise, 67)
-			ADD_STRUCT(byte, ServerSteering, 66)
-			ADD_STRUCT(byte, ServerGas, 65)
-			ADD_STRUCT(byte, ServerBrake, 64)
-			ADD_STRUCT(Actor::RigidBodyState, RBState, 0)
-		};
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, Wheels, 1264)
 		ADD_STRUCT(float, RadialImpulseScaling, 1540)
 		ADD_STRUCT(float, AngErrorAccumulator, 1536)
-		ADD_STRUCT(SVehicle::VehicleState, VState, 1456)
+		ADD_STRUCT(SVehicle__VehicleState, VState, 1456)
 		ADD_STRUCT(int, DriverViewYaw, 1452)
 		ADD_STRUCT(int, DriverViewPitch, 1448)
 		ADD_STRUCT(float, CamDist, 1444)
@@ -193,14 +186,14 @@ void**)params = SkelComp;
 			*(bool*)&params[20] = bClearAnimTree;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void AddVelocity(Vector NewVelocity, Vector HitLocation, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo)
+		void AddVelocity(Vector NewVelocity, Vector HitLocation, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(27543);
 			byte params[56] = { NULL };
 			*(Vector*)params = NewVelocity;
 			*(Vector*)&params[12] = HitLocation;
 			*(ScriptClass**)&params[24] = DamageType;
-			*(Actor::TraceHitInfo*)&params[28] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[28] = HitInfo;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool Died(class Controller* Killer, ScriptClass* DamageType, Vector HitLocation)
@@ -289,7 +282,7 @@ void**)params = SkelComp;
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void* HitComponent, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
-void* OtherComponent, Actor::CollisionImpactData& RigidCollisionData, int ContactIndex)
+void* OtherComponent, Actor__CollisionImpactData& RigidCollisionData, int ContactIndex)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(27577);
 			byte params[48] = { NULL };
@@ -299,10 +292,10 @@ void**)params = HitComponent;
 			*(
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void**)&params[4] = OtherComponent;
-			*(Actor::CollisionImpactData*)&params[8] = RigidCollisionData;
+			*(Actor__CollisionImpactData*)&params[8] = RigidCollisionData;
 			*(int*)&params[44] = ContactIndex;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			RigidCollisionData = *(Actor::CollisionImpactData*)&params[8];
+			RigidCollisionData = *(Actor__CollisionImpactData*)&params[8];
 		}
 		void SuspensionHeavyShift(float Delta)
 		{

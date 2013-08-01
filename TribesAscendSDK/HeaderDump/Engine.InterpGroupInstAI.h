@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.InterpGroupInst.h"
-#include "Engine.Actor.h"
+#include "Engine.Actor.EPhysics.h"
 #include "Engine.InterpGroupAI.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -26,7 +26,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_BOOL(bSavedNoEncroachCheck, 88, 0x1)
-		ADD_STRUCT(Actor::EPhysics, SavedPhysics, 84)
+		ADD_STRUCT(Actor__EPhysics, SavedPhysics, 84)
 		ADD_OBJECT(InterpGroupAI, AIGroup, 80)
 	};
 }

@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.PrimitiveComponent.h"
 #include "Engine.FluidSurfaceActor.h"
+#include "Engine.FluidInfluenceComponent.EInfluenceType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,14 +25,6 @@ namespace UnrealScript
 	class FluidInfluenceComponent : public PrimitiveComponent
 	{
 	public:
-		enum EInfluenceType : byte
-		{
-			Fluid_Flow = 0,
-			Fluid_Raindrops = 1,
-			Fluid_Wave = 2,
-			Fluid_Sphere = 3,
-			Fluid_MAX = 4,
-		};
 		ADD_OBJECT(FluidSurfaceActor, CurrentFluidActor, 580)
 		ADD_STRUCT(float, CurrentTimer, 576)
 		ADD_STRUCT(float, CurrentAngle, 572)
@@ -53,7 +46,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, WaveFrequency, 508)
 		ADD_STRUCT(float, WaveStrength, 504)
 		ADD_STRUCT(float, MaxDistance, 500)
-		ADD_STRUCT(FluidInfluenceComponent::EInfluenceType, InfluenceType, 496)
+		ADD_STRUCT(FluidInfluenceComponent__EInfluenceType, InfluenceType, 496)
 		ADD_OBJECT(FluidSurfaceActor, FluidActor, 492)
 		ADD_BOOL(bIsToggleTriggered, 488, 0x4)
 		ADD_BOOL(RaindropFillEntireFluid, 488, 0x2)

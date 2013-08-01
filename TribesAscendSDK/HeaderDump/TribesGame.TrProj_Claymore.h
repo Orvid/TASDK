@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "TribesGame.TrProj_Mine.h"
-#include "Core.Object.h"
 #include "Engine.Texture2D.h"
 #include "Engine.Pawn.h"
 #define ADD_STRUCT(x, y, offset) \

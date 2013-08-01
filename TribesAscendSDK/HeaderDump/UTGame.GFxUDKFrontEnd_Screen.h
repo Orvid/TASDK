@@ -1,5 +1,6 @@
 #pragma once
 #include "UTGame.GFxUDKFrontEnd_View.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
 #include "GFxUI.GFxClikWidget.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -26,11 +27,11 @@ namespace UnrealScript
 		ADD_OBJECT(GFxObject, TitleMC, 152)
 		ADD_OBJECT(GFxClikWidget, BackBtn, 148)
 		ADD_STRUCT(ScriptString*, ViewTitle, 136)
-		void FocusIn_BackButton(GFxClikWidget::EventData ev)
+		void FocusIn_BackButton(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38130);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UpdateHelpButtonImages()

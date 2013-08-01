@@ -1,6 +1,8 @@
 #pragma once
 #include "TribesGame.GFxTrScene.h"
 #include "TribesGame.TrSummaryHelper.h"
+#include "TribesGame.TrSummaryHelper.MVPAward.h"
+#include "TribesGame.GFxTrScene_MatchSummary.ScoreSlot.h"
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.TrPlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -26,21 +28,11 @@ namespace UnrealScript
 	class GFxTrScene_MatchSummary : public GFxTrScene
 	{
 	public:
-		struct ScoreSlot
-		{
-		public:
-			ADD_STRUCT(ScriptString*, PlayerName, 20)
-			ADD_STRUCT(int, PlayerID, 16)
-			ADD_STRUCT(int, Credits, 12)
-			ADD_STRUCT(int, Assists, 8)
-			ADD_STRUCT(int, Rank, 4)
-			ADD_STRUCT(int, Kills, 0)
-		};
 		ADD_BOOL(bUseSNS, 200, 0x1)
-		ADD_STRUCT(ScriptArray<TrSummaryHelper::MVPAward>, MVPAwards, 1228)
-		ADD_STRUCT(ScriptArray<TrSummaryHelper::MVPAward>, MVPAccolades, 1240)
+		ADD_STRUCT(ScriptArray<TrSummaryHelper__MVPAward>, MVPAwards, 1228)
+		ADD_STRUCT(ScriptArray<TrSummaryHelper__MVPAward>, MVPAccolades, 1240)
 		ADD_OBJECT(TrSummaryHelper, SummaryHelper, 1252)
-		ADD_STRUCT(GFxTrScene_MatchSummary::ScoreSlot, Scoreboard, 204)
+		ADD_STRUCT(GFxTrScene_MatchSummary__ScoreSlot, Scoreboard, 204)
 		ADD_STRUCT(int, Team2Score, 196)
 		ADD_STRUCT(int, Team1Score, 192)
 		ADD_STRUCT(int, MatchDate, 188)

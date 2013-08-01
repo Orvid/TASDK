@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.EOnlineAccountCreateStatus.h"
 namespace UnrealScript
 {
 	class OnlineAccountInterface : public Interface
@@ -17,11 +17,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[48];
 		}
-		void OnCreateOnlineAccountCompleted(OnlineSubsystem::EOnlineAccountCreateStatus ErrorStatus)
+		void OnCreateOnlineAccountCompleted(OnlineSubsystem__EOnlineAccountCreateStatus ErrorStatus)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21364);
 			byte params[1] = { NULL };
-			*(OnlineSubsystem::EOnlineAccountCreateStatus*)params = ErrorStatus;
+			*(OnlineSubsystem__EOnlineAccountCreateStatus*)params = ErrorStatus;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void AddCreateOnlineAccountCompletedDelegate(

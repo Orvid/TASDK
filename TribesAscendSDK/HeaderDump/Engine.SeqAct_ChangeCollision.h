@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.SequenceAction.h"
-#include "Engine.Actor.h"
+#include "Engine.Actor.ECollisionType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,7 +23,7 @@ namespace UnrealScript
 		ADD_BOOL(bCollideActors, 232, 0x1)
 		ADD_BOOL(bBlockActors, 232, 0x2)
 		ADD_BOOL(bIgnoreEncroachers, 232, 0x4)
-		ADD_STRUCT(Actor::ECollisionType, CollisionType, 236)
+		ADD_STRUCT(Actor__ECollisionType, CollisionType, 236)
 		int GetObjClassVersion()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4398);

@@ -1,7 +1,7 @@
 #pragma once
+#include "Engine.EngineTypes.MaterialReferenceList.h"
 #include "Engine.InterpTrackFloatBase.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.EngineTypes.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,7 +25,7 @@ namespace UnrealScript
 	class InterpTrackFloatMaterialParam : public InterpTrackFloatBase
 	{
 	public:
-		ADD_STRUCT(ScriptArray<EngineTypes::MaterialReferenceList>, Materials, 148)
+		ADD_STRUCT(ScriptArray<EngineTypes__MaterialReferenceList>, Materials, 148)
 		ADD_BOOL(bNeedsMaterialRefsUpdate, 172, 0x1)
 		ADD_STRUCT(ScriptName, ParamName, 164)
 		ADD_OBJECT(MaterialInterface, Material, 160)

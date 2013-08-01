@@ -4,6 +4,7 @@
 #include "Core.Object.h"
 #include "Engine.PhysicsAsset.h"
 #include "Engine.RB_BodyInstance.h"
+#include "Core.Object.Map_Mirror.h"
 #include "Engine.SkeletalMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -37,7 +38,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, LinearForceLimitScale, 160)
 		ADD_STRUCT(float, LinearDampingScale, 156)
 		ADD_STRUCT(float, LinearSpringScale, 152)
-		ADD_STRUCT(Object::Map_Mirror, CollisionDisableTable, 92)
+		ADD_STRUCT(Object__Map_Mirror, CollisionDisableTable, 92)
 		ADD_STRUCT(int, RootBodyIndex, 64)
 		ADD_OBJECT(Actor, Owner, 60)
 		void SetLinearDriveScale(float InLinearSpringScale, float InLinearDampingScale, float InLinearForceLimitScale)

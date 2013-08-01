@@ -2,7 +2,7 @@
 #include "TribesGame.TrStation.h"
 #include "Engine.Texture2D.h"
 #include "TribesGame.TrPawn.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,8 +28,8 @@ namespace UnrealScript
 	public:
 		ADD_OBJECT(TrPawn, m_PawnToRefresh, 1420)
 		ADD_BOOL(m_bForceHealthRegen, 1416, 0x1)
-		ADD_STRUCT(Object::Color, m_PowerOffColor, 1412)
-		ADD_STRUCT(Object::Color, m_PowerOnColor, 1408)
+		ADD_STRUCT(Object__Color, m_PowerOffColor, 1412)
+		ADD_STRUCT(Object__Color, m_PowerOnColor, 1408)
 		ADD_STRUCT(float, m_fStationReleaseTime, 1400)
 		ADD_STRUCT(float, m_fStationAnimTime, 1396)
 		void PawnEnteredStation(class TrPawn* P)

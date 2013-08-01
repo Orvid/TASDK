@@ -1,7 +1,9 @@
 #pragma once
 #include "Engine.GameEngine.h"
 #include "Core.Object.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Map_Mirror.h"
+#include "Engine.OnlineSubsystem.OnlineContent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,28 +17,28 @@ namespace UnrealScript
 	class DownloadableContentManager : public Object
 	{
 	public:
-		ADD_STRUCT(ScriptArray<Object::Pointer>, DLCConfigCacheChanges, 60)
+		ADD_STRUCT(ScriptArray<Object__Pointer>, DLCConfigCacheChanges, 60)
 		ADD_STRUCT(ScriptArray<ScriptString*>, InstalledDLC, 72)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, ClassesToReload, 144)
 		ADD_STRUCT(ScriptArray<class Object*>, ObjectsToReload, 156)
 		ADD_OBJECT(GameEngine, GameEngine, 168)
-		ADD_STRUCT(Object::Map_Mirror, TextureCachePathMap, 84)
-		bool InstallDLC(OnlineSubsystem::OnlineContent& DLCBundle)
+		ADD_STRUCT(Object__Map_Mirror, TextureCachePathMap, 84)
+		bool InstallDLC(OnlineSubsystem__OnlineContent& DLCBundle)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14711);
 			byte params[72] = { NULL };
-			*(OnlineSubsystem::OnlineContent*)params = DLCBundle;
+			*(OnlineSubsystem__OnlineContent*)params = DLCBundle;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			DLCBundle = *(OnlineSubsystem::OnlineContent*)params;
+			DLCBundle = *(OnlineSubsystem__OnlineContent*)params;
 			return *(bool*)&params[68];
 		}
-		void InstallDLCs(ScriptArray<OnlineSubsystem::OnlineContent>& DLCBundles)
+		void InstallDLCs(ScriptArray<OnlineSubsystem__OnlineContent>& DLCBundles)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14714);
 			byte params[12] = { NULL };
-			*(ScriptArray<OnlineSubsystem::OnlineContent>*)params = DLCBundles;
+			*(ScriptArray<OnlineSubsystem__OnlineContent>*)params = DLCBundles;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			DLCBundles = *(ScriptArray<OnlineSubsystem::OnlineContent>*)params;
+			DLCBundles = *(ScriptArray<OnlineSubsystem__OnlineContent>*)params;
 		}
 		void ClearDLC()
 		{
@@ -72,21 +74,21 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14726);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void InstallPackages(OnlineSubsystem::OnlineContent& DLCBundle)
+		void InstallPackages(OnlineSubsystem__OnlineContent& DLCBundle)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14727);
 			byte params[68] = { NULL };
-			*(OnlineSubsystem::OnlineContent*)params = DLCBundle;
+			*(OnlineSubsystem__OnlineContent*)params = DLCBundle;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			DLCBundle = *(OnlineSubsystem::OnlineContent*)params;
+			DLCBundle = *(OnlineSubsystem__OnlineContent*)params;
 		}
-		void InstallNonPackageFiles(OnlineSubsystem::OnlineContent& DLCBundle)
+		void InstallNonPackageFiles(OnlineSubsystem__OnlineContent& DLCBundle)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14729);
 			byte params[68] = { NULL };
-			*(OnlineSubsystem::OnlineContent*)params = DLCBundle;
+			*(OnlineSubsystem__OnlineContent*)params = DLCBundle;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			DLCBundle = *(OnlineSubsystem::OnlineContent*)params;
+			DLCBundle = *(OnlineSubsystem__OnlineContent*)params;
 		}
 		void Init()
 		{

@@ -1,5 +1,6 @@
 #pragma once
 #include "TribesGame.TrEffect_Managed.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -28,12 +29,12 @@ namespace UnrealScript
 		ADD_BOOL(m_bRequiresLOS, 96, 0x1)
 		ADD_STRUCT(float, m_fScannerRange, 92)
 		ADD_STRUCT(float, m_fScannerFOV, 88)
-		void Apply(class Actor* Target, Actor::ImpactInfo Impact)
+		void Apply(class Actor* Target, Actor__ImpactInfo Impact)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(87197);
 			byte params[84] = { NULL };
 			*(class Actor**)params = Target;
-			*(Actor::ImpactInfo*)&params[4] = Impact;
+			*(Actor__ImpactInfo*)&params[4] = Impact;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void Remove(class Actor* Target)

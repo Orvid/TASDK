@@ -1,7 +1,9 @@
 #pragma once
 #include "UTGame.GFxUDKFrontEnd_Screen.h"
 #include "GFxUI.GFxClikWidget.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
+#include "UTGame.GFxUDKFrontEnd_MainMenu.Option.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,15 +17,8 @@ namespace UnrealScript
 	class GFxUDKFrontEnd_MainMenu : public GFxUDKFrontEnd_Screen
 	{
 	public:
-		struct Option
-		{
-		public:
-			ADD_STRUCT(ScriptString*, OptionDesc, 24)
-			ADD_STRUCT(ScriptString*, OptionLabel, 12)
-			ADD_STRUCT(ScriptString*, OptionName, 0)
-		};
 		ADD_OBJECT(GFxClikWidget, ListMC, 232)
-		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_MainMenu::Option>, ListOptions, 220)
+		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_MainMenu__Option>, ListOptions, 220)
 		ADD_STRUCT(byte, LastSelectedIndex, 248)
 		ADD_OBJECT(GFxObject, UserNameTxt, 244)
 		ADD_OBJECT(GFxObject, UserLabelTxt, 240)
@@ -62,32 +57,32 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38602);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ExitDialog_SelectOK(GFxClikWidget::EventData ev)
+		void ExitDialog_SelectOK(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38604);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void ExitDialog_SelectBack(GFxClikWidget::EventData ev)
+		void ExitDialog_SelectBack(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38606);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnListItemPress(GFxClikWidget::EventData ev)
+		void OnListItemPress(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38608);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnListChange(GFxClikWidget::EventData ev)
+		void OnListChange(GFxClikWidget__EventData ev)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(38612);
 			byte params[36] = { NULL };
-			*(GFxClikWidget::EventData*)params = ev;
+			*(GFxClikWidget__EventData*)params = ev;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void UpdateDescription()

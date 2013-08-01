@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.EAxis.h"
 #include "UDKBase.UDKSkelControl_Damage.h"
-#include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,7 +13,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, SpringStiffness, 392)
 		ADD_STRUCT(float, CurrentAngle, 388)
 		ADD_STRUCT(float, AVModifier, 384)
-		ADD_STRUCT(Object::EAxis, PivotAxis, 380)
+		ADD_STRUCT(Object__EAxis, PivotAxis, 380)
 		ADD_STRUCT(float, MaxAngle, 376)
 	};
 }

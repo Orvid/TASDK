@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.DistributionFloat.h"
-#include "Core.Object.h"
+#include "Core.Object.InterpCurveFloat.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,7 +10,7 @@ namespace UnrealScript
 	class DistributionFloatConstantCurve : public DistributionFloat
 	{
 	public:
-		ADD_STRUCT(Object::InterpCurveFloat, ConstantCurve, 80)
+		ADD_STRUCT(Object__InterpCurveFloat, ConstantCurve, 80)
 	};
 }
 #undef ADD_STRUCT

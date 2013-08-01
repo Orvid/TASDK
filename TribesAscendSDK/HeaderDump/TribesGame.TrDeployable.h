@@ -1,11 +1,11 @@
 #pragma once
 #include "TribesGame.TrGameObjective.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "Engine.Controller.h"
-#include "Engine.PlayerReplicationInfo.h"
 #include "TribesGame.TrPowerGenerator.h"
 #include "Engine.AnimNodeScalePlayRate.h"
+#include "Core.Object.Vector.h"
+#include "Engine.PlayerReplicationInfo.h"
 #include "Engine.PlayerController.h"
 #include "Engine.SoundCue.h"
 #include "Engine.Weapon.h"
@@ -14,9 +14,11 @@
 #include "TribesGame.TrTurretPawn.h"
 #include "TribesGame.TrDeployableCollisionProxy.h"
 #include "TribesGame.TrPawn.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "TribesGame.TrVehicle.h"
 #include "TribesGame.TrPlayerController.h"
 #include "Engine.Projectile.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -155,7 +157,7 @@ void**)params = SkelComp;
 			*(float*)&params[40] = DamageFalloffExponent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor::TraceHitInfo HitInfo, class Actor* DamageCauser)
+		void TakeDamage(int DamageAmount, class Controller* EventInstigator, Vector HitLocation, Vector Momentum, ScriptClass* DamageType, Actor__TraceHitInfo HitInfo, class Actor* DamageCauser)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(71793);
 			byte params[68] = { NULL };
@@ -164,7 +166,7 @@ void**)params = SkelComp;
 			*(Vector*)&params[8] = HitLocation;
 			*(Vector*)&params[20] = Momentum;
 			*(ScriptClass**)&params[32] = DamageType;
-			*(Actor::TraceHitInfo*)&params[36] = HitInfo;
+			*(Actor__TraceHitInfo*)&params[36] = HitInfo;
 			*(class Actor**)&params[64] = DamageCauser;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

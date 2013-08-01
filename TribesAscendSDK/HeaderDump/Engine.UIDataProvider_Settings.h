@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.UIDataProvider.h"
+#include "Engine.UIDataProvider_Settings.SettingsArrayProvider.h"
 #include "Engine.UIDynamicDataProvider.h"
 #include "Engine.Settings.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -25,14 +26,7 @@ namespace UnrealScript
 	class UIDataProvider_Settings : public UIDynamicDataProvider
 	{
 	public:
-		struct SettingsArrayProvider
-		{
-		public:
-			ADD_OBJECT(UIDataProvider_SettingsArray, Provider, 12)
-			ADD_STRUCT(ScriptName, SettingsName, 4)
-			ADD_STRUCT(int, SettingsId, 0)
-		};
-		ADD_STRUCT(ScriptArray<UIDataProvider_Settings::SettingsArrayProvider>, SettingsArrayProviders, 128)
+		ADD_STRUCT(ScriptArray<UIDataProvider_Settings__SettingsArrayProvider>, SettingsArrayProviders, 128)
 		ADD_BOOL(bIsAListRow, 140, 0x1)
 		ADD_OBJECT(Settings, Settings, 124)
 		void ArrayProviderPropertyChanged(class UIDataProvider* SourceProvider, ScriptName PropTag)

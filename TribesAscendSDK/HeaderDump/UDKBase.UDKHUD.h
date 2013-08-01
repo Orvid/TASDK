@@ -1,7 +1,7 @@
 #pragma once
 #include "GameFramework.MobileHUD.h"
 #include "Engine.Font.h"
-#include "Engine.Canvas.h"
+#include "Engine.Canvas.FontRenderInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,7 +17,7 @@ namespace UnrealScript
 	public:
 		ADD_OBJECT(Font, BindTextFont, 1424)
 		ADD_OBJECT(Font, ConsoleIconFont, 1420)
-		ADD_STRUCT(Canvas::FontRenderInfo, TextRenderInfo, 1380)
+		ADD_STRUCT(Canvas__FontRenderInfo, TextRenderInfo, 1380)
 		ADD_STRUCT(float, PulseMultiplier, 1376)
 		ADD_STRUCT(float, PulseSplit, 1372)
 		ADD_STRUCT(float, PulseDuration, 1368)

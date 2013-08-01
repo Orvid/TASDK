@@ -1,7 +1,7 @@
 #pragma once
-#include "Core.Object.h"
-#include "Engine.AnimSequence.h"
 #include "Engine.AnimationCompressionAlgorithm_RemoveLinearKeys.h"
+#include "Engine.AnimSequence.AnimationCompressionFormat.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,9 +21,9 @@ namespace UnrealScript
 	class AnimationCompressionAlgorithm_PerTrackCompression : public AnimationCompressionAlgorithm_RemoveLinearKeys
 	{
 	public:
-		ADD_STRUCT(ScriptArray<AnimSequence::AnimationCompressionFormat>, AllowedRotationFormats, 120)
-		ADD_STRUCT(ScriptArray<AnimSequence::AnimationCompressionFormat>, AllowedTranslationFormats, 132)
-		ADD_STRUCT(Object::Pointer, PerReductionCachedData, 184)
+		ADD_STRUCT(ScriptArray<AnimSequence__AnimationCompressionFormat>, AllowedRotationFormats, 120)
+		ADD_STRUCT(ScriptArray<AnimSequence__AnimationCompressionFormat>, AllowedTranslationFormats, 132)
+		ADD_STRUCT(Object__Pointer, PerReductionCachedData, 184)
 		ADD_STRUCT(float, PerturbationProbeSize, 180)
 		ADD_STRUCT(float, MaxErrorPerTrackRatio, 176)
 		ADD_STRUCT(float, TranslationErrorSourceRatio, 172)

@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.SeqCond_SwitchBase.h"
+#include "Engine.SeqCond_SwitchClass.SwitchClassInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -9,13 +10,7 @@ namespace UnrealScript
 	class SeqCond_SwitchClass : public SeqCond_SwitchBase
 	{
 	public:
-		struct SwitchClassInfo
-		{
-		public:
-			ADD_STRUCT(byte, bFallThru, 8)
-			ADD_STRUCT(ScriptName, ClassName, 0)
-		};
-		ADD_STRUCT(ScriptArray<SeqCond_SwitchClass::SwitchClassInfo>, ClassArray, 208)
+		ADD_STRUCT(ScriptArray<SeqCond_SwitchClass__SwitchClassInfo>, ClassArray, 208)
 		void VerifyDefaultCaseValue()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(26052);

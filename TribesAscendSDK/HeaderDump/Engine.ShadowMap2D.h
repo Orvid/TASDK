@@ -1,6 +1,8 @@
 #pragma once
 #include "Core.Object.h"
 #include "Engine.ShadowMapTexture2D.h"
+#include "Core.Object.Guid.h"
+#include "Core.Object.Vector2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,9 +28,9 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(int, InstanceIndex, 104)
 		ADD_BOOL(bIsShadowFactorTexture, 96, 0x1)
-		ADD_STRUCT(Object::Guid, LightGuid, 80)
-		ADD_STRUCT(Object::Vector2D, CoordinateBias, 72)
-		ADD_STRUCT(Object::Vector2D, CoordinateScale, 64)
+		ADD_STRUCT(Object__Guid, LightGuid, 80)
+		ADD_STRUCT(Object__Vector2D, CoordinateBias, 72)
+		ADD_STRUCT(Object__Vector2D, CoordinateScale, 64)
 		ADD_OBJECT(ShadowMapTexture2D, Texture, 60)
 	};
 }

@@ -1,6 +1,7 @@
 #pragma once
+#include "Engine.SkelControlBase.EBoneControlSpace.h"
 #include "Engine.SkelControlBase.h"
-#include "Core.Object.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,7 +22,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptName, RotationSpaceBoneName, 220)
-		ADD_STRUCT(SkelControlBase::EBoneControlSpace, LockRotationSpace, 216)
+		ADD_STRUCT(SkelControlBase__EBoneControlSpace, LockRotationSpace, 216)
 		ADD_STRUCT(Rotator, MaxDelta, 204)
 		ADD_STRUCT(Rotator, LockRotation, 192)
 		ADD_BOOL(bLockRoll, 188, 0x4)

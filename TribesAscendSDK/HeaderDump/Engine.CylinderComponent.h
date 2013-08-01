@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.PrimitiveComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,7 +23,7 @@ namespace UnrealScript
 		ADD_BOOL(bAlwaysRenderIfSelected, 500, 0x4)
 		ADD_BOOL(bDrawNonColliding, 500, 0x2)
 		ADD_BOOL(bDrawBoundingBox, 500, 0x1)
-		ADD_STRUCT(Object::Color, CylinderColor, 496)
+		ADD_STRUCT(Object__Color, CylinderColor, 496)
 		ADD_STRUCT(float, CollisionRadius, 492)
 		ADD_STRUCT(float, CollisionHeight, 488)
 		void SetCylinderSize(float NewRadius, float NewHeight)

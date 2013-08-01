@@ -1,7 +1,7 @@
 #pragma once
 #include "TribesGame.TrSpottedTarget.h"
 #include "Engine.Texture2D.h"
-#include "Core.Object.h"
+#include "Core.Object.LinearColor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -27,12 +27,12 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class Texture2D**)params;
 		}
-		Object::LinearColor GetMarkerColor()
+		Object__LinearColor GetMarkerColor()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(112584);
 			byte params[16] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::LinearColor*)params;
+			return *(Object__LinearColor*)params;
 		}
 		bool ShouldRenderMarker()
 		{

@@ -1,7 +1,9 @@
 #pragma once
-#include "Core.Object.h"
 #include "GameFramework.MobileMenuObject.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.Texture2D.h"
+#include "GameFramework.MobileMenuImage.MenuImageDrawStyle.h"
+#include "GameFramework.MobileMenuObject.UVCoords.h"
 #include "Engine.Canvas.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -16,16 +18,9 @@ namespace UnrealScript
 	class MobileMenuImage : public MobileMenuObject
 	{
 	public:
-		enum MenuImageDrawStyle : byte
-		{
-			IDS_Normal = 0,
-			IDS_Stretched = 1,
-			IDS_Tile = 2,
-			IDS_MAX = 3,
-		};
-		ADD_STRUCT(Object::LinearColor, ImageColor, 160)
-		ADD_STRUCT(MobileMenuObject::UVCoords, ImageUVs, 140)
-		ADD_STRUCT(MobileMenuImage::MenuImageDrawStyle, ImageDrawStyle, 136)
+		ADD_STRUCT(Object__LinearColor, ImageColor, 160)
+		ADD_STRUCT(MobileMenuObject__UVCoords, ImageUVs, 140)
+		ADD_STRUCT(MobileMenuImage__MenuImageDrawStyle, ImageDrawStyle, 136)
 		ADD_OBJECT(Texture2D, Image, 132)
 		void RenderObject(class Canvas* Canvas)
 		{

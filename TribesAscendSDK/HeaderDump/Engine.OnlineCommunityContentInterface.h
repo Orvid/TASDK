@@ -1,6 +1,8 @@
 #pragma once
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.CommunityContentFile.h"
+#include "Engine.OnlineSubsystem.OnlineFriend.h"
+#include "Engine.OnlineSubsystem.CommunityContentMetadata.h"
 namespace UnrealScript
 {
 	class OnlineCommunityContentInterface : public Interface
@@ -35,30 +37,30 @@ namespace UnrealScript
 			*(bool*)params = bWasSuccessful;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnGetContentPayloadComplete(bool bWasSuccessful, OnlineSubsystem::CommunityContentFile FileDownloaded, ScriptArray<byte>& Payload)
+		void OnGetContentPayloadComplete(bool bWasSuccessful, OnlineSubsystem__CommunityContentFile FileDownloaded, ScriptArray<byte>& Payload)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21420);
 			byte params[68] = { NULL };
 			*(bool*)params = bWasSuccessful;
-			*(OnlineSubsystem::CommunityContentFile*)&params[4] = FileDownloaded;
+			*(OnlineSubsystem__CommunityContentFile*)&params[4] = FileDownloaded;
 			*(ScriptArray<byte>*)&params[56] = Payload;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			Payload = *(ScriptArray<byte>*)&params[56];
 		}
-		void OnDownloadContentComplete(bool bWasSuccessful, OnlineSubsystem::CommunityContentFile FileDownloaded)
+		void OnDownloadContentComplete(bool bWasSuccessful, OnlineSubsystem__CommunityContentFile FileDownloaded)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21422);
 			byte params[56] = { NULL };
 			*(bool*)params = bWasSuccessful;
-			*(OnlineSubsystem::CommunityContentFile*)&params[4] = FileDownloaded;
+			*(OnlineSubsystem__CommunityContentFile*)&params[4] = FileDownloaded;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void OnUploadContentComplete(bool bWasSuccessful, OnlineSubsystem::CommunityContentFile UploadedFile)
+		void OnUploadContentComplete(bool bWasSuccessful, OnlineSubsystem__CommunityContentFile UploadedFile)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21424);
 			byte params[56] = { NULL };
 			*(bool*)params = bWasSuccessful;
-			*(OnlineSubsystem::CommunityContentFile*)&params[4] = UploadedFile;
+			*(OnlineSubsystem__CommunityContentFile*)&params[4] = UploadedFile;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void OnReadFriendsContentListComplete(bool bWasSuccessful)
@@ -90,26 +92,26 @@ void* ReadContentListCompleteDelegate)
 void**)params = ReadContentListCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool GetContentList(byte PlayerNum, ScriptArray<OnlineSubsystem::CommunityContentFile>& ContentFiles)
+		bool GetContentList(byte PlayerNum, ScriptArray<OnlineSubsystem__CommunityContentFile>& ContentFiles)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21432);
 			byte params[17] = { NULL };
 			*params = PlayerNum;
-			*(ScriptArray<OnlineSubsystem::CommunityContentFile>*)&params[4] = ContentFiles;
+			*(ScriptArray<OnlineSubsystem__CommunityContentFile>*)&params[4] = ContentFiles;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			ContentFiles = *(ScriptArray<OnlineSubsystem::CommunityContentFile>*)&params[4];
+			ContentFiles = *(ScriptArray<OnlineSubsystem__CommunityContentFile>*)&params[4];
 			return *(bool*)&params[16];
 		}
-		bool ReadFriendsContentList(byte PlayerNum, ScriptArray<OnlineSubsystem::OnlineFriend>& Friends, int StartAt, int NumToRead)
+		bool ReadFriendsContentList(byte PlayerNum, ScriptArray<OnlineSubsystem__OnlineFriend>& Friends, int StartAt, int NumToRead)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21437);
 			byte params[25] = { NULL };
 			*params = PlayerNum;
-			*(ScriptArray<OnlineSubsystem::OnlineFriend>*)&params[4] = Friends;
+			*(ScriptArray<OnlineSubsystem__OnlineFriend>*)&params[4] = Friends;
 			*(int*)&params[16] = StartAt;
 			*(int*)&params[20] = NumToRead;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Friends = *(ScriptArray<OnlineSubsystem::OnlineFriend>*)&params[4];
+			Friends = *(ScriptArray<OnlineSubsystem__OnlineFriend>*)&params[4];
 			return *(bool*)&params[24];
 		}
 		void AddReadFriendsContentListCompleteDelegate(
@@ -134,28 +136,28 @@ void* ReadFriendsContentListCompleteDelegate)
 void**)params = ReadFriendsContentListCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool GetFriendsContentList(byte PlayerNum, OnlineSubsystem::OnlineFriend& Friend, ScriptArray<OnlineSubsystem::CommunityContentFile>& ContentFiles)
+		bool GetFriendsContentList(byte PlayerNum, OnlineSubsystem__OnlineFriend& Friend, ScriptArray<OnlineSubsystem__CommunityContentFile>& ContentFiles)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21449);
 			byte params[65] = { NULL };
 			*params = PlayerNum;
-			*(OnlineSubsystem::OnlineFriend*)&params[4] = Friend;
-			*(ScriptArray<OnlineSubsystem::CommunityContentFile>*)&params[52] = ContentFiles;
+			*(OnlineSubsystem__OnlineFriend*)&params[4] = Friend;
+			*(ScriptArray<OnlineSubsystem__CommunityContentFile>*)&params[52] = ContentFiles;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Friend = *(OnlineSubsystem::OnlineFriend*)&params[4];
-			ContentFiles = *(ScriptArray<OnlineSubsystem::CommunityContentFile>*)&params[52];
+			Friend = *(OnlineSubsystem__OnlineFriend*)&params[4];
+			ContentFiles = *(ScriptArray<OnlineSubsystem__CommunityContentFile>*)&params[52];
 			return *(bool*)&params[64];
 		}
-		bool UploadContent(byte PlayerNum, ScriptArray<byte>& Payload, OnlineSubsystem::CommunityContentMetadata& MetaData)
+		bool UploadContent(byte PlayerNum, ScriptArray<byte>& Payload, OnlineSubsystem__CommunityContentMetadata& MetaData)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21455);
 			byte params[33] = { NULL };
 			*params = PlayerNum;
 			*(ScriptArray<byte>*)&params[4] = Payload;
-			*(OnlineSubsystem::CommunityContentMetadata*)&params[16] = MetaData;
+			*(OnlineSubsystem__CommunityContentMetadata*)&params[16] = MetaData;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			Payload = *(ScriptArray<byte>*)&params[4];
-			MetaData = *(OnlineSubsystem::CommunityContentMetadata*)&params[16];
+			MetaData = *(OnlineSubsystem__CommunityContentMetadata*)&params[16];
 			return *(bool*)&params[32];
 		}
 		void AddUploadContentCompleteDelegate(
@@ -180,14 +182,14 @@ void* UploadContentCompleteDelegate)
 void**)params = UploadContentCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool DownloadContent(byte PlayerNum, OnlineSubsystem::CommunityContentFile& FileToDownload)
+		bool DownloadContent(byte PlayerNum, OnlineSubsystem__CommunityContentFile& FileToDownload)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21467);
 			byte params[57] = { NULL };
 			*params = PlayerNum;
-			*(OnlineSubsystem::CommunityContentFile*)&params[4] = FileToDownload;
+			*(OnlineSubsystem__CommunityContentFile*)&params[4] = FileToDownload;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			FileToDownload = *(OnlineSubsystem::CommunityContentFile*)&params[4];
+			FileToDownload = *(OnlineSubsystem__CommunityContentFile*)&params[4];
 			return *(bool*)&params[56];
 		}
 		void AddDownloadContentCompleteDelegate(
@@ -212,14 +214,14 @@ void* DownloadContentCompleteDelegate)
 void**)params = DownloadContentCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		bool GetContentPayload(byte PlayerNum, OnlineSubsystem::CommunityContentFile& FileDownloaded)
+		bool GetContentPayload(byte PlayerNum, OnlineSubsystem__CommunityContentFile& FileDownloaded)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21477);
 			byte params[57] = { NULL };
 			*params = PlayerNum;
-			*(OnlineSubsystem::CommunityContentFile*)&params[4] = FileDownloaded;
+			*(OnlineSubsystem__CommunityContentFile*)&params[4] = FileDownloaded;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			FileDownloaded = *(OnlineSubsystem::CommunityContentFile*)&params[4];
+			FileDownloaded = *(OnlineSubsystem__CommunityContentFile*)&params[4];
 			return *(bool*)&params[56];
 		}
 		void AddGetContentPayloadCompleteDelegate(
@@ -244,15 +246,15 @@ void* GetContentPayloadCompleteDelegate)
 void**)params = GetContentPayloadCompleteDelegate;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void RateContent(byte PlayerNum, OnlineSubsystem::CommunityContentFile& FileToRate, int NewRating)
+		void RateContent(byte PlayerNum, OnlineSubsystem__CommunityContentFile& FileToRate, int NewRating)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21489);
 			byte params[57] = { NULL };
 			*params = PlayerNum;
-			*(OnlineSubsystem::CommunityContentFile*)&params[4] = FileToRate;
+			*(OnlineSubsystem__CommunityContentFile*)&params[4] = FileToRate;
 			*(int*)&params[56] = NewRating;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			FileToRate = *(OnlineSubsystem::CommunityContentFile*)&params[4];
+			FileToRate = *(OnlineSubsystem__CommunityContentFile*)&params[4];
 		}
 	};
 }

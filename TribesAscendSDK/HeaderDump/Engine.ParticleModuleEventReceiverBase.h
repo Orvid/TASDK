@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleEventBase.h"
-#include "Engine.ParticleSystemComponent.h"
+#include "Engine.ParticleSystemComponent.EParticleEventType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,7 +11,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(ScriptName, EventName, 76)
-		ADD_STRUCT(ParticleSystemComponent::EParticleEventType, EventGeneratorType, 72)
+		ADD_STRUCT(ParticleSystemComponent__EParticleEventType, EventGeneratorType, 72)
 	};
 }
 #undef ADD_STRUCT

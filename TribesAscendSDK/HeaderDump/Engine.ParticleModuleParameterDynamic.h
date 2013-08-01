@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.ParticleModuleParameterBase.h"
+#include "Engine.ParticleModuleParameterDynamic.EmitterDynamicParameter.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,26 +20,7 @@ namespace UnrealScript
 	class ParticleModuleParameterDynamic : public ParticleModuleParameterBase
 	{
 	public:
-		enum EEmitterDynamicParameterValue : byte
-		{
-			EDPV_UserSet = 0,
-			EDPV_VelocityX = 1,
-			EDPV_VelocityY = 2,
-			EDPV_VelocityZ = 3,
-			EDPV_VelocityMag = 4,
-			EDPV_MAX = 5,
-		};
-		struct EmitterDynamicParameter
-		{
-		public:
-			ADD_STRUCT(DistributionFloat::RawDistributionFloat, ParamValue, 20)
-			ADD_BOOL(bScaleVelocityByParamValue, 16, 0x1)
-			ADD_STRUCT(ParticleModuleParameterDynamic::EEmitterDynamicParameterValue, ValueMethod, 12)
-			ADD_BOOL(bSpawnTimeOnly, 8, 0x2)
-			ADD_BOOL(bUseEmitterTime, 8, 0x1)
-			ADD_STRUCT(ScriptName, ParamName, 0)
-		};
-		ADD_STRUCT(ScriptArray<ParticleModuleParameterDynamic::EmitterDynamicParameter>, DynamicParams, 72)
+		ADD_STRUCT(ScriptArray<ParticleModuleParameterDynamic__EmitterDynamicParameter>, DynamicParams, 72)
 	};
 }
 #undef ADD_BOOL

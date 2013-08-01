@@ -1,8 +1,17 @@
 #pragma once
 #include "Core.Object.h"
-#include "Engine.ParticleEmitter.h"
+#include "Engine.ParticleSystem.EParticleSystemUpdateMode.h"
+#include "Engine.ParticleSystem.ParticleSystemLODMethod.h"
 #include "Engine.InterpCurveEdSetup.h"
+#include "Core.Object.Rotator.h"
+#include "Engine.ParticleSystem.EParticleSystemOcclusionBoundsMethod.h"
+#include "Engine.ParticleSystem.ParticleSystemLOD.h"
+#include "Engine.ParticleEmitter.h"
+#include "Core.Object.Box.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Color.h"
 #include "Engine.Texture2D.h"
+#include "Engine.ParticleSystem.LODSoloTrack.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,39 +35,9 @@ namespace UnrealScript
 	class ParticleSystem : public Object
 	{
 	public:
-		enum ParticleSystemLODMethod : byte
-		{
-			PARTICLESYSTEMLODMETHOD_Automatic = 0,
-			PARTICLESYSTEMLODMETHOD_DirectSet = 1,
-			PARTICLESYSTEMLODMETHOD_ActivateAutomatic = 2,
-			PARTICLESYSTEMLODMETHOD_MAX = 3,
-		};
-		enum EParticleSystemOcclusionBoundsMethod : byte
-		{
-			EPSOBM_None = 0,
-			EPSOBM_ParticleBounds = 1,
-			EPSOBM_CustomBounds = 2,
-			EPSOBM_MAX = 3,
-		};
-		enum EParticleSystemUpdateMode : byte
-		{
-			EPSUM_RealTime = 0,
-			EPSUM_FixedTime = 1,
-			EPSUM_MAX = 2,
-		};
-		struct ParticleSystemLOD
-		{
-		public:
-			ADD_BOOL(bLit, 0, 0x1)
-		};
-		struct LODSoloTrack
-		{
-		public:
-			ADD_STRUCT(ScriptArray<byte>, SoloEnableSetting, 0)
-		};
-		ADD_STRUCT(ParticleSystem::EParticleSystemUpdateMode, SystemUpdateMode, 60)
-		ADD_STRUCT(ParticleSystem::ParticleSystemLODMethod, LODMethod, 61)
-		ADD_STRUCT(ParticleSystem::EParticleSystemOcclusionBoundsMethod, OcclusionBoundsMethod, 62)
+		ADD_STRUCT(ParticleSystem__EParticleSystemUpdateMode, SystemUpdateMode, 60)
+		ADD_STRUCT(ParticleSystem__ParticleSystemLODMethod, LODMethod, 61)
+		ADD_STRUCT(ParticleSystem__EParticleSystemOcclusionBoundsMethod, OcclusionBoundsMethod, 62)
 		ADD_STRUCT(float, UpdateTime_FPS, 64)
 		ADD_STRUCT(float, UpdateTime_Delta, 68)
 		ADD_STRUCT(float, WarmupTime, 72)
@@ -81,28 +60,28 @@ namespace UnrealScript
 		ADD_STRUCT(float, LODDistanceCheckTime, 120)
 		ADD_STRUCT(ScriptArray<float>, LODDistances, 124)
 		ADD_STRUCT(int, EditorLODSetting, 136)
-		ADD_STRUCT(ScriptArray<ParticleSystem::ParticleSystemLOD>, LODSettings, 140)
-		ADD_STRUCT(Object::Box, FixedRelativeBoundingBox, 152)
+		ADD_STRUCT(ScriptArray<ParticleSystem__ParticleSystemLOD>, LODSettings, 140)
+		ADD_STRUCT(Object__Box, FixedRelativeBoundingBox, 152)
 		ADD_STRUCT(float, SecondsBeforeInactive, 180)
 		ADD_STRUCT(ScriptString*, FloorMesh, 184)
 		ADD_STRUCT(Vector, FloorPosition, 196)
 		ADD_STRUCT(Rotator, FloorRotation, 208)
 		ADD_STRUCT(float, FloorScale, 220)
 		ADD_STRUCT(Vector, FloorScale3D, 224)
-		ADD_STRUCT(Object::Color, BackgroundColor, 236)
+		ADD_STRUCT(Object__Color, BackgroundColor, 236)
 		ADD_OBJECT(Texture2D, ThumbnailImage, 240)
 		ADD_STRUCT(float, Delay, 244)
 		ADD_STRUCT(float, DelayLow, 248)
 		ADD_STRUCT(Vector, MacroUVPosition, 252)
 		ADD_STRUCT(float, MacroUVRadius, 264)
-		ADD_STRUCT(Object::Box, CustomOcclusionBounds, 268)
-		ADD_STRUCT(ScriptArray<ParticleSystem::LODSoloTrack>, SoloTracking, 296)
-		ParticleSystem::ParticleSystemLODMethod GetCurrentLODMethod()
+		ADD_STRUCT(Object__Box, CustomOcclusionBounds, 268)
+		ADD_STRUCT(ScriptArray<ParticleSystem__LODSoloTrack>, SoloTracking, 296)
+		ParticleSystem__ParticleSystemLODMethod GetCurrentLODMethod()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(23881);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(ParticleSystem::ParticleSystemLODMethod*)params;
+			return *(ParticleSystem__ParticleSystemLODMethod*)params;
 		}
 		int GetLODLevelCount()
 		{
@@ -119,11 +98,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(float*)&params[4];
 		}
-		void SetCurrentLODMethod(ParticleSystem::ParticleSystemLODMethod InMethod)
+		void SetCurrentLODMethod(ParticleSystem__ParticleSystemLODMethod InMethod)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(23888);
 			byte params[1] = { NULL };
-			*(ParticleSystem::ParticleSystemLODMethod*)params = InMethod;
+			*(ParticleSystem__ParticleSystemLODMethod*)params = InMethod;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		bool SetLODDistance(int LODLevelIndex, float InDistance)

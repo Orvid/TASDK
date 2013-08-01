@@ -1,6 +1,6 @@
 #pragma once
+#include "TribesGame.TrObject.TrClassType.h"
 #include "Engine.Info.h"
-#include "TribesGame.TrObject.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -1436,11 +1436,11 @@ namespace UnrealScript
 		ADD_STRUCT(int, ClassCounts, 548)
 		ADD_STRUCT(int, MaxPlayers, 488)
 		ADD_STRUCT(int, ScoreLimit, 484)
-		int GetClassCount(TrObject::TrClassType ClassType)
+		int GetClassCount(TrObject__TrClassType ClassType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(56819);
 			byte params[5] = { NULL };
-			*(TrObject::TrClassType*)params = ClassType;
+			*(TrObject__TrClassType*)params = ClassType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
@@ -1452,11 +1452,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool IsClassAllowed(TrObject::TrClassType ClassType, int CurrentCount)
+		bool IsClassAllowed(TrObject__TrClassType ClassType, int CurrentCount)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(92566);
 			byte params[9] = { NULL };
-			*(TrObject::TrClassType*)params = ClassType;
+			*(TrObject__TrClassType*)params = ClassType;
 			*(int*)&params[4] = CurrentCount;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[8];

@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.AmbientSoundSimple.h"
 #include "Engine.SeqAct_Toggle.h"
+#include "Engine.AmbientSoundSimpleToggleable.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,11 +21,6 @@ namespace UnrealScript
 	class AmbientSoundSimpleToggleable : public AmbientSoundSimple
 	{
 	public:
-		struct CheckpointRecord
-		{
-		public:
-			ADD_BOOL(bCurrentlyPlaying, 0, 0x1)
-		};
 		ADD_STRUCT(float, FadeOutVolumeLevel, 516)
 		ADD_STRUCT(float, FadeOutDuration, 512)
 		ADD_STRUCT(float, FadeInVolumeLevel, 508)
@@ -61,21 +57,21 @@ namespace UnrealScript
 			*(class SeqAct_Toggle**)params = Action;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void CreateCheckpointRecord(AmbientSoundSimpleToggleable::CheckpointRecord& Record)
+		void CreateCheckpointRecord(AmbientSoundSimpleToggleable__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(10484);
 			byte params[4] = { NULL };
-			*(AmbientSoundSimpleToggleable::CheckpointRecord*)params = Record;
+			*(AmbientSoundSimpleToggleable__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(AmbientSoundSimpleToggleable::CheckpointRecord*)params;
+			Record = *(AmbientSoundSimpleToggleable__CheckpointRecord*)params;
 		}
-		void ApplyCheckpointRecord(AmbientSoundSimpleToggleable::CheckpointRecord& Record)
+		void ApplyCheckpointRecord(AmbientSoundSimpleToggleable__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(10486);
 			byte params[4] = { NULL };
-			*(AmbientSoundSimpleToggleable::CheckpointRecord*)params = Record;
+			*(AmbientSoundSimpleToggleable__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(AmbientSoundSimpleToggleable::CheckpointRecord*)params;
+			Record = *(AmbientSoundSimpleToggleable__CheckpointRecord*)params;
 		}
 	};
 }

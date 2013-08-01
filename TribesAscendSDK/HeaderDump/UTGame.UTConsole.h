@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.Console.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
+#include "Core.Object.EInputEvent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -18,24 +19,24 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		bool InputKey(int ControllerId, ScriptName Key, Object::EInputEvent Event, float AmountDepressed, bool bGamepad)
+		bool InputKey(int ControllerId, ScriptName Key, Object__EInputEvent Event, float AmountDepressed, bool bGamepad)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(44078);
 			byte params[25] = { NULL };
 			*(int*)params = ControllerId;
 			*(ScriptName*)&params[4] = Key;
-			*(Object::EInputEvent*)&params[12] = Event;
+			*(Object__EInputEvent*)&params[12] = Event;
 			*(float*)&params[16] = AmountDepressed;
 			*(bool*)&params[20] = bGamepad;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[24];
 		}
-		void OutputTextLine(ScriptString* Text, Object::Color OverrideColor)
+		void OutputTextLine(ScriptString* Text, Object__Color OverrideColor)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(44093);
 			byte params[16] = { NULL };
 			*(ScriptString**)params = Text;
-			*(Object::Color*)&params[12] = OverrideColor;
+			*(Object__Color*)&params[12] = OverrideColor;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 	};

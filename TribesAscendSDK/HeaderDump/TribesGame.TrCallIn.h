@@ -1,9 +1,9 @@
 #pragma once
-#include "Core.Object.h"
+#include "TribesGame.TrObject.ETrPlayerCallIns.h"
 #include "Engine.Actor.h"
 #include "TribesGame.TrPlayerController.h"
 #include "Engine.MaterialInstanceConstant.h"
-#include "TribesGame.TrObject.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -43,7 +43,7 @@ namespace UnrealScript
 		ADD_STRUCT(float, CallTime, 488)
 		ADD_STRUCT(float, BuildupTime, 484)
 		ADD_STRUCT(int, DatabaseId, 480)
-		ADD_STRUCT(TrObject::ETrPlayerCallIns, CallInId, 476)
+		ADD_STRUCT(TrObject__ETrPlayerCallIns, CallInId, 476)
 		void Initialize(int NewPrice, int NewBuildup, int NewCooldown)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(73958);

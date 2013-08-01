@@ -1,12 +1,18 @@
 #pragma once
+#include "Engine.LocalPlayer.PostProcessSettingsOverride.h"
 #include "Engine.GameViewportClient.h"
 #include "Engine.Player.h"
-#include "Engine.Actor.h"
+#include "Engine.LocalPlayer.CurrentPostProcessVolumeInfo.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.PostProcessChain.h"
-#include "Core.Object.h"
 #include "Engine.TranslationContext.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Engine.PostProcessVolume.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.EAspectRatioAxisConstraint.h"
+#include "Engine.LocalPlayer.SynchronizedActorVisibilityHistory.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.Actor.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,48 +36,22 @@ namespace UnrealScript
 	class LocalPlayer : public Player
 	{
 	public:
-		struct PostProcessSettingsOverride
-		{
-		public:
-			ADD_STRUCT(float, BlendStartTime, 240)
-			ADD_STRUCT(float, BlendOutDuration, 236)
-			ADD_STRUCT(float, BlendInDuration, 232)
-			ADD_STRUCT(float, CurrentBlendOutTime, 228)
-			ADD_STRUCT(float, CurrentBlendInTime, 224)
-			ADD_BOOL(bBlendingOut, 220, 0x2)
-			ADD_BOOL(bBlendingIn, 220, 0x1)
-			ADD_STRUCT(PostProcessVolume::PostProcessSettings, Settings, 0)
-		};
-		struct CurrentPostProcessVolumeInfo
-		{
-		public:
-			ADD_STRUCT(float, LastBlendTime, 228)
-			ADD_STRUCT(float, BlendStartTime, 224)
-			ADD_OBJECT(PostProcessVolume, LastVolumeUsed, 220)
-			ADD_STRUCT(PostProcessVolume::PostProcessSettings, LastSettings, 0)
-		};
-		struct SynchronizedActorVisibilityHistory
-		{
-		public:
-			ADD_STRUCT(Object::Pointer, CriticalSection, 4)
-			ADD_STRUCT(Object::Pointer, State, 0)
-		};
 		ADD_STRUCT(int, ControllerId, 96)
 		ADD_OBJECT(GameViewportClient, ViewportClient, 100)
-		ADD_STRUCT(Object::Vector2D, Size, 112)
-		ADD_STRUCT(Object::Vector2D, Origin, 104)
+		ADD_STRUCT(Object__Vector2D, Size, 112)
+		ADD_STRUCT(Object__Vector2D, Origin, 104)
 		ADD_STRUCT(ScriptArray<class PostProcessChain*>, PlayerPostProcessChains, 124)
-		ADD_STRUCT(ScriptArray<LocalPlayer::PostProcessSettingsOverride>, ActivePPOverrides, 624)
+		ADD_STRUCT(ScriptArray<LocalPlayer__PostProcessSettingsOverride>, ActivePPOverrides, 624)
 		ADD_OBJECT(TranslationContext, TagContext, 656)
 		ADD_BOOL(bSentSplitJoin, 652, 0x2)
 		ADD_BOOL(bWantToResetToMapDefaultPP, 652, 0x1)
 		ADD_STRUCT(ScriptString*, LastMap, 640)
-		ADD_STRUCT(Object::EAspectRatioAxisConstraint, AspectRatioAxisConstraint, 636)
-		ADD_STRUCT(LocalPlayer::CurrentPostProcessVolumeInfo, LevelPPInfo, 392)
-		ADD_STRUCT(LocalPlayer::CurrentPostProcessVolumeInfo, CurrentPPInfo, 160)
+		ADD_STRUCT(Object__EAspectRatioAxisConstraint, AspectRatioAxisConstraint, 636)
+		ADD_STRUCT(LocalPlayer__CurrentPostProcessVolumeInfo, LevelPPInfo, 392)
+		ADD_STRUCT(LocalPlayer__CurrentPostProcessVolumeInfo, CurrentPPInfo, 160)
 		ADD_STRUCT(Vector, LastViewLocation, 148)
-		ADD_STRUCT(LocalPlayer::SynchronizedActorVisibilityHistory, ActorVisibilityHistory, 140)
-		ADD_STRUCT(Object::Pointer, ViewState, 136)
+		ADD_STRUCT(LocalPlayer__SynchronizedActorVisibilityHistory, ActorVisibilityHistory, 140)
+		ADD_STRUCT(Object__Pointer, ViewState, 136)
 		ADD_OBJECT(PostProcessChain, PlayerPostProcess, 120)
 		bool SpawnPlayActor(ScriptString* URL, ScriptString*& OutError)
 		{
@@ -96,11 +76,11 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		void OverridePostProcessSettings(PostProcessVolume::PostProcessSettings OverrideSettings, float BlendInTime)
+		void OverridePostProcessSettings(PostProcessVolume__PostProcessSettings OverrideSettings, float BlendInTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19510);
 			byte params[224] = { NULL };
-			*(PostProcessVolume::PostProcessSettings*)params = OverrideSettings;
+			*(PostProcessVolume__PostProcessSettings*)params = OverrideSettings;
 			*(float*)&params[220] = BlendInTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
@@ -163,23 +143,23 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19534);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void DeProject(Object::Vector2D RelativeScreenPos, Vector& WorldOrigin, Vector& WorldDirection)
+		void DeProject(Object__Vector2D RelativeScreenPos, Vector& WorldOrigin, Vector& WorldDirection)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19535);
 			byte params[32] = { NULL };
-			*(Object::Vector2D*)params = RelativeScreenPos;
+			*(Object__Vector2D*)params = RelativeScreenPos;
 			*(Vector*)&params[8] = WorldOrigin;
 			*(Vector*)&params[20] = WorldDirection;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			WorldOrigin = *(Vector*)&params[8];
 			WorldDirection = *(Vector*)&params[20];
 		}
-		OnlineSubsystem::UniqueNetId GetUniqueNetId()
+		OnlineSubsystem__UniqueNetId GetUniqueNetId()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(19539);
 			byte params[8] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(OnlineSubsystem::UniqueNetId*)params;
+			return *(OnlineSubsystem__UniqueNetId*)params;
 		}
 		ScriptString* GetNickname()
 		{

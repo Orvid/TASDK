@@ -1,7 +1,8 @@
 #pragma once
+#include "Engine.UIRoot.UIProviderScriptFieldValue.h"
 #include "Engine.UIDataProvider.h"
-#include "Engine.UIRoot.h"
-#include "Core.Object.h"
+#include "Core.Object.Map_Mirror.h"
+#include "Engine.UIRoot.EUIDataProviderFieldType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,21 +12,21 @@ namespace UnrealScript
 	class UIDynamicFieldProvider : public UIDataProvider
 	{
 	public:
-		ADD_STRUCT(ScriptArray<UIRoot::UIProviderScriptFieldValue>, PersistentDataFields, 88)
-		ADD_STRUCT(ScriptArray<UIRoot::UIProviderScriptFieldValue>, RuntimeDataFields, 100)
-		ADD_STRUCT(Object::Map_Mirror, RuntimeCollectionData, 172)
-		ADD_STRUCT(Object::Map_Mirror, PersistentCollectionData, 112)
+		ADD_STRUCT(ScriptArray<UIRoot__UIProviderScriptFieldValue>, PersistentDataFields, 88)
+		ADD_STRUCT(ScriptArray<UIRoot__UIProviderScriptFieldValue>, RuntimeDataFields, 100)
+		ADD_STRUCT(Object__Map_Mirror, RuntimeCollectionData, 172)
+		ADD_STRUCT(Object__Map_Mirror, PersistentCollectionData, 112)
 		void InitializeRuntimeFields()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28919);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		bool AddField(ScriptName FieldName, UIRoot::EUIDataProviderFieldType FieldType, bool bPersistent, int& out_InsertPosition)
+		bool AddField(ScriptName FieldName, UIRoot__EUIDataProviderFieldType FieldType, bool bPersistent, int& out_InsertPosition)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28920);
 			byte params[21] = { NULL };
 			*(ScriptName*)params = FieldName;
-			*(UIRoot::EUIDataProviderFieldType*)&params[8] = FieldType;
+			*(UIRoot__EUIDataProviderFieldType*)&params[8] = FieldType;
 			*(bool*)&params[12] = bPersistent;
 			*(int*)&params[16] = out_InsertPosition;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -57,25 +58,25 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[4];
 		}
-		bool GetField(ScriptName FieldName, UIRoot::UIProviderScriptFieldValue& out_Field)
+		bool GetField(ScriptName FieldName, UIRoot__UIProviderScriptFieldValue& out_Field)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28936);
 			byte params[96] = { NULL };
 			*(ScriptName*)params = FieldName;
-			*(UIRoot::UIProviderScriptFieldValue*)&params[8] = out_Field;
+			*(UIRoot__UIProviderScriptFieldValue*)&params[8] = out_Field;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_Field = *(UIRoot::UIProviderScriptFieldValue*)&params[8];
+			out_Field = *(UIRoot__UIProviderScriptFieldValue*)&params[8];
 			return *(bool*)&params[92];
 		}
-		bool SetField(ScriptName FieldName, UIRoot::UIProviderScriptFieldValue& FieldValue, bool bChangeExistingOnly)
+		bool SetField(ScriptName FieldName, UIRoot__UIProviderScriptFieldValue& FieldValue, bool bChangeExistingOnly)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(28940);
 			byte params[100] = { NULL };
 			*(ScriptName*)params = FieldName;
-			*(UIRoot::UIProviderScriptFieldValue*)&params[8] = FieldValue;
+			*(UIRoot__UIProviderScriptFieldValue*)&params[8] = FieldValue;
 			*(bool*)&params[92] = bChangeExistingOnly;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			FieldValue = *(UIRoot::UIProviderScriptFieldValue*)&params[8];
+			FieldValue = *(UIRoot__UIProviderScriptFieldValue*)&params[8];
 			return *(bool*)&params[96];
 		}
 		void SavePersistentProviderData()

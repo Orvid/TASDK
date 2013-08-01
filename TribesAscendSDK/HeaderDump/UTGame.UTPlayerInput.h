@@ -1,6 +1,6 @@
 #pragma once
+#include "Engine.Actor.EDoubleClickDir.h"
 #include "UDKBase.UDKPlayerInput.h"
-#include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,7 +20,7 @@ namespace UnrealScript
 	class UTPlayerInput : public UDKPlayerInput
 	{
 	public:
-		ADD_STRUCT(Actor::EDoubleClickDir, ForcedDoubleClick, 996)
+		ADD_STRUCT(Actor__EDoubleClickDir, ForcedDoubleClick, 996)
 		ADD_BOOL(bHoldDuck, 992, 0x1)
 		ADD_STRUCT(float, LastDuckTime, 988)
 	};

@@ -1,13 +1,15 @@
 #pragma once
+#include "Core.Object.Color.h"
 #include "UDKBase.UDKHUD.h"
-#include "UTGame.UTGameReplicationInfo.h"
-#include "Core.Object.h"
-#include "Engine.PlayerController.h"
 #include "Engine.Texture2D.h"
-#include "UTGame.UTPlayerController.h"
-#include "Engine.UIRoot.h"
-#include "UTGame.GFxUI_PauseMenu.h"
 #include "Engine.Canvas.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "UTGame.UTGameReplicationInfo.h"
+#include "UTGame.UTPlayerController.h"
+#include "UTGame.GFxUI_PauseMenu.h"
+#include "Core.Object.Vector.h"
+#include "Engine.PlayerController.h"
+#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,23 +34,23 @@ namespace UnrealScript
 	{
 	public:
 		ADD_BOOL(bCrosshairShow, 1444, 0x4)
-		ADD_STRUCT(Object::Color, BlackColor, 1492)
+		ADD_STRUCT(Object__Color, BlackColor, 1492)
 		ADD_OBJECT(Texture2D, IconHudTexture, 1468)
 		ADD_BOOL(bCrosshairOnFriendly, 1444, 0x8)
 		ADD_STRUCT(float, ResolutionScale, 1508)
 		ADD_STRUCT(float, LastPickupTime, 1488)
 		ADD_STRUCT(float, ConfiguredCrosshairScaling, 1484)
 		ADD_BOOL(bGreenCrosshair, 1444, 0x10)
-		ADD_STRUCT(Object::Color, LightGreenColor, 1504)
+		ADD_STRUCT(Object__Color, LightGreenColor, 1504)
 		ADD_BOOL(bIsSplitScreen, 1444, 0x1)
 		ADD_STRUCT(int, ViewY, 1520)
 		ADD_STRUCT(int, ViewX, 1516)
 		ADD_STRUCT(float, ResolutionScaleX, 1512)
-		ADD_STRUCT(Object::Color, LightGoldColor, 1500)
-		ADD_STRUCT(Object::Color, GoldColor, 1496)
+		ADD_STRUCT(Object__Color, LightGoldColor, 1500)
+		ADD_STRUCT(Object__Color, GoldColor, 1496)
 		ADD_STRUCT(ScriptString*, ConsoleIconFontClassName, 1472)
 		ADD_STRUCT(float, LastTimeTooltipDrawn, 1464)
-		ADD_STRUCT(UIRoot::TextureCoordinates, ToolTipSepCoords, 1448)
+		ADD_STRUCT(UIRoot__TextureCoordinates, ToolTipSepCoords, 1448)
 		ADD_BOOL(bEnableActorOverlays, 1444, 0x2)
 		ADD_OBJECT(UTGameReplicationInfo, UTGRI, 1440)
 		ADD_OBJECT(UTPlayerController, UTPlayerOwner, 1436)
@@ -157,7 +159,7 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45495);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void DrawShadowedTile(class Texture2D* Tex, float X, float Y, float XL, float YL, float U, float V, float UL, float VL, Object::Color TileColor, bool bScaleToRes)
+		void DrawShadowedTile(class Texture2D* Tex, float X, float Y, float XL, float YL, float U, float V, float UL, float VL, Object__Color TileColor, bool bScaleToRes)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45496);
 			byte params[44] = { NULL };
@@ -170,11 +172,11 @@ namespace UnrealScript
 			*(float*)&params[24] = V;
 			*(float*)&params[28] = UL;
 			*(float*)&params[32] = VL;
-			*(Object::Color*)&params[36] = TileColor;
+			*(Object__Color*)&params[36] = TileColor;
 			*(bool*)&params[40] = bScaleToRes;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawShadowedStretchedTile(class Texture2D* Tex, float X, float Y, float XL, float YL, float U, float V, float UL, float VL, Object::Color TileColor, bool bScaleToRes)
+		void DrawShadowedStretchedTile(class Texture2D* Tex, float X, float Y, float XL, float YL, float U, float V, float UL, float VL, Object__Color TileColor, bool bScaleToRes)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45509);
 			byte params[44] = { NULL };
@@ -187,11 +189,11 @@ namespace UnrealScript
 			*(float*)&params[24] = V;
 			*(float*)&params[28] = UL;
 			*(float*)&params[32] = VL;
-			*(Object::Color*)&params[36] = TileColor;
+			*(Object__Color*)&params[36] = TileColor;
 			*(bool*)&params[40] = bScaleToRes;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void DrawShadowedRotatedTile(class Texture2D* Tex, Rotator Rot, float X, float Y, float XL, float YL, float U, float V, float UL, float VL, Object::Color TileColor, bool bScaleToRes)
+		void DrawShadowedRotatedTile(class Texture2D* Tex, Rotator Rot, float X, float Y, float XL, float YL, float U, float V, float UL, float VL, Object__Color TileColor, bool bScaleToRes)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(45523);
 			byte params[56] = { NULL };
@@ -205,7 +207,7 @@ namespace UnrealScript
 			*(float*)&params[36] = V;
 			*(float*)&params[40] = UL;
 			*(float*)&params[44] = VL;
-			*(Object::Color*)&params[48] = TileColor;
+			*(Object__Color*)&params[48] = TileColor;
 			*(bool*)&params[52] = bScaleToRes;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

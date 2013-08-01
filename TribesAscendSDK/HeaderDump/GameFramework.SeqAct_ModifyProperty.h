@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.SequenceAction.h"
+#include "GameFramework.SeqAct_ModifyProperty.PropertyInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,14 +20,7 @@ namespace UnrealScript
 	class SeqAct_ModifyProperty : public SequenceAction
 	{
 	public:
-		struct PropertyInfo
-		{
-		public:
-			ADD_STRUCT(ScriptString*, PropertyValue, 12)
-			ADD_BOOL(bModifyProperty, 8, 0x1)
-			ADD_STRUCT(ScriptName, PropertyName, 0)
-		};
-		ADD_STRUCT(ScriptArray<SeqAct_ModifyProperty::PropertyInfo>, Properties, 232)
+		ADD_STRUCT(ScriptArray<SeqAct_ModifyProperty__PropertyInfo>, Properties, 232)
 	};
 }
 #undef ADD_BOOL

@@ -1,6 +1,6 @@
 #pragma once
 #include "GFxUI.GFxObject.h"
-#include "TribesGame.TrObject.h"
+#include "TribesGame.TrObject.ESettingsList.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -26,11 +26,11 @@ namespace UnrealScript
 		ADD_STRUCT(int, m_nVolumeEffects, 128)
 		ADD_OBJECT(GFxObject, m_SettingsList, 124)
 		ADD_STRUCT(int, m_SettingsCount, 120)
-		int GetCurrentSettingValue(TrObject::ESettingsList Type)
+		int GetCurrentSettingValue(TrObject__ESettingsList Type)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(57196);
 			byte params[5] = { NULL };
-			*(TrObject::ESettingsList*)params = Type;
+			*(TrObject__ESettingsList*)params = Type;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(int*)&params[4];
 		}
@@ -138,11 +138,11 @@ namespace UnrealScript
 			*(bool*)params = NewBassBoost;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		ScriptString* GetSettingNameFromType(TrObject::ESettingsList Type)
+		ScriptString* GetSettingNameFromType(TrObject__ESettingsList Type)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(68996);
 			byte params[13] = { NULL };
-			*(TrObject::ESettingsList*)params = Type;
+			*(TrObject__ESettingsList*)params = Type;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[4];
 		}

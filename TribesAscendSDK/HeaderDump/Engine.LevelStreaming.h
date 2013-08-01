@@ -3,6 +3,8 @@
 #include "Engine.LevelGridVolume.h"
 #include "Core.Object.h"
 #include "Engine.LevelStreamingVolume.h"
+#include "Core.Object.Color.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -37,7 +39,7 @@ namespace UnrealScript
 		ADD_OBJECT(LevelGridVolume, EditorGridVolume, 136)
 		ADD_STRUCT(float, LastVolumeUnloadRequestTime, 120)
 		ADD_STRUCT(float, MinTimeBetweenVolumeUnloadRequests, 116)
-		ADD_STRUCT(Object::Color, DrawColor, 100)
+		ADD_STRUCT(Object__Color, DrawColor, 100)
 		ADD_BOOL(bIsRequestingUnloadAndRemoval, 96, 0x800)
 		ADD_BOOL(bDrawOnLevelStatusMap, 96, 0x400)
 		ADD_BOOL(bIsFullyStatic, 96, 0x40)

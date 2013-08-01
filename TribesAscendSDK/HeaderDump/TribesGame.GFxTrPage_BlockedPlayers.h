@@ -1,7 +1,7 @@
 #pragma once
 #include "TribesGame.GFxTrPage.h"
-#include "TribesGame.TrFriendManager.h"
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.TrFriendManager.FriendStruct.h"
 #include "TribesGame.GFxTrAction.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -22,7 +22,7 @@ namespace UnrealScript
 	class GFxTrPage_BlockedPlayers : public GFxTrPage
 	{
 	public:
-		ADD_STRUCT(ScriptArray<TrFriendManager::FriendStruct>, SortedFriends, 432)
+		ADD_STRUCT(ScriptArray<TrFriendManager__FriendStruct>, SortedFriends, 432)
 		ADD_STRUCT(ScriptString*, FlyoutTitle, 420)
 		ADD_STRUCT(ScriptString*, UnblockOption, 408)
 		ADD_STRUCT(ScriptString*, BlockedStatus, 396)

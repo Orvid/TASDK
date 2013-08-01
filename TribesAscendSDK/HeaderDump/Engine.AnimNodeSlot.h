@@ -1,7 +1,9 @@
 #pragma once
+#include "Engine.AnimNodeSequence.ERootRotationOption.h"
 #include "Engine.AnimNodeBlendBase.h"
 #include "Engine.AnimNodeSynch.h"
 #include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimNodeSequence.ERootBoneAxis.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -98,22 +100,22 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(class AnimNodeSequence**)params;
 		}
-		void SetRootBoneAxisOption(AnimNodeSequence::ERootBoneAxis AxisX, AnimNodeSequence::ERootBoneAxis AxisY, AnimNodeSequence::ERootBoneAxis AxisZ)
+		void SetRootBoneAxisOption(AnimNodeSequence__ERootBoneAxis AxisX, AnimNodeSequence__ERootBoneAxis AxisY, AnimNodeSequence__ERootBoneAxis AxisZ)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(11090);
 			byte params[3] = { NULL };
-			*(AnimNodeSequence::ERootBoneAxis*)params = AxisX;
-			*(AnimNodeSequence::ERootBoneAxis*)&params[1] = AxisY;
-			*(AnimNodeSequence::ERootBoneAxis*)&params[2] = AxisZ;
+			*(AnimNodeSequence__ERootBoneAxis*)params = AxisX;
+			*(AnimNodeSequence__ERootBoneAxis*)&params[1] = AxisY;
+			*(AnimNodeSequence__ERootBoneAxis*)&params[2] = AxisZ;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetRootBoneRotationOption(AnimNodeSequence::ERootRotationOption AxisX, AnimNodeSequence::ERootRotationOption AxisY, AnimNodeSequence::ERootRotationOption AxisZ)
+		void SetRootBoneRotationOption(AnimNodeSequence__ERootRotationOption AxisX, AnimNodeSequence__ERootRotationOption AxisY, AnimNodeSequence__ERootRotationOption AxisZ)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(11094);
 			byte params[3] = { NULL };
-			*(AnimNodeSequence::ERootRotationOption*)params = AxisX;
-			*(AnimNodeSequence::ERootRotationOption*)&params[1] = AxisY;
-			*(AnimNodeSequence::ERootRotationOption*)&params[2] = AxisZ;
+			*(AnimNodeSequence__ERootRotationOption*)params = AxisX;
+			*(AnimNodeSequence__ERootRotationOption*)&params[1] = AxisY;
+			*(AnimNodeSequence__ERootRotationOption*)&params[2] = AxisZ;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void AddToSynchGroup(ScriptName GroupName)

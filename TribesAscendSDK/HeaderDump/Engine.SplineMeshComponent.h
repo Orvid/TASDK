@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine.StaticMeshComponent.h"
-#include "Core.Object.h"
+#include "Engine.SplineMeshComponent.SplineMeshParams.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,23 +21,9 @@ namespace UnrealScript
 	class SplineMeshComponent : public StaticMeshComponent
 	{
 	public:
-		struct SplineMeshParams
-		{
-		public:
-			ADD_STRUCT(Object::Vector2D, EndOffset, 80)
-			ADD_STRUCT(float, EndRoll, 76)
-			ADD_STRUCT(Object::Vector2D, EndScale, 68)
-			ADD_STRUCT(Vector, EndTangent, 56)
-			ADD_STRUCT(Vector, EndPos, 44)
-			ADD_STRUCT(Object::Vector2D, StartOffset, 36)
-			ADD_STRUCT(float, StartRoll, 32)
-			ADD_STRUCT(Object::Vector2D, StartScale, 24)
-			ADD_STRUCT(Vector, StartTangent, 12)
-			ADD_STRUCT(Vector, StartPos, 0)
-		};
 		ADD_BOOL(bSmoothInterpRollScale, 708, 0x1)
 		ADD_STRUCT(Vector, SplineXDir, 696)
-		ADD_STRUCT(SplineMeshComponent::SplineMeshParams, SplineParams, 608)
+		ADD_STRUCT(SplineMeshComponent__SplineMeshParams, SplineParams, 608)
 	};
 }
 #undef ADD_BOOL

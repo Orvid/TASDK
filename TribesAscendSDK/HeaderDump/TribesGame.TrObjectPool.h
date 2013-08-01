@@ -1,8 +1,10 @@
 #pragma once
-#include "Core.Object.h"
+#include "TribesGame.TrObjectPool.TracerCacheInfo.h"
 #include "Engine.Actor.h"
-#include "TribesGame.TrObject.h"
 #include "TribesGame.TrProj_Tracer.h"
+#include "TribesGame.TrObject.EWeaponTracerType.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Rotator.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,20 +19,12 @@ namespace UnrealScript
 	{
 	public:
 		static const auto MAX_TRACERS = 20;
-		struct TracerCacheInfo
-		{
-		public:
-			ADD_OBJECT(TrProj_Tracer, List, 12)
-			ADD_STRUCT(int, ListIdx, 8)
-			ADD_OBJECT(ScriptClass, TracerClass, 4)
-			ADD_STRUCT(int, Type, 0)
-		};
-		ADD_STRUCT(TrObjectPool::TracerCacheInfo, m_TracerCache, 476)
-		class TrProj_Tracer* GetTracer(TrObject::EWeaponTracerType TracerType, byte ActiveReloadTier, Vector SpawnLocation, Rotator SpawnRotation)
+		ADD_STRUCT(TrObjectPool__TracerCacheInfo, m_TracerCache, 476)
+		class TrProj_Tracer* GetTracer(TrObject__EWeaponTracerType TracerType, byte ActiveReloadTier, Vector SpawnLocation, Rotator SpawnRotation)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(67440);
 			byte params[30] = { NULL };
-			*(TrObject::EWeaponTracerType*)params = TracerType;
+			*(TrObject__EWeaponTracerType*)params = TracerType;
 			params[1] = ActiveReloadTier;
 			*(Vector*)&params[4] = SpawnLocation;
 			*(Rotator*)&params[16] = SpawnRotation;
@@ -67,11 +61,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(100305);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void CreateTracer(TrObject::EWeaponTracerType TracerType, ScriptClass* TracerClass, int Idx, bool bForceCreate)
+		void CreateTracer(TrObject__EWeaponTracerType TracerType, ScriptClass* TracerClass, int Idx, bool bForceCreate)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(100309);
 			byte params[13] = { NULL };
-			*(TrObject::EWeaponTracerType*)params = TracerType;
+			*(TrObject__EWeaponTracerType*)params = TracerType;
 			*(ScriptClass**)&params[4] = TracerClass;
 			*(int*)&params[8] = Idx;
 			*(bool*)&params[12] = bForceCreate;

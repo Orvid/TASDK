@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.SkelControlSingleBone.h"
-#include "Core.Object.h"
+#include "Core.Object.EAxis.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,8 +23,8 @@ namespace UnrealScript
 		ADD_BOOL(bInvertWheelSteering, 256, 0x2)
 		ADD_BOOL(bInvertWheelRoll, 256, 0x1)
 		ADD_STRUCT(float, WheelSteering, 252)
-		ADD_STRUCT(Object::EAxis, WheelSteeringAxis, 249)
-		ADD_STRUCT(Object::EAxis, WheelRollAxis, 248)
+		ADD_STRUCT(Object__EAxis, WheelSteeringAxis, 249)
+		ADD_STRUCT(Object__EAxis, WheelRollAxis, 248)
 		ADD_STRUCT(float, WheelRoll, 244)
 		ADD_STRUCT(float, WheelMaxRenderDisplacement, 240)
 		ADD_STRUCT(float, WheelDisplacement, 236)

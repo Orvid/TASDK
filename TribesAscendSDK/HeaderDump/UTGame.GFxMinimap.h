@@ -1,10 +1,10 @@
 #pragma once
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "GFxUI.GFxObject.h"
 #include "UTGame.UTMapInfo.h"
 #include "UTGame.UTGameObjective.h"
 #include "Engine.WorldInfo.h"
+#include "Core.Object.Matrix.h"
 #include "UTGame.GFxMinimapHud.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -40,7 +40,7 @@ namespace UnrealScript
 		ADD_OBJECT(GFxObject, IconsFlagMC, 280)
 		ADD_OBJECT(GFxObject, IconsBlueMC, 276)
 		ADD_OBJECT(GFxObject, IconsRedMC, 272)
-		ADD_STRUCT(Object::Matrix, IconMatrix, 208)
+		ADD_STRUCT(Object__Matrix, IconMatrix, 208)
 		ADD_OBJECT(GFxObject, MapMC, 148)
 		ADD_OBJECT(GFxObject, CompassIcon, 144)
 		ADD_OBJECT(GFxObject, PlayerIcon, 140)

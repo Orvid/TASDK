@@ -1,7 +1,8 @@
 #pragma once
+#include "Core.Object.Color.h"
 #include "UTGame.UTLocalMessage.h"
-#include "Core.Object.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,8 +12,8 @@ namespace UnrealScript
 	class UTLockWarningMessage : public UTLocalMessage
 	{
 	public:
-		ADD_STRUCT(Object::Color, YellowColor, 128)
-		ADD_STRUCT(Object::Color, RedColor, 124)
+		ADD_STRUCT(Object__Color, YellowColor, 128)
+		ADD_STRUCT(Object__Color, RedColor, 124)
 		ADD_STRUCT(ScriptString*, RadarLockString, 112)
 		ADD_STRUCT(ScriptString*, MissileLockOnString, 100)
 		byte AnnouncementLevel(byte MessageIndex)
@@ -35,7 +36,7 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[20];
 		}
-		Object::Color GetColor(int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
+		Object__Color GetColor(int Switch, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, class Object* OptionalObject)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(48325);
 			byte params[20] = { NULL };
@@ -44,7 +45,7 @@ namespace UnrealScript
 			*(class PlayerReplicationInfo**)&params[8] = RelatedPRI_2;
 			*(class Object**)&params[12] = OptionalObject;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Object::Color*)&params[16];
+			return *(Object__Color*)&params[16];
 		}
 	};
 }

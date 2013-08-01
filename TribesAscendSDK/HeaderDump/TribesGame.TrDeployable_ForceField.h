@@ -1,7 +1,8 @@
 #pragma once
+#include "Core.Object.Color.h"
 #include "TribesGame.TrDeployable.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -13,7 +14,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(float, m_LightFlashBrightness, 1564)
-		ADD_STRUCT(Object::Color, m_LightFlashColor, 1560)
+		ADD_STRUCT(Object__Color, m_LightFlashColor, 1560)
 		ADD_STRUCT(float, m_fOutHitOtherFlashRemainingTime, 1552)
 		ADD_STRUCT(float, m_fInHitOtherFlashRemainingTime, 1548)
 		ADD_STRUCT(float, m_fOutHitOtherFlashTimeLength, 1544)

@@ -1,14 +1,15 @@
 #pragma once
 #include "Engine.Volume.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
 #include "Engine.Controller.h"
 #include "Engine.PlayerController.h"
 #include "Engine.Pawn.h"
 #include "Engine.Info.h"
+#include "Core.Object.Vector.h"
 #include "Engine.VolumeTimer.h"
 #include "Engine.SeqAct_Toggle.h"
 #include "Engine.SeqAct_SetDamageInstigator.h"
+#include "Engine.PhysicsVolume.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,12 +33,6 @@ namespace UnrealScript
 	class PhysicsVolume : public Volume
 	{
 	public:
-		struct CheckpointRecord
-		{
-		public:
-			ADD_BOOL(bActive, 0, 0x2)
-			ADD_BOOL(bPainCausing, 0, 0x1)
-		};
 		ADD_BOOL(bPainCausing, 532, 0x2)
 		ADD_STRUCT(float, DamagePerSec, 544)
 		ADD_BOOL(bWaterVolume, 532, 0x1000)
@@ -193,21 +188,21 @@ void**)&params[4] = OtherComp;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void CreateCheckpointRecord(PhysicsVolume::CheckpointRecord& Record)
+		void CreateCheckpointRecord(PhysicsVolume__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14471);
 			byte params[4] = { NULL };
-			*(PhysicsVolume::CheckpointRecord*)params = Record;
+			*(PhysicsVolume__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(PhysicsVolume::CheckpointRecord*)params;
+			Record = *(PhysicsVolume__CheckpointRecord*)params;
 		}
-		void ApplyCheckpointRecord(PhysicsVolume::CheckpointRecord& Record)
+		void ApplyCheckpointRecord(PhysicsVolume__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14473);
 			byte params[4] = { NULL };
-			*(PhysicsVolume::CheckpointRecord*)params = Record;
+			*(PhysicsVolume__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(PhysicsVolume::CheckpointRecord*)params;
+			Record = *(PhysicsVolume__CheckpointRecord*)params;
 		}
 	};
 }

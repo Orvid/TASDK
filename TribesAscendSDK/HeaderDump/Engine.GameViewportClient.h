@@ -1,11 +1,19 @@
 #pragma once
 #include "Core.Object.h"
+#include "Core.Object.QWord.h"
 #include "Engine.Console.h"
-#include "Engine.Canvas.h"
 #include "Engine.UIInteraction.h"
+#include "Engine.GameViewportClient.SplitscreenData.h"
+#include "Engine.GameViewportClient.ESplitScreenType.h"
 #include "Engine.LocalPlayer.h"
+#include "Engine.GameViewportClient.TitleSafeZoneArea.h"
 #include "Engine.Interaction.h"
-#include "Engine.PlayerController.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.GameViewportClient.DebugDisplayProperty.h"
+#include "Core.Object.EInputEvent.h"
+#include "Core.Object.Vector2D.h"
+#include "Engine.Canvas.h"
+#include "Engine.PlayerController.EProgressMessageType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,63 +37,17 @@ namespace UnrealScript
 	class GameViewportClient : public Object
 	{
 	public:
-		enum ESplitScreenType : byte
-		{
-			eSST_NONE = 0,
-			eSST_2P_HORIZONTAL = 1,
-			eSST_2P_VERTICAL = 2,
-			eSST_3P_FAVOR_TOP = 3,
-			eSST_3P_FAVOR_BOTTOM = 4,
-			eSST_4P = 5,
-			eSST_MAX = 6,
-		};
-		enum ESafeZoneType : byte
-		{
-			eSZ_TOP = 0,
-			eSZ_BOTTOM = 1,
-			eSZ_LEFT = 2,
-			eSZ_RIGHT = 3,
-			eSZ_MAX = 4,
-		};
-		struct TitleSafeZoneArea
-		{
-		public:
-			ADD_STRUCT(float, MaxPercentX, 0)
-			ADD_STRUCT(float, RecommendedPercentX, 8)
-			ADD_STRUCT(float, MaxPercentY, 4)
-			ADD_STRUCT(float, RecommendedPercentY, 12)
-		};
-		struct PerPlayerSplitscreenData
-		{
-		public:
-			ADD_STRUCT(float, OriginY, 12)
-			ADD_STRUCT(float, OriginX, 8)
-			ADD_STRUCT(float, SizeY, 4)
-			ADD_STRUCT(float, SizeX, 0)
-		};
-		struct SplitscreenData
-		{
-		public:
-			ADD_STRUCT(ScriptArray<GameViewportClient::PerPlayerSplitscreenData>, PlayerData, 0)
-		};
-		struct DebugDisplayProperty
-		{
-		public:
-			ADD_BOOL(bSpecialProperty, 12, 0x1)
-			ADD_STRUCT(ScriptName, PropertyName, 4)
-			ADD_OBJECT(Object, Obj, 0)
-		};
 		ADD_OBJECT(Console, ViewportConsole, 96)
 		ADD_OBJECT(UIInteraction, UIController, 92)
-		ADD_STRUCT(GameViewportClient::ESplitScreenType, ActiveSplitscreenType, 201)
-		ADD_STRUCT(GameViewportClient::ESplitScreenType, DesiredSplitscreenType, 200)
+		ADD_STRUCT(GameViewportClient__ESplitScreenType, ActiveSplitscreenType, 201)
+		ADD_STRUCT(GameViewportClient__ESplitScreenType, DesiredSplitscreenType, 200)
 		ADD_OBJECT(ScriptClass, UIControllerClass, 88)
 		ADD_BOOL(bDebugNoGFxUI, 168, 0x80)
 		ADD_STRUCT(ScriptArray<class Interaction*>, GlobalInteractions, 76)
-		ADD_STRUCT(GameViewportClient::ESplitScreenType, Default2PSplitType, 202)
-		ADD_STRUCT(GameViewportClient::ESplitScreenType, Default3PSplitType, 203)
-		ADD_STRUCT(ScriptArray<GameViewportClient::SplitscreenData>, SplitscreenInfo, 188)
-		ADD_STRUCT(GameViewportClient::TitleSafeZoneArea, TitleSafeZone, 172)
+		ADD_STRUCT(GameViewportClient__ESplitScreenType, Default2PSplitType, 202)
+		ADD_STRUCT(GameViewportClient__ESplitScreenType, Default3PSplitType, 203)
+		ADD_STRUCT(ScriptArray<GameViewportClient__SplitscreenData>, SplitscreenInfo, 188)
+		ADD_STRUCT(GameViewportClient__TitleSafeZoneArea, TitleSafeZone, 172)
 		ADD_BOOL(bShowTitleSafeZone, 168, 0x1)
 		ADD_STRUCT(float, ProgressTimeOut, 228)
 		ADD_STRUCT(float, ProgressFadeTime, 232)
@@ -95,10 +57,10 @@ namespace UnrealScript
 		ADD_STRUCT(ScriptString*, ConnectingMessage, 132)
 		ADD_STRUCT(ScriptString*, PrecachingMessage, 156)
 		ADD_STRUCT(ScriptString*, PausedMessage, 144)
-		ADD_STRUCT(Object::Pointer, VfTable_FViewportClient, 60)
-		ADD_STRUCT(Object::Pointer, VfTable_FExec, 64)
-		ADD_STRUCT(Object::Pointer, Viewport, 68)
-		ADD_STRUCT(Object::Pointer, ViewportFrame, 72)
+		ADD_STRUCT(Object__Pointer, VfTable_FViewportClient, 60)
+		ADD_STRUCT(Object__Pointer, VfTable_FExec, 64)
+		ADD_STRUCT(Object__Pointer, Viewport, 68)
+		ADD_STRUCT(Object__Pointer, ViewportFrame, 72)
 		ADD_STRUCT(QWord, ShowFlags, 100)
 		ADD_BOOL(bDisplayingUIMouseCursor, 168, 0x2)
 		ADD_BOOL(bUIMouseCaptureOverride, 168, 0x4)
@@ -107,8 +69,8 @@ namespace UnrealScript
 		ADD_BOOL(bShowSystemMouseCursor, 168, 0x20)
 		ADD_BOOL(bDisableWorldRendering, 168, 0x40)
 		ADD_BOOL(bUseHardwareCursorWhenWindowed, 168, 0x100)
-		ADD_STRUCT(ScriptArray<GameViewportClient::DebugDisplayProperty>, DebugProperties, 236)
-		ADD_STRUCT(Object::Pointer, ScaleformInteraction, 248)
+		ADD_STRUCT(ScriptArray<GameViewportClient__DebugDisplayProperty>, DebugProperties, 236)
+		ADD_STRUCT(Object__Pointer, ScaleformInteraction, 248)
 		ScriptString* ConsoleCommand(ScriptString* Command)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(12994);
@@ -117,13 +79,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(ScriptString**)&params[12];
 		}
-		bool HandleInputKey(int ControllerId, ScriptName Key, Object::EInputEvent EventType, float AmountDepressed, bool bGamepad)
+		bool HandleInputKey(int ControllerId, ScriptName Key, Object__EInputEvent EventType, float AmountDepressed, bool bGamepad)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17875);
 			byte params[25] = { NULL };
 			*(int*)params = ControllerId;
 			*(ScriptName*)&params[4] = Key;
-			*(Object::EInputEvent*)&params[12] = EventType;
+			*(Object__EInputEvent*)&params[12] = EventType;
 			*(float*)&params[16] = AmountDepressed;
 			*(bool*)&params[20] = bGamepad;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
@@ -150,13 +112,13 @@ namespace UnrealScript
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)&params[16];
 		}
-		void GetViewportSize(Object::Vector2D& out_ViewportSize)
+		void GetViewportSize(Object__Vector2D& out_ViewportSize)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17894);
 			byte params[8] = { NULL };
-			*(Object::Vector2D*)params = out_ViewportSize;
+			*(Object__Vector2D*)params = out_ViewportSize;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			out_ViewportSize = *(Object::Vector2D*)params;
+			out_ViewportSize = *(Object__Vector2D*)params;
 		}
 		bool IsFullScreenViewport()
 		{
@@ -295,19 +257,19 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17961);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void SetSplitscreenConfiguration(GameViewportClient::ESplitScreenType SplitType)
+		void SetSplitscreenConfiguration(GameViewportClient__ESplitScreenType SplitType)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17963);
 			byte params[1] = { NULL };
-			*(GameViewportClient::ESplitScreenType*)params = SplitType;
+			*(GameViewportClient__ESplitScreenType*)params = SplitType;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		GameViewportClient::ESplitScreenType GetSplitscreenConfiguration()
+		GameViewportClient__ESplitScreenType GetSplitscreenConfiguration()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17965);
 			byte params[1] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(GameViewportClient::ESplitScreenType*)params;
+			return *(GameViewportClient__ESplitScreenType*)params;
 		}
 		void UpdateActiveSplitscreenType()
 		{
@@ -319,15 +281,15 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17971);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void GetSubtitleRegion(Object::Vector2D& MinPos, Object::Vector2D& MaxPos)
+		void GetSubtitleRegion(Object__Vector2D& MinPos, Object__Vector2D& MaxPos)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(17977);
 			byte params[16] = { NULL };
-			*(Object::Vector2D*)params = MinPos;
-			*(Object::Vector2D*)&params[8] = MaxPos;
+			*(Object__Vector2D*)params = MinPos;
+			*(Object__Vector2D*)&params[8] = MaxPos;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			MinPos = *(Object::Vector2D*)params;
-			MaxPos = *(Object::Vector2D*)&params[8];
+			MinPos = *(Object__Vector2D*)params;
+			MaxPos = *(Object__Vector2D*)&params[8];
 		}
 		int ConvertLocalPlayerToGamePlayerIndex(class LocalPlayer* LPlayer)
 		{
@@ -455,11 +417,11 @@ namespace UnrealScript
 			*(ScriptString**)&params[4] = Message;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetProgressMessage(PlayerController::EProgressMessageType MessageType, ScriptString* Message, ScriptString* Title, bool bIgnoreFutureNetworkMessages)
+		void SetProgressMessage(PlayerController__EProgressMessageType MessageType, ScriptString* Message, ScriptString* Title, bool bIgnoreFutureNetworkMessages)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(18075);
 			byte params[29] = { NULL };
-			*(PlayerController::EProgressMessageType*)params = MessageType;
+			*(PlayerController__EProgressMessageType*)params = MessageType;
 			*(ScriptString**)&params[4] = Message;
 			*(ScriptString**)&params[16] = Title;
 			*(bool*)&params[28] = bIgnoreFutureNetworkMessages;

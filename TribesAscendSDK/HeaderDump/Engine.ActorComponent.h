@@ -1,7 +1,8 @@
 #pragma once
 #include "Core.Component.h"
+#include "Core.Object.ETickingGroup.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,18 +26,18 @@ namespace UnrealScript
 	class ActorComponent : public Component
 	{
 	public:
-		ADD_STRUCT(Object::ETickingGroup, TickGroup, 84)
+		ADD_STRUCT(Object__ETickingGroup, TickGroup, 84)
 		ADD_BOOL(bNeedsUpdateTransform, 80, 0x8)
 		ADD_BOOL(bNeedsReattach, 80, 0x4)
 		ADD_BOOL(bTickInEditor, 80, 0x2)
 		ADD_BOOL(bAttached, 80, 0x1)
 		ADD_OBJECT(Actor, Owner, 76)
-		ADD_STRUCT(Object::Pointer, Scene, 72)
-		void SetTickGroup(Object::ETickingGroup NewTickGroup)
+		ADD_STRUCT(Object__Pointer, Scene, 72)
+		void SetTickGroup(Object__ETickingGroup NewTickGroup)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(4734);
 			byte params[1] = { NULL };
-			*(Object::ETickingGroup*)params = NewTickGroup;
+			*(Object__ETickingGroup*)params = NewTickGroup;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetComponentRBFixed(bool bFixed)

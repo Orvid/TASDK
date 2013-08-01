@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.PBRuleNodeBase.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,9 +20,9 @@ namespace UnrealScript
 	class PBRuleNodeComment : public PBRuleNodeBase
 	{
 	public:
-		ADD_STRUCT(Object::Color, FillColor, 124)
+		ADD_STRUCT(Object__Color, FillColor, 124)
 		ADD_BOOL(bFilled, 120, 0x1)
-		ADD_STRUCT(Object::Color, BorderColor, 116)
+		ADD_STRUCT(Object__Color, BorderColor, 116)
 		ADD_STRUCT(int, BorderWidth, 112)
 		ADD_STRUCT(int, SizeY, 108)
 		ADD_STRUCT(int, SizeX, 104)

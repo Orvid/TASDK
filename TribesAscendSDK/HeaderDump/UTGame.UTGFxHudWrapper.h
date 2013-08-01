@@ -1,9 +1,11 @@
 #pragma once
+#include "Core.Object.Color.h"
 #include "UTGame.UTHUDBase.h"
 #include "UTGame.GFxMinimapHud.h"
 #include "UTGame.GFxProjectedUI.h"
-#include "Core.Object.h"
+#include "Core.Object.Vector.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Core.Object.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \
@@ -79,7 +81,7 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(47830);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void LocalizedMessage(ScriptClass* InMessageClass, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, ScriptString* CriticalString, int Switch, float Position, float Lifetime, int FontSize, Object::Color DrawColor, class Object* OptionalObject)
+		void LocalizedMessage(ScriptClass* InMessageClass, class PlayerReplicationInfo* RelatedPRI_1, class PlayerReplicationInfo* RelatedPRI_2, ScriptString* CriticalString, int Switch, float Position, float Lifetime, int FontSize, Object__Color DrawColor, class Object* OptionalObject)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(47836);
 			byte params[48] = { NULL };
@@ -91,7 +93,7 @@ namespace UnrealScript
 			*(float*)&params[28] = Position;
 			*(float*)&params[32] = Lifetime;
 			*(int*)&params[36] = FontSize;
-			*(Object::Color*)&params[40] = DrawColor;
+			*(Object__Color*)&params[40] = DrawColor;
 			*(class Object**)&params[44] = OptionalObject;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}

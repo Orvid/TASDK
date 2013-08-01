@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine.ActorComponent.h"
-#include "Core.Object.h"
+#include "Core.Object.InterpCurveFloat.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,13 +24,13 @@ namespace UnrealScript
 	public:
 		ADD_STRUCT(float, DampMaxForce, 164)
 		ADD_STRUCT(float, DampSaturateVel, 160)
-		ADD_STRUCT(Object::InterpCurveFloat, SpringMaxForceTimeScale, 144)
+		ADD_STRUCT(Object__InterpCurveFloat, SpringMaxForceTimeScale, 144)
 		ADD_STRUCT(float, MaxForceMassRatio, 140)
 		ADD_STRUCT(float, SpringMaxForce, 136)
 		ADD_STRUCT(float, SpringSaturateDist, 132)
 		ADD_STRUCT(float, MinBodyMass, 128)
 		ADD_STRUCT(float, TimeSinceActivation, 124)
-		ADD_STRUCT(Object::Pointer, SpringData, 120)
+		ADD_STRUCT(Object__Pointer, SpringData, 120)
 		ADD_BOOL(bEnableForceMassRatio, 116, 0x2)
 		ADD_BOOL(bInHardware, 116, 0x1)
 		ADD_STRUCT(int, SceneIndex, 112)

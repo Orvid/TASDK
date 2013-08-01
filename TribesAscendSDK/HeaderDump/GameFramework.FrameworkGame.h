@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine.GameInfo.h"
+#include "GameFramework.FrameworkGame.RequiredMobileInputConfig.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -19,14 +20,7 @@ namespace UnrealScript
 	class FrameworkGame : public GameInfo
 	{
 	public:
-		struct RequiredMobileInputConfig
-		{
-		public:
-			ADD_STRUCT(ScriptArray<ScriptString*>, RequireZoneNames, 12)
-			ADD_BOOL(bIsAttractModeGroup, 24, 0x1)
-			ADD_STRUCT(ScriptString*, GroupName, 0)
-		};
-		ADD_STRUCT(ScriptArray<FrameworkGame::RequiredMobileInputConfig>, RequiredMobileInputConfigs, 884)
+		ADD_STRUCT(ScriptArray<FrameworkGame__RequiredMobileInputConfig>, RequiredMobileInputConfigs, 884)
 		void TgStartGame(ScriptString*& Reason)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30549);

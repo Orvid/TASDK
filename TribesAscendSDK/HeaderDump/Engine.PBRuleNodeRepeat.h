@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.PBRuleNodeBase.h"
-#include "Engine.ProcBuildingRuleset.h"
+#include "Engine.ProcBuildingRuleset.EProcBuildingAxis.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,7 +11,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(float, RepeatMaxSize, 108)
-		ADD_STRUCT(ProcBuildingRuleset::EProcBuildingAxis, RepeatAxis, 104)
+		ADD_STRUCT(ProcBuildingRuleset__EProcBuildingAxis, RepeatAxis, 104)
 	};
 }
 #undef ADD_STRUCT

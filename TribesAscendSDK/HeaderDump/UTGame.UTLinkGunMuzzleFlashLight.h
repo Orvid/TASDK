@@ -1,5 +1,6 @@
 #pragma once
 #include "UDKBase.UDKExplosionLight.h"
+#include "UDKBase.UDKExplosionLight.LightValues.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -9,8 +10,8 @@ namespace UnrealScript
 	class UTLinkGunMuzzleFlashLight : public UDKExplosionLight
 	{
 	public:
-		ADD_STRUCT(ScriptArray<UDKExplosionLight::LightValues>, RedTeamTimeShift, 624)
-		ADD_STRUCT(ScriptArray<UDKExplosionLight::LightValues>, BlueTeamTimeShift, 636)
+		ADD_STRUCT(ScriptArray<UDKExplosionLight__LightValues>, RedTeamTimeShift, 624)
+		ADD_STRUCT(ScriptArray<UDKExplosionLight__LightValues>, BlueTeamTimeShift, 636)
 		void SetTeam(byte NewTeam)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(48308);

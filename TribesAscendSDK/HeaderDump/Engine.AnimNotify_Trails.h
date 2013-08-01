@@ -1,5 +1,7 @@
 #pragma once
+#include "Engine.AnimNotify_Trails.TrailSample.h"
 #include "Engine.AnimNotify.h"
+#include "Engine.AnimNotify_Trails.TrailSamplePoint.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.ParticleSystem.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -25,30 +27,8 @@ namespace UnrealScript
 	class AnimNotify_Trails : public AnimNotify
 	{
 	public:
-		struct TrailSample
-		{
-		public:
-			ADD_STRUCT(Vector, SecondEdgeSample, 28)
-			ADD_STRUCT(Vector, ControlPointSample, 16)
-			ADD_STRUCT(Vector, FirstEdgeSample, 4)
-			ADD_STRUCT(float, RelativeTime, 0)
-		};
-		struct TrailSocketSamplePoint
-		{
-		public:
-			ADD_STRUCT(Vector, Velocity, 12)
-			ADD_STRUCT(Vector, Position, 0)
-		};
-		struct TrailSamplePoint
-		{
-		public:
-			ADD_STRUCT(AnimNotify_Trails::TrailSocketSamplePoint, SecondEdgeSample, 52)
-			ADD_STRUCT(AnimNotify_Trails::TrailSocketSamplePoint, ControlPointSample, 28)
-			ADD_STRUCT(AnimNotify_Trails::TrailSocketSamplePoint, FirstEdgeSample, 4)
-			ADD_STRUCT(float, RelativeTime, 0)
-		};
-		ADD_STRUCT(ScriptArray<AnimNotify_Trails::TrailSamplePoint>, TrailSampleData, 108)
-		ADD_STRUCT(ScriptArray<AnimNotify_Trails::TrailSample>, TrailSampledData, 124)
+		ADD_STRUCT(ScriptArray<AnimNotify_Trails__TrailSamplePoint>, TrailSampleData, 108)
+		ADD_STRUCT(ScriptArray<AnimNotify_Trails__TrailSample>, TrailSampledData, 124)
 		ADD_OBJECT(AnimNodeSequence, AnimNodeSeq, 144)
 		ADD_STRUCT(float, TimeStep, 140)
 		ADD_STRUCT(float, CurrentTime, 136)

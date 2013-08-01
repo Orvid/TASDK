@@ -1,8 +1,9 @@
 #pragma once
+#include "Engine.Actor.EDoubleClickDir.h"
 #include "Engine.Pawn.h"
 #include "UTGame.UTPlayerInput.h"
-#include "Engine.Actor.h"
-#include "Core.Object.h"
+#include "Core.Object.Rotator.h"
+#include "Core.Object.Vector.h"
 #include "UTGame.UTWeapon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -140,13 +141,13 @@ namespace UnrealScript
 			*(class UTWeapon**)&params[4] = W;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		Actor::EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
+		Actor__EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(44275);
 			byte params[5] = { NULL };
 			*(float*)params = DeltaTime;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			return *(Actor::EDoubleClickDir*)&params[4];
+			return *(Actor__EDoubleClickDir*)&params[4];
 		}
 	};
 }

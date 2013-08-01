@@ -1,6 +1,6 @@
 #pragma once
+#include "Core.Object.Vector.h"
 #include "Engine.ForceFieldShape.h"
-#include "Core.Object.h"
 namespace UnrealScript
 {
 	class ForceFieldShapeCapsule : public ForceFieldShape

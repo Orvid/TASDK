@@ -1,6 +1,6 @@
 #pragma once
 #include "Core.Component.h"
-#include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,12 +20,9 @@ namespace UnrealScript
 	class DistributionFloat : public Component
 	{
 	public:
-		struct RawDistributionFloat : public RawDistribution
-		{
-		};
 		ADD_BOOL(bIsDirty, 76, 0x2)
 		ADD_BOOL(bCanBeBaked, 76, 0x1)
-		ADD_STRUCT(Object::Pointer, VfTable_FCurveEdInterface, 72)
+		ADD_STRUCT(Object__Pointer, VfTable_FCurveEdInterface, 72)
 		float GetFloatValue(float F)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(3432);

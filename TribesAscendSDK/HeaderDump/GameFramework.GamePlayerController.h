@@ -2,7 +2,7 @@
 #include "Engine.PlayerController.h"
 #include "GameFramework.GameCrowdAgent.h"
 #include "Engine.CameraShake.h"
-#include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -135,11 +135,11 @@ namespace UnrealScript
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31837);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
 		}
-		void ClientColorFade(Object::Color FadeColor, byte FromAlpha, byte ToAlpha, float FadeTime)
+		void ClientColorFade(Object__Color FadeColor, byte FromAlpha, byte ToAlpha, float FadeTime)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(31838);
 			byte params[10] = { NULL };
-			*(Object::Color*)params = FadeColor;
+			*(Object__Color*)params = FadeColor;
 			params[4] = FromAlpha;
 			params[5] = ToAlpha;
 			*(float*)&params[8] = FadeTime;

@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.SequenceAction.h"
-#include "Core.Object.h"
+#include "Core.Object.LinearColor.h"
 #include "Engine.MaterialInstanceConstant.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -15,7 +15,7 @@ namespace UnrealScript
 	class SeqAct_SetMatInstVectorParam : public SequenceAction
 	{
 	public:
-		ADD_STRUCT(Object::LinearColor, VectorValue, 244)
+		ADD_STRUCT(Object__LinearColor, VectorValue, 244)
 		ADD_STRUCT(ScriptName, ParamName, 236)
 		ADD_OBJECT(MaterialInstanceConstant, MatInst, 232)
 		int GetObjClassVersion()

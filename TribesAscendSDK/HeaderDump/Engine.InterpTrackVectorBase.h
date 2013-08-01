@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine.InterpTrack.h"
-#include "Core.Object.h"
+#include "Core.Object.InterpCurveVector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,7 +11,7 @@ namespace UnrealScript
 	{
 	public:
 		ADD_STRUCT(float, CurveTension, 144)
-		ADD_STRUCT(Object::InterpCurveVector, VectorTrack, 128)
+		ADD_STRUCT(Object__InterpCurveVector, VectorTrack, 128)
 	};
 }
 #undef ADD_STRUCT

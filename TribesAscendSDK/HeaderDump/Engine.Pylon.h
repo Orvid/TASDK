@@ -1,10 +1,12 @@
 #pragma once
 #include "Engine.NavigationPoint.h"
+#include "Core.Object.Vector.h"
+#include "Engine.Volume.h"
 #include "Engine.Controller.h"
 #include "Engine.Actor.h"
-#include "Core.Object.h"
-#include "Engine.Volume.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.SeqAct_Toggle.h"
+#include "Core.Object.OctreeElementId.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,24 +30,6 @@ namespace UnrealScript
 	class Pylon : public NavigationPoint
 	{
 	public:
-		enum ENavMeshEdgeType : byte
-		{
-			NAVEDGE_Normal = 0,
-			NAVEDGE_Mantle = 1,
-			NAVEDGE_Coverslip = 2,
-			NAVEDGE_SwatTurn = 3,
-			NAVEDGE_DropDown = 4,
-			NAVEDGE_PathObject = 5,
-			NAVEDGE_BackRefDummy = 6,
-			NAVEDGE_Jump = 7,
-			NAVEDGE_MAX = 8,
-		};
-		struct PolyReference
-		{
-		public:
-			ADD_STRUCT(int, PolyId, 20)
-			ADD_STRUCT(Actor::ActorReference, OwningPylon, 0)
-		};
 		ADD_STRUCT(ScriptArray<Vector>, NextPassSeedList, 716)
 		ADD_STRUCT(ScriptArray<class Volume*>, ExpansionVolumes, 744)
 		ADD_STRUCT(ScriptArray<class Pylon*>, ImposterPylons, 792)
@@ -67,14 +51,14 @@ namespace UnrealScript
 		ADD_STRUCT(float, MaxExpansionRadius, 760)
 		ADD_STRUCT(float, ExpansionRadius, 756)
 		ADD_OBJECT(Pylon, NextPylon, 740)
-		ADD_STRUCT(Object::Pointer, OctreeIWasAddedTo, 736)
-		ADD_STRUCT(Object::OctreeElementId, OctreeId, 728)
-		ADD_STRUCT(Object::Pointer, PathObjectsThatAffectThisPylon, 712)
-		ADD_STRUCT(Object::Pointer, WorkingSetPtr, 708)
-		ADD_STRUCT(Object::Pointer, DynamicObstacleMesh, 704)
-		ADD_STRUCT(Object::Pointer, ObstacleMesh, 700)
-		ADD_STRUCT(Object::Pointer, NavMeshPtr, 696)
-		ADD_STRUCT(Object::Pointer, VfTable_IEditorLinkSelectionInterface, 692)
+		ADD_STRUCT(Object__Pointer, OctreeIWasAddedTo, 736)
+		ADD_STRUCT(Object__OctreeElementId, OctreeId, 728)
+		ADD_STRUCT(Object__Pointer, PathObjectsThatAffectThisPylon, 712)
+		ADD_STRUCT(Object__Pointer, WorkingSetPtr, 708)
+		ADD_STRUCT(Object__Pointer, DynamicObstacleMesh, 704)
+		ADD_STRUCT(Object__Pointer, ObstacleMesh, 700)
+		ADD_STRUCT(Object__Pointer, NavMeshPtr, 696)
+		ADD_STRUCT(Object__Pointer, VfTable_IEditorLinkSelectionInterface, 692)
 		void OnPylonStatusChange()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9967);

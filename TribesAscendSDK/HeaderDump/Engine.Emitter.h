@@ -1,9 +1,11 @@
 #pragma once
-#include "Core.Object.h"
+#include "Engine.Emitter.CheckpointRecord.h"
 #include "Engine.Actor.h"
 #include "Engine.SeqAct_Toggle.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.SeqAct_ParticleEventGenerator.h"
+#include "Core.Object.Vector.h"
+#include "Core.Object.Color.h"
 #include "Engine.SeqAct_SetParticleSysParam.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -20,11 +22,6 @@ namespace UnrealScript
 	class Emitter : public Actor
 	{
 	public:
-		struct CheckpointRecord
-		{
-		public:
-			ADD_BOOL(bIsActive, 0, 0x1)
-		};
 		ADD_BOOL(bCurrentlyActive, 484, 0x4)
 		ADD_BOOL(bPostUpdateTickGroup, 484, 0x2)
 		ADD_BOOL(bDestroyOnSystemFinish, 484, 0x1)
@@ -94,12 +91,12 @@ void**)params = FinishedComponent;
 			*(Vector*)&params[8] = Param;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
-		void SetColorParameter(ScriptName ParameterName, Object::Color Param)
+		void SetColorParameter(ScriptName ParameterName, Object__Color Param)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(15166);
 			byte params[12] = { NULL };
 			*(ScriptName*)params = ParameterName;
-			*(Object::Color*)&params[8] = Param;
+			*(Object__Color*)&params[8] = Param;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void SetExtColorParameter(ScriptName ParameterName, byte Red, byte Green, byte Blue, byte Alpha)
@@ -135,21 +132,21 @@ void**)params = FinishedComponent;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
 		}
-		void CreateCheckpointRecord(Emitter::CheckpointRecord& Record)
+		void CreateCheckpointRecord(Emitter__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(15189);
 			byte params[4] = { NULL };
-			*(Emitter::CheckpointRecord*)params = Record;
+			*(Emitter__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(Emitter::CheckpointRecord*)params;
+			Record = *(Emitter__CheckpointRecord*)params;
 		}
-		void ApplyCheckpointRecord(Emitter::CheckpointRecord& Record)
+		void ApplyCheckpointRecord(Emitter__CheckpointRecord& Record)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(15191);
 			byte params[4] = { NULL };
-			*(Emitter::CheckpointRecord*)params = Record;
+			*(Emitter__CheckpointRecord*)params = Record;
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
-			Record = *(Emitter::CheckpointRecord*)params;
+			Record = *(Emitter__CheckpointRecord*)params;
 		}
 		void HideSelf()
 		{
