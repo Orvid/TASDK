@@ -195,7 +195,7 @@ struct ClassDependencyManager
 		static std::string headerName;
 		headerName = GetHeaderName(objType);
 		headerName = headerName.substr(0, headerName.length() - 2);
-		if (!strcmp(objType->object_class()->GetName(), "Class") && objType != parentClass->super())// && SuperIsSelf((ScriptStruct*)objType))
+		if (!strcmp(objType->object_class()->GetName(), "Class") && SuperIsSelf((ScriptStruct*)objType))
 		{
 			requiredPreDeclarations[objType->GetName()] = 1;
 			requiredPostHeaders[headerName] = 1;
@@ -279,6 +279,7 @@ struct PropertyDescription
 			   !strcmp(originalProperty->GetName(), "Controller")
 			|| !strcmp(originalProperty->GetName(), "Pawn")
 			|| !strcmp(originalProperty->GetName(), "PhysicalMaterial") 
+			|| !strcmp(originalProperty->GetName(), "Player")
 			|| !strcmp(originalProperty->GetName(), "PlayerReplicationInfo")
 			|| !strcmp(originalProperty->GetName(), "Vector")
 			|| !strcmp(originalProperty->GetName(), "Vehicle")
