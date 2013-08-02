@@ -1,11 +1,15 @@
 #pragma once
-#include "TribesGame.TrDevice.h"
-#include "Engine.SoundCue.h"
-#include "TribesGame.TrProj_RemoteArxBuster.h"
+namespace UnrealScript
+{
+	class TrDevice_RemoteArxBuster;
+}
 #include "Engine.AnimNodeAdditiveBlending.h"
-#include "Engine.SkelControlSingleBone.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.Projectile.h"
+#include "Engine.SkelControlSingleBone.h"
+#include "Engine.SoundCue.h"
+#include "TribesGame.TrDevice.h"
+#include "TribesGame.TrProj_RemoteArxBuster.h"
 #include "TribesGame.TrProjectile.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

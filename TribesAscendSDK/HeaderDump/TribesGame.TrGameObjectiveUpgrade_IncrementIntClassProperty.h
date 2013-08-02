@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrGameObjectiveUpgrade_IncrementIntClassProperty;
+}
 #include "TribesGame.TrGameObjectiveUpgrade_ModifyIntClassProperty.h"
 namespace UnrealScript
 {

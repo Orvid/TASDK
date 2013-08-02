@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNotify_CameraEffect;
+}
 #include "Engine.AnimNotify.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

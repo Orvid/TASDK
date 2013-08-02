@@ -1,14 +1,17 @@
 #pragma once
-#include "UTGame.UTDamageType.h"
-#include "TribesGame.TrPlayerController.h"
-#include "Engine.SoundCue.h"
-#include "Engine.PrimitiveComponent.ERadialImpulseFalloff.h"
+namespace UnrealScript
+{
+	class TrDmgType_Base;
+}
 #include "Core.Object.Vector2D.h"
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
-#include "Engine.Controller.h"
 #include "Engine.Actor.h"
+#include "Engine.Controller.h"
+#include "Engine.PrimitiveComponent.ERadialImpulseFalloff.h"
+#include "Engine.SoundCue.h"
 #include "Engine.Vehicle.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
+#include "TribesGame.TrPlayerController.h"
+#include "UTGame.UTDamageType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

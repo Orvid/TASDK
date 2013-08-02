@@ -1,8 +1,12 @@
 #pragma once
-#include "UTGame.UTObjectiveSpecificMessage.h"
-#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+namespace UnrealScript
+{
+	class UTKismetAnnouncement;
+}
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+#include "UTGame.UTObjectiveSpecificMessage.h"
 namespace UnrealScript
 {
 	class UTKismetAnnouncement : public UTObjectiveSpecificMessage

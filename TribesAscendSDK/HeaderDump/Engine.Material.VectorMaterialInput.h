@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	struct Material__VectorMaterialInput;
+}
 #include "Engine.Material.MaterialInput.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

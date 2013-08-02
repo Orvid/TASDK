@@ -1,7 +1,10 @@
 #pragma once
-#include "UTGame.UTDamageType.h"
+namespace UnrealScript
+{
+	class UTDmgType_Burning;
+}
 #include "Engine.Pawn.h"
-#include "Core.Object.Vector.h"
+#include "UTGame.UTDamageType.h"
 namespace UnrealScript
 {
 	class UTDmgType_Burning : public UTDamageType

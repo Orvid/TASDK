@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTPowerupPickupFactory;
+}
+#include "Engine.Pawn.h"
 #include "UTGame.UTGameReplicationInfo.h"
 #include "UTGame.UTPickupFactory.h"
-#include "Engine.Pawn.h"
 namespace UnrealScript
 {
 	class UTPowerupPickupFactory : public UTPickupFactory

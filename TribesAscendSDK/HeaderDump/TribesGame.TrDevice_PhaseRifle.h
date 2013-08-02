@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrDevice.h"
+namespace UnrealScript
+{
+	class TrDevice_PhaseRifle;
+}
 #include "Engine.Actor.ImpactInfo.h"
+#include "TribesGame.TrDevice.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

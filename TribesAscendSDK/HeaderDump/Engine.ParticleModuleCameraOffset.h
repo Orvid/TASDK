@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleCameraOffset;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModuleCameraBase.h"
 #include "Engine.ParticleModuleCameraOffset.EParticleCameraOffsetUpdateMethod.h"
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class ParticleModuleCameraOffset : public ParticleModuleCameraBase
 	{
 	public:
+		typedef ParticleModuleCameraOffset__EParticleCameraOffsetUpdateMethod EParticleCameraOffsetUpdateMethod;
 		ADD_STRUCT(ParticleModuleCameraOffset__EParticleCameraOffsetUpdateMethod, UpdateMethod, 104)
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, CameraOffset, 72)
 		ADD_BOOL(bSpawnTimeOnly, 100, 0x1)

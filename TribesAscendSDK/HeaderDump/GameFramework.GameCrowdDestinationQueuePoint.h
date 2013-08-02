@@ -1,8 +1,11 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "GameFramework.GameCrowdInteractionPoint.h"
+namespace UnrealScript
+{
+	class GameCrowdDestinationQueuePoint;
+}
 #include "GameFramework.GameCrowdAgent.h"
 #include "GameFramework.GameCrowdDestination.h"
+#include "GameFramework.GameCrowdInteractionPoint.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

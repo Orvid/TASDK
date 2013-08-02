@@ -1,16 +1,18 @@
 #pragma once
+namespace UnrealScript
+{
+	class CameraAnimInst;
+}
 #include "Core.Object.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PostProcessVolume.PostProcessSettings.h"
-#include "Engine.InterpGroupInst.h"
 #include "Core.Object.Matrix.h"
-#include "Engine.InterpTrackInstMove.h"
-#include "Engine.Camera.ECameraAnimPlaySpace.h"
-#include "Engine.AnimNodeSequence.h"
-#include "Engine.InterpTrackMove.h"
-#include "Engine.CameraAnim.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.Actor.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Engine.Camera.ECameraAnimPlaySpace.h"
+#include "Engine.CameraAnim.h"
+#include "Engine.InterpGroupInst.h"
+#include "Engine.InterpTrackInstMove.h"
+#include "Engine.InterpTrackMove.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

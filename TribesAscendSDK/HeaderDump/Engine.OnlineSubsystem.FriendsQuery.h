@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct OnlineSubsystem__FriendsQuery;
+}
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

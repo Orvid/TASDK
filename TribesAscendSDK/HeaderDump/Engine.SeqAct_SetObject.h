@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SeqAct_SetSequenceVariable.h"
+namespace UnrealScript
+{
+	class SeqAct_SetObject;
+}
 #include "Core.Object.h"
+#include "Engine.SeqAct_SetSequenceVariable.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineAccountInterface;
+}
 #include "Core.Interface.h"
 #include "Engine.OnlineSubsystem.EOnlineAccountCreateStatus.h"
 namespace UnrealScript

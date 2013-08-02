@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Texture2DComposite__SourceTexture2DRegion;
+}
 #include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

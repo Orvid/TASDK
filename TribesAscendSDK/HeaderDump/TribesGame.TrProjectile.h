@@ -1,13 +1,16 @@
 #pragma once
-#include "UTGame.UTProjectile.h"
-#include "TribesGame.TrDevice.h"
-#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class TrProjectile;
+}
 #include "Engine.Actor.h"
+#include "Engine.Controller.h"
 #include "Engine.PhysicalMaterial.h"
 #include "Engine.SoundCue.h"
+#include "TribesGame.TrDevice.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
+#include "UTGame.UTProjectile.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

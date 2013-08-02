@@ -1,19 +1,22 @@
 #pragma once
-#include "TribesGame.TrRepairStation_Neutral.h"
+namespace UnrealScript
+{
+	class TrCaHCapturePoint;
+}
 #include "Engine.Actor.h"
-#include "TribesGame.TrGameObjective.h"
-#include "TribesGame.TrRadarStation_Neutral.h"
-#include "TribesGame.TrBaseTurret_Neutral.h"
-#include "TribesGame.TrInventoryStation_Neutral.h"
-#include "TribesGame.TrCaHCapturePoint.NearbyPlayer.h"
-#include "TribesGame.TrPlayerController.h"
-#include "TribesGame.TrObject.CaHCapturePointLabel.h"
-#include "Core.Object.Vector.h"
-#include "Engine.SkelControlSingleBone.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "TribesGame.TrPawn.h"
-#include "Engine.PlayerController.h"
 #include "Engine.Canvas.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.PlayerController.h"
+#include "Engine.SkelControlSingleBone.h"
+#include "TribesGame.TrBaseTurret_Neutral.h"
+#include "TribesGame.TrCaHCapturePoint.NearbyPlayer.h"
+#include "TribesGame.TrGameObjective.h"
+#include "TribesGame.TrInventoryStation_Neutral.h"
+#include "TribesGame.TrObject.CaHCapturePointLabel.h"
+#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrRadarStation_Neutral.h"
+#include "TribesGame.TrRepairStation_Neutral.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -37,6 +40,7 @@ namespace UnrealScript
 	class TrCaHCapturePoint : public TrGameObjective
 	{
 	public:
+		typedef TrCaHCapturePoint__NearbyPlayer NearbyPlayer;
 		ADD_STRUCT(ScriptArray<class TrBaseTurret_Neutral*>, m_BaseTurrets, 1372)
 		ADD_STRUCT(ScriptArray<class TrRadarStation_Neutral*>, m_BaseSensors, 1384)
 		ADD_STRUCT(ScriptArray<class TrInventoryStation_Neutral*>, m_InventoryStations, 1396)

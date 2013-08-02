@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleBeamModifier;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #include "Engine.ParticleModuleBeamBase.h"
 #include "Engine.ParticleModuleBeamModifier.BeamModifierOptions.h"
-#include "Core.DistributionVector.RawDistributionVector.h"
 #include "Engine.ParticleModuleBeamModifier.BeamModifierType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -23,6 +27,8 @@ namespace UnrealScript
 	class ParticleModuleBeamModifier : public ParticleModuleBeamBase
 	{
 	public:
+		typedef ParticleModuleBeamModifier__BeamModifierType BeamModifierType;
+		typedef ParticleModuleBeamModifier__BeamModifierOptions BeamModifierOptions;
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Strength, 148)
 		ADD_STRUCT(ParticleModuleBeamModifier__BeamModifierOptions, StrengthOptions, 144)
 		ADD_BOOL(bAbsoluteTangent, 140, 0x1)

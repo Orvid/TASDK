@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTPlayerController.h"
-#include "UTGame.UTConsolePlayerController.ProfileSettingToUE3BindingDatum.h"
+namespace UnrealScript
+{
+	class UTConsolePlayerController;
+}
 #include "Engine.Pawn.h"
+#include "UTGame.UTConsolePlayerController.ProfileSettingToUE3BindingDatum.h"
+#include "UTGame.UTPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class UTConsolePlayerController : public UTPlayerController
 	{
 	public:
+		typedef UTConsolePlayerController__ProfileSettingToUE3BindingDatum ProfileSettingToUE3BindingDatum;
 		ADD_STRUCT(ScriptArray<UTConsolePlayerController__ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMapping360, 2180)
 		ADD_STRUCT(ScriptArray<UTConsolePlayerController__ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMappingPS3, 2192)
 		ADD_BOOL(bDebugTargetAdhesion, 2176, 0x2)

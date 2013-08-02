@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackParticleReplay;
+}
 #include "Engine.InterpTrack.h"
 #include "Engine.InterpTrackParticleReplay.ParticleReplayTrackKey.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class InterpTrackParticleReplay : public InterpTrack
 	{
 	public:
+		typedef InterpTrackParticleReplay__ParticleReplayTrackKey ParticleReplayTrackKey;
 		ADD_STRUCT(ScriptArray<InterpTrackParticleReplay__ParticleReplayTrackKey>, TrackKeys, 128)
 		ADD_STRUCT(float, FixedTimeStep, 144)
 		ADD_BOOL(bIsCapturingReplay, 140, 0x1)

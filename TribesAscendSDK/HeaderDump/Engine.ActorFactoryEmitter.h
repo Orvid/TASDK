@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorFactoryEmitter;
+}
 #include "Engine.ActorFactory.h"
 #include "Engine.ParticleSystem.h"
 #define ADD_OBJECT(x, y, offset) \

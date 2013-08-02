@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ApexDestructibleDamageParameters__DamagePair;
+}
 #include "Engine.ApexDestructibleDamageParameters.DamageParameters.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

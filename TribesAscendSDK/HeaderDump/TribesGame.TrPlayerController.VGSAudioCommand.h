@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrPlayerController__VGSAudioCommand;
+}
 #include "Engine.SoundCue.h"
 #include "TribesGame.TrPlayerReplicationInfo.h"
 #define ADD_OBJECT(x, y, offset) \

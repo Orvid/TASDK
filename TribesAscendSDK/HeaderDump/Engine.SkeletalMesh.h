@@ -1,27 +1,34 @@
 #pragma once
+namespace UnrealScript
+{
+	class SkeletalMesh;
+}
 #include "Core.Object.h"
-#include "Engine.FaceFXAsset.h"
+#include "Core.Object.BoneAtom.h"
 #include "Core.Object.BoxSphereBounds.h"
-#include "Engine.MaterialInterface.h"
+#include "Core.Object.EAxis.h"
 #include "Core.Object.IndirectArray_Mirror.h"
 #include "Core.Object.Map_Mirror.h"
-#include "Core.Object.Vector.h"
-#include "Engine.ApexClothingAsset.h"
-#include "Core.Object.Rotator.h"
-#include "Core.Object.BoneAtom.h"
-#include "Engine.SkeletalMesh.BoneMirrorInfo.h"
-#include "Core.Object.EAxis.h"
-#include "Engine.SkeletalMeshSocket.h"
-#include "Engine.SkeletalMesh.BoneBreakOption.h"
-#include "Engine.SkeletalMesh.SkeletalMeshLODInfo.h"
-#include "Engine.PhysicsAsset.h"
-#include "Engine.MorphTargetSet.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.ApexClothingAsset.h"
+#include "Engine.FaceFXAsset.h"
+#include "Engine.MaterialInterface.h"
+#include "Engine.MorphTargetSet.h"
+#include "Engine.PhysicsAsset.h"
+#include "Engine.SkeletalMesh.BoneBreakOption.h"
+#include "Engine.SkeletalMesh.BoneMirrorExport.h"
+#include "Engine.SkeletalMesh.BoneMirrorInfo.h"
+#include "Engine.SkeletalMesh.ClothBoneType.h"
 #include "Engine.SkeletalMesh.ClothMovementScaleGen.h"
 #include "Engine.SkeletalMesh.ClothSpecialBoneInfo.h"
-#include "Engine.SkeletalMesh.SoftBodyTetraLink.h"
+#include "Engine.SkeletalMesh.SkeletalMeshLODInfo.h"
+#include "Engine.SkeletalMesh.SoftBodyBoneType.h"
 #include "Engine.SkeletalMesh.SoftBodySpecialBoneInfo.h"
-#include "Core.Object.QWord.h"
+#include "Engine.SkeletalMesh.SoftBodyTetraLink.h"
+#include "Engine.SkeletalMesh.TriangleSortAxis.h"
+#include "Engine.SkeletalMesh.TriangleSortOption.h"
+#include "Engine.SkeletalMesh.TriangleSortSettings.h"
+#include "Engine.SkeletalMeshSocket.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -45,6 +52,19 @@ namespace UnrealScript
 	class SkeletalMesh : public Object
 	{
 	public:
+		typedef SkeletalMesh__SoftBodyBoneType SoftBodyBoneType;
+		typedef SkeletalMesh__ClothBoneType ClothBoneType;
+		typedef SkeletalMesh__TriangleSortOption TriangleSortOption;
+		typedef SkeletalMesh__BoneBreakOption BoneBreakOption;
+		typedef SkeletalMesh__TriangleSortAxis TriangleSortAxis;
+		typedef SkeletalMesh__ClothMovementScaleGen ClothMovementScaleGen;
+		typedef SkeletalMesh__SoftBodyTetraLink SoftBodyTetraLink;
+		typedef SkeletalMesh__SoftBodySpecialBoneInfo SoftBodySpecialBoneInfo;
+		typedef SkeletalMesh__ClothSpecialBoneInfo ClothSpecialBoneInfo;
+		typedef SkeletalMesh__SkeletalMeshLODInfo SkeletalMeshLODInfo;
+		typedef SkeletalMesh__TriangleSortSettings TriangleSortSettings;
+		typedef SkeletalMesh__BoneMirrorExport BoneMirrorExport;
+		typedef SkeletalMesh__BoneMirrorInfo BoneMirrorInfo;
 		ADD_OBJECT(FaceFXAsset, FaceFXAsset, 340)
 		ADD_STRUCT(Object__BoxSphereBounds, Bounds, 60)
 		ADD_STRUCT(ScriptArray<class MaterialInterface*>, Materials, 88)

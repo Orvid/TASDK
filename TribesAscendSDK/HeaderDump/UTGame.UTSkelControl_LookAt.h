@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSkelControl_LookAt;
+}
 #include "UDKBase.UDKSkelControl_LookAt.h"
 namespace UnrealScript
 {

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.TextureRenderTarget.h"
+namespace UnrealScript
+{
+	class TextureRenderTargetCube;
+}
 #include "Engine.Texture.EPixelFormat.h"
+#include "Engine.TextureRenderTarget.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

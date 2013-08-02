@@ -1,6 +1,10 @@
 #pragma once
-#include "UTGame.UTMutator.h"
+namespace UnrealScript
+{
+	class UTMutator_NoPowerups;
+}
 #include "Engine.Actor.h"
+#include "UTGame.UTMutator.h"
 namespace UnrealScript
 {
 	class UTMutator_NoPowerups : public UTMutator

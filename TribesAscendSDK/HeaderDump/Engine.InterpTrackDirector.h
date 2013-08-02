@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackDirector;
+}
 #include "Engine.InterpTrack.h"
 #include "Engine.InterpTrackDirector.DirectorTrackCut.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class InterpTrackDirector : public InterpTrack
 	{
 	public:
+		typedef InterpTrackDirector__DirectorTrackCut DirectorTrackCut;
 		ADD_STRUCT(ScriptArray<InterpTrackDirector__DirectorTrackCut>, CutTrack, 128)
 		ADD_BOOL(bSimulateCameraCutsOnClients, 140, 0x1)
 	};

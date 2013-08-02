@@ -1,6 +1,10 @@
 #pragma once
-#include "UTGame.UTClientSideWeaponPawn.h"
+namespace UnrealScript
+{
+	class TrClientSideWeaponPawn;
+}
 #include "Engine.Pawn.h"
+#include "UTGame.UTClientSideWeaponPawn.h"
 namespace UnrealScript
 {
 	class TrClientSideWeaponPawn : public UTClientSideWeaponPawn

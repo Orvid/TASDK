@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct StaticMesh__StaticMeshLODElement;
+}
 #include "Engine.MaterialInterface.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

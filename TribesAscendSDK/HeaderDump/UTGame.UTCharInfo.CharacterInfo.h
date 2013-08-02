@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UTCharInfo__CharacterInfo;
+}
 #include "UTGame.UTCharInfo.CustomAIData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

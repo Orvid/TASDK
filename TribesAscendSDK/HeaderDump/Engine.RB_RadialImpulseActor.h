@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class RB_RadialImpulseActor;
+}
 #include "Engine.RigidBodyBase.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_STRUCT(x, y, offset) \

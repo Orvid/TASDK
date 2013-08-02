@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrStatsInterface;
+}
 #include "Core.Object.h"
 #include "Engine.OnlineSubsystem.h"
-#include "TribesGame.TrPlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "TribesGame.TrPlayerController.h"
 namespace UnrealScript
 {
 	class TrStatsInterface : public Object

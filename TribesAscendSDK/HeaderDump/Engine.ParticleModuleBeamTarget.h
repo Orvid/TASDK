@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleBeamTarget;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
-#include "Engine.ParticleModuleBeamBase.h"
 #include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleBeamBase.h"
 #include "Engine.ParticleModuleBeamBase.Beam2SourceTargetMethod.h"
 #include "Engine.ParticleModuleBeamBase.Beam2SourceTargetTangentMethod.h"
 #define ADD_BOOL(name, offset, mask) \

@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
+namespace UnrealScript
+{
+	class GFxTrPage_BuyBoost;
+}
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.GFxTrPage.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

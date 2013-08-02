@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class RB_Thruster;
+}
 #include "Engine.RigidBodyBase.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \

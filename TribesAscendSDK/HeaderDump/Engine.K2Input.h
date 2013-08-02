@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class K2Input;
+}
 #include "Engine.K2Connector.h"
 #include "Engine.K2Output.h"
 #define ADD_OBJECT(x, y, offset) \

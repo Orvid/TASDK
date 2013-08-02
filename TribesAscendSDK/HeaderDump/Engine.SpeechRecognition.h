@@ -1,8 +1,13 @@
 #pragma once
-#include "Engine.SpeechRecognition.RecogUserData.h"
+namespace UnrealScript
+{
+	class SpeechRecognition;
+}
 #include "Core.Object.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.SpeechRecognition.RecogUserData.h"
 #include "Engine.SpeechRecognition.RecogVocabulary.h"
+#include "Engine.SpeechRecognition.RecognisableWord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +27,9 @@ namespace UnrealScript
 	class SpeechRecognition : public Object
 	{
 	public:
+		typedef SpeechRecognition__RecogVocabulary RecogVocabulary;
+		typedef SpeechRecognition__RecognisableWord RecognisableWord;
+		typedef SpeechRecognition__RecogUserData RecogUserData;
 		ADD_STRUCT(ScriptArray<SpeechRecognition__RecogVocabulary>, Vocabularies, 76)
 		ADD_STRUCT(ScriptArray<byte>, VoiceData, 88)
 		ADD_STRUCT(ScriptArray<byte>, WorkingVoiceData, 100)

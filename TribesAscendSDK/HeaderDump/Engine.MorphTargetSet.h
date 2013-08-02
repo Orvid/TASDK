@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class MorphTargetSet;
+}
 #include "Core.Object.h"
+#include "Core.Object.Array_Mirror.h"
 #include "Engine.MorphTarget.h"
 #include "Engine.SkeletalMesh.h"
-#include "Core.Object.Array_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

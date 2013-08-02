@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqEvent_Used;
+}
 #include "Engine.SequenceEvent.h"
 #include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ApexDestructibleDamageParametersFactoryNew;
+}
 #include "Core.Factory.h"
 namespace UnrealScript
 {

@@ -1,9 +1,13 @@
 #pragma once
-#include "UTGame.UTObjectiveSpecificMessage.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+namespace UnrealScript
+{
+	class UTObjectiveAnnouncement;
+}
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+#include "UTGame.UTObjectiveSpecificMessage.h"
 #include "UTGame.UTQueuedAnnouncement.h"
 namespace UnrealScript
 {

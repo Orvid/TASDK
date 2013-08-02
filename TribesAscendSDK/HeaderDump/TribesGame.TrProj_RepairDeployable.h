@@ -1,8 +1,11 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrProj_Mine.h"
+namespace UnrealScript
+{
+	class TrProj_RepairDeployable;
+}
 #include "Engine.Actor.h"
 #include "Engine.SoundCue.h"
+#include "TribesGame.TrProj_Mine.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

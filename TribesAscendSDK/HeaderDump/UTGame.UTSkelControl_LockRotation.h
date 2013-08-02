@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSkelControl_LockRotation;
+}
 #include "UDKBase.UDKSkelControl_LockRotation.h"
 namespace UnrealScript
 {

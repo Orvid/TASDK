@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleColor.h"
+namespace UnrealScript
+{
+	class ParticleModuleColor_Seeded;
+}
 #include "Engine.ParticleModule.ParticleRandomSeedInfo.h"
+#include "Engine.ParticleModuleColor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

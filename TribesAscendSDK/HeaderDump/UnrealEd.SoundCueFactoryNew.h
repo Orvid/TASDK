@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SoundCueFactoryNew;
+}
 #include "Core.Factory.h"
 namespace UnrealScript
 {

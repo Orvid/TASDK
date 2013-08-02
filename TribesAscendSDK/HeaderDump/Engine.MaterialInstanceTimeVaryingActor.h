@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialInstanceTimeVaryingActor;
+}
 #include "Engine.Actor.h"
 #include "Engine.MaterialInstanceTimeVarying.h"
 #define ADD_OBJECT(x, y, offset) \

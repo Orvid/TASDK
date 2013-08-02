@@ -1,25 +1,28 @@
 #pragma once
+namespace UnrealScript
+{
+	class SkeletalMeshActor;
+}
 #include "Engine.Actor.h"
-#include "Engine.SeqAct_Toggle.h"
-#include "Engine.SkeletalMeshActor.SkelMeshActorControlTarget.h"
-#include "Engine.SkeletalMesh.h"
-#include "Engine.InterpGroup.h"
-#include "Engine.SeqAct_SetMaterial.h"
-#include "Engine.MaterialInterface.h"
-#include "Core.Object.Vector.h"
-#include "Engine.FaceFXAnimSet.h"
-#include "Engine.SoundCue.h"
 #include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.SeqAct_PlayFaceFXAnim.h"
-#include "Engine.FaceFXAsset.h"
-#include "Engine.SeqAct_AttachToActor.h"
-#include "Engine.SeqAct_SetMesh.h"
-#include "Engine.SeqAct_UpdatePhysBonesFromAnim.h"
-#include "Engine.SeqAct_SetSkelControlTarget.h"
-#include "Engine.Controller.h"
-#include "Engine.SkeletalMeshActor.CheckpointRecord.h"
-#include "Engine.AnimNotify_PlayParticleEffect.h"
 #include "Engine.AnimNotify_ForceField.h"
+#include "Engine.AnimNotify_PlayParticleEffect.h"
+#include "Engine.Controller.h"
+#include "Engine.FaceFXAnimSet.h"
+#include "Engine.FaceFXAsset.h"
+#include "Engine.InterpGroup.h"
+#include "Engine.MaterialInterface.h"
+#include "Engine.SeqAct_AttachToActor.h"
+#include "Engine.SeqAct_PlayFaceFXAnim.h"
+#include "Engine.SeqAct_SetMaterial.h"
+#include "Engine.SeqAct_SetMesh.h"
+#include "Engine.SeqAct_SetSkelControlTarget.h"
+#include "Engine.SeqAct_Toggle.h"
+#include "Engine.SeqAct_UpdatePhysBonesFromAnim.h"
+#include "Engine.SkeletalMesh.h"
+#include "Engine.SkeletalMeshActor.CheckpointRecord.h"
+#include "Engine.SkeletalMeshActor.SkelMeshActorControlTarget.h"
+#include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -43,6 +46,8 @@ namespace UnrealScript
 	class SkeletalMeshActor : public Actor
 	{
 	public:
+		typedef SkeletalMeshActor__SkelMeshActorControlTarget SkelMeshActorControlTarget;
+		typedef SkeletalMeshActor__CheckpointRecord CheckpointRecord;
 		ADD_STRUCT(ScriptArray<SkeletalMeshActor__SkelMeshActorControlTarget>, ControlTargets, 500)
 		ADD_STRUCT(ScriptArray<class InterpGroup*>, InterpGroupList, 512)
 		ADD_STRUCT(float, SavedCurrentTime, 532)

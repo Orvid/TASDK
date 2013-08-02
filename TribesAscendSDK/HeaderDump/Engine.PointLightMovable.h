@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PointLightMovable;
+}
 #include "Engine.PointLight.h"
 namespace UnrealScript
 {

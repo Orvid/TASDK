@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class NxCylindricalForceFieldCapsule;
+}
 #include "Engine.NxCylindricalForceField.h"
 namespace UnrealScript
 {

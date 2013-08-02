@@ -1,12 +1,16 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTTeamInfo;
+}
 #include "Core.Object.Color.h"
-#include "UTGame.UTCarriedObject.h"
-#include "Engine.TeamInfo.h"
-#include "UTGame.UTTeamAI.h"
-#include "UTGame.UTGameObjective.h"
-#include "UTGame.UTCharInfo.CharacterInfo.h"
 #include "Engine.Controller.h"
+#include "Engine.TeamInfo.h"
 #include "UTGame.UTBot.h"
+#include "UTGame.UTCarriedObject.h"
+#include "UTGame.UTCharInfo.CharacterInfo.h"
+#include "UTGame.UTGameObjective.h"
+#include "UTGame.UTTeamAI.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

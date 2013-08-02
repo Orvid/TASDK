@@ -1,8 +1,12 @@
 #pragma once
-#include "UTGame.UTGFxTweenableMoviePlayer.h"
+namespace UnrealScript
+{
+	class GFxUI_PauseMenu;
+}
 #include "GFxUI.GFxClikWidget.h"
 #include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
+#include "UTGame.UTGFxTweenableMoviePlayer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

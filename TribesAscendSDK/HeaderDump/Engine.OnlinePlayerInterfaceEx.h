@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlinePlayerInterfaceEx;
+}
 #include "Core.Interface.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
 namespace UnrealScript

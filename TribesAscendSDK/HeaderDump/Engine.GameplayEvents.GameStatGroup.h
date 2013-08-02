@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct GameplayEvents__GameStatGroup;
+}
 #include "Engine.GameplayEvents.EGameStatGroups.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

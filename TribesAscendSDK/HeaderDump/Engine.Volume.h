@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.Brush.h"
+namespace UnrealScript
+{
+	class Volume;
+}
 #include "Engine.Actor.h"
+#include "Engine.Brush.h"
 #include "Engine.HUD.h"
-#include "Core.Object.Vector.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSeqAct_ScriptedVoiceMessage;
+}
 #include "Engine.SequenceAction.h"
 #include "Engine.SoundNodeWave.h"
 #define ADD_STRUCT(x, y, offset) \

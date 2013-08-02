@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_DrawText;
+}
 #include "Engine.HUD.KismetDrawTextInfo.h"
 #include "Engine.SequenceAction.h"
 #define ADD_BOOL(name, offset, mask) \

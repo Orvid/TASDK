@@ -1,5 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class MusicTrackDataStructures;
+}
 #include "Core.Object.h"
+#include "Engine.MusicTrackDataStructures.MusicTrackStruct.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,6 +28,7 @@ namespace UnrealScript
 	class MusicTrackDataStructures : public Object
 	{
 	public:
+		typedef MusicTrackDataStructures__MusicTrackStruct MusicTrackStruct;
 	};
 }
 #undef ADD_BOOL

@@ -1,8 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class NavMeshPath_MinDistBetweenSpecsOfType;
+}
 #include "Engine.NavMeshPathConstraint.h"
-#include "Engine.Pylon.ENavMeshEdgeType.h"
 #include "Engine.NavigationHandle.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Pylon.ENavMeshEdgeType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

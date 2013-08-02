@@ -1,12 +1,15 @@
 #pragma once
-#include "Engine.Emitter.CheckpointRecord.h"
+namespace UnrealScript
+{
+	class Emitter;
+}
+#include "Core.Object.Color.h"
 #include "Engine.Actor.h"
-#include "Engine.SeqAct_Toggle.h"
+#include "Engine.Emitter.CheckpointRecord.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.SeqAct_ParticleEventGenerator.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Color.h"
 #include "Engine.SeqAct_SetParticleSysParam.h"
+#include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +25,7 @@ namespace UnrealScript
 	class Emitter : public Actor
 	{
 	public:
+		typedef Emitter__CheckpointRecord CheckpointRecord;
 		ADD_BOOL(bCurrentlyActive, 484, 0x4)
 		ADD_BOOL(bPostUpdateTickGroup, 484, 0x2)
 		ADD_BOOL(bDestroyOnSystemFinish, 484, 0x1)

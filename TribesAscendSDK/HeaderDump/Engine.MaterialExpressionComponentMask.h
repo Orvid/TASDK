@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpressionComponentMask;
+}
 #include "Engine.MaterialExpression.h"
 #include "Engine.MaterialExpression.ExpressionInput.h"
 #define ADD_BOOL(name, offset, mask) \

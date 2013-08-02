@@ -1,12 +1,15 @@
 #pragma once
-#include "Engine.PlayerController.h"
-#include "Engine.Pawn.h"
-#include "Engine.Info.h"
+namespace UnrealScript
+{
+	class Mutator;
+}
 #include "Engine.Actor.h"
 #include "Engine.Controller.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Info.h"
 #include "Engine.NavigationPoint.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
 #include "Engine.Vehicle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

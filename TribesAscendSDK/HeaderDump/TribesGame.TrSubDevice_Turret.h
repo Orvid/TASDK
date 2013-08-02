@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrSubDevice_Turret;
+}
 #include "TribesGame.TrSubDevice.h"
 namespace UnrealScript
 {

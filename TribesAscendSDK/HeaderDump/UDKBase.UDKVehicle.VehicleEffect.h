@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UDKVehicle__VehicleEffect;
+}
 #include "Engine.ParticleSystem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

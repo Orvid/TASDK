@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxEngine;
+}
 #include "Core.Object.h"
 #include "GFxUI.GFxEngine.GCReference.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -14,6 +18,7 @@ namespace UnrealScript
 	class GFxEngine : public Object
 	{
 	public:
+		typedef GFxEngine__GCReference GCReference;
 		ADD_STRUCT(ScriptArray<GFxEngine__GCReference>, GCReferences, 60)
 		ADD_STRUCT(int, RefCount, 72)
 	};

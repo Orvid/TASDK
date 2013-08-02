@@ -1,9 +1,12 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class UTTeleporterCustomMesh;
+}
+#include "Engine.Actor.h"
+#include "Engine.SoundCue.h"
 #include "Engine.Teleporter.h"
 #include "UTGame.UTPawn.h"
-#include "Engine.SoundCue.h"
-#include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.InterpTrackFloatBase.h"
+namespace UnrealScript
+{
+	class InterpTrackAnimControl;
+}
 #include "Engine.AnimSet.h"
 #include "Engine.InterpTrackAnimControl.AnimControlTrackKey.h"
+#include "Engine.InterpTrackFloatBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class InterpTrackAnimControl : public InterpTrackFloatBase
 	{
 	public:
+		typedef InterpTrackAnimControl__AnimControlTrackKey AnimControlTrackKey;
 		ADD_STRUCT(ScriptArray<class AnimSet*>, AnimSets, 148)
 		ADD_STRUCT(ScriptArray<InterpTrackAnimControl__AnimControlTrackKey>, AnimSeqs, 168)
 		ADD_BOOL(bEnableRootMotion, 180, 0x1)

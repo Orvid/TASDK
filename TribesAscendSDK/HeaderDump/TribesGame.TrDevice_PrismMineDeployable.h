@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_PrismMineDeployable;
+}
 #include "TribesGame.TrDevice_Claymore.h"
 namespace UnrealScript
 {

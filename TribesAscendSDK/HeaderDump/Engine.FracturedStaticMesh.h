@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.StaticMesh.h"
-#include "Engine.ParticleSystem.h"
+namespace UnrealScript
+{
+	class FracturedStaticMesh;
+}
 #include "Engine.MaterialInterface.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.StaticMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

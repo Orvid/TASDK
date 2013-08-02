@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.InterpTrackVectorBase.h"
+namespace UnrealScript
+{
+	class InterpTrackVectorMaterialParam;
+}
 #include "Engine.EngineTypes.MaterialReferenceList.h"
+#include "Engine.InterpTrackVectorBase.h"
 #include "Engine.MaterialInterface.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

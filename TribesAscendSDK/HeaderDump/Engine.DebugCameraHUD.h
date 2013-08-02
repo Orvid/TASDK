@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DebugCameraHUD;
+}
 #include "Engine.HUD.h"
 namespace UnrealScript
 {

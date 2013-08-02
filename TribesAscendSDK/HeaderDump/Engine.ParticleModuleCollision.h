@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleCollision;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #include "Engine.ParticleModuleCollisionBase.h"
 #include "Engine.ParticleModuleCollisionBase.EParticleCollisionComplete.h"
-#include "Core.DistributionVector.RawDistributionVector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

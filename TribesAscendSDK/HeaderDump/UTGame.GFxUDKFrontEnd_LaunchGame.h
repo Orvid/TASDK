@@ -1,11 +1,15 @@
 #pragma once
-#include "UTGame.GFxUDKFrontEnd_Screen.h"
-#include "GFxUI.GFxClikWidget.h"
-#include "UTGame.GFxUDKFrontEnd_LaunchGame.Option.h"
-#include "GFxUI.GFxClikWidget.EventData.h"
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_LaunchGame;
+}
 #include "Engine.UIDataStore_OnlineGameSettings.h"
-#include "UTGame.UTUIDataStore_MenuItems.h"
+#include "GFxUI.GFxClikWidget.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
+#include "UTGame.GFxUDKFrontEnd_LaunchGame.Option.h"
+#include "UTGame.GFxUDKFrontEnd_Screen.h"
+#include "UTGame.UTUIDataStore_MenuItems.h"
 #include "UTGame.UTUIDataStore_StringList.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class GFxUDKFrontEnd_LaunchGame : public GFxUDKFrontEnd_Screen
 	{
 	public:
+		typedef GFxUDKFrontEnd_LaunchGame__Option Option;
 		static const float MarkupForNoMapImage;
 		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_LaunchGame__Option>, ListOptions, 292)
 		ADD_OBJECT(GFxObject, MutatorsLabelTxt, 380)

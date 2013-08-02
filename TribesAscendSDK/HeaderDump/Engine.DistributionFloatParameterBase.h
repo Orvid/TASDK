@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DistributionFloatParameterBase;
+}
 #include "Engine.DistributionFloatConstant.h"
 #include "Engine.DistributionFloatParameterBase.DistributionParamMode.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class DistributionFloatParameterBase : public DistributionFloatConstant
 	{
 	public:
+		typedef DistributionFloatParameterBase__DistributionParamMode DistributionParamMode;
 		ADD_STRUCT(DistributionFloatParameterBase__DistributionParamMode, ParamMode, 108)
 		ADD_STRUCT(ScriptName, ParameterName, 84)
 		ADD_STRUCT(float, MaxOutput, 104)

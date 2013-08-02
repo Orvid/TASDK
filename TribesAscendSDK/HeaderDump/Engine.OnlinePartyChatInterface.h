@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlinePartyChatInterface;
+}
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.OnlineSubsystem.OnlinePartyMember.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 namespace UnrealScript
 {
 	class OnlinePartyChatInterface : public Interface

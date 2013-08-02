@@ -1,6 +1,10 @@
 #pragma once
-#include "UDKBase.UDKGameSettingsCommon.h"
+namespace UnrealScript
+{
+	class UTGameSettingsCommon;
+}
 #include "Engine.GameInfo.h"
+#include "UDKBase.UDKGameSettingsCommon.h"
 #include "UTGame.UTUIDataStore_MenuItems.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

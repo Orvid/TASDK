@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.NavMeshPathConstraint.h"
+namespace UnrealScript
+{
+	class NavMeshPath_SameCoverLink;
+}
 #include "Engine.CoverLink.h"
+#include "Engine.NavMeshPathConstraint.h"
 #include "Engine.NavigationHandle.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

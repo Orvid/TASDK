@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTQueuedAnnouncement;
+}
+#include "Core.Object.h"
 #include "Engine.Info.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "Core.Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

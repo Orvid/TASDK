@@ -1,11 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrEffectForm;
+}
 #include "Core.Object.h"
-#include "TribesGame.TrObject.EffectFormPriority.h"
 #include "Engine.Material.h"
-#include "TribesGame.TrObject.EffectFormOverwrite.h"
-#include "TribesGame.TrObject.EffectFormMatTypes.h"
-#include "Engine.SoundCue.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.SoundCue.h"
+#include "TribesGame.TrObject.EffectFormMatTypes.h"
+#include "TribesGame.TrObject.EffectFormOverwrite.h"
+#include "TribesGame.TrObject.EffectFormPriority.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

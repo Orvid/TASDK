@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct PrimitiveComponent__RBCollisionChannelContainer;
+}
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -16,8 +20,6 @@ namespace UnrealScript
 	public:
 		ADD_BOOL(Default, 0, 0x1)
 		ADD_BOOL(Nothing, 0, 0x2)
-		ADD_BOOL(Pawn, 0, 0x4)
-		ADD_BOOL(Vehicle, 0, 0x8)
 		ADD_BOOL(Water, 0, 0x10)
 		ADD_BOOL(GameplayPhysics, 0, 0x20)
 		ADD_BOOL(EffectPhysics, 0, 0x40)

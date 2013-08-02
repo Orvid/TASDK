@@ -1,31 +1,35 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "UDKBase.UDKVehicle.VehicleEffect.h"
-#include "UDKBase.UDKPawn.MaterialParticleEffect.h"
-#include "UDKBase.UDKVehicleBase.h"
-#include "UDKBase.UDKVehicle.BurnOutDatum.h"
-#include "UDKBase.UDKPawn.MaterialSoundEffect.h"
-#include "UDKBase.UDKVehicle.VehicleAnim.h"
-#include "UDKBase.UDKVehicle.VehicleSeat.h"
+namespace UnrealScript
+{
+	class UDKVehicle;
+}
+#include "Engine.Actor.h"
+#include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.MaterialInstanceConstant.h"
 #include "Engine.ParticleSystem.h"
-#include "UDKBase.UDKVehicle.VehicleSound.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
+#include "Engine.SoundCue.h"
+#include "Engine.TeamInfo.h"
+#include "UDKBase.UDKBot.h"
+#include "UDKBase.UDKForcedDirectionVolume.h"
+#include "UDKBase.UDKPawn.MaterialParticleEffect.h"
+#include "UDKBase.UDKPawn.MaterialSoundEffect.h"
+#include "UDKBase.UDKPawn.UTTakeHitInfo.h"
+#include "UDKBase.UDKPlayerController.h"
+#include "UDKBase.UDKProjectile.h"
 #include "UDKBase.UDKSkelControl_Damage.h"
+#include "UDKBase.UDKVehicle.BurnOutDatum.h"
 #include "UDKBase.UDKVehicle.DamageParamScales.h"
 #include "UDKBase.UDKVehicle.FDamageMorphTargets.h"
-#include "UDKBase.UDKBot.h"
-#include "Engine.Controller.h"
-#include "UDKBase.UDKPawn.UTTakeHitInfo.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Engine.SoundCue.h"
-#include "Core.Object.Rotator.h"
-#include "UDKBase.UDKPlayerController.h"
-#include "UDKBase.UDKForcedDirectionVolume.h"
-#include "Engine.Pawn.h"
-#include "UDKBase.UDKProjectile.h"
-#include "Engine.TeamInfo.h"
-#include "Engine.Actor.h"
-#include "Engine.PlayerController.h"
-#include "Engine.Canvas.h"
+#include "UDKBase.UDKVehicle.VehicleAnim.h"
+#include "UDKBase.UDKVehicle.VehicleEffect.h"
+#include "UDKBase.UDKVehicle.VehicleSeat.h"
+#include "UDKBase.UDKVehicle.VehicleSeatAnimInfo.h"
+#include "UDKBase.UDKVehicle.VehicleSound.h"
+#include "UDKBase.UDKVehicle.WeaponEffectInfo.h"
+#include "UDKBase.UDKVehicleBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -49,6 +53,15 @@ namespace UnrealScript
 	class UDKVehicle : public UDKVehicleBase
 	{
 	public:
+		typedef UDKVehicle__BurnOutDatum BurnOutDatum;
+		typedef UDKVehicle__VehicleSeat VehicleSeat;
+		typedef UDKVehicle__VehicleAnim VehicleAnim;
+		typedef UDKVehicle__VehicleSound VehicleSound;
+		typedef UDKVehicle__DamageParamScales DamageParamScales;
+		typedef UDKVehicle__FDamageMorphTargets FDamageMorphTargets;
+		typedef UDKVehicle__VehicleEffect VehicleEffect;
+		typedef UDKVehicle__WeaponEffectInfo WeaponEffectInfo;
+		typedef UDKVehicle__VehicleSeatAnimInfo VehicleSeatAnimInfo;
 		ADD_BOOL(bAllowedExit, 1548, 0x8000)
 		ADD_BOOL(bEjectKilledBodies, 1548, 0x1)
 		ADD_STRUCT(ScriptArray<UDKVehicle__BurnOutDatum>, BurnOutMaterialInstances, 1556)

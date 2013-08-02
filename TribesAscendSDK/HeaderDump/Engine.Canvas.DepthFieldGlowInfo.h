@@ -1,6 +1,10 @@
 #pragma once
-#include "Core.Object.Vector2D.h"
+namespace UnrealScript
+{
+	struct Canvas__DepthFieldGlowInfo;
+}
 #include "Core.Object.LinearColor.h"
+#include "Core.Object.Vector2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

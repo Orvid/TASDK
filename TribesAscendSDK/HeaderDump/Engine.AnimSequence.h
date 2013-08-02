@@ -1,19 +1,25 @@
 #pragma once
-#include "Engine.AnimationCompressionAlgorithm.h"
-#include "Engine.AnimSequence.AnimNotifyEvent.h"
+namespace UnrealScript
+{
+	class AnimSequence;
+}
 #include "Core.Object.h"
+#include "Core.Object.BoneAtom.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.AnimMetaData.h"
-#include "Engine.AnimSequence.SkelControlModifier.h"
-#include "Engine.AnimSequence.TranslationTrack.h"
-#include "Engine.AnimSequence.RawAnimSequenceTrack.h"
-#include "Engine.AnimSequence.CurveTrack.h"
-#include "Engine.AnimSequence.RotationTrack.h"
+#include "Engine.AnimNotify.h"
+#include "Engine.AnimSequence.AnimNotifyEvent.h"
+#include "Engine.AnimSequence.AnimTag.h"
 #include "Engine.AnimSequence.AnimationCompressionFormat.h"
 #include "Engine.AnimSequence.AnimationKeyFormat.h"
-#include "Core.Object.Pointer.h"
-#include "Core.Object.BoneAtom.h"
-#include "Engine.AnimSequence.AnimTag.h"
-#include "Engine.AnimNotify.h"
+#include "Engine.AnimSequence.CompressedTrack.h"
+#include "Engine.AnimSequence.CurveTrack.h"
+#include "Engine.AnimSequence.RawAnimSequenceTrack.h"
+#include "Engine.AnimSequence.RotationTrack.h"
+#include "Engine.AnimSequence.SkelControlModifier.h"
+#include "Engine.AnimSequence.TimeModifier.h"
+#include "Engine.AnimSequence.TranslationTrack.h"
+#include "Engine.AnimationCompressionAlgorithm.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -37,6 +43,17 @@ namespace UnrealScript
 	class AnimSequence : public Object
 	{
 	public:
+		typedef AnimSequence__AnimationCompressionFormat AnimationCompressionFormat;
+		typedef AnimSequence__AnimationKeyFormat AnimationKeyFormat;
+		typedef AnimSequence__CompressedTrack CompressedTrack;
+		typedef AnimSequence__AnimTag AnimTag;
+		typedef AnimSequence__CurveTrack CurveTrack;
+		typedef AnimSequence__RotationTrack RotationTrack;
+		typedef AnimSequence__TranslationTrack TranslationTrack;
+		typedef AnimSequence__SkelControlModifier SkelControlModifier;
+		typedef AnimSequence__TimeModifier TimeModifier;
+		typedef AnimSequence__AnimNotifyEvent AnimNotifyEvent;
+		typedef AnimSequence__RawAnimSequenceTrack RawAnimSequenceTrack;
 		ADD_STRUCT(float, SequenceLength, 104)
 		ADD_STRUCT(float, RateScale, 112)
 		ADD_STRUCT(ScriptName, SequenceName, 60)

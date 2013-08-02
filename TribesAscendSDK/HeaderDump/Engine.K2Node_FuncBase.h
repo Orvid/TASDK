@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.K2Node_Code.h"
+namespace UnrealScript
+{
+	class K2Node_FuncBase;
+}
 #include "Core.Function.h"
+#include "Engine.K2Node_Code.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTGFxTweenableMoviePlayer.TweenType.h"
-#include "GFxUI.GFxObject.ASDisplayInfo.h"
+namespace UnrealScript
+{
+	struct UTGFxTweenableMoviePlayer__GFxTween;
+}
 #include "GFxUI.GFxObject.h"
+#include "GFxUI.GFxObject.ASDisplayInfo.h"
+#include "UTGame.UTGFxTweenableMoviePlayer.TweenType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

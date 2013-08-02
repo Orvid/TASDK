@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.PlayerController.h"
-#include "TribesGame.TrPawn.h"
+namespace UnrealScript
+{
+	class TrCamera_Spectator;
+}
 #include "Engine.Camera.h"
-#include "TribesGame.TrFlagBase.h"
 #include "Engine.Camera.TViewTarget.h"
+#include "Engine.PlayerController.h"
+#include "TribesGame.TrFlagBase.h"
+#include "TribesGame.TrPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

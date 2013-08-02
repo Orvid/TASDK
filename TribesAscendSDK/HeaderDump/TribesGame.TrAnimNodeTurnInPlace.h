@@ -1,11 +1,14 @@
 #pragma once
-#include "TribesGame.TrAnimNodeTurnInPlace.ForcedTransitionAngle.h"
+namespace UnrealScript
+{
+	class TrAnimNodeTurnInPlace;
+}
 #include "Engine.AnimNodeBlend.h"
 #include "TribesGame.TrAnimNodeAimOffset.h"
-#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrAnimNodeTurnInPlace.ForcedTransitionAngle.h"
 #include "TribesGame.TrAnimNodeTurnInPlace.RotTransitionInfo.h"
 #include "TribesGame.TrAnimNodeTurnInPlace_Player.h"
-#include "Core.Object.Rotator.h"
+#include "TribesGame.TrPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,6 +32,8 @@ namespace UnrealScript
 	class TrAnimNodeTurnInPlace : public AnimNodeBlend
 	{
 	public:
+		typedef TrAnimNodeTurnInPlace__ForcedTransitionAngle ForcedTransitionAngle;
+		typedef TrAnimNodeTurnInPlace__RotTransitionInfo RotTransitionInfo;
 		ADD_STRUCT(ScriptArray<class TrAnimNodeAimOffset*>, m_OffsetNodes, 296)
 		ADD_STRUCT(ScriptArray<TrAnimNodeTurnInPlace__RotTransitionInfo>, m_RotTransitions, 308)
 		ADD_STRUCT(ScriptArray<class TrAnimNodeTurnInPlace_Player*>, m_PlayerNodes, 348)

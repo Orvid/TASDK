@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MorphNodeWeightBase;
+}
 #include "Engine.MorphNodeBase.h"
 #include "Engine.MorphNodeWeightBase.MorphNodeConn.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class MorphNodeWeightBase : public MorphNodeBase
 	{
 	public:
+		typedef MorphNodeWeightBase__MorphNodeConn MorphNodeConn;
 		ADD_STRUCT(ScriptArray<MorphNodeWeightBase__MorphNodeConn>, NodeConns, 108)
 	};
 }

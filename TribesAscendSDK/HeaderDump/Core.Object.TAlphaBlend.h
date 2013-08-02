@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Object__TAlphaBlend;
+}
 #include "Core.Object.AlphaBlendType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

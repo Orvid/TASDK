@@ -1,9 +1,12 @@
 #pragma once
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class Projectile;
+}
 #include "Engine.Actor.h"
+#include "Engine.Controller.h"
 #include "Engine.FluidSurfaceActor.h"
 #include "Engine.SoundCue.h"
-#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

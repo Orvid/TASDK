@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UTDataStore_GameSearchDM__GameSearchSettingsStorage;
+}
 #include "UTGame.UTDataStore_GameSearchDM.PersistentLocalizedSettingValue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

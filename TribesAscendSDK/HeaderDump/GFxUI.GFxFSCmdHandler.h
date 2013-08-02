@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxFSCmdHandler;
+}
 #include "Core.Object.h"
 #include "GFxUI.GFxEvent_FSCommand.h"
 #include "GFxUI.GFxMoviePlayer.h"

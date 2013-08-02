@@ -1,14 +1,17 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDeployable_Turret;
+}
 #include "Core.Object.Color.h"
-#include "Engine.SkelControlLookAt.h"
-#include "TribesGame.TrDeployable.h"
-#include "GameFramework.GameSkelCtrl_Recoil.h"
-#include "TribesGame.TrDeployable_Turret.IgnorePawn.h"
-#include "Engine.SoundCue.h"
 #include "Engine.Pawn.h"
-#include "Engine.Weapon.h"
-#include "Core.Object.Vector.h"
+#include "Engine.SkelControlLookAt.h"
+#include "Engine.SoundCue.h"
 #include "Engine.Texture2D.h"
+#include "Engine.Weapon.h"
+#include "GameFramework.GameSkelCtrl_Recoil.h"
+#include "TribesGame.TrDeployable.h"
+#include "TribesGame.TrDeployable_Turret.IgnorePawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,6 +35,7 @@ namespace UnrealScript
 	class TrDeployable_Turret : public TrDeployable
 	{
 	public:
+		typedef TrDeployable_Turret__IgnorePawn IgnorePawn;
 		ADD_STRUCT(ScriptArray<class SkelControlLookAt*>, m_LookAtSkelControls, 1528)
 		ADD_STRUCT(ScriptArray<ScriptName>, m_LookAtSkelControlNames, 1540)
 		ADD_STRUCT(ScriptArray<class GameSkelCtrl_Recoil*>, m_RecoilSkelControls, 1552)

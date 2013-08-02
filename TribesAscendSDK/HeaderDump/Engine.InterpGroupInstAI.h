@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.InterpGroupInst.h"
+namespace UnrealScript
+{
+	class InterpGroupInstAI;
+}
 #include "Engine.Actor.EPhysics.h"
 #include "Engine.InterpGroupAI.h"
+#include "Engine.InterpGroupInst.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

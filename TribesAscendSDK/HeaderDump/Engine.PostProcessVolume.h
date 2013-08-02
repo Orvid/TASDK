@@ -1,7 +1,12 @@
 #pragma once
-#include "Engine.Volume.h"
+namespace UnrealScript
+{
+	class PostProcessVolume;
+}
+#include "Engine.PostProcessVolume.LUTBlender.h"
 #include "Engine.PostProcessVolume.PostProcessSettings.h"
 #include "Engine.SeqAct_Toggle.h"
+#include "Engine.Volume.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +30,8 @@ namespace UnrealScript
 	class PostProcessVolume : public Volume
 	{
 	public:
+		typedef PostProcessVolume__LUTBlender LUTBlender;
+		typedef PostProcessVolume__PostProcessSettings PostProcessSettings;
 		ADD_BOOL(bEnabled, 748, 0x1)
 		ADD_OBJECT(PostProcessVolume, NextLowerPriorityVolume, 744)
 		ADD_STRUCT(PostProcessVolume__PostProcessSettings, Settings, 524)

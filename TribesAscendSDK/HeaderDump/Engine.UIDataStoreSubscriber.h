@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataStoreSubscriber;
+}
 #include "Core.Interface.h"
-#include "Engine.UIDataStore.h"
 #include "Engine.UIDataProvider.h"
+#include "Engine.UIDataStore.h"
 namespace UnrealScript
 {
 	class UIDataStoreSubscriber : public Interface

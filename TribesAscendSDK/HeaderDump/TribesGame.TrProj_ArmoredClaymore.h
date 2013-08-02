@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrProj_Mine.h"
+namespace UnrealScript
+{
+	class TrProj_ArmoredClaymore;
+}
 #include "Engine.Pawn.h"
+#include "TribesGame.TrProj_Mine.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

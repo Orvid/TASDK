@@ -1,7 +1,11 @@
 #pragma once
-#include "UDKBase.UDKMapMusicInfo.h"
-#include "TribesGame.TrMapMusicInfo.TrMapStingers.h"
+namespace UnrealScript
+{
+	class TrMapMusicInfo;
+}
 #include "TribesGame.TrMapMusicInfo.TrMapMusic.h"
+#include "TribesGame.TrMapMusicInfo.TrMapStingers.h"
+#include "UDKBase.UDKMapMusicInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,6 +19,8 @@ namespace UnrealScript
 	class TrMapMusicInfo : public UDKMapMusicInfo
 	{
 	public:
+		typedef TrMapMusicInfo__TrMapStingers TrMapStingers;
+		typedef TrMapMusicInfo__TrMapMusic TrMapMusic;
 		ADD_STRUCT(TrMapMusicInfo__TrMapStingers, m_MapStingers, 252)
 		ADD_STRUCT(TrMapMusicInfo__TrMapMusic, m_MapMusic, 220)
 	};

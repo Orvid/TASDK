@@ -1,8 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKSkelControl_TurretConstrained;
+}
 #include "Engine.SkelControlSingleBone.h"
-#include "UDKBase.UDKSkelControl_TurretConstrained.TurretStepData.h"
-#include "Core.Object.Rotator.h"
 #include "UDKBase.UDKSkelControl_TurretConstrained.TurretConstraintData.h"
+#include "UDKBase.UDKSkelControl_TurretConstrained.TurretStepData.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +25,8 @@ namespace UnrealScript
 	class UDKSkelControl_TurretConstrained : public SkelControlSingleBone
 	{
 	public:
+		typedef UDKSkelControl_TurretConstrained__TurretStepData TurretStepData;
+		typedef UDKSkelControl_TurretConstrained__TurretConstraintData TurretConstraintData;
 		ADD_STRUCT(ScriptArray<UDKSkelControl_TurretConstrained__TurretStepData>, Steps, 264)
 		ADD_STRUCT(Rotator, ConstrainedBoneRotation, 300)
 		ADD_STRUCT(int, AssociatedSeatIndex, 296)

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleEventReceiverBase;
+}
 #include "Engine.ParticleModuleEventBase.h"
 #include "Engine.ParticleSystemComponent.EParticleEventType.h"
 #define ADD_STRUCT(x, y, offset) \

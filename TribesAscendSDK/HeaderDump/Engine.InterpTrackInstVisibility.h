@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackInstVisibility;
+}
 #include "Engine.InterpTrackInst.h"
 #include "Engine.InterpTrackVisibility.EVisibilityTrackAction.h"
 #define ADD_STRUCT(x, y, offset) \

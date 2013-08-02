@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class FogVolumeDensityComponent;
+}
 #include "Core.Object.LinearColor.h"
-#include "Engine.ActorComponent.h"
 #include "Engine.Actor.h"
+#include "Engine.ActorComponent.h"
 #include "Engine.MaterialInterface.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

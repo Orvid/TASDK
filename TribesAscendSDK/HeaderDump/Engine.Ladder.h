@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.NavigationPoint.h"
+namespace UnrealScript
+{
+	class Ladder;
+}
 #include "Engine.LadderVolume.h"
+#include "Engine.NavigationPoint.h"
 #include "Engine.Pawn.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

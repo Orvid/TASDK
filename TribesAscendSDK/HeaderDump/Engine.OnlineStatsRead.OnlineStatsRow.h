@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
+namespace UnrealScript
+{
+	struct OnlineStatsRead__OnlineStatsRow;
+}
 #include "Engine.OnlineStatsRead.OnlineStatsColumn.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.Settings.SettingsData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

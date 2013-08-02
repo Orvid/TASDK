@@ -1,10 +1,14 @@
 #pragma once
-#include "UTGame.UTLocalMessage.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
-#include "Engine.PlayerController.h"
+namespace UnrealScript
+{
+	class UTTimerMessage;
+}
 #include "Core.Object.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
 #include "Engine.SoundNodeWave.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+#include "UTGame.UTLocalMessage.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

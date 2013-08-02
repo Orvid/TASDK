@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrHUDSettings;
+}
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.TrHUDSettings.EHUDSettingType.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -14,6 +18,7 @@ namespace UnrealScript
 	class TrHUDSettings : public GFxObject
 	{
 	public:
+		typedef TrHUDSettings__EHUDSettingType EHUDSettingType;
 		ADD_STRUCT(int, SettingsCount, 120)
 		ADD_OBJECT(GFxObject, SettingsList, 124)
 		float GetCurrentValue(TrHUDSettings__EHUDSettingType Index)

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrSeqAct_PlayVGSCommand;
+}
 #include "Engine.SequenceAction.h"
 #include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #define ADD_STRUCT(x, y, offset) \

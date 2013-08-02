@@ -1,25 +1,28 @@
 #pragma once
-#include "Engine.OnlineSubsystem.ELoginStatus.h"
-#include "OnlineSubsystemMcts.OnlineGameInterfaceMcts.h"
-#include "Engine.OnlineSubsystem.OnlineFriendMessage.h"
-#include "IpDrv.OnlineSubsystemCommonImpl.h"
-#include "OnlineSubsystemMcts.OnlineSubsystemMcts.ControllerConnectionState.h"
-#include "OnlineSubsystemMcts.OnlineVoiceInterfaceMcts.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "Engine.OnlineSubsystem.ENetworkNotificationPosition.h"
-#include "Engine.OnlineSubsystem.EFeaturePrivilegeLevel.h"
-#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
-#include "Engine.Settings.SettingsProperty.h"
-#include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
-#include "Engine.OnlineSubsystem.FriendsQuery.h"
-#include "Engine.OnlineSubsystem.ENATType.h"
-#include "Core.Object.QWord.h"
-#include "PlatformCommon.TgPlayerProfile.h"
+namespace UnrealScript
+{
+	class OnlineSubsystemMcts;
+}
 #include "Engine.OnlinePlayerStorage.h"
 #include "Engine.OnlineProfileSettings.h"
-#include "Engine.OnlineSubsystem.OnlineFriend.h"
-#include "Engine.Settings.LocalizedStringSetting.h"
 #include "Engine.OnlineSubsystem.AchievementDetails.h"
+#include "Engine.OnlineSubsystem.EFeaturePrivilegeLevel.h"
+#include "Engine.OnlineSubsystem.ELoginStatus.h"
+#include "Engine.OnlineSubsystem.ENATType.h"
+#include "Engine.OnlineSubsystem.ENetworkNotificationPosition.h"
+#include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.OnlineSubsystem.FriendsQuery.h"
+#include "Engine.OnlineSubsystem.OnlineFriend.h"
+#include "Engine.OnlineSubsystem.OnlineFriendMessage.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.Settings.LocalizedStringSetting.h"
+#include "Engine.Settings.SettingsProperty.h"
+#include "IpDrv.OnlineSubsystemCommonImpl.h"
+#include "OnlineSubsystemMcts.OnlineGameInterfaceMcts.h"
+#include "OnlineSubsystemMcts.OnlineSubsystemMcts.ControllerConnectionState.h"
+#include "OnlineSubsystemMcts.OnlineVoiceInterfaceMcts.h"
+#include "PlatformCommon.TgPlayerProfile.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -43,6 +46,7 @@ namespace UnrealScript
 	class OnlineSubsystemMcts : public OnlineSubsystemCommonImpl
 	{
 	public:
+		typedef OnlineSubsystemMcts__ControllerConnectionState ControllerConnectionState;
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, ConnectionStatusChangeDelegates, 316)

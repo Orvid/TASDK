@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GeomModifier_Lathe;
+}
 #include "UnrealEd.GeomModifier_Edit.h"
 namespace UnrealScript
 {

@@ -1,11 +1,14 @@
 #pragma once
-#include "Engine.MaterialInstanceConstant.h"
-#include "UTGame.UTCarriedObject.h"
-#include "Core.Object.Vector.h"
-#include "Engine.ParticleSystem.h"
-#include "Engine.PlayerController.h"
+namespace UnrealScript
+{
+	class UTCTFFlag;
+}
 #include "Engine.Actor.h"
 #include "Engine.Controller.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.PlayerController.h"
+#include "UTGame.UTCarriedObject.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

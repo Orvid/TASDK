@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Object__InterpCurvePointQuat;
+}
 #include "Core.Object.EInterpCurveMode.h"
 #include "Core.Object.Quat.h"
 #define ADD_STRUCT(x, y, offset) \

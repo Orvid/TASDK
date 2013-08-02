@@ -1,6 +1,11 @@
 #pragma once
-#include "Engine.Info.h"
+namespace UnrealScript
+{
+	class CoverGroup;
+}
 #include "Engine.Actor.ActorReference.h"
+#include "Engine.CoverGroup.ECoverGroupFillAction.h"
+#include "Engine.Info.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -11,6 +16,7 @@ namespace UnrealScript
 	class CoverGroup : public Info
 	{
 	public:
+		typedef CoverGroup__ECoverGroupFillAction ECoverGroupFillAction;
 		ADD_STRUCT(ScriptArray<Actor__ActorReference>, CoverLinkRefs, 476)
 		ADD_STRUCT(float, AutoSelectHeight, 492)
 		ADD_STRUCT(float, AutoSelectRadius, 488)

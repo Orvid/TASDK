@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.OnlineGameSettings.h"
-#include "Engine.OnlineSubsystem.OnlinePartyMember.h"
-#include "Engine.OnlineSubsystem.h"
+namespace UnrealScript
+{
+	class TrPartySettings;
+}
 #include "Engine.LocalPlayer.h"
+#include "Engine.OnlineGameSettings.h"
+#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.OnlinePartyMember.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

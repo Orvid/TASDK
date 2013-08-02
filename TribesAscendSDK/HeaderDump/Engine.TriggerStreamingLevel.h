@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.Trigger.h"
+namespace UnrealScript
+{
+	class TriggerStreamingLevel;
+}
 #include "Engine.Actor.h"
+#include "Engine.Trigger.h"
 #include "Engine.TriggerStreamingLevel.LevelStreamingData.h"
-#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +29,7 @@ namespace UnrealScript
 	class TriggerStreamingLevel : public Trigger
 	{
 	public:
+		typedef TriggerStreamingLevel__LevelStreamingData LevelStreamingData;
 		ADD_STRUCT(ScriptArray<TriggerStreamingLevel__LevelStreamingData>, Levels, 488)
 		void Touch(class Actor* Other, 
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!

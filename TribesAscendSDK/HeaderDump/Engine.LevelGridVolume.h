@@ -1,7 +1,12 @@
 #pragma once
-#include "Engine.Volume.h"
+namespace UnrealScript
+{
+	class LevelGridVolume;
+}
 #include "Engine.KMeshProps.KConvexElem.h"
+#include "Engine.LevelGridVolume.LevelGridCellCoordinate.h"
 #include "Engine.LevelGridVolume.LevelGridCellShape.h"
+#include "Engine.Volume.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,6 +16,8 @@ namespace UnrealScript
 	class LevelGridVolume : public Volume
 	{
 	public:
+		typedef LevelGridVolume__LevelGridCellShape LevelGridCellShape;
+		typedef LevelGridVolume__LevelGridCellCoordinate LevelGridCellCoordinate;
 		ADD_STRUCT(KMeshProps__KConvexElem, CellConvexElem, 556)
 		ADD_STRUCT(float, KeepLoadedRange, 552)
 		ADD_STRUCT(float, LoadingDistance, 548)

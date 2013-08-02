@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrRank_26;
+}
 #include "TribesGame.TrRank.h"
 namespace UnrealScript
 {

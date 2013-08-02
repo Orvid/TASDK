@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTHoldSpot;
+}
+#include "Engine.Actor.h"
 #include "Engine.NavigationPoint.h"
+#include "Engine.Pawn.h"
 #include "UTGame.UTDefensePoint.h"
 #include "UTGame.UTVehicle.h"
-#include "Engine.Actor.h"
-#include "Engine.Pawn.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

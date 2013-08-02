@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.StaticMeshComponent.h"
+namespace UnrealScript
+{
+	class InstancedStaticMeshComponent;
+}
 #include "Engine.InstancedStaticMeshComponent.InstancedStaticMeshInstanceData.h"
 #include "Engine.InstancedStaticMeshComponent.InstancedStaticMeshMappingInfo.h"
+#include "Engine.StaticMeshComponent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,6 +19,8 @@ namespace UnrealScript
 	class InstancedStaticMeshComponent : public StaticMeshComponent
 	{
 	public:
+		typedef InstancedStaticMeshComponent__InstancedStaticMeshInstanceData InstancedStaticMeshInstanceData;
+		typedef InstancedStaticMeshComponent__InstancedStaticMeshMappingInfo InstancedStaticMeshMappingInfo;
 		ADD_STRUCT(ScriptArray<InstancedStaticMeshComponent__InstancedStaticMeshInstanceData>, PerInstanceData, 608)
 		ADD_STRUCT(ScriptArray<InstancedStaticMeshComponent__InstancedStaticMeshInstanceData>, PerInstanceSMData, 620)
 		ADD_STRUCT(ScriptArray<InstancedStaticMeshComponent__InstancedStaticMeshMappingInfo>, CachedMappings, 640)

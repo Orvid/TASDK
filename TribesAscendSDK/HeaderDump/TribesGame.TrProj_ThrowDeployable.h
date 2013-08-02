@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrProj_Mine.h"
+namespace UnrealScript
+{
+	class TrProj_ThrowDeployable;
+}
 #include "TribesGame.TrDeployable.h"
+#include "TribesGame.TrProj_Mine.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

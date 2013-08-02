@@ -1,9 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrConsolePlayerInput;
+}
 #include "Engine.Actor.EDoubleClickDir.h"
 #include "Engine.Pawn.h"
 #include "TribesGame.TrPlayerInput.h"
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
 #include "UTGame.UTWeapon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

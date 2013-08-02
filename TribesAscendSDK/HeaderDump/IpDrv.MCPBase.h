@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MCPBase;
+}
 #include "Core.Object.h"
 #include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \

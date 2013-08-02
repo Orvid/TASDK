@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxUI_InventoryButton;
+}
 #include "GFxUI.GFxClikWidget.h"
 #include "GFxUI.GFxObject.h"
 #define ADD_STRUCT(x, y, offset) \

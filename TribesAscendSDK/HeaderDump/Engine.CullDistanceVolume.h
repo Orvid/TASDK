@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Volume.h"
+namespace UnrealScript
+{
+	class CullDistanceVolume;
+}
 #include "Engine.CullDistanceVolume.CullDistanceSizePair.h"
+#include "Engine.Volume.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class CullDistanceVolume : public Volume
 	{
 	public:
+		typedef CullDistanceVolume__CullDistanceSizePair CullDistanceSizePair;
 		ADD_STRUCT(ScriptArray<CullDistanceVolume__CullDistanceSizePair>, CullDistances, 520)
 		ADD_BOOL(bEnabled, 532, 0x1)
 	};

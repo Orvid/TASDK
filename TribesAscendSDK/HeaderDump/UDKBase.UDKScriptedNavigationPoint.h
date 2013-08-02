@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKScriptedNavigationPoint;
+}
 #include "Engine.NavigationPoint.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \

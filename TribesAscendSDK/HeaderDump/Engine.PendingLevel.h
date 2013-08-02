@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PendingLevel;
+}
 #include "Engine.LevelBase.h"
 namespace UnrealScript
 {

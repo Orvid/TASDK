@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNodeBlendMultiBone;
+}
 #include "Engine.AnimNodeBlendBase.h"
 #include "Engine.AnimNodeBlendMultiBone.ChildBoneBlendInfo.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class AnimNodeBlendMultiBone : public AnimNodeBlendBase
 	{
 	public:
+		typedef AnimNodeBlendMultiBone__ChildBoneBlendInfo ChildBoneBlendInfo;
 		ADD_STRUCT(ScriptArray<AnimNodeBlendMultiBone__ChildBoneBlendInfo>, BlendTargetList, 244)
 		ADD_STRUCT(ScriptArray<byte>, SourceRequiredBones, 256)
 		void SetTargetStartBone(int TargetIdx, ScriptName StartBoneName, float PerBoneIncrease)

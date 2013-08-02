@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNotify_ClothingMaxDistanceScale;
+}
 #include "Engine.AnimNotify.h"
 #include "Engine.SkeletalMeshComponent.EMaxDistanceScaleMode.h"
 #define ADD_STRUCT(x, y, offset) \

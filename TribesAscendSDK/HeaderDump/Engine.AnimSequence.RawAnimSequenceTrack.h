@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	struct AnimSequence__RawAnimSequenceTrack;
+}
 #include "Core.Object.Quat.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

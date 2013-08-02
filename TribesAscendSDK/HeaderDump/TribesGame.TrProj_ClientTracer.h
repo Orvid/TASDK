@@ -1,9 +1,12 @@
 #pragma once
-#include "TribesGame.TrProjectile.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrProj_ClientTracer;
+}
+#include "Engine.Actor.h"
 #include "Engine.PhysicalMaterial.h"
 #include "Engine.SoundCue.h"
-#include "Engine.Actor.h"
+#include "TribesGame.TrProjectile.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

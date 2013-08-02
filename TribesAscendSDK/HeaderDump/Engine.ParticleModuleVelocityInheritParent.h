@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleVelocityBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleVelocityInheritParent;
+}
 #include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleVelocityBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

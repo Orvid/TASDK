@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PMESTG_LeaveADecalBase;
+}
 #include "Engine.ParticleModuleEventSendToGame.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

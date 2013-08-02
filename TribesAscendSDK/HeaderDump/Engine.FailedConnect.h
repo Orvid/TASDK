@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class FailedConnect;
+}
 #include "Core.Object.h"
 #include "Engine.LocalMessage.h"
 #include "Engine.PlayerReplicationInfo.h"

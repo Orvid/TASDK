@@ -1,9 +1,13 @@
 #pragma once
-#include "TribesGame.TrStation.h"
-#include "Engine.SkelControlSingleBone.h"
+namespace UnrealScript
+{
+	class TrRepairStation;
+}
 #include "Engine.AnimNodeSequence.h"
-#include "TribesGame.TrAnimNodeBlendList.h"
+#include "Engine.SkelControlSingleBone.h"
 #include "Engine.Texture2D.h"
+#include "TribesGame.TrAnimNodeBlendList.h"
+#include "TribesGame.TrStation.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

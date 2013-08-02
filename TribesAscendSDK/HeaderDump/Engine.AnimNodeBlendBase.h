@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNodeBlendBase;
+}
+#include "Core.Object.AlphaBlendType.h"
 #include "Engine.AnimNode.h"
 #include "Engine.AnimNodeBlendBase.AnimBlendChild.h"
-#include "Core.Object.AlphaBlendType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +29,7 @@ namespace UnrealScript
 	class AnimNodeBlendBase : public AnimNode
 	{
 	public:
+		typedef AnimNodeBlendBase__AnimBlendChild AnimBlendChild;
 		ADD_STRUCT(ScriptArray<AnimNodeBlendBase__AnimBlendChild>, Children, 224)
 		ADD_STRUCT(Object__AlphaBlendType, BlendType, 240)
 		ADD_BOOL(bFixNumChildren, 236, 0x1)

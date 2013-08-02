@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SphericalHarmonicLightComponent;
+}
 #include "Core.Object.SHVectorRGB.h"
 #include "Engine.LightComponent.h"
 #define ADD_BOOL(name, offset, mask) \

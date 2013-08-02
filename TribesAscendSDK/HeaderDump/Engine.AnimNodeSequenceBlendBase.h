@@ -1,6 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNodeSequenceBlendBase;
+}
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.AnimNodeSequenceBlendBase.AnimBlendInfo.h"
+#include "Engine.AnimNodeSequenceBlendBase.AnimInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,6 +19,8 @@ namespace UnrealScript
 	class AnimNodeSequenceBlendBase : public AnimNodeSequence
 	{
 	public:
+		typedef AnimNodeSequenceBlendBase__AnimBlendInfo AnimBlendInfo;
+		typedef AnimNodeSequenceBlendBase__AnimInfo AnimInfo;
 		ADD_STRUCT(ScriptArray<AnimNodeSequenceBlendBase__AnimBlendInfo>, Anims, 320)
 	};
 }

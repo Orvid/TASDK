@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxAction_Invoke;
+}
 #include "Engine.SequenceAction.h"
-#include "GFxUI.GFxMoviePlayer.ASValue.h"
 #include "GFxUI.GFxMoviePlayer.h"
+#include "GFxUI.GFxMoviePlayer.ASValue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

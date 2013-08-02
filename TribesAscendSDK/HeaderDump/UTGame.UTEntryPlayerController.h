@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "UTGame.UTPlayerController.h"
-#include "Engine.PostProcessChain.h"
+namespace UnrealScript
+{
+	class UTEntryPlayerController;
+}
 #include "Engine.LocalPlayer.h"
 #include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.PostProcessChain.h"
+#include "UTGame.UTPlayerController.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

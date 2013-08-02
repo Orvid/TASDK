@@ -1,8 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	struct NavigationPoint__NavigationOctreeObject;
+}
 #include "Core.Object.h"
-#include "Core.Object.Pointer.h"
-#include "Core.Object.Vector.h"
 #include "Core.Object.Box.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

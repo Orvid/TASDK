@@ -1,10 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDestroyableTarget;
+}
+#include "Engine.Actor.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
 #include "Engine.SeqAct_Toggle.h"
 #include "UTGame.UTSimpleDestroyable.h"
-#include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Actor.TraceHitInfo.h"
 namespace UnrealScript
 {
 	class TrDestroyableTarget : public UTSimpleDestroyable

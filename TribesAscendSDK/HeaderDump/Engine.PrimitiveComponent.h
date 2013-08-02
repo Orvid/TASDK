@@ -1,19 +1,22 @@
 #pragma once
-#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
-#include "Engine.ActorComponent.h"
-#include "Engine.LightComponent.LightingChannelContainer.h"
+namespace UnrealScript
+{
+	class PrimitiveComponent;
+}
+#include "Core.Object.BoxSphereBounds.h"
 #include "Core.Object.Matrix.h"
 #include "Core.Object.Pointer.h"
-#include "Core.Object.BoxSphereBounds.h"
-#include "Engine.Scene.ESceneDepthPriorityGroup.h"
-#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
-#include "Engine.Scene.EDetailMode.h"
+#include "Engine.ActorComponent.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
 #include "Engine.PhysicalMaterial.h"
-#include "Engine.RB_BodyInstance.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
 #include "Engine.PrimitiveComponent.ERadialImpulseFalloff.h"
 #include "Engine.PrimitiveComponent.GJKResult.h"
+#include "Engine.PrimitiveComponent.MaterialViewRelevance.h"
+#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
+#include "Engine.RB_BodyInstance.h"
+#include "Engine.Scene.EDetailMode.h"
+#include "Engine.Scene.ESceneDepthPriorityGroup.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -37,6 +40,11 @@ namespace UnrealScript
 	class PrimitiveComponent : public ActorComponent
 	{
 	public:
+		typedef PrimitiveComponent__GJKResult GJKResult;
+		typedef PrimitiveComponent__ERBCollisionChannel ERBCollisionChannel;
+		typedef PrimitiveComponent__ERadialImpulseFalloff ERadialImpulseFalloff;
+		typedef PrimitiveComponent__RBCollisionChannelContainer RBCollisionChannelContainer;
+		typedef PrimitiveComponent__MaterialViewRelevance MaterialViewRelevance;
 		ADD_STRUCT(int, Tag, 88)
 		ADD_STRUCT(Object__Matrix, LocalToWorld, 160)
 		ADD_STRUCT(int, ThreadTag, 92)

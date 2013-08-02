@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqCond_GetServerType;
+}
 #include "Engine.SequenceCondition.h"
 namespace UnrealScript
 {

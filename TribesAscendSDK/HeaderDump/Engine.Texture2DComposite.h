@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Texture2DComposite;
+}
 #include "Engine.Texture.h"
 #include "Engine.Texture2DComposite.SourceTexture2DRegion.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -14,6 +18,7 @@ namespace UnrealScript
 	class Texture2DComposite : public Texture
 	{
 	public:
+		typedef Texture2DComposite__SourceTexture2DRegion SourceTexture2DRegion;
 		ADD_STRUCT(ScriptArray<Texture2DComposite__SourceTexture2DRegion>, SourceRegions, 236)
 		ADD_STRUCT(int, MaxTextureSize, 248)
 		bool SourceTexturesFullyStreamedIn()

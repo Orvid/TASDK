@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrMainMenuMeshInfo;
+}
 #include "Core.Object.h"
 #include "TribesGame.TrMainMenuMeshInfo.ParticleSystemInfo.h"
 #include "TribesGame.TrObject.PaperDollInfo.h"
@@ -15,6 +19,7 @@ namespace UnrealScript
 	class TrMainMenuMeshInfo : public Object
 	{
 	public:
+		typedef TrMainMenuMeshInfo__ParticleSystemInfo ParticleSystemInfo;
 		ADD_STRUCT(ScriptArray<class TrMainMenuMeshInfo*>, Children, 116)
 		ADD_STRUCT(ScriptArray<TrMainMenuMeshInfo__ParticleSystemInfo>, AttachedParticleSystems, 136)
 		ADD_STRUCT(ScriptName, ParentSocketName, 128)

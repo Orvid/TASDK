@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineCommunityContentInterface;
+}
 #include "Core.Interface.h"
 #include "Engine.OnlineSubsystem.CommunityContentFile.h"
-#include "Engine.OnlineSubsystem.OnlineFriend.h"
 #include "Engine.OnlineSubsystem.CommunityContentMetadata.h"
+#include "Engine.OnlineSubsystem.OnlineFriend.h"
 namespace UnrealScript
 {
 	class OnlineCommunityContentInterface : public Interface

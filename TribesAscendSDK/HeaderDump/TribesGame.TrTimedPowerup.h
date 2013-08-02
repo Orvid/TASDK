@@ -1,13 +1,16 @@
 #pragma once
-#include "Engine.SoundCue.h"
-#include "TribesGame.TrInventory.h"
-#include "Engine.HUD.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Canvas.h"
-#include "Engine.UIRoot.TextureCoordinates.h"
-#include "Engine.Pawn.h"
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class TrTimedPowerup;
+}
 #include "Engine.Actor.h"
+#include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.HUD.h"
+#include "Engine.Pawn.h"
+#include "Engine.SoundCue.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "TribesGame.TrInventory.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

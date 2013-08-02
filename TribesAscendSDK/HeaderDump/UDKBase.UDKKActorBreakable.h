@@ -1,10 +1,13 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "Engine.KActor.h"
+namespace UnrealScript
+{
+	class UDKKActorBreakable;
+}
 #include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "Engine.ParticleSystem.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
+#include "Engine.KActor.h"
+#include "Engine.ParticleSystem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class FbxFactory;
+}
 #include "Core.Factory.h"
 #include "UnrealEd.FbxImportUI.h"
 #define ADD_OBJECT(x, y, offset) \

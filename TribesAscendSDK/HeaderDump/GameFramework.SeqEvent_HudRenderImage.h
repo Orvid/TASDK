@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.HUD.h"
-#include "Core.Object.Vector.h"
-#include "GameFramework.SeqEvent_HudRender.h"
-#include "Engine.Texture2D.h"
+namespace UnrealScript
+{
+	class SeqEvent_HudRenderImage;
+}
 #include "Core.Object.LinearColor.h"
 #include "Engine.Canvas.h"
+#include "Engine.HUD.h"
+#include "Engine.Texture2D.h"
+#include "GameFramework.SeqEvent_HudRender.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

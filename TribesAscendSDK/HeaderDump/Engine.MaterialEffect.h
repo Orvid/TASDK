@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.PostProcessEffect.h"
+namespace UnrealScript
+{
+	class MaterialEffect;
+}
 #include "Engine.MaterialInterface.h"
+#include "Engine.PostProcessEffect.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

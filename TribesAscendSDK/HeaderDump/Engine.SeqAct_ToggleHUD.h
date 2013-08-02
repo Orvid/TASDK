@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_ToggleHUD;
+}
 #include "Engine.SequenceAction.h"
 namespace UnrealScript
 {

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameCrowdSpawnerInterface;
+}
 #include "Core.Interface.h"
 #include "GameFramework.GameCrowdAgent.h"
 namespace UnrealScript

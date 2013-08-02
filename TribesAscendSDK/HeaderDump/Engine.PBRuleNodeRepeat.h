@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PBRuleNodeRepeat;
+}
 #include "Engine.PBRuleNodeBase.h"
 #include "Engine.ProcBuildingRuleset.EProcBuildingAxis.h"
 #define ADD_STRUCT(x, y, offset) \

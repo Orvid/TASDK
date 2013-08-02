@@ -1,10 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	struct PostProcessVolume__PostProcessSettings;
+}
 #include "Core.Object.Color.h"
+#include "Core.Object.LinearColor.h"
+#include "Engine.DOFEffect.EFocusType.h"
 #include "Engine.PostProcessVolume.LUTBlender.h"
 #include "Engine.Texture.h"
-#include "Core.Object.LinearColor.h"
-#include "Core.Object.Vector.h"
-#include "Engine.DOFEffect.EFocusType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

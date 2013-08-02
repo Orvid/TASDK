@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
+namespace UnrealScript
+{
+	class GFxTrPage_BuyGold;
+}
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.GFxTrPage.h"
 namespace UnrealScript
 {
 	class GFxTrPage_BuyGold : public GFxTrPage

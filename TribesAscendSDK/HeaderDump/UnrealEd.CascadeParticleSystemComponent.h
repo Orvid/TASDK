@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class CascadeParticleSystemComponent;
+}
 #include "Engine.ParticleSystemComponent.h"
 namespace UnrealScript
 {

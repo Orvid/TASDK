@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.InterpTrack.SupportedSubTrackInfo.h"
-#include "Engine.InterpTrack.SubTrackGroup.h"
+namespace UnrealScript
+{
+	class InterpTrack;
+}
 #include "Core.Object.h"
-#include "Engine.InterpTrack.ETrackActiveCondition.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.InterpTrack.ETrackActiveCondition.h"
+#include "Engine.InterpTrack.SubTrackGroup.h"
+#include "Engine.InterpTrack.SupportedSubTrackInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +31,9 @@ namespace UnrealScript
 	class InterpTrack : public Object
 	{
 	public:
+		typedef InterpTrack__ETrackActiveCondition ETrackActiveCondition;
+		typedef InterpTrack__SubTrackGroup SubTrackGroup;
+		typedef InterpTrack__SupportedSubTrackInfo SupportedSubTrackInfo;
 		ADD_STRUCT(ScriptArray<class InterpTrack*>, SubTracks, 68)
 		ADD_STRUCT(ScriptArray<InterpTrack__SubTrackGroup>, SubTrackGroups, 80)
 		ADD_STRUCT(ScriptArray<InterpTrack__SupportedSubTrackInfo>, SupportedSubTracks, 92)

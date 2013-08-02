@@ -1,10 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrCaHStats;
+}
 #include "Core.Object.h"
-#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.GfxTrHud.h"
 #include "TribesGame.TrCaHCapturePoint.h"
 #include "TribesGame.TrCaHStats.CapturePointInfo.h"
-#include "TribesGame.GfxTrHud.h"
 #include "TribesGame.TrGameReplicationInfo.h"
+#include "TribesGame.TrPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +32,7 @@ namespace UnrealScript
 	class TrCaHStats : public Object
 	{
 	public:
+		typedef TrCaHStats__CapturePointInfo CapturePointInfo;
 		ADD_STRUCT(ScriptArray<TrCaHStats__CapturePointInfo>, m_CapturePointData, 108)
 		ADD_STRUCT(ScriptArray<class TrCaHCapturePoint*>, m_CapturePoints, 120)
 		ADD_OBJECT(TrPlayerController, TrPC, 104)

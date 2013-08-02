@@ -1,28 +1,32 @@
 #pragma once
-#include "Core.Subsystem.h"
-#include "Core.Object.Color.h"
-#include "Engine.ApexDestructibleDamageParameters.h"
-#include "Engine.LocalPlayer.h"
-#include "Engine.Texture2D.h"
-#include "Engine.Font.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.Engine.StatColorMapping.h"
-#include "Engine.SoundNodeWave.h"
-#include "Core.Object.LinearColor.h"
-#include "Engine.Engine.DropNoteInfo.h"
-#include "Core.Object.Vector.h"
-#include "Engine.TranslationContext.h"
-#include "Engine.Engine.ETransitionType.h"
-#include "Engine.GameViewportClient.h"
-#include "Engine.Material.h"
-#include "Engine.Client.h"
-#include "Engine.Texture.h"
-#include "Engine.PostProcessChain.h"
-#include "Engine.PhysicalMaterial.h"
-#include "Engine.StaticMesh.h"
-#include "Engine.AudioDevice.h"
-#include "Engine.WorldInfo.h"
+namespace UnrealScript
+{
+	class Engine;
+}
 #include "Core.Object.h"
+#include "Core.Object.Color.h"
+#include "Core.Object.LinearColor.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Subsystem.h"
+#include "Engine.ApexDestructibleDamageParameters.h"
+#include "Engine.AudioDevice.h"
+#include "Engine.Client.h"
+#include "Engine.Engine.DropNoteInfo.h"
+#include "Engine.Engine.ETransitionType.h"
+#include "Engine.Engine.StatColorMapEntry.h"
+#include "Engine.Engine.StatColorMapping.h"
+#include "Engine.Font.h"
+#include "Engine.GameViewportClient.h"
+#include "Engine.LocalPlayer.h"
+#include "Engine.Material.h"
+#include "Engine.PhysicalMaterial.h"
+#include "Engine.PostProcessChain.h"
+#include "Engine.SoundNodeWave.h"
+#include "Engine.StaticMesh.h"
+#include "Engine.Texture.h"
+#include "Engine.Texture2D.h"
+#include "Engine.TranslationContext.h"
+#include "Engine.WorldInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -46,6 +50,10 @@ namespace UnrealScript
 	class Engine : public Subsystem
 	{
 	public:
+		typedef Engine__ETransitionType ETransitionType;
+		typedef Engine__StatColorMapping StatColorMapping;
+		typedef Engine__DropNoteInfo DropNoteInfo;
+		typedef Engine__StatColorMapEntry StatColorMapEntry;
 		ADD_STRUCT(ScriptArray<class LocalPlayer*>, GamePlayers, 1152)
 		ADD_STRUCT(ScriptArray<class Font*>, AdditionalFonts, 144)
 		ADD_STRUCT(ScriptArray<ScriptString*>, AdditionalFontNames, 156)

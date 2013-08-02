@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.SoundNodeAttenuation.SoundDistanceModel.h"
+namespace UnrealScript
+{
+	class SoundNodeAttenuation;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.SoundNode.h"
 #include "Engine.SoundNodeAttenuation.ESoundDistanceCalc.h"
+#include "Engine.SoundNodeAttenuation.SoundDistanceModel.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +26,8 @@ namespace UnrealScript
 	class SoundNodeAttenuation : public SoundNode
 	{
 	public:
+		typedef SoundNodeAttenuation__ESoundDistanceCalc ESoundDistanceCalc;
+		typedef SoundNodeAttenuation__SoundDistanceModel SoundDistanceModel;
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, LPFMaxRadius, 188)
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, LPFMinRadius, 160)
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, MaxRadius, 132)

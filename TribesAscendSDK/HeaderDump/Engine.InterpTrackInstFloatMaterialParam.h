@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackInstFloatMaterialParam;
+}
 #include "Engine.InterpTrackFloatMaterialParam.h"
 #include "Engine.InterpTrackInst.h"
 #include "Engine.InterpTrackInstFloatMaterialParam.FloatMaterialParamMICData.h"
@@ -15,6 +19,7 @@ namespace UnrealScript
 	class InterpTrackInstFloatMaterialParam : public InterpTrackInst
 	{
 	public:
+		typedef InterpTrackInstFloatMaterialParam__FloatMaterialParamMICData FloatMaterialParamMICData;
 		ADD_STRUCT(ScriptArray<InterpTrackInstFloatMaterialParam__FloatMaterialParamMICData>, MICInfos, 60)
 		ADD_OBJECT(InterpTrackFloatMaterialParam, InstancedTrack, 72)
 	};

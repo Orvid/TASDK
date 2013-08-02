@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.PostProcessVolume.PostProcessSettings.h"
+namespace UnrealScript
+{
+	struct LocalPlayer__CurrentPostProcessVolumeInfo;
+}
 #include "Engine.PostProcessVolume.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

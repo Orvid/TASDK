@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DamageType;
+}
 #include "Core.Object.h"
 #include "Engine.ForceFeedbackWaveform.h"
 #include "Engine.Vehicle.h"

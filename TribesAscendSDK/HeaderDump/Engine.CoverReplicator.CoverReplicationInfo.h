@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct CoverReplicator__CoverReplicationInfo;
+}
 #include "Engine.CoverLink.h"
 #include "Engine.CoverReplicator.ManualCoverTypeInfo.h"
 #define ADD_STRUCT(x, y, offset) \

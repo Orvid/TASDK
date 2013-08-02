@@ -1,5 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class TerrainLayerSetup;
+}
 #include "Core.Object.h"
+#include "Engine.TerrainLayerSetup.FilterLimit.h"
 #include "Engine.TerrainLayerSetup.TerrainFilteredMaterial.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -24,6 +29,8 @@ namespace UnrealScript
 	class TerrainLayerSetup : public Object
 	{
 	public:
+		typedef TerrainLayerSetup__TerrainFilteredMaterial TerrainFilteredMaterial;
+		typedef TerrainLayerSetup__FilterLimit FilterLimit;
 		ADD_STRUCT(ScriptArray<TerrainLayerSetup__TerrainFilteredMaterial>, Materials, 60)
 		void PostBeginPlay()
 		{

@@ -1,11 +1,16 @@
 #pragma once
-#include "Engine.SeqAct_Interp.CameraCutInfo.h"
-#include "Engine.SeqAct_Latent.h"
-#include "Engine.InterpGroupInst.h"
+namespace UnrealScript
+{
+	class SeqAct_Interp;
+}
 #include "Engine.CoverLink.h"
+#include "Engine.InterpData.h"
+#include "Engine.InterpGroupInst.h"
 #include "Engine.MatineeActor.h"
 #include "Engine.PlayerController.h"
-#include "Engine.InterpData.h"
+#include "Engine.SeqAct_Interp.CameraCutInfo.h"
+#include "Engine.SeqAct_Interp.SavedTransform.h"
+#include "Engine.SeqAct_Latent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,6 +34,8 @@ namespace UnrealScript
 	class SeqAct_Interp : public SeqAct_Latent
 	{
 	public:
+		typedef SeqAct_Interp__CameraCutInfo CameraCutInfo;
+		typedef SeqAct_Interp__SavedTransform SavedTransform;
 		ADD_BOOL(bReversePlayback, 380, 0x80)
 		ADD_BOOL(bNoResetOnRewind, 380, 0x20)
 		ADD_BOOL(bRewindOnPlay, 380, 0x10)

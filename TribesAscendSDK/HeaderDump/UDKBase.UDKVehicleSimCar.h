@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SVehicleSimCar.h"
+namespace UnrealScript
+{
+	class UDKVehicleSimCar;
+}
 #include "Core.Object.InterpCurveFloat.h"
+#include "Engine.SVehicleSimCar.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

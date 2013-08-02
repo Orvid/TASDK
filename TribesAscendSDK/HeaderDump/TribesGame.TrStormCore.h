@@ -1,12 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrStormCore;
+}
 #include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "TribesGame.TrGameObjective.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.PlayerController.h"
 #include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.PlayerController.h"
+#include "TribesGame.TrGameObjective.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

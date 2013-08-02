@@ -1,7 +1,12 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
+namespace UnrealScript
+{
+	class GFxTrPage_Class;
+}
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.GFxTrAction.h"
+#include "TribesGame.GFxTrPage.h"
+#include "TribesGame.GFxTrPage_Class.MENU_ACTION_CLASS.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +26,7 @@ namespace UnrealScript
 	class GFxTrPage_Class : public GFxTrPage
 	{
 	public:
+		typedef GFxTrPage_Class__MENU_ACTION_CLASS MENU_ACTION_CLASS;
 		ADD_BOOL(bViewingEquip, 364, 0x2)
 		ADD_BOOL(bClassLocked, 364, 0x1)
 		ADD_STRUCT(int, NumRenameLoadout, 360)

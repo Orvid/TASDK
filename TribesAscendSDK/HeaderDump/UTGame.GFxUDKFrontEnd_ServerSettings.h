@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.GFxUDKFrontEnd_SettingsBase.h"
-#include "GFxUI.GFxObject.h"
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_ServerSettings;
+}
 #include "GFxUI.GFxClikWidget.EventData.h"
+#include "GFxUI.GFxObject.h"
+#include "UTGame.GFxUDKFrontEnd_SettingsBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

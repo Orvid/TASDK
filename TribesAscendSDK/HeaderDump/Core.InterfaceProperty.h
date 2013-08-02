@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterfaceProperty;
+}
 #include "Core.Property.h"
 namespace UnrealScript
 {

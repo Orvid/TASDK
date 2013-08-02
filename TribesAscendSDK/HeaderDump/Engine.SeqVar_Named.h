@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqVar_Named;
+}
 #include "Engine.SequenceVariable.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

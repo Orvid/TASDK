@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrEmitCameraEffect_Leaves;
+}
 #include "TribesGame.TrEmitCameraEffect_Speed.h"
 namespace UnrealScript
 {

@@ -1,11 +1,16 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineVoiceInterfaceMcts;
+}
 #include "Core.Object.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.OnlineSubsystem.RemoteTalker.h"
+#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.SpeechRecognition.h"
+#include "OnlineSubsystemMcts.OnlineVoiceInterfaceMcts.EMuteType.h"
 #include "OnlineSubsystemMcts.OnlineVoiceInterfaceMcts.LocalTalkerMcts.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +30,8 @@ namespace UnrealScript
 	class OnlineVoiceInterfaceMcts : public Object
 	{
 	public:
+		typedef OnlineVoiceInterfaceMcts__EMuteType EMuteType;
+		typedef OnlineVoiceInterfaceMcts__LocalTalkerMcts LocalTalkerMcts;
 		ADD_STRUCT(ScriptArray<OnlineSubsystem__RemoteTalker>, RemoteTalkers, 76)
 		ADD_STRUCT(ScriptArray<OnlineSubsystem__UniqueNetId>, MuteList, 88)
 		ADD_STRUCT(ScriptArray<

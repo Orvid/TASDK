@@ -1,12 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKPlayerController;
+}
+#include "Engine.Actor.h"
+#include "Engine.CameraAnimInst.h"
 #include "Engine.Pawn.h"
 #include "Engine.PostProcessVolume.PostProcessSettings.h"
 #include "GameFramework.GamePlayerController.h"
-#include "Engine.Actor.h"
-#include "Core.Object.Rotator.h"
 #include "UDKBase.UDKEmitCameraEffect.h"
-#include "Core.Object.Vector.h"
-#include "Engine.CameraAnimInst.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,6 +33,7 @@ namespace UnrealScript
 	class UDKPlayerController : public GamePlayerController
 	{
 	public:
+		typedef UDKPlayerController__ObjectiveAnnouncementInfo ObjectiveAnnouncementInfo;
 		ADD_STRUCT(ScriptArray<class Actor*>, PotentiallyHiddenActors, 1940)
 		ADD_STRUCT(float, PulseTimer, 1956)
 		ADD_STRUCT(float, VehicleCheckRadiusScaling, 1952)

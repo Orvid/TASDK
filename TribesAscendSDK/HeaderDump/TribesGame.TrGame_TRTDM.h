@@ -1,7 +1,11 @@
 #pragma once
-#include "TribesGame.TrGame.h"
+namespace UnrealScript
+{
+	class TrGame_TRTDM;
+}
 #include "Engine.Controller.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "TribesGame.TrGame.h"
 namespace UnrealScript
 {
 	class TrGame_TRTDM : public TrGame

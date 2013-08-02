@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.K2Node_Code.h"
+namespace UnrealScript
+{
+	class K2Node_Event;
+}
 #include "Core.Function.h"
+#include "Engine.K2Node_Code.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

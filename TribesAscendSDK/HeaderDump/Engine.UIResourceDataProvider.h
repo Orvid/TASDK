@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.UIPropertyDataProvider.h"
+namespace UnrealScript
+{
+	class UIResourceDataProvider;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.UIPropertyDataProvider.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

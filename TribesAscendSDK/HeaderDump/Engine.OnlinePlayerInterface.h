@@ -1,18 +1,22 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlinePlayerInterface;
+}
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "Engine.OnlineSubsystem.ELoginStatus.h"
-#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
-#include "Engine.OnlineSubsystem.EFeaturePrivilegeLevel.h"
-#include "Engine.Settings.SettingsProperty.h"
-#include "Engine.OnlineSubsystem.FriendsQuery.h"
-#include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
-#include "Engine.OnlineProfileSettings.h"
 #include "Engine.OnlinePlayerStorage.h"
-#include "Engine.OnlineSubsystem.OnlineFriend.h"
-#include "Engine.Settings.LocalizedStringSetting.h"
-#include "Engine.OnlineSubsystem.OnlineFriendMessage.h"
+#include "Engine.OnlineProfileSettings.h"
 #include "Engine.OnlineSubsystem.AchievementDetails.h"
+#include "Engine.OnlineSubsystem.EFeaturePrivilegeLevel.h"
+#include "Engine.OnlineSubsystem.ELoginStatus.h"
+#include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.OnlineSubsystem.FriendsQuery.h"
+#include "Engine.OnlineSubsystem.OnlineFriend.h"
+#include "Engine.OnlineSubsystem.OnlineFriendMessage.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.Settings.LocalizedStringSetting.h"
+#include "Engine.Settings.SettingsProperty.h"
 namespace UnrealScript
 {
 	class OnlinePlayerInterface : public Interface

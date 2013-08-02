@@ -1,9 +1,13 @@
 #pragma once
-#include "Core.Object.Pointer.h"
+namespace UnrealScript
+{
+	class LandscapeHeightfieldCollisionComponent;
+}
 #include "Core.Object.BoxSphereBounds.h"
-#include "Engine.PrimitiveComponent.h"
+#include "Core.Object.Pointer.h"
 #include "Core.Object.UntypedBulkData_Mirror.h"
 #include "Engine.PhysicalMaterial.h"
+#include "Engine.PrimitiveComponent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

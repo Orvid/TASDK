@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UDKUIDataStore_StringList__EStringListData;
+}
 #include "UDKBase.UDKUIDataProvider_StringArray.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

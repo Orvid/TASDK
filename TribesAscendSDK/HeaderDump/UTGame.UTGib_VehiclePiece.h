@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTGib_VehiclePiece;
+}
 #include "UTGame.UTGib_Vehicle.h"
 namespace UnrealScript
 {

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataStore_GameState;
+}
 #include "Engine.UIDataStore.h"
 namespace UnrealScript
 {

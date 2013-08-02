@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.PortalMarker.h"
-#include "Engine.SceneCapturePortalActor.h"
+namespace UnrealScript
+{
+	class PortalTeleporter;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
-#include "Engine.TextureRenderTarget2D.h"
+#include "Engine.PortalMarker.h"
 #include "Engine.Projectile.h"
+#include "Engine.SceneCapturePortalActor.h"
+#include "Engine.TextureRenderTarget2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSeqCond_IsConsole;
+}
 #include "Engine.SequenceCondition.h"
 namespace UnrealScript
 {

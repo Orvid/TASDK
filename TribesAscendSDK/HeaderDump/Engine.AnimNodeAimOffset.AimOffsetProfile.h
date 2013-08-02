@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.AnimNodeAimOffset.AimComponent.h"
+namespace UnrealScript
+{
+	struct AnimNodeAimOffset__AimOffsetProfile;
+}
 #include "Core.Object.Vector2D.h"
+#include "Engine.AnimNodeAimOffset.AimComponent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

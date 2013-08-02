@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDeployableHologram_ForceField;
+}
 #include "TribesGame.TrDeployableHologram.h"
 namespace UnrealScript
 {

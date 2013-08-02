@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UIRoot__SubscribedInputEventParameters;
+}
 #include "Engine.UIRoot.InputEventParameters.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

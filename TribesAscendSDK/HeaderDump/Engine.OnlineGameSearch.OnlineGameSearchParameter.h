@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.OnlineGameSearch.EOnlineGameSearchEntryType.h"
+namespace UnrealScript
+{
+	struct OnlineGameSearch__OnlineGameSearchParameter;
+}
 #include "Engine.OnlineGameSearch.EOnlineGameSearchComparisonType.h"
+#include "Engine.OnlineGameSearch.EOnlineGameSearchEntryType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

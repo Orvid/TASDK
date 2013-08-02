@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.RigidBodyBase.h"
+namespace UnrealScript
+{
+	class RB_RadialForceActor;
+}
 #include "Engine.PrimitiveComponent.ERadialImpulseFalloff.h"
 #include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #include "Engine.RB_RadialForceActor.ERadialForceType.h"
+#include "Engine.RigidBodyBase.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -23,6 +27,7 @@ namespace UnrealScript
 	class RB_RadialForceActor : public RigidBodyBase
 	{
 	public:
+		typedef RB_RadialForceActor__ERadialForceType ERadialForceType;
 		ADD_BOOL(bForceActive, 500, 0x1)
 		ADD_STRUCT(PrimitiveComponent__RBCollisionChannelContainer, CollideWithChannels, 504)
 		ADD_BOOL(bForceApplyToProjectiles, 500, 0x10)

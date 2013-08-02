@@ -1,6 +1,10 @@
 #pragma once
-#include "UTGame.UTCheatManager.h"
+namespace UnrealScript
+{
+	class TrCheatManager;
+}
 #include "Engine.Weapon.h"
+#include "UTGame.UTCheatManager.h"
 namespace UnrealScript
 {
 	class TrCheatManager : public UTCheatManager

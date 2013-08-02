@@ -1,8 +1,12 @@
 #pragma once
-#include "TribesGame.TrAnimNodeBlendList.h"
+namespace UnrealScript
+{
+	class TrAnimNodeBlendByFlagDirection;
+}
 #include "Engine.AnimNodeAdditiveBlending.h"
-#include "TribesGame.TrFlagBase.h"
 #include "TribesGame.TrAnimNodeBlendByFlagDirection.EFlagAnimTypes.h"
+#include "TribesGame.TrAnimNodeBlendList.h"
+#include "TribesGame.TrFlagBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,6 +20,7 @@ namespace UnrealScript
 	class TrAnimNodeBlendByFlagDirection : public TrAnimNodeBlendList
 	{
 	public:
+		typedef TrAnimNodeBlendByFlagDirection__EFlagAnimTypes EFlagAnimTypes;
 		ADD_STRUCT(float, m_fIdleBlendOutTime, 320)
 		ADD_STRUCT(float, m_fIdleBlendInTime, 316)
 		ADD_OBJECT(AnimNodeAdditiveBlending, m_AdditiveBlendNode, 312)

@@ -1,13 +1,17 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialInstance;
+}
 #include "Core.Object.Guid.h"
-#include "Engine.MaterialInterface.h"
 #include "Core.Object.InterpCurveFloat.h"
+#include "Core.Object.LinearColor.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.Font.h"
+#include "Engine.MaterialInterface.h"
 #include "Engine.PhysicalMaterial.h"
 #include "Engine.Texture.h"
-#include "Core.Object.Pointer.h"
 #include "Engine.Texture2D.h"
-#include "Engine.Font.h"
-#include "Core.Object.LinearColor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

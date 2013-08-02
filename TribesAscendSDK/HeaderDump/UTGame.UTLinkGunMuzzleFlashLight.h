@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTLinkGunMuzzleFlashLight;
+}
 #include "UDKBase.UDKExplosionLight.h"
 #include "UDKBase.UDKExplosionLight.LightValues.h"
 #define ADD_STRUCT(x, y, offset) \

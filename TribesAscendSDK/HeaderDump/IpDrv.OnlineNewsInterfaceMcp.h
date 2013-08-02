@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineNewsInterfaceMcp;
+}
+#include "Engine.OnlineSubsystem.EOnlineNewsType.h"
 #include "IpDrv.MCPBase.h"
 #include "IpDrv.OnlineNewsInterfaceMcp.NewsCacheEntry.h"
-#include "Engine.OnlineSubsystem.EOnlineNewsType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class OnlineNewsInterfaceMcp : public MCPBase
 	{
 	public:
+		typedef OnlineNewsInterfaceMcp__NewsCacheEntry NewsCacheEntry;
 		ADD_STRUCT(ScriptArray<OnlineNewsInterfaceMcp__NewsCacheEntry>, NewsItems, 64)
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!

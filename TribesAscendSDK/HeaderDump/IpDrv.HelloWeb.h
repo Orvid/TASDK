@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class HelloWeb;
+}
 #include "IpDrv.WebApplication.h"
 #include "IpDrv.WebRequest.h"
 #include "IpDrv.WebResponse.h"

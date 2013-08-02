@@ -1,12 +1,15 @@
 #pragma once
-#include "TribesGame.TrDeployable_Sensor.h"
-#include "Engine.Actor.TraceHitInfo.h"
-#include "TribesGame.TrPlayerController.h"
-#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
-#include "Engine.Texture2D.h"
+namespace UnrealScript
+{
+	class TrDeployable_RadarSensor;
+}
 #include "Engine.Actor.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.Controller.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Texture2D.h"
+#include "TribesGame.TrDeployable_Sensor.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
+#include "TribesGame.TrPlayerController.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

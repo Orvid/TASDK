@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PathNode_Dynamic;
+}
 #include "Engine.PathNode.h"
 namespace UnrealScript
 {

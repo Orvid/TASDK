@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.Sequence.ActivateOp.h"
-#include "Engine.SequenceOp.h"
+namespace UnrealScript
+{
+	class Sequence;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.SequenceObject.h"
-#include "Engine.SequenceEvent.h"
+#include "Engine.Sequence.ActivateOp.h"
 #include "Engine.Sequence.QueuedActivationInfo.h"
+#include "Engine.SequenceEvent.h"
+#include "Engine.SequenceObject.h"
+#include "Engine.SequenceOp.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +32,8 @@ namespace UnrealScript
 	class Sequence : public SequenceOp
 	{
 	public:
+		typedef Sequence__ActivateOp ActivateOp;
+		typedef Sequence__QueuedActivationInfo QueuedActivationInfo;
 		ADD_STRUCT(ScriptArray<class SequenceObject*>, SequenceObjects, 212)
 		ADD_STRUCT(ScriptArray<class SequenceOp*>, ActiveSequenceOps, 224)
 		ADD_STRUCT(ScriptArray<class Sequence*>, NestedSequences, 236)

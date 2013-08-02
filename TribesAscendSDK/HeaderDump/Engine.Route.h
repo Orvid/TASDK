@@ -1,10 +1,15 @@
 #pragma once
-#include "Engine.Pawn.h"
+namespace UnrealScript
+{
+	class Route;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.Info.h"
 #include "Engine.Actor.ActorReference.h"
-#include "Engine.Route.ERouteType.h"
+#include "Engine.Info.h"
+#include "Engine.Pawn.h"
 #include "Engine.Route.ERouteDirection.h"
+#include "Engine.Route.ERouteFillAction.h"
+#include "Engine.Route.ERouteType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,6 +19,9 @@ namespace UnrealScript
 	class Route : public Info
 	{
 	public:
+		typedef Route__ERouteDirection ERouteDirection;
+		typedef Route__ERouteFillAction ERouteFillAction;
+		typedef Route__ERouteType ERouteType;
 		ADD_STRUCT(ScriptArray<Actor__ActorReference>, RouteList, 484)
 		ADD_STRUCT(Route__ERouteType, RouteType, 480)
 		ADD_STRUCT(Object__Pointer, VfTable_IEditorLinkSelectionInterface, 476)

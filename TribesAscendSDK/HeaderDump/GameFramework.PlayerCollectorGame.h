@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.GameInfo.h"
-#include "Engine.PlayerController.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
+namespace UnrealScript
+{
+	class PlayerCollectorGame;
+}
 #include "Engine.Actor.h"
+#include "Engine.GameInfo.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.PlayerController.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

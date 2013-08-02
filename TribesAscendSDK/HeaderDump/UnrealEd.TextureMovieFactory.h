@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TextureMovieFactory;
+}
 #include "Core.Factory.h"
 #include "UnrealEd.TextureMovieFactory.MovieStreamSource.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class TextureMovieFactory : public Factory
 	{
 	public:
+		typedef TextureMovieFactory__MovieStreamSource MovieStreamSource;
 		ADD_STRUCT(TextureMovieFactory__MovieStreamSource, MovieStreamSource, 112)
 	};
 }

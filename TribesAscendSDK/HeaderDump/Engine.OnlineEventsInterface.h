@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineEventsInterface;
+}
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.OnlinePlayerStorage.h"
 #include "Engine.OnlineProfileSettings.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 namespace UnrealScript
 {
 	class OnlineEventsInterface : public Interface

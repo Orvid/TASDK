@@ -1,7 +1,14 @@
 #pragma once
-#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
+namespace UnrealScript
+{
+	class TrVideoSettings;
+}
 #include "GFxUI.GFxObject.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
+#include "TribesGame.TrVideoSettings.EAntiAliasing.h"
+#include "TribesGame.TrVideoSettings.EScreenFrameType.h"
 #include "TribesGame.TrVideoSettings.EVideoSettingType.h"
+#include "TribesGame.TrVideoSettings.EVisualDetail.h"
 #include "TribesGame.TrVideoSettings.ResolutionData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -16,6 +23,11 @@ namespace UnrealScript
 	class TrVideoSettings : public GFxObject
 	{
 	public:
+		typedef TrVideoSettings__EVideoSettingType EVideoSettingType;
+		typedef TrVideoSettings__EScreenFrameType EScreenFrameType;
+		typedef TrVideoSettings__EAntiAliasing EAntiAliasing;
+		typedef TrVideoSettings__EVisualDetail EVisualDetail;
+		typedef TrVideoSettings__ResolutionData ResolutionData;
 		ADD_STRUCT(int, m_Cached_Resolution, 156)
 		ADD_STRUCT(int, m_VideoSettingsCount, 124)
 		ADD_OBJECT(GFxObject, m_VideoSettingsList, 132)

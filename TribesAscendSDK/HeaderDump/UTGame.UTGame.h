@@ -1,32 +1,37 @@
 #pragma once
-#include "UDKBase.UDKGame.h"
-#include "UTGame.UTVehicle.h"
-#include "UTGame.UTGame.GameMapCycle.h"
-#include "UTGame.UTGame.ActiveBotInfo.h"
-#include "Engine.NavigationPoint.h"
-#include "Engine.GameplayEventsWriter.h"
-#include "Engine.SpeechRecognition.h"
-#include "Engine.Pawn.h"
-#include "UTGame.UTTeamInfo.h"
-#include "Engine.Actor.h"
-#include "UTGame.UTPlayerController.h"
-#include "Engine.WorldInfo.h"
-#include "Engine.Controller.h"
-#include "Engine.Vehicle.h"
-#include "Engine.PlayerController.h"
-#include "UTGame.UTVehicleFactory.h"
-#include "UTGame.UTGameObjective.h"
+namespace UnrealScript
+{
+	class UTGame;
+}
 #include "Engine.AIController.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "Engine.PlayerStart.h"
-#include "Engine.PickupFactory.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "UTGame.UTPawn.h"
-#include "UTGame.UTBot.h"
-#include "UTGame.UTPlayerReplicationInfo.h"
-#include "UTGame.UTCharInfo.CharacterInfo.h"
-#include "UTGame.UTMutator.h"
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
+#include "Engine.GameplayEventsWriter.h"
+#include "Engine.NavigationPoint.h"
 #include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.Pawn.h"
+#include "Engine.PickupFactory.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.PlayerStart.h"
+#include "Engine.SpeechRecognition.h"
+#include "Engine.Vehicle.h"
+#include "Engine.WorldInfo.h"
+#include "UDKBase.UDKGame.h"
+#include "UTGame.UTBot.h"
+#include "UTGame.UTCharInfo.CharacterInfo.h"
+#include "UTGame.UTGame.ActiveBotInfo.h"
+#include "UTGame.UTGame.EVoiceChannel.h"
+#include "UTGame.UTGame.GameMapCycle.h"
+#include "UTGame.UTGameObjective.h"
+#include "UTGame.UTMutator.h"
+#include "UTGame.UTPawn.h"
+#include "UTGame.UTPlayerController.h"
+#include "UTGame.UTPlayerReplicationInfo.h"
+#include "UTGame.UTTeamInfo.h"
+#include "UTGame.UTVehicle.h"
+#include "UTGame.UTVehicleFactory.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -50,6 +55,9 @@ namespace UnrealScript
 	class UTGame : public UDKGame
 	{
 	public:
+		typedef UTGame__EVoiceChannel EVoiceChannel;
+		typedef UTGame__GameMapCycle GameMapCycle;
+		typedef UTGame__ActiveBotInfo ActiveBotInfo;
 		ADD_OBJECT(UTVehicle, VehicleList, 1080)
 		ADD_STRUCT(int, ResetTimeDelay, 1076)
 		ADD_BOOL(bWarmupRound, 896, 0x1000)

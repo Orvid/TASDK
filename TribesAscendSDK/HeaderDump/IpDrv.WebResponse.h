@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class WebResponse;
+}
 #include "Core.Object.h"
-#include "IpDrv.WebConnection.h"
 #include "Core.Object.Map_Mirror.h"
+#include "IpDrv.WebConnection.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

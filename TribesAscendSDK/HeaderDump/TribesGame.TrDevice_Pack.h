@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_Pack;
+}
 #include "TribesGame.TrDevice.h"
 #include "TribesGame.TrDevice_Pack.PowerPoolCostInfo.h"
 #include "TribesGame.TrPawn.h"
@@ -15,6 +19,7 @@ namespace UnrealScript
 	class TrDevice_Pack : public TrDevice
 	{
 	public:
+		typedef TrDevice_Pack__PowerPoolCostInfo PowerPoolCostInfo;
 		ADD_STRUCT(ScriptArray<TrDevice_Pack__PowerPoolCostInfo>, m_PowerPoolInfo, 2152)
 		ADD_STRUCT(float, m_CachedPowerPoolCostPerSec, 2164)
 		ADD_STRUCT(float, m_fDefaultPowerPoolCostPerSec, 2148)

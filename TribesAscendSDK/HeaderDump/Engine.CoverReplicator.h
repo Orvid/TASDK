@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.CoverLink.ECoverType.h"
-#include "Engine.ReplicationInfo.h"
-#include "Engine.CoverReplicator.CoverReplicationInfo.h"
-#include "Engine.PlayerController.h"
-#include "Engine.CoverReplicator.ManualCoverTypeInfo.h"
+namespace UnrealScript
+{
+	class CoverReplicator;
+}
 #include "Engine.CoverLink.h"
+#include "Engine.CoverLink.ECoverType.h"
+#include "Engine.CoverReplicator.CoverReplicationInfo.h"
+#include "Engine.CoverReplicator.ManualCoverTypeInfo.h"
+#include "Engine.PlayerController.h"
+#include "Engine.ReplicationInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -18,6 +22,8 @@ namespace UnrealScript
 	class CoverReplicator : public ReplicationInfo
 	{
 	public:
+		typedef CoverReplicator__CoverReplicationInfo CoverReplicationInfo;
+		typedef CoverReplicator__ManualCoverTypeInfo ManualCoverTypeInfo;
 		ADD_STRUCT(ScriptArray<CoverReplicator__CoverReplicationInfo>, CoverReplicationData, 476)
 		void PurgeOldEntries()
 		{

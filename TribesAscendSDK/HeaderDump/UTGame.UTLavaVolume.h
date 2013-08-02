@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTLavaVolume;
+}
 #include "Engine.WaterVolume.h"
 namespace UnrealScript
 {

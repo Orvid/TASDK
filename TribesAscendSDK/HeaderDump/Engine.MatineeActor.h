@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class MatineeActor;
+}
 #include "Engine.Actor.h"
+#include "Engine.InterpGroupInstAI.h"
 #include "Engine.Pawn.h"
 #include "Engine.SeqAct_Interp.h"
-#include "Engine.InterpGroupInstAI.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

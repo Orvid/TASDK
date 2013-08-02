@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrGameSearchCommon;
+}
 #include "Engine.OnlineGameSearch.h"
 namespace UnrealScript
 {

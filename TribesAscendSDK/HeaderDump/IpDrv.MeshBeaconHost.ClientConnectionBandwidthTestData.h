@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	struct MeshBeaconHost__ClientConnectionBandwidthTestData;
+}
 #include "Core.Object.Double.h"
 #include "IpDrv.MeshBeacon.ConnectionBandwidthStats.h"
-#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestType.h"
 #include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestState.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

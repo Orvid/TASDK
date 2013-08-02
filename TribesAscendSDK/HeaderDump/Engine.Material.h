@@ -1,20 +1,25 @@
 #pragma once
+namespace UnrealScript
+{
+	class Material;
+}
 #include "Core.Object.Guid.h"
-#include "Engine.MaterialExpressionCompound.h"
-#include "Engine.MaterialInterface.h"
-#include "Engine.MaterialExpression.h"
-#include "Engine.Texture2D.h"
 #include "Core.Object.Pointer.h"
-#include "Engine.MaterialExpressionComment.h"
-#include "Engine.Texture.h"
-#include "Engine.Material.ScalarMaterialInput.h"
+#include "Engine.EngineTypes.EBlendMode.h"
+#include "Engine.EngineTypes.EMaterialLightingModel.h"
+#include "Engine.EngineTypes.EMaterialTessellationMode.h"
 #include "Engine.Material.ColorMaterialInput.h"
+#include "Engine.Material.MaterialInput.h"
+#include "Engine.Material.ScalarMaterialInput.h"
 #include "Engine.Material.Vector2MaterialInput.h"
 #include "Engine.Material.VectorMaterialInput.h"
-#include "Engine.EngineTypes.EMaterialTessellationMode.h"
-#include "Engine.EngineTypes.EMaterialLightingModel.h"
-#include "Engine.EngineTypes.EBlendMode.h"
+#include "Engine.MaterialExpression.h"
+#include "Engine.MaterialExpressionComment.h"
+#include "Engine.MaterialExpressionCompound.h"
+#include "Engine.MaterialInterface.h"
 #include "Engine.PhysicalMaterial.h"
+#include "Engine.Texture.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -38,6 +43,11 @@ namespace UnrealScript
 	class Material : public MaterialInterface
 	{
 	public:
+		typedef Material__MaterialInput MaterialInput;
+		typedef Material__ColorMaterialInput ColorMaterialInput;
+		typedef Material__ScalarMaterialInput ScalarMaterialInput;
+		typedef Material__VectorMaterialInput VectorMaterialInput;
+		typedef Material__Vector2MaterialInput Vector2MaterialInput;
 		ADD_STRUCT(ScriptArray<class MaterialExpression*>, Expressions, 1172)
 		ADD_STRUCT(ScriptArray<class MaterialExpressionComment*>, EditorComments, 1184)
 		ADD_STRUCT(ScriptArray<class MaterialExpressionCompound*>, EditorCompounds, 1196)
@@ -122,7 +132,6 @@ namespace UnrealScript
 		ADD_OBJECT(PhysicalMaterial, BlackPhysicalMaterial, 352)
 		ADD_STRUCT(int, PhysMaterialMaskUVChannel, 348)
 		ADD_OBJECT(Texture2D, PhysMaterialMask, 344)
-		ADD_OBJECT(ScriptClass, PhysicalMaterial, 340)
 		ADD_OBJECT(PhysicalMaterial, PhysMaterial, 336)
 	};
 }

@@ -1,8 +1,13 @@
 #pragma once
-#include "Engine.K2GraphBase.h"
-#include "Engine.AIController.h"
+namespace UnrealScript
+{
+	class AITree;
+}
 #include "Engine.AICommandNodeRoot.h"
+#include "Engine.AIController.h"
 #include "Engine.AITree.AITreeHandle.h"
+#include "Engine.AITree.AITreeUtilityInfo.h"
+#include "Engine.K2GraphBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,6 +21,8 @@ namespace UnrealScript
 	class AITree : public K2GraphBase
 	{
 	public:
+		typedef AITree__AITreeUtilityInfo AITreeUtilityInfo;
+		typedef AITree__AITreeHandle AITreeHandle;
 		ADD_STRUCT(ScriptArray<class AICommandNodeRoot*>, RootList, 72)
 		ADD_OBJECT(K2GraphBase, GatherList, 84)
 		bool SetActiveRoot(ScriptName InName, AITree__AITreeHandle& Handle)

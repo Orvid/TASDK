@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SoundCue.h"
+namespace UnrealScript
+{
+	class SeqAct_ApplySoundNode;
+}
 #include "Engine.SequenceAction.h"
+#include "Engine.SoundCue.h"
 #include "Engine.SoundNode.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTHUD.h"
+namespace UnrealScript
+{
+	class UTTeamHUD;
+}
 #include "Core.Object.Vector2D.h"
 #include "Engine.Actor.h"
+#include "UTGame.UTHUD.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

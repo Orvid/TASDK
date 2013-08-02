@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrSkin;
+}
 #include "Core.Object.h"
 #include "TribesGame.TrSkin.SkinStruct.h"
 #include "TribesGame.TrSkin.VehicleSkinStruct.h"
@@ -15,6 +19,8 @@ namespace UnrealScript
 	class TrSkin : public Object
 	{
 	public:
+		typedef TrSkin__SkinStruct SkinStruct;
+		typedef TrSkin__VehicleSkinStruct VehicleSkinStruct;
 		ADD_STRUCT(ScriptString*, ItemName, 64)
 		ADD_STRUCT(ScriptString*, InfoPanelDescription, 76)
 		ADD_STRUCT(int, TranslucencySortPriority, 88)

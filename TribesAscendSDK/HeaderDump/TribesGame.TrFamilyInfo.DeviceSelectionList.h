@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrFamilyInfo__DeviceSelectionList;
+}
 #include "TribesGame.TrObject.TR_EQUIP_POINT.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

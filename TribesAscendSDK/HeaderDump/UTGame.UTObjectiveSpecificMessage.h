@@ -1,10 +1,14 @@
 #pragma once
-#include "UTGame.UTLocalMessage.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+namespace UnrealScript
+{
+	class UTObjectiveSpecificMessage;
+}
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
 #include "Engine.SoundNodeWave.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+#include "UTGame.UTLocalMessage.h"
 namespace UnrealScript
 {
 	class UTObjectiveSpecificMessage : public UTLocalMessage

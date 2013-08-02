@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct GameCrowdAgent__BehaviorEntry;
+}
 #include "Engine.Actor.h"
 #include "GameFramework.GameCrowdAgentBehavior.h"
 #define ADD_BOOL(name, offset, mask) \

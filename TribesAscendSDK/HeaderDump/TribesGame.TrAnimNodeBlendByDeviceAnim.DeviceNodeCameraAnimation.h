@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.CameraAnimInst.h"
+namespace UnrealScript
+{
+	struct TrAnimNodeBlendByDeviceAnim__DeviceNodeCameraAnimation;
+}
 #include "Engine.CameraAnim.h"
+#include "Engine.CameraAnimInst.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

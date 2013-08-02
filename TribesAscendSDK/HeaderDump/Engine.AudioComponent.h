@@ -1,16 +1,19 @@
 #pragma once
-#include "Engine.ActorComponent.h"
+namespace UnrealScript
+{
+	class AudioComponent;
+}
 #include "Core.Object.Double.h"
-#include "Engine.EngineTypes.SubtitleCue.h"
-#include "Core.Object.Vector.h"
-#include "Engine.AudioComponent.AudioComponentParam.h"
-#include "Engine.SoundCue.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.ReverbVolume.InteriorSettings.h"
-#include "Engine.SoundNode.h"
-#include "Engine.Actor.h"
-#include "Engine.PortalVolume.h"
 #include "Core.Object.MultiMap_Mirror.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.Actor.h"
+#include "Engine.ActorComponent.h"
+#include "Engine.AudioComponent.AudioComponentParam.h"
+#include "Engine.EngineTypes.SubtitleCue.h"
+#include "Engine.PortalVolume.h"
+#include "Engine.ReverbVolume.InteriorSettings.h"
+#include "Engine.SoundCue.h"
+#include "Engine.SoundNode.h"
 #include "Engine.SoundNodeWave.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -35,6 +38,7 @@ namespace UnrealScript
 	class AudioComponent : public ActorComponent
 	{
 	public:
+		typedef AudioComponent__AudioComponentParam AudioComponentParam;
 		ADD_BOOL(bUseOwnerLocation, 108, 0x1)
 		ADD_STRUCT(Vector, Location, 280)
 		ADD_BOOL(bAllowSpatialization, 108, 0x100)

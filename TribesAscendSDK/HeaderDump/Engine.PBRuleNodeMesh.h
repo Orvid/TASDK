@@ -1,6 +1,11 @@
 #pragma once
-#include "Engine.PBRuleNodeMesh.BuildingMeshInfo.h"
+namespace UnrealScript
+{
+	class PBRuleNodeMesh;
+}
 #include "Engine.PBRuleNodeBase.h"
+#include "Engine.PBRuleNodeMesh.BuildingMatOverrides.h"
+#include "Engine.PBRuleNodeMesh.BuildingMeshInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,6 +29,8 @@ namespace UnrealScript
 	class PBRuleNodeMesh : public PBRuleNodeBase
 	{
 	public:
+		typedef PBRuleNodeMesh__BuildingMeshInfo BuildingMeshInfo;
+		typedef PBRuleNodeMesh__BuildingMatOverrides BuildingMatOverrides;
 		ADD_STRUCT(ScriptArray<PBRuleNodeMesh__BuildingMeshInfo>, BuildingMeshes, 104)
 		ADD_BOOL(bBlockAll, 172, 0x2)
 		ADD_BOOL(bDoOcclusionTest, 172, 0x1)

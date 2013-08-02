@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class InternetLink;
+}
 #include "Core.Object.Pointer.h"
 #include "Engine.Info.h"
-#include "IpDrv.InternetLink.EReceiveMode.h"
-#include "IpDrv.InternetLink.ELinkMode.h"
 #include "IpDrv.InternetLink.ELineMode.h"
+#include "IpDrv.InternetLink.ELinkMode.h"
+#include "IpDrv.InternetLink.EReceiveMode.h"
 #include "IpDrv.InternetLink.IpAddr.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -14,6 +18,10 @@ namespace UnrealScript
 	class InternetLink : public Info
 	{
 	public:
+		typedef InternetLink__ELinkMode ELinkMode;
+		typedef InternetLink__EReceiveMode EReceiveMode;
+		typedef InternetLink__ELineMode ELineMode;
+		typedef InternetLink__IpAddr IpAddr;
 		ADD_STRUCT(int, DataPending, 496)
 		ADD_STRUCT(Object__Pointer, PrivateResolveInfo, 492)
 		ADD_STRUCT(Object__Pointer, RemoteSocket, 488)

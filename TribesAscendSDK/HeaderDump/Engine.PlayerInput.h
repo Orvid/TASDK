@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class PlayerInput;
+}
 #include "Engine.Actor.EDoubleClickDir.h"
-#include "Engine.Input.h"
-#include "Engine.HUD.h"
 #include "Engine.Actor.ETravelType.h"
+#include "Engine.HUD.h"
+#include "Engine.Input.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -140,13 +144,6 @@ namespace UnrealScript
 			byte params[4] = { NULL };
 			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 			return *(bool*)params;
-		}
-		void PlayerInput(float DeltaTime)
-		{
-			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(13995);
-			byte params[4] = { NULL };
-			*(float*)params = DeltaTime;
-			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ProcessInputMatching(float DeltaTime)
 		{

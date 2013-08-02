@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.SequenceOp.SeqOpOutputInputLink.h"
-#include "Engine.SequenceOp.h"
+namespace UnrealScript
+{
+	struct UIRoot__InputKeyAction;
+}
 #include "Core.Object.EInputEvent.h"
+#include "Engine.SequenceOp.h"
+#include "Engine.SequenceOp.SeqOpOutputInputLink.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

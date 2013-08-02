@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineSystemInterface;
+}
 #include "Core.Interface.h"
 #include "Engine.OnlineSubsystem.ENATType.h"
-#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
 #include "Engine.OnlineSubsystem.ENetworkNotificationPosition.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
 namespace UnrealScript
 {
 	class OnlineSystemInterface : public Interface

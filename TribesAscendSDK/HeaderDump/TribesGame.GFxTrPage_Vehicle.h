@@ -1,8 +1,12 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
-#include "TribesGame.GFxTrAction.h"
-#include "TribesGame.GFxTrPage_Vehicle.VehicleOption.h"
+namespace UnrealScript
+{
+	class GFxTrPage_Vehicle;
+}
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.GFxTrAction.h"
+#include "TribesGame.GFxTrPage.h"
+#include "TribesGame.GFxTrPage_Vehicle.VehicleOption.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,6 +16,7 @@ namespace UnrealScript
 	class GFxTrPage_Vehicle : public GFxTrPage
 	{
 	public:
+		typedef GFxTrPage_Vehicle__VehicleOption VehicleOption;
 		ADD_STRUCT(int, PlayerCredits, 356)
 		ADD_STRUCT(ScriptArray<GFxTrPage_Vehicle__VehicleOption>, VehicleOptions, 360)
 		void Initialize()

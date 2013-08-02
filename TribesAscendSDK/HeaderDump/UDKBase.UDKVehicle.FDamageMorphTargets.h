@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UDKVehicle__FDamageMorphTargets;
+}
 #include "Engine.MorphNodeWeight.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

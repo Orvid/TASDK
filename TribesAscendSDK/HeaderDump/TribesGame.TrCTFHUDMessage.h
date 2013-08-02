@@ -1,10 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrCTFHUDMessage;
+}
+#include "Core.Object.h"
 #include "Core.Object.Color.h"
-#include "UTGame.UTLocalMessage.h"
 #include "Engine.PlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "Core.Object.h"
+#include "TribesGame.TrCTFHUDMessage.CTF_HUD_MESSAGE.h"
 #include "UTGame.UTAnnouncer.h"
+#include "UTGame.UTLocalMessage.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,6 +19,7 @@ namespace UnrealScript
 	class TrCTFHUDMessage : public UTLocalMessage
 	{
 	public:
+		typedef TrCTFHUDMessage__CTF_HUD_MESSAGE CTF_HUD_MESSAGE;
 		ADD_STRUCT(Object__Color, YellowColor, 152)
 		ADD_STRUCT(Object__Color, RedColor, 148)
 		ADD_STRUCT(ScriptString*, YouHaveFlagReminderString, 136)

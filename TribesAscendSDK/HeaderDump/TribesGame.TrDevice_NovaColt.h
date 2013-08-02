@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_NovaColt;
+}
 #include "TribesGame.TrDevice.h"
 namespace UnrealScript
 {

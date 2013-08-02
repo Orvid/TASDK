@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SkeletalMesh.h"
+namespace UnrealScript
+{
+	struct AnimTree__PreviewSkelMeshStruct;
+}
 #include "Engine.MorphTargetSet.h"
+#include "Engine.SkeletalMesh.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,11 +1,15 @@
 #pragma once
-#include "UTGame.UTLocalMessage.h"
-#include "UTGame.UTQueuedAnnouncement.h"
-#include "Engine.SoundNodeWave.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class TrMultiKillMessage;
+}
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.SoundNodeWave.h"
 #include "UTGame.UTAnnouncer.h"
+#include "UTGame.UTLocalMessage.h"
+#include "UTGame.UTQueuedAnnouncement.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,11 +1,15 @@
 #pragma once
-#include "TribesGame.TrGameSearchCommon.h"
+namespace UnrealScript
+{
+	class TrMakeQuickMatch;
+}
 #include "Core.Object.h"
-#include "TribesGame.TrGameSettingsCommon.h"
-#include "Engine.PlayerController.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
 #include "Engine.LocalPlayer.h"
+#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
+#include "Engine.OnlineSubsystem.h"
+#include "Engine.PlayerController.h"
+#include "TribesGame.TrGameSearchCommon.h"
+#include "TribesGame.TrGameSettingsCommon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

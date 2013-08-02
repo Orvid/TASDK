@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ScaleAudioVolumeCommandlet;
+}
 #include "Core.Commandlet.h"
 namespace UnrealScript
 {

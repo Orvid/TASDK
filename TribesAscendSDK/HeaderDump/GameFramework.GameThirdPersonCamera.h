@@ -1,16 +1,18 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameThirdPersonCamera;
+}
+#include "Core.Object.Vector2D.h"
+#include "Engine.Actor.h"
+#include "Engine.Camera.TViewTarget.h"
 #include "Engine.Pawn.h"
 #include "Engine.PostProcessVolume.PostProcessSettings.h"
 #include "GameFramework.GameCameraBase.h"
-#include "Core.Object.Vector.h"
-#include "GameFramework.GameThirdPersonCamera.PenetrationAvoidanceFeeler.h"
 #include "GameFramework.GamePlayerCamera.h"
-#include "Core.Object.Rotator.h"
 #include "GameFramework.GameThirdPersonCamera.CamFocusPointParams.h"
+#include "GameFramework.GameThirdPersonCamera.PenetrationAvoidanceFeeler.h"
 #include "GameFramework.GameThirdPersonCameraMode.h"
-#include "Engine.Camera.TViewTarget.h"
-#include "Core.Object.Vector2D.h"
-#include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -34,6 +36,8 @@ namespace UnrealScript
 	class GameThirdPersonCamera : public GameCameraBase
 	{
 	public:
+		typedef GameThirdPersonCamera__PenetrationAvoidanceFeeler PenetrationAvoidanceFeeler;
+		typedef GameThirdPersonCamera__CamFocusPointParams CamFocusPointParams;
 		ADD_STRUCT(ScriptArray<GameThirdPersonCamera__PenetrationAvoidanceFeeler>, PenetrationAvoidanceFeelers, 348)
 		ADD_STRUCT(Vector, LastOffsetAdjustment, 360)
 		ADD_STRUCT(Rotator, LastPreModifierCameraRot, 336)

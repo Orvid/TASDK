@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.AnimNotify_Scripted.h"
-#include "Engine.Pawn.ScalarParameterInterpStruct.h"
+namespace UnrealScript
+{
+	class AnimNotify_PawnMaterialParam;
+}
 #include "Engine.Actor.h"
 #include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimNotify_Scripted.h"
+#include "Engine.Pawn.ScalarParameterInterpStruct.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

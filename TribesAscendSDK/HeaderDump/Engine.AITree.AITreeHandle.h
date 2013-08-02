@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.AITree.AITreeUtilityInfo.h"
+namespace UnrealScript
+{
+	struct AITree__AITreeHandle;
+}
 #include "Engine.AICommandNodeBase.h"
 #include "Engine.AICommandNodeRoot.h"
+#include "Engine.AITree.AITreeUtilityInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

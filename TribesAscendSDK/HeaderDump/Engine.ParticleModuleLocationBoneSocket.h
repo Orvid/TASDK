@@ -1,10 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleLocationBoneSocket;
+}
 #include "Engine.ParticleModuleLocationBase.h"
-#include "Engine.ParticleModuleLocationBoneSocket.LocationBoneSocketInfo.h"
-#include "Engine.SkeletalMesh.h"
-#include "Core.Object.Vector.h"
 #include "Engine.ParticleModuleLocationBoneSocket.ELocationBoneSocketSelectionMethod.h"
 #include "Engine.ParticleModuleLocationBoneSocket.ELocationBoneSocketSource.h"
+#include "Engine.ParticleModuleLocationBoneSocket.LocationBoneSocketInfo.h"
+#include "Engine.SkeletalMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +31,9 @@ namespace UnrealScript
 	class ParticleModuleLocationBoneSocket : public ParticleModuleLocationBase
 	{
 	public:
+		typedef ParticleModuleLocationBoneSocket__ELocationBoneSocketSource ELocationBoneSocketSource;
+		typedef ParticleModuleLocationBoneSocket__ELocationBoneSocketSelectionMethod ELocationBoneSocketSelectionMethod;
+		typedef ParticleModuleLocationBoneSocket__LocationBoneSocketInfo LocationBoneSocketInfo;
 		ADD_STRUCT(ScriptArray<ParticleModuleLocationBoneSocket__LocationBoneSocketInfo>, SourceLocations, 88)
 		ADD_OBJECT(SkeletalMesh, EditorSkelMesh, 112)
 		ADD_STRUCT(ScriptName, SkelMeshActorParamName, 104)

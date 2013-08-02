@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.AnimNodeSynch.SynchGroup.h"
+namespace UnrealScript
+{
+	class AnimNodeSynch;
+}
 #include "Engine.AnimNodeBlendBase.h"
 #include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimNodeSynch.SynchGroup.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +29,7 @@ namespace UnrealScript
 	class AnimNodeSynch : public AnimNodeBlendBase
 	{
 	public:
+		typedef AnimNodeSynch__SynchGroup SynchGroup;
 		ADD_STRUCT(ScriptArray<AnimNodeSynch__SynchGroup>, Groups, 244)
 		void AddNodeToGroup(class AnimNodeSequence* SeqNode, ScriptName GroupName)
 		{

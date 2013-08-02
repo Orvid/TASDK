@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKAnimBlendByDriving;
+}
 #include "Engine.AnimNodeBlend.h"
 namespace UnrealScript
 {

@@ -1,12 +1,16 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrScoreboard;
+}
 #include "Core.Object.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "TribesGame.GfxTrHud.h"
+#include "TribesGame.TrGameReplicationInfo.h"
+#include "TribesGame.TrPlayerController.h"
 #include "TribesGame.TrPlayerReplicationInfo.h"
 #include "TribesGame.TrScoreboard.TrScoreSlot.h"
-#include "TribesGame.GfxTrHud.h"
 #include "TribesGame.TrScoreboard.TrScoreboardState.h"
-#include "TribesGame.TrPlayerController.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "TribesGame.TrGameReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,6 +34,8 @@ namespace UnrealScript
 	class TrScoreboard : public Object
 	{
 	public:
+		typedef TrScoreboard__TrScoreboardState TrScoreboardState;
+		typedef TrScoreboard__TrScoreSlot TrScoreSlot;
 		ADD_OBJECT(GfxTrHud, m_MoviePlayer, 100)
 		ADD_BOOL(bIsActive, 96, 0x8)
 		ADD_OBJECT(TrPlayerController, TrPC, 1652)

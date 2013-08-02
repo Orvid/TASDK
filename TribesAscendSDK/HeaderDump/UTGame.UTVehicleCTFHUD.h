@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTVehicleCTFHUD;
+}
 #include "UTGame.UTCTFHUD.h"
 namespace UnrealScript
 {

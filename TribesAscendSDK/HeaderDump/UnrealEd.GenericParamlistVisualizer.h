@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GenericParamlistVisualizer;
+}
 #include "UnrealEd.GameStatsVisualizer.h"
 namespace UnrealScript
 {

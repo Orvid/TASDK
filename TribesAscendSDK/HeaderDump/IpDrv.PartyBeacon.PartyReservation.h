@@ -1,6 +1,10 @@
 #pragma once
-#include "IpDrv.PartyBeacon.PlayerReservation.h"
+namespace UnrealScript
+{
+	struct PartyBeacon__PartyReservation;
+}
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "IpDrv.PartyBeacon.PlayerReservation.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

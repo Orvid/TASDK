@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Admin;
+}
 #include "Engine.PlayerController.h"
 namespace UnrealScript
 {
@@ -9,13 +13,6 @@ namespace UnrealScript
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9627);
 			((ScriptObject*)this)->ProcessEvent(function, NULL, NULL);
-		}
-		void Admin(ScriptString* CommandLine)
-		{
-			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(9628);
-			byte params[12] = { NULL };
-			*(ScriptString**)params = CommandLine;
-			((ScriptObject*)this)->ProcessEvent(function, &params, NULL);
 		}
 		void ServerAdmin(ScriptString* CommandLine)
 		{

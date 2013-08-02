@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MctsOnlineSettings;
+}
 #include "Engine.OnlineGameSettings.h"
 namespace UnrealScript
 {

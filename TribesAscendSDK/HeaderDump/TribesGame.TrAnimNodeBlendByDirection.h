@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAnimNodeBlendByDirection;
+}
 #include "Engine.AnimNodeSequenceBlendBase.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_BOOL(name, offset, mask) \

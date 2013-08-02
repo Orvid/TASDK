@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAttachment_EMPGrenade_MKD;
+}
 #include "TribesGame.TrDeviceAttachment.h"
 namespace UnrealScript
 {

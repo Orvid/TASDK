@@ -1,6 +1,11 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
+namespace UnrealScript
+{
+	class GFxTrPage_Login;
+}
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.GFxTrPage.h"
+#include "TribesGame.GFxTrPage_Login.MENU_ACTION_LOGIN.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,6 +15,7 @@ namespace UnrealScript
 	class GFxTrPage_Login : public GFxTrPage
 	{
 	public:
+		typedef GFxTrPage_Login__MENU_ACTION_LOGIN MENU_ACTION_LOGIN;
 		ADD_STRUCT(ScriptString*, CreateAccountLabel, 464)
 		ADD_STRUCT(ScriptString*, HelpPasswordLabel, 452)
 		ADD_STRUCT(ScriptString*, HelpUsernameLabel, 440)

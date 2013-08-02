@@ -1,15 +1,18 @@
 #pragma once
-#include "Engine.Volume.h"
+namespace UnrealScript
+{
+	class PhysicsVolume;
+}
 #include "Engine.Actor.h"
 #include "Engine.Controller.h"
-#include "Engine.PlayerController.h"
-#include "Engine.Pawn.h"
 #include "Engine.Info.h"
-#include "Core.Object.Vector.h"
-#include "Engine.VolumeTimer.h"
-#include "Engine.SeqAct_Toggle.h"
-#include "Engine.SeqAct_SetDamageInstigator.h"
+#include "Engine.Pawn.h"
 #include "Engine.PhysicsVolume.CheckpointRecord.h"
+#include "Engine.PlayerController.h"
+#include "Engine.SeqAct_SetDamageInstigator.h"
+#include "Engine.SeqAct_Toggle.h"
+#include "Engine.Volume.h"
+#include "Engine.VolumeTimer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,6 +36,7 @@ namespace UnrealScript
 	class PhysicsVolume : public Volume
 	{
 	public:
+		typedef PhysicsVolume__CheckpointRecord CheckpointRecord;
 		ADD_BOOL(bPainCausing, 532, 0x2)
 		ADD_STRUCT(float, DamagePerSec, 544)
 		ADD_BOOL(bWaterVolume, 532, 0x1000)

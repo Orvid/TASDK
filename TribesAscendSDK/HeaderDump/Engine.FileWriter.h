@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class FileWriter;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.Info.h"
 #include "Engine.FileWriter.FWFileType.h"
+#include "Engine.Info.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class FileWriter : public Info
 	{
 	public:
+		typedef FileWriter__FWFileType FWFileType;
 		ADD_STRUCT(Object__Pointer, ArchivePtr, 476)
 		ADD_STRUCT(ScriptString*, Filename, 480)
 		ADD_STRUCT(FileWriter__FWFileType, FileType, 492)

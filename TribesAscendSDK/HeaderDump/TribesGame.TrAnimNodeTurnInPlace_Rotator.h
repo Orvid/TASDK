@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAnimNodeTurnInPlace_Rotator;
+}
 #include "Engine.AnimNodeBlendBase.h"
 #include "TribesGame.TrAnimNodeTurnInPlace.h"
 #include "TribesGame.TrPawn.h"

@@ -1,11 +1,15 @@
 #pragma once
-#include "GFxUI.GFxObject.ASColorTransform.h"
+namespace UnrealScript
+{
+	class GFxObject;
+}
 #include "Core.Object.h"
+#include "Core.Object.Matrix.h"
 #include "Engine.TranslationContext.h"
 #include "GFxUI.GFxMoviePlayer.ASValue.h"
 #include "GFxUI.GFxMoviePlayer.GFxWidgetBinding.h"
+#include "GFxUI.GFxObject.ASColorTransform.h"
 #include "GFxUI.GFxObject.ASDisplayInfo.h"
-#include "Core.Object.Matrix.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +29,8 @@ namespace UnrealScript
 	class GFxObject : public Object
 	{
 	public:
+		typedef GFxObject__ASDisplayInfo ASDisplayInfo;
+		typedef GFxObject__ASColorTransform ASColorTransform;
 		ADD_STRUCT(ScriptArray<GFxMoviePlayer__GFxWidgetBinding>, SubWidgetBindings, 108)
 		ADD_STRUCT(int, Value, 60)
 		GFxMoviePlayer__ASValue Get(ScriptString* Member)

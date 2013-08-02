@@ -1,10 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class UISceneClient;
+}
 #include "Core.Object.IntPoint.h"
-#include "Engine.UIRoot.h"
-#include "Engine.DataStoreClient.h"
-#include "Engine.PostProcessChain.h"
 #include "Core.Object.Matrix.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.DataStoreClient.h"
+#include "Engine.PostProcessChain.h"
+#include "Engine.UIRoot.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

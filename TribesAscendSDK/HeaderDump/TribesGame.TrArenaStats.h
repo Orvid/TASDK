@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrArenaStats;
+}
 #include "Core.Object.h"
-#include "TribesGame.TrPlayerController.h"
-#include "TribesGame.TrArenaStats.ManGraphicState.h"
 #include "TribesGame.GfxTrHud.h"
+#include "TribesGame.TrArenaStats.ManGraphicState.h"
 #include "TribesGame.TrGameReplicationInfo.h"
+#include "TribesGame.TrPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +31,7 @@ namespace UnrealScript
 	class TrArenaStats : public Object
 	{
 	public:
+		typedef TrArenaStats__ManGraphicState ManGraphicState;
 		static const auto MAX_NUM_ARENA_PLAYERS_PER_TEAM = 8;
 		ADD_STRUCT(int, MyTeam, 60)
 		ADD_OBJECT(TrPlayerController, TrPC, 96)

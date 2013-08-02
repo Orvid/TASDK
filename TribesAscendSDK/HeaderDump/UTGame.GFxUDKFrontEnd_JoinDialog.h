@@ -1,8 +1,12 @@
 #pragma once
-#include "UTGame.GFxUDKFrontEnd_Dialog.h"
-#include "GFxUI.GFxClikWidget.h"
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_JoinDialog;
+}
 #include "Engine.OnlineGameSettings.h"
+#include "GFxUI.GFxClikWidget.h"
 #include "GFxUI.GFxObject.h"
+#include "UTGame.GFxUDKFrontEnd_Dialog.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

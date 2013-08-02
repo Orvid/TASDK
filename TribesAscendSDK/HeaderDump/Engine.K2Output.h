@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class K2Output;
+}
 #include "Engine.K2Connector.h"
 #include "Engine.K2Input.h"
 #define ADD_STRUCT(x, y, offset) \

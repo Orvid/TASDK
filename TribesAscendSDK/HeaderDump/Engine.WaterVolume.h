@@ -1,8 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class WaterVolume;
+}
+#include "Engine.Actor.h"
 #include "Engine.PhysicsVolume.h"
 #include "Engine.SoundCue.h"
-#include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

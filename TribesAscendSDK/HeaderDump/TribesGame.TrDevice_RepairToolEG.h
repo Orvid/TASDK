@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_RepairToolEG;
+}
 #include "TribesGame.TrDevice_RepairTool.h"
 namespace UnrealScript
 {

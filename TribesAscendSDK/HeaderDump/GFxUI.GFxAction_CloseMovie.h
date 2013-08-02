@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxAction_CloseMovie;
+}
 #include "Engine.SequenceAction.h"
 #include "GFxUI.GFxMoviePlayer.h"
 #define ADD_BOOL(name, offset, mask) \

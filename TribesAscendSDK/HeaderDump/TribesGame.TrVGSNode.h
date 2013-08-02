@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrVGSNode;
+}
 #include "Core.Object.h"
-#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #include "TribesGame.TrPlayerInput.h"
+#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

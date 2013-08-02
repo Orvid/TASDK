@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.UIDataStore_StringBase.h"
+namespace UnrealScript
+{
+	class UIDataStore_StringAliasMap;
+}
+#include "Core.Object.Map_Mirror.h"
 #include "Engine.LocalPlayer.h"
 #include "Engine.UIDataStore_StringAliasMap.UIMenuInputMap.h"
-#include "Core.Object.Map_Mirror.h"
+#include "Engine.UIDataStore_StringBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,6 +16,7 @@ namespace UnrealScript
 	class UIDataStore_StringAliasMap : public UIDataStore_StringBase
 	{
 	public:
+		typedef UIDataStore_StringAliasMap__UIMenuInputMap UIMenuInputMap;
 		ADD_STRUCT(ScriptArray<UIDataStore_StringAliasMap__UIMenuInputMap>, MenuInputMapArray, 120)
 		ADD_STRUCT(int, PlayerIndex, 192)
 		ADD_STRUCT(Object__Map_Mirror, MenuInputSets, 132)

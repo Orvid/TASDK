@@ -1,15 +1,17 @@
 #pragma once
-#include "Core.Object.Pointer.h"
-#include "Engine.PrimitiveComponent.h"
-#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	class DecalComponent;
+}
 #include "Core.Object.Plane.h"
-#include "Engine.DecalComponent.DecalReceiver.h"
-#include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
-#include "Engine.DecalComponent.EFilterMode.h"
-#include "Engine.DecalComponent.EDecalTransform.h"
+#include "Core.Object.Pointer.h"
 #include "Core.Object.Vector2D.h"
+#include "Engine.Actor.h"
+#include "Engine.DecalComponent.DecalReceiver.h"
+#include "Engine.DecalComponent.EDecalTransform.h"
+#include "Engine.DecalComponent.EFilterMode.h"
 #include "Engine.MaterialInterface.h"
+#include "Engine.PrimitiveComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,6 +35,9 @@ namespace UnrealScript
 	class DecalComponent : public PrimitiveComponent
 	{
 	public:
+		typedef DecalComponent__EFilterMode EFilterMode;
+		typedef DecalComponent__EDecalTransform EDecalTransform;
+		typedef DecalComponent__DecalReceiver DecalReceiver;
 		ADD_STRUCT(ScriptArray<int>, HitNodeIndices, 632)
 		ADD_STRUCT(ScriptArray<DecalComponent__DecalReceiver>, DecalReceivers, 644)
 		ADD_STRUCT(ScriptArray<Object__Pointer>, StaticReceivers, 656)

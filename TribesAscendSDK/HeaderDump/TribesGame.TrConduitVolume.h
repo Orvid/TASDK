@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrPhysicsVolume.h"
+namespace UnrealScript
+{
+	class TrConduitVolume;
+}
 #include "Engine.Pawn.h"
+#include "TribesGame.TrPhysicsVolume.h"
 namespace UnrealScript
 {
 	class TrConduitVolume : public TrPhysicsVolume

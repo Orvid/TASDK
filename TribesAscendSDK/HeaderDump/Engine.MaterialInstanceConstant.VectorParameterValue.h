@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct MaterialInstanceConstant__VectorParameterValue;
+}
 #include "Core.Object.Guid.h"
 #include "Core.Object.LinearColor.h"
 #define ADD_STRUCT(x, y, offset) \

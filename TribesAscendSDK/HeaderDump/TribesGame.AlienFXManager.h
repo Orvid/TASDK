@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class AlienFXManager;
+}
 #include "Core.Object.h"
-#include "TribesGame.AlienFXManager.FXOverlay.h"
 #include "TribesGame.AlienFXManager.FXArea.h"
+#include "TribesGame.AlienFXManager.FXOverlay.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,8 @@ namespace UnrealScript
 	class AlienFXManager : public Object
 	{
 	public:
+		typedef AlienFXManager__FXOverlay FXOverlay;
+		typedef AlienFXManager__FXArea FXArea;
 		ADD_STRUCT(AlienFXManager__FXOverlay, eLastOverlay, 141)
 		ADD_STRUCT(AlienFXManager__FXOverlay, eCurrOverlay, 140)
 		ADD_STRUCT(float, fIntervalCount, 136)

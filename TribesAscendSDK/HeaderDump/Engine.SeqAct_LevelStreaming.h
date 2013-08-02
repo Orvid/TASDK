@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SeqAct_LevelStreamingBase.h"
+namespace UnrealScript
+{
+	class SeqAct_LevelStreaming;
+}
 #include "Engine.LevelStreaming.h"
+#include "Engine.SeqAct_LevelStreamingBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

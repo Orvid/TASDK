@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class TerrainMaterial;
+}
 #include "Core.Object.h"
-#include "Engine.Texture2D.h"
 #include "Core.Object.Matrix.h"
 #include "Engine.MaterialInterface.h"
 #include "Engine.TerrainMaterial.ETerrainMappingType.h"
+#include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,6 +21,7 @@ namespace UnrealScript
 	class TerrainMaterial : public Object
 	{
 	public:
+		typedef TerrainMaterial__ETerrainMappingType ETerrainMappingType;
 		ADD_STRUCT(float, DisplacementScale, 156)
 		ADD_OBJECT(Texture2D, DisplacementMap, 152)
 		ADD_OBJECT(MaterialInterface, Material, 148)

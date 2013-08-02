@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqCond_SwitchClass;
+}
 #include "Engine.SeqCond_SwitchBase.h"
 #include "Engine.SeqCond_SwitchClass.SwitchClassInfo.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class SeqCond_SwitchClass : public SeqCond_SwitchBase
 	{
 	public:
+		typedef SeqCond_SwitchClass__SwitchClassInfo SwitchClassInfo;
 		ADD_STRUCT(ScriptArray<SeqCond_SwitchClass__SwitchClassInfo>, ClassArray, 208)
 		void VerifyDefaultCaseValue()
 		{

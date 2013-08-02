@@ -1,9 +1,12 @@
 #pragma once
-#include "Engine.NavMeshPathGoalEvaluator.h"
-#include "Engine.NavMeshGoal_Filter.h"
-#include "Core.Object.Vector.h"
-#include "Engine.NavigationHandle.h"
+namespace UnrealScript
+{
+	class NavMeshGoal_GenericFilterContainer;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.NavMeshGoal_Filter.h"
+#include "Engine.NavMeshPathGoalEvaluator.h"
+#include "Engine.NavigationHandle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

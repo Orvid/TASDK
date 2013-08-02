@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleLocationPrimitiveSphere.h"
+namespace UnrealScript
+{
+	class ParticleModuleLocationPrimitiveSphere_Seeded;
+}
 #include "Engine.ParticleModule.ParticleRandomSeedInfo.h"
+#include "Engine.ParticleModuleLocationPrimitiveSphere.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

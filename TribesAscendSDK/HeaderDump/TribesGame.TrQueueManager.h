@@ -1,12 +1,16 @@
 #pragma once
-#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
+namespace UnrealScript
+{
+	class TrQueueManager;
+}
 #include "Core.Object.h"
-#include "TribesGame.TrQueueManager.ServerInfo.h"
-#include "TribesGame.TrQueueManager.ServerConfig.h"
 #include "OnlineSubsystemMcts.OnlineGameInterfaceMcts.h"
-#include "TribesGame.TrQueueManager.RentalItem.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
 #include "TribesGame.GFxTrMenuMoviePlayer.h"
 #include "TribesGame.TrQueueManager.ProfileConfig.h"
+#include "TribesGame.TrQueueManager.RentalItem.h"
+#include "TribesGame.TrQueueManager.ServerConfig.h"
+#include "TribesGame.TrQueueManager.ServerInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,6 +34,10 @@ namespace UnrealScript
 	class TrQueueManager : public Object
 	{
 	public:
+		typedef TrQueueManager__ServerInfo ServerInfo;
+		typedef TrQueueManager__RentalItem RentalItem;
+		typedef TrQueueManager__ServerConfig ServerConfig;
+		typedef TrQueueManager__ProfileConfig ProfileConfig;
 		ADD_BOOL(bQueued, 128, 0x1)
 		ADD_BOOL(bJoiningCustom, 128, 0x4)
 		ADD_STRUCT(ScriptArray<int>, RegionFilter, 116)

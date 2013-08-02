@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_AntiAirTurretDeployable;
+}
 #include "TribesGame.TrDevice_Deployable.h"
 namespace UnrealScript
 {

@@ -1,6 +1,9 @@
 #pragma once
+namespace UnrealScript
+{
+	class UberPostProcessEffect;
+}
 #include "Engine.DOFBloomMotionBlurEffect.h"
-#include "Core.Object.Vector.h"
 #include "Engine.UberPostProcessEffect.ETonemapperType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -21,6 +24,7 @@ namespace UnrealScript
 	class UberPostProcessEffect : public DOFBloomMotionBlurEffect
 	{
 	public:
+		typedef UberPostProcessEffect__ETonemapperType ETonemapperType;
 		ADD_STRUCT(float, SceneHDRTonemapperScale, 300)
 		ADD_STRUCT(float, BloomSizeScaleLarge, 296)
 		ADD_STRUCT(float, BloomSizeScaleMedium, 292)

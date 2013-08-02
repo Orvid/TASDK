@@ -1,9 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrCallIn_DeliveryPod;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
 #include "Engine.MaterialInstanceTimeVarying.h"
-#include "Engine.SoundCue.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.SoundCue.h"
 #include "TribesGame.TrCallIn_CrashLandInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

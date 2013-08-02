@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimSetFactoryNew;
+}
 #include "Core.Factory.h"
 namespace UnrealScript
 {

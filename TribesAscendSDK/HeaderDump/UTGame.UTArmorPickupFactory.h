@@ -1,9 +1,13 @@
 #pragma once
-#include "UTGame.UTItemPickupFactory.h"
-#include "UTGame.UTHUD.h"
-#include "Engine.Pawn.h"
-#include "UTGame.UTPawn.h"
+namespace UnrealScript
+{
+	class UTArmorPickupFactory;
+}
 #include "Engine.Controller.h"
+#include "Engine.Pawn.h"
+#include "UTGame.UTHUD.h"
+#include "UTGame.UTItemPickupFactory.h"
+#include "UTGame.UTPawn.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

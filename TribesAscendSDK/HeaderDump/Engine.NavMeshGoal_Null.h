@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.NavMeshPathGoalEvaluator.h"
+namespace UnrealScript
+{
+	class NavMeshGoal_Null;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.NavMeshPathGoalEvaluator.h"
 #include "Engine.NavigationHandle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

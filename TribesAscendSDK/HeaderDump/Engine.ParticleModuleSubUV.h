@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleSubUVBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleSubUV;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Engine.ParticleModuleSubUVBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

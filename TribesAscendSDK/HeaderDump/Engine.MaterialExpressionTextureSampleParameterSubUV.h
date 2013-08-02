@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpressionTextureSampleParameterSubUV;
+}
 #include "Engine.MaterialExpressionTextureSampleParameter2D.h"
 namespace UnrealScript
 {

@@ -1,42 +1,46 @@
 #pragma once
-#include "Engine.SoundCue.h"
-#include "Engine.MeshComponent.h"
-#include "Engine.PhysicsAsset.h"
-#include "Engine.AnimNode.h"
-#include "Engine.PhysicsAssetInstance.h"
-#include "Engine.SkeletalMesh.h"
-#include "Engine.SkeletalMeshComponent.SkelMeshComponentLODInfo.h"
-#include "Engine.AnimTree.h"
-#include "Engine.SkeletalMeshComponent.EFaceFXRegOp.h"
-#include "Engine.FaceFXAnimSet.h"
-#include "Core.Object.Vector.h"
-#include "Engine.SkelControlBase.h"
-#include "Core.Object.Pointer.h"
-#include "Core.Object.Color.h"
+namespace UnrealScript
+{
+	class SkeletalMeshComponent;
+}
 #include "Core.Object.BoneAtom.h"
+#include "Core.Object.Color.h"
 #include "Core.Object.EAxis.h"
-#include "Engine.AnimSet.h"
-#include "Engine.MorphTargetSet.h"
-#include "Engine.SkeletalMeshComponent.ActiveMorph.h"
+#include "Core.Object.Matrix.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Quat.h"
+#include "Engine.AnimNode.h"
 #include "Engine.AnimNotify_ForceField.h"
-#include "Engine.SkeletalMeshComponent.EPhysBodyOp.h"
-#include "Engine.SkeletalMeshComponent.Attachment.h"
-#include "Engine.SkeletalMeshComponent.ERootMotionMode.h"
-#include "Engine.SkeletalMeshComponent.BonePair.h"
-#include "Core.Object.Rotator.h"
+#include "Engine.AnimNotify_PlayParticleEffect.h"
+#include "Engine.AnimSequence.h"
+#include "Engine.AnimSet.h"
+#include "Engine.AnimTree.h"
+#include "Engine.FaceFXAnimSet.h"
+#include "Engine.Material.h"
+#include "Engine.MeshComponent.h"
+#include "Engine.MorphNodeBase.h"
+#include "Engine.MorphTarget.h"
+#include "Engine.MorphTargetSet.h"
+#include "Engine.PhysicsAsset.h"
+#include "Engine.PhysicsAssetInstance.h"
 #include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
 #include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
-#include "Engine.Material.h"
-#include "Engine.SkeletalMeshComponent.ERootMotionRotationMode.h"
-#include "Engine.SkeletalMeshComponent.EFaceFXBlendMode.h"
-#include "Engine.SkeletalMeshSocket.h"
-#include "Core.Object.Matrix.h"
-#include "Engine.AnimSequence.h"
-#include "Engine.MorphTarget.h"
-#include "Engine.MorphNodeBase.h"
-#include "Core.Object.Quat.h"
 #include "Engine.RB_BodyInstance.h"
-#include "Engine.AnimNotify_PlayParticleEffect.h"
+#include "Engine.SkelControlBase.h"
+#include "Engine.SkeletalMesh.h"
+#include "Engine.SkeletalMeshComponent.ActiveMorph.h"
+#include "Engine.SkeletalMeshComponent.Attachment.h"
+#include "Engine.SkeletalMeshComponent.BonePair.h"
+#include "Engine.SkeletalMeshComponent.EFaceFXBlendMode.h"
+#include "Engine.SkeletalMeshComponent.EFaceFXRegOp.h"
+#include "Engine.SkeletalMeshComponent.EInstanceWeightUsage.h"
+#include "Engine.SkeletalMeshComponent.EMaxDistanceScaleMode.h"
+#include "Engine.SkeletalMeshComponent.EPhysBodyOp.h"
+#include "Engine.SkeletalMeshComponent.ERootMotionMode.h"
+#include "Engine.SkeletalMeshComponent.ERootMotionRotationMode.h"
+#include "Engine.SkeletalMeshComponent.SkelMeshComponentLODInfo.h"
+#include "Engine.SkeletalMeshSocket.h"
+#include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -60,6 +64,17 @@ namespace UnrealScript
 	class SkeletalMeshComponent : public MeshComponent
 	{
 	public:
+		typedef SkeletalMeshComponent__EPhysBodyOp EPhysBodyOp;
+		typedef SkeletalMeshComponent__EFaceFXRegOp EFaceFXRegOp;
+		typedef SkeletalMeshComponent__EFaceFXBlendMode EFaceFXBlendMode;
+		typedef SkeletalMeshComponent__EInstanceWeightUsage EInstanceWeightUsage;
+		typedef SkeletalMeshComponent__ERootMotionRotationMode ERootMotionRotationMode;
+		typedef SkeletalMeshComponent__ERootMotionMode ERootMotionMode;
+		typedef SkeletalMeshComponent__EMaxDistanceScaleMode EMaxDistanceScaleMode;
+		typedef SkeletalMeshComponent__BonePair BonePair;
+		typedef SkeletalMeshComponent__SkelMeshComponentLODInfo SkelMeshComponentLODInfo;
+		typedef SkeletalMeshComponent__Attachment Attachment;
+		typedef SkeletalMeshComponent__ActiveMorph ActiveMorph;
 		ADD_OBJECT(AnimNode, Animations, 512)
 		ADD_OBJECT(PhysicsAssetInstance, PhysicsAssetInstance, 580)
 		ADD_STRUCT(ScriptArray<SkeletalMeshComponent__SkelMeshComponentLODInfo>, LODInfo, 976)

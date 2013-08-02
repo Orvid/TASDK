@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.LightComponent.h"
+namespace UnrealScript
+{
+	class DirectionalLightComponent;
+}
 #include "Engine.EngineTypes.LightmassDirectionalLightSettings.h"
+#include "Engine.LightComponent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

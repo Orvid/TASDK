@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.PrefabSequence.h"
+namespace UnrealScript
+{
+	class Prefab;
+}
 #include "Core.Object.h"
+#include "Engine.PrefabSequence.h"
 #include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

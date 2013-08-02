@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class BookMark2D;
+}
 #include "Core.Object.h"
 #include "Core.Object.IntPoint.h"
 #define ADD_STRUCT(x, y, offset) \

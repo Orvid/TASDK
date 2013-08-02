@@ -1,12 +1,15 @@
 #pragma once
-#include "Engine.Controller.h"
-#include "TribesGame.TrStatsInterface.h"
+namespace UnrealScript
+{
+	class TrAccoladeManager;
+}
 #include "Core.Object.h"
+#include "Engine.Controller.h"
+#include "TribesGame.TrGame.h"
 #include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrStatsInterface.h"
 #include "TribesGame.TrVehicle.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
-#include "TribesGame.TrGame.h"
-#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

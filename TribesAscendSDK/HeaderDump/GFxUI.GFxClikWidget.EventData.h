@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct GFxClikWidget__EventData;
+}
 #include "GFxUI.GFxObject.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

@@ -1,10 +1,12 @@
 #pragma once
-#include "TribesGame.TrObjectPool.TracerCacheInfo.h"
+namespace UnrealScript
+{
+	class TrObjectPool;
+}
 #include "Engine.Actor.h"
-#include "TribesGame.TrProj_Tracer.h"
 #include "TribesGame.TrObject.EWeaponTracerType.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
+#include "TribesGame.TrObjectPool.TracerCacheInfo.h"
+#include "TribesGame.TrProj_Tracer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -18,6 +20,7 @@ namespace UnrealScript
 	class TrObjectPool : public Actor
 	{
 	public:
+		typedef TrObjectPool__TracerCacheInfo TracerCacheInfo;
 		static const auto MAX_TRACERS = 20;
 		ADD_STRUCT(TrObjectPool__TracerCacheInfo, m_TracerCache, 476)
 		class TrProj_Tracer* GetTracer(TrObject__EWeaponTracerType TracerType, byte ActiveReloadTier, Vector SpawnLocation, Rotator SpawnRotation)

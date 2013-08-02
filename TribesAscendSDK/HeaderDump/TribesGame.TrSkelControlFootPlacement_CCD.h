@@ -1,8 +1,10 @@
 #pragma once
-#include "Engine.SkelControl_CCD_IK.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrSkelControlFootPlacement_CCD;
+}
 #include "Core.Object.EAxis.h"
-#include "Core.Object.Rotator.h"
+#include "Engine.SkelControl_CCD_IK.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

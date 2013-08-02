@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.SpotLightComponent.h"
+namespace UnrealScript
+{
+	class DominantSpotLightComponent;
+}
 #include "Core.Object.Array_Mirror.h"
 #include "Engine.EngineTypes.DominantShadowInfo.h"
+#include "Engine.SpotLightComponent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

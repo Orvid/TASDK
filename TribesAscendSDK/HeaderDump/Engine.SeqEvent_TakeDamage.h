@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SequenceEvent.h"
+namespace UnrealScript
+{
+	class SeqEvent_TakeDamage;
+}
 #include "Engine.Actor.h"
+#include "Engine.SequenceEvent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,17 +1,19 @@
 #pragma once
-#include "UDKBase.UDKVehicle.WeaponEffectInfo.h"
-#include "GameFramework.GameSkelCtrl_Recoil.h"
-#include "UDKBase.UDKSkelControl_TurretConstrained.h"
-#include "Core.Object.Vector.h"
-#include "UDKBase.UDKVehicle.VehicleSeatAnimInfo.h"
-#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	struct UDKVehicle__VehicleSeat;
+}
+#include "Core.Object.Pointer.h"
 #include "Core.Object.Vector2D.h"
 #include "Engine.Actor.h"
-#include "UDKBase.UDKVehicleMovementEffect.h"
-#include "Core.Object.Pointer.h"
-#include "UDKBase.UDKWeapon.h"
-#include "Engine.Vehicle.h"
 #include "Engine.Pawn.h"
+#include "Engine.Vehicle.h"
+#include "GameFramework.GameSkelCtrl_Recoil.h"
+#include "UDKBase.UDKSkelControl_TurretConstrained.h"
+#include "UDKBase.UDKVehicle.VehicleSeatAnimInfo.h"
+#include "UDKBase.UDKVehicle.WeaponEffectInfo.h"
+#include "UDKBase.UDKVehicleMovementEffect.h"
+#include "UDKBase.UDKWeapon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

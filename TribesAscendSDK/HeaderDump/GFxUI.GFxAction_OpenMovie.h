@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.TextureRenderTarget2D.h"
+namespace UnrealScript
+{
+	class GFxAction_OpenMovie;
+}
 #include "Engine.SequenceAction.h"
-#include "GFxUI.GFxMoviePlayer.GFxRenderTextureMode.h"
+#include "Engine.TextureRenderTarget2D.h"
 #include "GFxUI.GFxMoviePlayer.h"
+#include "GFxUI.GFxMoviePlayer.GFxRenderTextureMode.h"
 #include "GFxUI.SwfMovie.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

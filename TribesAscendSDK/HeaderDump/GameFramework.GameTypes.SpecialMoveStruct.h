@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct GameTypes__SpecialMoveStruct;
+}
 #include "Engine.Actor.h"
 #include "GameFramework.GamePawn.h"
 #define ADD_STRUCT(x, y, offset) \

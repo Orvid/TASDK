@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrObject__EffectFormOverwrite;
+}
 #include "Engine.Material.h"
 #include "TribesGame.TrObject.EffectFormMatTypes.h"
 #define ADD_STRUCT(x, y, offset) \

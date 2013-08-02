@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_SetCameraTarget;
+}
+#include "Engine.Actor.h"
 #include "Engine.Camera.ViewTargetTransitionParams.h"
 #include "Engine.SequenceAction.h"
-#include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

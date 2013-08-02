@@ -1,21 +1,23 @@
 #pragma once
-#include "Engine.AnimTree.SkelControlListHead.h"
-#include "Engine.AnimNodeBlendBase.h"
-#include "Engine.AnimTree.AnimGroup.h"
-#include "Engine.MorphNodeBase.h"
+namespace UnrealScript
+{
+	class AnimTree;
+}
 #include "Core.Object.BoneAtom.h"
-#include "Engine.SkeletalMesh.h"
-#include "Engine.AnimTree.PreviewSocketStruct.h"
-#include "Engine.MorphTargetSet.h"
-#include "Engine.AnimSet.h"
-#include "Engine.StaticMesh.h"
-#include "Engine.AnimTree.PreviewSkelMeshStruct.h"
-#include "Engine.AnimTree.PreviewAnimSetsStruct.h"
-#include "Engine.AnimNodeSequence.h"
 #include "Engine.AnimNode.h"
+#include "Engine.AnimNodeBlendBase.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimSet.h"
+#include "Engine.AnimTree.AnimGroup.h"
+#include "Engine.AnimTree.PreviewAnimSetsStruct.h"
+#include "Engine.AnimTree.PreviewSkelMeshStruct.h"
+#include "Engine.AnimTree.PreviewSocketStruct.h"
+#include "Engine.AnimTree.SkelControlListHead.h"
+#include "Engine.MorphNodeBase.h"
+#include "Engine.MorphTargetSet.h"
 #include "Engine.SkelControlBase.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
+#include "Engine.SkeletalMesh.h"
+#include "Engine.StaticMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -39,6 +41,11 @@ namespace UnrealScript
 	class AnimTree : public AnimNodeBlendBase
 	{
 	public:
+		typedef AnimTree__AnimGroup AnimGroup;
+		typedef AnimTree__SkelControlListHead SkelControlListHead;
+		typedef AnimTree__PreviewSkelMeshStruct PreviewSkelMeshStruct;
+		typedef AnimTree__PreviewSocketStruct PreviewSocketStruct;
+		typedef AnimTree__PreviewAnimSetsStruct PreviewAnimSetsStruct;
 		ADD_STRUCT(ScriptArray<AnimTree__AnimGroup>, AnimGroups, 244)
 		ADD_STRUCT(ScriptArray<ScriptName>, PrioritizedSkelBranches, 256)
 		ADD_STRUCT(ScriptArray<ScriptName>, ComposePrePassBoneNames, 268)

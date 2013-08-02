@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleAttractorParticle;
+}
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModuleAttractorBase.h"
 #include "Engine.ParticleModuleAttractorParticle.EAttractorParticleSelectionMethod.h"
-#include "Core.DistributionFloat.RawDistributionFloat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class ParticleModuleAttractorParticle : public ParticleModuleAttractorBase
 	{
 	public:
+		typedef ParticleModuleAttractorParticle__EAttractorParticleSelectionMethod EAttractorParticleSelectionMethod;
 		ADD_STRUCT(int, LastSelIndex, 144)
 		ADD_STRUCT(ParticleModuleAttractorParticle__EAttractorParticleSelectionMethod, SelectionMethod, 140)
 		ADD_STRUCT(ScriptName, EmitterName, 72)

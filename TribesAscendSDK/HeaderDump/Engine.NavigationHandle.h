@@ -1,19 +1,24 @@
 #pragma once
-#include "Engine.NavMeshPathConstraint.h"
+namespace UnrealScript
+{
+	class NavigationHandle;
+}
 #include "Core.Object.h"
-#include "Engine.EngineTypes.EPathFindingError.h"
-#include "Engine.Pylon.h"
-#include "Engine.NavigationHandle.NavMeshPathParams.h"
-#include "Engine.NavMeshPathGoalEvaluator.h"
-#include "Engine.Actor.BasedPosition.h"
-#include "Engine.NavigationHandle.PathStore.h"
-#include "Core.Object.Pointer.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Actor.h"
-#include "Engine.Controller.h"
 #include "Core.Object.Color.h"
-#include "Engine.Pylon.ENavMeshEdgeType.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.Actor.h"
+#include "Engine.Actor.BasedPosition.h"
+#include "Engine.Controller.h"
 #include "Engine.CoverLink.CoverInfo.h"
+#include "Engine.EngineTypes.EPathFindingError.h"
+#include "Engine.NavMeshPathConstraint.h"
+#include "Engine.NavMeshPathGoalEvaluator.h"
+#include "Engine.NavigationHandle.EdgePointer.h"
+#include "Engine.NavigationHandle.NavMeshPathParams.h"
+#include "Engine.NavigationHandle.PathStore.h"
+#include "Engine.NavigationHandle.PolySegmentSpan.h"
+#include "Engine.Pylon.h"
+#include "Engine.Pylon.ENavMeshEdgeType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -37,6 +42,10 @@ namespace UnrealScript
 	class NavigationHandle : public Object
 	{
 	public:
+		typedef NavigationHandle__PolySegmentSpan PolySegmentSpan;
+		typedef NavigationHandle__NavMeshPathParams NavMeshPathParams;
+		typedef NavigationHandle__PathStore PathStore;
+		typedef NavigationHandle__EdgePointer EdgePointer;
 		static const float LINECHECK_GRANULARITY;
 		static const auto NUM_PATHFINDING_PARAMS = 9;
 		ADD_STRUCT(float, LastPathFailTime, 208)

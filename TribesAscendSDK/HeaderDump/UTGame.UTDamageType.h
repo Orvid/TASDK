@@ -1,17 +1,19 @@
 #pragma once
-#include "Engine.DamageType.h"
+namespace UnrealScript
+{
+	class UTDamageType;
+}
 #include "Core.Object.LinearColor.h"
-#include "Engine.CameraAnim.h"
-#include "Engine.ParticleSystem.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "UTGame.UTPawn.h"
-#include "Engine.Pawn.h"
-#include "Core.Object.Vector.h"
-#include "UTGame.UTPlayerReplicationInfo.h"
-#include "UTGame.UTGib.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.CameraAnim.h"
 #include "Engine.Canvas.h"
-#include "Core.Object.Rotator.h"
+#include "Engine.DamageType.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "UTGame.UTGib.h"
+#include "UTGame.UTPawn.h"
+#include "UTGame.UTPlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

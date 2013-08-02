@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.PrimitiveComponent.h"
-#include "Engine.MaterialInterface.h"
+namespace UnrealScript
+{
+	class MeshComponent;
+}
 #include "Engine.MaterialInstanceConstant.h"
 #include "Engine.MaterialInstanceTimeVarying.h"
+#include "Engine.MaterialInterface.h"
+#include "Engine.PrimitiveComponent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,26 +1,29 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTHUD;
+}
 #include "Core.Object.Color.h"
-#include "UTGame.UTHUDBase.h"
-#include "Core.Object.Vector2D.h"
-#include "Engine.Texture2D.h"
-#include "Engine.Font.h"
-#include "Engine.Weapon.h"
-#include "Engine.Pawn.h"
-#include "UTGame.UTHUD.DamageInfo.h"
 #include "Core.Object.LinearColor.h"
-#include "UTGame.UTWeapon.h"
-#include "Engine.UIRoot.TextureCoordinates.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Engine.MaterialEffect.h"
-#include "Engine.Material.h"
-#include "UTGame.UTPlayerReplicationInfo.h"
-#include "UTGame.UTPawn.h"
-#include "Engine.PlayerReplicationInfo.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.Canvas.h"
+#include "Engine.Font.h"
 #include "Engine.HUD.HudLocalizedMessage.h"
-#include "Engine.UIInteraction.h"
 #include "Engine.LocalPlayer.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Material.h"
+#include "Engine.MaterialEffect.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Texture2D.h"
+#include "Engine.UIInteraction.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "Engine.Weapon.h"
+#include "UTGame.UTHUD.DamageInfo.h"
+#include "UTGame.UTHUDBase.h"
+#include "UTGame.UTPawn.h"
+#include "UTGame.UTPlayerReplicationInfo.h"
+#include "UTGame.UTWeapon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -44,6 +47,7 @@ namespace UnrealScript
 	class UTHUD : public UTHUDBase
 	{
 	public:
+		typedef UTHUD__DamageInfo DamageInfo;
 		ADD_OBJECT(Texture2D, AltHudTexture, 1528)
 		ADD_STRUCT(Object__LinearColor, WhiteLinearColor, 2612)
 		ADD_STRUCT(Object__LinearColor, TeamHUDColor, 1664)

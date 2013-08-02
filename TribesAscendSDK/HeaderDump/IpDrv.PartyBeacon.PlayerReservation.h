@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct PartyBeacon__PlayerReservation;
+}
 #include "Core.Object.Double.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAudioSettings;
+}
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.TrObject.ESettingsList.h"
 #define ADD_STRUCT(x, y, offset) \

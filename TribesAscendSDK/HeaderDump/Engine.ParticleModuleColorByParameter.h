@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleColorBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleColorByParameter;
+}
 #include "Core.Object.Color.h"
+#include "Engine.ParticleModuleColorBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,10 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAnimNodeBlendByDeviceAnim;
+}
+#include "GameFramework.GameSkelCtrl_Recoil.h"
 #include "TribesGame.TrAnimNodeBlendByDeviceAnim.DeviceNodeCameraAnimation.h"
 #include "TribesGame.TrAnimNodeBlendList.h"
-#include "GameFramework.GameSkelCtrl_Recoil.h"
+#include "TribesGame.TrDevice.h"
 #include "TribesGame.TrPawn.h"
 #include "TribesGame.TrSkelControl_SpinControl.h"
-#include "TribesGame.TrDevice.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +32,7 @@ namespace UnrealScript
 	class TrAnimNodeBlendByDeviceAnim : public TrAnimNodeBlendList
 	{
 	public:
+		typedef TrAnimNodeBlendByDeviceAnim__DeviceNodeCameraAnimation DeviceNodeCameraAnimation;
 		ADD_STRUCT(ScriptArray<ScriptName>, m_nmRecoilControlNames, 312)
 		ADD_STRUCT(ScriptArray<class GameSkelCtrl_Recoil*>, m_RecoilControls, 324)
 		ADD_STRUCT(ScriptArray<class GameSkelCtrl_Recoil*>, m_TinyWeaponsRecoilControls, 336)

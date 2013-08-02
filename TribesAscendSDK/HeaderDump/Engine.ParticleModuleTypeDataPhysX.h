@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleTypeDataPhysX;
+}
 #include "Engine.ParticleModuleTypeDataBase.h"
 #include "Engine.ParticleModuleTypeDataPhysX.PhysXEmitterVerticalLodProperties.h"
 #include "Engine.PhysXParticleSystem.h"
@@ -15,6 +19,7 @@ namespace UnrealScript
 	class ParticleModuleTypeDataPhysX : public ParticleModuleTypeDataBase
 	{
 	public:
+		typedef ParticleModuleTypeDataPhysX__PhysXEmitterVerticalLodProperties PhysXEmitterVerticalLodProperties;
 		ADD_STRUCT(ParticleModuleTypeDataPhysX__PhysXEmitterVerticalLodProperties, VerticalLod, 76)
 		ADD_OBJECT(PhysXParticleSystem, PhysXParSys, 72)
 	};

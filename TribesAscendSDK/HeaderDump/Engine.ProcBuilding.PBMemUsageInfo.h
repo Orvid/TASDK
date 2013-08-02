@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ProcBuilding__PBMemUsageInfo;
+}
 #include "Engine.ProcBuilding.h"
 #include "Engine.ProcBuildingRuleset.h"
 #define ADD_STRUCT(x, y, offset) \

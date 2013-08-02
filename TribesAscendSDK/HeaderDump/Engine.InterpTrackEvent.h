@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackEvent;
+}
 #include "Engine.InterpTrack.h"
 #include "Engine.InterpTrackEvent.EventTrackKey.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class InterpTrackEvent : public InterpTrack
 	{
 	public:
+		typedef InterpTrackEvent__EventTrackKey EventTrackKey;
 		ADD_STRUCT(ScriptArray<InterpTrackEvent__EventTrackKey>, EventTrack, 128)
 		ADD_BOOL(bFireEventsWhenJumpingForwards, 140, 0x4)
 		ADD_BOOL(bFireEventsWhenBackwards, 140, 0x2)

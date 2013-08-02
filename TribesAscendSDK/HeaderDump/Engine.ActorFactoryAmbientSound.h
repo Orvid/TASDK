@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorFactoryAmbientSound;
+}
 #include "Engine.ActorFactory.h"
 #include "Engine.SoundCue.h"
 #define ADD_OBJECT(x, y, offset) \

@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrVehiclePad;
+}
 #include "Engine.SkeletalMeshActor.h"
-#include "TribesGame.TrSkelControl_SpinControl.h"
 #include "TribesGame.TrAnimNodeBlendList.h"
+#include "TribesGame.TrSkelControl_SpinControl.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

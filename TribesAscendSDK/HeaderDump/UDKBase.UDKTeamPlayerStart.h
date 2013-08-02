@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKTeamPlayerStart;
+}
 #include "Engine.PlayerStart.h"
 #include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \

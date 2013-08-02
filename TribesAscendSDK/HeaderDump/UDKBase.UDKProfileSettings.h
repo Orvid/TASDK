@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.OnlineProfileSettings.h"
+namespace UnrealScript
+{
+	class UDKProfileSettings;
+}
 #include "Engine.LocalPlayer.h"
+#include "Engine.OnlineProfileSettings.h"
 namespace UnrealScript
 {
 	class UDKProfileSettings : public OnlineProfileSettings

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TargetPoint;
+}
 #include "Engine.Keypoint.h"
 #include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \

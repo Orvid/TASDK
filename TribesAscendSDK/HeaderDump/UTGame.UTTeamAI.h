@@ -1,13 +1,17 @@
 #pragma once
-#include "UDKBase.UDKTeamOwnedInfo.h"
-#include "UTGame.UTTeamInfo.h"
-#include "UTGame.UTGameObjective.h"
-#include "UTGame.UTVehicleFactory.h"
-#include "UTGame.UTBot.h"
+namespace UnrealScript
+{
+	class UTTeamAI;
+}
 #include "Engine.Controller.h"
+#include "Engine.Pawn.h"
+#include "UDKBase.UDKTeamOwnedInfo.h"
+#include "UTGame.UTBot.h"
+#include "UTGame.UTGameObjective.h"
 #include "UTGame.UTPickupFactory.h"
 #include "UTGame.UTSquadAI.h"
-#include "Engine.Pawn.h"
+#include "UTGame.UTTeamInfo.h"
+#include "UTGame.UTVehicleFactory.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

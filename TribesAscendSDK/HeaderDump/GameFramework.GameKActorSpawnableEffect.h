@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameKActorSpawnableEffect;
+}
 #include "Engine.KActor.h"
 namespace UnrealScript
 {

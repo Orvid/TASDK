@@ -1,12 +1,16 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTLocalMessage;
+}
 #include "Core.Object.h"
-#include "Engine.LocalMessage.h"
-#include "UTGame.UTQueuedAnnouncement.h"
-#include "Engine.SoundNodeWave.h"
-#include "Engine.PlayerController.h"
 #include "Engine.HUD.h"
-#include "UTGame.UTAnnouncer.h"
+#include "Engine.LocalMessage.h"
+#include "Engine.PlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Engine.SoundNodeWave.h"
+#include "UTGame.UTAnnouncer.h"
+#include "UTGame.UTQueuedAnnouncement.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,6 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	struct Actor__BasedPosition;
+}
 #include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

@@ -1,13 +1,17 @@
 #pragma once
-#include "Engine.LensFlare.LensFlareElement.h"
-#include "Core.Object.h"
-#include "Engine.Texture2D.h"
-#include "Engine.InterpCurveEdSetup.h"
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Box.h"
+namespace UnrealScript
+{
+	class LensFlare;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Core.Object.h"
+#include "Core.Object.Box.h"
+#include "Engine.InterpCurveEdSetup.h"
+#include "Engine.LensFlare.LensFlareElement.h"
+#include "Engine.LensFlare.LensFlareElementCurvePair.h"
 #include "Engine.Scene.ESceneDepthPriorityGroup.h"
 #include "Engine.StaticMesh.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,6 +35,8 @@ namespace UnrealScript
 	class LensFlare : public Object
 	{
 	public:
+		typedef LensFlare__LensFlareElement LensFlareElement;
+		typedef LensFlare__LensFlareElementCurvePair LensFlareElementCurvePair;
 		ADD_STRUCT(ScriptArray<LensFlare__LensFlareElement>, Reflections, 392)
 		ADD_OBJECT(Texture2D, ThumbnailImage, 504)
 		ADD_STRUCT(float, ThumbnailDistance, 500)

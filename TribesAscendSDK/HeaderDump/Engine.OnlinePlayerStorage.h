@@ -1,9 +1,14 @@
 #pragma once
-#include "Engine.OnlinePlayerStorage.OnlineProfileSetting.h"
+namespace UnrealScript
+{
+	class OnlinePlayerStorage;
+}
 #include "Core.Object.h"
-#include "Engine.Settings.SettingsPropertyPropertyMetaData.h"
 #include "Engine.OnlinePlayerStorage.EOnlinePlayerStorageAsyncState.h"
+#include "Engine.OnlinePlayerStorage.EOnlineProfilePropertyOwner.h"
+#include "Engine.OnlinePlayerStorage.OnlineProfileSetting.h"
 #include "Engine.Settings.EPropertyValueMappingType.h"
+#include "Engine.Settings.SettingsPropertyPropertyMetaData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -13,6 +18,9 @@ namespace UnrealScript
 	class OnlinePlayerStorage : public Object
 	{
 	public:
+		typedef OnlinePlayerStorage__EOnlineProfilePropertyOwner EOnlineProfilePropertyOwner;
+		typedef OnlinePlayerStorage__EOnlinePlayerStorageAsyncState EOnlinePlayerStorageAsyncState;
+		typedef OnlinePlayerStorage__OnlineProfileSetting OnlineProfileSetting;
 		ADD_STRUCT(ScriptArray<OnlinePlayerStorage__OnlineProfileSetting>, ProfileSettings, 68)
 		ADD_STRUCT(ScriptArray<Settings__SettingsPropertyPropertyMetaData>, ProfileMappings, 80)
 		ADD_STRUCT(int, DeviceID, 96)

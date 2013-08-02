@@ -1,9 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class EmitterPool;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
 #include "Engine.EmitterPool.EmitterBaseInfo.h"
 #include "Engine.MaterialInstanceConstant.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.ParticleSystem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -28,6 +30,7 @@ namespace UnrealScript
 	class EmitterPool : public Actor
 	{
 	public:
+		typedef EmitterPool__EmitterBaseInfo EmitterBaseInfo;
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, PoolComponents, 480)

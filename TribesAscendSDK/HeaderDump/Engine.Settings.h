@@ -1,14 +1,20 @@
 #pragma once
-#include "Engine.Settings.ESettingsDataType.h"
-#include "Engine.Settings.LocalizedStringSettingMetaData.h"
+namespace UnrealScript
+{
+	class Settings;
+}
 #include "Core.Object.h"
-#include "Engine.Settings.IdToStringMapping.h"
 #include "Engine.GameInfo.h"
+#include "Engine.Settings.EOnlineDataAdvertisementType.h"
+#include "Engine.Settings.EPropertyValueMappingType.h"
+#include "Engine.Settings.ESettingsDataType.h"
+#include "Engine.Settings.IdToStringMapping.h"
 #include "Engine.Settings.LocalizedStringSetting.h"
+#include "Engine.Settings.LocalizedStringSettingMetaData.h"
+#include "Engine.Settings.SettingsData.h"
 #include "Engine.Settings.SettingsProperty.h"
 #include "Engine.Settings.SettingsPropertyPropertyMetaData.h"
-#include "Engine.Settings.EPropertyValueMappingType.h"
-#include "Engine.Settings.SettingsData.h"
+#include "Engine.Settings.StringIdToStringMapping.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +34,16 @@ namespace UnrealScript
 	class Settings : public Object
 	{
 	public:
+		typedef Settings__EOnlineDataAdvertisementType EOnlineDataAdvertisementType;
+		typedef Settings__ESettingsDataType ESettingsDataType;
+		typedef Settings__EPropertyValueMappingType EPropertyValueMappingType;
+		typedef Settings__LocalizedStringSetting LocalizedStringSetting;
+		typedef Settings__SettingsProperty SettingsProperty;
+		typedef Settings__SettingsData SettingsData;
+		typedef Settings__IdToStringMapping IdToStringMapping;
+		typedef Settings__LocalizedStringSettingMetaData LocalizedStringSettingMetaData;
+		typedef Settings__StringIdToStringMapping StringIdToStringMapping;
+		typedef Settings__SettingsPropertyPropertyMetaData SettingsPropertyPropertyMetaData;
 		ADD_STRUCT(ScriptArray<Settings__LocalizedStringSetting>, LocalizedSettings, 60)
 		ADD_STRUCT(ScriptArray<Settings__SettingsProperty>, Properties, 72)
 		ADD_STRUCT(ScriptArray<Settings__LocalizedStringSettingMetaData>, LocalizedSettingsMappings, 84)

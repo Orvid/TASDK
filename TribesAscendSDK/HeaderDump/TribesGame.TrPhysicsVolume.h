@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrPhysicsVolume;
+}
 #include "Engine.PhysicsVolume.h"
 #include "TribesGame.TrVGSCommandList.EVGSContextLocation.h"
 #define ADD_STRUCT(x, y, offset) \

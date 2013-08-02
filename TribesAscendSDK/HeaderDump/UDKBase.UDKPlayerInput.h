@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKPlayerInput;
+}
 #include "GameFramework.MobilePlayerInput.h"
 namespace UnrealScript
 {

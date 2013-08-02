@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PotentialClimbWatcher;
+}
 #include "Engine.Info.h"
 namespace UnrealScript
 {

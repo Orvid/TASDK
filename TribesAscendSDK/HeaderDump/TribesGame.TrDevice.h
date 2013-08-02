@@ -1,37 +1,40 @@
 #pragma once
-#include "UTGame.UTWeapon.h"
-#include "TribesGame.TrObject.DeviceAttackType.h"
-#include "TribesGame.TrObject.DeviceTargeterType.h"
+namespace UnrealScript
+{
+	class TrDevice;
+}
+#include "Core.Object.Vector2D.h"
+#include "Engine.Actor.h"
+#include "Engine.Actor.ImpactInfo.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimSet.h"
+#include "Engine.CameraShake.h"
+#include "Engine.Material.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Projectile.h"
+#include "Engine.SoundCue.h"
+#include "Engine.Weapon.h"
+#include "TribesGame.TrAnimNodeBlendByDeviceAnim.h"
+#include "TribesGame.TrDeployable.h"
+#include "TribesGame.TrDevice.DeviceModification.h"
 #include "TribesGame.TrDevice.DeviceUpgrade.h"
 #include "TribesGame.TrDevice.EffectInfo.h"
-#include "TribesGame.TrObject.EffectFormOverwrite.h"
-#include "Engine.AnimNodeSequence.h"
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrDeviceContentData.h"
-#include "TribesGame.TrObject.PaperDollInfo.h"
-#include "Engine.AnimSet.h"
-#include "TribesGame.TrAnimNodeBlendByDeviceAnim.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Engine.CameraShake.h"
-#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
-#include "Engine.Material.h"
-#include "TribesGame.TrPawn.h"
-#include "Core.Object.Vector2D.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "Engine.ParticleSystem.h"
-#include "Engine.Actor.h"
-#include "UTGame.UTPlayerController.h"
 #include "TribesGame.TrDevice.ReplicatedAmmoCount.h"
-#include "Engine.SoundCue.h"
-#include "TribesGame.TrDeployable.h"
+#include "TribesGame.TrDeviceContentData.h"
+#include "TribesGame.TrObject.DeviceAttackType.h"
+#include "TribesGame.TrObject.DeviceTargeterType.h"
 #include "TribesGame.TrObject.EWeaponTracerType.h"
-#include "Engine.Actor.ImpactInfo.h"
-#include "TribesGame.TrProj_Tracer.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.Weapon.h"
+#include "TribesGame.TrObject.EffectFormOverwrite.h"
 #include "TribesGame.TrObject.EffectType.h"
-#include "Engine.Projectile.h"
+#include "TribesGame.TrObject.PaperDollInfo.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
+#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrProj_Tracer.h"
 #include "UDKBase.UDKPawn.h"
+#include "UTGame.UTPlayerController.h"
+#include "UTGame.UTWeapon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -55,6 +58,10 @@ namespace UnrealScript
 	class TrDevice : public UTWeapon
 	{
 	public:
+		typedef TrDevice__DeviceUpgrade DeviceUpgrade;
+		typedef TrDevice__EffectInfo EffectInfo;
+		typedef TrDevice__ReplicatedAmmoCount ReplicatedAmmoCount;
+		typedef TrDevice__DeviceModification DeviceModification;
 		static const auto THR_SPINFUSOR = 1;
 		static const auto THR_SMG = 2;
 		static const auto THR_RIFLE = 3;

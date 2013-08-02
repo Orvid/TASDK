@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UISoundTheme;
+}
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
 #include "Engine.UISoundTheme.SoundEventMapping.h"
@@ -15,6 +19,7 @@ namespace UnrealScript
 	class UISoundTheme : public Object
 	{
 	public:
+		typedef UISoundTheme__SoundEventMapping SoundEventMapping;
 		ADD_STRUCT(ScriptArray<UISoundTheme__SoundEventMapping>, SoundEventBindings, 60)
 		void ProcessSoundEvent(ScriptName SoundEventName, class PlayerController* SoundOwner)
 		{

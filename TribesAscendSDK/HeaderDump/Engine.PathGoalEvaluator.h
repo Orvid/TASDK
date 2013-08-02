@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PathGoalEvaluator;
+}
 #include "Core.Object.h"
 #include "Engine.NavigationPoint.h"
 #define ADD_STRUCT(x, y, offset) \

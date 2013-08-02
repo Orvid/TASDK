@@ -1,8 +1,11 @@
 #pragma once
-#include "Core.Object.QWord.h"
+namespace UnrealScript
+{
+	class OnlineGameSettings;
+}
+#include "Engine.OnlineSubsystem.EOnlineGameState.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.Settings.h"
-#include "Engine.OnlineSubsystem.EOnlineGameState.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

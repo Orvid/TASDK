@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTPawnSoundGroup.h"
-#include "Engine.SoundCue.h"
+namespace UnrealScript
+{
+	class TrPawnSoundGroup;
+}
 #include "Engine.Pawn.h"
+#include "Engine.SoundCue.h"
+#include "UTGame.UTPawnSoundGroup.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

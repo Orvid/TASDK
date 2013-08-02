@@ -1,14 +1,18 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrSeekingMissileManager;
+}
 #include "Engine.Info.h"
-#include "TribesGame.TrSeekingMissileManager.TargetingSaberLauncherInfo.h"
+#include "Engine.Pawn.h"
 #include "TribesGame.TrDevice_SaberLauncher.h"
-#include "TribesGame.TrVehicle.h"
-#include "TribesGame.TrSeekingMissileManager.SeekingMissileInfo.h"
-#include "TribesGame.TrProj_TrackingMissile.h"
 #include "TribesGame.TrObject.EMissileLock.h"
 #include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrProj_TrackingMissile.h"
 #include "TribesGame.TrSeekingMissileManager.ETrackingMissileEvent.h"
-#include "Engine.Pawn.h"
+#include "TribesGame.TrSeekingMissileManager.SeekingMissileInfo.h"
+#include "TribesGame.TrSeekingMissileManager.TargetingSaberLauncherInfo.h"
+#include "TribesGame.TrVehicle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -22,6 +26,9 @@ namespace UnrealScript
 	class TrSeekingMissileManager : public Info
 	{
 	public:
+		typedef TrSeekingMissileManager__ETrackingMissileEvent ETrackingMissileEvent;
+		typedef TrSeekingMissileManager__TargetingSaberLauncherInfo TargetingSaberLauncherInfo;
+		typedef TrSeekingMissileManager__SeekingMissileInfo SeekingMissileInfo;
 		ADD_STRUCT(ScriptArray<TrSeekingMissileManager__TargetingSaberLauncherInfo>, ActiveTargetingSaberLaunchers, 488)
 		ADD_STRUCT(ScriptArray<TrSeekingMissileManager__SeekingMissileInfo>, ActiveSeekingMissiles, 476)
 		ADD_STRUCT(int, RepCounter, 500)

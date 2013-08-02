@@ -1,18 +1,64 @@
 #pragma once
-#include "Core.Object.Vector2D.h"
-#include "Core.Object.Pointer.h"
-#include "Core.Object.LinearColor.h"
-//#include "Core.Object.QWord.h"
-//#include "Core.Object.Vector.h"
-#include "Core.Object.EDebugBreakType.h"
-//#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	class Object;
+}
+#include "Core.Object.AlphaBlendType.h"
+#include "Core.Object.Array_Mirror.h"
+#include "Core.Object.BitArray_Mirror.h"
+#include "Core.Object.BoneAtom.h"
+#include "Core.Object.Box.h"
+#include "Core.Object.BoxSphereBounds.h"
 #include "Core.Object.Color.h"
-#include "Core.Object.InterpCurveVector2D.h"
-#include "Core.Object.InterpCurveVector.h"
-#include "Core.Object.InterpCurveFloat.h"
-#include "Core.Object.Quat.h"
-#include "Core.Object.Matrix.h"
+#include "Core.Object.Cylinder.h"
+#include "Core.Object.Double.h"
+#include "Core.Object.EAspectRatioAxisConstraint.h"
+#include "Core.Object.EAutomatedRunResult.h"
 #include "Core.Object.EAxis.h"
+#include "Core.Object.EDebugBreakType.h"
+#include "Core.Object.EInputEvent.h"
+#include "Core.Object.EInterpCurveMode.h"
+#include "Core.Object.EInterpMethodType.h"
+#include "Core.Object.ETickingGroup.h"
+#include "Core.Object.FColorVertexBuffer_Mirror.h"
+#include "Core.Object.Guid.h"
+#include "Core.Object.IndirectArray_Mirror.h"
+#include "Core.Object.InlinePointerArray_Mirror.h"
+#include "Core.Object.IntPoint.h"
+#include "Core.Object.InterpCurveFloat.h"
+#include "Core.Object.InterpCurveLinearColor.h"
+#include "Core.Object.InterpCurvePointFloat.h"
+#include "Core.Object.InterpCurvePointLinearColor.h"
+#include "Core.Object.InterpCurvePointQuat.h"
+#include "Core.Object.InterpCurvePointTwoVectors.h"
+#include "Core.Object.InterpCurvePointVector.h"
+#include "Core.Object.InterpCurvePointVector2D.h"
+#include "Core.Object.InterpCurveQuat.h"
+#include "Core.Object.InterpCurveTwoVectors.h"
+#include "Core.Object.InterpCurveVector.h"
+#include "Core.Object.InterpCurveVector2D.h"
+#include "Core.Object.LinearColor.h"
+#include "Core.Object.Map_Mirror.h"
+#include "Core.Object.Matrix.h"
+#include "Core.Object.MultiMap_Mirror.h"
+#include "Core.Object.OctreeElementId.h"
+#include "Core.Object.Plane.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.Quat.h"
+#include "Core.Object.RawDistribution.h"
+#include "Core.Object.RenderCommandFence.h"
+#include "Core.Object.RenderCommandFence_Mirror.h"
+#include "Core.Object.SHVector.h"
+#include "Core.Object.SHVectorRGB.h"
+#include "Core.Object.Set_Mirror.h"
+#include "Core.Object.SparseArray_Mirror.h"
+#include "Core.Object.TAlphaBlend.h"
+#include "Core.Object.TPOV.h"
+#include "Core.Object.ThreadSafeCounter.h"
+#include "Core.Object.TwoVectors.h"
+#include "Core.Object.UntypedBulkData_Mirror.h"
+#include "Core.Object.Vector2D.h"
+#include "Core.Object.Vector4.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -26,6 +72,65 @@ namespace UnrealScript
 	class Object
 	{
 	public:
+		typedef Object__EDebugBreakType EDebugBreakType;
+		typedef Object__EAutomatedRunResult EAutomatedRunResult;
+		typedef Object__EAspectRatioAxisConstraint EAspectRatioAxisConstraint;
+		typedef Object__EInterpCurveMode EInterpCurveMode;
+		typedef Object__EInterpMethodType EInterpMethodType;
+		typedef Object__EAxis EAxis;
+		typedef Object__ETickingGroup ETickingGroup;
+		typedef Object__EInputEvent EInputEvent;
+		typedef Object__AlphaBlendType AlphaBlendType;
+		typedef Rotator Rotator;
+		typedef Object__Plane Plane;
+		typedef Vector Vector;
+		typedef Object__Guid Guid;
+		typedef Object__Vector2D Vector2D;
+		typedef Object__Vector4 Vector4;
+		typedef Object__LinearColor LinearColor;
+		typedef Object__Color Color;
+		typedef Object__InterpCurveVector2D InterpCurveVector2D;
+		typedef Object__InterpCurvePointVector2D InterpCurvePointVector2D;
+		typedef Object__InterpCurveFloat InterpCurveFloat;
+		typedef Object__Cylinder Cylinder;
+		typedef Object__InterpCurveVector InterpCurveVector;
+		typedef Object__InterpCurvePointVector InterpCurvePointVector;
+		typedef Object__InterpCurvePointFloat InterpCurvePointFloat;
+		typedef Object__Quat Quat;
+		typedef Object__Matrix Matrix;
+		typedef Object__BoxSphereBounds BoxSphereBounds;
+		typedef Object__TwoVectors TwoVectors;
+		typedef Object__TAlphaBlend TAlphaBlend;
+		typedef Object__BoneAtom BoneAtom;
+		typedef Object__OctreeElementId OctreeElementId;
+		typedef Object__RenderCommandFence RenderCommandFence;
+		typedef Object__Pointer Pointer;
+		typedef Object__RawDistribution RawDistribution;
+		typedef Object__InterpCurveLinearColor InterpCurveLinearColor;
+		typedef Object__InterpCurvePointLinearColor InterpCurvePointLinearColor;
+		typedef Object__InterpCurveQuat InterpCurveQuat;
+		typedef Object__InterpCurvePointQuat InterpCurvePointQuat;
+		typedef Object__InterpCurveTwoVectors InterpCurveTwoVectors;
+		typedef Object__InterpCurvePointTwoVectors InterpCurvePointTwoVectors;
+		typedef Object__Box Box;
+		typedef Object__TPOV TPOV;
+		typedef Object__SHVectorRGB SHVectorRGB;
+		typedef Object__SHVector SHVector;
+		typedef Object__IntPoint IntPoint;
+		typedef Object__InlinePointerArray_Mirror InlinePointerArray_Mirror;
+		typedef Object__Array_Mirror Array_Mirror;
+		typedef Object__IndirectArray_Mirror IndirectArray_Mirror;
+		typedef Object__FColorVertexBuffer_Mirror FColorVertexBuffer_Mirror;
+		typedef Object__RenderCommandFence_Mirror RenderCommandFence_Mirror;
+		typedef Object__UntypedBulkData_Mirror UntypedBulkData_Mirror;
+		typedef Object__MultiMap_Mirror MultiMap_Mirror;
+		typedef Object__Map_Mirror Map_Mirror;
+		typedef Object__Set_Mirror Set_Mirror;
+		typedef Object__SparseArray_Mirror SparseArray_Mirror;
+		typedef Object__BitArray_Mirror BitArray_Mirror;
+		typedef Object__ThreadSafeCounter ThreadSafeCounter;
+		typedef Object__Double Double;
+		typedef QWord QWord;
 		static const float InvAspectRatio16x9;
 		static const float InvAspectRatio5x4;
 		static const float InvAspectRatio4x3;

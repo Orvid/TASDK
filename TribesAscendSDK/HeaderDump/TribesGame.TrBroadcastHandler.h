@@ -1,11 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrBroadcastHandler;
+}
+#include "Engine.Actor.h"
 #include "Engine.BroadcastHandler.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "TribesGame.TrSpottedTarget.h"
-#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
-#include "Engine.Actor.h"
 #include "TribesGame.TrVGSCommandList.EVGSContextActor.h"
 #include "TribesGame.TrVGSCommandList.EVGSContextLocation.h"
+#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

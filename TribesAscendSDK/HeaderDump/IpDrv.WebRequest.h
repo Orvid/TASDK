@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class WebRequest;
+}
 #include "Core.Object.h"
-#include "IpDrv.WebRequest.ERequestType.h"
 #include "Core.Object.Map_Mirror.h"
+#include "IpDrv.WebRequest.ERequestType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,6 +15,7 @@ namespace UnrealScript
 	class WebRequest : public Object
 	{
 	public:
+		typedef WebRequest__ERequestType ERequestType;
 		ADD_STRUCT(ScriptString*, UserName, 84)
 		ADD_STRUCT(ScriptString*, Password, 96)
 		ADD_STRUCT(ScriptString*, URI, 72)

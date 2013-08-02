@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimTreeLabelRenderer;
+}
 #include "UnrealEd.ThumbnailLabelRenderer.h"
 namespace UnrealScript
 {

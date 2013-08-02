@@ -1,15 +1,19 @@
 #pragma once
-#include "UTGame.UTGameObjective.h"
+namespace UnrealScript
+{
+	class TrRabbitBase;
+}
+#include "Engine.Actor.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
 #include "Engine.SoundNodeWave.h"
-#include "UTGame.UTCarriedObject.h"
 #include "TribesGame.TrAnimNodeBlendList.h"
 #include "TribesGame.TrFlagRabbit.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "UTGame.UTBot.h"
-#include "Engine.Actor.h"
-#include "Engine.PlayerController.h"
-#include "Engine.Pawn.h"
 #include "TribesGame.TrHelpTextManager.EHelpTextType.h"
+#include "UTGame.UTBot.h"
+#include "UTGame.UTCarriedObject.h"
+#include "UTGame.UTGameObjective.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

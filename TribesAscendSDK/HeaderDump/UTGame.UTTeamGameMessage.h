@@ -1,11 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTTeamGameMessage;
+}
+#include "Core.Object.h"
 #include "Core.Object.Color.h"
-#include "UTGame.UTLocalMessage.h"
-#include "Engine.SoundNodeWave.h"
+#include "Engine.HUD.h"
 #include "Engine.PlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "Core.Object.h"
-#include "Engine.HUD.h"
+#include "Engine.SoundNodeWave.h"
+#include "UTGame.UTLocalMessage.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

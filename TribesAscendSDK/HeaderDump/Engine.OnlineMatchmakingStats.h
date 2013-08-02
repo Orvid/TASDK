@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineMatchmakingStats;
+}
 #include "Core.Object.h"
 #include "Engine.OnlineMatchmakingStats.MMStats_Timer.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class OnlineMatchmakingStats : public Object
 	{
 	public:
+		typedef OnlineMatchmakingStats__MMStats_Timer MMStats_Timer;
 		void StartTimer(OnlineMatchmakingStats__MMStats_Timer& Timer)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(21861);

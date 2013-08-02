@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MorphTarget;
+}
 #include "Core.Object.h"
 #include "Engine.MaterialInstanceConstant.h"
 #define ADD_STRUCT(x, y, offset) \

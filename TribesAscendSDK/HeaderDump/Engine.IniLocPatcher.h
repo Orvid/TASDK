@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.IniLocPatcher.IniLocFileEntry.h"
+namespace UnrealScript
+{
+	class IniLocPatcher;
+}
 #include "Core.Object.h"
+#include "Engine.IniLocPatcher.IniLocFileEntry.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class IniLocPatcher : public Object
 	{
 	public:
+		typedef IniLocPatcher__IniLocFileEntry IniLocFileEntry;
 		ADD_STRUCT(ScriptArray<IniLocPatcher__IniLocFileEntry>, Files, 60)
 		void OnReadTitleFileComplete(bool bWasSuccessful, ScriptString* Filename)
 		{

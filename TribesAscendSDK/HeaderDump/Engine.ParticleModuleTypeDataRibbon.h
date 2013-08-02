@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleTypeDataRibbon;
+}
 #include "Engine.ParticleModuleTypeDataBase.h"
 #include "Engine.ParticleModuleTypeDataRibbon.ETrailsRenderAxisOption.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class ParticleModuleTypeDataRibbon : public ParticleModuleTypeDataBase
 	{
 	public:
+		typedef ParticleModuleTypeDataRibbon__ETrailsRenderAxisOption ETrailsRenderAxisOption;
 		ADD_STRUCT(float, TangentTessellationScalar, 108)
 		ADD_STRUCT(float, DistanceTessellationStepSize, 104)
 		ADD_STRUCT(float, TilingDistance, 100)

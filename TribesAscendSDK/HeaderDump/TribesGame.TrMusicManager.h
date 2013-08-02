@@ -1,7 +1,11 @@
 #pragma once
-#include "TribesGame.TrMusicManager.ETgMusicState.h"
+namespace UnrealScript
+{
+	class TrMusicManager;
+}
 #include "Engine.Info.h"
 #include "Engine.SoundCue.h"
+#include "TribesGame.TrMusicManager.ETgMusicState.h"
 #include "TribesGame.TrPlayerController.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -16,6 +20,7 @@ namespace UnrealScript
 	class TrMusicManager : public Info
 	{
 	public:
+		typedef TrMusicManager__ETgMusicState ETgMusicState;
 		ADD_OBJECT(TrPlayerController, m_PlayerOwner, 476)
 		ADD_STRUCT(float, m_fMusicVolume, 480)
 		ADD_STRUCT(TrMusicManager__ETgMusicState, m_CurrentState, 488)

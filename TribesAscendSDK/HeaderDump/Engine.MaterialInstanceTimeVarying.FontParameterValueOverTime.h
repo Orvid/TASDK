@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.MaterialInstanceTimeVarying.ParameterValueOverTime.h"
+namespace UnrealScript
+{
+	struct MaterialInstanceTimeVarying__FontParameterValueOverTime;
+}
 #include "Engine.Font.h"
+#include "Engine.MaterialInstanceTimeVarying.ParameterValueOverTime.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

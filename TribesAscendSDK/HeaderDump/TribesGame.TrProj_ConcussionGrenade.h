@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrProj_ConcussionGrenade;
+}
 #include "TribesGame.TrProjectile.h"
 namespace UnrealScript
 {

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineTitleFileInterface;
+}
 #include "Core.Interface.h"
 #include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
 namespace UnrealScript

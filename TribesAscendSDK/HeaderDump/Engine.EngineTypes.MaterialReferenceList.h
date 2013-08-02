@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct EngineTypes__MaterialReferenceList;
+}
 #include "Engine.EngineTypes.PrimitiveMaterialRef.h"
 #include "Engine.MaterialInterface.h"
 #define ADD_STRUCT(x, y, offset) \

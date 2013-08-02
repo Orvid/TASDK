@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ActorFactoryVehicle.h"
+namespace UnrealScript
+{
+	class TrActorFactoryVehicle;
+}
 #include "Engine.Actor.h"
+#include "Engine.ActorFactoryVehicle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

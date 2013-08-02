@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct WorldInfo__NavMeshPathGoalEvaluatorCacheDatum;
+}
 #include "Engine.NavMeshPathGoalEvaluator.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

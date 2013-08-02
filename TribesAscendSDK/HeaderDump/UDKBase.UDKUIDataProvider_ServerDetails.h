@@ -1,6 +1,10 @@
 #pragma once
-#include "UDKBase.UDKUIDataProvider_SimpleElementProvider.h"
+namespace UnrealScript
+{
+	class UDKUIDataProvider_ServerDetails;
+}
 #include "Engine.UIDataProvider_Settings.h"
+#include "UDKBase.UDKUIDataProvider_SimpleElementProvider.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,7 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class TgSupportCommands;
+}
 #include "Core.Object.h"
-#include "Engine.WorldInfo.h"
 #include "Engine.PlayerController.h"
+#include "Engine.WorldInfo.h"
+#include "PlatformCommon.TgSupportCommands.GC_ALERT_PRIORITY.h"
+#include "PlatformCommon.TgSupportCommands.GC_CHAT_CHANNEL.h"
+#include "PlatformCommon.TgSupportCommands.GC_STEAM_TXN_TYPES.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \
@@ -11,6 +18,9 @@ namespace UnrealScript
 	class TgSupportCommands : public Object
 	{
 	public:
+		typedef TgSupportCommands__GC_ALERT_PRIORITY GC_ALERT_PRIORITY;
+		typedef TgSupportCommands__GC_CHAT_CHANNEL GC_CHAT_CHANNEL;
+		typedef TgSupportCommands__GC_STEAM_TXN_TYPES GC_STEAM_TXN_TYPES;
 		static const auto GC_OS_TYPE_BELOW_XP = 10300;
 		static const auto GC_OS_TYPE_XP = 10301;
 		static const auto GC_OS_TYPE_VISTA = 10303;

@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpressionDesaturation;
+}
+#include "Core.Object.LinearColor.h"
 #include "Engine.MaterialExpression.h"
 #include "Engine.MaterialExpression.ExpressionInput.h"
-#include "Core.Object.LinearColor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

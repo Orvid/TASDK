@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrCallIn_OpenDeliveryPod;
+}
 #include "Engine.Actor.h"
 #include "Engine.MaterialInstanceTimeVarying.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SequenceOp.SeqOpOutputInputLink.h"
+namespace UnrealScript
+{
+	struct SequenceOp__SeqOpOutputLink;
+}
 #include "Engine.SequenceOp.h"
+#include "Engine.SequenceOp.SeqOpOutputInputLink.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

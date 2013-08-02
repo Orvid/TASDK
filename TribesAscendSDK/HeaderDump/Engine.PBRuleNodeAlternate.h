@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PBRuleNodeAlternate;
+}
 #include "Engine.PBRuleNodeBase.h"
 #include "Engine.ProcBuildingRuleset.EProcBuildingAxis.h"
 #define ADD_BOOL(name, offset, mask) \

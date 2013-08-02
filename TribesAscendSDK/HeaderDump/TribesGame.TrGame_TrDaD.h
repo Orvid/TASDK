@@ -1,9 +1,13 @@
 #pragma once
-#include "TribesGame.TrGame.h"
+namespace UnrealScript
+{
+	class TrGame_TrDaD;
+}
 #include "Engine.Controller.h"
-#include "UTGame.UTTeamInfo.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "TribesGame.TrGame.h"
 #include "TribesGame.TrPowerGenerator.h"
+#include "UTGame.UTTeamInfo.h"
 namespace UnrealScript
 {
 	class TrGame_TrDaD : public TrGame

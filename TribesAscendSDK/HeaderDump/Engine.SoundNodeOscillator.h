@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SoundNodeOscillator;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.SoundNode.h"
 #define ADD_BOOL(name, offset, mask) \

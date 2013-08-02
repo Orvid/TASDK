@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.InventoryManager.h"
+namespace UnrealScript
+{
+	class UTInventoryManager;
+}
 #include "Engine.HUD.h"
+#include "Engine.Inventory.h"
+#include "Engine.InventoryManager.h"
+#include "Engine.Weapon.h"
 #include "UTGame.UTInventoryManager.AmmoStore.h"
 #include "UTGame.UTWeapon.h"
-#include "Engine.Weapon.h"
-#include "Engine.Inventory.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +32,7 @@ namespace UnrealScript
 	class UTInventoryManager : public InventoryManager
 	{
 	public:
+		typedef UTInventoryManager__AmmoStore AmmoStore;
 		ADD_BOOL(bInfiniteAmmo, 504, 0x1)
 		ADD_STRUCT(ScriptArray<UTInventoryManager__AmmoStore>, AmmoStorage, 508)
 		ADD_STRUCT(float, LastAdjustWeaponTime, 528)

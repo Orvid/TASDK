@@ -1,6 +1,10 @@
 #pragma once
-#include "Core.Object.InterpCurvePointFloat.h"
+namespace UnrealScript
+{
+	struct Object__InterpCurveFloat;
+}
 #include "Core.Object.EInterpMethodType.h"
+#include "Core.Object.InterpCurvePointFloat.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Object__Map_Mirror;
+}
 #include "Core.Object.Set_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

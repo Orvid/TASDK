@@ -1,8 +1,13 @@
 #pragma once
-#include "Engine.AnimNotify_Trails.TrailSample.h"
-#include "Engine.AnimNotify.h"
-#include "Engine.AnimNotify_Trails.TrailSamplePoint.h"
+namespace UnrealScript
+{
+	class AnimNotify_Trails;
+}
 #include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimNotify.h"
+#include "Engine.AnimNotify_Trails.TrailSample.h"
+#include "Engine.AnimNotify_Trails.TrailSamplePoint.h"
+#include "Engine.AnimNotify_Trails.TrailSocketSamplePoint.h"
 #include "Engine.ParticleSystem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -27,6 +32,9 @@ namespace UnrealScript
 	class AnimNotify_Trails : public AnimNotify
 	{
 	public:
+		typedef AnimNotify_Trails__TrailSamplePoint TrailSamplePoint;
+		typedef AnimNotify_Trails__TrailSample TrailSample;
+		typedef AnimNotify_Trails__TrailSocketSamplePoint TrailSocketSamplePoint;
 		ADD_STRUCT(ScriptArray<AnimNotify_Trails__TrailSamplePoint>, TrailSampleData, 108)
 		ADD_STRUCT(ScriptArray<AnimNotify_Trails__TrailSample>, TrailSampledData, 124)
 		ADD_OBJECT(AnimNodeSequence, AnimNodeSeq, 144)

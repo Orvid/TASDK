@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleLocationPrimitiveCylinder;
+}
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModuleLocationPrimitiveBase.h"
 #include "Engine.ParticleModuleLocationPrimitiveCylinder.CylinderHeightAxis.h"
-#include "Core.DistributionFloat.RawDistributionFloat.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class ParticleModuleLocationPrimitiveCylinder : public ParticleModuleLocationPrimitiveBase
 	{
 	public:
+		typedef ParticleModuleLocationPrimitiveCylinder__CylinderHeightAxis CylinderHeightAxis;
 		ADD_STRUCT(ParticleModuleLocationPrimitiveCylinder__CylinderHeightAxis, HeightAxis, 192)
 		ADD_BOOL(RadialVelocity, 132, 0x1)
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, StartHeight, 164)

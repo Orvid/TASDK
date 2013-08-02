@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.UIDataStore_GameResource.h"
+namespace UnrealScript
+{
+	class UDKUIDataStore_MenuItems;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.UIDataStore_GameResource.h"
 #include "UDKBase.UDKUIResourceDataProvider.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SoundNodeDistanceCrossFade;
+}
 #include "Engine.SoundNode.h"
 #include "Engine.SoundNodeDistanceCrossFade.DistanceDatum.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class SoundNodeDistanceCrossFade : public SoundNode
 	{
 	public:
+		typedef SoundNodeDistanceCrossFade__DistanceDatum DistanceDatum;
 		ADD_STRUCT(ScriptArray<SoundNodeDistanceCrossFade__DistanceDatum>, CrossFadeInput, 76)
 	};
 }

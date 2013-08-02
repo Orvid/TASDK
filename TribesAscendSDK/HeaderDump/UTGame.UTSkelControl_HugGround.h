@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSkelControl_HugGround;
+}
 #include "UDKBase.UDKSkelControl_HugGround.h"
 namespace UnrealScript
 {

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct GameStatsAggregator__DamageEvents;
+}
 #include "GameFramework.GameStatsAggregator.GameEvents.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

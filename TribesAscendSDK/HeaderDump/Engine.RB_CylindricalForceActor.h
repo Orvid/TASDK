@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.RigidBodyBase.h"
+namespace UnrealScript
+{
+	class RB_CylindricalForceActor;
+}
 #include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
+#include "Engine.RigidBodyBase.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

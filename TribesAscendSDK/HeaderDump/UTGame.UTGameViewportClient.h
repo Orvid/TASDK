@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTGameViewportClient;
+}
 #include "Engine.Canvas.h"
-#include "UDKBase.UDKGameViewportClient.h"
 #include "Engine.Font.h"
 #include "Engine.PlayerController.EProgressMessageType.h"
+#include "UDKBase.UDKGameViewportClient.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

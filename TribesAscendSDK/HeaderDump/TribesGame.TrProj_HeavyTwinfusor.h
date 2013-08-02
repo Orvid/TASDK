@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrProj_HeavyTwinfusor;
+}
 #include "TribesGame.TrProjectile.h"
 namespace UnrealScript
 {

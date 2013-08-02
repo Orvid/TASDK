@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ApexDestructibleAssetThumbnailRenderer;
+}
 #include "UnrealEd.DefaultSizedThumbnailRenderer.h"
 namespace UnrealScript
 {

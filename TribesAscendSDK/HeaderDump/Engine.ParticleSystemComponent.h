@@ -1,22 +1,29 @@
 #pragma once
-#include "Engine.ParticleSystemComponent.ViewParticleEmitterInstanceMotionBlurInfo.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.PrimitiveComponent.h"
-#include "Engine.ParticleSystem.h"
-#include "Engine.MaterialInterface.h"
-#include "Engine.ParticleSystemComponent.ParticleSysParam.h"
-#include "Core.Object.Vector.h"
-#include "Engine.ParticleSystem.ParticleSystemLODMethod.h"
-#include "Engine.ParticleSystemComponent.ParticleReplayState.h"
-#include "Engine.PrimitiveComponent.MaterialViewRelevance.h"
-#include "Engine.ParticleSystemComponent.ParticleEventKismetData.h"
-#include "Engine.ParticleSystemReplay.h"
-#include "Engine.ParticleSystemComponent.ParticleEventSpawnData.h"
-#include "Engine.ParticleSystemComponent.ParticleEventDeathData.h"
-#include "Engine.ParticleSystemComponent.ParticleEventCollideData.h"
+namespace UnrealScript
+{
+	class ParticleSystemComponent;
+}
 #include "Core.Object.Color.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.Actor.h"
+#include "Engine.MaterialInterface.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.ParticleSystem.ParticleSystemLODMethod.h"
+#include "Engine.ParticleSystemComponent.EParticleEventType.h"
 #include "Engine.ParticleSystemComponent.EParticleSysParamType.h"
+#include "Engine.ParticleSystemComponent.ParticleEmitterInstance.h"
+#include "Engine.ParticleSystemComponent.ParticleEmitterInstanceMotionBlurInfo.h"
+#include "Engine.ParticleSystemComponent.ParticleEventCollideData.h"
+#include "Engine.ParticleSystemComponent.ParticleEventData.h"
+#include "Engine.ParticleSystemComponent.ParticleEventDeathData.h"
+#include "Engine.ParticleSystemComponent.ParticleEventKismetData.h"
+#include "Engine.ParticleSystemComponent.ParticleEventSpawnData.h"
+#include "Engine.ParticleSystemComponent.ParticleReplayState.h"
+#include "Engine.ParticleSystemComponent.ParticleSysParam.h"
+#include "Engine.ParticleSystemComponent.ViewParticleEmitterInstanceMotionBlurInfo.h"
+#include "Engine.ParticleSystemReplay.h"
+#include "Engine.PrimitiveComponent.h"
+#include "Engine.PrimitiveComponent.MaterialViewRelevance.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -40,6 +47,18 @@ namespace UnrealScript
 	class ParticleSystemComponent : public PrimitiveComponent
 	{
 	public:
+		typedef ParticleSystemComponent__EParticleSysParamType EParticleSysParamType;
+		typedef ParticleSystemComponent__ParticleReplayState ParticleReplayState;
+		typedef ParticleSystemComponent__EParticleEventType EParticleEventType;
+		typedef ParticleSystemComponent__ViewParticleEmitterInstanceMotionBlurInfo ViewParticleEmitterInstanceMotionBlurInfo;
+		typedef ParticleSystemComponent__ParticleSysParam ParticleSysParam;
+		typedef ParticleSystemComponent__ParticleEventData ParticleEventData;
+		typedef ParticleSystemComponent__ParticleEventSpawnData ParticleEventSpawnData;
+		typedef ParticleSystemComponent__ParticleEventDeathData ParticleEventDeathData;
+		typedef ParticleSystemComponent__ParticleEventCollideData ParticleEventCollideData;
+		typedef ParticleSystemComponent__ParticleEventKismetData ParticleEventKismetData;
+		typedef ParticleSystemComponent__ParticleEmitterInstanceMotionBlurInfo ParticleEmitterInstanceMotionBlurInfo;
+		typedef ParticleSystemComponent__ParticleEmitterInstance ParticleEmitterInstance;
 		ADD_OBJECT(ParticleSystem, Template, 488)
 		ADD_OBJECT(ScriptClass, LightEnvironmentClass, 492)
 		ADD_STRUCT(ScriptArray<Object__Pointer>, EmitterInstances, 496)

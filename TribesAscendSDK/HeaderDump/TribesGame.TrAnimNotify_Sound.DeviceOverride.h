@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrAnimNotify_Sound__DeviceOverride;
+}
 #include "Engine.SoundCue.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

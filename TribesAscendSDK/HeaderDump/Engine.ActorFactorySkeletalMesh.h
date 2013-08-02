@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorFactorySkeletalMesh;
+}
 #include "Engine.ActorFactory.h"
-#include "Engine.SkeletalMesh.h"
 #include "Engine.AnimSet.h"
+#include "Engine.SkeletalMesh.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

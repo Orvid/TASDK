@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class PortalMarker;
+}
+#include "Engine.Actor.h"
 #include "Engine.NavigationPoint.h"
 #include "Engine.PortalTeleporter.h"
-#include "Engine.Actor.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

@@ -1,14 +1,17 @@
 #pragma once
-#include "UTGame.UTBot.h"
+namespace UnrealScript
+{
+	class UTWeaponLocker;
+}
 #include "Engine.Controller.h"
-#include "UTGame.UTPickupFactory.h"
 #include "Engine.ParticleSystem.h"
-#include "UTGame.UTWeaponLocker.WeaponEntry.h"
-#include "Core.Object.Vector.h"
-#include "UTGame.UTWeaponLocker.PawnToucher.h"
-#include "UTGame.UTWeaponLocker.ReplacementWeaponEntry.h"
 #include "Engine.Pawn.h"
 #include "Engine.PlayerController.h"
+#include "UTGame.UTBot.h"
+#include "UTGame.UTPickupFactory.h"
+#include "UTGame.UTWeaponLocker.PawnToucher.h"
+#include "UTGame.UTWeaponLocker.ReplacementWeaponEntry.h"
+#include "UTGame.UTWeaponLocker.WeaponEntry.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,6 +35,9 @@ namespace UnrealScript
 	class UTWeaponLocker : public UTPickupFactory
 	{
 	public:
+		typedef UTWeaponLocker__WeaponEntry WeaponEntry;
+		typedef UTWeaponLocker__PawnToucher PawnToucher;
+		typedef UTWeaponLocker__ReplacementWeaponEntry ReplacementWeaponEntry;
 		ADD_STRUCT(ScriptArray<UTWeaponLocker__WeaponEntry>, Weapons, 944)
 		ADD_STRUCT(ScriptArray<Vector>, LockerPositions, 1004)
 		ADD_STRUCT(ScriptArray<UTWeaponLocker__PawnToucher>, Customers, 1028)

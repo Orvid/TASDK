@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_ErrorDialog;
+}
 #include "UTGame.GFxUDKFrontEnd_Dialog.h"
 namespace UnrealScript
 {

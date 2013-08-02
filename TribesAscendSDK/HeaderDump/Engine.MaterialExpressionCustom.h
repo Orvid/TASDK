@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpressionCustom;
+}
 #include "Engine.MaterialExpression.h"
 #include "Engine.MaterialExpressionCustom.CustomInput.h"
 #include "Engine.MaterialExpressionCustom.ECustomMaterialOutputType.h"
@@ -11,6 +15,8 @@ namespace UnrealScript
 	class MaterialExpressionCustom : public MaterialExpression
 	{
 	public:
+		typedef MaterialExpressionCustom__ECustomMaterialOutputType ECustomMaterialOutputType;
+		typedef MaterialExpressionCustom__CustomInput CustomInput;
 		ADD_STRUCT(ScriptArray<MaterialExpressionCustom__CustomInput>, Inputs, 136)
 		ADD_STRUCT(ScriptString*, Description, 124)
 		ADD_STRUCT(MaterialExpressionCustom__ECustomMaterialOutputType, OutputType, 120)

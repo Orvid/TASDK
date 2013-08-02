@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Controller__VisiblePortalInfo;
+}
 #include "Engine.Actor.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

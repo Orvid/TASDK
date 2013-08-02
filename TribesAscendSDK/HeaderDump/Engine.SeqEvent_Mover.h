@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SequenceEvent.h"
+namespace UnrealScript
+{
+	class SeqEvent_Mover;
+}
 #include "Engine.Actor.h"
+#include "Engine.SequenceEvent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

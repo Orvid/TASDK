@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrMapInfo;
+}
+#include "TribesGame.TrInvalidDeployableVolume.h"
 #include "TribesGame.TrMapMusicInfo.h"
 #include "UDKBase.UDKMapInfo.h"
-#include "TribesGame.TrInvalidDeployableVolume.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

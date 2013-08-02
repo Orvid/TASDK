@@ -1,10 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKCarriedObject;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
-#include "UDKBase.UDKGameObjective.h"
 #include "Engine.NavigationPoint.h"
-#include "Engine.TeamInfo.h"
 #include "Engine.Pawn.h"
+#include "Engine.TeamInfo.h"
+#include "UDKBase.UDKGameObjective.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

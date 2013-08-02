@@ -1,6 +1,9 @@
 #pragma once
+namespace UnrealScript
+{
+	struct GameThirdPersonCamera__CamFocusPointParams;
+}
 #include "Core.Object.Vector2D.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

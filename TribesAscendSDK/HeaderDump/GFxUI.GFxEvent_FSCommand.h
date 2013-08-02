@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxEvent_FSCommand;
+}
 #include "Engine.SequenceEvent.h"
 #include "GFxUI.GFxFSCmdHandler_Kismet.h"
 #include "GFxUI.SwfMovie.h"

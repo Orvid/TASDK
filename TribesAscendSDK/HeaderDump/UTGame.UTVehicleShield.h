@@ -1,10 +1,13 @@
 #pragma once
-#include "UDKBase.UDKWeaponShield.h"
-#include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.SoundCue.h"
+namespace UnrealScript
+{
+	class UTVehicleShield;
+}
 #include "Engine.Actor.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.Controller.h"
-#include "Core.Object.Vector.h"
+#include "Engine.SoundCue.h"
+#include "UDKBase.UDKWeaponShield.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

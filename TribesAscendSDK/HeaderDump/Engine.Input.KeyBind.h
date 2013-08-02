@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Input__KeyBind;
+}
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

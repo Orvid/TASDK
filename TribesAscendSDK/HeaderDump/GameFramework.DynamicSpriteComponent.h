@@ -1,9 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class DynamicSpriteComponent;
+}
+#include "Core.Object.InterpCurveFloat.h"
+#include "Core.Object.InterpCurveLinearColor.h"
 #include "Core.Object.InterpCurveVector2D.h"
 #include "Engine.SpriteComponent.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.InterpCurveLinearColor.h"
-#include "Core.Object.InterpCurveFloat.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

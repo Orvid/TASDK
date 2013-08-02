@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleTypeDataBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleTypeDataApex;
+}
 #include "Engine.ApexGenericAsset.h"
+#include "Engine.ParticleModuleTypeDataBase.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

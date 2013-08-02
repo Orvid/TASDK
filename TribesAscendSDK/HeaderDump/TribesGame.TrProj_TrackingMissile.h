@@ -1,14 +1,16 @@
 #pragma once
-#include "TribesGame.TrProjectile.h"
-#include "Core.Object.Rotator.h"
-#include "TribesGame.TrSeekingMissileManager.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class TrProj_TrackingMissile;
+}
 #include "Engine.Actor.h"
-#include "TribesGame.TrProj_TrackingMissile.ETrackingMissileStage.h"
 #include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.PlayerController.h"
 #include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.PlayerController.h"
+#include "TribesGame.TrProj_TrackingMissile.ETrackingMissileStage.h"
+#include "TribesGame.TrProjectile.h"
+#include "TribesGame.TrSeekingMissileManager.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +30,7 @@ namespace UnrealScript
 	class TrProj_TrackingMissile : public TrProjectile
 	{
 	public:
+		typedef TrProj_TrackingMissile__ETrackingMissileStage ETrackingMissileStage;
 		ADD_STRUCT(float, m_fLoseTightTrackingDistance, 884)
 		ADD_STRUCT(Rotator, m_MissileCaratRotation, 872)
 		ADD_STRUCT(float, m_fStage1MinGroundDist, 868)

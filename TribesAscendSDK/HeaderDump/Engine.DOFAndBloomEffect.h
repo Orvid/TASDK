@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DOFAndBloomEffect;
+}
 #include "Core.Object.Color.h"
 #include "Engine.DOFEffect.h"
 #define ADD_BOOL(name, offset, mask) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class RenderTargetCubeExporterTGA;
+}
 #include "Core.Exporter.h"
 #include "UnrealEd.RenderTargetCubeExporterTGA.CubeFace.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class RenderTargetCubeExporterTGA : public Exporter
 	{
 	public:
+		typedef RenderTargetCubeExporterTGA__CubeFace CubeFace;
 		ADD_STRUCT(RenderTargetCubeExporterTGA__CubeFace, CubeFace, 100)
 	};
 }

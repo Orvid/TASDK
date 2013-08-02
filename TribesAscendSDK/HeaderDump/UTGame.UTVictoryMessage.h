@@ -1,10 +1,14 @@
 #pragma once
-#include "UTGame.UTLocalMessage.h"
-#include "Engine.SoundNodeWave.h"
+namespace UnrealScript
+{
+	class UTVictoryMessage;
+}
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Engine.SoundNodeWave.h"
 #include "UTGame.UTAnnouncer.h"
+#include "UTGame.UTLocalMessage.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

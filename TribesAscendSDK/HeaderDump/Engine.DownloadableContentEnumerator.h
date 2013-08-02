@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DownloadableContentEnumerator;
+}
 #include "Core.Object.h"
 #include "Engine.OnlineSubsystem.OnlineContent.h"
 #define ADD_STRUCT(x, y, offset) \

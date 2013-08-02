@@ -1,11 +1,14 @@
 #pragma once
-#include "UDKBase.UDKVehicleFactory.h"
-#include "Engine.SeqAct_Toggle.h"
-#include "Core.Object.Rotator.h"
-#include "UTGame.UTMapInfo.h"
-#include "UTGame.UTGameObjective.h"
-#include "Engine.Canvas.h"
+namespace UnrealScript
+{
+	class UTVehicleFactory;
+}
 #include "Core.Object.LinearColor.h"
+#include "Engine.Canvas.h"
+#include "Engine.SeqAct_Toggle.h"
+#include "UDKBase.UDKVehicleFactory.h"
+#include "UTGame.UTGameObjective.h"
+#include "UTGame.UTMapInfo.h"
 #include "UTGame.UTPlayerController.h"
 #include "UTGame.UTVehicle.h"
 #define ADD_BOOL(name, offset, mask) \

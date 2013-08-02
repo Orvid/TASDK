@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNotify_Rumble;
+}
 #include "Engine.AnimNotify.h"
 #include "Engine.ForceFeedbackWaveform.h"
 #define ADD_BOOL(name, offset, mask) \

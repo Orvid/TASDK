@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Sequence__QueuedActivationInfo;
+}
 #include "Engine.Actor.h"
 #include "Engine.SequenceEvent.h"
 #define ADD_BOOL(name, offset, mask) \

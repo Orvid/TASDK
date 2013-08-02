@@ -1,13 +1,17 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialInstanceConstant;
+}
+#include "Core.Object.LinearColor.h"
+#include "Engine.Font.h"
 #include "Engine.MaterialInstance.h"
 #include "Engine.MaterialInstanceConstant.FontParameterValue.h"
-#include "Engine.MaterialInterface.h"
 #include "Engine.MaterialInstanceConstant.ScalarParameterValue.h"
 #include "Engine.MaterialInstanceConstant.TextureParameterValue.h"
 #include "Engine.MaterialInstanceConstant.VectorParameterValue.h"
+#include "Engine.MaterialInterface.h"
 #include "Engine.Texture.h"
-#include "Core.Object.LinearColor.h"
-#include "Engine.Font.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -21,6 +25,10 @@ namespace UnrealScript
 	class MaterialInstanceConstant : public MaterialInstance
 	{
 	public:
+		typedef MaterialInstanceConstant__FontParameterValue FontParameterValue;
+		typedef MaterialInstanceConstant__ScalarParameterValue ScalarParameterValue;
+		typedef MaterialInstanceConstant__TextureParameterValue TextureParameterValue;
+		typedef MaterialInstanceConstant__VectorParameterValue VectorParameterValue;
 		ADD_STRUCT(ScriptArray<MaterialInstanceConstant__FontParameterValue>, FontParameterValues, 432)
 		ADD_STRUCT(ScriptArray<MaterialInstanceConstant__ScalarParameterValue>, ScalarParameterValues, 444)
 		ADD_STRUCT(ScriptArray<MaterialInstanceConstant__TextureParameterValue>, TextureParameterValues, 456)

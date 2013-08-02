@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrCamera_SpectatorBookmark;
+}
 #include "Engine.CameraActor.h"
 #include "TribesGame.TrCamera_SpectatorBookmark.ESpectatorBookmark.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class TrCamera_SpectatorBookmark : public CameraActor
 	{
 	public:
+		typedef TrCamera_SpectatorBookmark__ESpectatorBookmark ESpectatorBookmark;
 		ADD_STRUCT(TrCamera_SpectatorBookmark__ESpectatorBookmark, m_BookmarkDescription, 1416)
 		ADD_STRUCT(ScriptString*, BEBase, 720)
 		ADD_STRUCT(ScriptString*, GenericCamera, 1404)

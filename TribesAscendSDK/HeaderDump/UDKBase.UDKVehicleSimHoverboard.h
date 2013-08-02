@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.SVehicleSimBase.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class UDKVehicleSimHoverboard;
+}
 #include "Core.Object.InterpCurveFloat.h"
+#include "Engine.RB_ConstraintInstance.h"
+#include "Engine.SVehicleSimBase.h"
 #include "Engine.SoundCue.h"
 #include "UDKBase.UDKVehicle.h"
-#include "Engine.RB_ConstraintInstance.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

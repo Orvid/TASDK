@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MatineePawn;
+}
 #include "Engine.Pawn.h"
 #include "Engine.SkeletalMesh.h"
 #define ADD_OBJECT(x, y, offset) \

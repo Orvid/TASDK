@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Settings__SettingsPropertyPropertyMetaData;
+}
 #include "Engine.Settings.EPropertyValueMappingType.h"
 #include "Engine.Settings.IdToStringMapping.h"
 #include "Engine.Settings.SettingsData.h"

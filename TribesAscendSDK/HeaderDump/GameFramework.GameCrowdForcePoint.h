@@ -1,8 +1,11 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "GameFramework.GameCrowdInteractionPoint.h"
+namespace UnrealScript
+{
+	class GameCrowdForcePoint;
+}
 #include "Engine.Actor.h"
 #include "GameFramework.GameCrowdAgent.h"
+#include "GameFramework.GameCrowdInteractionPoint.h"
 namespace UnrealScript
 {
 	class GameCrowdForcePoint : public GameCrowdInteractionPoint

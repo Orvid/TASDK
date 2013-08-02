@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.PlayerController.InputEntry.h"
+namespace UnrealScript
+{
+	struct PlayerController__InputMatchRequest;
+}
 #include "Engine.Actor.h"
+#include "Engine.PlayerController.InputEntry.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

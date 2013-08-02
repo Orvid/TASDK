@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Path_WithinTraversalDist;
+}
 #include "Engine.PathConstraint.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct CoverLink__SlotMoveRef;
+}
 #include "Engine.Actor.BasedPosition.h"
 #include "Engine.Pylon.PolyReference.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimationCompressionAlgorithm;
+}
 #include "Core.Object.h"
 #include "Engine.AnimSequence.AnimationCompressionFormat.h"
 #define ADD_BOOL(name, offset, mask) \

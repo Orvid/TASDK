@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_SAP20;
+}
 #include "TribesGame.TrDevice_PhaseRifle.h"
 namespace UnrealScript
 {

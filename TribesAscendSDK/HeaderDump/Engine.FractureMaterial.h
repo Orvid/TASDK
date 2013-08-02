@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class FractureMaterial;
+}
 #include "Core.Object.h"
-#include "Engine.SoundCue.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.SoundCue.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

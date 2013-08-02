@@ -1,16 +1,19 @@
 #pragma once
-#include "Engine.DroppedPickup.h"
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class NavigationPoint;
+}
+#include "Core.Object.Cylinder.h"
 #include "Core.Object.Guid.h"
-#include "Engine.ReachSpec.h"
+#include "Engine.Actor.h"
 #include "Engine.Actor.ActorReference.h"
+#include "Engine.DroppedPickup.h"
+#include "Engine.NavigationPoint.CheckpointRecord.h"
 #include "Engine.NavigationPoint.DebugNavCost.h"
 #include "Engine.NavigationPoint.NavigationOctreeObject.h"
 #include "Engine.Pawn.h"
+#include "Engine.ReachSpec.h"
 #include "Engine.SeqAct_Toggle.h"
-#include "Core.Object.Cylinder.h"
-#include "Core.Object.Vector.h"
-#include "Engine.NavigationPoint.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -34,6 +37,9 @@ namespace UnrealScript
 	class NavigationPoint : public Actor
 	{
 	public:
+		typedef NavigationPoint__DebugNavCost DebugNavCost;
+		typedef NavigationPoint__NavigationOctreeObject NavigationOctreeObject;
+		typedef NavigationPoint__CheckpointRecord CheckpointRecord;
 		static const auto INFINITE_PATH_COST = 10000000;
 		ADD_STRUCT(ScriptArray<class ReachSpec*>, PathList, 532)
 		ADD_STRUCT(ScriptArray<Actor__ActorReference>, EditorProscribedPaths, 544)

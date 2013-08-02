@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Texture2D__Texture2DMipMap;
+}
 #include "Core.Object.UntypedBulkData_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

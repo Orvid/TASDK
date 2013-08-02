@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct OnlinePlaylistManager__ConfiguredGameSetting;
+}
 #include "Engine.OnlineGameSettings.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

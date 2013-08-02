@@ -1,10 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrScene_MatchSummary;
+}
+#include "GFxUI.GFxObject.h"
 #include "TribesGame.GFxTrScene.h"
+#include "TribesGame.GFxTrScene_MatchSummary.ScoreSlot.h"
+#include "TribesGame.TrPlayerReplicationInfo.h"
 #include "TribesGame.TrSummaryHelper.h"
 #include "TribesGame.TrSummaryHelper.MVPAward.h"
-#include "TribesGame.GFxTrScene_MatchSummary.ScoreSlot.h"
-#include "GFxUI.GFxObject.h"
-#include "TribesGame.TrPlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +32,7 @@ namespace UnrealScript
 	class GFxTrScene_MatchSummary : public GFxTrScene
 	{
 	public:
+		typedef GFxTrScene_MatchSummary__ScoreSlot ScoreSlot;
 		ADD_BOOL(bUseSNS, 200, 0x1)
 		ADD_STRUCT(ScriptArray<TrSummaryHelper__MVPAward>, MVPAwards, 1228)
 		ADD_STRUCT(ScriptArray<TrSummaryHelper__MVPAward>, MVPAccolades, 1240)

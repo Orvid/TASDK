@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class UTCheatManager;
+}
 #include "Engine.CheatManager.h"
 #include "Engine.SpeechRecognition.h"
 #define ADD_OBJECT(x, y, offset) \

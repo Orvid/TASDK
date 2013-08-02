@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct CoverLink__FireLinkItem;
+}
 #include "Engine.CoverLink.ECoverAction.h"
 #include "Engine.CoverLink.ECoverType.h"
 #define ADD_STRUCT(x, y, offset) \

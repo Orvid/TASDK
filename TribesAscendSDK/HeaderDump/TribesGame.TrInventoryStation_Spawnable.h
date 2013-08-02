@@ -1,9 +1,12 @@
 #pragma once
-#include "TribesGame.TrInventoryStation.h"
+namespace UnrealScript
+{
+	class TrInventoryStation_Spawnable;
+}
 #include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
+#include "TribesGame.TrInventoryStation.h"
 namespace UnrealScript
 {
 	class TrInventoryStation_Spawnable : public TrInventoryStation

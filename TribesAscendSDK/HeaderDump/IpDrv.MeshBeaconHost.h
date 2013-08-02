@@ -1,11 +1,16 @@
 #pragma once
-#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestResult.h"
-#include "IpDrv.MeshBeacon.h"
-#include "IpDrv.MeshBeaconHost.ClientMeshBeaconConnection.h"
+namespace UnrealScript
+{
+	class MeshBeaconHost;
+}
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "IpDrv.MeshBeacon.PlayerMember.h"
-#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestType.h"
+#include "IpDrv.MeshBeacon.h"
 #include "IpDrv.MeshBeacon.ConnectionBandwidthStats.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestResult.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestType.h"
+#include "IpDrv.MeshBeacon.PlayerMember.h"
+#include "IpDrv.MeshBeaconHost.ClientConnectionBandwidthTestData.h"
+#include "IpDrv.MeshBeaconHost.ClientMeshBeaconConnection.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +30,8 @@ namespace UnrealScript
 	class MeshBeaconHost : public MeshBeacon
 	{
 	public:
+		typedef MeshBeaconHost__ClientMeshBeaconConnection ClientMeshBeaconConnection;
+		typedef MeshBeaconHost__ClientConnectionBandwidthTestData ClientConnectionBandwidthTestData;
 		ADD_STRUCT(ScriptArray<MeshBeaconHost__ClientMeshBeaconConnection>, ClientConnections, 120)
 		ADD_STRUCT(ScriptArray<OnlineSubsystem__UniqueNetId>, PendingPlayerConnections, 132)
 		ADD_STRUCT(int, ConnectionBacklog, 156)

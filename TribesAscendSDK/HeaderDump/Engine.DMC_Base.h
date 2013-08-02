@@ -1,9 +1,11 @@
 #pragma once
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class DMC_Base;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

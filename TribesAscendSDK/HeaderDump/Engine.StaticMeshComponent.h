@@ -1,12 +1,16 @@
 #pragma once
-#include "Engine.Texture.h"
-#include "Engine.StaticMeshComponent.ELightmapModificationFunction.h"
-#include "Engine.MeshComponent.h"
-#include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
-#include "Core.Object.Guid.h"
+namespace UnrealScript
+{
+	class StaticMeshComponent;
+}
 #include "Core.Object.Color.h"
-#include "Engine.StaticMeshComponent.StaticMeshComponentLODInfo.h"
+#include "Core.Object.Guid.h"
+#include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
+#include "Engine.MeshComponent.h"
 #include "Engine.StaticMesh.h"
+#include "Engine.StaticMeshComponent.ELightmapModificationFunction.h"
+#include "Engine.StaticMeshComponent.StaticMeshComponentLODInfo.h"
+#include "Engine.Texture.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,6 +34,8 @@ namespace UnrealScript
 	class StaticMeshComponent : public MeshComponent
 	{
 	public:
+		typedef StaticMeshComponent__ELightmapModificationFunction ELightmapModificationFunction;
+		typedef StaticMeshComponent__StaticMeshComponentLODInfo StaticMeshComponentLODInfo;
 		ADD_STRUCT(ScriptArray<Object__Guid>, IrrelevantLights, 552)
 		ADD_STRUCT(ScriptArray<StaticMeshComponent__StaticMeshComponentLODInfo>, LODData, 564)
 		ADD_STRUCT(EngineTypes__LightmassPrimitiveSettings, LightmassSettings, 580)

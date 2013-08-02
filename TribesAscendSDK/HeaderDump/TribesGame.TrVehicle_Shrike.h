@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrVehicle_Shrike;
+}
 #include "TribesGame.TrVehicle_BaseFlying.h"
 #include "UTGame.UTPawn.h"
 namespace UnrealScript

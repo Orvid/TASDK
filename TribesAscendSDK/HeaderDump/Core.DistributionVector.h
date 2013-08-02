@@ -1,7 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class DistributionVector;
+}
 #include "Core.Component.h"
+#include "Core.DistributionVector.EDistributionVectorLockFlags.h"
+#include "Core.DistributionVector.EDistributionVectorMirrorFlags.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
 #include "Core.Object.Pointer.h"
-#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +27,9 @@ namespace UnrealScript
 	class DistributionVector : public Component
 	{
 	public:
+		typedef DistributionVector__EDistributionVectorLockFlags EDistributionVectorLockFlags;
+		typedef DistributionVector__EDistributionVectorMirrorFlags EDistributionVectorMirrorFlags;
+		typedef DistributionVector__RawDistributionVector RawDistributionVector;
 		ADD_BOOL(bIsDirty, 76, 0x2)
 		ADD_BOOL(bCanBeBaked, 76, 0x1)
 		ADD_STRUCT(Object__Pointer, VfTable_FCurveEdInterface, 72)

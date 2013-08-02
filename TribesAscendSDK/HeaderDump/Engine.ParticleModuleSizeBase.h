@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleSizeBase;
+}
 #include "Engine.ParticleModule.h"
 namespace UnrealScript
 {

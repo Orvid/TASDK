@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorFactoryAmbientSoundNonLoop;
+}
 #include "Engine.ActorFactoryAmbientSoundSimple.h"
 namespace UnrealScript
 {

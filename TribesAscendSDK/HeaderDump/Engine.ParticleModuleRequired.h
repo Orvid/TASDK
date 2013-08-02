@@ -1,13 +1,16 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleRequired;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
-#include "Engine.ParticleModule.h"
-#include "Engine.ParticleModuleRequired.EParticleSortMode.h"
-#include "Engine.ParticleEmitter.ParticleBurst.h"
-#include "Core.Object.Vector.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.ParticleEmitter.EParticleSubUVInterpMethod.h"
-#include "Engine.ParticleModuleRequired.EEmitterNormalsMode.h"
 #include "Engine.ParticleEmitter.EParticleBurstMethod.h"
+#include "Engine.ParticleEmitter.EParticleSubUVInterpMethod.h"
+#include "Engine.ParticleEmitter.ParticleBurst.h"
+#include "Engine.ParticleModule.h"
+#include "Engine.ParticleModuleRequired.EEmitterNormalsMode.h"
+#include "Engine.ParticleModuleRequired.EParticleSortMode.h"
 #include "Engine.ParticleSpriteEmitter.EParticleScreenAlignment.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -32,6 +35,8 @@ namespace UnrealScript
 	class ParticleModuleRequired : public ParticleModule
 	{
 	public:
+		typedef ParticleModuleRequired__EEmitterNormalsMode EEmitterNormalsMode;
+		typedef ParticleModuleRequired__EParticleSortMode EParticleSortMode;
 		ADD_STRUCT(ScriptArray<ParticleEmitter__ParticleBurst>, BurstList, 128)
 		ADD_STRUCT(Vector, NormalsCylinderDirection, 184)
 		ADD_STRUCT(Vector, NormalsSphereCenter, 172)

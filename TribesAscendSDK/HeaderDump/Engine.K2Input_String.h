@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class K2Input_String;
+}
 #include "Engine.K2Input.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

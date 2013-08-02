@@ -1,9 +1,13 @@
 #pragma once
-#include "GameFramework.MobileInputZone.EZoneTouchEvent.h"
+namespace UnrealScript
+{
+	struct MobilePlayerInput__TouchData;
+}
+#include "Core.Object.Double.h"
 #include "Core.Object.Vector2D.h"
 #include "GameFramework.MobileInputZone.h"
+#include "GameFramework.MobileInputZone.EZoneTouchEvent.h"
 #include "GameFramework.MobilePlayerInput.TouchDataEvent.h"
-#include "Core.Object.Double.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

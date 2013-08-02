@@ -1,4 +1,9 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAnimNodeBlendByVehicle;
+}
+#include "TribesGame.TrAnimNodeBlendByVehicle.EVehicleAnims.h"
 #include "TribesGame.TrAnimNodeBlendList.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_OBJECT(x, y, offset) \
@@ -10,6 +15,7 @@ namespace UnrealScript
 	class TrAnimNodeBlendByVehicle : public TrAnimNodeBlendList
 	{
 	public:
+		typedef TrAnimNodeBlendByVehicle__EVehicleAnims EVehicleAnims;
 		ADD_OBJECT(TrPawn, m_TrPawn, 292)
 		void PlayNoVehicleAnim()
 		{

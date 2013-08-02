@@ -1,9 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDeployable_ForceField;
+}
 #include "Core.Object.Color.h"
-#include "TribesGame.TrDeployable.h"
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Texture2D.h"
+#include "TribesGame.TrDeployable.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

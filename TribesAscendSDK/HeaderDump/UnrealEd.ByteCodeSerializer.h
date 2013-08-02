@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ByteCodeSerializer;
+}
 #include "Core.Struct.h"
 namespace UnrealScript
 {

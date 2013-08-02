@@ -1,8 +1,11 @@
 #pragma once
-#include "TribesGame.TrProj_StickyGrenade.h"
-#include "Engine.ParticleSystem.h"
+namespace UnrealScript
+{
+	class TrProj_SpikeLauncher;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
+#include "Engine.ParticleSystem.h"
+#include "TribesGame.TrProj_StickyGrenade.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

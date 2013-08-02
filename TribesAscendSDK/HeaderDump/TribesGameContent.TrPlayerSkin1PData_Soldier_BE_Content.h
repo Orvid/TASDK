@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrPlayerSkin1PData_Soldier_BE_Content;
+}
 #include "TribesGame.TrPlayerSkin1PData.h"
 namespace UnrealScript
 {

@@ -1,6 +1,10 @@
 #pragma once
-#include "GFxUI.GFxObject.h"
+namespace UnrealScript
+{
+	class TrControlSettings;
+}
 #include "Engine.PlayerInput.h"
+#include "GFxUI.GFxObject.h"
 #include "TribesGame.TrObject.ESettingsList.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

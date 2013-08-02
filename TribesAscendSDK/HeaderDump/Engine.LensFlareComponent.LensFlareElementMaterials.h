@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct LensFlareComponent__LensFlareElementMaterials;
+}
 #include "Engine.MaterialInterface.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

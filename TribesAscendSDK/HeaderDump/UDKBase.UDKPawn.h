@@ -1,26 +1,33 @@
 #pragma once
-#include "GameFramework.GamePawn.h"
-#include "Engine.SkelControlFootPlacement.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Material.h"
-#include "UDKBase.UDKBot.h"
-#include "Engine.AnimNodeAimOffset.h"
-#include "Core.Object.Vector2D.h"
-#include "Engine.SkelControlLimb.h"
-#include "Engine.SoundCue.h"
-#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	class UDKPawn;
+}
 #include "Core.Object.LinearColor.h"
-#include "GameFramework.GameSkelCtrl_Recoil.h"
-#include "Engine.SkelControlSingleBone.h"
-#include "Engine.MaterialInterface.h"
-#include "UDKBase.UDKPawn.DrivenWeaponPawnInfo.h"
-#include "UDKBase.UDKPawn.UTTakeHitInfo.h"
-#include "UDKBase.UDKPawn.PlayEmoteInfo.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.Actor.h"
-#include "UDKBase.UDKCarriedObject.h"
-#include "Engine.PlayerController.h"
+#include "Engine.AnimNodeAimOffset.h"
 #include "Engine.Canvas.h"
+#include "Engine.Material.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.MaterialInterface.h"
+#include "Engine.PlayerController.h"
+#include "Engine.SkelControlFootPlacement.h"
+#include "Engine.SkelControlLimb.h"
+#include "Engine.SkelControlSingleBone.h"
+#include "Engine.SoundCue.h"
+#include "GameFramework.GamePawn.h"
+#include "GameFramework.GameSkelCtrl_Recoil.h"
+#include "UDKBase.UDKBot.h"
+#include "UDKBase.UDKCarriedObject.h"
+#include "UDKBase.UDKPawn.DistanceBasedParticleTemplate.h"
+#include "UDKBase.UDKPawn.DrivenWeaponPawnInfo.h"
+#include "UDKBase.UDKPawn.EmoteInfo.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
+#include "UDKBase.UDKPawn.MaterialParticleEffect.h"
+#include "UDKBase.UDKPawn.MaterialSoundEffect.h"
+#include "UDKBase.UDKPawn.PlayEmoteInfo.h"
+#include "UDKBase.UDKPawn.UTTakeHitInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -44,6 +51,14 @@ namespace UnrealScript
 	class UDKPawn : public GamePawn
 	{
 	public:
+		typedef UDKPawn__DrivenWeaponPawnInfo DrivenWeaponPawnInfo;
+		typedef UDKPawn__UTTakeHitInfo UTTakeHitInfo;
+		typedef UDKPawn__PlayEmoteInfo PlayEmoteInfo;
+		typedef UDKPawn__MaterialImpactEffect MaterialImpactEffect;
+		typedef UDKPawn__MaterialSoundEffect MaterialSoundEffect;
+		typedef UDKPawn__MaterialParticleEffect MaterialParticleEffect;
+		typedef UDKPawn__DistanceBasedParticleTemplate DistanceBasedParticleTemplate;
+		typedef UDKPawn__EmoteInfo EmoteInfo;
 		ADD_BOOL(bNotifyStopFalling, 1148, 0x40)
 		ADD_BOOL(bReadyToDoubleJump, 1148, 0x1)
 		ADD_STRUCT(ScriptArray<class MaterialInstanceConstant*>, BodyMaterialInstances, 1316)

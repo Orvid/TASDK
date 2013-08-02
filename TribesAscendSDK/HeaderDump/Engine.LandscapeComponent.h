@@ -1,16 +1,21 @@
 #pragma once
+namespace UnrealScript
+{
+	class LandscapeComponent;
+}
 #include "Core.Object.BoxSphereBounds.h"
-#include "Engine.Texture2D.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.PrimitiveComponent.h"
-#include "Engine.LandscapeComponent.WeightmapLayerAllocationInfo.h"
-#include "Engine.EngineTypes.LightMapRef.h"
-#include "Engine.LandscapeComponent.LandscapeComponentAlphaInfo.h"
 #include "Core.Object.Guid.h"
-#include "Engine.ShadowMap2D.h"
+#include "Core.Object.Pointer.h"
 #include "Core.Object.Vector2D.h"
 #include "Core.Object.Vector4.h"
+#include "Engine.EngineTypes.LightMapRef.h"
+#include "Engine.LandscapeComponent.ETerrainComponentNeighbors.h"
+#include "Engine.LandscapeComponent.LandscapeComponentAlphaInfo.h"
+#include "Engine.LandscapeComponent.WeightmapLayerAllocationInfo.h"
 #include "Engine.MaterialInstanceConstant.h"
+#include "Engine.PrimitiveComponent.h"
+#include "Engine.ShadowMap2D.h"
+#include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -24,6 +29,9 @@ namespace UnrealScript
 	class LandscapeComponent : public PrimitiveComponent
 	{
 	public:
+		typedef LandscapeComponent__ETerrainComponentNeighbors ETerrainComponentNeighbors;
+		typedef LandscapeComponent__LandscapeComponentAlphaInfo LandscapeComponentAlphaInfo;
+		typedef LandscapeComponent__WeightmapLayerAllocationInfo WeightmapLayerAllocationInfo;
 		ADD_STRUCT(ScriptArray<LandscapeComponent__LandscapeComponentAlphaInfo>, EditingAlphaLayerData, 512)
 		ADD_STRUCT(ScriptArray<LandscapeComponent__WeightmapLayerAllocationInfo>, WeightmapLayerAllocations, 532)
 		ADD_STRUCT(ScriptArray<class Texture2D*>, WeightmapTextures, 544)

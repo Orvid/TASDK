@@ -1,23 +1,28 @@
 #pragma once
-#include "Engine.EngineTypes.EMobileEmissiveColorSource.h"
-#include "Engine.Surface.h"
-#include "Engine.EngineTypes.EMobileEnvironmentBlendMode.h"
-#include "Core.Object.LinearColor.h"
-#include "Engine.EngineTypes.EMobileValueSource.h"
-#include "Engine.EngineTypes.EMobileTexCoordsSource.h"
-#include "Engine.Texture.h"
-#include "Engine.EngineTypes.EMobileTextureBlendFactorSource.h"
-#include "Engine.EngineTypes.EMobileTextureTransformTarget.h"
-#include "Engine.EngineTypes.EMobileSpecularMask.h"
-#include "Engine.EngineTypes.EMobileAmbientOcclusionSource.h"
+namespace UnrealScript
+{
+	class MaterialInterface;
+	class Material;
+}
 #include "Core.Object.Guid.h"
-#include "Engine.MaterialInterface.LightmassMaterialInterfaceSettings.h"
-#include "Core.Object.RenderCommandFence_Mirror.h"
-#include "Engine.Material.h"
-#include "Engine.PhysicalMaterial.h"
-#include "Engine.Font.h"
 #include "Core.Object.InterpCurveFloat.h"
 #include "Core.Object.InterpCurveVector.h"
+#include "Core.Object.LinearColor.h"
+#include "Core.Object.RenderCommandFence_Mirror.h"
+#include "Engine.EngineTypes.EMobileAmbientOcclusionSource.h"
+#include "Engine.EngineTypes.EMobileEmissiveColorSource.h"
+#include "Engine.EngineTypes.EMobileEnvironmentBlendMode.h"
+#include "Engine.EngineTypes.EMobileSpecularMask.h"
+#include "Engine.EngineTypes.EMobileTexCoordsSource.h"
+#include "Engine.EngineTypes.EMobileTextureBlendFactorSource.h"
+#include "Engine.EngineTypes.EMobileTextureTransformTarget.h"
+#include "Engine.EngineTypes.EMobileValueSource.h"
+#include "Engine.Font.h"
+#include "Engine.MaterialInterface.EMaterialUsage.h"
+#include "Engine.MaterialInterface.LightmassMaterialInterfaceSettings.h"
+#include "Engine.PhysicalMaterial.h"
+#include "Engine.Surface.h"
+#include "Engine.Texture.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -41,6 +46,8 @@ namespace UnrealScript
 	class MaterialInterface : public Surface
 	{
 	public:
+		typedef MaterialInterface__EMaterialUsage EMaterialUsage;
+		typedef MaterialInterface__LightmassMaterialInterfaceSettings LightmassMaterialInterfaceSettings;
 		ADD_STRUCT(float, MobileSwayMaxAngle, 332)
 		ADD_STRUCT(float, MobileSwayFrequencyMultiplier, 328)
 		ADD_STRUCT(float, MobileMaxVertexMovementAmplitude, 324)
@@ -204,3 +211,4 @@ namespace UnrealScript
 #undef ADD_BOOL
 #undef ADD_STRUCT
 #undef ADD_OBJECT
+#include "Engine.Material.h"

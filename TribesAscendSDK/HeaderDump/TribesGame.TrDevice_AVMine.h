@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_AVMine;
+}
 #include "TribesGame.TrDevice_AutoFire.h"
 namespace UnrealScript
 {

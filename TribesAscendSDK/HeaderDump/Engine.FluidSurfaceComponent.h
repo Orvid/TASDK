@@ -1,12 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class FluidSurfaceComponent;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.PrimitiveComponent.h"
-#include "Engine.MaterialInterface.h"
-#include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
-#include "Engine.ShadowMap2D.h"
-#include "Engine.EngineTypes.LightMapRef.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Actor.h"
+#include "Engine.EngineTypes.LightMapRef.h"
+#include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
+#include "Engine.MaterialInterface.h"
+#include "Engine.PrimitiveComponent.h"
+#include "Engine.ShadowMap2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

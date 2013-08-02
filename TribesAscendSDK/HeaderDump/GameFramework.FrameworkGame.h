@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class FrameworkGame;
+}
 #include "Engine.GameInfo.h"
 #include "GameFramework.FrameworkGame.RequiredMobileInputConfig.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class FrameworkGame : public GameInfo
 	{
 	public:
+		typedef FrameworkGame__RequiredMobileInputConfig RequiredMobileInputConfig;
 		ADD_STRUCT(ScriptArray<FrameworkGame__RequiredMobileInputConfig>, RequiredMobileInputConfigs, 884)
 		void TgStartGame(ScriptString*& Reason)
 		{

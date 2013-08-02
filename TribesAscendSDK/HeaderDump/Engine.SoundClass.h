@@ -1,5 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class SoundClass;
+}
 #include "Core.Object.h"
+#include "Engine.SoundClass.SoundClassEditorData.h"
 #include "Engine.SoundClass.SoundClassProperties.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -20,6 +25,8 @@ namespace UnrealScript
 	class SoundClass : public Object
 	{
 	public:
+		typedef SoundClass__SoundClassEditorData SoundClassEditorData;
+		typedef SoundClass__SoundClassProperties SoundClassProperties;
 		ADD_STRUCT(ScriptArray<ScriptName>, ChildClassNames, 92)
 		ADD_STRUCT(int, MenuID, 108)
 		ADD_BOOL(bIsChild, 104, 0x1)

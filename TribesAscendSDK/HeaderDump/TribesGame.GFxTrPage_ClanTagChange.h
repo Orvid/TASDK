@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrPage_ClanTagChange;
+}
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.GFxTrPage_VendorTable.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.Font.h"
-#include "Core.Object.Vector2D.h"
+namespace UnrealScript
+{
+	struct HUD__KismetDrawTextInfo;
+}
 #include "Core.Object.Color.h"
+#include "Core.Object.Vector2D.h"
+#include "Engine.Font.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

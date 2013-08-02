@@ -1,11 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class RB_BodyInstance;
+}
 #include "Core.Object.h"
-#include "Engine.PhysicalMaterial.h"
-#include "Core.Object.Pointer.h"
-#include "Core.Object.Vector.h"
-#include "Engine.RB_BodySetup.h"
-#include "Engine.PhysicsAssetInstance.h"
 #include "Core.Object.Matrix.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.PhysicalMaterial.h"
+#include "Engine.PhysicsAssetInstance.h"
+#include "Engine.RB_BodySetup.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.PathNode.h"
-#include "Engine.SoundCue.h"
-#include "Engine.NavigationPoint.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class UDKJumpPad;
+}
 #include "Engine.Actor.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.PathNode.h"
 #include "Engine.Pawn.h"
+#include "Engine.SoundCue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

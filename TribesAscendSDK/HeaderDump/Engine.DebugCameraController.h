@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.PlayerController.h"
+namespace UnrealScript
+{
+	class DebugCameraController;
+}
 #include "Core.Object.EInputEvent.h"
-#include "Engine.Player.h"
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Player.h"
+#include "Engine.PlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

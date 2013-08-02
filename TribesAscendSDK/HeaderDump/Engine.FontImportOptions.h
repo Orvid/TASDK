@@ -1,5 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class FontImportOptions;
+}
 #include "Core.Object.h"
+#include "Engine.FontImportOptions.EFontImportCharacterSet.h"
 #include "Engine.FontImportOptions.FontImportOptionsData.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -20,6 +25,8 @@ namespace UnrealScript
 	class FontImportOptions : public Object
 	{
 	public:
+		typedef FontImportOptions__EFontImportCharacterSet EFontImportCharacterSet;
+		typedef FontImportOptions__FontImportOptionsData FontImportOptionsData;
 		ADD_STRUCT(FontImportOptions__FontImportOptionsData, Data, 60)
 	};
 }

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DumpLightmapInfoCommandlet;
+}
 #include "Core.Commandlet.h"
 namespace UnrealScript
 {

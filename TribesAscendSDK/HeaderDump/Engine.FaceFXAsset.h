@@ -1,10 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class FaceFXAsset;
+}
 #include "Core.Object.h"
-#include "Engine.SkeletalMesh.h"
-#include "Engine.MorphTargetSet.h"
-#include "Engine.FaceFXAnimSet.h"
-#include "Engine.SoundCue.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.FaceFXAnimSet.h"
+#include "Engine.MorphTargetSet.h"
+#include "Engine.SkeletalMesh.h"
+#include "Engine.SoundCue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.Info.h"
-#include "Engine.SoundCue.h"
-#include "UTGame.UTQueuedAnnouncement.h"
-#include "UTGame.UTPlayerController.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class UTAnnouncer;
+}
 #include "Core.Object.h"
+#include "Engine.Info.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.SoundCue.h"
+#include "UTGame.UTPlayerController.h"
+#include "UTGame.UTQueuedAnnouncement.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

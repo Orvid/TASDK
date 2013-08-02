@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrSeqAct_TrainingMessage;
+}
 #include "Engine.SequenceAction.h"
 #include "TribesGame.TrHelpTextManager_Training.EHelpTextTrainingType.h"
 #define ADD_STRUCT(x, y, offset) \

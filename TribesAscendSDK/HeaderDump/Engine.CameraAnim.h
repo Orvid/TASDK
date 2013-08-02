@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class CameraAnim;
+}
 #include "Core.Object.h"
+#include "Core.Object.Box.h"
 #include "Engine.InterpGroup.h"
 #include "Engine.PostProcessVolume.PostProcessSettings.h"
-#include "Core.Object.Box.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

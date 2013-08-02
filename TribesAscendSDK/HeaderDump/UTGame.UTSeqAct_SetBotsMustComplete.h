@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSeqAct_SetBotsMustComplete;
+}
 #include "Engine.SequenceAction.h"
 namespace UnrealScript
 {

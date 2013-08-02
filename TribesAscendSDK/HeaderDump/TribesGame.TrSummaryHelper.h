@@ -1,6 +1,10 @@
 #pragma once
-#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
+namespace UnrealScript
+{
+	class TrSummaryHelper;
+}
 #include "Core.Object.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
 #include "TribesGame.TrSummaryHelper.MVPAward.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -11,6 +15,7 @@ namespace UnrealScript
 	class TrSummaryHelper : public Object
 	{
 	public:
+		typedef TrSummaryHelper__MVPAward MVPAward;
 		static const auto STAT_GAME_MAP = 200001;
 		static const auto STAT_GAME_TYPE = 200002;
 		static const auto STAT_GAME_TIME = 200003;

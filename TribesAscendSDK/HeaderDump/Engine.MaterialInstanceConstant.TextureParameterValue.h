@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct MaterialInstanceConstant__TextureParameterValue;
+}
 #include "Core.Object.Guid.h"
 #include "Engine.Texture.h"
 #define ADD_STRUCT(x, y, offset) \

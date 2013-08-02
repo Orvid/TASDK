@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackInstDirector;
+}
 #include "Engine.Actor.h"
 #include "Engine.InterpTrackInst.h"
 #define ADD_OBJECT(x, y, offset) \

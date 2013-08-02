@@ -1,13 +1,16 @@
 #pragma once
-#include "Core.Object.Pointer.h"
-#include "Engine.PrimitiveComponent.h"
-#include "Engine.TerrainComponent.TerrainMaterialMask.h"
+namespace UnrealScript
+{
+	class TerrainComponent;
+}
 #include "Core.Object.Guid.h"
-#include "Engine.ShadowMap2D.h"
-#include "Engine.TerrainComponent.TerrainPatchBounds.h"
-#include "Core.Object.Vector.h"
-#include "Engine.TerrainComponent.TerrainBVTree.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.EngineTypes.LightMapRef.h"
+#include "Engine.PrimitiveComponent.h"
+#include "Engine.ShadowMap2D.h"
+#include "Engine.TerrainComponent.TerrainBVTree.h"
+#include "Engine.TerrainComponent.TerrainMaterialMask.h"
+#include "Engine.TerrainComponent.TerrainPatchBounds.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +30,9 @@ namespace UnrealScript
 	class TerrainComponent : public PrimitiveComponent
 	{
 	public:
+		typedef TerrainComponent__TerrainPatchBounds TerrainPatchBounds;
+		typedef TerrainComponent__TerrainMaterialMask TerrainMaterialMask;
+		typedef TerrainComponent__TerrainBVTree TerrainBVTree;
 		ADD_STRUCT(ScriptArray<class ShadowMap2D*>, ShadowMaps, 488)
 		ADD_STRUCT(ScriptArray<Object__Guid>, IrrelevantLights, 500)
 		ADD_STRUCT(ScriptArray<TerrainComponent__TerrainPatchBounds>, PatchBounds, 544)

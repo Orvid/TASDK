@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class LevelGridVolumeRenderingComponent;
+}
 #include "Engine.PrimitiveComponent.h"
 namespace UnrealScript
 {

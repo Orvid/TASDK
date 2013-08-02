@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrPlayerSkin3PData;
+}
 #include "Core.Object.h"
 #include "Engine.SkeletalMesh.h"
 #define ADD_STRUCT(x, y, offset) \

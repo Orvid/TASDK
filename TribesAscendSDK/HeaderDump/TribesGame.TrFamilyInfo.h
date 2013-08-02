@@ -1,17 +1,21 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrFamilyInfo;
+}
 #include "Core.Object.Vector2D.h"
+#include "Engine.AnimSet.h"
+#include "Engine.AnimTree.h"
+#include "Engine.MorphTargetSet.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.PhysicsAsset.h"
+#include "Engine.SkeletalMesh.h"
+#include "TribesGame.TrFamilyInfo.DeviceSelectionList.h"
+#include "TribesGame.TrFamilyInfo.SkillNode.h"
+#include "TribesGame.TrObject.PaperDollInfo.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
 #include "TribesGame.TrObject.TrClassType.h"
 #include "UTGame.UTFamilyInfo.h"
-#include "Engine.AnimTree.h"
-#include "Engine.SkeletalMesh.h"
-#include "Engine.ParticleSystem.h"
-#include "TribesGame.TrFamilyInfo.SkillNode.h"
-#include "Engine.PhysicsAsset.h"
-#include "TribesGame.TrFamilyInfo.DeviceSelectionList.h"
-#include "TribesGame.TrObject.PaperDollInfo.h"
-#include "Engine.AnimSet.h"
-#include "Engine.MorphTargetSet.h"
-#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -35,6 +39,8 @@ namespace UnrealScript
 	class TrFamilyInfo : public UTFamilyInfo
 	{
 	public:
+		typedef TrFamilyInfo__DeviceSelectionList DeviceSelectionList;
+		typedef TrFamilyInfo__SkillNode SkillNode;
 		static const auto TR_MAX_FACTION_NBR = 3;
 		ADD_STRUCT(int, ClassId, 636)
 		ADD_STRUCT(ScriptString*, FriendlyName, 624)

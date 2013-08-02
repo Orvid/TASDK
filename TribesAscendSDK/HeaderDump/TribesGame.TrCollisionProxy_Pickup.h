@@ -1,7 +1,10 @@
 #pragma once
-#include "TribesGame.TrCollisionProxy.h"
+namespace UnrealScript
+{
+	class TrCollisionProxy_Pickup;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
+#include "TribesGame.TrCollisionProxy.h"
 namespace UnrealScript
 {
 	class TrCollisionProxy_Pickup : public TrCollisionProxy

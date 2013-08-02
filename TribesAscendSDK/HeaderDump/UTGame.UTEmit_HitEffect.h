@@ -1,6 +1,10 @@
 #pragma once
-#include "UTGame.UTEmitter.h"
+namespace UnrealScript
+{
+	class UTEmit_HitEffect;
+}
 #include "Engine.Pawn.h"
+#include "UTGame.UTEmitter.h"
 namespace UnrealScript
 {
 	class UTEmit_HitEffect : public UTEmitter

@@ -1,7 +1,12 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
+namespace UnrealScript
+{
+	class GFxTrPage_VideoWindow;
+}
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.GFxTrAction.h"
+#include "TribesGame.GFxTrPage.h"
+#include "TribesGame.GFxTrPage_VideoWindow.MENU_ACTION_VIDEOWINDOW.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,6 +16,7 @@ namespace UnrealScript
 	class GFxTrPage_VideoWindow : public GFxTrPage
 	{
 	public:
+		typedef GFxTrPage_VideoWindow__MENU_ACTION_VIDEOWINDOW MENU_ACTION_VIDEOWINDOW;
 		ADD_STRUCT(int, CurrWindow, 356)
 		void Initialize()
 		{

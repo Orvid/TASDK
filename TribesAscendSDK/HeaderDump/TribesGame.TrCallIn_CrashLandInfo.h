@@ -1,8 +1,11 @@
 #pragma once
-#include "TribesGame.TrPawn.h"
-#include "Engine.Info.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrCallIn_CrashLandInfo;
+}
 #include "Engine.Controller.h"
+#include "Engine.Info.h"
+#include "TribesGame.TrPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxClikWidget;
+}
 #include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -14,6 +18,7 @@ namespace UnrealScript
 	class GFxClikWidget : public GFxObject
 	{
 	public:
+		typedef GFxClikWidget__EventData EventData;
 		void EventListener(GFxClikWidget__EventData Data)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(30228);

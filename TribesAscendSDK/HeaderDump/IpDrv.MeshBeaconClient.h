@@ -1,16 +1,20 @@
 #pragma once
-#include "IpDrv.MeshBeaconClient.ClientBandwidthTestData.h"
-#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestResult.h"
-#include "IpDrv.MeshBeacon.h"
-#include "IpDrv.ClientBeaconAddressResolver.h"
-#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestType.h"
-#include "IpDrv.MeshBeacon.PlayerMember.h"
-#include "IpDrv.MeshBeacon.EMeshBeaconPacketType.h"
-#include "IpDrv.MeshBeaconClient.EMeshBeaconClientState.h"
-#include "IpDrv.MeshBeaconClient.ClientConnectionRequest.h"
+namespace UnrealScript
+{
+	class MeshBeaconClient;
+}
 #include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
+#include "IpDrv.ClientBeaconAddressResolver.h"
+#include "IpDrv.MeshBeacon.h"
 #include "IpDrv.MeshBeacon.ConnectionBandwidthStats.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestResult.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestType.h"
 #include "IpDrv.MeshBeacon.EMeshBeaconConnectionResult.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconPacketType.h"
+#include "IpDrv.MeshBeacon.PlayerMember.h"
+#include "IpDrv.MeshBeaconClient.ClientBandwidthTestData.h"
+#include "IpDrv.MeshBeaconClient.ClientConnectionRequest.h"
+#include "IpDrv.MeshBeaconClient.EMeshBeaconClientState.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -34,6 +38,9 @@ namespace UnrealScript
 	class MeshBeaconClient : public MeshBeacon
 	{
 	public:
+		typedef MeshBeaconClient__EMeshBeaconClientState EMeshBeaconClientState;
+		typedef MeshBeaconClient__ClientBandwidthTestData ClientBandwidthTestData;
+		typedef MeshBeaconClient__ClientConnectionRequest ClientConnectionRequest;
 		ADD_BOOL(bUsingRegisteredAddr, 216, 0x1)
 		ADD_OBJECT(ClientBeaconAddressResolver, Resolver, 212)
 		ADD_OBJECT(ScriptClass, ResolverClass, 208)

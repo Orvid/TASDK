@@ -1,6 +1,10 @@
 #pragma once
-#include "UDKBase.UDKVehicle.h"
+namespace UnrealScript
+{
+	struct UDKPawn__DrivenWeaponPawnInfo;
+}
 #include "Engine.PlayerReplicationInfo.h"
+#include "UDKBase.UDKVehicle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

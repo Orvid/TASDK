@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineStatsInterface;
+}
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.OnlinePlayerScore.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.OnlineStatsRead.h"
 #include "Engine.OnlineStatsWrite.h"
+#include "Engine.OnlineSubsystem.OnlinePlayerScore.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 namespace UnrealScript
 {
 	class OnlineStatsInterface : public Interface

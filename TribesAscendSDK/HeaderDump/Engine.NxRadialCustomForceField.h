@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.NxRadialForceField.h"
+namespace UnrealScript
+{
+	class NxRadialCustomForceField;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.NxRadialForceField.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

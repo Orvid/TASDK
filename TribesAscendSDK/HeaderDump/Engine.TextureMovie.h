@@ -1,11 +1,15 @@
 #pragma once
-#include "Core.Object.UntypedBulkData_Mirror.h"
-#include "Engine.Texture.h"
+namespace UnrealScript
+{
+	class TextureMovie;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.Texture.TextureAddress.h"
+#include "Core.Object.UntypedBulkData_Mirror.h"
 #include "Engine.CodecMovie.h"
-#include "Engine.TextureMovie.EMovieStreamSource.h"
+#include "Engine.Texture.h"
 #include "Engine.Texture.EPixelFormat.h"
+#include "Engine.Texture.TextureAddress.h"
+#include "Engine.TextureMovie.EMovieStreamSource.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,6 +33,7 @@ namespace UnrealScript
 	class TextureMovie : public Texture
 	{
 	public:
+		typedef TextureMovie__EMovieStreamSource EMovieStreamSource;
 		ADD_STRUCT(Object__Pointer, ReleaseCodecFence, 312)
 		ADD_STRUCT(Object__UntypedBulkData_Mirror, Data, 260)
 		ADD_BOOL(AutoPlay, 256, 0x8)

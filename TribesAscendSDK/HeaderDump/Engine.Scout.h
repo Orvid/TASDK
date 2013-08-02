@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class Scout;
+}
+#include "Core.Object.Color.h"
 #include "Engine.Pawn.h"
 #include "Engine.Scout.PathSizeInfo.h"
-#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +29,7 @@ namespace UnrealScript
 	class Scout : public Pawn
 	{
 	public:
+		typedef Scout__PathSizeInfo PathSizeInfo;
 		ADD_STRUCT(ScriptArray<Scout__PathSizeInfo>, PathSizes, 1144)
 		ADD_STRUCT(ScriptArray<Object__Color>, EdgePathColors, 1184)
 		ADD_STRUCT(float, MaxMantleFallTime, 1280)

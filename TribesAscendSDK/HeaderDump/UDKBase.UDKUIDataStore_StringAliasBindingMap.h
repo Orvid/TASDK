@@ -1,6 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKUIDataStore_StringAliasBindingMap;
+}
 #include "Core.Object.Map_Mirror.h"
 #include "Engine.UIDataStore_StringAliasMap.h"
+#include "UDKBase.UDKUIDataStore_StringAliasBindingMap.BindCacheElement.h"
 #include "UDKBase.UDKUIDataStore_StringAliasBindingMap.ControllerMap.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -11,6 +16,8 @@ namespace UnrealScript
 	class UDKUIDataStore_StringAliasBindingMap : public UIDataStore_StringAliasMap
 	{
 	public:
+		typedef UDKUIDataStore_StringAliasBindingMap__ControllerMap ControllerMap;
+		typedef UDKUIDataStore_StringAliasBindingMap__BindCacheElement BindCacheElement;
 		static const auto SABM_FIND_FIRST_BIND = -2;
 		ADD_STRUCT(ScriptArray<UDKUIDataStore_StringAliasBindingMap__ControllerMap>, ControllerMapArray, 260)
 		ADD_STRUCT(Object__Map_Mirror, CommandToBindNames, 200)

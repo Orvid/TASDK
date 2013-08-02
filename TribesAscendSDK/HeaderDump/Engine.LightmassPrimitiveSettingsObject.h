@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class LightmassPrimitiveSettingsObject;
+}
 #include "Core.Object.h"
 #include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
 #define ADD_STRUCT(x, y, offset) \

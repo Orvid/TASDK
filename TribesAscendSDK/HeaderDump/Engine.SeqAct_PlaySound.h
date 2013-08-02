@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_PlaySound;
+}
 #include "Engine.SeqAct_Latent.h"
 #include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \

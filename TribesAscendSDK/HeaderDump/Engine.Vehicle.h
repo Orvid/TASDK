@@ -1,12 +1,14 @@
 #pragma once
-#include "Engine.PlayerController.h"
-#include "Engine.Pawn.h"
-#include "Engine.HUD.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class Vehicle;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
+#include "Engine.HUD.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

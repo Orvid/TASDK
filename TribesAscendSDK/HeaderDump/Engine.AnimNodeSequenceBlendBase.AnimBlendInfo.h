@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct AnimNodeSequenceBlendBase__AnimBlendInfo;
+}
 #include "Engine.AnimNodeSequenceBlendBase.AnimInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

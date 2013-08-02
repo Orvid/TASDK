@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDaDCore_BE;
+}
 #include "TribesGame.TrDaDCore.h"
 namespace UnrealScript
 {

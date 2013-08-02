@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrPlayerStart;
+}
 #include "TribesGame.TrCaHCapturePoint.h"
 #include "UDKBase.UDKTeamPlayerStart.h"
 #define ADD_OBJECT(x, y, offset) \

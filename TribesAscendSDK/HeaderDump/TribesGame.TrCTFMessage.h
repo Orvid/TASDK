@@ -1,10 +1,14 @@
 #pragma once
-#include "UTGame.UTLocalMessage.h"
-#include "Engine.SoundCue.h"
-#include "Engine.SoundNodeWave.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class TrCTFMessage;
+}
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.SoundCue.h"
+#include "Engine.SoundNodeWave.h"
+#include "UTGame.UTLocalMessage.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.RB_ConstraintSetup.h"
+namespace UnrealScript
+{
+	class PhysicsAsset;
+}
 #include "Core.Object.h"
+#include "Core.Object.Map_Mirror.h"
 #include "Engine.PhysicsAssetInstance.h"
 #include "Engine.RB_BodySetup.h"
-#include "Core.Object.Map_Mirror.h"
+#include "Engine.RB_ConstraintSetup.h"
 #include "Engine.SkeletalMesh.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

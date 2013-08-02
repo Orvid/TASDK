@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrFlagBase.h"
+namespace UnrealScript
+{
+	class TrFlagRabbit;
+}
 #include "Engine.Controller.h"
+#include "TribesGame.TrFlagBase.h"
 namespace UnrealScript
 {
 	class TrFlagRabbit : public TrFlagBase

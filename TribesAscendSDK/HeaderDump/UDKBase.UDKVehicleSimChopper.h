@@ -1,6 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKVehicleSimChopper;
+}
 #include "Engine.SVehicleSimBase.h"
-#include "Core.Object.Vector.h"
+#include "UDKBase.UDKVehicleSimChopper.AnglePID.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class UDKVehicleSimChopper : public SVehicleSimBase
 	{
 	public:
+		typedef UDKVehicleSimChopper__AnglePID AnglePID;
 		ADD_STRUCT(float, HardLimitAirSpeedScale, 304)
 		ADD_STRUCT(float, StoppedBrakeTorque, 300)
 		ADD_STRUCT(Vector, OldVelocity, 288)

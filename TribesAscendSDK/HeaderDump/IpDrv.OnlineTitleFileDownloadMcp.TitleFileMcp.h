@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct OnlineTitleFileDownloadMcp__TitleFileMcp;
+}
 #include "Core.Object.Pointer.h"
 #include "Engine.OnlineSubsystem.TitleFile.h"
 #define ADD_STRUCT(x, y, offset) \

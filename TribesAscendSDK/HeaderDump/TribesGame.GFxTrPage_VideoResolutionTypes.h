@@ -1,9 +1,13 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
+namespace UnrealScript
+{
+	class GFxTrPage_VideoResolutionTypes;
+}
 #include "GFxUI.GFxObject.h"
 #include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
-#include "TribesGame.GFxTrPage.ResolutionSet.h"
 #include "TribesGame.GFxTrAction.h"
+#include "TribesGame.GFxTrPage.h"
+#include "TribesGame.GFxTrPage.ResolutionSet.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

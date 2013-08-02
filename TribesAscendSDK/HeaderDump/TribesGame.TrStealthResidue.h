@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrStealthResidue;
+}
 #include "Engine.Actor.h"
 #include "Engine.MaterialInstanceConstant.h"
 #define ADD_OBJECT(x, y, offset) \

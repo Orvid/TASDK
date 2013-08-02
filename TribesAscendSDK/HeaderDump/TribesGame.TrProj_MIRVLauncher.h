@@ -1,8 +1,10 @@
 #pragma once
-#include "TribesGame.TrProj_Grenade.h"
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrProj_MIRVLauncher;
+}
 #include "Engine.Actor.h"
+#include "TribesGame.TrProj_Grenade.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

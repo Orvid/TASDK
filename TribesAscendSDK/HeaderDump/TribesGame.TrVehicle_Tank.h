@@ -1,8 +1,10 @@
 #pragma once
-#include "TribesGame.TrVehicle.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrVehicle_Tank;
+}
 #include "Engine.CameraShake.h"
-#include "Core.Object.Rotator.h"
+#include "TribesGame.TrVehicle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

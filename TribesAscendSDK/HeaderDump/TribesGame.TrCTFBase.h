@@ -1,11 +1,14 @@
 #pragma once
-#include "UTGame.UTCTFBase.h"
-#include "TribesGame.TrAnimNodeBlendList.h"
+namespace UnrealScript
+{
+	class TrCTFBase;
+}
+#include "Engine.Canvas.h"
 #include "Engine.MaterialInstanceConstant.h"
 #include "Engine.PlayerController.h"
-#include "Engine.Canvas.h"
-#include "Core.Object.Vector.h"
+#include "TribesGame.TrAnimNodeBlendList.h"
 #include "TribesGame.TrHelpTextManager.EHelpTextType.h"
+#include "UTGame.UTCTFBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

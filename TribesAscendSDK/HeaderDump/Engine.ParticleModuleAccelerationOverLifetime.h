@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleAccelerationBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleAccelerationOverLifetime;
+}
 #include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleAccelerationBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

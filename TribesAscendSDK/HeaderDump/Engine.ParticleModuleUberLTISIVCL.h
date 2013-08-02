@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.ParticleModuleUberBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleUberLTISIVCL;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleUberBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

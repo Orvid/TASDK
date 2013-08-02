@@ -1,6 +1,26 @@
 #pragma once
-#include "Engine.OnlinePlayerStorage.OnlineProfileSetting.h"
+namespace UnrealScript
+{
+	class OnlineProfileSettings;
+}
 #include "Engine.OnlinePlayerStorage.h"
+#include "Engine.OnlinePlayerStorage.OnlineProfileSetting.h"
+#include "Engine.OnlineProfileSettings.EProfileAutoAimOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileAutoCenterOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileControllerSensitivityOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileControllerVibrationToggleOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileDifficultyOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileMovementControlOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileOmniDirEvadeOptions.h"
+#include "Engine.OnlineProfileSettings.EProfilePreferredColorOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileRaceAcceleratorControlOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileRaceBrakeControlOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileRaceCameraLocationOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileRaceTransmissionOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileSettingID.h"
+#include "Engine.OnlineProfileSettings.EProfileVoiceThruSpeakersOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileXInversionOptions.h"
+#include "Engine.OnlineProfileSettings.EProfileYInversionOptions.h"
 #include "Engine.Settings.IdToStringMapping.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -11,6 +31,22 @@ namespace UnrealScript
 	class OnlineProfileSettings : public OnlinePlayerStorage
 	{
 	public:
+		typedef OnlineProfileSettings__EProfileSettingID EProfileSettingID;
+		typedef OnlineProfileSettings__EProfileDifficultyOptions EProfileDifficultyOptions;
+		typedef OnlineProfileSettings__EProfileControllerSensitivityOptions EProfileControllerSensitivityOptions;
+		typedef OnlineProfileSettings__EProfilePreferredColorOptions EProfilePreferredColorOptions;
+		typedef OnlineProfileSettings__EProfileAutoAimOptions EProfileAutoAimOptions;
+		typedef OnlineProfileSettings__EProfileAutoCenterOptions EProfileAutoCenterOptions;
+		typedef OnlineProfileSettings__EProfileMovementControlOptions EProfileMovementControlOptions;
+		typedef OnlineProfileSettings__EProfileRaceTransmissionOptions EProfileRaceTransmissionOptions;
+		typedef OnlineProfileSettings__EProfileRaceCameraLocationOptions EProfileRaceCameraLocationOptions;
+		typedef OnlineProfileSettings__EProfileRaceBrakeControlOptions EProfileRaceBrakeControlOptions;
+		typedef OnlineProfileSettings__EProfileRaceAcceleratorControlOptions EProfileRaceAcceleratorControlOptions;
+		typedef OnlineProfileSettings__EProfileYInversionOptions EProfileYInversionOptions;
+		typedef OnlineProfileSettings__EProfileXInversionOptions EProfileXInversionOptions;
+		typedef OnlineProfileSettings__EProfileOmniDirEvadeOptions EProfileOmniDirEvadeOptions;
+		typedef OnlineProfileSettings__EProfileControllerVibrationToggleOptions EProfileControllerVibrationToggleOptions;
+		typedef OnlineProfileSettings__EProfileVoiceThruSpeakersOptions EProfileVoiceThruSpeakersOptions;
 		ADD_STRUCT(ScriptArray<int>, ProfileSettingIds, 100)
 		ADD_STRUCT(ScriptArray<OnlinePlayerStorage__OnlineProfileSetting>, DefaultSettings, 112)
 		ADD_STRUCT(ScriptArray<Settings__IdToStringMapping>, OwnerMappings, 124)

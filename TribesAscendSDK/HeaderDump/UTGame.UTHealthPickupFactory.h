@@ -1,8 +1,12 @@
 #pragma once
-#include "UTGame.UTItemPickupFactory.h"
-#include "UTGame.UTHUD.h"
-#include "Engine.Pawn.h"
+namespace UnrealScript
+{
+	class UTHealthPickupFactory;
+}
 #include "Engine.Controller.h"
+#include "Engine.Pawn.h"
+#include "UTGame.UTHUD.h"
+#include "UTGame.UTItemPickupFactory.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

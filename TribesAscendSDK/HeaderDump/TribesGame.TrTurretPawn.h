@@ -1,14 +1,16 @@
 #pragma once
-#include "Engine.PlayerController.h"
-#include "Engine.Weapon.h"
-#include "TribesGame.TrPawn.h"
-#include "TribesGame.TrDeployable.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class TrTurretPawn;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.PlayerController.h"
+#include "Engine.Weapon.h"
+#include "TribesGame.TrDeployable.h"
+#include "TribesGame.TrPawn.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

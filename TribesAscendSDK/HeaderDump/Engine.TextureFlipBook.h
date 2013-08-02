@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TextureFlipBook;
+}
 #include "Core.Object.Pointer.h"
 #include "Engine.Texture2D.h"
 #include "Engine.TextureFlipBook.TextureFlipBookMethod.h"
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class TextureFlipBook : public Texture2D
 	{
 	public:
+		typedef TextureFlipBook__TextureFlipBookMethod TextureFlipBookMethod;
 		ADD_STRUCT(Object__Pointer, ReleaseResourcesFence, 428)
 		ADD_STRUCT(float, RenderOffsetV, 424)
 		ADD_STRUCT(float, RenderOffsetU, 420)

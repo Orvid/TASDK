@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.Actor.ImpactInfo.h"
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class TrEffect;
+}
 #include "Core.Object.h"
+#include "Engine.Actor.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "TribesGame.TrObject.EffectCalcMethod.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

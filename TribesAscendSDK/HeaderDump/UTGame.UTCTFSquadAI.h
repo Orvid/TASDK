@@ -1,12 +1,16 @@
 #pragma once
-#include "UDKBase.UDKSquadAI.AlternateRoute.h"
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class UTCTFSquadAI;
+}
 #include "Engine.Actor.h"
+#include "Engine.Controller.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.Pawn.h"
+#include "UDKBase.UDKSquadAI.AlternateRoute.h"
 #include "UTGame.UTBot.h"
 #include "UTGame.UTCTFFlag.h"
 #include "UTGame.UTSquadAI.h"
-#include "Engine.NavigationPoint.h"
-#include "Engine.Pawn.h"
 #include "UTGame.UTVehicle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

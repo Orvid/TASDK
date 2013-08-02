@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAnimNodeSequencePose;
+}
 #include "Core.Object.BoneAtom.h"
 #include "Engine.AnimNodeSequence.h"
 #include "TribesGame.TrPawn.h"

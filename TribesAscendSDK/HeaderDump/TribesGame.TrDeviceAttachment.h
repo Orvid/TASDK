@@ -1,19 +1,21 @@
 #pragma once
-#include "UTGame.UTPawn.h"
-#include "Engine.ParticleSystem.h"
-#include "Engine.AnimSet.h"
-#include "UTGame.UTWeaponAttachment.h"
-#include "TribesGame.TrObject.EffectFormOverwrite.h"
-#include "TribesGame.TrObject.EWeaponTracerType.h"
-#include "Engine.Weapon.h"
-#include "TribesGame.TrPawn.h"
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrProj_Tracer.h"
-#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	class TrDeviceAttachment;
+}
 #include "Engine.Actor.h"
-#include "Engine.SoundCue.h"
-#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
+#include "Engine.AnimSet.h"
+#include "Engine.ParticleSystem.h"
 #include "Engine.PhysicalMaterial.h"
+#include "Engine.SoundCue.h"
+#include "Engine.Weapon.h"
+#include "TribesGame.TrObject.EWeaponTracerType.h"
+#include "TribesGame.TrObject.EffectFormOverwrite.h"
+#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrProj_Tracer.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
+#include "UTGame.UTPawn.h"
+#include "UTGame.UTWeaponAttachment.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

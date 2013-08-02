@@ -1,10 +1,12 @@
 #pragma once
-#include "UTGame.UTPlayerController.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class DemoRecSpectator;
+}
 #include "Engine.Actor.h"
 #include "Engine.Camera.ViewTargetTransitionParams.h"
-#include "Core.Object.Vector.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "UTGame.UTPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

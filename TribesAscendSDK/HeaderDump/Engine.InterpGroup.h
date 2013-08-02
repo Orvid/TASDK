@@ -1,9 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpGroup;
+}
 #include "Core.Object.h"
 #include "Core.Object.Color.h"
-#include "Engine.InterpTrack.h"
-#include "Engine.AnimSet.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.AnimSet.h"
+#include "Engine.InterpGroup.InterpEdSelKey.h"
+#include "Engine.InterpTrack.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +32,7 @@ namespace UnrealScript
 	class InterpGroup : public Object
 	{
 	public:
+		typedef InterpGroup__InterpEdSelKey InterpEdSelKey;
 		ADD_STRUCT(ScriptArray<class InterpTrack*>, InterpTracks, 64)
 		ADD_STRUCT(ScriptArray<class AnimSet*>, GroupAnimSets, 88)
 		ADD_BOOL(bIsSelected, 100, 0x10)

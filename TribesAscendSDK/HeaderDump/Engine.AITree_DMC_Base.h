@@ -1,9 +1,11 @@
 #pragma once
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class AITree_DMC_Base;
+}
 #include "Core.Object.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.AICommandNodeBase.h"
+#include "Engine.Actor.h"
 namespace UnrealScript
 {
 	class AITree_DMC_Base : public Object

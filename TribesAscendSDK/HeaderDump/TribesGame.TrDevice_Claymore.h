@@ -1,7 +1,10 @@
 #pragma once
-#include "TribesGame.TrDevice_AutoFire.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrDevice_Claymore;
+}
 #include "Engine.Projectile.h"
+#include "TribesGame.TrDevice_AutoFire.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

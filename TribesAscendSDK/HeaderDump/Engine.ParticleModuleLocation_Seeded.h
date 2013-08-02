@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleLocation_Seeded;
+}
 #include "Engine.ParticleModule.ParticleRandomSeedInfo.h"
 #include "Engine.ParticleModuleLocation.h"
 #define ADD_STRUCT(x, y, offset) \

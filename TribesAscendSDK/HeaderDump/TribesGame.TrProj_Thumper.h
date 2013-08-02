@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrProj_Thumper;
+}
 #include "TribesGame.TrProjectile.h"
 namespace UnrealScript
 {

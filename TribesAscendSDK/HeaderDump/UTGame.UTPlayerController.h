@@ -1,38 +1,41 @@
 #pragma once
-#include "UTGame.UTPlayerController.EPawnShadowMode.h"
-#include "UTGame.UTPlayerController.EUTVehicleControls.h"
+namespace UnrealScript
+{
+	class UTPlayerController;
+}
+#include "Core.Object.h"
+#include "Engine.Actor.h"
+#include "Engine.Actor.EPhysics.h"
+#include "Engine.Camera.ECameraAnimPlaySpace.h"
+#include "Engine.Camera.ViewTargetTransitionParams.h"
+#include "Engine.CameraAnim.h"
+#include "Engine.Controller.h"
+#include "Engine.ForceFeedbackWaveform.h"
+#include "Engine.HUD.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Projectile.h"
+#include "Engine.SavedMove.h"
+#include "Engine.SoundCue.h"
+#include "Engine.SpeechRecognition.h"
+#include "Engine.Weapon.h"
 #include "UDKBase.UDKPlayerController.h"
-#include "Core.Object.Vector.h"
 #include "UTGame.UTAnnouncer.h"
-#include "UTGame.UTUIDataStore_StringAliasBindingsMap.h"
-#include "UTGame.UTPlayerController.EWeaponHand.h"
-#include "UTGame.UTPlayerReplicationInfo.h"
 #include "UTGame.UTMusicManager.h"
 #include "UTGame.UTPlayerController.EAutoObjectivePreference.h"
-#include "Engine.Actor.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.CameraAnim.h"
-#include "Engine.ForceFeedbackWaveform.h"
-#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
-#include "Engine.Camera.ECameraAnimPlaySpace.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "UTGame.UTPlayerController.EPawnShadowMode.h"
+#include "UTGame.UTPlayerController.EUTVehicleControls.h"
+#include "UTGame.UTPlayerController.EWeaponHand.h"
+#include "UTGame.UTPlayerController.PostProcessInfo.h"
+#include "UTGame.UTPlayerReplicationInfo.h"
 #include "UTGame.UTSeqAct_PlayCameraAnim.h"
-#include "Engine.SpeechRecognition.h"
-#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
-#include "Engine.Camera.ViewTargetTransitionParams.h"
-#include "Engine.SoundCue.h"
-#include "Engine.SavedMove.h"
-#include "Engine.Pawn.h"
-#include "Engine.Weapon.h"
-#include "UTGame.UTVehicle.h"
-#include "Engine.Projectile.h"
-#include "Engine.HUD.h"
-#include "Engine.Controller.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "Core.Object.h"
 #include "UTGame.UTSeqAct_StopCameraAnim.h"
-#include "Engine.Actor.EPhysics.h"
 #include "UTGame.UTTeamInfo.h"
+#include "UTGame.UTUIDataStore_StringAliasBindingsMap.h"
+#include "UTGame.UTVehicle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -56,6 +59,11 @@ namespace UnrealScript
 	class UTPlayerController : public UDKPlayerController
 	{
 	public:
+		typedef UTPlayerController__EWeaponHand EWeaponHand;
+		typedef UTPlayerController__EPawnShadowMode EPawnShadowMode;
+		typedef UTPlayerController__EAutoObjectivePreference EAutoObjectivePreference;
+		typedef UTPlayerController__EUTVehicleControls EUTVehicleControls;
+		typedef UTPlayerController__PostProcessInfo PostProcessInfo;
 		static const auto STATS_VIEW_DM_WEAPONS_RANKED_ALLTIME = 8;
 		static const auto STATS_VIEW_DM_VEHICLEWEAPONS_RANKED_ALLTIME = 7;
 		static const auto STATS_VIEW_DM_VEHICLES_RANKED_ALLTIME = 6;

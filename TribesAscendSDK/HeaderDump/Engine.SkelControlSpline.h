@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class SkelControlSpline;
+}
+#include "Core.Object.EAxis.h"
 #include "Engine.SkelControlBase.h"
 #include "Engine.SkelControlSpline.ESplineControlRotMode.h"
-#include "Core.Object.EAxis.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class SkelControlSpline : public SkelControlBase
 	{
 	public:
+		typedef SkelControlSpline__ESplineControlRotMode ESplineControlRotMode;
 		ADD_STRUCT(float, StartSplineTension, 204)
 		ADD_STRUCT(float, EndSplineTension, 200)
 		ADD_BOOL(bInvertSplineBoneAxis, 196, 0x1)

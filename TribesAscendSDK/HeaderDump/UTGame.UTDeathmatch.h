@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTGame.h"
-#include "UTGame.UTBot.h"
+namespace UnrealScript
+{
+	class UTDeathmatch;
+}
 #include "Engine.Pawn.h"
+#include "UTGame.UTBot.h"
+#include "UTGame.UTGame.h"
 namespace UnrealScript
 {
 	class UTDeathmatch : public UTGame

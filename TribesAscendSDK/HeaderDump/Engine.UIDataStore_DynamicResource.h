@@ -1,12 +1,16 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataStore_DynamicResource;
+}
 #include "Core.Object.MultiMap_Mirror.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.LocalPlayer.h"
+#include "Engine.UIDataProvider_OnlineProfileSettings.h"
 #include "Engine.UIDataStore.h"
 #include "Engine.UIDataStore_DynamicResource.DynamicResourceProviderDefinition.h"
-#include "Engine.UIResourceCombinationProvider.h"
 #include "Engine.UIDataStore_GameResource.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.UIDataProvider_OnlineProfileSettings.h"
-#include "Engine.LocalPlayer.h"
+#include "Engine.UIResourceCombinationProvider.h"
 #include "Engine.UIRoot.UIProviderScriptFieldValue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class UIDataStore_DynamicResource : public UIDataStore
 	{
 	public:
+		typedef UIDataStore_DynamicResource__DynamicResourceProviderDefinition DynamicResourceProviderDefinition;
 		ADD_STRUCT(ScriptArray<UIDataStore_DynamicResource__DynamicResourceProviderDefinition>, ResourceProviderDefinitions, 132)
 		ADD_STRUCT(Object__MultiMap_Mirror, ResourceProviders, 144)
 		ADD_OBJECT(UIDataStore_GameResource, GameResourceDataStore, 128)

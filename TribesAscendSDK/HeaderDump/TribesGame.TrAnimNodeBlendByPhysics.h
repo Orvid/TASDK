@@ -1,8 +1,13 @@
 #pragma once
-#include "TribesGame.TrAnimNodeBlendList.h"
+namespace UnrealScript
+{
+	class TrAnimNodeBlendByPhysics;
+}
 #include "Engine.Actor.EPhysics.h"
-#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrAnimNodeBlendByPhysics.ChildBlendInfo.h"
 #include "TribesGame.TrAnimNodeBlendByPhysics.ChildrenBlendInfo.h"
+#include "TribesGame.TrAnimNodeBlendList.h"
+#include "TribesGame.TrPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +31,8 @@ namespace UnrealScript
 	class TrAnimNodeBlendByPhysics : public TrAnimNodeBlendList
 	{
 	public:
+		typedef TrAnimNodeBlendByPhysics__ChildrenBlendInfo ChildrenBlendInfo;
+		typedef TrAnimNodeBlendByPhysics__ChildBlendInfo ChildBlendInfo;
 		ADD_STRUCT(ScriptArray<Actor__EPhysics>, m_PhysicsChildren, 304)
 		ADD_STRUCT(ScriptArray<TrAnimNodeBlendByPhysics__ChildrenBlendInfo>, m_ChildrenBlendInfo, 320)
 		ADD_BOOL(m_bDirectUnspecifiedPhysicsThroughChild0, 316, 0x1)

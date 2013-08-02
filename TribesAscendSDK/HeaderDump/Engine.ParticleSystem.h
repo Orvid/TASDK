@@ -1,17 +1,19 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleSystem;
+}
 #include "Core.Object.h"
-#include "Engine.ParticleSystem.EParticleSystemUpdateMode.h"
-#include "Engine.ParticleSystem.ParticleSystemLODMethod.h"
-#include "Engine.InterpCurveEdSetup.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.ParticleSystem.EParticleSystemOcclusionBoundsMethod.h"
-#include "Engine.ParticleSystem.ParticleSystemLOD.h"
-#include "Engine.ParticleEmitter.h"
 #include "Core.Object.Box.h"
-#include "Core.Object.Vector.h"
 #include "Core.Object.Color.h"
-#include "Engine.Texture2D.h"
+#include "Engine.InterpCurveEdSetup.h"
+#include "Engine.ParticleEmitter.h"
+#include "Engine.ParticleSystem.EParticleSystemOcclusionBoundsMethod.h"
+#include "Engine.ParticleSystem.EParticleSystemUpdateMode.h"
 #include "Engine.ParticleSystem.LODSoloTrack.h"
+#include "Engine.ParticleSystem.ParticleSystemLOD.h"
+#include "Engine.ParticleSystem.ParticleSystemLODMethod.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -35,6 +37,11 @@ namespace UnrealScript
 	class ParticleSystem : public Object
 	{
 	public:
+		typedef ParticleSystem__ParticleSystemLODMethod ParticleSystemLODMethod;
+		typedef ParticleSystem__EParticleSystemOcclusionBoundsMethod EParticleSystemOcclusionBoundsMethod;
+		typedef ParticleSystem__EParticleSystemUpdateMode EParticleSystemUpdateMode;
+		typedef ParticleSystem__ParticleSystemLOD ParticleSystemLOD;
+		typedef ParticleSystem__LODSoloTrack LODSoloTrack;
 		ADD_STRUCT(ParticleSystem__EParticleSystemUpdateMode, SystemUpdateMode, 60)
 		ADD_STRUCT(ParticleSystem__ParticleSystemLODMethod, LODMethod, 61)
 		ADD_STRUCT(ParticleSystem__EParticleSystemOcclusionBoundsMethod, OcclusionBoundsMethod, 62)

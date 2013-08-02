@@ -1,35 +1,37 @@
 #pragma once
-#include "Engine.SoundCue.h"
-#include "UDKBase.UDKWeapon.h"
-#include "UDKBase.UDKPawn.h"
+namespace UnrealScript
+{
+	class UTWeapon;
+}
 #include "Core.Object.Color.h"
-#include "Engine.ForceFeedbackWaveform.h"
-#include "UTGame.UTWeapon.AmmoWidgetDisplayStyle.h"
-#include "Engine.UIRoot.TextureCoordinates.h"
-#include "Engine.Texture2D.h"
-#include "Engine.AnimSet.h"
-#include "UTGame.UTPlayerController.h"
-#include "Engine.CameraAnim.h"
-#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
-#include "Engine.ParticleSystem.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
 #include "Core.Object.InterpCurveFloat.h"
 #include "Core.Object.Vector2D.h"
-#include "Engine.SoundNodeWave.h"
-#include "Engine.Canvas.h"
-#include "Engine.Material.h"
-#include "Engine.HUD.h"
-#include "UTGame.UTPlayerController.EWeaponHand.h"
-#include "Engine.Actor.ImpactInfo.h"
-#include "Engine.Controller.h"
-#include "Engine.Weapon.h"
-#include "Engine.Pawn.h"
 #include "Engine.Actor.h"
-#include "Engine.Projectile.h"
-#include "UTGame.UTWeapon.EZoomState.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimSet.h"
+#include "Engine.CameraAnim.h"
+#include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.ForceFeedbackWaveform.h"
+#include "Engine.HUD.h"
+#include "Engine.Material.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.Pawn.h"
+#include "Engine.Projectile.h"
+#include "Engine.SoundCue.h"
+#include "Engine.SoundNodeWave.h"
+#include "Engine.Texture2D.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "Engine.Weapon.h"
+#include "UDKBase.UDKPawn.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+#include "UDKBase.UDKWeapon.h"
 #include "UTGame.UTPawn.h"
+#include "UTGame.UTPlayerController.h"
+#include "UTGame.UTPlayerController.EWeaponHand.h"
+#include "UTGame.UTWeapon.AmmoWidgetDisplayStyle.h"
+#include "UTGame.UTWeapon.EZoomState.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -53,6 +55,8 @@ namespace UnrealScript
 	class UTWeapon : public UDKWeapon
 	{
 	public:
+		typedef UTWeapon__EZoomState EZoomState;
+		typedef UTWeapon__AmmoWidgetDisplayStyle AmmoWidgetDisplayStyle;
 		ADD_STRUCT(UTWeapon__AmmoWidgetDisplayStyle, AmmoDisplayType, 970)
 		ADD_STRUCT(byte, InventoryGroup, 969)
 		ADD_STRUCT(ScriptString*, UseHintString, 1460)

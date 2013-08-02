@@ -1,15 +1,17 @@
 #pragma once
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class GameThirdPersonCameraMode;
+}
 #include "Core.Object.h"
-#include "GameFramework.GameThirdPersonCameraMode.ViewOffsetData.h"
-#include "Engine.Camera.TViewTarget.h"
-#include "GameFramework.GameThirdPersonCamera.h"
-#include "Core.Object.Vector.h"
-#include "GameFramework.GameThirdPersonCameraMode.ECameraViewportTypes.h"
-#include "Engine.Pawn.h"
 #include "Core.Object.Vector2D.h"
-#include "Core.Object.Rotator.h"
+#include "Engine.Actor.h"
+#include "Engine.Camera.TViewTarget.h"
+#include "Engine.Pawn.h"
 #include "Engine.PostProcessVolume.PostProcessSettings.h"
+#include "GameFramework.GameThirdPersonCamera.h"
+#include "GameFramework.GameThirdPersonCameraMode.ECameraViewportTypes.h"
+#include "GameFramework.GameThirdPersonCameraMode.ViewOffsetData.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,6 +35,8 @@ namespace UnrealScript
 	class GameThirdPersonCameraMode : public Object
 	{
 	public:
+		typedef GameThirdPersonCameraMode__ECameraViewportTypes ECameraViewportTypes;
+		typedef GameThirdPersonCameraMode__ViewOffsetData ViewOffsetData;
 		ADD_OBJECT(GameThirdPersonCamera, ThirdPersonCam, 60)
 		ADD_STRUCT(GameThirdPersonCameraMode__ECameraViewportTypes, CurrentViewportType, 556)
 		ADD_STRUCT(float, OffsetAdjustmentInterpSpeed, 552)

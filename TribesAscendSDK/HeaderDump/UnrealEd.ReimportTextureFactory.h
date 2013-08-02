@@ -1,9 +1,13 @@
 #pragma once
-#include "UnrealEd.ReimportTextureFactory.TextureMipGenSettings.h"
-#include "UnrealEd.TextureFactory.h"
-#include "UnrealEd.ReimportTextureFactory.TextureCompressionSettings.h"
+namespace UnrealScript
+{
+	class ReimportTextureFactory;
+}
 #include "UnrealEd.ReimportTextureFactory.Blending.h"
 #include "UnrealEd.ReimportTextureFactory.LightingModel.h"
+#include "UnrealEd.ReimportTextureFactory.TextureCompressionSettings.h"
+#include "UnrealEd.ReimportTextureFactory.TextureMipGenSettings.h"
+#include "UnrealEd.TextureFactory.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,6 +27,10 @@ namespace UnrealScript
 	class ReimportTextureFactory : public TextureFactory
 	{
 	public:
+		typedef ReimportTextureFactory__TextureCompressionSettings TextureCompressionSettings;
+		typedef ReimportTextureFactory__Blending Blending;
+		typedef ReimportTextureFactory__LightingModel LightingModel;
+		typedef ReimportTextureFactory__TextureMipGenSettings TextureMipGenSettings;
 		ADD_BOOL(NoCompression, 112, 0x1)
 		ADD_BOOL(CompressionNoAlpha, 116, 0x1)
 		ADD_STRUCT(ReimportTextureFactory__TextureCompressionSettings, CompressionSettings, 124)

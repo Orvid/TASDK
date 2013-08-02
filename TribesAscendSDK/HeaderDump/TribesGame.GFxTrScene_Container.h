@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrScene_Container;
+}
 #include "TribesGame.GFxTrScene.h"
 namespace UnrealScript
 {

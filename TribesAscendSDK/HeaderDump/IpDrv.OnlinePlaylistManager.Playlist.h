@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct OnlinePlaylistManager__Playlist;
+}
 #include "IpDrv.OnlinePlaylistManager.ConfiguredGameSetting.h"
 #include "IpDrv.OnlinePlaylistManager.InventorySwap.h"
 #define ADD_BOOL(name, offset, mask) \

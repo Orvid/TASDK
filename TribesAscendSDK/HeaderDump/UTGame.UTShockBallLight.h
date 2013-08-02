@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTShockBallLight;
+}
 #include "Engine.PointLightComponent.h"
 namespace UnrealScript
 {

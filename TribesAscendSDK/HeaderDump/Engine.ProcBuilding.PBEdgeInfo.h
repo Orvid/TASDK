@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	struct ProcBuilding__PBEdgeInfo;
+}
 #include "Engine.ProcBuilding.EScopeEdge.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

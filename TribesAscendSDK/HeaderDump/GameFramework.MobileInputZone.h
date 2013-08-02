@@ -1,16 +1,20 @@
 #pragma once
+namespace UnrealScript
+{
+	class MobileInputZone;
+}
 #include "Core.Object.h"
 #include "Core.Object.Color.h"
-#include "GameFramework.SeqEvent_MobileZoneBase.h"
+#include "Core.Object.Vector2D.h"
+#include "Engine.Canvas.h"
+#include "Engine.Texture2D.h"
 #include "GameFramework.MobileInputZone.EZoneSlideType.h"
 #include "GameFramework.MobileInputZone.EZoneState.h"
+#include "GameFramework.MobileInputZone.EZoneTouchEvent.h"
 #include "GameFramework.MobileInputZone.EZoneType.h"
-#include "Core.Object.Vector2D.h"
-#include "Engine.Texture2D.h"
 #include "GameFramework.MobileInputZone.TextureUVs.h"
 #include "GameFramework.MobilePlayerInput.h"
-#include "Engine.Canvas.h"
-#include "GameFramework.MobileInputZone.EZoneTouchEvent.h"
+#include "GameFramework.SeqEvent_MobileZoneBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -34,6 +38,11 @@ namespace UnrealScript
 	class MobileInputZone : public Object
 	{
 	public:
+		typedef MobileInputZone__EZoneType EZoneType;
+		typedef MobileInputZone__EZoneState EZoneState;
+		typedef MobileInputZone__EZoneTouchEvent EZoneTouchEvent;
+		typedef MobileInputZone__EZoneSlideType EZoneSlideType;
+		typedef MobileInputZone__TextureUVs TextureUVs;
 		ADD_BOOL(bIsInvisible, 128, 0x200)
 		ADD_STRUCT(Object__Color, RenderColor, 180)
 		ADD_STRUCT(float, AnimatingFadeOpacity, 376)

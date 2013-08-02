@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Interface_Speaker;
+}
 #include "Core.Interface.h"
 #include "Engine.SoundCue.h"
 namespace UnrealScript

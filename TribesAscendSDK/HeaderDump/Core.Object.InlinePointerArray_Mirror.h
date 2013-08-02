@@ -1,6 +1,10 @@
 #pragma once
-#include "Core.Object.Pointer.h"
+namespace UnrealScript
+{
+	struct Object__InlinePointerArray_Mirror;
+}
 #include "Core.Object.Array_Mirror.h"
+#include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

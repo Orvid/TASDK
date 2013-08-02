@@ -1,32 +1,34 @@
 #pragma once
-#include "UDKBase.UDKGameObjective.h"
-#include "UTGame.UTVehicleFactory.h"
-#include "Engine.NavigationPoint.h"
-#include "Engine.SoundNodeWave.h"
+namespace UnrealScript
+{
+	class UTGameObjective;
+}
 #include "Core.Object.LinearColor.h"
-#include "UTGame.UTGameObjective.ScorerRecord.h"
-#include "UTGame.UTTeamStaticMesh.h"
-#include "Engine.PlayerStart.h"
-#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
-#include "Engine.Material.h"
-#include "Engine.UIRoot.TextureCoordinates.h"
-#include "UTGame.UTCarriedObject.h"
-#include "Engine.Volume.h"
-#include "UTGame.UTDefensePoint.h"
-#include "UTGame.UTSquadAI.h"
-#include "Engine.Pawn.h"
-#include "Engine.Actor.h"
-#include "UTGame.UTPlayerController.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PlayerController.h"
-#include "Engine.Canvas.h"
-#include "UTGame.UTBot.h"
-#include "Core.Object.Rotator.h"
-#include "UTGame.UTMapInfo.h"
 #include "Engine.AIController.h"
-#include "UTGame.UTPlayerReplicationInfo.h"
-#include "UTGame.UTPawn.h"
+#include "Engine.Actor.h"
+#include "Engine.Canvas.h"
 #include "Engine.Controller.h"
+#include "Engine.Material.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PlayerStart.h"
+#include "Engine.SoundNodeWave.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "Engine.Volume.h"
+#include "UDKBase.UDKGameObjective.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+#include "UTGame.UTBot.h"
+#include "UTGame.UTCarriedObject.h"
+#include "UTGame.UTDefensePoint.h"
+#include "UTGame.UTGameObjective.ScorerRecord.h"
+#include "UTGame.UTMapInfo.h"
+#include "UTGame.UTPawn.h"
+#include "UTGame.UTPlayerController.h"
+#include "UTGame.UTPlayerReplicationInfo.h"
+#include "UTGame.UTSquadAI.h"
+#include "UTGame.UTTeamStaticMesh.h"
+#include "UTGame.UTVehicleFactory.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -50,6 +52,7 @@ namespace UnrealScript
 	class UTGameObjective : public UDKGameObjective
 	{
 	public:
+		typedef UTGameObjective__ScorerRecord ScorerRecord;
 		ADD_BOOL(bAllowRemoteUse, 744, 0x2)
 		ADD_STRUCT(ScriptArray<class NavigationPoint*>, VehicleParkingSpots, 772)
 		ADD_STRUCT(ScriptArray<UTGameObjective__ScorerRecord>, Scorers, 792)

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AICommandBase;
+}
 #include "Core.Object.h"
 #include "Engine.AIController.h"
 namespace UnrealScript

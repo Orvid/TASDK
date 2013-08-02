@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.Actor.h"
-#include "Engine.RB_ConstraintInstance.h"
+namespace UnrealScript
+{
+	class PhysicsAssetInstance;
+}
 #include "Core.Object.h"
+#include "Core.Object.Map_Mirror.h"
+#include "Engine.Actor.h"
 #include "Engine.PhysicsAsset.h"
 #include "Engine.RB_BodyInstance.h"
-#include "Core.Object.Map_Mirror.h"
+#include "Engine.RB_ConstraintInstance.h"
 #include "Engine.SkeletalMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

@@ -1,12 +1,16 @@
 #pragma once
-#include "TribesGame.TrVehicle.h"
-#include "TribesGame.TrStation.h"
-#include "TribesGame.TrVehicleStation.VehicleSpawnInfo.h"
-#include "TribesGame.TrAnimNodeBlendList.h"
+namespace UnrealScript
+{
+	class TrVehicleStation;
+}
 #include "Engine.Texture2D.h"
-#include "TribesGame.TrVehiclePad.h"
-#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrAnimNodeBlendList.h"
 #include "TribesGame.TrObject.EVehicleTypes.h"
+#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrStation.h"
+#include "TribesGame.TrVehicle.h"
+#include "TribesGame.TrVehiclePad.h"
+#include "TribesGame.TrVehicleStation.VehicleSpawnInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,6 +34,7 @@ namespace UnrealScript
 	class TrVehicleStation : public TrStation
 	{
 	public:
+		typedef TrVehicleStation__VehicleSpawnInfo VehicleSpawnInfo;
 		static const auto SPAWNED_VEHICLE_LIST_MASK = 0xF;
 		ADD_OBJECT(TrAnimNodeBlendList, m_VehicleStationBlendNode, 1596)
 		ADD_STRUCT(float, m_fTimeToSpawnVehicleAfterRequest, 1592)

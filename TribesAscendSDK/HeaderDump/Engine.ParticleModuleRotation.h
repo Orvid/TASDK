@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleRotation;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModuleRotationBase.h"
 #define ADD_STRUCT(x, y, offset) \

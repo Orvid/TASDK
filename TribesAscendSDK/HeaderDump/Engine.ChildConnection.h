@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ChildConnection;
+}
 #include "Engine.NetConnection.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

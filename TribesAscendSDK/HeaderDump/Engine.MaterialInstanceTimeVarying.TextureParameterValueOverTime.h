@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct MaterialInstanceTimeVarying__TextureParameterValueOverTime;
+}
 #include "Engine.MaterialInstanceTimeVarying.ParameterValueOverTime.h"
 #include "Engine.Texture.h"
 #define ADD_OBJECT(x, y, offset) \

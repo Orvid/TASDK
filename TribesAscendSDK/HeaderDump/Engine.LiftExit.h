@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.NavigationPoint.h"
+namespace UnrealScript
+{
+	class LiftExit;
+}
 #include "Engine.LiftCenter.h"
+#include "Engine.NavigationPoint.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

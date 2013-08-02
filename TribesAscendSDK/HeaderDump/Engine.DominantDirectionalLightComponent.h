@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.DirectionalLightComponent.h"
+namespace UnrealScript
+{
+	class DominantDirectionalLightComponent;
+}
 #include "Core.Object.Array_Mirror.h"
+#include "Engine.DirectionalLightComponent.h"
 #include "Engine.EngineTypes.DominantShadowInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

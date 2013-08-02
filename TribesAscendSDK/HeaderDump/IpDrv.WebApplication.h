@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class WebApplication;
+}
 #include "Core.Object.h"
-#include "IpDrv.WebServer.h"
-#include "IpDrv.WebResponse.h"
 #include "Engine.WorldInfo.h"
 #include "IpDrv.WebRequest.h"
+#include "IpDrv.WebResponse.h"
+#include "IpDrv.WebServer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

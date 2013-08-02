@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrEntryHUD;
+}
 #include "Engine.HUD.h"
 namespace UnrealScript
 {

@@ -1,7 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqEvent_ParticleEvent;
+}
 #include "Engine.SeqEvent_ParticleEvent.EParticleEventOutputType.h"
 #include "Engine.SequenceEvent.h"
-#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +24,7 @@ namespace UnrealScript
 	class SeqEvent_ParticleEvent : public SequenceEvent
 	{
 	public:
+		typedef SeqEvent_ParticleEvent__EParticleEventOutputType EParticleEventOutputType;
 		ADD_BOOL(UseRelfectedImpactVector, 304, 0x1)
 		ADD_STRUCT(Vector, EventNormal, 292)
 		ADD_STRUCT(float, EventParticleTime, 288)

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class VolumeTimer;
+}
 #include "Engine.Info.h"
 #include "Engine.PhysicsVolume.h"
 #define ADD_OBJECT(x, y, offset) \

@@ -1,10 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTDMSquad;
+}
 #include "Engine.Controller.h"
+#include "Engine.HUD.h"
+#include "Engine.Pawn.h"
 #include "UTGame.UTBot.h"
 #include "UTGame.UTSquadAI.h"
 #include "UTGame.UTVehicle.h"
-#include "Engine.HUD.h"
-#include "Engine.Pawn.h"
 namespace UnrealScript
 {
 	class UTDMSquad : public UTSquadAI

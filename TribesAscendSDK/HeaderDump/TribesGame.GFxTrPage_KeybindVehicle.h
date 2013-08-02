@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrPage_KeybindVehicle;
+}
 #include "TribesGame.GFxTrPage_KeybindAction.h"
 namespace UnrealScript
 {

@@ -1,6 +1,17 @@
 #pragma once
+namespace UnrealScript
+{
+	class MeshBeacon;
+}
 #include "Core.Object.h"
 #include "Core.Object.Pointer.h"
+#include "IpDrv.MeshBeacon.ConnectionBandwidthStats.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestResult.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestState.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestType.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconConnectionResult.h"
+#include "IpDrv.MeshBeacon.EMeshBeaconPacketType.h"
+#include "IpDrv.MeshBeacon.PlayerMember.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,6 +31,13 @@ namespace UnrealScript
 	class MeshBeacon : public Object
 	{
 	public:
+		typedef MeshBeacon__EMeshBeaconPacketType EMeshBeaconPacketType;
+		typedef MeshBeacon__EMeshBeaconConnectionResult EMeshBeaconConnectionResult;
+		typedef MeshBeacon__EMeshBeaconBandwidthTestState EMeshBeaconBandwidthTestState;
+		typedef MeshBeacon__EMeshBeaconBandwidthTestResult EMeshBeaconBandwidthTestResult;
+		typedef MeshBeacon__EMeshBeaconBandwidthTestType EMeshBeaconBandwidthTestType;
+		typedef MeshBeacon__ConnectionBandwidthStats ConnectionBandwidthStats;
+		typedef MeshBeacon__PlayerMember PlayerMember;
 		ADD_STRUCT(int, MaxBandwidthHistoryEntries, 116)
 		ADD_STRUCT(float, MaxBandwidthTestReceiveTime, 112)
 		ADD_STRUCT(float, MaxBandwidthTestSendTime, 108)

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class K2Input_Bool;
+}
 #include "Engine.K2Input.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

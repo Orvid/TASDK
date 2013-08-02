@@ -1,14 +1,17 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTPlayerReplicationInfo;
+}
+#include "Core.Object.Color.h"
+#include "Engine.Actor.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "Engine.Texture.h"
-#include "Engine.Actor.h"
-#include "UTGame.UTSquadAI.h"
-#include "Core.Object.Vector.h"
+#include "UTGame.UTCarriedObject.h"
+#include "UTGame.UTPawn.h"
 #include "UTGame.UTPlayerReplicationInfo.IntStat.h"
 #include "UTGame.UTPlayerReplicationInfo.TimeStat.h"
-#include "UTGame.UTCarriedObject.h"
-#include "Core.Object.Color.h"
-#include "UTGame.UTPawn.h"
+#include "UTGame.UTSquadAI.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,6 +35,8 @@ namespace UnrealScript
 	class UTPlayerReplicationInfo : public PlayerReplicationInfo
 	{
 	public:
+		typedef UTPlayerReplicationInfo__IntStat IntStat;
+		typedef UTPlayerReplicationInfo__TimeStat TimeStat;
 		ADD_OBJECT(ScriptClass, CharClassInfo, 700)
 		ADD_BOOL(bHasFlag, 652, 0x1)
 		ADD_OBJECT(ScriptClass, VoiceClass, 676)

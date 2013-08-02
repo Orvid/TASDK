@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Goal_Null;
+}
 #include "Engine.PathGoalEvaluator.h"
 #include "Engine.Pawn.h"
 namespace UnrealScript

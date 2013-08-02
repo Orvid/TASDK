@@ -1,13 +1,17 @@
 #pragma once
-#include "GameFramework.GameCrowdAgent.h"
-#include "GameFramework.SeqAct_PlayAgentAnimation.h"
-#include "GameFramework.GameCrowdAgentSkeletal.GameCrowdAttachmentList.h"
-#include "Engine.AnimTree.h"
+namespace UnrealScript
+{
+	class GameCrowdAgentSkeletal;
+}
+#include "Engine.AnimNodeBlend.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.AnimNodeSlot.h"
+#include "Engine.AnimTree.h"
 #include "Engine.LightComponent.LightingChannelContainer.h"
-#include "Engine.AnimNodeBlend.h"
-#include "Core.Object.Vector.h"
+#include "GameFramework.GameCrowdAgent.h"
+#include "GameFramework.GameCrowdAgentSkeletal.GameCrowdAttachmentInfo.h"
+#include "GameFramework.GameCrowdAgentSkeletal.GameCrowdAttachmentList.h"
+#include "GameFramework.SeqAct_PlayAgentAnimation.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,6 +35,8 @@ namespace UnrealScript
 	class GameCrowdAgentSkeletal : public GameCrowdAgent
 	{
 	public:
+		typedef GameCrowdAgentSkeletal__GameCrowdAttachmentList GameCrowdAttachmentList;
+		typedef GameCrowdAgentSkeletal__GameCrowdAttachmentInfo GameCrowdAttachmentInfo;
 		ADD_STRUCT(ScriptArray<ScriptName>, WalkAnimNames, 992)
 		ADD_STRUCT(ScriptArray<ScriptName>, RunAnimNames, 1004)
 		ADD_STRUCT(ScriptArray<ScriptName>, IdleAnimNames, 1016)

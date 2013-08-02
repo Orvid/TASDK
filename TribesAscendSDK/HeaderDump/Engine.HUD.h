@@ -1,18 +1,20 @@
 #pragma once
+namespace UnrealScript
+{
+	class HUD;
+}
+#include "Core.Object.h"
+#include "Core.Object.Color.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.Actor.h"
 #include "Engine.Canvas.h"
-#include "Engine.HUD.HudLocalizedMessage.h"
-#include "Core.Object.Vector.h"
-#include "Engine.HUD.ConsoleMessage.h"
-#include "Engine.HUD.KismetDrawTextInfo.h"
-#include "Core.Object.Color.h"
-#include "Engine.PlayerController.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.Pawn.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "Core.Object.h"
-#include "Core.Object.Vector2D.h"
 #include "Engine.Font.h"
+#include "Engine.HUD.ConsoleMessage.h"
+#include "Engine.HUD.HudLocalizedMessage.h"
+#include "Engine.HUD.KismetDrawTextInfo.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -36,6 +38,9 @@ namespace UnrealScript
 	class HUD : public Actor
 	{
 	public:
+		typedef HUD__KismetDrawTextInfo KismetDrawTextInfo;
+		typedef HUD__ConsoleMessage ConsoleMessage;
+		typedef HUD__HudLocalizedMessage HudLocalizedMessage;
 		ADD_OBJECT(Canvas, Canvas, 1064)
 		ADD_STRUCT(ScriptArray<class Actor*>, PostRenderedActors, 500)
 		ADD_STRUCT(ScriptArray<HUD__ConsoleMessage>, ConsoleMessages, 512)

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrSeekingMissileManager__TargetingSaberLauncherInfo;
+}
 #include "TribesGame.TrDevice_SaberLauncher.h"
 #include "TribesGame.TrPlayerController.h"
 #define ADD_STRUCT(x, y, offset) \

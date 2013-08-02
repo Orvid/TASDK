@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.UIDataProvider.h"
+namespace UnrealScript
+{
+	class UIResourceCombinationProvider;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.UIDataProvider.h"
+#include "Engine.UIDataProvider.UIDataProviderField.h"
 #include "Engine.UIDataProvider_OnlineProfileSettings.h"
 #include "Engine.UIResourceDataProvider.h"
 #include "Engine.UIRoot.EUIDataProviderFieldType.h"
-#include "Engine.UIDataProvider.UIDataProviderField.h"
 #include "Engine.UIRoot.UIProviderFieldValue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

@@ -1,9 +1,13 @@
 #pragma once
-#include "UTGame.UTLocalMessage.h"
-#include "TribesGame.TrPlayerController.h"
-#include "Engine.SoundCue.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class TrPromptMessage;
+}
 #include "Core.Object.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.SoundCue.h"
+#include "TribesGame.TrPlayerController.h"
+#include "UTGame.UTLocalMessage.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrGame_TrSiege;
+}
+#include "Engine.PlayerReplicationInfo.h"
 #include "TribesGame.TrGame.h"
 #include "TribesGame.TrPowerGenerator_Siege.h"
-#include "Engine.PlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

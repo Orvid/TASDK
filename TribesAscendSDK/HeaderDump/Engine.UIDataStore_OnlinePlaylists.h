@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataStore_OnlinePlaylists;
+}
+#include "Core.Object.Pointer.h"
+#include "Engine.OnlinePlaylistProvider.h"
 #include "Engine.UIDataStore.h"
 #include "Engine.UIResourceDataProvider.h"
-#include "Engine.OnlinePlaylistProvider.h"
-#include "Core.Object.Pointer.h"
 #include "Engine.UIRoot.UIProviderScriptFieldValue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

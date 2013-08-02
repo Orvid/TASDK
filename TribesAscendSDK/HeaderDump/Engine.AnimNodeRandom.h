@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNodeRandom;
+}
 #include "Engine.AnimNodeBlendList.h"
 #include "Engine.AnimNodeRandom.RandomAnimInfo.h"
 #include "Engine.AnimNodeSequence.h"
@@ -25,6 +29,7 @@ namespace UnrealScript
 	class AnimNodeRandom : public AnimNodeBlendList
 	{
 	public:
+		typedef AnimNodeRandom__RandomAnimInfo RandomAnimInfo;
 		ADD_STRUCT(ScriptArray<AnimNodeRandom__RandomAnimInfo>, RandomInfo, 276)
 		ADD_BOOL(bPickedPendingChildIndex, 296, 0x1)
 		ADD_STRUCT(int, PendingChildIndex, 292)

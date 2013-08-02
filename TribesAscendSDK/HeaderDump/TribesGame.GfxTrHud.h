@@ -1,22 +1,25 @@
 #pragma once
-#include "TribesGame.GFxTrReticules.h"
-#include "UTGame.GFxMinimapHud.h"
-#include "TribesGame.GfxTrHud.TrTempMessage.h"
+namespace UnrealScript
+{
+	class GfxTrHud;
+}
+#include "Engine.LocalPlayer.h"
 #include "Engine.MaterialEffect.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.TeamInfo.h"
+#include "Engine.Weapon.h"
+#include "GFxUI.GFxObject.h"
 #include "PlatformCommon.TgSupportCommands.GC_ALERT_PRIORITY.h"
 #include "TribesGame.GFxDeviceAmmoCount.h"
-#include "GFxUI.GFxObject.h"
-#include "Engine.TeamInfo.h"
-#include "Engine.MaterialInstanceConstant.h"
+#include "TribesGame.GFxTrReticules.h"
+#include "TribesGame.GfxTrHud.TrTempMessage.h"
 #include "TribesGame.TrDevice.h"
-#include "TribesGame.TrPlayerController.h"
 #include "TribesGame.TrHUD.h"
-#include "Engine.LocalPlayer.h"
-#include "Engine.Weapon.h"
-#include "TribesGame.TrVehicle.h"
-#include "Core.Object.Vector.h"
-#include "UTGame.GFxMinimapHud.HeEnDisplay.h"
+#include "TribesGame.TrPlayerController.h"
 #include "TribesGame.TrPlayerReplicationInfo.h"
+#include "TribesGame.TrVehicle.h"
+#include "UTGame.GFxMinimapHud.h"
+#include "UTGame.GFxMinimapHud.HeEnDisplay.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -40,6 +43,7 @@ namespace UnrealScript
 	class GfxTrHud : public GFxMinimapHud
 	{
 	public:
+		typedef GfxTrHud__TrTempMessage TrTempMessage;
 		static const auto THR_SPINFUSOR = 1;
 		static const auto THR_SMG = 2;
 		static const auto THR_RIFLE = 3;

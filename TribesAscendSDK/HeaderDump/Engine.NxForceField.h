@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class NxForceField;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.Actor.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
 #include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \

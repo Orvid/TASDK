@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrSubDevice.h"
+namespace UnrealScript
+{
+	class TrSubDevice_ForceField;
+}
 #include "Engine.Actor.ImpactInfo.h"
+#include "TribesGame.TrSubDevice.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

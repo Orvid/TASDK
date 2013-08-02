@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class CrowdAgentBase;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

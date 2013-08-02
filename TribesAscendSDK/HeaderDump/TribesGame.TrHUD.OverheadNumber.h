@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrHUD__OverheadNumber;
+}
 #include "Core.Object.Color.h"
 #include "Core.Object.Vector4.h"
 #define ADD_STRUCT(x, y, offset) \

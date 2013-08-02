@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class ForceFeedbackManager;
+}
 #include "Core.Object.h"
+#include "Engine.Actor.h"
 #include "Engine.ForceFeedbackWaveform.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

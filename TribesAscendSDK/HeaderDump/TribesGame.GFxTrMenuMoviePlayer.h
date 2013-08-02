@@ -1,34 +1,38 @@
 #pragma once
-#include "TribesGame.TrStreamManager.h"
-#include "GFxUI.GFxMoviePlayer.h"
-#include "TribesGame.TrEquipInterface.h"
-#include "TribesGame.GFxTrScene_EULA.h"
-#include "TribesGame.GFxTrMenuMoviePlayer.POPUPTYPE.h"
-#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
-#include "GFxUI.GFxObject.h"
-#include "TribesGame.TrPageManager.h"
-#include "Engine.OnlineSubsystem.h"
-#include "TribesGame.TrStrings.h"
-#include "TribesGame.TrUser.h"
-#include "TribesGame.TrInventoryHelper.h"
-#include "TribesGame.TrBrowserManager.h"
-#include "PlatformCommon.TgPlayerProfile.h"
-#include "TribesGame.TrLoginManager.h"
-#include "TribesGame.TrQueueManager.h"
-#include "TribesGame.TrPartyManager.h"
-#include "TribesGame.TrLoadingData.h"
-#include "TribesGame.TrSettingsManager.h"
+namespace UnrealScript
+{
+	class GFxTrMenuMoviePlayer;
+}
 #include "Core.Object.Pointer.h"
-#include "TribesGame.TrRibbonManager.h"
-#include "TribesGame.TrFriendManager.h"
+#include "Engine.OnlineSubsystem.h"
+#include "GFxUI.GFxMoviePlayer.h"
+#include "GFxUI.GFxObject.h"
+#include "PlatformCommon.TgPlayerProfile.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.AcquisitionData.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.AcquisitionType.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.POPUPTYPE.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.QueueUIData.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.VendorItemData.h"
+#include "TribesGame.GFxTrMenuSounds.h"
+#include "TribesGame.GFxTrScene_EULA.h"
 #include "TribesGame.GFxTrScene_MatchSummary.h"
 #include "TribesGame.GFxTrScene_PlayerSummary.h"
-#include "TribesGame.GFxTrMenuSounds.h"
-#include "TribesGame.GFxTrMenuMoviePlayer.AcquisitionType.h"
-#include "TribesGame.GFxTrMenuMoviePlayer.AcquisitionData.h"
-#include "TribesGame.GFxTrMenuMoviePlayer.VendorItemData.h"
-#include "TribesGame.GFxTrMenuMoviePlayer.QueueUIData.h"
+#include "TribesGame.TrBrowserManager.h"
+#include "TribesGame.TrEquipInterface.h"
+#include "TribesGame.TrFriendManager.h"
 #include "TribesGame.TrHUD.h"
+#include "TribesGame.TrInventoryHelper.h"
+#include "TribesGame.TrLoadingData.h"
+#include "TribesGame.TrLoginManager.h"
+#include "TribesGame.TrPageManager.h"
+#include "TribesGame.TrPartyManager.h"
+#include "TribesGame.TrQueueManager.h"
+#include "TribesGame.TrRibbonManager.h"
+#include "TribesGame.TrSettingsManager.h"
+#include "TribesGame.TrStreamManager.h"
+#include "TribesGame.TrStrings.h"
+#include "TribesGame.TrUser.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -52,6 +56,11 @@ namespace UnrealScript
 	class GFxTrMenuMoviePlayer : public GFxMoviePlayer
 	{
 	public:
+		typedef GFxTrMenuMoviePlayer__AcquisitionType AcquisitionType;
+		typedef GFxTrMenuMoviePlayer__POPUPTYPE POPUPTYPE;
+		typedef GFxTrMenuMoviePlayer__VendorItemData VendorItemData;
+		typedef GFxTrMenuMoviePlayer__AcquisitionData AcquisitionData;
+		typedef GFxTrMenuMoviePlayer__QueueUIData QueueUIData;
 		static const auto ITEM_VOICE_T2BDERM03 = 8726;
 		static const auto ITEM_VOICE_T2BDERM02 = 8725;
 		static const auto ITEM_VOICE_T2BDERM01 = 8724;

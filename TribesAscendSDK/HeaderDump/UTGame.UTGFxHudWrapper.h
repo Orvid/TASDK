@@ -1,11 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTGFxHudWrapper;
+}
+#include "Core.Object.h"
 #include "Core.Object.Color.h"
-#include "UTGame.UTHUDBase.h"
+#include "Engine.PlayerReplicationInfo.h"
 #include "UTGame.GFxMinimapHud.h"
 #include "UTGame.GFxProjectedUI.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "Core.Object.h"
+#include "UTGame.UTHUDBase.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

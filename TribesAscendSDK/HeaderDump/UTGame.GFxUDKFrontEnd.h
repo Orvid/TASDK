@@ -1,25 +1,29 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd;
+}
 #include "GFxUI.GFxMoviePlayer.h"
+#include "GFxUI.GFxObject.h"
 #include "UTGame.GFxUDKFrontEnd.ViewInfo.h"
-#include "UTGame.GFxUDKFrontEnd_View.h"
+#include "UTGame.GFxUDKFrontEnd_Dialog.h"
+#include "UTGame.GFxUDKFrontEnd_ErrorDialog.h"
+#include "UTGame.GFxUDKFrontEnd_FilterDialog.h"
+#include "UTGame.GFxUDKFrontEnd_GameMode.h"
+#include "UTGame.GFxUDKFrontEnd_HostGame.h"
+#include "UTGame.GFxUDKFrontEnd_InfoDialog.h"
+#include "UTGame.GFxUDKFrontEnd_InstantAction.h"
 #include "UTGame.GFxUDKFrontEnd_JoinDialog.h"
 #include "UTGame.GFxUDKFrontEnd_JoinGame.h"
+#include "UTGame.GFxUDKFrontEnd_MainMenu.h"
+#include "UTGame.GFxUDKFrontEnd_MapSelect.h"
+#include "UTGame.GFxUDKFrontEnd_Multiplayer.h"
 #include "UTGame.GFxUDKFrontEnd_Mutators.h"
 #include "UTGame.GFxUDKFrontEnd_PasswordDialog.h"
-#include "UTGame.GFxUDKFrontEnd_ErrorDialog.h"
-#include "UTGame.GFxUDKFrontEnd_InfoDialog.h"
-#include "UTGame.GFxUDKFrontEnd_FilterDialog.h"
-#include "UTGame.GFxUDKFrontEnd_ServerSettings.h"
-#include "GFxUI.GFxObject.h"
-#include "UTGame.GFxUDKFrontEnd_Settings.h"
-#include "UTGame.GFxUDKFrontEnd_GameMode.h"
-#include "UTGame.GFxUDKFrontEnd_MapSelect.h"
-#include "UTGame.GFxUDKFrontEnd_HostGame.h"
-#include "UTGame.GFxUDKFrontEnd_Multiplayer.h"
-#include "UTGame.GFxUDKFrontEnd_InstantAction.h"
-#include "UTGame.GFxUDKFrontEnd_MainMenu.h"
 #include "UTGame.GFxUDKFrontEnd_Screen.h"
-#include "UTGame.GFxUDKFrontEnd_Dialog.h"
+#include "UTGame.GFxUDKFrontEnd_ServerSettings.h"
+#include "UTGame.GFxUDKFrontEnd_Settings.h"
+#include "UTGame.GFxUDKFrontEnd_View.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -43,6 +47,7 @@ namespace UnrealScript
 	class GFxUDKFrontEnd : public GFxMoviePlayer
 	{
 	public:
+		typedef GFxUDKFrontEnd__ViewInfo ViewInfo;
 		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd__ViewInfo>, ViewData, 452)
 		ADD_STRUCT(ScriptArray<class GFxUDKFrontEnd_View*>, ViewStack, 464)
 		ADD_STRUCT(ScriptArray<ScriptName>, LoadedViews, 476)

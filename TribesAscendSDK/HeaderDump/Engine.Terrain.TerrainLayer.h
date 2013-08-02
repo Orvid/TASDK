@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Terrain__TerrainLayer;
+}
 #include "Core.Object.Color.h"
 #include "Engine.TerrainLayerSetup.h"
 #define ADD_BOOL(name, offset, mask) \

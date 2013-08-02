@@ -1,10 +1,13 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrProj_Mine.h"
-#include "TribesGame.TrTripActor.h"
+namespace UnrealScript
+{
+	class TrProj_PrismMine;
+}
+#include "Core.Object.Pointer.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.Pawn.h"
-#include "Core.Object.Pointer.h"
+#include "TribesGame.TrProj_Mine.h"
+#include "TribesGame.TrTripActor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

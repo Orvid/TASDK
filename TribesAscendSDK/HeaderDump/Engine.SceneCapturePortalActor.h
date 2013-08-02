@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SceneCapturePortalActor;
+}
 #include "Engine.SceneCaptureReflectActor.h"
 namespace UnrealScript
 {

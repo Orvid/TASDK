@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDeployable_BackupGenerator;
+}
 #include "TribesGame.TrDeployable.h"
 #include "TribesGame.TrGameObjective.h"
 #define ADD_OBJECT(x, y, offset) \

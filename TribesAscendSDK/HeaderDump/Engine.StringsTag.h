@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class StringsTag;
+}
 #include "Engine.TranslatorTag.h"
 namespace UnrealScript
 {

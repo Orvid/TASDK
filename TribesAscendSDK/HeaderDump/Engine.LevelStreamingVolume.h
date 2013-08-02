@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class LevelStreamingVolume;
+}
 #include "Engine.LevelStreaming.h"
-#include "Engine.Volume.h"
+#include "Engine.LevelStreamingVolume.CheckpointRecord.h"
 #include "Engine.LevelStreamingVolume.EStreamingVolumeUsage.h"
 #include "Engine.SeqAct_Toggle.h"
-#include "Engine.LevelStreamingVolume.CheckpointRecord.h"
+#include "Engine.Volume.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,6 +27,8 @@ namespace UnrealScript
 	class LevelStreamingVolume : public Volume
 	{
 	public:
+		typedef LevelStreamingVolume__EStreamingVolumeUsage EStreamingVolumeUsage;
+		typedef LevelStreamingVolume__CheckpointRecord CheckpointRecord;
 		ADD_STRUCT(ScriptArray<class LevelStreaming*>, StreamingLevels, 520)
 		ADD_STRUCT(float, TestVolumeDistance, 540)
 		ADD_STRUCT(LevelStreamingVolume__EStreamingVolumeUsage, Usage, 537)

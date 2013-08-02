@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct SplineActor__SplineConnection;
+}
 #include "Engine.SplineActor.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

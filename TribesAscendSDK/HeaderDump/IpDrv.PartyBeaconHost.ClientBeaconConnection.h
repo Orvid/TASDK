@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct PartyBeaconHost__ClientBeaconConnection;
+}
 #include "Core.Object.Pointer.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.PickupFactory.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class UDKPickupFactory;
+}
 #include "Core.Object.LinearColor.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.PickupFactory.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

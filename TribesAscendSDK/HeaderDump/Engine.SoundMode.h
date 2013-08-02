@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SoundMode;
+}
 #include "Core.Object.h"
 #include "Engine.SoundMode.AudioEQEffect.h"
 #include "Engine.SoundMode.SoundClassAdjuster.h"
@@ -21,6 +25,8 @@ namespace UnrealScript
 	class SoundMode : public Object
 	{
 	public:
+		typedef SoundMode__SoundClassAdjuster SoundClassAdjuster;
+		typedef SoundMode__AudioEQEffect AudioEQEffect;
 		ADD_STRUCT(ScriptArray<SoundMode__SoundClassAdjuster>, SoundClassEffects, 100)
 		ADD_STRUCT(float, FadeOutTime, 124)
 		ADD_STRUCT(float, Duration, 120)

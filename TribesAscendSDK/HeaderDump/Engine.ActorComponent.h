@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorComponent;
+}
 #include "Core.Component.h"
 #include "Core.Object.ETickingGroup.h"
-#include "Engine.Actor.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

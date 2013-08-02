@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine.NxForceFieldComponent.h"
+namespace UnrealScript
+{
+	class NxForceFieldGenericComponent;
+}
 #include "Core.Object.Pointer.h"
-#include "Core.Object.Vector.h"
+#include "Engine.NxForceFieldComponent.h"
 #include "Engine.NxForceFieldGeneric.FFG_ForceFieldCoordinates.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

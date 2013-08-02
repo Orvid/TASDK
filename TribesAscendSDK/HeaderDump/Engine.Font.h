@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class Font;
+}
 #include "Core.Object.h"
 #include "Engine.Font.FontCharacter.h"
-#include "Engine.Texture2D.h"
 #include "Engine.FontImportOptions.FontImportOptionsData.h"
+#include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,6 +16,7 @@ namespace UnrealScript
 	class Font : public Object
 	{
 	public:
+		typedef Font__FontCharacter FontCharacter;
 		static const auto NULLCHARACTER = 127;
 		ADD_STRUCT(ScriptArray<Font__FontCharacter>, Characters, 60)
 		ADD_STRUCT(ScriptArray<class Texture2D*>, Textures, 72)

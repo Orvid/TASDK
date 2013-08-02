@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class EdCoordSystem;
+}
 #include "Core.Object.h"
 #include "Core.Object.Matrix.h"
 #define ADD_STRUCT(x, y, offset) \

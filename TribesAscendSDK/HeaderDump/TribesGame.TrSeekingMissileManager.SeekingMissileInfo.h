@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrProj_TrackingMissile.h"
+namespace UnrealScript
+{
+	struct TrSeekingMissileManager__SeekingMissileInfo;
+}
 #include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrProj_TrackingMissile.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

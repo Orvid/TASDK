@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_ChainGun;
+}
+#include "Engine.PlayerReplicationInfo.h"
 #include "TribesGame.TrDevice_ConstantFire.h"
 #include "TribesGame.TrSkelControl_SpinControl.h"
-#include "Engine.PlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

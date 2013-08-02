@@ -1,6 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpression;
+	class MaterialExpressionCompound;
+}
 #include "Core.Object.h"
-#include "Engine.MaterialExpressionCompound.h"
+#include "Engine.MaterialExpression.ExpressionInput.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,6 +29,7 @@ namespace UnrealScript
 	class MaterialExpression : public Object
 	{
 	public:
+		typedef MaterialExpression__ExpressionInput ExpressionInput;
 		ADD_STRUCT(ScriptArray<ScriptName>, MenuCategories, 96)
 		ADD_STRUCT(ScriptString*, Desc, 84)
 		ADD_OBJECT(MaterialExpressionCompound, Compound, 80)
@@ -42,3 +48,4 @@ namespace UnrealScript
 #undef ADD_BOOL
 #undef ADD_STRUCT
 #undef ADD_OBJECT
+#include "Engine.MaterialExpressionCompound.h"

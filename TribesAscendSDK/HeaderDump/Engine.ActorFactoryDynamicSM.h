@@ -1,8 +1,11 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class ActorFactoryDynamicSM;
+}
+#include "Engine.Actor.ECollisionType.h"
 #include "Engine.ActorFactory.h"
 #include "Engine.StaticMesh.h"
-#include "Engine.Actor.ECollisionType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

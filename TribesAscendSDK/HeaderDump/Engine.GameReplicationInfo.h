@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.ReplicationInfo.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "Engine.TeamInfo.h"
+namespace UnrealScript
+{
+	class GameReplicationInfo;
+}
 #include "Engine.Actor.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.ReplicationInfo.h"
+#include "Engine.TeamInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

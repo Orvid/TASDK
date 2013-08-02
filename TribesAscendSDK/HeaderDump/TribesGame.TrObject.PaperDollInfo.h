@@ -1,10 +1,12 @@
 #pragma once
-#include "Core.Object.Rotator.h"
-#include "Engine.SkeletalMesh.h"
+namespace UnrealScript
+{
+	struct TrObject__PaperDollInfo;
+}
 #include "Engine.AnimSet.h"
 #include "Engine.AnimTree.h"
 #include "Engine.PhysicsAsset.h"
-#include "Core.Object.Vector.h"
+#include "Engine.SkeletalMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

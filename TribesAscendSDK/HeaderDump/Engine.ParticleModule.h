@@ -1,6 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModule;
+}
 #include "Core.Object.h"
 #include "Core.Object.Color.h"
+#include "Engine.ParticleModule.EModuleType.h"
+#include "Engine.ParticleModule.EParticleSourceSelectionMethod.h"
+#include "Engine.ParticleModule.ParticleCurvePair.h"
+#include "Engine.ParticleModule.ParticleRandomSeedInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,6 +32,10 @@ namespace UnrealScript
 	class ParticleModule : public Object
 	{
 	public:
+		typedef ParticleModule__EModuleType EModuleType;
+		typedef ParticleModule__EParticleSourceSelectionMethod EParticleSourceSelectionMethod;
+		typedef ParticleModule__ParticleCurvePair ParticleCurvePair;
+		typedef ParticleModule__ParticleRandomSeedInfo ParticleRandomSeedInfo;
 		ADD_STRUCT(Object__Color, ModuleEditorColor, 68)
 		ADD_STRUCT(byte, LODValidity, 64)
 		ADD_BOOL(bRequiresLoopingNotification, 60, 0x400)

@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.AnimNodeSequence.ERootRotationOption.h"
+namespace UnrealScript
+{
+	class AnimNodeSlot;
+}
 #include "Engine.AnimNodeBlendBase.h"
-#include "Engine.AnimNodeSynch.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.AnimNodeSequence.ERootBoneAxis.h"
+#include "Engine.AnimNodeSequence.ERootRotationOption.h"
+#include "Engine.AnimNodeSynch.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

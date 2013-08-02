@@ -1,6 +1,11 @@
 #pragma once
-#include "Engine.InterpCurveEdSetup.CurveEdTab.h"
+namespace UnrealScript
+{
+	class InterpCurveEdSetup;
+}
 #include "Core.Object.h"
+#include "Engine.InterpCurveEdSetup.CurveEdEntry.h"
+#include "Engine.InterpCurveEdSetup.CurveEdTab.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,6 +19,8 @@ namespace UnrealScript
 	class InterpCurveEdSetup : public Object
 	{
 	public:
+		typedef InterpCurveEdSetup__CurveEdTab CurveEdTab;
+		typedef InterpCurveEdSetup__CurveEdEntry CurveEdEntry;
 		ADD_STRUCT(ScriptArray<InterpCurveEdSetup__CurveEdTab>, Tabs, 60)
 		ADD_STRUCT(int, ActiveTab, 72)
 	};

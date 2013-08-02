@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNodeCrossfader;
+}
 #include "Engine.AnimNodeBlend.h"
 #include "Engine.AnimNodeSequence.h"
 #define ADD_BOOL(name, offset, mask) \

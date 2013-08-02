@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.UIDataProvider_OnlinePlayerDataBase.h"
-#include "Engine.OnlineSubsystem.OnlinePartyMember.h"
+namespace UnrealScript
+{
+	class UIDataProvider_OnlinePartyChatList;
+}
 #include "Core.Object.Pointer.h"
 #include "Engine.LocalPlayer.h"
+#include "Engine.OnlineSubsystem.OnlinePartyMember.h"
+#include "Engine.UIDataProvider_OnlinePlayerDataBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

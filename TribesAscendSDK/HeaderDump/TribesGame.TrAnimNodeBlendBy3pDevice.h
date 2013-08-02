@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrAnimNodeBlendList.h"
+namespace UnrealScript
+{
+	class TrAnimNodeBlendBy3pDevice;
+}
 #include "GameFramework.GameSkelCtrl_Recoil.h"
+#include "TribesGame.TrAnimNodeBlendList.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

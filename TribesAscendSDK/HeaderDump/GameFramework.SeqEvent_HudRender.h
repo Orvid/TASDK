@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.Canvas.h"
-#include "Engine.SequenceEvent.h"
+namespace UnrealScript
+{
+	class SeqEvent_HudRender;
+}
 #include "Core.Object.h"
+#include "Engine.Canvas.h"
 #include "Engine.HUD.h"
+#include "Engine.SequenceEvent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

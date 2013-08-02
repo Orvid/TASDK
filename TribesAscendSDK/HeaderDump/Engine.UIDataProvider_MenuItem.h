@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataProvider_MenuItem;
+}
+#include "Engine.UIDataProvider_MenuItem.EMenuOptionType.h"
 #include "Engine.UIResourceDataProvider.h"
 #include "Engine.UIRoot.UIRangeData.h"
-#include "Engine.UIDataProvider_MenuItem.EMenuOptionType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class UIDataProvider_MenuItem : public UIResourceDataProvider
 	{
 	public:
+		typedef UIDataProvider_MenuItem__EMenuOptionType EMenuOptionType;
 		ADD_STRUCT(ScriptArray<ScriptName>, OptionSet, 128)
 		ADD_STRUCT(ScriptArray<ScriptName>, SchemaCellFields, 236)
 		ADD_STRUCT(ScriptString*, IniName, 248)

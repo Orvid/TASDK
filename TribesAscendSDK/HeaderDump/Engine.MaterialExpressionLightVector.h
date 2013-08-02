@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpressionLightVector;
+}
 #include "Engine.MaterialExpression.h"
 namespace UnrealScript
 {

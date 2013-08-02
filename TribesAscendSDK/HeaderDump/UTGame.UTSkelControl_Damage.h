@@ -1,6 +1,9 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSkelControl_Damage;
+}
 #include "UDKBase.UDKSkelControl_Damage.h"
-#include "Core.Object.Vector.h"
 namespace UnrealScript
 {
 	class UTSkelControl_Damage : public UDKSkelControl_Damage

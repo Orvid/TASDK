@@ -1,7 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleEventManager;
+}
 #include "Engine.Actor.h"
 #include "Engine.ParticleModuleEventSendToGame.h"
-#include "Core.Object.Vector.h"
 namespace UnrealScript
 {
 	class ParticleEventManager : public Actor

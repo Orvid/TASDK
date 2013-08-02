@@ -1,7 +1,12 @@
 #pragma once
-#include "TribesGame.TrObject.h"
+namespace UnrealScript
+{
+	class TrFriendManager;
+}
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.TrFriendManager.EOnlineState.h"
 #include "TribesGame.TrFriendManager.FriendStruct.h"
+#include "TribesGame.TrObject.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +30,8 @@ namespace UnrealScript
 	class TrFriendManager : public TrObject
 	{
 	public:
+		typedef TrFriendManager__EOnlineState EOnlineState;
+		typedef TrFriendManager__FriendStruct FriendStruct;
 		ADD_BOOL(AddFriendSuccess, 72, 0x1)
 		ADD_STRUCT(ScriptString*, RecentlyAddedFriend, 76)
 		ADD_STRUCT(ScriptArray<TrFriendManager__FriendStruct>, FriendsList, 96)

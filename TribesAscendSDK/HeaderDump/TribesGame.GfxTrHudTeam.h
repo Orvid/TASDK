@@ -1,8 +1,12 @@
 #pragma once
-#include "TribesGame.GfxTrHud.h"
-#include "GFxUI.GFxObject.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class GfxTrHudTeam;
+}
 #include "Engine.LocalPlayer.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "GFxUI.GFxObject.h"
+#include "TribesGame.GfxTrHud.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

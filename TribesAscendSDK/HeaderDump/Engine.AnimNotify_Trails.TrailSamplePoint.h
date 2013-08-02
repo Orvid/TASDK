@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct AnimNotify_Trails__TrailSamplePoint;
+}
 #include "Engine.AnimNotify_Trails.TrailSocketSamplePoint.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

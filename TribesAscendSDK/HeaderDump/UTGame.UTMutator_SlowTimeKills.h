@@ -1,6 +1,10 @@
 #pragma once
-#include "UTGame.UTMutator.h"
+namespace UnrealScript
+{
+	class UTMutator_SlowTimeKills;
+}
 #include "Engine.Controller.h"
+#include "UTGame.UTMutator.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

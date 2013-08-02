@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ForceFeedbackWaveform__WaveformSample;
+}
 #include "Engine.ForceFeedbackWaveform.EWaveformFunction.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

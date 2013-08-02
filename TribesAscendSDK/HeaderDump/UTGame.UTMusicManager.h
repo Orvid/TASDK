@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTMusicManager;
+}
 #include "Engine.Info.h"
+#include "Engine.SoundCue.h"
 #include "UTGame.UTMusicManager.EMusicState.h"
 #include "UTGame.UTPlayerController.h"
-#include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +30,7 @@ namespace UnrealScript
 	class UTMusicManager : public Info
 	{
 	public:
+		typedef UTMusicManager__EMusicState EMusicState;
 		ADD_STRUCT(float, MusicStartTime, 476)
 		ADD_STRUCT(int, LastBeat, 480)
 		ADD_STRUCT(UTMusicManager__EMusicState, CurrentState, 512)

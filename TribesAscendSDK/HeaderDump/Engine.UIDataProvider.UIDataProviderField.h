@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UIDataProvider__UIDataProviderField;
+}
 #include "Engine.UIDataProvider.h"
 #include "Engine.UIRoot.EUIDataProviderFieldType.h"
 #define ADD_STRUCT(x, y, offset) \

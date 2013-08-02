@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class GameCrowdAgentBehavior;
+}
 #include "Core.Object.h"
-#include "GameFramework.GameCrowdAgent.h"
+#include "Engine.Actor.h"
 #include "Engine.AnimNodeSequence.h"
+#include "GameFramework.GameCrowdAgent.h"
 #include "GameFramework.GameCrowdDestination.h"
-#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

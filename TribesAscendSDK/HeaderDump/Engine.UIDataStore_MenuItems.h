@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.UIDataStore_GameResource.h"
-#include "Engine.UIDataProvider_MenuItem.h"
+namespace UnrealScript
+{
+	class UIDataStore_MenuItems;
+}
 #include "Core.Object.MultiMap_Mirror.h"
 #include "Engine.LocalPlayer.h"
 #include "Engine.UIDataProvider.h"
+#include "Engine.UIDataProvider_MenuItem.h"
+#include "Engine.UIDataStore_GameResource.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

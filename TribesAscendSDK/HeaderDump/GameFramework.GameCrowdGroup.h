@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameCrowdGroup;
+}
 #include "Core.Object.h"
 #include "GameFramework.GameCrowdAgent.h"
 #include "GameFramework.GameCrowdDestination.h"

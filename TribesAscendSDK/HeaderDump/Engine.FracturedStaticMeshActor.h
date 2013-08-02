@@ -1,15 +1,18 @@
 #pragma once
-#include "Engine.Actor.PhysEffectInfo.h"
+namespace UnrealScript
+{
+	class FracturedStaticMeshActor;
+	class FracturedStaticMeshPart;
+}
 #include "Engine.Actor.h"
-#include "Engine.ParticleSystem.h"
+#include "Engine.Actor.PhysEffectInfo.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
 #include "Engine.FracturedStaticMeshActor.DeferredPartToSpawn.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.SoundCue.h"
-#include "Engine.FracturedStaticMeshPart.h"
+#include "Engine.ParticleSystem.h"
 #include "Engine.Pawn.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,6 +36,7 @@ namespace UnrealScript
 	class FracturedStaticMeshActor : public Actor
 	{
 	public:
+		typedef FracturedStaticMeshActor__DeferredPartToSpawn DeferredPartToSpawn;
 		ADD_STRUCT(ScriptArray<int>, ChunkHealth, 488)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, FracturedByDamageType, 504)
 		ADD_STRUCT(ScriptArray<class ParticleSystem*>, OverrideFragmentDestroyEffects, 520)
@@ -188,3 +192,4 @@ namespace UnrealScript
 #undef ADD_BOOL
 #undef ADD_STRUCT
 #undef ADD_OBJECT
+#include "Engine.FracturedStaticMeshPart.h"

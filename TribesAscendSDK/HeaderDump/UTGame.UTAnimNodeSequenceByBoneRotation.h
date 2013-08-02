@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTAnimNodeSequenceByBoneRotation;
+}
 #include "UDKBase.UDKAnimNodeSequenceByBoneRotation.h"
 namespace UnrealScript
 {

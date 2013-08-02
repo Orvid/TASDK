@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct MobilePlayerInput__TouchDataEvent;
+}
 #include "Core.Object.Double.h"
 #include "Core.Object.Vector2D.h"
 #include "GameFramework.MobileInputZone.EZoneTouchEvent.h"

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleKillBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleKillBox;
+}
 #include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleKillBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

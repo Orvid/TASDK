@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTMutator_WeaponsRespawn;
+}
 #include "UTGame.UTMutator.h"
 namespace UnrealScript
 {

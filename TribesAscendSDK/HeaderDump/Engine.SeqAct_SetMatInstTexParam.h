@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.Texture.h"
-#include "Engine.SequenceAction.h"
+namespace UnrealScript
+{
+	class SeqAct_SetMatInstTexParam;
+}
 #include "Engine.MaterialInstanceConstant.h"
+#include "Engine.SequenceAction.h"
+#include "Engine.Texture.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

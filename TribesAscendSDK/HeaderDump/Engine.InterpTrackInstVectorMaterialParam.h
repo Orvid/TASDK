@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackInstVectorMaterialParam;
+}
 #include "Engine.InterpTrackInst.h"
 #include "Engine.InterpTrackInstVectorMaterialParam.VectorMaterialParamMICData.h"
 #include "Engine.InterpTrackVectorMaterialParam.h"
@@ -15,6 +19,7 @@ namespace UnrealScript
 	class InterpTrackInstVectorMaterialParam : public InterpTrackInst
 	{
 	public:
+		typedef InterpTrackInstVectorMaterialParam__VectorMaterialParamMICData VectorMaterialParamMICData;
 		ADD_STRUCT(ScriptArray<InterpTrackInstVectorMaterialParam__VectorMaterialParamMICData>, MICInfos, 60)
 		ADD_OBJECT(InterpTrackVectorMaterialParam, InstancedTrack, 72)
 	};

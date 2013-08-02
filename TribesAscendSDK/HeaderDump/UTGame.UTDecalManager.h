@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTDecalManager;
+}
 #include "Engine.DecalManager.h"
 namespace UnrealScript
 {

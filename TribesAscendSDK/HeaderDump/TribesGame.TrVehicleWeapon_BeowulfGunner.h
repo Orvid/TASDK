@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrVehicleWeapon_FullAuto.h"
+namespace UnrealScript
+{
+	class TrVehicleWeapon_BeowulfGunner;
+}
 #include "TribesGame.TrSkelControl_SpinControl.h"
+#include "TribesGame.TrVehicleWeapon_FullAuto.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

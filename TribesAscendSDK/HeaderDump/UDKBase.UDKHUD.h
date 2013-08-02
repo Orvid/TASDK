@@ -1,7 +1,11 @@
 #pragma once
-#include "GameFramework.MobileHUD.h"
-#include "Engine.Font.h"
+namespace UnrealScript
+{
+	class UDKHUD;
+}
 #include "Engine.Canvas.FontRenderInfo.h"
+#include "Engine.Font.h"
+#include "GameFramework.MobileHUD.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

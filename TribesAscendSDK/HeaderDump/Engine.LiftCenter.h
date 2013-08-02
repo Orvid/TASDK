@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.NavigationPoint.h"
-#include "Engine.InterpActor.h"
-#include "Engine.Trigger.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class LiftCenter;
+}
 #include "Engine.Actor.h"
+#include "Engine.InterpActor.h"
+#include "Engine.NavigationPoint.h"
 #include "Engine.Pawn.h"
+#include "Engine.Trigger.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

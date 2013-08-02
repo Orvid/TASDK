@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_MotionSensorDeployable;
+}
 #include "TribesGame.TrDevice_Mine.h"
 namespace UnrealScript
 {

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct AnimNode_MultiBlendPerBone__PerBoneMaskInfo;
+}
 #include "Engine.AnimNode_MultiBlendPerBone.BranchInfo.h"
 #include "Engine.AnimNode_MultiBlendPerBone.WeightRule.h"
 #define ADD_BOOL(name, offset, mask) \

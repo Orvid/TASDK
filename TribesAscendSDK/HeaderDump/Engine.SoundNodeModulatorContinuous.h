@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SoundNodeModulatorContinuous;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.SoundNode.h"
 #define ADD_STRUCT(x, y, offset) \

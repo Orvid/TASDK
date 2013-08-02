@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineStatsWrite;
+}
 #include "Engine.OnlineStats.h"
-#include "Engine.Settings.StringIdToStringMapping.h"
 #include "Engine.Settings.SettingsProperty.h"
+#include "Engine.Settings.StringIdToStringMapping.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

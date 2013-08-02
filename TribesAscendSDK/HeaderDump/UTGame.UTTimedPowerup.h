@@ -1,13 +1,16 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTTimedPowerup;
+}
+#include "Engine.Actor.h"
+#include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.Pawn.h"
 #include "Engine.SoundCue.h"
-#include "UTGame.UTInventory.h"
-#include "Core.Object.Vector.h"
 #include "Engine.UIRoot.TextureCoordinates.h"
 #include "UTGame.UTHUD.h"
-#include "Engine.Canvas.h"
-#include "Engine.Pawn.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.h"
+#include "UTGame.UTInventory.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

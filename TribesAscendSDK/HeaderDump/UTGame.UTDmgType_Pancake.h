@@ -1,6 +1,10 @@
 #pragma once
-#include "UTGame.UTPlayerController.h"
+namespace UnrealScript
+{
+	class UTDmgType_Pancake;
+}
 #include "UTGame.UTDmgType_RanOver.h"
+#include "UTGame.UTPlayerController.h"
 namespace UnrealScript
 {
 	class UTDmgType_Pancake : public UTDmgType_RanOver

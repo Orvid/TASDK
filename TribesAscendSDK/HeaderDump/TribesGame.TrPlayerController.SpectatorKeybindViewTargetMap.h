@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrPlayerController__SpectatorKeybindViewTargetMap;
+}
 #include "Engine.Actor.h"
 #include "Engine.Input.KeyBind.h"
 #define ADD_STRUCT(x, y, offset) \

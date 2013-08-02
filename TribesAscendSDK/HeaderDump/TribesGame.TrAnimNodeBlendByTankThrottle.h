@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAnimNodeBlendByTankThrottle;
+}
 #include "TribesGame.TrAnimNodeBlendList.h"
 #include "TribesGame.TrVehicle.h"
 #define ADD_OBJECT(x, y, offset) \

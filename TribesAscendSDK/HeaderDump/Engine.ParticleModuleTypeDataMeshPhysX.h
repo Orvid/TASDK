@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.PhysXParticleSystem.h"
-#include "Engine.ParticleModuleTypeDataMeshPhysX.EPhysXMeshRotationMethod.h"
-#include "Engine.ParticleModuleTypeDataMesh.h"
-#include "Engine.ParticleModuleTypeDataPhysX.PhysXEmitterVerticalLodProperties.h"
+namespace UnrealScript
+{
+	class ParticleModuleTypeDataMeshPhysX;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.ParticleModuleTypeDataMesh.h"
+#include "Engine.ParticleModuleTypeDataMeshPhysX.EPhysXMeshRotationMethod.h"
+#include "Engine.ParticleModuleTypeDataPhysX.PhysXEmitterVerticalLodProperties.h"
+#include "Engine.PhysXParticleSystem.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,6 +21,7 @@ namespace UnrealScript
 	class ParticleModuleTypeDataMeshPhysX : public ParticleModuleTypeDataMesh
 	{
 	public:
+		typedef ParticleModuleTypeDataMeshPhysX__EPhysXMeshRotationMethod EPhysXMeshRotationMethod;
 		ADD_STRUCT(ParticleModuleTypeDataPhysX__PhysXEmitterVerticalLodProperties, VerticalLod, 112)
 		ADD_STRUCT(Object__Pointer, RenderInstance, 108)
 		ADD_STRUCT(float, FluidRotationCoefficient, 104)

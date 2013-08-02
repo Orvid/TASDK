@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.Texture2D.h"
-#include "Engine.SequenceObject.h"
-#include "Engine.Material.h"
+namespace UnrealScript
+{
+	class SequenceFrame;
+}
 #include "Core.Object.Color.h"
+#include "Engine.Material.h"
+#include "Engine.SequenceObject.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

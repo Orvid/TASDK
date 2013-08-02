@@ -1,20 +1,27 @@
 #pragma once
-#include "Engine.Terrain.AlphaMap.h"
-#include "Engine.Info.h"
-#include "Engine.TerrainWeightMapTexture.h"
-#include "Engine.LightComponent.LightingChannelContainer.h"
-#include "Core.Object.Guid.h"
-#include "Engine.Terrain.TerrainLayer.h"
-#include "Engine.Terrain.TerrainHeight.h"
-#include "Engine.Terrain.TerrainInfoData.h"
-#include "Engine.Terrain.TerrainDecoLayer.h"
-#include "Engine.Terrain.SelectedTerrainVertex.h"
-#include "Engine.Terrain.TerrainWeightedMaterial.h"
+namespace UnrealScript
+{
+	class Terrain;
+}
 #include "Core.Object.Color.h"
+#include "Core.Object.Guid.h"
 #include "Core.Object.Pointer.h"
 #include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
+#include "Engine.Info.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
 #include "Engine.PhysicalMaterial.h"
+#include "Engine.Terrain.AlphaMap.h"
 #include "Engine.Terrain.CachedTerrainMaterialArray.h"
+#include "Engine.Terrain.SelectedTerrainVertex.h"
+#include "Engine.Terrain.TerrainDecoLayer.h"
+#include "Engine.Terrain.TerrainDecoration.h"
+#include "Engine.Terrain.TerrainDecorationInstance.h"
+#include "Engine.Terrain.TerrainHeight.h"
+#include "Engine.Terrain.TerrainInfoData.h"
+#include "Engine.Terrain.TerrainLayer.h"
+#include "Engine.Terrain.TerrainMaterialResource.h"
+#include "Engine.Terrain.TerrainWeightedMaterial.h"
+#include "Engine.TerrainWeightMapTexture.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -38,6 +45,17 @@ namespace UnrealScript
 	class Terrain : public Info
 	{
 	public:
+		typedef Terrain__TerrainHeight TerrainHeight;
+		typedef Terrain__TerrainInfoData TerrainInfoData;
+		typedef Terrain__TerrainLayer TerrainLayer;
+		typedef Terrain__TerrainDecoLayer TerrainDecoLayer;
+		typedef Terrain__AlphaMap AlphaMap;
+		typedef Terrain__TerrainWeightedMaterial TerrainWeightedMaterial;
+		typedef Terrain__SelectedTerrainVertex SelectedTerrainVertex;
+		typedef Terrain__TerrainDecorationInstance TerrainDecorationInstance;
+		typedef Terrain__TerrainDecoration TerrainDecoration;
+		typedef Terrain__TerrainMaterialResource TerrainMaterialResource;
+		typedef Terrain__CachedTerrainMaterialArray CachedTerrainMaterialArray;
 		ADD_STRUCT(ScriptArray<Terrain__TerrainHeight>, Heights, 476)
 		ADD_STRUCT(ScriptArray<Terrain__TerrainInfoData>, InfoData, 488)
 		ADD_STRUCT(ScriptArray<Terrain__TerrainLayer>, Layers, 500)

@@ -1,14 +1,16 @@
 #pragma once
-#include "GameFramework.GameCrowdPopulationManager.h"
-#include "Core.Object.Vector.h"
-#include "GameFramework.GameCrowdDestinationQueuePoint.h"
-#include "GameFramework.GameCrowdAgent.BehaviorEntry.h"
-#include "GameFramework.GameCrowdInteractionPoint.h"
+namespace UnrealScript
+{
+	class GameCrowdDestination;
+}
 #include "Core.Object.h"
-#include "GameFramework.GameCrowdAgent.h"
 #include "Core.Object.Pointer.h"
+#include "GameFramework.GameCrowdAgent.h"
+#include "GameFramework.GameCrowdAgent.BehaviorEntry.h"
+#include "GameFramework.GameCrowdDestinationQueuePoint.h"
+#include "GameFramework.GameCrowdInteractionPoint.h"
+#include "GameFramework.GameCrowdPopulationManager.h"
 #include "GameFramework.SeqAct_GameCrowdSpawner.h"
-#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

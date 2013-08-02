@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GeomModifier_Split;
+}
 #include "UnrealEd.GeomModifier_Edit.h"
 namespace UnrealScript
 {

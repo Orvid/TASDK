@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrUI_TeamSelectionMenu;
+}
+#include "Engine.GameReplicationInfo.h"
 #include "GFxUI.GFxMoviePlayer.h"
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.TrPlayerController.h"
-#include "Engine.GameReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

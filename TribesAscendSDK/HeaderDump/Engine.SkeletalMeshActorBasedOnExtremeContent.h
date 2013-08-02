@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SkeletalMeshActorBasedOnExtremeContent;
+}
 #include "Engine.SkeletalMeshActor.h"
 #include "Engine.SkeletalMeshActorBasedOnExtremeContent.SkelMaterialSetterDatum.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -14,6 +18,7 @@ namespace UnrealScript
 	class SkeletalMeshActorBasedOnExtremeContent : public SkeletalMeshActor
 	{
 	public:
+		typedef SkeletalMeshActorBasedOnExtremeContent__SkelMaterialSetterDatum SkelMaterialSetterDatum;
 		ADD_STRUCT(ScriptArray<SkeletalMeshActorBasedOnExtremeContent__SkelMaterialSetterDatum>, ExtremeContent, 536)
 		ADD_STRUCT(ScriptArray<SkeletalMeshActorBasedOnExtremeContent__SkelMaterialSetterDatum>, NonExtremeContent, 548)
 		void PostBeginPlay()

@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.SkeletalMeshCinematicActor.h"
-#include "Engine.AnimNodeSlot.h"
+namespace UnrealScript
+{
+	class SkeletalMeshActorMAT;
+}
 #include "Engine.Actor.AnimSlotInfo.h"
+#include "Engine.AnimNodeSlot.h"
 #include "Engine.InterpGroup.h"
+#include "Engine.SkeletalMeshCinematicActor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

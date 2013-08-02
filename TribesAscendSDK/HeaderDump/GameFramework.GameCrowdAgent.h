@@ -1,26 +1,28 @@
 #pragma once
-#include "Engine.CrowdAgentBase.h"
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class GameCrowdAgent;
+}
 #include "Core.Object.LinearColor.h"
-#include "GameFramework.GameCrowdForcePoint.h"
+#include "Engine.Actor.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.Canvas.h"
-#include "GameFramework.GameCrowdAgentBehavior.h"
-#include "GameFramework.GameCrowdAgent.RecentInteraction.h"
-#include "Core.Object.Vector.h"
-#include "GameFramework.GameCrowdAgent.BehaviorEntry.h"
-#include "Engine.SoundCue.h"
-#include "Engine.Texture2D.h"
-#include "Engine.NavigationHandle.h"
-#include "GameFramework.GameCrowdAgent.EConformType.h"
-#include "GameFramework.GameCrowdGroup.h"
-#include "GameFramework.GameCrowdDestination.h"
+#include "Engine.Controller.h"
+#include "Engine.CrowdAgentBase.h"
 #include "Engine.HUD.h"
 #include "Engine.LightComponent.LightingChannelContainer.h"
-#include "GameFramework.SeqAct_PlayAgentAnimation.h"
+#include "Engine.NavigationHandle.h"
 #include "Engine.PlayerController.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.SoundCue.h"
+#include "Engine.Texture2D.h"
+#include "GameFramework.GameCrowdAgent.BehaviorEntry.h"
+#include "GameFramework.GameCrowdAgent.EConformType.h"
+#include "GameFramework.GameCrowdAgent.RecentInteraction.h"
+#include "GameFramework.GameCrowdAgentBehavior.h"
+#include "GameFramework.GameCrowdDestination.h"
+#include "GameFramework.GameCrowdForcePoint.h"
+#include "GameFramework.GameCrowdGroup.h"
+#include "GameFramework.SeqAct_PlayAgentAnimation.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -44,6 +46,9 @@ namespace UnrealScript
 	class GameCrowdAgent : public CrowdAgentBase
 	{
 	public:
+		typedef GameCrowdAgent__EConformType EConformType;
+		typedef GameCrowdAgent__RecentInteraction RecentInteraction;
+		typedef GameCrowdAgent__BehaviorEntry BehaviorEntry;
 		ADD_STRUCT(ScriptArray<class Actor*>, NearbyDynamics, 548)
 		ADD_STRUCT(ScriptArray<class GameCrowdForcePoint*>, RelevantAttractors, 560)
 		ADD_STRUCT(ScriptArray<GameCrowdAgent__RecentInteraction>, RecentInteractions, 764)

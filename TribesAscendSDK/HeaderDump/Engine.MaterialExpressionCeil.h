@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpressionCeil;
+}
 #include "Engine.MaterialExpression.h"
 #include "Engine.MaterialExpression.ExpressionInput.h"
 #define ADD_STRUCT(x, y, offset) \

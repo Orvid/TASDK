@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Settings.SettingsProperty.h"
+namespace UnrealScript
+{
+	struct OnlinePlayerStorage__OnlineProfileSetting;
+}
 #include "Engine.OnlinePlayerStorage.EOnlineProfilePropertyOwner.h"
+#include "Engine.Settings.SettingsProperty.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

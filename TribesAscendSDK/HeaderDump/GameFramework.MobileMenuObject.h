@@ -1,6 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class MobileMenuObject;
+}
 #include "Core.Object.h"
 #include "Engine.Canvas.h"
+#include "GameFramework.MobileMenuObject.UVCoords.h"
 #include "GameFramework.MobileMenuScene.h"
 #include "GameFramework.MobilePlayerInput.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -26,6 +31,7 @@ namespace UnrealScript
 	class MobileMenuObject : public Object
 	{
 	public:
+		typedef MobileMenuObject__UVCoords UVCoords;
 		ADD_OBJECT(MobileMenuScene, OwnerScene, 128)
 		ADD_STRUCT(float, Opacity, 124)
 		ADD_OBJECT(MobilePlayerInput, InputOwner, 120)

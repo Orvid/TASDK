@@ -1,12 +1,15 @@
 #pragma once
-#include "TribesGame.TrDeployable_Sensor.h"
-#include "TribesGame.TrDeployable_MotionSensor.MotionSensorEnemyInfo.h"
-#include "Engine.PlayerController.h"
-#include "TribesGame.TrPawn.h"
-#include "Engine.Pawn.h"
-#include "Engine.Texture2D.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrDeployable_MotionSensor;
+}
 #include "Engine.Canvas.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
+#include "Engine.Texture2D.h"
+#include "TribesGame.TrDeployable_MotionSensor.MotionSensorEnemyInfo.h"
+#include "TribesGame.TrDeployable_Sensor.h"
+#include "TribesGame.TrPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,6 +33,7 @@ namespace UnrealScript
 	class TrDeployable_MotionSensor : public TrDeployable_Sensor
 	{
 	public:
+		typedef TrDeployable_MotionSensor__MotionSensorEnemyInfo MotionSensorEnemyInfo;
 		ADD_STRUCT(ScriptArray<TrDeployable_MotionSensor__MotionSensorEnemyInfo>, m_EnemyPawnsInRange, 1540)
 		ADD_OBJECT(Texture2D, m_AlarmIcon, 1616)
 		ADD_STRUCT(Vector, LastCameraPos, 1604)

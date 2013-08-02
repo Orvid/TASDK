@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.MaterialInterface.h"
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	struct ParticleSystemComponent__ParticleSysParam;
+}
 #include "Core.Object.Color.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Actor.h"
+#include "Engine.MaterialInterface.h"
 #include "Engine.ParticleSystemComponent.EParticleSysParamType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -21,7 +24,6 @@ namespace UnrealScript
 		ADD_OBJECT(Actor, Actor, 48)
 		ADD_STRUCT(Object__Color, Color, 44)
 		ADD_STRUCT(Vector, Vector_Low, 32)
-		ADD_STRUCT(Vector, Vector, 20)
 		ADD_STRUCT(float, Scalar_Low, 16)
 		ADD_STRUCT(float, Scalar, 12)
 		ADD_STRUCT(ParticleSystemComponent__EParticleSysParamType, ParamType, 8)

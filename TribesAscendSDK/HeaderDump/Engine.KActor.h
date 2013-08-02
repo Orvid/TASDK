@@ -1,15 +1,17 @@
 #pragma once
+namespace UnrealScript
+{
+	class KActor;
+}
 #include "Engine.Actor.h"
-#include "Engine.Controller.h"
 #include "Engine.Actor.PhysEffectInfo.h"
-#include "Engine.DynamicSMActor.h"
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.PhysicalMaterial.h"
 #include "Engine.Actor.RigidBodyState.h"
-#include "Engine.SeqAct_Toggle.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
+#include "Engine.DynamicSMActor.h"
+#include "Engine.PhysicalMaterial.h"
 #include "Engine.SeqAct_Teleport.h"
+#include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

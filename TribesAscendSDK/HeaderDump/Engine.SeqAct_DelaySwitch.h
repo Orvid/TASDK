@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_DelaySwitch;
+}
 #include "Engine.SeqAct_Latent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

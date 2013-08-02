@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.MaterialExpressionParameter.h"
+namespace UnrealScript
+{
+	class MaterialExpressionStaticComponentMaskParameter;
+}
 #include "Core.Object.Pointer.h"
 #include "Engine.MaterialExpression.ExpressionInput.h"
+#include "Engine.MaterialExpressionParameter.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

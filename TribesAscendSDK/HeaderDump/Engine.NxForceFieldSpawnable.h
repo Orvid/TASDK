@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class NxForceFieldSpawnable;
+}
 #include "Engine.Actor.h"
 #include "Engine.SeqAct_Toggle.h"
 namespace UnrealScript

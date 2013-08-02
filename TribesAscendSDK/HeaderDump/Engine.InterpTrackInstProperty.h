@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackInstProperty;
+}
+#include "Core.Function.h"
 #include "Core.Object.h"
 #include "Engine.InterpTrackInst.h"
-#include "Core.Function.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

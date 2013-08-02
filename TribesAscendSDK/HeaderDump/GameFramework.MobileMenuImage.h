@@ -1,10 +1,14 @@
 #pragma once
-#include "GameFramework.MobileMenuObject.h"
+namespace UnrealScript
+{
+	class MobileMenuImage;
+}
 #include "Core.Object.LinearColor.h"
+#include "Engine.Canvas.h"
 #include "Engine.Texture2D.h"
 #include "GameFramework.MobileMenuImage.MenuImageDrawStyle.h"
+#include "GameFramework.MobileMenuObject.h"
 #include "GameFramework.MobileMenuObject.UVCoords.h"
-#include "Engine.Canvas.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -18,6 +22,7 @@ namespace UnrealScript
 	class MobileMenuImage : public MobileMenuObject
 	{
 	public:
+		typedef MobileMenuImage__MenuImageDrawStyle MenuImageDrawStyle;
 		ADD_STRUCT(Object__LinearColor, ImageColor, 160)
 		ADD_STRUCT(MobileMenuObject__UVCoords, ImageUVs, 140)
 		ADD_STRUCT(MobileMenuImage__MenuImageDrawStyle, ImageDrawStyle, 136)

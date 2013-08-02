@@ -1,6 +1,10 @@
 #pragma once
-#include "UTGame.UTMutator.h"
+namespace UnrealScript
+{
+	class UTMutator_BigHead;
+}
 #include "Engine.Pawn.h"
+#include "UTGame.UTMutator.h"
 namespace UnrealScript
 {
 	class UTMutator_BigHead : public UTMutator

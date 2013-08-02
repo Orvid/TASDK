@@ -1,6 +1,9 @@
 #pragma once
+namespace UnrealScript
+{
+	struct SplineMeshComponent__SplineMeshParams;
+}
 #include "Core.Object.Vector2D.h"
-#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

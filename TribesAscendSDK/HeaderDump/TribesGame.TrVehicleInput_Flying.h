@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrVehicleInput_Flying;
+}
 #include "Engine.PlayerInput.h"
 namespace UnrealScript
 {

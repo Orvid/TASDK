@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.Volume.h"
+namespace UnrealScript
+{
+	class UTAutoCrouchVolume;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Pawn.h"
+#include "Engine.Volume.h"
 namespace UnrealScript
 {
 	class UTAutoCrouchVolume : public Volume

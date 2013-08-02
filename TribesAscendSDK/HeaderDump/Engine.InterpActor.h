@@ -1,11 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpActor;
+}
 #include "Engine.Actor.h"
 #include "Engine.DynamicSMActor.h"
 #include "Engine.InterpActor.CheckpointRecord.h"
-#include "Engine.SoundCue.h"
+#include "Engine.InterpGroupInst.h"
 #include "Engine.NavigationPoint.h"
 #include "Engine.SeqAct_Interp.h"
-#include "Engine.InterpGroupInst.h"
+#include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,6 +33,7 @@ namespace UnrealScript
 	class InterpActor : public DynamicSMActor
 	{
 	public:
+		typedef InterpActor__CheckpointRecord CheckpointRecord;
 		ADD_BOOL(bMonitorMover, 532, 0x2)
 		ADD_OBJECT(NavigationPoint, MyMarker, 536)
 		ADD_OBJECT(SoundCue, ClosedSound, 568)

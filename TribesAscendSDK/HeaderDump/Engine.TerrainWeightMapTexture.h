@@ -1,7 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class TerrainWeightMapTexture;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.Texture2D.h"
 #include "Engine.Terrain.h"
+#include "Engine.TerrainWeightMapTexture.TerrainWeightedMaterial.h"
+#include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,6 +20,7 @@ namespace UnrealScript
 	class TerrainWeightMapTexture : public Texture2D
 	{
 	public:
+		typedef TerrainWeightMapTexture__TerrainWeightedMaterial TerrainWeightedMaterial;
 		ADD_STRUCT(ScriptArray<Object__Pointer>, WeightedMaterials, 372)
 		ADD_OBJECT(Terrain, ParentTerrain, 368)
 	};

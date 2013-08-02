@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqEvent_RemoteEvent;
+}
 #include "Engine.SequenceEvent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

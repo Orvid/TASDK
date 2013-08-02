@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class BrowserManager;
+}
 #include "Core.Object.h"
 namespace UnrealScript
 {

@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.SequenceAction.h"
+namespace UnrealScript
+{
+	class SeqAct_SetMesh;
+}
 #include "Engine.SeqAct_SetMesh.EMeshType.h"
-#include "Engine.StaticMesh.h"
+#include "Engine.SequenceAction.h"
 #include "Engine.SkeletalMesh.h"
+#include "Engine.StaticMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +30,7 @@ namespace UnrealScript
 	class SeqAct_SetMesh : public SequenceAction
 	{
 	public:
+		typedef SeqAct_SetMesh__EMeshType EMeshType;
 		ADD_STRUCT(SeqAct_SetMesh__EMeshType, MeshType, 240)
 		ADD_BOOL(bIsAllowedToMove, 244, 0x1)
 		ADD_BOOL(bAllowDecalsToReattach, 244, 0x2)

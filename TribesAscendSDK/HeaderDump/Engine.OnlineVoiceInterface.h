@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineVoiceInterface;
+}
 #include "Core.Interface.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.SpeechRecognition.h"
 namespace UnrealScript
 {

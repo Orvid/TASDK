@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Object__LinearColor;
+}
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

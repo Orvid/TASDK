@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Canvas__CanvasIcon;
+}
 #include "Engine.Texture.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

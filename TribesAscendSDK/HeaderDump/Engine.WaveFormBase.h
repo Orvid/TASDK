@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class WaveFormBase;
+}
 #include "Core.Object.h"
 #include "Engine.ForceFeedbackWaveform.h"
 #define ADD_OBJECT(x, y, offset) \

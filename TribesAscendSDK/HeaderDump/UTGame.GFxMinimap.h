@@ -1,11 +1,15 @@
 #pragma once
-#include "Engine.Actor.h"
-#include "GFxUI.GFxObject.h"
-#include "UTGame.UTMapInfo.h"
-#include "UTGame.UTGameObjective.h"
-#include "Engine.WorldInfo.h"
+namespace UnrealScript
+{
+	class GFxMinimap;
+}
 #include "Core.Object.Matrix.h"
+#include "Engine.Actor.h"
+#include "Engine.WorldInfo.h"
+#include "GFxUI.GFxObject.h"
 #include "UTGame.GFxMinimapHud.h"
+#include "UTGame.UTGameObjective.h"
+#include "UTGame.UTMapInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

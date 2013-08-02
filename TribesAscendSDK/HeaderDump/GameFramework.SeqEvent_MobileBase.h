@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqEvent_MobileBase;
+}
 #include "Engine.SequenceEvent.h"
 #include "GameFramework.MobilePlayerInput.h"
 namespace UnrealScript

@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.AnimNode_MultiBlendPerBone.EWeightCheck.h"
+namespace UnrealScript
+{
+	struct AnimNode_MultiBlendPerBone__WeightNodeRule;
+}
 #include "Engine.AnimNodeBlendBase.h"
 #include "Engine.AnimNodeSlot.h"
+#include "Engine.AnimNode_MultiBlendPerBone.EWeightCheck.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

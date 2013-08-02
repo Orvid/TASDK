@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PlayerStart;
+}
 #include "Engine.NavigationPoint.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \

@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.UIPropertyDataProvider.h"
+namespace UnrealScript
+{
+	class UIDynamicDataProvider;
+}
 #include "Core.Object.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.UIPropertyDataProvider.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

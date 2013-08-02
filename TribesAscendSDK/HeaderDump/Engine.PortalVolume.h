@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Volume.h"
+namespace UnrealScript
+{
+	class PortalVolume;
+}
 #include "Engine.PortalTeleporter.h"
+#include "Engine.Volume.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.PathConstraint.h"
+namespace UnrealScript
+{
+	class Path_TowardGoal;
+}
 #include "Engine.Actor.h"
+#include "Engine.PathConstraint.h"
 #include "Engine.Pawn.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

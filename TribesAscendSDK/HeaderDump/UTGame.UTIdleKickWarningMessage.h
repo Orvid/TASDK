@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTLocalMessage.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class UTIdleKickWarningMessage;
+}
 #include "Core.Object.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "UTGame.UTLocalMessage.h"
 namespace UnrealScript
 {
 	class UTIdleKickWarningMessage : public UTLocalMessage

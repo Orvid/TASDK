@@ -1,6 +1,10 @@
 #pragma once
-#include "UDKBase.UDKVehicleSimChopper.AnglePID.h"
+namespace UnrealScript
+{
+	class TrVehicleSimChopper;
+}
 #include "UDKBase.UDKVehicleSimChopper.h"
+#include "UDKBase.UDKVehicleSimChopper.AnglePID.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

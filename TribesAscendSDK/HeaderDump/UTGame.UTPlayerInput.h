@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTPlayerInput;
+}
 #include "Engine.Actor.EDoubleClickDir.h"
 #include "UDKBase.UDKPlayerInput.h"
 #define ADD_BOOL(name, offset, mask) \

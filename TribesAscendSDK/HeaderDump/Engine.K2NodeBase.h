@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class K2NodeBase;
+}
 #include "Core.Object.h"
 #include "Engine.K2Input.h"
 #include "Engine.K2Output.h"

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimMetaData_SkelControlKeyFrame;
+}
 #include "Engine.AnimMetaData_SkelControl.h"
 #include "Engine.AnimSequence.TimeModifier.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTAmbientSoundComponent;
+}
 #include "Engine.AudioComponent.h"
 namespace UnrealScript
 {

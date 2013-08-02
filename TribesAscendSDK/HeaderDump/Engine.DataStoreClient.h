@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.UIRoot.h"
+namespace UnrealScript
+{
+	class DataStoreClient;
+}
 #include "Engine.DataStoreClient.PlayerDataStoreGroup.h"
-#include "Engine.UIDataStore.h"
 #include "Engine.LocalPlayer.h"
+#include "Engine.UIDataStore.h"
+#include "Engine.UIRoot.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,6 +20,7 @@ namespace UnrealScript
 	class DataStoreClient : public UIRoot
 	{
 	public:
+		typedef DataStoreClient__PlayerDataStoreGroup PlayerDataStoreGroup;
 		ADD_STRUCT(ScriptArray<ScriptString*>, GlobalDataStoreClasses, 60)
 		ADD_STRUCT(ScriptArray<class UIDataStore*>, GlobalDataStores, 72)
 		ADD_STRUCT(ScriptArray<ScriptString*>, PlayerDataStoreClassNames, 84)

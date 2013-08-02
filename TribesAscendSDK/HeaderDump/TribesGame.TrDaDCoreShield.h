@@ -1,8 +1,12 @@
 #pragma once
-#include "TribesGame.TrDaDCore.h"
+namespace UnrealScript
+{
+	class TrDaDCoreShield;
+}
 #include "Engine.DynamicSMActor.h"
-#include "Engine.MaterialInstanceConstant.h"
 #include "Engine.Material.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "TribesGame.TrDaDCore.h"
 #include "TribesGame.TrDaDShell.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_STRUCT(x, y, offset) \

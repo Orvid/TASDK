@@ -1,6 +1,11 @@
 #pragma once
-#include "Engine.K2Connector.EK2ConnectorType.h"
+namespace UnrealScript
+{
+	class K2Connector;
+}
 #include "Core.Object.h"
+#include "Engine.K2Connector.EK2ConnectorDirection.h"
+#include "Engine.K2Connector.EK2ConnectorType.h"
 #include "Engine.K2NodeBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -15,6 +20,8 @@ namespace UnrealScript
 	class K2Connector : public Object
 	{
 	public:
+		typedef K2Connector__EK2ConnectorType EK2ConnectorType;
+		typedef K2Connector__EK2ConnectorDirection EK2ConnectorDirection;
 		ADD_STRUCT(K2Connector__EK2ConnectorType, Type, 76)
 		ADD_STRUCT(ScriptString*, ConnName, 64)
 		ADD_OBJECT(K2NodeBase, OwningNode, 60)

@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrVehicleWeapon.h"
+namespace UnrealScript
+{
+	class TrVehicleWeapon_FullAuto;
+}
 #include "Engine.SoundCue.h"
+#include "TribesGame.TrVehicleWeapon.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

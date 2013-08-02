@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.ParticleModuleOrbitBase.h"
-#include "Engine.ParticleModuleOrbit.OrbitOptions.h"
+namespace UnrealScript
+{
+	class ParticleModuleOrbit;
+}
 #include "Core.DistributionVector.RawDistributionVector.h"
 #include "Engine.ParticleModuleOrbit.EOrbitChainMode.h"
+#include "Engine.ParticleModuleOrbit.OrbitOptions.h"
+#include "Engine.ParticleModuleOrbitBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +26,8 @@ namespace UnrealScript
 	class ParticleModuleOrbit : public ParticleModuleOrbitBase
 	{
 	public:
+		typedef ParticleModuleOrbit__EOrbitChainMode EOrbitChainMode;
+		typedef ParticleModuleOrbit__OrbitOptions OrbitOptions;
 		ADD_STRUCT(ParticleModuleOrbit__OrbitOptions, RotationRateOptions, 172)
 		ADD_STRUCT(DistributionVector__RawDistributionVector, RotationRateAmount, 144)
 		ADD_STRUCT(ParticleModuleOrbit__OrbitOptions, RotationOptions, 140)

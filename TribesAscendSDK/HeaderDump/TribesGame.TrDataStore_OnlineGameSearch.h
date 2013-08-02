@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDataStore_OnlineGameSearch;
+}
 #include "Engine.UIDataStore_OnlineGameSearch.h"
 #include "UDKBase.UDKUIDataProvider_ServerDetails.h"
 #define ADD_OBJECT(x, y, offset) \

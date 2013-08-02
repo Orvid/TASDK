@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct CameraShake__FOscillator;
+}
 #include "Engine.CameraShake.EInitialOscillatorOffset.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

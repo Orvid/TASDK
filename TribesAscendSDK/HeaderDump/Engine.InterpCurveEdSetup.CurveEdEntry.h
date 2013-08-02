@@ -1,6 +1,10 @@
 #pragma once
-#include "Core.Object.Color.h"
+namespace UnrealScript
+{
+	struct InterpCurveEdSetup__CurveEdEntry;
+}
 #include "Core.Object.h"
+#include "Core.Object.Color.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

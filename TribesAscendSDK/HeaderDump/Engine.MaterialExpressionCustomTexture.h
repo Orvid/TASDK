@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpressionCustomTexture;
+}
 #include "Engine.MaterialExpression.h"
 #include "Engine.Texture.h"
 #define ADD_OBJECT(x, y, offset) \

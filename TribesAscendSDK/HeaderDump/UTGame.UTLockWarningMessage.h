@@ -1,8 +1,12 @@
 #pragma once
-#include "Core.Object.Color.h"
-#include "UTGame.UTLocalMessage.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class UTLockWarningMessage;
+}
 #include "Core.Object.h"
+#include "Core.Object.Color.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "UTGame.UTLocalMessage.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

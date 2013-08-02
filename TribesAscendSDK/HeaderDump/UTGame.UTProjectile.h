@@ -1,14 +1,16 @@
 #pragma once
-#include "UDKBase.UDKProjectile.h"
+namespace UnrealScript
+{
+	class UTProjectile;
+}
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
 #include "Engine.MaterialInterface.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.Pawn.h"
 #include "Engine.PhysicalMaterial.h"
 #include "Engine.SoundCue.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.h"
-#include "Engine.Pawn.h"
+#include "UDKBase.UDKProjectile.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

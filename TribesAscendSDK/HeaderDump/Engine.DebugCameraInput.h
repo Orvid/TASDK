@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.PlayerInput.h"
+namespace UnrealScript
+{
+	class DebugCameraInput;
+}
 #include "Core.Object.EInputEvent.h"
+#include "Engine.PlayerInput.h"
 namespace UnrealScript
 {
 	class DebugCameraInput : public PlayerInput

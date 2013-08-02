@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_InstantAction;
+}
 #include "UTGame.GFxUDKFrontEnd_LaunchGame.h"
 namespace UnrealScript
 {

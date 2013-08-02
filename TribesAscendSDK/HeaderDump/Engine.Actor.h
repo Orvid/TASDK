@@ -1,64 +1,74 @@
 #pragma once
-#include "Engine.RB_ConstraintSetup.h"
+namespace UnrealScript
+{
+	class Actor;
+	class Controller;
+	class FluidSurfaceActor;
+	class HUD;
+	class Pawn;
+	class PhysicsVolume;
+	class PlayerController;
+	class PlayerReplicationInfo;
+	class Projectile;
+	class SVehicle;
+	class Teleporter;
+	class WorldInfo;
+}
 #include "Core.Object.h"
-#include "Engine.Actor.ENetRole.h"
-#include "Engine.SequenceEvent.h"
-#include "Engine.Canvas.h"
-#include "Engine.WorldInfo.h"
-#include "Engine.Pawn.h"
-#include "Engine.FaceFXAnimSet.h"
-#include "Engine.SeqAct_ModifyHealth.h"
-#include "Core.Object.Vector.h"
-#include "Core.Property.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.Actor.ECollisionType.h"
-#include "Engine.PhysicsVolume.h"
-#include "Engine.Actor.EPhysics.h"
-#include "Engine.SeqAct_Latent.h"
+#include "Core.Object.BoneAtom.h"
+#include "Core.Object.Box.h"
 #include "Core.Object.Color.h"
-#include "Engine.Actor.CollisionImpactData.h"
-#include "Engine.Actor.EMoveDir.h"
-#include "Core.Object.RenderCommandFence.h"
-#include "Engine.AnimNotify_Trails.h"
 #include "Core.Object.ETickingGroup.h"
-#include "Engine.Actor.TimerData.h"
-#include "Engine.AnimNotify_ForceField.h"
-#include "Engine.SeqAct_Destroy.h"
-#include "Core.Object.QWord.h"
-#include "Engine.AnimNodeSequence.h"
-#include "Engine.SeqAct_Interp.h"
-#include "Engine.Actor.BasedPosition.h"
+#include "Core.Object.Guid.h"
 #include "Core.Object.LinearColor.h"
 #include "Core.Object.Matrix.h"
-#include "Engine.FluidSurfaceActor.h"
-#include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.Controller.h"
+#include "Core.Object.RenderCommandFence.h"
+#include "Core.Property.h"
+#include "Engine.Actor.ActorReference.h"
+#include "Engine.Actor.AnimSlotDesc.h"
+#include "Engine.Actor.AnimSlotInfo.h"
+#include "Engine.Actor.BasedPosition.h"
+#include "Engine.Actor.CollisionImpactData.h"
+#include "Engine.Actor.ECollisionType.h"
+#include "Engine.Actor.EDoubleClickDir.h"
+#include "Engine.Actor.EMoveDir.h"
+#include "Engine.Actor.ENetRole.h"
+#include "Engine.Actor.EPhysics.h"
+#include "Engine.Actor.ETravelType.h"
 #include "Engine.Actor.ImpactInfo.h"
-#include "Engine.InterpGroupInst.h"
-#include "Core.Object.Box.h"
-#include "Engine.SeqAct_ChangeCollision.h"
-#include "Engine.SeqAct_SetPhysics.h"
-#include "Engine.SoundCue.h"
-#include "Engine.Teleporter.h"
-#include "Engine.InterpGroup.h"
-#include "Engine.PlayerController.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "Engine.RB_ConstraintInstance.h"
-#include "Core.Object.BoneAtom.h"
-#include "Engine.SeqAct_SetBlockRigidBody.h"
-#include "Engine.Projectile.h"
-#include "Engine.SkelControlLookAt.h"
-#include "Engine.HUD.h"
-#include "Engine.SeqAct_Teleport.h"
-#include "Engine.SeqAct_SetVelocity.h"
+#include "Engine.Actor.NavReference.h"
+#include "Engine.Actor.PhysEffectInfo.h"
+#include "Engine.Actor.RigidBodyContactInfo.h"
+#include "Engine.Actor.RigidBodyState.h"
+#include "Engine.Actor.TimerData.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimNotify_ForceField.h"
 #include "Engine.AnimNotify_PlayParticleEffect.h"
-#include "Engine.SeqAct_ToggleHidden.h"
-#include "Engine.SeqAct_AttachToActor.h"
+#include "Engine.AnimNotify_Trails.h"
+#include "Engine.Canvas.h"
+#include "Engine.FaceFXAnimSet.h"
 #include "Engine.FaceFXAsset.h"
-#include "Engine.SVehicle.h"
-#include "Core.Object.Guid.h"
+#include "Engine.InterpGroup.h"
+#include "Engine.InterpGroupInst.h"
 #include "Engine.RB_BodyInstance.h"
+#include "Engine.RB_ConstraintInstance.h"
+#include "Engine.RB_ConstraintSetup.h"
+#include "Engine.SeqAct_AttachToActor.h"
+#include "Engine.SeqAct_ChangeCollision.h"
+#include "Engine.SeqAct_Destroy.h"
+#include "Engine.SeqAct_Interp.h"
+#include "Engine.SeqAct_Latent.h"
+#include "Engine.SeqAct_ModifyHealth.h"
+#include "Engine.SeqAct_SetBlockRigidBody.h"
+#include "Engine.SeqAct_SetPhysics.h"
+#include "Engine.SeqAct_SetVelocity.h"
+#include "Engine.SeqAct_Teleport.h"
+#include "Engine.SeqAct_ToggleHidden.h"
+#include "Engine.SequenceEvent.h"
 #include "Engine.SequenceOp.h"
+#include "Engine.SkelControlLookAt.h"
+#include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -82,6 +92,24 @@ namespace UnrealScript
 	class Actor : public Object
 	{
 	public:
+		typedef Actor__EPhysics EPhysics;
+		typedef Actor__EMoveDir EMoveDir;
+		typedef Actor__ECollisionType ECollisionType;
+		typedef Actor__ETravelType ETravelType;
+		typedef Actor__EDoubleClickDir EDoubleClickDir;
+		typedef Actor__ENetRole ENetRole;
+		typedef Actor__AnimSlotDesc AnimSlotDesc;
+		typedef Actor__RigidBodyState RigidBodyState;
+		typedef Actor__RigidBodyContactInfo RigidBodyContactInfo;
+		typedef Actor__CollisionImpactData CollisionImpactData;
+		typedef Actor__PhysEffectInfo PhysEffectInfo;
+		typedef Actor__ActorReference ActorReference;
+		typedef Actor__NavReference NavReference;
+		typedef Actor__BasedPosition BasedPosition;
+		typedef Actor__TraceHitInfo TraceHitInfo;
+		typedef Actor__ImpactInfo ImpactInfo;
+		typedef Actor__AnimSlotInfo AnimSlotInfo;
+		typedef Actor__TimerData TimerData;
 		static const float MINFLOORZ;
 		static const float ACTORMAXSTEPHEIGHT;
 		static const float RBSTATE_LINVELSCALE;
@@ -2465,3 +2493,14 @@ void**)params = SkelMesh;
 #undef ADD_BOOL
 #undef ADD_STRUCT
 #undef ADD_OBJECT
+#include "Engine.Controller.h"
+#include "Engine.FluidSurfaceActor.h"
+#include "Engine.HUD.h"
+#include "Engine.Pawn.h"
+#include "Engine.PhysicsVolume.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Projectile.h"
+#include "Engine.SVehicle.h"
+#include "Engine.Teleporter.h"
+#include "Engine.WorldInfo.h"

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct InterpTrackToggle__ToggleTrackKey;
+}
 #include "Engine.InterpTrackToggle.ETrackToggleAction.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

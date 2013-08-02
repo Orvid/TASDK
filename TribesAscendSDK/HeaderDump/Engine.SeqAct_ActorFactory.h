@@ -1,9 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_ActorFactory;
+}
 #include "Engine.Actor.h"
-#include "Engine.SeqAct_Latent.h"
 #include "Engine.ActorFactory.h"
-#include "Core.Object.Vector.h"
 #include "Engine.SeqAct_ActorFactory.EPointSelection.h"
+#include "Engine.SeqAct_Latent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +30,7 @@ namespace UnrealScript
 	class SeqAct_ActorFactory : public SeqAct_Latent
 	{
 	public:
+		typedef SeqAct_ActorFactory__EPointSelection EPointSelection;
 		ADD_STRUCT(ScriptArray<class Actor*>, SpawnPoints, 260)
 		ADD_STRUCT(ScriptArray<Vector>, SpawnLocations, 272)
 		ADD_STRUCT(ScriptArray<Vector>, SpawnOrientations, 284)

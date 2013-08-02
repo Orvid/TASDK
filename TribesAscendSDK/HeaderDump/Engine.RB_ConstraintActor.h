@@ -1,11 +1,15 @@
 #pragma once
-#include "Engine.SeqAct_ToggleConstraintDrive.h"
-#include "Engine.RigidBodyBase.h"
-#include "Engine.RB_ConstraintSetup.h"
-#include "Engine.RB_ConstraintInstance.h"
+namespace UnrealScript
+{
+	class RB_ConstraintActor;
+}
 #include "Engine.Actor.h"
+#include "Engine.RB_ConstraintInstance.h"
+#include "Engine.RB_ConstraintSetup.h"
+#include "Engine.RigidBodyBase.h"
 #include "Engine.SeqAct_Destroy.h"
 #include "Engine.SeqAct_Toggle.h"
+#include "Engine.SeqAct_ToggleConstraintDrive.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

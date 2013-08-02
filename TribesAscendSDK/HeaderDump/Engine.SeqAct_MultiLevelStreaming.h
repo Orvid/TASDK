@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_MultiLevelStreaming;
+}
 #include "Engine.SeqAct_LevelStreamingBase.h"
 #include "Engine.SeqAct_MultiLevelStreaming.LevelStreamingNameCombo.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -24,6 +28,7 @@ namespace UnrealScript
 	class SeqAct_MultiLevelStreaming : public SeqAct_LevelStreamingBase
 	{
 	public:
+		typedef SeqAct_MultiLevelStreaming__LevelStreamingNameCombo LevelStreamingNameCombo;
 		ADD_STRUCT(ScriptArray<SeqAct_MultiLevelStreaming__LevelStreamingNameCombo>, Levels, 252)
 		ADD_BOOL(bStatusIsOk, 264, 0x2)
 		ADD_BOOL(bUnloadAllOtherLevels, 264, 0x1)

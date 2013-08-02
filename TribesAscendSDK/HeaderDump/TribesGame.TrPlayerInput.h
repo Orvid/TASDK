@@ -1,9 +1,13 @@
 #pragma once
-#include "TribesGame.TrHUD.h"
+namespace UnrealScript
+{
+	class TrPlayerInput;
+}
+#include "Engine.Actor.h"
 #include "Engine.PlayerInput.h"
+#include "TribesGame.TrHUD.h"
 #include "TribesGame.TrVGSCommandList.h"
 #include "TribesGame.TrVGSCommandList.VGSCommandType.h"
-#include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

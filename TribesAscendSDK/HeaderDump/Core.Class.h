@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Class;
+}
 #include "Core.State.h"
 namespace UnrealScript
 {

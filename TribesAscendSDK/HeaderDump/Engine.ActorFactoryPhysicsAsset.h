@@ -1,8 +1,11 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class ActorFactoryPhysicsAsset;
+}
 #include "Engine.ActorFactory.h"
-#include "Engine.SkeletalMesh.h"
 #include "Engine.PhysicsAsset.h"
+#include "Engine.SkeletalMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

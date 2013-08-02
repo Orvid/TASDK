@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct GameViewportClient__SplitscreenData;
+}
 #include "Engine.GameViewportClient.PerPlayerSplitscreenData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

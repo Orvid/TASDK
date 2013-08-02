@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.Interaction.h"
-#include "Engine.Input.KeyBind.h"
-#include "Core.Object.Pointer.h"
+namespace UnrealScript
+{
+	class Input;
+}
 #include "Core.Object.EInputEvent.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.Input.KeyBind.h"
+#include "Engine.Interaction.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +26,7 @@ namespace UnrealScript
 	class Input : public Interaction
 	{
 	public:
+		typedef Input__KeyBind KeyBind;
 		ADD_STRUCT(ScriptArray<Input__KeyBind>, Bindings, 108)
 		ADD_STRUCT(ScriptArray<ScriptName>, PressedKeys, 120)
 		ADD_STRUCT(ScriptArray<Object__Pointer>, AxisArray, 204)

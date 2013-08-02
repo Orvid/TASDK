@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_StreamInTextures;
+}
 #include "Core.Object.h"
-#include "Engine.SeqAct_Latent.h"
 #include "Engine.MaterialInterface.h"
+#include "Engine.SeqAct_Latent.h"
 #include "Engine.Texture.TextureGroupContainer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

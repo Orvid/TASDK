@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.NavigationPoint.h"
+namespace UnrealScript
+{
+	class DynamicAnchor;
+}
 #include "Engine.Controller.h"
+#include "Engine.NavigationPoint.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

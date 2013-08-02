@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrEquipInterface;
+}
 #include "Core.Object.h"
-#include "TribesGame.TrObject.ReticuleDataType.h"
 #include "Core.Object.Pointer.h"
+#include "TribesGame.TrObject.ReticuleDataType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

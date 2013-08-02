@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTTeamPlayerStart;
+}
 #include "UDKBase.UDKTeamPlayerStart.h"
 namespace UnrealScript
 {

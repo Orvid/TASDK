@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_AssaultRifle;
+}
 #include "TribesGame.TrDevice_ConstantFire.h"
 namespace UnrealScript
 {

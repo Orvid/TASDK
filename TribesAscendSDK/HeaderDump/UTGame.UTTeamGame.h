@@ -1,19 +1,23 @@
 #pragma once
-#include "UTGame.UTDeathmatch.h"
+namespace UnrealScript
+{
+	class UTTeamGame;
+}
+#include "Engine.AIController.h"
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
+#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
 #include "Engine.Pawn.h"
 #include "Engine.PlayerController.h"
-#include "UTGame.UTTeamInfo.h"
-#include "UTGame.UTGameObjective.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "UTGame.UTBot.h"
 #include "Engine.PlayerStart.h"
-#include "Engine.Controller.h"
-#include "Engine.AIController.h"
-#include "UTGame.UTPlayerReplicationInfo.h"
 #include "Engine.TeamInfo.h"
-#include "Engine.Actor.h"
+#include "UTGame.UTBot.h"
+#include "UTGame.UTDeathmatch.h"
+#include "UTGame.UTGameObjective.h"
 #include "UTGame.UTPlayerController.h"
-#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
+#include "UTGame.UTPlayerReplicationInfo.h"
+#include "UTGame.UTTeamInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

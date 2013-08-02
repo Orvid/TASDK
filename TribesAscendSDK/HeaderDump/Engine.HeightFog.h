@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class HeightFog;
+}
 #include "Engine.Info.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \

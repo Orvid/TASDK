@@ -1,10 +1,12 @@
 #pragma once
-#include "Engine.EmitterPool.h"
-#include "UDKBase.UDKEmitterPool.AttachedExplosionLight.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.ParticleSystem.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class UDKEmitterPool;
+}
 #include "Engine.Actor.h"
+#include "Engine.EmitterPool.h"
+#include "Engine.ParticleSystem.h"
+#include "UDKBase.UDKEmitterPool.AttachedExplosionLight.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -18,6 +20,7 @@ namespace UnrealScript
 	class UDKEmitterPool : public EmitterPool
 	{
 	public:
+		typedef UDKEmitterPool__AttachedExplosionLight AttachedExplosionLight;
 		ADD_STRUCT(ScriptArray<UDKEmitterPool__AttachedExplosionLight>, RelativeExplosionLights, 564)
 		
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Volume.h"
+namespace UnrealScript
+{
+	class BlockingVolume;
+}
 #include "Engine.SeqAct_Toggle.h"
+#include "Engine.Volume.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

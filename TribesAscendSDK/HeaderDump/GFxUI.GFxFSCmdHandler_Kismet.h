@@ -1,6 +1,10 @@
 #pragma once
-#include "GFxUI.GFxFSCmdHandler.h"
+namespace UnrealScript
+{
+	class GFxFSCmdHandler_Kismet;
+}
 #include "GFxUI.GFxEvent_FSCommand.h"
+#include "GFxUI.GFxFSCmdHandler.h"
 #include "GFxUI.GFxMoviePlayer.h"
 namespace UnrealScript
 {

@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDaDStats;
+}
 #include "Core.Object.h"
-#include "TribesGame.TrDaDStats.DaDScoreInfo.h"
-#include "TribesGame.TrPlayerController.h"
 #include "TribesGame.GfxTrHud.h"
+#include "TribesGame.TrDaDStats.DaDScoreInfo.h"
 #include "TribesGame.TrGameReplicationInfo.h"
+#include "TribesGame.TrPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +31,7 @@ namespace UnrealScript
 	class TrDaDStats : public Object
 	{
 	public:
+		typedef TrDaDStats__DaDScoreInfo DaDScoreInfo;
 		ADD_STRUCT(TrDaDStats__DaDScoreInfo, EnemyDaDScore, 116)
 		ADD_STRUCT(TrDaDStats__DaDScoreInfo, FriendlyDaDScore, 100)
 		ADD_OBJECT(TrPlayerController, TrPC, 96)

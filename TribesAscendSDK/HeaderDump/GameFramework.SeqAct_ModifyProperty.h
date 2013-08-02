@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_ModifyProperty;
+}
 #include "Engine.SequenceAction.h"
 #include "GameFramework.SeqAct_ModifyProperty.PropertyInfo.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class SeqAct_ModifyProperty : public SequenceAction
 	{
 	public:
+		typedef SeqAct_ModifyProperty__PropertyInfo PropertyInfo;
 		ADD_STRUCT(ScriptArray<SeqAct_ModifyProperty__PropertyInfo>, Properties, 232)
 	};
 }

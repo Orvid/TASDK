@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.UIRoot.UIRangeData.h"
-#include "Engine.UIRoot.TextureCoordinates.h"
+namespace UnrealScript
+{
+	struct UIRoot__UIProviderScriptFieldValue;
+}
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "Engine.UIRoot.EUIDataProviderFieldType.h"
 #include "Engine.Surface.h"
+#include "Engine.UIRoot.EUIDataProviderFieldType.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "Engine.UIRoot.UIRangeData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

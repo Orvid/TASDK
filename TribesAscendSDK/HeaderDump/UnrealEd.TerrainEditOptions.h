@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TerrainEditOptions;
+}
 #include "Core.Object.h"
 namespace UnrealScript
 {

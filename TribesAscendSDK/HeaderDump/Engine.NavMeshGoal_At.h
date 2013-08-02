@@ -1,9 +1,12 @@
 #pragma once
-#include "Engine.NavMeshPathGoalEvaluator.h"
+namespace UnrealScript
+{
+	class NavMeshGoal_At;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.NavigationHandle.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Actor.h"
+#include "Engine.NavMeshPathGoalEvaluator.h"
+#include "Engine.NavigationHandle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

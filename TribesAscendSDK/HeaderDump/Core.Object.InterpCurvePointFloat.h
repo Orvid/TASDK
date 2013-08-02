@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Object__InterpCurvePointFloat;
+}
 #include "Core.Object.EInterpCurveMode.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.Controller.h"
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	struct Camera__TViewTarget;
+}
 #include "Core.Object.TPOV.h"
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
 #include "Engine.PlayerReplicationInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -19,7 +23,6 @@ namespace UnrealScript
 		ADD_OBJECT(Actor, Target, 0)
 		ADD_STRUCT(Object__TPOV, POV, 8)
 		ADD_STRUCT(float, AspectRatio, 36)
-		ADD_OBJECT(Controller, Controller, 4)
 		ADD_OBJECT(PlayerReplicationInfo, PRI, 40)
 	};
 }

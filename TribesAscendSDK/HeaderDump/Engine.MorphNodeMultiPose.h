@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MorphNodeMultiPose;
+}
 #include "Engine.MorphNodeBase.h"
 #include "Engine.MorphTarget.h"
 #define ADD_STRUCT(x, y, offset) \

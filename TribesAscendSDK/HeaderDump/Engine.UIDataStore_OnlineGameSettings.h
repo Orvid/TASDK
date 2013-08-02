@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.UIDataStore_Settings.h"
-#include "Engine.UIDataStore_OnlineGameSettings.GameSettingsCfg.h"
+namespace UnrealScript
+{
+	class UIDataStore_OnlineGameSettings;
+}
 #include "Engine.LocalPlayer.h"
-#include "Engine.UIDataProvider.h"
 #include "Engine.OnlineGameSettings.h"
+#include "Engine.UIDataProvider.h"
 #include "Engine.UIDataProvider_Settings.h"
+#include "Engine.UIDataStore_OnlineGameSettings.GameSettingsCfg.h"
+#include "Engine.UIDataStore_Settings.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -18,6 +22,7 @@ namespace UnrealScript
 	class UIDataStore_OnlineGameSettings : public UIDataStore_Settings
 	{
 	public:
+		typedef UIDataStore_OnlineGameSettings__GameSettingsCfg GameSettingsCfg;
 		ADD_STRUCT(ScriptArray<UIDataStore_OnlineGameSettings__GameSettingsCfg>, GameSettingsCfgList, 120)
 		ADD_STRUCT(int, SelectedIndex, 136)
 		ADD_OBJECT(ScriptClass, SettingsProviderClass, 132)

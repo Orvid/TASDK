@@ -1,6 +1,10 @@
 #pragma once
-#include "UTGame.UTEmitter.h"
+namespace UnrealScript
+{
+	class UTReplicatedEmitter;
+}
 #include "Engine.ParticleSystem.h"
+#include "UTGame.UTEmitter.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

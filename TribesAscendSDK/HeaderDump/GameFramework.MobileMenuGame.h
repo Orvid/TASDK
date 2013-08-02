@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class MobileMenuGame;
+}
+#include "Engine.Controller.h"
 #include "Engine.GameInfo.h"
 #include "Engine.PlayerController.h"
-#include "Engine.Controller.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

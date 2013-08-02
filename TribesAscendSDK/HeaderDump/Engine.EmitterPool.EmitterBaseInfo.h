@@ -1,6 +1,8 @@
 #pragma once
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	struct EmitterPool__EmitterBaseInfo;
+}
 #include "Engine.Actor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

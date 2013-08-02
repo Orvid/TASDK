@@ -1,9 +1,14 @@
 #pragma once
-#include "GFxUI.GFxMoviePlayer.h"
+namespace UnrealScript
+{
+	class GFxUIFrontEnd_TitleScreen;
+}
 #include "Core.Object.EInputEvent.h"
 #include "GFxUI.GFxClikWidget.h"
 #include "GFxUI.GFxClikWidget.EventData.h"
+#include "GFxUI.GFxMoviePlayer.h"
 #include "GFxUI.GFxObject.h"
+#include "UTGame.GFxUIFrontEnd_TitleScreen.MenuButtonsType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,6 +22,7 @@ namespace UnrealScript
 	class GFxUIFrontEnd_TitleScreen : public GFxMoviePlayer
 	{
 	public:
+		typedef GFxUIFrontEnd_TitleScreen__MenuButtonsType MenuButtonsType;
 		ADD_STRUCT(byte, Selection, 444)
 		ADD_STRUCT(ScriptString*, CampaignMap, 432)
 		ADD_STRUCT(ScriptString*, InstantActionMap, 420)

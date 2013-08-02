@@ -1,11 +1,15 @@
 #pragma once
-#include "GameFramework.MobileMenuObject.h"
-#include "GameFramework.MobilePlayerInput.h"
+namespace UnrealScript
+{
+	class MobileMenuButton;
+}
 #include "Core.Object.LinearColor.h"
-#include "Engine.Texture2D.h"
-#include "GameFramework.MobileMenuObject.UVCoords.h"
 #include "Engine.Canvas.h"
+#include "Engine.Texture2D.h"
+#include "GameFramework.MobileMenuObject.h"
+#include "GameFramework.MobileMenuObject.UVCoords.h"
 #include "GameFramework.MobileMenuScene.h"
+#include "GameFramework.MobilePlayerInput.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

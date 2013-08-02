@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataStore_GameResource;
+}
 #include "Core.Object.MultiMap_Mirror.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.UIDataStore.h"
 #include "Engine.UIDataStore_GameResource.GameResourceDataProvider.h"
-#include "Core.Object.Pointer.h"
 #include "Engine.UIResourceDataProvider.h"
 #include "Engine.UIRoot.UIProviderScriptFieldValue.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -28,6 +32,7 @@ namespace UnrealScript
 	class UIDataStore_GameResource : public UIDataStore
 	{
 	public:
+		typedef UIDataStore_GameResource__GameResourceDataProvider GameResourceDataProvider;
 		ADD_STRUCT(ScriptArray<UIDataStore_GameResource__GameResourceDataProvider>, ElementProviderTypes, 124)
 		ADD_STRUCT(Object__MultiMap_Mirror, ListElementProviders, 136)
 		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementProvider, 120)

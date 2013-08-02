@@ -1,17 +1,19 @@
 #pragma once
-#include "UDKBase.UDKWeaponPawn.h"
-#include "Core.Object.Vector.h"
-#include "Engine.HUD.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.Weapon.h"
-#include "Engine.Pawn.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.TraceHitInfo.h"
-#include "UDKBase.UDKCarriedObject.h"
-#include "Engine.Actor.h"
-#include "UTGame.UTHUD.h"
-#include "Engine.Canvas.h"
+namespace UnrealScript
+{
+	class UTWeaponPawn;
+}
 #include "Core.Object.Vector2D.h"
+#include "Engine.Actor.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.HUD.h"
+#include "Engine.Pawn.h"
+#include "Engine.Weapon.h"
+#include "UDKBase.UDKCarriedObject.h"
+#include "UDKBase.UDKWeaponPawn.h"
+#include "UTGame.UTHUD.h"
 namespace UnrealScript
 {
 	class UTWeaponPawn : public UDKWeaponPawn

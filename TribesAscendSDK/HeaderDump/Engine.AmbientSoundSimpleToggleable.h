@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class AmbientSoundSimpleToggleable;
+}
 #include "Engine.AmbientSoundSimple.h"
-#include "Engine.SeqAct_Toggle.h"
 #include "Engine.AmbientSoundSimpleToggleable.CheckpointRecord.h"
+#include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class AmbientSoundSimpleToggleable : public AmbientSoundSimple
 	{
 	public:
+		typedef AmbientSoundSimpleToggleable__CheckpointRecord CheckpointRecord;
 		ADD_STRUCT(float, FadeOutVolumeLevel, 516)
 		ADD_STRUCT(float, FadeOutDuration, 512)
 		ADD_STRUCT(float, FadeInVolumeLevel, 508)

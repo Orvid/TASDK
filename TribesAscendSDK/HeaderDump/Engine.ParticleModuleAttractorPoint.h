@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.ParticleModuleAttractorBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleAttractorPoint;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleAttractorBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

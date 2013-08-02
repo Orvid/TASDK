@@ -1,67 +1,75 @@
 #pragma once
-#include "Engine.ZoneInfo.h"
-#include "Engine.WorldInfo.ENetMode.h"
-#include "Engine.ClipPadEntry.h"
-#include "Engine.GameInfo.h"
-#include "Engine.EmitterPool.h"
-#include "Engine.LevelStreaming.h"
+namespace UnrealScript
+{
+	class WorldInfo;
+}
+#include "Core.Object.h"
 #include "Core.Object.Color.h"
-#include "Engine.GameReplicationInfo.h"
+#include "Core.Object.Double.h"
+#include "Core.Object.Guid.h"
+#include "Core.Object.LinearColor.h"
 #include "Core.Object.Map_Mirror.h"
-#include "Core.Object.Vector.h"
-#include "Engine.ReverbVolume.InteriorSettings.h"
-#include "Engine.FractureManager.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "Engine.MusicTrackDataStructures.MusicTrackStruct.h"
-#include "Engine.ProcBuildingRuleset.h"
 #include "Engine.Actor.ETravelType.h"
-#include "Engine.DecalManager.h"
+#include "Engine.BookMark.h"
+#include "Engine.ClipPadEntry.h"
+#include "Engine.Controller.h"
 #include "Engine.CoverLink.h"
-#include "Engine.ParticleEventManager.h"
-#include "Engine.PostProcessVolume.PostProcessSettings.h"
+#include "Engine.CrowdPopulationManagerBase.h"
+#include "Engine.DecalManager.h"
+#include "Engine.DefaultPhysicsVolume.h"
+#include "Engine.EmitterPool.h"
+#include "Engine.EngineTypes.ELightingBuildQuality.h"
+#include "Engine.EnvironmentVolume.h"
+#include "Engine.FractureManager.h"
+#include "Engine.GameInfo.h"
+#include "Engine.GameReplicationInfo.h"
+#include "Engine.KismetBookMark.h"
+#include "Engine.LevelStreaming.h"
+#include "Engine.LightmassLevelSettings.h"
+#include "Engine.MapInfo.h"
+#include "Engine.MassiveLODOverrideVolume.h"
+#include "Engine.MusicTrackDataStructures.MusicTrackStruct.h"
 #include "Engine.NavMeshPathConstraint.h"
+#include "Engine.NavMeshPathGoalEvaluator.h"
+#include "Engine.NavigationHandle.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.ObjectReferencer.h"
+#include "Engine.ParticleEventManager.h"
+#include "Engine.Pawn.h"
+#include "Engine.PhysicsLODVerticalEmitter.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.PortalVolume.h"
 #include "Engine.PostProcessChain.h"
 #include "Engine.PostProcessVolume.h"
-#include "Engine.ReverbVolume.ReverbSettings.h"
-#include "Engine.EnvironmentVolume.h"
-#include "Engine.ReverbVolume.h"
-#include "Core.Object.h"
-#include "Engine.MassiveLODOverrideVolume.h"
-#include "Engine.PortalVolume.h"
-#include "Engine.WorldInfo.WorldFractureSettings.h"
-#include "Engine.Sequence.h"
-#include "Core.Object.Double.h"
-#include "Engine.BookMark.h"
-#include "Engine.KismetBookMark.h"
-#include "Engine.Texture2D.h"
-#include "Engine.MapInfo.h"
-#include "Engine.WorldInfo.EVisibilityAggressiveness.h"
-#include "Engine.EngineTypes.ELightingBuildQuality.h"
-#include "Engine.CrowdPopulationManagerBase.h"
-#include "Engine.NavigationPoint.h"
-#include "Engine.DefaultPhysicsVolume.h"
-#include "Engine.Controller.h"
-#include "Engine.WorldInfo.HostMigrationState.h"
-#include "Engine.Pawn.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
+#include "Engine.ProcBuildingRuleset.h"
 #include "Engine.Pylon.h"
-#include "Engine.WorldInfo.NetViewer.h"
-#include "Engine.ObjectReferencer.h"
-#include "Engine.WorldInfo.PhysXSceneProperties.h"
-#include "Engine.NavigationHandle.h"
-#include "Engine.WorldInfo.CompartmentRunList.h"
-#include "Engine.WorldInfo.ApexModuleDestructibleSettings.h"
-#include "Engine.PhysicsLODVerticalEmitter.h"
-#include "Engine.Scene.EDetailMode.h"
-#include "Engine.WorldInfo.PhysXVerticalProperties.h"
-#include "Core.Object.LinearColor.h"
-#include "Engine.WorldInfo.ScreenMessageString.h"
-#include "Engine.LightmassLevelSettings.h"
-#include "Engine.WorldInfo.EConsoleType.h"
-#include "Engine.WorldInfo.LightmassWorldInfoSettings.h"
-#include "Engine.SeqAct_Latent.h"
-#include "Engine.NavMeshPathGoalEvaluator.h"
 #include "Engine.ReachSpec.h"
-#include "Core.Object.Guid.h"
+#include "Engine.ReverbVolume.h"
+#include "Engine.ReverbVolume.InteriorSettings.h"
+#include "Engine.ReverbVolume.ReverbSettings.h"
+#include "Engine.Scene.EDetailMode.h"
+#include "Engine.SeqAct_Latent.h"
+#include "Engine.Sequence.h"
+#include "Engine.Texture2D.h"
+#include "Engine.WorldInfo.ApexModuleDestructibleSettings.h"
+#include "Engine.WorldInfo.CompartmentRunList.h"
+#include "Engine.WorldInfo.EConsoleType.h"
+#include "Engine.WorldInfo.EHostMigrationProgress.h"
+#include "Engine.WorldInfo.ENetMode.h"
+#include "Engine.WorldInfo.EVisibilityAggressiveness.h"
+#include "Engine.WorldInfo.HostMigrationState.h"
+#include "Engine.WorldInfo.LightmassWorldInfoSettings.h"
+#include "Engine.WorldInfo.NavMeshPathConstraintCacheDatum.h"
+#include "Engine.WorldInfo.NavMeshPathGoalEvaluatorCacheDatum.h"
+#include "Engine.WorldInfo.NetViewer.h"
+#include "Engine.WorldInfo.PhysXEmitterVerticalProperties.h"
+#include "Engine.WorldInfo.PhysXSceneProperties.h"
+#include "Engine.WorldInfo.PhysXSimulationProperties.h"
+#include "Engine.WorldInfo.PhysXVerticalProperties.h"
+#include "Engine.WorldInfo.ScreenMessageString.h"
+#include "Engine.WorldInfo.WorldFractureSettings.h"
+#include "Engine.ZoneInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -85,6 +93,23 @@ namespace UnrealScript
 	class WorldInfo : public ZoneInfo
 	{
 	public:
+		typedef WorldInfo__EHostMigrationProgress EHostMigrationProgress;
+		typedef WorldInfo__EConsoleType EConsoleType;
+		typedef WorldInfo__EVisibilityAggressiveness EVisibilityAggressiveness;
+		typedef WorldInfo__ENetMode ENetMode;
+		typedef WorldInfo__NavMeshPathGoalEvaluatorCacheDatum NavMeshPathGoalEvaluatorCacheDatum;
+		typedef WorldInfo__HostMigrationState HostMigrationState;
+		typedef WorldInfo__PhysXVerticalProperties PhysXVerticalProperties;
+		typedef WorldInfo__WorldFractureSettings WorldFractureSettings;
+		typedef WorldInfo__NavMeshPathConstraintCacheDatum NavMeshPathConstraintCacheDatum;
+		typedef WorldInfo__LightmassWorldInfoSettings LightmassWorldInfoSettings;
+		typedef WorldInfo__ScreenMessageString ScreenMessageString;
+		typedef WorldInfo__PhysXEmitterVerticalProperties PhysXEmitterVerticalProperties;
+		typedef WorldInfo__ApexModuleDestructibleSettings ApexModuleDestructibleSettings;
+		typedef WorldInfo__PhysXSceneProperties PhysXSceneProperties;
+		typedef WorldInfo__PhysXSimulationProperties PhysXSimulationProperties;
+		typedef WorldInfo__CompartmentRunList CompartmentRunList;
+		typedef WorldInfo__NetViewer NetViewer;
 		static const auto MAX_INSTANCES_PER_CLASS = 5;
 		ADD_STRUCT(WorldInfo__ENetMode, NetMode, 1048)
 		ADD_OBJECT(GameInfo, Game, 1088)

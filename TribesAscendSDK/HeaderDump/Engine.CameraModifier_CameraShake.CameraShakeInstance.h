@@ -1,9 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	struct CameraModifier_CameraShake__CameraShakeInstance;
+}
 #include "Core.Object.Matrix.h"
 #include "Engine.Camera.ECameraAnimPlaySpace.h"
 #include "Engine.CameraAnimInst.h"
 #include "Engine.CameraShake.h"
-#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

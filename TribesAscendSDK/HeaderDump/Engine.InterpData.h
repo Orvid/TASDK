@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.InterpFilter.h"
-#include "Engine.SequenceVariable.h"
-#include "Engine.InterpGroup.h"
+namespace UnrealScript
+{
+	class InterpData;
+}
 #include "Engine.InterpCurveEdSetup.h"
 #include "Engine.InterpData.AnimSetBakeAndPruneStatus.h"
+#include "Engine.InterpFilter.h"
+#include "Engine.InterpGroup.h"
+#include "Engine.SequenceVariable.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +31,7 @@ namespace UnrealScript
 	class InterpData : public SequenceVariable
 	{
 	public:
+		typedef InterpData__AnimSetBakeAndPruneStatus AnimSetBakeAndPruneStatus;
 		ADD_STRUCT(ScriptArray<class InterpGroup*>, InterpGroups, 156)
 		ADD_STRUCT(ScriptArray<class InterpFilter*>, InterpFilters, 172)
 		ADD_STRUCT(ScriptArray<class InterpFilter*>, DefaultFilters, 188)

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PBRuleNodeSplit;
+}
 #include "Engine.PBRuleNodeBase.h"
 #include "Engine.PBRuleNodeSplit.RBSplitInfo.h"
 #include "Engine.ProcBuildingRuleset.EProcBuildingAxis.h"
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class PBRuleNodeSplit : public PBRuleNodeBase
 	{
 	public:
+		typedef PBRuleNodeSplit__RBSplitInfo RBSplitInfo;
 		ADD_STRUCT(ScriptArray<PBRuleNodeSplit__RBSplitInfo>, SplitSetup, 108)
 		ADD_STRUCT(ProcBuildingRuleset__EProcBuildingAxis, SplitAxis, 104)
 	};

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GenericBrowserType_LensFlare;
+}
 #include "UnrealEd.GenericBrowserType.h"
 namespace UnrealScript
 {

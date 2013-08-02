@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrAction;
+}
 #include "Core.Object.h"
 #include "TribesGame.GFxTrPage.h"
 #define ADD_STRUCT(x, y, offset) \

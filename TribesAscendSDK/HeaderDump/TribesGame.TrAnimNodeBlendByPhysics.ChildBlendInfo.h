@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrAnimNodeBlendByPhysics__ChildBlendInfo;
+}
 #include "Engine.Actor.EPhysics.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

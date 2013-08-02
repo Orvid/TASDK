@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Player;
+}
 #include "Core.Object.h"
 #include "Core.Object.Pointer.h"
 #include "Engine.PlayerController.h"

@@ -1,17 +1,19 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTGib;
+}
 #include "Engine.Actor.h"
-#include "UTGame.UTGib.StaticMeshDatum.h"
-#include "Engine.ParticleSystem.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.MaterialInstance.h"
-#include "Core.Object.Vector.h"
-#include "Engine.SoundCue.h"
-#include "Engine.MaterialInstanceTimeVarying.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Engine.HUD.h"
-#include "Engine.StaticMesh.h"
-#include "Engine.PlayerController.h"
 #include "Engine.Actor.CollisionImpactData.h"
+#include "Engine.HUD.h"
+#include "Engine.MaterialInstance.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.MaterialInstanceTimeVarying.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.PlayerController.h"
+#include "Engine.SoundCue.h"
+#include "Engine.StaticMesh.h"
+#include "UTGame.UTGib.StaticMeshDatum.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -35,6 +37,7 @@ namespace UnrealScript
 	class UTGib : public Actor
 	{
 	public:
+		typedef UTGib__StaticMeshDatum StaticMeshDatum;
 		ADD_STRUCT(ScriptName, DecalDissolveParamName, 500)
 		ADD_STRUCT(float, DecalWaitTimeBeforeDissolve, 508)
 		ADD_BOOL(bUseUnrealPhysics, 540, 0x1)

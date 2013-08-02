@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AICommandNodeRoot;
+}
 #include "Engine.AICommandNodeBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

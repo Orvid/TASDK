@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKAnimBlendByFall;
+}
 #include "UDKBase.UDKAnimBlendBase.h"
-#include "UDKBase.UDKAnimNodeJumpLeanOffset.h"
 #include "UDKBase.UDKAnimBlendByFall.EBlendFallTypes.h"
+#include "UDKBase.UDKAnimNodeJumpLeanOffset.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +29,7 @@ namespace UnrealScript
 	class UDKAnimBlendByFall : public UDKAnimBlendBase
 	{
 	public:
+		typedef UDKAnimBlendByFall__EBlendFallTypes EBlendFallTypes;
 		ADD_OBJECT(UDKAnimNodeJumpLeanOffset, CachedLeanNode, 320)
 		ADD_STRUCT(float, LastFallingVelocity, 316)
 		ADD_STRUCT(UDKAnimBlendByFall__EBlendFallTypes, FallState, 312)

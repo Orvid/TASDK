@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ListEmittersUsingModuleCommandlet;
+}
 #include "Core.Commandlet.h"
 namespace UnrealScript
 {

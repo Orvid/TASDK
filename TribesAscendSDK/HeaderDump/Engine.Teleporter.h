@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine.NavigationPoint.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class Teleporter;
+}
 #include "Engine.Actor.h"
+#include "Engine.NavigationPoint.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

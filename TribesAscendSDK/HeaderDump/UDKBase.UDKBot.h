@@ -1,15 +1,18 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class UDKBot;
+}
 #include "Engine.AIController.h"
 #include "Engine.Actor.h"
-#include "UDKBase.UDKBot.EnemyPosition.h"
-#include "Engine.Pawn.h"
-#include "UDKBase.UDKSquadAI.h"
 #include "Engine.NavigationPoint.h"
+#include "Engine.Pawn.h"
+#include "Engine.PickupFactory.h"
 #include "Engine.Projectile.h"
 #include "Engine.Vehicle.h"
+#include "UDKBase.UDKBot.EnemyPosition.h"
+#include "UDKBase.UDKSquadAI.h"
 #include "UDKBase.UDKVehicle.h"
-#include "Engine.PickupFactory.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,6 +36,7 @@ namespace UnrealScript
 	class UDKBot : public AIController
 	{
 	public:
+		typedef UDKBot__EnemyPosition EnemyPosition;
 		ADD_STRUCT(ScriptArray<UDKBot__EnemyPosition>, SavedPositions, 960)
 		ADD_STRUCT(float, MultiJumpZ, 1120)
 		ADD_STRUCT(float, DodgeToGoalPct, 1116)

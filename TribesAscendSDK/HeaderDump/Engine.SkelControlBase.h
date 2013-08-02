@@ -1,7 +1,12 @@
 #pragma once
-#include "Engine.AnimObject.h"
-#include "Engine.AnimNode.h"
+namespace UnrealScript
+{
+	class SkelControlBase;
+}
 #include "Core.Object.AlphaBlendType.h"
+#include "Engine.AnimNode.h"
+#include "Engine.AnimObject.h"
+#include "Engine.SkelControlBase.EBoneControlSpace.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +30,7 @@ namespace UnrealScript
 	class SkelControlBase : public AnimObject
 	{
 	public:
+		typedef SkelControlBase__EBoneControlSpace EBoneControlSpace;
 		ADD_STRUCT(ScriptArray<ScriptName>, StrengthAnimNodeNameList, 132)
 		ADD_STRUCT(ScriptArray<class AnimNode*>, CachedNodeList, 144)
 		ADD_STRUCT(int, ControlPosY, 184)

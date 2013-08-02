@@ -1,6 +1,8 @@
 #pragma once
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	struct Engine__DropNoteInfo;
+}
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

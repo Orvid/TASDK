@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineRecentPlayersList;
+}
 #include "Core.Object.h"
 #include "Engine.OnlineRecentPlayersList.CurrentPlayerMet.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.OnlineRecentPlayersList.RecentParty.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,6 +16,8 @@ namespace UnrealScript
 	class OnlineRecentPlayersList : public Object
 	{
 	public:
+		typedef OnlineRecentPlayersList__RecentParty RecentParty;
+		typedef OnlineRecentPlayersList__CurrentPlayerMet CurrentPlayerMet;
 		ADD_STRUCT(ScriptArray<OnlineSubsystem__UniqueNetId>, RecentPlayers, 60)
 		ADD_STRUCT(ScriptArray<OnlineRecentPlayersList__RecentParty>, RecentParties, 72)
 		ADD_STRUCT(ScriptArray<OnlineRecentPlayersList__CurrentPlayerMet>, CurrentPlayers, 120)

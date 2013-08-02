@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class FixAmbiguousMaterialParametersCommandlet;
+}
 #include "Core.Commandlet.h"
 namespace UnrealScript
 {

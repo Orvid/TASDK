@@ -1,8 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class Landscape;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.Info.h"
 #include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
+#include "Engine.Info.h"
 #include "Engine.Landscape.LandscapeLayerInfo.h"
+#include "Engine.Landscape.LandscapeWeightmapUsage.h"
 #include "Engine.Material.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -27,6 +32,8 @@ namespace UnrealScript
 	class Landscape : public Info
 	{
 	public:
+		typedef Landscape__LandscapeLayerInfo LandscapeLayerInfo;
+		typedef Landscape__LandscapeWeightmapUsage LandscapeWeightmapUsage;
 		ADD_STRUCT(ScriptArray<ScriptName>, LayerNames, 484)
 		ADD_STRUCT(ScriptArray<Landscape__LandscapeLayerInfo>, LayerInfos, 496)
 		ADD_STRUCT(ScriptArray<

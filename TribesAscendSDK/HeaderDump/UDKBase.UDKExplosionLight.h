@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKExplosionLight;
+}
 #include "Engine.PointLightComponent.h"
 #include "UDKBase.UDKExplosionLight.LightValues.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class UDKExplosionLight : public PointLightComponent
 	{
 	public:
+		typedef UDKExplosionLight__LightValues LightValues;
 		ADD_STRUCT(ScriptArray<UDKExplosionLight__LightValues>, TimeShift, 600)
 		ADD_STRUCT(int, TimeShiftIndex, 596)
 		ADD_STRUCT(float, Lifetime, 592)

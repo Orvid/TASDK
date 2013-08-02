@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.SoundCue.h"
-#include "Engine.SequenceAction.h"
+namespace UnrealScript
+{
+	class SeqAct_PlayFaceFXAnim;
+}
 #include "Engine.FaceFXAnimSet.h"
+#include "Engine.SequenceAction.h"
+#include "Engine.SoundCue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

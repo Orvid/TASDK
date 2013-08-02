@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct PBRuleNodeMesh__BuildingMeshInfo;
+}
 #include "Engine.MaterialInterface.h"
 #include "Engine.PBRuleNodeMesh.BuildingMatOverrides.h"
 #include "Engine.StaticMesh.h"

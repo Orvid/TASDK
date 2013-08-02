@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrRabbitLeaderboard;
+}
 #include "Core.Object.h"
 #include "TribesGame.GfxTrHud.h"
-#include "TribesGame.TrRabbitLeaderboard.LeaderboardSlot.h"
-#include "TribesGame.TrPlayerController.h"
 #include "TribesGame.TrGameReplicationInfo.h"
+#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrRabbitLeaderboard.LeaderboardSlot.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +31,7 @@ namespace UnrealScript
 	class TrRabbitLeaderboard : public Object
 	{
 	public:
+		typedef TrRabbitLeaderboard__LeaderboardSlot LeaderboardSlot;
 		ADD_OBJECT(GfxTrHud, m_MoviePlayer, 72)
 		ADD_BOOL(bIsActive, 68, 0x4)
 		ADD_STRUCT(TrRabbitLeaderboard__LeaderboardSlot, LeaderboardSlots, 80)

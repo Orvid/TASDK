@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrScene;
+}
+#include "Engine.OnlineSubsystem.h"
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.GFxTrMenuMoviePlayer.h"
-#include "Engine.OnlineSubsystem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

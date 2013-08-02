@@ -1,15 +1,17 @@
 #pragma once
-#include "Engine.AnimNodeSequence.h"
-#include "Engine.Inventory.h"
-#include "Engine.Weapon.EWeaponFireType.h"
-#include "Engine.HUD.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class Weapon;
+}
 #include "Engine.AIController.h"
 #include "Engine.Actor.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.Pawn.h"
 #include "Engine.Actor.ImpactInfo.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Engine.HUD.h"
+#include "Engine.Inventory.h"
+#include "Engine.Pawn.h"
 #include "Engine.Projectile.h"
+#include "Engine.Weapon.EWeaponFireType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,6 +35,7 @@ namespace UnrealScript
 	class Weapon : public Inventory
 	{
 	public:
+		typedef Weapon__EWeaponFireType EWeaponFireType;
 		ADD_BOOL(bInstantHit, 672, 0x10)
 		ADD_STRUCT(float, WeaponRange, 676)
 		ADD_STRUCT(byte, CurrentFireMode, 552)

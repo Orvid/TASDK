@@ -1,8 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class NavMeshPath_Toward;
+}
 #include "Engine.Actor.h"
 #include "Engine.NavMeshPathConstraint.h"
 #include "Engine.NavigationHandle.h"
-#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

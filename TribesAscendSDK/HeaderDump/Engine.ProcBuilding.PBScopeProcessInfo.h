@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ProcBuilding__PBScopeProcessInfo;
+}
 #include "Engine.ProcBuilding.h"
 #include "Engine.ProcBuildingRuleset.h"
 #define ADD_BOOL(name, offset, mask) \

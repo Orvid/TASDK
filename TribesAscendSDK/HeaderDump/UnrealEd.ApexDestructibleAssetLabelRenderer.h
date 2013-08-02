@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ApexDestructibleAssetLabelRenderer;
+}
 #include "UnrealEd.ThumbnailLabelRenderer.h"
 namespace UnrealScript
 {

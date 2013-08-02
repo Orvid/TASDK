@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackParticleReplayHelper;
+}
 #include "UnrealEd.InterpTrackHelper.h"
 namespace UnrealScript
 {

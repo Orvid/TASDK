@@ -1,13 +1,17 @@
 #pragma once
-#include "TribesGame.TrPlayerVoice.VGSContextCommandToVoiceMap.h"
-#include "TribesGame.TrDevice.h"
-#include "TribesGame.TrPlayerVoice.VGSCommandToVoiceMap.h"
-#include "TribesGame.TrPlayerController.h"
-#include "Engine.SoundCue.h"
-#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
+namespace UnrealScript
+{
+	class TrPlayerVoice;
+}
 #include "Engine.PlayerReplicationInfo.h"
+#include "Engine.SoundCue.h"
+#include "TribesGame.TrDevice.h"
+#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrPlayerVoice.VGSCommandToVoiceMap.h"
+#include "TribesGame.TrPlayerVoice.VGSContextCommandToVoiceMap.h"
 #include "TribesGame.TrVGSCommandList.EVGSContextActor.h"
 #include "TribesGame.TrVGSCommandList.EVGSContextLocation.h"
+#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,6 +35,8 @@ namespace UnrealScript
 	class TrPlayerVoice : public TrDevice
 	{
 	public:
+		typedef TrPlayerVoice__VGSCommandToVoiceMap VGSCommandToVoiceMap;
+		typedef TrPlayerVoice__VGSContextCommandToVoiceMap VGSContextCommandToVoiceMap;
 		ADD_STRUCT(ScriptArray<TrPlayerVoice__VGSCommandToVoiceMap>, m_VGSCommandToVoiceMap, 2148)
 		ADD_STRUCT(ScriptArray<class SoundCue*>, m_VGSSampleMap, 2160)
 		ADD_STRUCT(ScriptArray<TrPlayerVoice__VGSContextCommandToVoiceMap>, m_VGSContextCommandToVoiceMap, 2172)

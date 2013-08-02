@@ -1,9 +1,15 @@
 #pragma once
-#include "Engine.MaterialInterface.h"
-#include "Engine.ApexAsset.h"
+namespace UnrealScript
+{
+	class ApexDestructibleAsset;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.FractureMaterial.h"
+#include "Engine.ApexAsset.h"
+#include "Engine.ApexDestructibleAsset.NxDestructibleDepthParameters.h"
 #include "Engine.ApexDestructibleAsset.NxDestructibleParameters.h"
+#include "Engine.ApexDestructibleAsset.NxDestructibleParametersFlag.h"
+#include "Engine.FractureMaterial.h"
+#include "Engine.MaterialInterface.h"
 #include "Engine.PhysicalMaterial.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -28,6 +34,9 @@ namespace UnrealScript
 	class ApexDestructibleAsset : public ApexAsset
 	{
 	public:
+		typedef ApexDestructibleAsset__NxDestructibleParameters NxDestructibleParameters;
+		typedef ApexDestructibleAsset__NxDestructibleDepthParameters NxDestructibleDepthParameters;
+		typedef ApexDestructibleAsset__NxDestructibleParametersFlag NxDestructibleParametersFlag;
 		ADD_STRUCT(ScriptArray<class MaterialInterface*>, Materials, 112)
 		ADD_STRUCT(ScriptArray<class FractureMaterial*>, FractureMaterials, 124)
 		ADD_STRUCT(ApexDestructibleAsset__NxDestructibleParameters, DestructibleParameters, 172)

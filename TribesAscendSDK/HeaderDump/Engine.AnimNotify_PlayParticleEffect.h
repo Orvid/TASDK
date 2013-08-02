@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNotify_PlayParticleEffect;
+}
 #include "Engine.AnimNotify.h"
 #include "Engine.ParticleSystem.h"
 #define ADD_BOOL(name, offset, mask) \

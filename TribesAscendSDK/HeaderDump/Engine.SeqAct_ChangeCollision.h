@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SequenceAction.h"
+namespace UnrealScript
+{
+	class SeqAct_ChangeCollision;
+}
 #include "Engine.Actor.ECollisionType.h"
+#include "Engine.SequenceAction.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

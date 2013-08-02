@@ -1,23 +1,25 @@
 #pragma once
-#include "UDKBase.UDKCarriedObject.h"
-#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class UTCarriedObject;
+}
+#include "Core.Object.LinearColor.h"
+#include "Engine.Actor.h"
+#include "Engine.Canvas.h"
 #include "Engine.Controller.h"
 #include "Engine.ForceFeedbackWaveform.h"
-#include "Core.Object.LinearColor.h"
 #include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
 #include "Engine.SoundCue.h"
 #include "Engine.Texture2D.h"
 #include "Engine.UIRoot.TextureCoordinates.h"
-#include "UTGame.UTPlayerReplicationInfo.h"
-#include "Engine.PlayerController.h"
-#include "Engine.Canvas.h"
+#include "UDKBase.UDKCarriedObject.h"
+#include "UDKBase.UDKGameObjective.h"
+#include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
+#include "UTGame.UTGameObjective.h"
 #include "UTGame.UTMapInfo.h"
 #include "UTGame.UTPlayerController.h"
-#include "UTGame.UTGameObjective.h"
-#include "Engine.Actor.h"
-#include "UDKBase.UDKGameObjective.h"
+#include "UTGame.UTPlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

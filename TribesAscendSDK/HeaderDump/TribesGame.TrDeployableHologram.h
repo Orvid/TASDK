@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SkeletalMeshActorSpawnable.h"
+namespace UnrealScript
+{
+	class TrDeployableHologram;
+}
 #include "Engine.MaterialInstanceConstant.h"
+#include "Engine.SkeletalMeshActorSpawnable.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UIDataProvider_Settings__SettingsArrayProvider;
+}
 #include "Engine.UIDataProvider_SettingsArray.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

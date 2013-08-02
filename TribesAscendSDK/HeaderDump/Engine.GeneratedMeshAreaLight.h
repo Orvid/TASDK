@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GeneratedMeshAreaLight;
+}
 #include "Engine.SpotLight.h"
 namespace UnrealScript
 {

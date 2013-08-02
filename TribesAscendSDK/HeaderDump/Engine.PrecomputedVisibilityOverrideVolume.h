@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Volume.h"
+namespace UnrealScript
+{
+	class PrecomputedVisibilityOverrideVolume;
+}
 #include "Engine.Actor.h"
+#include "Engine.Volume.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

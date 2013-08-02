@@ -1,18 +1,21 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxMinimapHud;
+}
+#include "Engine.LocalPlayer.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Weapon.h"
+#include "Engine.WorldInfo.h"
 #include "GFxUI.GFxMoviePlayer.h"
+#include "GFxUI.GFxObject.h"
+#include "UTGame.GFxMinimap.h"
+#include "UTGame.GFxMinimapHud.HeEnDisplay.h"
 #include "UTGame.GFxMinimapHud.MessageRow.h"
 #include "UTGame.UTGameReplicationInfo.h"
-#include "GFxUI.GFxObject.h"
-#include "UTGame.UTWeapon.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #include "UTGame.UTVehicle.h"
-#include "UTGame.GFxMinimapHud.HeEnDisplay.h"
-#include "UTGame.GFxMinimap.h"
-#include "Engine.WorldInfo.h"
-#include "Engine.Weapon.h"
-#include "Engine.LocalPlayer.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PlayerReplicationInfo.h"
+#include "UTGame.UTWeapon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -36,6 +39,8 @@ namespace UnrealScript
 	class GFxMinimapHud : public GFxMoviePlayer
 	{
 	public:
+		typedef GFxMinimapHud__MessageRow MessageRow;
+		typedef GFxMinimapHud__HeEnDisplay HeEnDisplay;
 		ADD_BOOL(bIsTeamHUD, 632, 0x1)
 		ADD_STRUCT(float, Radius, 388)
 		ADD_STRUCT(float, NormalZoomf, 396)

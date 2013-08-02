@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TextureExporterTGA;
+}
 #include "Core.Exporter.h"
 namespace UnrealScript
 {

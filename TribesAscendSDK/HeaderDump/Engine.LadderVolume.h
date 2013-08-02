@@ -1,10 +1,12 @@
 #pragma once
-#include "Engine.PhysicsVolume.h"
-#include "Engine.Ladder.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Pawn.h"
-#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	class LadderVolume;
+}
 #include "Engine.Actor.h"
+#include "Engine.Ladder.h"
+#include "Engine.Pawn.h"
+#include "Engine.PhysicsVolume.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

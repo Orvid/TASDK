@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct RB_BodySetup__KCachedConvexData;
+}
 #include "Engine.RB_BodySetup.KCachedConvexDataElement.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

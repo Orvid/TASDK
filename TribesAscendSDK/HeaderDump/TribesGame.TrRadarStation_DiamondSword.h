@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrRadarStation_DiamondSword;
+}
 #include "TribesGame.TrDeployable_RadarSensor.h"
 namespace UnrealScript
 {

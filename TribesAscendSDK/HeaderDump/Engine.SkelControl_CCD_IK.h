@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine.SkelControlBase.EBoneControlSpace.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class SkelControl_CCD_IK;
+}
 #include "Engine.SkelControlBase.h"
+#include "Engine.SkelControlBase.EBoneControlSpace.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

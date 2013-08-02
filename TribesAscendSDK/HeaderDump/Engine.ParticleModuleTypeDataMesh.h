@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleTypeDataMesh;
+}
+#include "Engine.ParticleModuleOrientationAxisLock.EParticleAxisLock.h"
 #include "Engine.ParticleModuleTypeDataBase.h"
 #include "Engine.ParticleModuleTypeDataMesh.EMeshCameraFacingOptions.h"
-#include "Engine.ParticleModuleTypeDataMesh.EMeshScreenAlignment.h"
-#include "Engine.ParticleModuleOrientationAxisLock.EParticleAxisLock.h"
 #include "Engine.ParticleModuleTypeDataMesh.EMeshCameraFacingUpAxis.h"
+#include "Engine.ParticleModuleTypeDataMesh.EMeshScreenAlignment.h"
 #include "Engine.StaticMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -28,6 +32,9 @@ namespace UnrealScript
 	class ParticleModuleTypeDataMesh : public ParticleModuleTypeDataBase
 	{
 	public:
+		typedef ParticleModuleTypeDataMesh__EMeshCameraFacingOptions EMeshCameraFacingOptions;
+		typedef ParticleModuleTypeDataMesh__EMeshCameraFacingUpAxis EMeshCameraFacingUpAxis;
+		typedef ParticleModuleTypeDataMesh__EMeshScreenAlignment EMeshScreenAlignment;
 		ADD_STRUCT(float, Yaw, 92)
 		ADD_STRUCT(float, Roll, 88)
 		ADD_STRUCT(float, Pitch, 84)

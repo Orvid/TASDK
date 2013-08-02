@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpressionTerrainLayerCoords;
+}
 #include "Engine.MaterialExpression.h"
 #include "Engine.MaterialExpressionTerrainLayerCoords.ETerrainCoordMappingType.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class MaterialExpressionTerrainLayerCoords : public MaterialExpression
 	{
 	public:
+		typedef MaterialExpressionTerrainLayerCoords__ETerrainCoordMappingType ETerrainCoordMappingType;
 		ADD_STRUCT(float, MappingPanV, 124)
 		ADD_STRUCT(float, MappingPanU, 120)
 		ADD_STRUCT(float, MappingRotation, 116)

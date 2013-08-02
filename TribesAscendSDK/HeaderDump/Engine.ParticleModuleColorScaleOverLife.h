@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.ParticleModuleColorBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleColorScaleOverLife;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleColorBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

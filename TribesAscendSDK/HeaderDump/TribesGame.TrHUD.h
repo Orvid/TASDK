@@ -1,42 +1,44 @@
 #pragma once
-#include "TribesGame.TrSpectatorHUDCache.h"
+namespace UnrealScript
+{
+	class TrHUD;
+}
 #include "Core.Object.h"
-#include "UTGame.UTGFxHudWrapper.h"
-#include "TribesGame.TrCamera_SpectatorBookmark.h"
-#include "TribesGame.TrVehicle.h"
-#include "Engine.Canvas.h"
-#include "TribesGame.GFxTrUI_TeamSelectionMenu.h"
-#include "TribesGame.TrPlayerController.h"
 #include "Core.Object.Color.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "TribesGame.GfxTrHud.h"
 #include "Core.Object.LinearColor.h"
-#include "Engine.Texture2D.h"
-#include "TribesGame.TrDeployable.h"
-#include "TribesGame.TrCaHStats.h"
-#include "TribesGame.TrProj_Mine.h"
-#include "TribesGame.TrHUD.QueuedAccolade.h"
+#include "Core.Object.Vector2D.h"
+#include "Core.Object.Vector4.h"
+#include "Engine.Actor.h"
+#include "Engine.Canvas.h"
 #include "Engine.Canvas.FontRenderInfo.h"
-#include "TribesGame.TrHUD.OverheadNumber.h"
-#include "Engine.UberPostProcessEffect.h"
+#include "Engine.Material.h"
 #include "Engine.MaterialEffect.h"
-#include "TribesGame.TrDaDStats.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.PlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Texture2D.h"
+#include "Engine.UberPostProcessEffect.h"
+#include "PlatformCommon.TgSupportCommands.GC_ALERT_PRIORITY.h"
+#include "TribesGame.GFxTrUI_TeamSelectionMenu.h"
+#include "TribesGame.GFxTrUI_VehicleMenu.h"
+#include "TribesGame.GfxTrHud.h"
 #include "TribesGame.TrArenaStats.h"
-#include "TribesGame.TrTeamRabbitStats.h"
+#include "TribesGame.TrCaHStats.h"
+#include "TribesGame.TrCamera_SpectatorBookmark.h"
+#include "TribesGame.TrDaDStats.h"
+#include "TribesGame.TrDeployable.h"
+#include "TribesGame.TrHUD.OverheadNumber.h"
+#include "TribesGame.TrHUD.QueuedAccolade.h"
 #include "TribesGame.TrHUDTeamCTFStats.h"
+#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrProj_Mine.h"
 #include "TribesGame.TrRabbitLeaderboard.h"
 #include "TribesGame.TrScoreboard.h"
-#include "TribesGame.GFxTrUI_VehicleMenu.h"
-#include "Engine.Material.h"
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrPawn.h"
-#include "Core.Object.Vector2D.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.Actor.h"
-#include "PlatformCommon.TgSupportCommands.GC_ALERT_PRIORITY.h"
-#include "Core.Object.Vector4.h"
-#include "Engine.PlayerController.h"
+#include "TribesGame.TrSpectatorHUDCache.h"
+#include "TribesGame.TrTeamRabbitStats.h"
+#include "TribesGame.TrVehicle.h"
+#include "UTGame.UTGFxHudWrapper.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -60,6 +62,8 @@ namespace UnrealScript
 	class TrHUD : public UTGFxHudWrapper
 	{
 	public:
+		typedef TrHUD__QueuedAccolade QueuedAccolade;
+		typedef TrHUD__OverheadNumber OverheadNumber;
 		static const auto THR_SPINFUSOR = 1;
 		static const auto THR_SMG = 2;
 		static const auto THR_RIFLE = 3;

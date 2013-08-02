@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.K2NodeBase.h"
-#include "Engine.DMC_Prototype.h"
+namespace UnrealScript
+{
+	class AICommandNodeBase;
+}
 #include "Engine.AIController.h"
 #include "Engine.AITree.AITreeHandle.h"
+#include "Engine.DMC_Prototype.h"
+#include "Engine.K2NodeBase.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

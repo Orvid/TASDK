@@ -1,6 +1,10 @@
 #pragma once
-#include "GFxUI.GFxObject.h"
+namespace UnrealScript
+{
+	class GFxTrDevices;
+}
 #include "Engine.WorldInfo.h"
+#include "GFxUI.GFxObject.h"
 #include "UTGame.GFxMinimapHud.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

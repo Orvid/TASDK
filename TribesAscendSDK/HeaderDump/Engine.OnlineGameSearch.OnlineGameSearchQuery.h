@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct OnlineGameSearch__OnlineGameSearchQuery;
+}
 #include "Engine.OnlineGameSearch.OnlineGameSearchORClause.h"
 #include "Engine.OnlineGameSearch.OnlineGameSearchSortClause.h"
 #define ADD_STRUCT(x, y, offset) \

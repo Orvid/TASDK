@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct StaticMeshActorBasedOnExtremeContent__SMMaterialSetterDatum;
+}
 #include "Engine.MaterialInterface.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

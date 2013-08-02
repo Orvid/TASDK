@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class EditorPlayer;
+}
 #include "Engine.LocalPlayer.h"
 namespace UnrealScript
 {

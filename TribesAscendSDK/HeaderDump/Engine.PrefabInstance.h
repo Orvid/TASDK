@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.PrefabSequence.h"
+namespace UnrealScript
+{
+	class PrefabInstance;
+}
 #include "Core.Object.h"
 #include "Engine.Actor.h"
 #include "Engine.Prefab.h"
+#include "Engine.PrefabSequence.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

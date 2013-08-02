@@ -1,15 +1,18 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameCrowdPopulationManager;
+}
+#include "Core.Object.Pointer.h"
 #include "Engine.CrowdPopulationManagerBase.h"
-#include "GameFramework.SeqAct_GameCrowdSpawner.AgentArchetypeInfo.h"
+#include "Engine.HUD.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
+#include "Engine.NavigationHandle.h"
 #include "GameFramework.GameCrowdAgent.h"
 #include "GameFramework.GameCrowdDestination.h"
-#include "Engine.HUD.h"
-#include "Engine.NavigationHandle.h"
-#include "Engine.LightComponent.LightingChannelContainer.h"
-#include "Core.Object.Pointer.h"
-#include "GameFramework.SeqAct_GameCrowdPopulationManagerToggle.h"
-#include "Core.Object.Vector.h"
 #include "GameFramework.GameCrowdGroup.h"
+#include "GameFramework.SeqAct_GameCrowdPopulationManagerToggle.h"
+#include "GameFramework.SeqAct_GameCrowdSpawner.AgentArchetypeInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

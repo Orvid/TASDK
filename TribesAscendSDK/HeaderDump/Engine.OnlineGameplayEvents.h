@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineGameplayEvents;
+}
 #include "Core.Object.h"
-#include "Engine.OnlineGameplayEvents.PlayerInformation.h"
+#include "Core.Object.Guid.h"
 #include "Engine.OnlineGameplayEvents.GameplayEvent.h"
 #include "Engine.OnlineGameplayEvents.PlayerEvent.h"
-#include "Core.Object.Guid.h"
+#include "Engine.OnlineGameplayEvents.PlayerInformation.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,6 +27,9 @@ namespace UnrealScript
 	class OnlineGameplayEvents : public Object
 	{
 	public:
+		typedef OnlineGameplayEvents__PlayerInformation PlayerInformation;
+		typedef OnlineGameplayEvents__GameplayEvent GameplayEvent;
+		typedef OnlineGameplayEvents__PlayerEvent PlayerEvent;
 		ADD_STRUCT(ScriptArray<OnlineGameplayEvents__PlayerInformation>, PlayerList, 60)
 		ADD_STRUCT(ScriptArray<ScriptString*>, EventDescList, 72)
 		ADD_STRUCT(ScriptArray<ScriptName>, EventNames, 84)

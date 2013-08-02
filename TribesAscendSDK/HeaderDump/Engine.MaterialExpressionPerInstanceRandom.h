@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpressionPerInstanceRandom;
+}
 #include "Engine.MaterialExpression.h"
 namespace UnrealScript
 {

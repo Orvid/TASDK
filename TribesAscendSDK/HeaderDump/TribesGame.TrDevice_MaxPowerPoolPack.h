@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_MaxPowerPoolPack;
+}
 #include "TribesGame.TrDevice_Pack.h"
 namespace UnrealScript
 {

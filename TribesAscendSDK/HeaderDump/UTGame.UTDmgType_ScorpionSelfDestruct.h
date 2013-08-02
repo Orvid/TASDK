@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTDmgType_ScorpionSelfDestruct;
+}
 #include "UTGame.UTDmgType_Burning.h"
 #include "UTGame.UTPlayerReplicationInfo.h"
 #define ADD_STRUCT(x, y, offset) \

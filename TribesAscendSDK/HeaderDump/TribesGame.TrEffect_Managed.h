@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrEffect_Managed;
+}
+#include "Engine.Actor.h"
+#include "Engine.Actor.ImpactInfo.h"
 #include "TribesGame.TrEffect.h"
 #include "TribesGame.TrPawn.h"
-#include "Engine.Actor.ImpactInfo.h"
-#include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

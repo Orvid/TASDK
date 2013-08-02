@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class ForceFieldShapeSphere;
+}
 #include "Engine.ForceFieldShape.h"
 namespace UnrealScript
 {

@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTDataStore_GameSearchPersonal.h"
-#include "UTGame.UTDataStore_GameSearchFavorites.h"
+namespace UnrealScript
+{
+	class UTDataStore_GameSearchHistory;
+}
 #include "Engine.LocalPlayer.h"
+#include "UTGame.UTDataStore_GameSearchFavorites.h"
+#include "UTGame.UTDataStore_GameSearchPersonal.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

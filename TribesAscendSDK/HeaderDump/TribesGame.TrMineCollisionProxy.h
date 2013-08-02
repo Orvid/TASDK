@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrCollisionProxy.h"
+namespace UnrealScript
+{
+	class TrMineCollisionProxy;
+}
 #include "Engine.Pawn.h"
+#include "TribesGame.TrCollisionProxy.h"
 namespace UnrealScript
 {
 	class TrMineCollisionProxy : public TrCollisionProxy

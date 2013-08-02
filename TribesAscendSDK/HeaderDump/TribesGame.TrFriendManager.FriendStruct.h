@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrFriendManager__FriendStruct;
+}
 #include "TribesGame.TrFriendManager.EOnlineState.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

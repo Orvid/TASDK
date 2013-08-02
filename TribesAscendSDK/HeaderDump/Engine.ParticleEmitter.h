@@ -1,8 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleEmitter;
+}
 #include "Core.Object.h"
-#include "Engine.ParticleLODLevel.h"
 #include "Core.Object.Color.h"
 #include "Engine.ParticleEmitter.EEmitterRenderMode.h"
+#include "Engine.ParticleEmitter.EParticleBurstMethod.h"
+#include "Engine.ParticleEmitter.EParticleSubUVInterpMethod.h"
+#include "Engine.ParticleEmitter.ParticleBurst.h"
+#include "Engine.ParticleLODLevel.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +29,10 @@ namespace UnrealScript
 	class ParticleEmitter : public Object
 	{
 	public:
+		typedef ParticleEmitter__EEmitterRenderMode EEmitterRenderMode;
+		typedef ParticleEmitter__EParticleSubUVInterpMethod EParticleSubUVInterpMethod;
+		typedef ParticleEmitter__EParticleBurstMethod EParticleBurstMethod;
+		typedef ParticleEmitter__ParticleBurst ParticleBurst;
 		ADD_STRUCT(ScriptArray<class ParticleLODLevel*>, LODLevels, 80)
 		ADD_STRUCT(int, InitialAllocationCount, 100)
 		ADD_STRUCT(int, PeakActiveParticles, 96)

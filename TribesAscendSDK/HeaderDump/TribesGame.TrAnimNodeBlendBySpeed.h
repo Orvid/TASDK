@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.AnimNodeBlendBySpeed.h"
+namespace UnrealScript
+{
+	class TrAnimNodeBlendBySpeed;
+}
 #include "Engine.Actor.EPhysics.h"
+#include "Engine.AnimNodeBlendBySpeed.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

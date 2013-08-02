@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class FogVolumeConstantDensityInfo;
+}
 #include "Engine.FogVolumeDensityInfo.h"
 namespace UnrealScript
 {

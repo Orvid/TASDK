@@ -1,9 +1,12 @@
 #pragma once
-#include "Engine.StaticMesh.h"
-#include "Engine.SkelControlSingleBone.h"
-#include "UDKBase.UDKVehicle.h"
+namespace UnrealScript
+{
+	class UDKSkelControl_Damage;
+}
 #include "Engine.ParticleSystem.h"
-#include "Core.Object.Vector.h"
+#include "Engine.SkelControlSingleBone.h"
+#include "Engine.StaticMesh.h"
+#include "UDKBase.UDKVehicle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

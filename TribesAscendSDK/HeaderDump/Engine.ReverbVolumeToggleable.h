@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ReverbVolumeToggleable;
+}
 #include "Engine.ReverbVolume.h"
 #include "Engine.SeqAct_Toggle.h"
 namespace UnrealScript

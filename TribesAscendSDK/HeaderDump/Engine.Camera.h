@@ -1,24 +1,27 @@
 #pragma once
-#include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
-#include "Engine.HUD.h"
-#include "Engine.CameraModifier_CameraShake.h"
-#include "Engine.CameraAnimInst.h"
-#include "Engine.Camera.ViewTargetTransitionParams.h"
-#include "Engine.Camera.TViewTarget.h"
-#include "Engine.CameraModifier.h"
-#include "Engine.DynamicCameraActor.h"
-#include "Engine.PostProcessVolume.PostProcessSettings.h"
-#include "Engine.PlayerController.h"
-#include "Core.Object.TPOV.h"
-#include "Engine.Camera.TCameraCache.h"
-#include "Core.Object.Vector2D.h"
-#include "Engine.EmitterCameraLensEffectBase.h"
+namespace UnrealScript
+{
+	class Camera;
+}
 #include "Core.Object.Color.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.CameraShake.h"
+#include "Core.Object.TPOV.h"
+#include "Core.Object.Vector2D.h"
+#include "Engine.Actor.h"
 #include "Engine.Camera.ECameraAnimPlaySpace.h"
+#include "Engine.Camera.EViewTargetBlendFunction.h"
+#include "Engine.Camera.TCameraCache.h"
+#include "Engine.Camera.TViewTarget.h"
+#include "Engine.Camera.ViewTargetTransitionParams.h"
 #include "Engine.CameraAnim.h"
+#include "Engine.CameraAnimInst.h"
+#include "Engine.CameraModifier.h"
+#include "Engine.CameraModifier_CameraShake.h"
+#include "Engine.CameraShake.h"
+#include "Engine.DynamicCameraActor.h"
+#include "Engine.EmitterCameraLensEffectBase.h"
+#include "Engine.HUD.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -42,6 +45,11 @@ namespace UnrealScript
 	class Camera : public Actor
 	{
 	public:
+		typedef Camera__EViewTargetBlendFunction EViewTargetBlendFunction;
+		typedef Camera__ECameraAnimPlaySpace ECameraAnimPlaySpace;
+		typedef Camera__TViewTarget TViewTarget;
+		typedef Camera__TCameraCache TCameraCache;
+		typedef Camera__ViewTargetTransitionParams ViewTargetTransitionParams;
 		static const auto MAX_ACTIVE_CAMERA_ANIMS = 8;
 		ADD_OBJECT(CameraModifier_CameraShake, CameraShakeCamMod, 1020)
 		ADD_OBJECT(ScriptClass, CameraShakeCamModClass, 1024)

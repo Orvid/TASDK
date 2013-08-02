@@ -1,12 +1,19 @@
 #pragma once
-#include "Engine.Surface.h"
-#include "Engine.Texture.TextureGroup.h"
+namespace UnrealScript
+{
+	class Texture;
+}
 #include "Core.Object.Guid.h"
 #include "Core.Object.Pointer.h"
-#include "Engine.Texture.TextureMipGenSettings.h"
 #include "Core.Object.UntypedBulkData_Mirror.h"
-#include "Engine.Texture.TextureFilter.h"
+#include "Engine.Surface.h"
+#include "Engine.Texture.EPixelFormat.h"
+#include "Engine.Texture.TextureAddress.h"
 #include "Engine.Texture.TextureCompressionSettings.h"
+#include "Engine.Texture.TextureFilter.h"
+#include "Engine.Texture.TextureGroup.h"
+#include "Engine.Texture.TextureGroupContainer.h"
+#include "Engine.Texture.TextureMipGenSettings.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +33,13 @@ namespace UnrealScript
 	class Texture : public Surface
 	{
 	public:
+		typedef Texture__TextureCompressionSettings TextureCompressionSettings;
+		typedef Texture__EPixelFormat EPixelFormat;
+		typedef Texture__TextureFilter TextureFilter;
+		typedef Texture__TextureAddress TextureAddress;
+		typedef Texture__TextureGroup TextureGroup;
+		typedef Texture__TextureMipGenSettings TextureMipGenSettings;
+		typedef Texture__TextureGroupContainer TextureGroupContainer;
 		ADD_STRUCT(int, InternalFormatLODBias, 232)
 		ADD_STRUCT(float, AdjustHue, 228)
 		ADD_STRUCT(float, AdjustRGBCurve, 224)

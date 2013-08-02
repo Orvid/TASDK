@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.MaterialInterface.h"
+namespace UnrealScript
+{
+	struct LensFlare__LensFlareElement;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
-#include "Core.Object.Vector.h"
 #include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.MaterialInterface.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

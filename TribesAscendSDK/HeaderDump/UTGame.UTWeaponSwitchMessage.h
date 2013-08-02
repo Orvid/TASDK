@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTLocalMessage.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class UTWeaponSwitchMessage;
+}
 #include "Core.Object.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "UTGame.UTLocalMessage.h"
 namespace UnrealScript
 {
 	class UTWeaponSwitchMessage : public UTLocalMessage

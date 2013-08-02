@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorFactoryLensFlare;
+}
 #include "Engine.ActorFactory.h"
 #include "Engine.LensFlare.h"
 #define ADD_OBJECT(x, y, offset) \

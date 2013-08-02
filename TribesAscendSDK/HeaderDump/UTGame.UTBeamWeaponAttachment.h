@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTBeamWeaponAttachment;
+}
 #include "Engine.ParticleSystem.h"
 #include "UTGame.UTPawn.h"
 #include "UTGame.UTWeaponAttachment.h"

@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrProjectile.h"
+namespace UnrealScript
+{
+	class TrProj_HavocPilot;
+}
 #include "TribesGame.TrProj_TrackingMissile.h"
+#include "TribesGame.TrProjectile.h"
 namespace UnrealScript
 {
 	class TrProj_HavocPilot : public TrProjectile

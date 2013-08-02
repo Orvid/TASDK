@@ -1,5 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackToggle;
+}
 #include "Engine.InterpTrack.h"
+#include "Engine.InterpTrackToggle.ETrackToggleAction.h"
 #include "Engine.InterpTrackToggle.ToggleTrackKey.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -20,6 +25,8 @@ namespace UnrealScript
 	class InterpTrackToggle : public InterpTrack
 	{
 	public:
+		typedef InterpTrackToggle__ETrackToggleAction ETrackToggleAction;
+		typedef InterpTrackToggle__ToggleTrackKey ToggleTrackKey;
 		ADD_STRUCT(ScriptArray<InterpTrackToggle__ToggleTrackKey>, ToggleTrack, 128)
 		ADD_BOOL(bFireEventsWhenJumpingForwards, 140, 0x10)
 		ADD_BOOL(bFireEventsWhenBackwards, 140, 0x8)

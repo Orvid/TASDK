@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ParticleModuleParameterDynamic__EmitterDynamicParameter;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModuleParameterDynamic.EEmitterDynamicParameterValue.h"
 #define ADD_BOOL(name, offset, mask) \

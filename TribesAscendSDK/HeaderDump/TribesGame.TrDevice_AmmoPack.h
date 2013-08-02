@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrDevice_Pack.h"
+namespace UnrealScript
+{
+	class TrDevice_AmmoPack;
+}
 #include "TribesGame.TrDevice.h"
+#include "TribesGame.TrDevice_Pack.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

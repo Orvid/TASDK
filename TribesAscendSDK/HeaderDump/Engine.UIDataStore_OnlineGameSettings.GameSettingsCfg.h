@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UIDataStore_OnlineGameSettings__GameSettingsCfg;
+}
 #include "Engine.OnlineGameSettings.h"
 #include "Engine.UIDataProvider_Settings.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
+namespace UnrealScript
+{
+	class GFxTrPage_RoamTDM;
+}
 #include "TribesGame.GFxTrAction.h"
+#include "TribesGame.GFxTrPage.h"
 namespace UnrealScript
 {
 	class GFxTrPage_RoamTDM : public GFxTrPage

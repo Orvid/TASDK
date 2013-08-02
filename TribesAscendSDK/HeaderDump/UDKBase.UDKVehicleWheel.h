@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SVehicleWheel.h"
+namespace UnrealScript
+{
+	class UDKVehicleWheel;
+}
 #include "Engine.ParticleSystem.h"
+#include "Engine.SVehicleWheel.h"
 #include "UDKBase.UDKVehicle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

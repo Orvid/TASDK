@@ -1,9 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlinePlaylistManager;
+}
 #include "Core.Object.h"
-#include "IpDrv.OnlinePlaylistManager.Playlist.h"
-#include "Engine.OnlineGameSettings.h"
-#include "IpDrv.OnlinePlaylistManager.PlaylistPopulation.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.OnlineGameSettings.h"
+#include "IpDrv.OnlinePlaylistManager.ConfiguredGameSetting.h"
+#include "IpDrv.OnlinePlaylistManager.InventorySwap.h"
+#include "IpDrv.OnlinePlaylistManager.Playlist.h"
+#include "IpDrv.OnlinePlaylistManager.PlaylistPopulation.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +33,10 @@ namespace UnrealScript
 	class OnlinePlaylistManager : public Object
 	{
 	public:
+		typedef OnlinePlaylistManager__Playlist Playlist;
+		typedef OnlinePlaylistManager__PlaylistPopulation PlaylistPopulation;
+		typedef OnlinePlaylistManager__ConfiguredGameSetting ConfiguredGameSetting;
+		typedef OnlinePlaylistManager__InventorySwap InventorySwap;
 		ADD_STRUCT(ScriptArray<OnlinePlaylistManager__Playlist>, Playlists, 64)
 		ADD_STRUCT(ScriptArray<ScriptString*>, PlaylistFileNames, 76)
 		ADD_STRUCT(ScriptArray<ScriptName>, DatastoresToRefresh, 88)

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKUIDataProvider_SearchResult;
+}
 #include "Engine.UIDataProvider_Settings.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

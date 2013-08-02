@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DynamicBlockingVolume;
+}
 #include "Engine.BlockingVolume.h"
 #include "Engine.DynamicBlockingVolume.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class DynamicBlockingVolume : public BlockingVolume
 	{
 	public:
+		typedef DynamicBlockingVolume__CheckpointRecord CheckpointRecord;
 		ADD_BOOL(bEnabled, 524, 0x1)
 		void PostBeginPlay()
 		{

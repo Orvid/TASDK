@@ -1,13 +1,17 @@
 #pragma once
-#include "Engine.Texture2D.h"
-#include "Engine.SpeedTreeComponent.ESpeedTreeMeshType.h"
-#include "Engine.SpeedTreeComponent.SpeedTreeStaticLight.h"
-#include "Engine.PrimitiveComponent.h"
-#include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
-#include "Engine.SpeedTree.h"
-#include "Engine.MaterialInterface.h"
+namespace UnrealScript
+{
+	class SpeedTreeComponent;
+}
 #include "Core.Object.Matrix.h"
 #include "Engine.EngineTypes.LightMapRef.h"
+#include "Engine.EngineTypes.LightmassPrimitiveSettings.h"
+#include "Engine.MaterialInterface.h"
+#include "Engine.PrimitiveComponent.h"
+#include "Engine.SpeedTree.h"
+#include "Engine.SpeedTreeComponent.ESpeedTreeMeshType.h"
+#include "Engine.SpeedTreeComponent.SpeedTreeStaticLight.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,6 +35,8 @@ namespace UnrealScript
 	class SpeedTreeComponent : public PrimitiveComponent
 	{
 	public:
+		typedef SpeedTreeComponent__ESpeedTreeMeshType ESpeedTreeMeshType;
+		typedef SpeedTreeComponent__SpeedTreeStaticLight SpeedTreeStaticLight;
 		ADD_STRUCT(ScriptArray<SpeedTreeComponent__SpeedTreeStaticLight>, StaticLights, 544)
 		ADD_STRUCT(EngineTypes__LightmassPrimitiveSettings, LightmassSettings, 640)
 		ADD_STRUCT(Object__Matrix, RotationOnlyMatrix, 576)

@@ -1,13 +1,16 @@
 #pragma once
-#include "Engine.LightComponent.EShadowFilterQuality.h"
-#include "Core.Object.Vector.h"
-#include "Engine.LightComponent.ELightShadowMode.h"
-#include "Engine.LightEnvironmentComponent.h"
-#include "Engine.LightComponent.LightingChannelContainer.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.DynamicLightEnvironmentComponent.EDynamicLightEnvironmentBoundsMethod.h"
+namespace UnrealScript
+{
+	class DynamicLightEnvironmentComponent;
+}
 #include "Core.Object.BoxSphereBounds.h"
 #include "Core.Object.LinearColor.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.DynamicLightEnvironmentComponent.EDynamicLightEnvironmentBoundsMethod.h"
+#include "Engine.LightComponent.ELightShadowMode.h"
+#include "Engine.LightComponent.EShadowFilterQuality.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
+#include "Engine.LightEnvironmentComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +30,7 @@ namespace UnrealScript
 	class DynamicLightEnvironmentComponent : public LightEnvironmentComponent
 	{
 	public:
+		typedef DynamicLightEnvironmentComponent__EDynamicLightEnvironmentBoundsMethod EDynamicLightEnvironmentBoundsMethod;
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, OverriddenLightComponents, 284)

@@ -1,5 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class ForceFeedbackWaveform;
+}
 #include "Core.Object.h"
+#include "Engine.ForceFeedbackWaveform.EWaveformFunction.h"
 #include "Engine.ForceFeedbackWaveform.WaveformSample.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -20,6 +25,8 @@ namespace UnrealScript
 	class ForceFeedbackWaveform : public Object
 	{
 	public:
+		typedef ForceFeedbackWaveform__EWaveformFunction EWaveformFunction;
+		typedef ForceFeedbackWaveform__WaveformSample WaveformSample;
 		ADD_STRUCT(ScriptArray<ForceFeedbackWaveform__WaveformSample>, Samples, 64)
 		ADD_STRUCT(float, MaxWaveformDistance, 80)
 		ADD_STRUCT(float, WaveformFalloffStartDistance, 76)

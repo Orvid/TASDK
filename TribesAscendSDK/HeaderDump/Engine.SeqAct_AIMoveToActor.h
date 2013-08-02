@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_AIMoveToActor;
+}
 #include "Engine.Actor.h"
 #include "Engine.SeqAct_Latent.h"
 #define ADD_BOOL(name, offset, mask) \

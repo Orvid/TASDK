@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_HeavyShieldPack;
+}
 #include "TribesGame.TrDevice_Pack.h"
 namespace UnrealScript
 {

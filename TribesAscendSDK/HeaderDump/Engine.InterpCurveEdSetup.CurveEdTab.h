@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct InterpCurveEdSetup__CurveEdTab;
+}
 #include "Engine.InterpCurveEdSetup.CurveEdEntry.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

@@ -1,9 +1,12 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrDevice.h"
-#include "Engine.AnimNodePlayCustomAnim.h"
+namespace UnrealScript
+{
+	class TrDevice_Shotgun;
+}
 #include "Engine.Actor.ImpactInfo.h"
+#include "Engine.AnimNodePlayCustomAnim.h"
 #include "Engine.AnimNodeSequence.h"
+#include "TribesGame.TrDevice.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

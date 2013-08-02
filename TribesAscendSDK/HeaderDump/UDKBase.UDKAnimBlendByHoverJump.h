@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKAnimBlendByHoverJump;
+}
 #include "Engine.Pawn.h"
 #include "UDKBase.UDKAnimBlendByFall.h"
 #include "UDKBase.UDKVehicle.h"

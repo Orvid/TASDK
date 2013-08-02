@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrInventoryHelper;
+}
 #include "Core.Object.h"
 namespace UnrealScript
 {

@@ -1,9 +1,12 @@
 #pragma once
-#include "Engine.FracturedBaseComponent.h"
+namespace UnrealScript
+{
+	class FracturedStaticMeshComponent;
+}
 #include "Core.Object.Box.h"
-#include "Engine.MaterialInterface.h"
-#include "Core.Object.Vector.h"
+#include "Engine.FracturedBaseComponent.h"
 #include "Engine.FracturedStaticMeshComponent.FragmentGroup.h"
+#include "Engine.MaterialInterface.h"
 #include "Engine.PhysicalMaterial.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -28,6 +31,7 @@ namespace UnrealScript
 	class FracturedStaticMeshComponent : public FracturedBaseComponent
 	{
 	public:
+		typedef FracturedStaticMeshComponent__FragmentGroup FragmentGroup;
 		ADD_STRUCT(ScriptArray<byte>, FragmentNeighborsVisible, 640)
 		ADD_STRUCT(float, FragmentBoundsMinZ, 696)
 		ADD_STRUCT(float, FragmentBoundsMaxZ, 692)

@@ -1,9 +1,12 @@
 #pragma once
-#include "TribesGame.TrObject.ETrPlayerCallIns.h"
+namespace UnrealScript
+{
+	class TrCallIn;
+}
 #include "Engine.Actor.h"
-#include "TribesGame.TrPlayerController.h"
 #include "Engine.MaterialInstanceConstant.h"
-#include "Core.Object.Vector.h"
+#include "TribesGame.TrObject.ETrPlayerCallIns.h"
+#include "TribesGame.TrPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

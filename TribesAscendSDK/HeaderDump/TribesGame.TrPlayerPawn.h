@@ -1,14 +1,16 @@
 #pragma once
-#include "TribesGame.TrPawn.h"
+namespace UnrealScript
+{
+	class TrPlayerPawn;
+}
+#include "Engine.Actor.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Engine.ParticleSystem.h"
 #include "Engine.SoundCue.h"
 #include "TribesGame.TrAnimNodeBlendBy3pDevice.h"
-#include "Engine.ParticleSystem.h"
-#include "Core.Object.Rotator.h"
-#include "TribesGame.TrPawn.FootstepParticleInfo.h"
-#include "Engine.AnimNodeSequence.h"
-#include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
 #include "TribesGame.TrObject.TR_EQUIP_POINT.h"
+#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrPawn.FootstepParticleInfo.h"
 #include "TribesGame.TrPlayerController.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

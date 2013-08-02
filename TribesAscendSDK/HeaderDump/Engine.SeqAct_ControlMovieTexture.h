@@ -1,4 +1,9 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_ControlMovieTexture;
+}
+#include "Engine.SeqAct_ControlMovieTexture.EMovieControlType.h"
 #include "Engine.SequenceAction.h"
 #include "Engine.TextureMovie.h"
 #define ADD_OBJECT(x, y, offset) \
@@ -10,6 +15,7 @@ namespace UnrealScript
 	class SeqAct_ControlMovieTexture : public SequenceAction
 	{
 	public:
+		typedef SeqAct_ControlMovieTexture__EMovieControlType EMovieControlType;
 		ADD_OBJECT(TextureMovie, MovieTexture, 232)
 		void Activated()
 		{

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DefaultPhysicsVolume;
+}
 #include "Engine.PhysicsVolume.h"
 namespace UnrealScript
 {

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.UIRoot.UIDataStoreBinding.h"
+namespace UnrealScript
+{
+	struct GFxMoviePlayer__GFxDataStoreBinding;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.UIRoot.UIDataStoreBinding.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

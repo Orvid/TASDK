@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PathNode;
+}
 #include "Engine.NavigationPoint.h"
 namespace UnrealScript
 {

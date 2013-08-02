@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleRotation_Seeded;
+}
 #include "Engine.ParticleModule.ParticleRandomSeedInfo.h"
 #include "Engine.ParticleModuleRotation.h"
 #define ADD_STRUCT(x, y, offset) \

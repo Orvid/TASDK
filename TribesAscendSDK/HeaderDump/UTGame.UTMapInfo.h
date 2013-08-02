@@ -1,20 +1,22 @@
 #pragma once
-#include "Engine.Texture2D.h"
-#include "UDKBase.UDKMapInfo.h"
-#include "UTGame.UTGameObjective.h"
-#include "Engine.Texture.h"
-#include "Engine.Material.h"
-#include "Core.Object.Vector.h"
-#include "UDKBase.UDKVehicle.h"
-#include "Engine.UIRoot.TextureCoordinates.h"
-#include "Engine.MaterialInstanceConstant.h"
+namespace UnrealScript
+{
+	class UTMapInfo;
+}
+#include "Core.Object.LinearColor.h"
 #include "Engine.Actor.h"
-#include "UTGame.UTMapMusicInfo.h"
 #include "Engine.Canvas.h"
+#include "Engine.Material.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.Texture.h"
+#include "Engine.Texture2D.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "UDKBase.UDKMapInfo.h"
+#include "UDKBase.UDKVehicle.h"
+#include "UTGame.UTGameObjective.h"
+#include "UTGame.UTMapMusicInfo.h"
 #include "UTGame.UTPlayerController.h"
 #include "UTGame.UTVehicle.h"
-#include "Core.Object.LinearColor.h"
-#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

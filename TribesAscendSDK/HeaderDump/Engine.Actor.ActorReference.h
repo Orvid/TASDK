@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Actor__ActorReference;
+}
 #include "Core.Object.Guid.h"
 #include "Engine.Actor.h"
 #define ADD_STRUCT(x, y, offset) \

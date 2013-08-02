@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameplayEventsReader;
+}
 #include "Engine.GameplayEvents.h"
 #include "Engine.GameplayEventsHandler.h"
 #define ADD_STRUCT(x, y, offset) \

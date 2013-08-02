@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.OnlineGameSettings.h"
+namespace UnrealScript
+{
+	class OnlineGameInterface;
+}
 #include "Core.Interface.h"
 #include "Engine.OnlineGameSearch.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
+#include "Engine.OnlineGameSettings.h"
 #include "Engine.OnlineSubsystem.OnlineArbitrationRegistrant.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 namespace UnrealScript
 {
 	class OnlineGameInterface : public Interface

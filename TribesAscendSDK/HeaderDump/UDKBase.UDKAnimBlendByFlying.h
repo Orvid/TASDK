@@ -1,8 +1,12 @@
 #pragma once
-#include "UDKBase.UDKPawn.h"
-#include "UDKBase.UDKAnimBlendBase.h"
+namespace UnrealScript
+{
+	class UDKAnimBlendByFlying;
+}
 #include "Engine.AnimNodeAimOffset.h"
+#include "UDKBase.UDKAnimBlendBase.h"
 #include "UDKBase.UDKAnimBlendByFlying.EFlyingState.h"
+#include "UDKBase.UDKPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,13 +30,13 @@ namespace UnrealScript
 	class UDKAnimBlendByFlying : public UDKAnimBlendBase
 	{
 	public:
+		typedef UDKAnimBlendByFlying__EFlyingState EFlyingState;
 		ADD_STRUCT(ScriptName, EndingAnimName, 324)
 		ADD_BOOL(bHasEndingAnim, 320, 0x2)
 		ADD_BOOL(bHasStartingAnim, 320, 0x1)
 		ADD_STRUCT(ScriptName, StartingAnimName, 312)
 		ADD_OBJECT(AnimNodeAimOffset, FlyingDir, 308)
 		ADD_OBJECT(UDKAnimBlendBase, FlyingMode, 304)
-		ADD_OBJECT(UDKPawn, Pawn, 300)
 		ADD_STRUCT(UDKAnimBlendByFlying__EFlyingState, FlyingState, 296)
 		void UpdateFlyingState()
 		{

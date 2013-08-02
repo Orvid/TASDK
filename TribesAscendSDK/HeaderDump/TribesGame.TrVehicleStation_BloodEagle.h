@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrVehicleStation_BloodEagle;
+}
 #include "TribesGame.TrVehicleStation.h"
 namespace UnrealScript
 {

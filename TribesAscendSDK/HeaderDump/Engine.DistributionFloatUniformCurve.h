@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DistributionFloatUniformCurve;
+}
 #include "Core.DistributionFloat.h"
 #include "Core.Object.InterpCurveVector2D.h"
 #define ADD_STRUCT(x, y, offset) \

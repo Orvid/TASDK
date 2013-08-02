@@ -1,7 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class NavMeshGoal_PolyEncompassesAI;
+}
 #include "Engine.NavMeshPathGoalEvaluator.h"
 #include "Engine.NavigationHandle.h"
-#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

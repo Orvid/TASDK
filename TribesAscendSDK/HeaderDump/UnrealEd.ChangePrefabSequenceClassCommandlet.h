@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ChangePrefabSequenceClassCommandlet;
+}
 #include "UnrealEd.ResavePackagesCommandlet.h"
 namespace UnrealScript
 {

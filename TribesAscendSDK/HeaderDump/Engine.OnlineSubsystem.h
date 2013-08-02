@@ -1,11 +1,42 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineSubsystem;
+}
 #include "Core.Object.h"
-#include "Engine.OnlineGameSettings.h"
-#include "Engine.OnlineSubsystem.NamedSession.h"
 #include "Core.Object.Pointer.h"
-#include "Engine.OnlineSubsystem.NamedInterface.h"
 #include "Engine.IniLocPatcher.h"
+#include "Engine.OnlineGameSettings.h"
+#include "Engine.OnlineSubsystem.AchievementDetails.h"
+#include "Engine.OnlineSubsystem.CommunityContentFile.h"
+#include "Engine.OnlineSubsystem.CommunityContentMetadata.h"
+#include "Engine.OnlineSubsystem.EFeaturePrivilegeLevel.h"
+#include "Engine.OnlineSubsystem.ELanBeaconState.h"
+#include "Engine.OnlineSubsystem.ELoginStatus.h"
+#include "Engine.OnlineSubsystem.ENATType.h"
+#include "Engine.OnlineSubsystem.ENetworkNotificationPosition.h"
+#include "Engine.OnlineSubsystem.EOnlineAccountCreateStatus.h"
+#include "Engine.OnlineSubsystem.EOnlineContentType.h"
+#include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
+#include "Engine.OnlineSubsystem.EOnlineFriendState.h"
+#include "Engine.OnlineSubsystem.EOnlineGameState.h"
+#include "Engine.OnlineSubsystem.EOnlineNewsType.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.OnlineSubsystem.FriendsQuery.h"
+#include "Engine.OnlineSubsystem.LocalTalker.h"
+#include "Engine.OnlineSubsystem.NamedInterface.h"
 #include "Engine.OnlineSubsystem.NamedInterfaceDef.h"
+#include "Engine.OnlineSubsystem.NamedSession.h"
+#include "Engine.OnlineSubsystem.OnlineArbitrationRegistrant.h"
+#include "Engine.OnlineSubsystem.OnlineContent.h"
+#include "Engine.OnlineSubsystem.OnlineFriend.h"
+#include "Engine.OnlineSubsystem.OnlineFriendMessage.h"
+#include "Engine.OnlineSubsystem.OnlinePartyMember.h"
+#include "Engine.OnlineSubsystem.OnlinePlayerScore.h"
+#include "Engine.OnlineSubsystem.OnlineRegistrant.h"
+#include "Engine.OnlineSubsystem.RemoteTalker.h"
+#include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
+#include "Engine.OnlineSubsystem.TitleFile.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -30,6 +61,37 @@ namespace UnrealScript
 	class OnlineSubsystem : public Object
 	{
 	public:
+		typedef OnlineSubsystem__EOnlineNewsType EOnlineNewsType;
+		typedef OnlineSubsystem__ENATType ENATType;
+		typedef OnlineSubsystem__EOnlineServerConnectionStatus EOnlineServerConnectionStatus;
+		typedef OnlineSubsystem__EOnlineEnumerationReadState EOnlineEnumerationReadState;
+		typedef OnlineSubsystem__EOnlineGameState EOnlineGameState;
+		typedef OnlineSubsystem__EOnlineAccountCreateStatus EOnlineAccountCreateStatus;
+		typedef OnlineSubsystem__ELanBeaconState ELanBeaconState;
+		typedef OnlineSubsystem__EOnlineContentType EOnlineContentType;
+		typedef OnlineSubsystem__EOnlineFriendState EOnlineFriendState;
+		typedef OnlineSubsystem__ENetworkNotificationPosition ENetworkNotificationPosition;
+		typedef OnlineSubsystem__EFeaturePrivilegeLevel EFeaturePrivilegeLevel;
+		typedef OnlineSubsystem__ELoginStatus ELoginStatus;
+		typedef OnlineSubsystem__NamedSession NamedSession;
+		typedef OnlineSubsystem__OnlineRegistrant OnlineRegistrant;
+		typedef OnlineSubsystem__OnlineArbitrationRegistrant OnlineArbitrationRegistrant;
+		typedef OnlineSubsystem__UniqueNetId UniqueNetId;
+		typedef OnlineSubsystem__NamedInterface NamedInterface;
+		typedef OnlineSubsystem__OnlinePartyMember OnlinePartyMember;
+		typedef OnlineSubsystem__AchievementDetails AchievementDetails;
+		typedef OnlineSubsystem__CommunityContentMetadata CommunityContentMetadata;
+		typedef OnlineSubsystem__CommunityContentFile CommunityContentFile;
+		typedef OnlineSubsystem__TitleFile TitleFile;
+		typedef OnlineSubsystem__NamedInterfaceDef NamedInterfaceDef;
+		typedef OnlineSubsystem__OnlineFriendMessage OnlineFriendMessage;
+		typedef OnlineSubsystem__RemoteTalker RemoteTalker;
+		typedef OnlineSubsystem__LocalTalker LocalTalker;
+		typedef OnlineSubsystem__OnlinePlayerScore OnlinePlayerScore;
+		typedef OnlineSubsystem__SpeechRecognizedWord SpeechRecognizedWord;
+		typedef OnlineSubsystem__OnlineContent OnlineContent;
+		typedef OnlineSubsystem__OnlineFriend OnlineFriend;
+		typedef OnlineSubsystem__FriendsQuery FriendsQuery;
 		ADD_STRUCT(ScriptArray<OnlineSubsystem__NamedSession>, Sessions, 184)
 		ADD_STRUCT(Object__Pointer, VfTable_FTickableObject, 60)
 		ADD_STRUCT(ScriptArray<OnlineSubsystem__NamedInterface>, NamedInterfaces, 160)

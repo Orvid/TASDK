@@ -1,11 +1,15 @@
 #pragma once
-#include "UTGame.GFxUDKFrontEnd_Screen.h"
-#include "UTGame.UTUIDataStore_StringList.h"
-#include "UTGame.UTUIDataProvider_GameModeInfo.h"
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_GameMode;
+}
+#include "Engine.UIDataStore_OnlineGameSettings.h"
 #include "GFxUI.GFxClikWidget.h"
 #include "GFxUI.GFxClikWidget.EventData.h"
-#include "Engine.UIDataStore_OnlineGameSettings.h"
 #include "GFxUI.GFxObject.h"
+#include "UTGame.GFxUDKFrontEnd_Screen.h"
+#include "UTGame.UTUIDataProvider_GameModeInfo.h"
+#include "UTGame.UTUIDataStore_StringList.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

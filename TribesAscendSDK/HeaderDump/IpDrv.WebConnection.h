@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class WebConnection;
+}
 #include "IpDrv.TcpLink.h"
-#include "IpDrv.WebServer.h"
 #include "IpDrv.WebApplication.h"
-#include "IpDrv.WebResponse.h"
 #include "IpDrv.WebRequest.h"
+#include "IpDrv.WebResponse.h"
+#include "IpDrv.WebServer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

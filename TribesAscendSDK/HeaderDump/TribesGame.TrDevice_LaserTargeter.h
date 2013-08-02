@@ -1,10 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_LaserTargeter;
+}
 #include "Engine.Actor.h"
-#include "TribesGame.TrDevice_ConstantFire.h"
-#include "TribesGame.TrCallIn.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.SoundCue.h"
+#include "TribesGame.TrCallIn.h"
+#include "TribesGame.TrDevice_ConstantFire.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

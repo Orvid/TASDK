@@ -1,9 +1,11 @@
 #pragma once
-#include "Engine.SceneCaptureComponent.h"
+namespace UnrealScript
+{
+	class SceneCapture2DComponent;
+}
 #include "Core.Object.Matrix.h"
+#include "Engine.SceneCaptureComponent.h"
 #include "Engine.TextureRenderTarget2D.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

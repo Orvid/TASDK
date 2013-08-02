@@ -1,21 +1,24 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrGame;
+}
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.Pawn.h"
 #include "Engine.PlayerController.h"
-#include "UTGame.UTTeamGame.h"
-#include "Engine.Controller.h"
-#include "TribesGame.TrStatsInterface.h"
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrSeekingMissileManager.h"
-#include "TribesGame.TrPlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "Engine.Actor.h"
-#include "UTGame.UTBot.h"
-#include "UTGame.UTTeamInfo.h"
-#include "UTGame.UTPlayerReplicationInfo.h"
-#include "UTGame.UTCharInfo.CharacterInfo.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "Engine.NavigationPoint.h"
+#include "TribesGame.TrPlayerController.h"
 #include "TribesGame.TrPowerGenerator.h"
+#include "TribesGame.TrSeekingMissileManager.h"
+#include "TribesGame.TrStatsInterface.h"
+#include "UTGame.UTBot.h"
+#include "UTGame.UTCharInfo.CharacterInfo.h"
+#include "UTGame.UTPlayerReplicationInfo.h"
+#include "UTGame.UTTeamGame.h"
+#include "UTGame.UTTeamInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

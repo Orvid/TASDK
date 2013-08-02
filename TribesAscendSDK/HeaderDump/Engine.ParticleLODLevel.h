@@ -1,12 +1,16 @@
 #pragma once
-#include "Engine.ParticleModuleRequired.h"
-#include "Engine.ParticleModuleEventReceiverBase.h"
+namespace UnrealScript
+{
+	class ParticleLODLevel;
+}
 #include "Core.Object.h"
 #include "Engine.ParticleModule.h"
+#include "Engine.ParticleModuleEventGenerator.h"
+#include "Engine.ParticleModuleEventReceiverBase.h"
+#include "Engine.ParticleModuleOrbit.h"
+#include "Engine.ParticleModuleRequired.h"
 #include "Engine.ParticleModuleSpawn.h"
 #include "Engine.ParticleModuleSpawnBase.h"
-#include "Engine.ParticleModuleEventGenerator.h"
-#include "Engine.ParticleModuleOrbit.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

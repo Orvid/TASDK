@@ -1,8 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNodeAimOffset;
+}
+#include "Core.Object.Vector2D.h"
+#include "Engine.AnimNodeAimOffset.AimComponent.h"
+#include "Engine.AnimNodeAimOffset.AimOffsetProfile.h"
+#include "Engine.AnimNodeAimOffset.AimTransform.h"
+#include "Engine.AnimNodeAimOffset.EAimID.h"
 #include "Engine.AnimNodeAimOffset.EAnimAimDir.h"
 #include "Engine.AnimNodeBlendBase.h"
-#include "Engine.AnimNodeAimOffset.AimOffsetProfile.h"
-#include "Core.Object.Vector2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +33,11 @@ namespace UnrealScript
 	class AnimNodeAimOffset : public AnimNodeBlendBase
 	{
 	public:
+		typedef AnimNodeAimOffset__EAnimAimDir EAnimAimDir;
+		typedef AnimNodeAimOffset__EAimID EAimID;
+		typedef AnimNodeAimOffset__AimTransform AimTransform;
+		typedef AnimNodeAimOffset__AimComponent AimComponent;
+		typedef AnimNodeAimOffset__AimOffsetProfile AimOffsetProfile;
 		ADD_STRUCT(ScriptArray<byte>, RequiredBones, 272)
 		ADD_STRUCT(ScriptArray<byte>, AimCpntIndexLUT, 284)
 		ADD_STRUCT(ScriptArray<AnimNodeAimOffset__AimOffsetProfile>, Profiles, 300)

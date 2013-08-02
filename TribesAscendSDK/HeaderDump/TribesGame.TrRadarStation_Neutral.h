@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrRadarStation_Neutral;
+}
+#include "Engine.Texture2D.h"
 #include "TribesGame.TrDeployable_RadarSensor.h"
 #include "TribesGame.TrHelpTextManager.EHelpTextType.h"
-#include "Engine.Texture2D.h"
 namespace UnrealScript
 {
 	class TrRadarStation_Neutral : public TrDeployable_RadarSensor

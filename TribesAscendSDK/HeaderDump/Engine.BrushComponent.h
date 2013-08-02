@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class BrushComponent;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.PrimitiveComponent.h"
-#include "Engine.Model.h"
 #include "Engine.BrushComponent.KCachedConvexData_Mirror.h"
 #include "Engine.KMeshProps.KAggregateGeom.h"
+#include "Engine.Model.h"
+#include "Engine.PrimitiveComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +31,7 @@ namespace UnrealScript
 	class BrushComponent : public PrimitiveComponent
 	{
 	public:
+		typedef BrushComponent__KCachedConvexData_Mirror KCachedConvexData_Mirror;
 		ADD_BOOL(bBlockComplexCollisionTrace, 568, 0x1)
 		ADD_STRUCT(int, CachedPhysBrushDataVersion, 564)
 		ADD_STRUCT(BrushComponent__KCachedConvexData_Mirror, CachedPhysBrushData, 552)

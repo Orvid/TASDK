@@ -1,14 +1,20 @@
 #pragma once
-#include "Core.Subsystem.h"
+namespace UnrealScript
+{
+	class AudioDevice;
+}
+#include "Core.Object.Double.h"
 #include "Core.Object.Pointer.h"
-#include "Engine.SoundMode.h"
+#include "Core.Subsystem.h"
+#include "Engine.AudioDevice.AudioClassInfo.h"
+#include "Engine.AudioDevice.EDebugState.h"
+#include "Engine.AudioDevice.ESoundClassName.h"
+#include "Engine.AudioDevice.ETTSSpeaker.h"
 #include "Engine.AudioDevice.Listener.h"
 #include "Engine.ReverbVolume.InteriorSettings.h"
-#include "Engine.AudioDevice.EDebugState.h"
-#include "Core.Object.Double.h"
-#include "Engine.SoundNodeWave.h"
-#include "Core.Object.QWord.h"
 #include "Engine.SoundClass.h"
+#include "Engine.SoundMode.h"
+#include "Engine.SoundNodeWave.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -32,6 +38,11 @@ namespace UnrealScript
 	class AudioDevice : public Subsystem
 	{
 	public:
+		typedef AudioDevice__EDebugState EDebugState;
+		typedef AudioDevice__ESoundClassName ESoundClassName;
+		typedef AudioDevice__ETTSSpeaker ETTSSpeaker;
+		typedef AudioDevice__Listener Listener;
+		typedef AudioDevice__AudioClassInfo AudioClassInfo;
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, AudioComponents, 128)

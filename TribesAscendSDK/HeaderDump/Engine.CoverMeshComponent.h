@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.StaticMeshComponent.h"
+namespace UnrealScript
+{
+	class CoverMeshComponent;
+}
 #include "Engine.CoverMeshComponent.CoverMeshes.h"
 #include "Engine.StaticMesh.h"
-#include "Core.Object.Vector.h"
+#include "Engine.StaticMeshComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +29,7 @@ namespace UnrealScript
 	class CoverMeshComponent : public StaticMeshComponent
 	{
 	public:
+		typedef CoverMeshComponent__CoverMeshes CoverMeshes;
 		ADD_STRUCT(ScriptArray<CoverMeshComponent__CoverMeshes>, Meshes, 608)
 		ADD_BOOL(bShowWhenNotSelected, 644, 0x1)
 		ADD_OBJECT(StaticMesh, Disabled, 640)

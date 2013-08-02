@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UDKMapMusicInfo__MusicSegment;
+}
 #include "Engine.SoundCue.h"
 #include "UDKBase.UDKMapMusicInfo.ECrossfadeType.h"
 #define ADD_STRUCT(x, y, offset) \

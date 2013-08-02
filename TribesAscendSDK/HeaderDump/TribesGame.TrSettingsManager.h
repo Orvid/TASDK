@@ -1,12 +1,16 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrSettingsManager;
+}
 #include "Core.Object.h"
+#include "TribesGame.GFxTrMenuMoviePlayer.h"
+#include "TribesGame.TrAudioSettings.h"
+#include "TribesGame.TrControlSettings.h"
+#include "TribesGame.TrHUDSettings.h"
+#include "TribesGame.TrKeyBindings.h"
 #include "TribesGame.TrRegionSettings.h"
 #include "TribesGame.TrVideoSettings.h"
-#include "TribesGame.TrAudioSettings.h"
-#include "TribesGame.GFxTrMenuMoviePlayer.h"
-#include "TribesGame.TrHUDSettings.h"
-#include "TribesGame.TrControlSettings.h"
-#include "TribesGame.TrKeyBindings.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

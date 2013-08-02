@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.FracturedBaseComponent.h"
+namespace UnrealScript
+{
+	class FracturedSkinnedMeshComponent;
+}
 #include "Core.Object.Matrix.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.FracturedBaseComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

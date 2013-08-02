@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct MaterialInstanceTimeVarying__ParameterValueOverTime;
+}
 #include "Core.Object.Guid.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.UIRoot.h"
+namespace UnrealScript
+{
+	class Interaction;
+}
 #include "Core.Object.EInputEvent.h"
 #include "Engine.Canvas.h"
 #include "Engine.LocalPlayer.h"
+#include "Engine.UIRoot.h"
 namespace UnrealScript
 {
 	class Interaction : public UIRoot

@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.PostProcessEffect.h"
+namespace UnrealScript
+{
+	class DOFEffect;
+}
 #include "Core.Object.Color.h"
 #include "Engine.DOFEffect.EFocusType.h"
-#include "Core.Object.Vector.h"
+#include "Engine.PostProcessEffect.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,6 +15,7 @@ namespace UnrealScript
 	class DOFEffect : public PostProcessEffect
 	{
 	public:
+		typedef DOFEffect__EFocusType EFocusType;
 		ADD_STRUCT(float, FalloffExponent, 100)
 		ADD_STRUCT(float, BlurKernelSize, 104)
 		ADD_STRUCT(float, MaxNearBlurAmount, 108)

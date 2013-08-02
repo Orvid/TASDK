@@ -1,10 +1,13 @@
 #pragma once
-#include "UTGame.UTGFxTweenableMoviePlayer.h"
-#include "UTGame.GFxUI_InventoryButton.h"
-#include "UTGame.GFxProjectedUI.ItemData.h"
-#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	class GFxProjectedUI;
+}
 #include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
+#include "UTGame.GFxProjectedUI.ItemData.h"
+#include "UTGame.GFxUI_InventoryButton.h"
+#include "UTGame.UTGFxTweenableMoviePlayer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +31,7 @@ namespace UnrealScript
 	class GFxProjectedUI : public UTGFxTweenableMoviePlayer
 	{
 	public:
+		typedef GFxProjectedUI__ItemData ItemData;
 		ADD_STRUCT(ScriptArray<class GFxUI_InventoryButton*>, Buttons, 412)
 		ADD_STRUCT(ScriptArray<GFxProjectedUI__ItemData>, Items, 424)
 		ADD_STRUCT(ScriptString*, CancelString, 644)

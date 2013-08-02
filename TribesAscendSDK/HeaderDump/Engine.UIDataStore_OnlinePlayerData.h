@@ -1,16 +1,20 @@
 #pragma once
-#include "Engine.UIDataProvider_OnlineFriends.h"
-#include "Engine.UIDataStore_Remote.h"
+namespace UnrealScript
+{
+	class UIDataStore_OnlinePlayerData;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.UIDataProvider_OnlineProfileSettings.h"
-#include "Engine.UIDataProvider_PlayerAchievements.h"
-#include "Engine.UIDataProvider_OnlinePartyChatList.h"
-#include "Engine.UIDataProvider_OnlineFriendMessages.h"
-#include "Engine.UIDataProvider_OnlinePlayerStorage.h"
-#include "Engine.UIDataProvider.h"
 #include "Engine.LocalPlayer.h"
 #include "Engine.OnlinePlayerStorage.h"
 #include "Engine.OnlineProfileSettings.h"
+#include "Engine.UIDataProvider.h"
+#include "Engine.UIDataProvider_OnlineFriendMessages.h"
+#include "Engine.UIDataProvider_OnlineFriends.h"
+#include "Engine.UIDataProvider_OnlinePartyChatList.h"
+#include "Engine.UIDataProvider_OnlinePlayerStorage.h"
+#include "Engine.UIDataProvider_OnlineProfileSettings.h"
+#include "Engine.UIDataProvider_PlayerAchievements.h"
+#include "Engine.UIDataStore_Remote.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

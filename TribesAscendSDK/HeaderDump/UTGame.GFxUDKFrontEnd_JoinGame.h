@@ -1,18 +1,22 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_JoinGame;
+}
+#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
 #include "Engine.OnlineSubsystem.h"
-#include "UDKBase.UDKDataStore_GameSearchBase.h"
-#include "UTGame.GFxUDKFrontEnd_Screen.h"
-#include "UTGame.UTUIDataStore_StringList.h"
+#include "GFxUI.GFxClikWidget.h"
 #include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
-#include "UTGame.UTUIDataStore_MenuItems.h"
-#include "GFxUI.GFxClikWidget.h"
+#include "UDKBase.UDKDataStore_GameSearchBase.h"
+#include "UDKBase.UDKUIDataProvider_SearchResult.h"
+#include "UTGame.GFxUDKFrontEnd_JoinDialog.h"
 #include "UTGame.GFxUDKFrontEnd_JoinGame.EQueryCompletionAction.h"
 #include "UTGame.GFxUDKFrontEnd_PasswordDialog.h"
-#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
-#include "UTGame.GFxUDKFrontEnd_JoinDialog.h"
+#include "UTGame.GFxUDKFrontEnd_Screen.h"
 #include "UTGame.UTDataStore_GameSearchDM.h"
-#include "UDKBase.UDKUIDataProvider_SearchResult.h"
+#include "UTGame.UTUIDataStore_MenuItems.h"
+#include "UTGame.UTUIDataStore_StringList.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -36,6 +40,7 @@ namespace UnrealScript
 	class GFxUDKFrontEnd_JoinGame : public GFxUDKFrontEnd_Screen
 	{
 	public:
+		typedef GFxUDKFrontEnd_JoinGame__EQueryCompletionAction EQueryCompletionAction;
 		static const auto SERVERBROWSER_SERVERTYPE_RANKED = 2;
 		static const auto SERVERBROWSER_SERVERTYPE_UNRANKED = 1;
 		static const auto SERVERBROWSER_SERVERTYPE_LAN = 0;

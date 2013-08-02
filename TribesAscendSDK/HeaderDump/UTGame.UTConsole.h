@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.Console.h"
+namespace UnrealScript
+{
+	class UTConsole;
+}
 #include "Core.Object.Color.h"
 #include "Core.Object.EInputEvent.h"
+#include "Engine.Console.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

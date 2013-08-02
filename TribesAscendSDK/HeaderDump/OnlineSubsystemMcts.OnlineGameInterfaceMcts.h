@@ -1,11 +1,16 @@
 #pragma once
-#include "IpDrv.OnlineGameInterfaceImpl.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "OnlineSubsystemMcts.MctsOnlineSettings.h"
-#include "OnlineSubsystemMcts.OnlineVoiceInterfaceMcts.h"
+namespace UnrealScript
+{
+	class OnlineGameInterfaceMcts;
+}
 #include "Engine.OnlineGameSearch.h"
 #include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
 #include "Engine.OnlineGameSettings.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "IpDrv.OnlineGameInterfaceImpl.h"
+#include "OnlineSubsystemMcts.MctsOnlineSettings.h"
+#include "OnlineSubsystemMcts.OnlineGameInterfaceMcts.EMctsMatchmakingType.h"
+#include "OnlineSubsystemMcts.OnlineVoiceInterfaceMcts.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -19,6 +24,7 @@ namespace UnrealScript
 	class OnlineGameInterfaceMcts : public OnlineGameInterfaceImpl
 	{
 	public:
+		typedef OnlineGameInterfaceMcts__EMctsMatchmakingType EMctsMatchmakingType;
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, GameInviteAcceptedDelegates, 444)

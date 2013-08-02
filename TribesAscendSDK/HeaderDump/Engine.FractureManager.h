@@ -1,11 +1,13 @@
 #pragma once
-#include "Engine.Actor.h"
-#include "Engine.FracturedStaticMeshPart.h"
-#include "Engine.FracturedStaticMeshActor.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.ParticleSystem.h"
+namespace UnrealScript
+{
+	class FractureManager;
+}
 #include "Core.Object.Box.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Actor.h"
+#include "Engine.FracturedStaticMeshActor.h"
+#include "Engine.FracturedStaticMeshPart.h"
+#include "Engine.ParticleSystem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

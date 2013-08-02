@@ -1,6 +1,10 @@
 #pragma once
-#include "UDKBase.UDKAnimBlendBase.h"
+namespace UnrealScript
+{
+	class UDKAnimBlendByVehicle;
+}
 #include "Engine.Vehicle.h"
+#include "UDKBase.UDKAnimBlendBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

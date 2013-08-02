@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTPawnSoundGroup;
+}
 #include "Core.Object.h"
-#include "UTGame.UTPawnSoundGroup.FootstepSoundInfo.h"
-#include "Engine.SoundCue.h"
 #include "Engine.Pawn.h"
+#include "Engine.SoundCue.h"
+#include "UTGame.UTPawnSoundGroup.FootstepSoundInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,6 +20,7 @@ namespace UnrealScript
 	class UTPawnSoundGroup : public Object
 	{
 	public:
+		typedef UTPawnSoundGroup__FootstepSoundInfo FootstepSoundInfo;
 		ADD_STRUCT(ScriptArray<UTPawnSoundGroup__FootstepSoundInfo>, FootstepSounds, 108)
 		ADD_STRUCT(ScriptArray<UTPawnSoundGroup__FootstepSoundInfo>, JumpingSounds, 124)
 		ADD_STRUCT(ScriptArray<UTPawnSoundGroup__FootstepSoundInfo>, LandingSounds, 136)

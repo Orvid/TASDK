@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Info__ServerResponseLine;
+}
 #include "Engine.Info.KeyValuePair.h"
 #include "Engine.Info.PlayerResponseLine.h"
 #define ADD_STRUCT(x, y, offset) \

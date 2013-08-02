@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Weapon.h"
+namespace UnrealScript
+{
+	class UDKWeapon;
+}
 #include "Engine.Actor.h"
+#include "Engine.Weapon.h"
 #include "UDKBase.UDKPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.TerrainMaterial.h"
+namespace UnrealScript
+{
+	struct TerrainLayerSetup__TerrainFilteredMaterial;
+}
 #include "Engine.TerrainLayerSetup.FilterLimit.h"
+#include "Engine.TerrainMaterial.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTJumpLiftExit;
+}
 #include "Engine.LiftExit.h"
 #include "Engine.Pawn.h"
 namespace UnrealScript

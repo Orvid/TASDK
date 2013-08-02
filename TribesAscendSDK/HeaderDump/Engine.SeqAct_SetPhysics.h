@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_SetPhysics;
+}
 #include "Engine.Actor.EPhysics.h"
 #include "Engine.SequenceAction.h"
 #define ADD_STRUCT(x, y, offset) \

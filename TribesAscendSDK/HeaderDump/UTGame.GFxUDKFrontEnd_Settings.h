@@ -1,6 +1,10 @@
 #pragma once
-#include "UTGame.GFxUDKFrontEnd_SettingsBase.h"
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_Settings;
+}
 #include "GFxUI.GFxObject.h"
+#include "UTGame.GFxUDKFrontEnd_SettingsBase.h"
 namespace UnrealScript
 {
 	class GFxUDKFrontEnd_Settings : public GFxUDKFrontEnd_SettingsBase

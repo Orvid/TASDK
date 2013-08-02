@@ -1,20 +1,25 @@
 #pragma once
-#include "Engine.Canvas.CanvasUVTri.h"
+namespace UnrealScript
+{
+	class Canvas;
+}
 #include "Core.Object.h"
 #include "Core.Object.Color.h"
-#include "Engine.Font.h"
-#include "Engine.Texture2D.h"
-#include "Core.Object.Pointer.h"
-#include "Core.Object.Plane.h"
-#include "Engine.Canvas.FontRenderInfo.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Texture.h"
 #include "Core.Object.LinearColor.h"
-#include "Engine.EngineTypes.EBlendMode.h"
-#include "Engine.MaterialInterface.h"
-#include "Engine.Canvas.CanvasIcon.h"
-#include "Core.Object.Rotator.h"
+#include "Core.Object.Plane.h"
+#include "Core.Object.Pointer.h"
 #include "Core.Object.Vector2D.h"
+#include "Engine.Canvas.CanvasIcon.h"
+#include "Engine.Canvas.CanvasUVTri.h"
+#include "Engine.Canvas.DepthFieldGlowInfo.h"
+#include "Engine.Canvas.FontRenderInfo.h"
+#include "Engine.Canvas.TextSizingParameters.h"
+#include "Engine.Canvas.WrappedStringElement.h"
+#include "Engine.EngineTypes.EBlendMode.h"
+#include "Engine.Font.h"
+#include "Engine.MaterialInterface.h"
+#include "Engine.Texture.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -38,12 +43,17 @@ namespace UnrealScript
 	class Canvas : public Object
 	{
 	public:
+		typedef Canvas__CanvasIcon CanvasIcon;
+		typedef Canvas__DepthFieldGlowInfo DepthFieldGlowInfo;
+		typedef Canvas__FontRenderInfo FontRenderInfo;
+		typedef Canvas__CanvasUVTri CanvasUVTri;
+		typedef Canvas__TextSizingParameters TextSizingParameters;
+		typedef Canvas__WrappedStringElement WrappedStringElement;
 		ADD_STRUCT(Object__Color, DrawColor, 96)
 		ADD_OBJECT(Font, Font, 60)
 		ADD_OBJECT(Texture2D, DefaultTexture, 144)
 		ADD_STRUCT(Object__Plane, ColorModulate, 128)
 		ADD_STRUCT(Object__Pointer, SceneView, 116)
-		ADD_STRUCT(Object__Pointer, Canvas, 112)
 		ADD_STRUCT(int, SizeY, 108)
 		ADD_STRUCT(int, SizeX, 104)
 		ADD_BOOL(bNoSmooth, 100, 0x2)

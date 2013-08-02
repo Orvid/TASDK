@@ -30,6 +30,6 @@ namespace UnrealScript
 		PF_BC5 = 24,
 		PF_V8U8 = 25,
 		PF_A1 = 26,
-		PF_MAX = 27,
+		//PF_MAX = 27,
 	};
 }

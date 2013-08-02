@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqEvent_RigidBodyCollision;
+}
 #include "Engine.SequenceEvent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

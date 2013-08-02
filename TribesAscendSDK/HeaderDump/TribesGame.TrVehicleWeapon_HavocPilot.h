@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrVehicleWeapon_HavocPilot;
+}
+#include "Engine.MaterialInstanceConstant.h"
 #include "TribesGame.TrEffect_MovableDecal.h"
 #include "TribesGame.TrVehicleWeapon_BurstShot.h"
-#include "Engine.MaterialInstanceConstant.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqCond_SwitchObject;
+}
 #include "Engine.SeqCond_SwitchBase.h"
 #include "Engine.SeqCond_SwitchObject.SwitchObjectCase.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -24,6 +28,7 @@ namespace UnrealScript
 	class SeqCond_SwitchObject : public SeqCond_SwitchBase
 	{
 	public:
+		typedef SeqCond_SwitchObject__SwitchObjectCase SwitchObjectCase;
 		ADD_STRUCT(ScriptArray<SeqCond_SwitchObject__SwitchObjectCase>, SupportedValues, 208)
 		void VerifyDefaultCaseValue()
 		{

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.UIDataProvider_OnlinePlayerStorage.h"
+namespace UnrealScript
+{
+	class UIDataProvider_OnlineProfileSettings;
+}
 #include "Engine.OnlinePlayerStorage.h"
+#include "Engine.UIDataProvider_OnlinePlayerStorage.h"
 namespace UnrealScript
 {
 	class UIDataProvider_OnlineProfileSettings : public UIDataProvider_OnlinePlayerStorage

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSeqAct_AddNamedBot;
+}
 #include "Engine.NavigationPoint.h"
 #include "Engine.SequenceAction.h"
 #include "UTGame.UTBot.h"

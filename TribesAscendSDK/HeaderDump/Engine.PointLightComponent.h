@@ -1,9 +1,12 @@
 #pragma once
-#include "Engine.LightComponent.h"
-#include "Engine.EngineTypes.LightmassPointLightSettings.h"
-#include "Core.Object.Plane.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class PointLightComponent;
+}
 #include "Core.Object.Matrix.h"
+#include "Core.Object.Plane.h"
+#include "Engine.EngineTypes.LightmassPointLightSettings.h"
+#include "Engine.LightComponent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

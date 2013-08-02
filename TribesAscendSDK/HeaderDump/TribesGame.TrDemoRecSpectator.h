@@ -1,10 +1,12 @@
 #pragma once
-#include "Engine.Camera.ViewTargetTransitionParams.h"
-#include "TribesGame.TrPlayerController.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class TrDemoRecSpectator;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Camera.ViewTargetTransitionParams.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "TribesGame.TrPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SeqAct_ActorFactory.h"
+namespace UnrealScript
+{
+	class SeqAct_ProjectileFactory;
+}
 #include "Engine.ParticleSystem.h"
+#include "Engine.SeqAct_ActorFactory.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

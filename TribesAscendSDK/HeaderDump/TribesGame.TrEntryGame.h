@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrEntryGame;
+}
 #include "UTGame.UTEntryGame.h"
 namespace UnrealScript
 {

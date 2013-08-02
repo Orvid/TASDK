@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSeqAct_UseHoverboard;
+}
 #include "Engine.SequenceAction.h"
 #include "UTGame.UTVehicle.h"
 #define ADD_OBJECT(x, y, offset) \

@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.PrimitiveComponent.h"
-#include "Engine.FluidSurfaceActor.h"
+namespace UnrealScript
+{
+	class FluidInfluenceComponent;
+}
 #include "Engine.FluidInfluenceComponent.EInfluenceType.h"
+#include "Engine.FluidSurfaceActor.h"
+#include "Engine.PrimitiveComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +29,7 @@ namespace UnrealScript
 	class FluidInfluenceComponent : public PrimitiveComponent
 	{
 	public:
+		typedef FluidInfluenceComponent__EInfluenceType EInfluenceType;
 		ADD_OBJECT(FluidSurfaceActor, CurrentFluidActor, 580)
 		ADD_STRUCT(float, CurrentTimer, 576)
 		ADD_STRUCT(float, CurrentAngle, 572)

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class LightmassLevelSettings;
+}
 #include "Core.Object.h"
 #include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \

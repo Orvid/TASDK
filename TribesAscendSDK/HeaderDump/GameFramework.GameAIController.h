@@ -1,11 +1,14 @@
 #pragma once
-#include "GameFramework.GameAICommand.h"
-#include "Engine.FileLog.h"
+namespace UnrealScript
+{
+	class GameAIController;
+}
 #include "Engine.AIController.h"
-#include "Engine.AITree.AITreeHandle.h"
-#include "GameFramework.GameTypes.AICmdHistoryItem.h"
 #include "Engine.AITree.h"
-#include "Core.Object.Rotator.h"
+#include "Engine.AITree.AITreeHandle.h"
+#include "Engine.FileLog.h"
+#include "GameFramework.GameAICommand.h"
+#include "GameFramework.GameTypes.AICmdHistoryItem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

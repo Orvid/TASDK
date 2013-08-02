@@ -1,5 +1,17 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameTypes;
+}
 #include "Core.Object.h"
+#include "GameFramework.GameTypes.AICmdHistoryItem.h"
+#include "GameFramework.GameTypes.EShakeParam.h"
+#include "GameFramework.GameTypes.GameSpecialMoveInfo.h"
+#include "GameFramework.GameTypes.ScreenShakeAnimStruct.h"
+#include "GameFramework.GameTypes.ScreenShakeStruct.h"
+#include "GameFramework.GameTypes.ShakeParams.h"
+#include "GameFramework.GameTypes.SpecialMoveStruct.h"
+#include "GameFramework.GameTypes.TakeHitInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,6 +35,14 @@ namespace UnrealScript
 	class GameTypes : public Object
 	{
 	public:
+		typedef GameTypes__EShakeParam EShakeParam;
+		typedef GameTypes__AICmdHistoryItem AICmdHistoryItem;
+		typedef GameTypes__SpecialMoveStruct SpecialMoveStruct;
+		typedef GameTypes__GameSpecialMoveInfo GameSpecialMoveInfo;
+		typedef GameTypes__TakeHitInfo TakeHitInfo;
+		typedef GameTypes__ScreenShakeStruct ScreenShakeStruct;
+		typedef GameTypes__ShakeParams ShakeParams;
+		typedef GameTypes__ScreenShakeAnimStruct ScreenShakeAnimStruct;
 		static const const char* LOADING_MOVIE;
 	};
 	const const char* GameTypes::LOADING_MOVIE = "LoadingMovie";

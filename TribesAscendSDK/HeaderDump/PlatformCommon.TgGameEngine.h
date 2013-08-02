@@ -1,8 +1,13 @@
 #pragma once
-#include "Engine.GameEngine.h"
-#include "Engine.PlayerController.h"
+namespace UnrealScript
+{
+	class TgGameEngine;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.GameEngine.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.PlayerController.h"
+#include "PlatformCommon.TgGameEngine.MAR_EVENT.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +27,7 @@ namespace UnrealScript
 	class TgGameEngine : public GameEngine
 	{
 	public:
+		typedef TgGameEngine__MAR_EVENT MAR_EVENT;
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, MarshalEventDelegates, 1808)

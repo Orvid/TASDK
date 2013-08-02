@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrProj_ArxBuster_MKD;
+}
 #include "TribesGame.TrProj_ArxBuster.h"
 namespace UnrealScript
 {

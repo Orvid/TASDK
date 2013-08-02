@@ -1,7 +1,12 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
+namespace UnrealScript
+{
+	class GFxTrPage_WhisperSettings;
+}
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.GFxTrAction.h"
+#include "TribesGame.GFxTrPage.h"
+#include "TribesGame.GFxTrPage_WhisperSettings.MENU_ACTION_WHISPER_NOTIFY_TYPE.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,6 +16,7 @@ namespace UnrealScript
 	class GFxTrPage_WhisperSettings : public GFxTrPage
 	{
 	public:
+		typedef GFxTrPage_WhisperSettings__MENU_ACTION_WHISPER_NOTIFY_TYPE MENU_ACTION_WHISPER_NOTIFY_TYPE;
 		ADD_STRUCT(int, CurrSetting, 356)
 		void Initialize()
 		{

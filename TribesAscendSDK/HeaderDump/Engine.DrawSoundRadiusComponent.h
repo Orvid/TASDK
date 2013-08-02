@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DrawSoundRadiusComponent;
+}
 #include "Engine.DrawSphereComponent.h"
 namespace UnrealScript
 {

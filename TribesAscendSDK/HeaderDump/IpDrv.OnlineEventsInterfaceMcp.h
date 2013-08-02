@@ -1,12 +1,16 @@
 #pragma once
-#include "IpDrv.MCPBase.h"
+namespace UnrealScript
+{
+	class OnlineEventsInterfaceMcp;
+}
 #include "Core.Object.Pointer.h"
-#include "IpDrv.OnlineEventsInterfaceMcp.EventUploadConfig.h"
-#include "IpDrv.OnlineEventsInterfaceMcp.EEventUploadType.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "Engine.OnlineMatchmakingStats.h"
 #include "Engine.OnlinePlayerStorage.h"
 #include "Engine.OnlineProfileSettings.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "IpDrv.MCPBase.h"
+#include "IpDrv.OnlineEventsInterfaceMcp.EEventUploadType.h"
+#include "IpDrv.OnlineEventsInterfaceMcp.EventUploadConfig.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +30,8 @@ namespace UnrealScript
 	class OnlineEventsInterfaceMcp : public MCPBase
 	{
 	public:
+		typedef OnlineEventsInterfaceMcp__EEventUploadType EEventUploadType;
+		typedef OnlineEventsInterfaceMcp__EventUploadConfig EventUploadConfig;
 		ADD_STRUCT(ScriptArray<OnlineEventsInterfaceMcp__EventUploadConfig>, EventUploadConfigs, 64)
 		ADD_STRUCT(ScriptArray<Object__Pointer>, HttpPostObjects, 76)
 		ADD_STRUCT(ScriptArray<OnlineEventsInterfaceMcp__EEventUploadType>, DisabledUploadTypes, 88)

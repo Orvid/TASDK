@@ -1,9 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTEmitter;
+}
 #include "Engine.Emitter.h"
 #include "Engine.ParticleSystem.h"
-#include "UDKBase.UDKPawn.DistanceBasedParticleTemplate.h"
-#include "Core.Object.Vector.h"
 #include "Engine.WorldInfo.h"
+#include "UDKBase.UDKPawn.DistanceBasedParticleTemplate.h"
 namespace UnrealScript
 {
 	class UTEmitter : public Emitter

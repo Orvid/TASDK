@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTUIDataStore_Options;
+}
 #include "UDKBase.UDKUIDataStore_Options.h"
 namespace UnrealScript
 {

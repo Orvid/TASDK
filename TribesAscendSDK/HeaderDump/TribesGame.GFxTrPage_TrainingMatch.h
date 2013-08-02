@@ -1,7 +1,11 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
-#include "TribesGame.GFxTrAction.h"
+namespace UnrealScript
+{
+	class GFxTrPage_TrainingMatch;
+}
 #include "GFxUI.GFxObject.h"
+#include "TribesGame.GFxTrAction.h"
+#include "TribesGame.GFxTrPage.h"
 namespace UnrealScript
 {
 	class GFxTrPage_TrainingMatch : public GFxTrPage

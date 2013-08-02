@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackFloatMaterialParam;
+}
 #include "Engine.EngineTypes.MaterialReferenceList.h"
 #include "Engine.InterpTrackFloatBase.h"
 #include "Engine.MaterialInterface.h"

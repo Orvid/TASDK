@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleTypeDataBase.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class ParticleModuleTypeDataTrail;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Engine.ParticleModuleTypeDataBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

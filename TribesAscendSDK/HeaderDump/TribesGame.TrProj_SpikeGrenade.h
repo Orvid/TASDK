@@ -1,9 +1,12 @@
 #pragma once
-#include "TribesGame.TrProj_Grenade.h"
-#include "Engine.SoundCue.h"
+namespace UnrealScript
+{
+	class TrProj_SpikeGrenade;
+}
 #include "Engine.ParticleSystem.h"
-#include "Core.Object.Vector.h"
 #include "Engine.SkelControlSingleBone.h"
+#include "Engine.SoundCue.h"
+#include "TribesGame.TrProj_Grenade.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

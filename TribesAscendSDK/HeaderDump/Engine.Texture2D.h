@@ -1,12 +1,17 @@
 #pragma once
-#include "Engine.Texture.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.Texture2D.TextureLinkedListMirror.h"
-#include "Engine.Texture.EPixelFormat.h"
+namespace UnrealScript
+{
+	class Texture2D;
+}
 #include "Core.Object.Guid.h"
-#include "Core.Object.ThreadSafeCounter.h"
-#include "Engine.Texture.TextureAddress.h"
 #include "Core.Object.IndirectArray_Mirror.h"
+#include "Core.Object.Pointer.h"
+#include "Core.Object.ThreadSafeCounter.h"
+#include "Engine.Texture.h"
+#include "Engine.Texture.EPixelFormat.h"
+#include "Engine.Texture.TextureAddress.h"
+#include "Engine.Texture2D.Texture2DMipMap.h"
+#include "Engine.Texture2D.TextureLinkedListMirror.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +31,8 @@ namespace UnrealScript
 	class Texture2D : public Texture
 	{
 	public:
+		typedef Texture2D__Texture2DMipMap Texture2DMipMap;
+		typedef Texture2D__TextureLinkedListMirror TextureLinkedListMirror;
 		ADD_STRUCT(ScriptArray<byte>, SystemMemoryData, 324)
 		ADD_STRUCT(float, Timer, 364)
 		ADD_STRUCT(int, FirstResourceMemMip, 360)

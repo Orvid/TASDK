@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	struct GameTypes__TakeHitInfo;
+}
 #include "Engine.Pawn.h"
 #include "Engine.PhysicalMaterial.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -20,7 +23,6 @@ namespace UnrealScript
 		ADD_OBJECT(ScriptClass, DamageType, 24)
 		ADD_OBJECT(Pawn, InstigatedBy, 28)
 		ADD_STRUCT(byte, HitBoneIndex, 32)
-		ADD_OBJECT(PhysicalMaterial, PhysicalMaterial, 36)
 		ADD_STRUCT(float, Damage, 40)
 		ADD_STRUCT(Vector, RadialDamageOrigin, 44)
 	};

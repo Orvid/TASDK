@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class NavMeshObstacle;
+}
 #include "Core.Object.Pointer.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Actor.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

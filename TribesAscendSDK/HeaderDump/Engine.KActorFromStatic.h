@@ -1,9 +1,12 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "Engine.KActor.h"
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class KActorFromStatic;
+}
 #include "Engine.Actor.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
+#include "Engine.KActor.h"
 #include "Engine.Pawn.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

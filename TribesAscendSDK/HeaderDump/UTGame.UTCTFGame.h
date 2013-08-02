@@ -1,14 +1,18 @@
 #pragma once
-#include "Engine.PlayerController.h"
-#include "Engine.Pawn.h"
-#include "UTGame.UTTeamGame.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.h"
-#include "UTGame.UTCTFFlag.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "UTGame.UTCarriedObject.h"
+namespace UnrealScript
+{
+	class UTCTFGame;
+}
 #include "Engine.AIController.h"
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "UTGame.UTCTFFlag.h"
+#include "UTGame.UTCarriedObject.h"
 #include "UTGame.UTPlayerController.h"
+#include "UTGame.UTTeamGame.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

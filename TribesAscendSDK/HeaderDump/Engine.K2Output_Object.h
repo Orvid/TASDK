@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class K2Output_Object;
+}
 #include "Engine.K2Output.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

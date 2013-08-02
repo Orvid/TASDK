@@ -1,9 +1,12 @@
 #pragma once
-#include "Engine.PhysicsVolume.h"
-#include "UDKBase.UDKVehicle.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class UDKForcedDirectionVolume;
+}
 #include "Engine.Actor.h"
+#include "Engine.PhysicsVolume.h"
 #include "Engine.Projectile.h"
+#include "UDKBase.UDKVehicle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

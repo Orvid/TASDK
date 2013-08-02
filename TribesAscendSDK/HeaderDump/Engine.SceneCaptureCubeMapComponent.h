@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine.TextureRenderTargetCube.h"
+namespace UnrealScript
+{
+	class SceneCaptureCubeMapComponent;
+}
 #include "Engine.SceneCaptureComponent.h"
-#include "Core.Object.Vector.h"
+#include "Engine.TextureRenderTargetCube.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

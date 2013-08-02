@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_UTCrowdSpawner;
+}
 #include "GameFramework.SeqAct_GameCrowdSpawner.h"
 namespace UnrealScript
 {

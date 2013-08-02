@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrNeutralMuzzleFlashLight;
+}
 #include "UDKBase.UDKExplosionLight.h"
 namespace UnrealScript
 {

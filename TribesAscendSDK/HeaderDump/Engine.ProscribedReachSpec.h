@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ProscribedReachSpec;
+}
 #include "Engine.ReachSpec.h"
 namespace UnrealScript
 {

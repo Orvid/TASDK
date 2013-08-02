@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.QWord.h"
+namespace UnrealScript
+{
+	struct WorldInfo__ScreenMessageString;
+}
 #include "Core.Object.Color.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

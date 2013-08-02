@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class MorphNodeWeightByBoneAngle;
+}
+#include "Core.Object.EAxis.h"
 #include "Engine.MaterialInstanceConstant.h"
 #include "Engine.MorphNodeWeightBase.h"
 #include "Engine.MorphNodeWeightByBoneAngle.BoneAngleMorph.h"
-#include "Core.Object.EAxis.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +30,7 @@ namespace UnrealScript
 	class MorphNodeWeightByBoneAngle : public MorphNodeWeightBase
 	{
 	public:
+		typedef MorphNodeWeightByBoneAngle__BoneAngleMorph BoneAngleMorph;
 		ADD_STRUCT(ScriptArray<MorphNodeWeightByBoneAngle__BoneAngleMorph>, WeightArray, 168)
 		ADD_OBJECT(MaterialInstanceConstant, MaterialInstanceConstant, 164)
 		ADD_STRUCT(ScriptName, ScalarParameterName, 156)

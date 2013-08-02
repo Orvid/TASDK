@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.LocalPlayer.h"
-#include "Engine.Interaction.h"
-#include "Engine.Texture2D.h"
-#include "Engine.Canvas.h"
+namespace UnrealScript
+{
+	class TrChatInput;
+}
 #include "Core.Object.EInputEvent.h"
+#include "Engine.Canvas.h"
+#include "Engine.Interaction.h"
+#include "Engine.LocalPlayer.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

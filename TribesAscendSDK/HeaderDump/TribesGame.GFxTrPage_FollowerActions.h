@@ -1,8 +1,12 @@
 #pragma once
-#include "TribesGame.GFxTrPage.h"
-#include "TribesGame.TrFriendManager.EOnlineState.h"
+namespace UnrealScript
+{
+	class GFxTrPage_FollowerActions;
+}
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.GFxTrAction.h"
+#include "TribesGame.GFxTrPage.h"
+#include "TribesGame.TrFriendManager.EOnlineState.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

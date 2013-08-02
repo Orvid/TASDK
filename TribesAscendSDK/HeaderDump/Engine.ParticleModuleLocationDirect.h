@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleLocationBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleLocationDirect;
+}
 #include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleLocationBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

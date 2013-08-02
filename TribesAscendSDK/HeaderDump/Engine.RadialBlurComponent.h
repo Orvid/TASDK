@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class RadialBlurComponent;
+}
+#include "Core.Object.Matrix.h"
 #include "Engine.ActorComponent.h"
 #include "Engine.MaterialInterface.h"
-#include "Core.Object.Matrix.h"
 #include "Engine.Scene.ESceneDepthPriorityGroup.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

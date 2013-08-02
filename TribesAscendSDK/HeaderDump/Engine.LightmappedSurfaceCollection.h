@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class LightmappedSurfaceCollection;
+}
 #include "Core.Object.h"
 #include "Engine.Model.h"
 #define ADD_STRUCT(x, y, offset) \

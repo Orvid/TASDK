@@ -1,8 +1,13 @@
 #pragma once
-#include "UTGame.UTDataStore_GameSearchHistory.h"
+namespace UnrealScript
+{
+	class UTDataStore_GameSearchDM;
+}
+#include "Engine.LocalPlayer.h"
 #include "UDKBase.UDKDataStore_GameSearchBase.h"
 #include "UTGame.UTDataStore_GameSearchDM.GameSearchSettingsStorage.h"
-#include "Engine.LocalPlayer.h"
+#include "UTGame.UTDataStore_GameSearchDM.PersistentLocalizedSettingValue.h"
+#include "UTGame.UTDataStore_GameSearchHistory.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,6 +21,8 @@ namespace UnrealScript
 	class UTDataStore_GameSearchDM : public UDKDataStore_GameSearchBase
 	{
 	public:
+		typedef UTDataStore_GameSearchDM__GameSearchSettingsStorage GameSearchSettingsStorage;
+		typedef UTDataStore_GameSearchDM__PersistentLocalizedSettingValue PersistentLocalizedSettingValue;
 		ADD_STRUCT(ScriptArray<UTDataStore_GameSearchDM__GameSearchSettingsStorage>, StoredGameSearchValues, 180)
 		ADD_OBJECT(UTDataStore_GameSearchHistory, HistoryGameSearchDataStore, 176)
 		ADD_OBJECT(ScriptClass, HistoryGameSearchDataStoreClass, 172)

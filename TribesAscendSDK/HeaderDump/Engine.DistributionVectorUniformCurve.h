@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class DistributionVectorUniformCurve;
+}
 #include "Core.DistributionVector.h"
-#include "Core.Object.InterpCurveTwoVectors.h"
-#include "Core.DistributionVector.EDistributionVectorMirrorFlags.h"
 #include "Core.DistributionVector.EDistributionVectorLockFlags.h"
+#include "Core.DistributionVector.EDistributionVectorMirrorFlags.h"
+#include "Core.Object.InterpCurveTwoVectors.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

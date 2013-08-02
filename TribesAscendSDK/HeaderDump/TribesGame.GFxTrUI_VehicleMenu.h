@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrUI_VehicleMenu;
+}
 #include "UTGame.UTGFxTweenableMoviePlayer.h"
 namespace UnrealScript
 {

@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class NavMeshGoal_ClosestActorInList;
+}
+#include "Core.Object.MultiMap_Mirror.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.NavMeshPathGoalEvaluator.h"
 #include "Engine.NavMeshPathGoalEvaluator.BiasedGoalActor.h"
-#include "Core.Object.Pointer.h"
-#include "Core.Object.MultiMap_Mirror.h"
 #include "Engine.NavigationHandle.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

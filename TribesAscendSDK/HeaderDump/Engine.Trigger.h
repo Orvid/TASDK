@@ -1,6 +1,9 @@
 #pragma once
+namespace UnrealScript
+{
+	class Trigger;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Projectile.h"
 #include "Engine.Trigger.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -22,6 +25,7 @@ namespace UnrealScript
 	class Trigger : public Actor
 	{
 	public:
+		typedef Trigger__CheckpointRecord CheckpointRecord;
 		ADD_BOOL(bRecentlyTriggered, 480, 0x1)
 		ADD_STRUCT(float, AITriggerDelay, 484)
 		void Touch(class Actor* Other, 

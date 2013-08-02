@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrPage_RentServer;
+}
 #include "TribesGame.GFxTrPage.h"
 namespace UnrealScript
 {

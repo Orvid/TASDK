@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DynamicSMActor_Spawnable;
+}
 #include "Engine.DynamicSMActor.h"
 namespace UnrealScript
 {

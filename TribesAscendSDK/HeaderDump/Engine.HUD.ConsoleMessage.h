@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	struct HUD__ConsoleMessage;
+}
 #include "Core.Object.Color.h"
+#include "Engine.PlayerReplicationInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

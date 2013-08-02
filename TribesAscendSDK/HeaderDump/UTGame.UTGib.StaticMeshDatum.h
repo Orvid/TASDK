@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UTGib__StaticMeshDatum;
+}
 #include "Engine.PhysicsAsset.h"
 #include "Engine.SkeletalMesh.h"
 #include "Engine.StaticMesh.h"

@@ -1,11 +1,15 @@
 #pragma once
-#include "TribesGame.TrGame.h"
-#include "TribesGame.TrGame_TrStorm.Missile.h"
-#include "TribesGame.TrGame_TrStorm.Carrier.h"
-#include "TribesGame.TrStormCarrierShield.h"
-#include "TribesGame.TrStormCore.h"
+namespace UnrealScript
+{
+	class TrGame_TrStorm;
+}
 #include "Engine.PlayerReplicationInfo.h"
+#include "TribesGame.TrGame.h"
+#include "TribesGame.TrGame_TrStorm.Carrier.h"
+#include "TribesGame.TrGame_TrStorm.Missile.h"
+#include "TribesGame.TrStormCarrierShield.h"
 #include "TribesGame.TrStormControlPoint.h"
+#include "TribesGame.TrStormCore.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -19,6 +23,8 @@ namespace UnrealScript
 	class TrGame_TrStorm : public TrGame
 	{
 	public:
+		typedef TrGame_TrStorm__Missile Missile;
+		typedef TrGame_TrStorm__Carrier Carrier;
 		ADD_STRUCT(ScriptArray<TrGame_TrStorm__Missile>, m_fActiveMissiles, 1480)
 		ADD_STRUCT(float, MatchEndingTime, 1520)
 		ADD_STRUCT(int, m_nMaxCoreHealth, 1516)

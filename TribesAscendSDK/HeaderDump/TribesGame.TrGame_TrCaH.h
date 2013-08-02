@@ -1,11 +1,15 @@
 #pragma once
-#include "TribesGame.TrGame.h"
-#include "TribesGame.TrCaHCapturePoint.h"
-#include "Engine.PlayerStart.h"
+namespace UnrealScript
+{
+	class TrGame_TrCaH;
+}
 #include "Engine.Controller.h"
-#include "UTGame.UTTeamInfo.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Engine.PlayerStart.h"
+#include "TribesGame.TrCaHCapturePoint.h"
+#include "TribesGame.TrGame.h"
 #include "TribesGame.TrPawn.h"
+#include "UTGame.UTTeamInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

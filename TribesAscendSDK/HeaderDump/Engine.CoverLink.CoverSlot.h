@@ -1,12 +1,14 @@
 #pragma once
-#include "Engine.CoverLink.FireLink.h"
+namespace UnrealScript
+{
+	struct CoverLink__CoverSlot;
+}
+#include "Engine.CoverLink.CoverInfo.h"
 #include "Engine.CoverLink.ECoverAction.h"
-#include "Engine.CoverLink.SlotMoveRef.h"
 #include "Engine.CoverLink.ECoverLocationDescription.h"
 #include "Engine.CoverLink.ECoverType.h"
-#include "Engine.CoverLink.CoverInfo.h"
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
+#include "Engine.CoverLink.FireLink.h"
+#include "Engine.CoverLink.SlotMoveRef.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

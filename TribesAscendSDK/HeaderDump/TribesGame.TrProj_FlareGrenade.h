@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrProj_FlareGrenade;
+}
 #include "TribesGame.TrProj_Grenade.h"
 #include "TribesGame.TrProj_TrackingMissile.h"
 namespace UnrealScript

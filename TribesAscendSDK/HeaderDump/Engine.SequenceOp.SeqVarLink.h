@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SequenceVariable.h"
+namespace UnrealScript
+{
+	struct SequenceOp__SeqVarLink;
+}
 #include "Core.Property.h"
+#include "Engine.SequenceVariable.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

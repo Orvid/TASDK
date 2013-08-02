@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqEvent_MobileMotion;
+}
 #include "GameFramework.SeqEvent_MobileBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

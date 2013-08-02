@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.Mutator.h"
+namespace UnrealScript
+{
+	class UTMutator;
+}
 #include "Engine.Actor.h"
-#include "UTGame.UTPlayerController.h"
+#include "Engine.Mutator.h"
 #include "Engine.OnlineSubsystem.SpeechRecognizedWord.h"
+#include "UTGame.UTPlayerController.h"
 namespace UnrealScript
 {
 	class UTMutator : public Mutator

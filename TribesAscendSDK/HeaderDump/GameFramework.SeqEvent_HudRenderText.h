@@ -1,11 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqEvent_HudRenderText;
+}
+#include "Core.Object.Color.h"
+#include "Engine.Canvas.h"
+#include "Engine.Font.h"
 #include "Engine.HUD.h"
-#include "Core.Object.Vector.h"
 #include "GameFramework.SeqEvent_HudRender.h"
 #include "GameFramework.SeqEvent_HudRenderText.ETextDrawMethod.h"
-#include "Core.Object.Color.h"
-#include "Engine.Font.h"
-#include "Engine.Canvas.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -19,6 +22,7 @@ namespace UnrealScript
 	class SeqEvent_HudRenderText : public SeqEvent_HudRender
 	{
 	public:
+		typedef SeqEvent_HudRenderText__ETextDrawMethod ETextDrawMethod;
 		ADD_STRUCT(SeqEvent_HudRenderText__ETextDrawMethod, TextDrawMethod, 308)
 		ADD_STRUCT(ScriptString*, DisplayText, 296)
 		ADD_STRUCT(Vector, DisplayLocation, 284)

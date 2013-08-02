@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpFilter_Custom;
+}
 #include "Engine.InterpFilter.h"
 #include "Engine.InterpGroup.h"
 #define ADD_STRUCT(x, y, offset) \

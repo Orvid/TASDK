@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_Thumper;
+}
 #include "TribesGame.TrDevice.h"
 namespace UnrealScript
 {

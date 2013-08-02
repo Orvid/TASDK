@@ -1,7 +1,11 @@
 #pragma once
-#include "TribesGame.TrDeployable_Sensor.h"
-#include "Engine.Texture2D.h"
+namespace UnrealScript
+{
+	class TrDeployable_DropJammer;
+}
 #include "Engine.Pawn.h"
+#include "Engine.Texture2D.h"
+#include "TribesGame.TrDeployable_Sensor.h"
 namespace UnrealScript
 {
 	class TrDeployable_DropJammer : public TrDeployable_Sensor

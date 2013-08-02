@@ -1,5 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleParameterDynamic;
+}
 #include "Engine.ParticleModuleParameterBase.h"
+#include "Engine.ParticleModuleParameterDynamic.EEmitterDynamicParameterValue.h"
 #include "Engine.ParticleModuleParameterDynamic.EmitterDynamicParameter.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -20,6 +25,8 @@ namespace UnrealScript
 	class ParticleModuleParameterDynamic : public ParticleModuleParameterBase
 	{
 	public:
+		typedef ParticleModuleParameterDynamic__EEmitterDynamicParameterValue EEmitterDynamicParameterValue;
+		typedef ParticleModuleParameterDynamic__EmitterDynamicParameter EmitterDynamicParameter;
 		ADD_STRUCT(ScriptArray<ParticleModuleParameterDynamic__EmitterDynamicParameter>, DynamicParams, 72)
 	};
 }

@@ -1,6 +1,10 @@
 #pragma once
-#include "Core.Object.SparseArray_Mirror.h"
+namespace UnrealScript
+{
+	struct Object__Set_Mirror;
+}
 #include "Core.Object.Pointer.h"
+#include "Core.Object.SparseArray_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

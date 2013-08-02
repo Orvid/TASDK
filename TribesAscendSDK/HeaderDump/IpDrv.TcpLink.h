@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TcpLink;
+}
 #include "IpDrv.InternetLink.h"
 #include "IpDrv.InternetLink.IpAddr.h"
 #include "IpDrv.TcpLink.ELinkState.h"
@@ -15,6 +19,7 @@ namespace UnrealScript
 	class TcpLink : public InternetLink
 	{
 	public:
+		typedef TcpLink__ELinkState ELinkState;
 		ADD_STRUCT(ScriptArray<byte>, SendFIFO, 516)
 		ADD_STRUCT(ScriptString*, RecvBuf, 528)
 		ADD_OBJECT(ScriptClass, AcceptClass, 512)

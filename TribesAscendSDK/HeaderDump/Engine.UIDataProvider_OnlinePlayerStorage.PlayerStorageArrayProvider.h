@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UIDataProvider_OnlinePlayerStorage__PlayerStorageArrayProvider;
+}
 #include "Engine.UIDataProvider_OnlinePlayerStorageArray.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

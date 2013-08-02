@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Interface_NavigationHandle;
+}
 #include "Core.Interface.h"
 namespace UnrealScript
 {

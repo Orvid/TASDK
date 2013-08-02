@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class DistributionVectorConstant;
+}
 #include "Core.DistributionVector.h"
 #include "Core.DistributionVector.EDistributionVectorLockFlags.h"
 #define ADD_BOOL(name, offset, mask) \

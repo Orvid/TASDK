@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class EditorViewportInput;
+}
 #include "Engine.Input.h"
 namespace UnrealScript
 {

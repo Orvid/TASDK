@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	struct HUD__HudLocalizedMessage;
+}
 #include "Core.Object.h"
-#include "Engine.Font.h"
 #include "Core.Object.Color.h"
+#include "Engine.Font.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

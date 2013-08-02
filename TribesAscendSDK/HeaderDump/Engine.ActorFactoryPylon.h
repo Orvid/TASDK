@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorFactoryPylon;
+}
 #include "Engine.ActorFactory.h"
 namespace UnrealScript
 {

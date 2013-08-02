@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ArchetypeThumbnailRenderer;
+}
 #include "UnrealEd.IconThumbnailRenderer.h"
 namespace UnrealScript
 {

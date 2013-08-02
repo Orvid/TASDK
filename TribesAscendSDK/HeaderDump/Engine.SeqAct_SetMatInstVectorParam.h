@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.SequenceAction.h"
+namespace UnrealScript
+{
+	class SeqAct_SetMatInstVectorParam;
+}
 #include "Core.Object.LinearColor.h"
 #include "Engine.MaterialInstanceConstant.h"
+#include "Engine.SequenceAction.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

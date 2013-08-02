@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SequenceEvent.h"
+namespace UnrealScript
+{
+	class UTSeqEvent_FlagEvent;
+}
 #include "Engine.Controller.h"
+#include "Engine.SequenceEvent.h"
 namespace UnrealScript
 {
 	class UTSeqEvent_FlagEvent : public SequenceEvent

@@ -1,14 +1,16 @@
 #pragma once
-#include "Engine.PlayerController.h"
-#include "TribesGame.TrPawn.h"
-#include "Engine.Pawn.h"
-#include "UTGame.UTDroppedPickup.h"
-#include "TribesGame.TrCollisionProxy.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.SoundCue.h"
+namespace UnrealScript
+{
+	class TrDroppedPickup;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Canvas.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
+#include "Engine.SoundCue.h"
+#include "TribesGame.TrCollisionProxy.h"
+#include "TribesGame.TrPawn.h"
+#include "UTGame.UTDroppedPickup.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

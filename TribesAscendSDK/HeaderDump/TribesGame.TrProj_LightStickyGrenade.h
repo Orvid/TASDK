@@ -1,7 +1,10 @@
 #pragma once
-#include "TribesGame.TrProj_Grenade.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrProj_LightStickyGrenade;
+}
 #include "Engine.Actor.h"
+#include "TribesGame.TrProj_Grenade.h"
 namespace UnrealScript
 {
 	class TrProj_LightStickyGrenade : public TrProj_Grenade

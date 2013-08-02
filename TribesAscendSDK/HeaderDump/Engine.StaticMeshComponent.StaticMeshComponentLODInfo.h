@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.ShadowMap2D.h"
+namespace UnrealScript
+{
+	struct StaticMeshComponent__StaticMeshComponentLODInfo;
+}
 #include "Core.Object.h"
-#include "Core.Object.Vector.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.ShadowMap2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class AmbientSoundSimple;
+}
 #include "Engine.AmbientSound.h"
-#include "Engine.SoundNodeAmbient.h"
 #include "Engine.SoundCue.h"
+#include "Engine.SoundNodeAmbient.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAnimNodeBlendByGravCycleDirection;
+}
 #include "TribesGame.TrAnimNodeBlendList.h"
 #include "TribesGame.TrVehicle.h"
 #define ADD_STRUCT(x, y, offset) \

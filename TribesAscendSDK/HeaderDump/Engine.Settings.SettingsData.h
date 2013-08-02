@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Settings.ESettingsDataType.h"
+namespace UnrealScript
+{
+	struct Settings__SettingsData;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.Settings.ESettingsDataType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

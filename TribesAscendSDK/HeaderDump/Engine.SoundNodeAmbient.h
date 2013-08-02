@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.SoundNodeAttenuation.SoundDistanceModel.h"
+namespace UnrealScript
+{
+	class SoundNodeAmbient;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.SoundNode.h"
 #include "Engine.SoundNodeAmbient.AmbientSoundSlot.h"
+#include "Engine.SoundNodeAttenuation.SoundDistanceModel.h"
 #include "Engine.SoundNodeWave.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -27,6 +31,7 @@ namespace UnrealScript
 	class SoundNodeAmbient : public SoundNode
 	{
 	public:
+		typedef SoundNodeAmbient__AmbientSoundSlot AmbientSoundSlot;
 		ADD_STRUCT(ScriptArray<SoundNodeAmbient__AmbientSoundSlot>, SoundSlots, 120)
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, VolumeModulation, 276)
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, PitchModulation, 248)

@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.PostProcessEffect.h"
-#include "Engine.AmbientOcclusionEffect.EAmbientOcclusionQuality.h"
+namespace UnrealScript
+{
+	class AmbientOcclusionEffect;
+}
 #include "Core.Object.LinearColor.h"
+#include "Engine.AmbientOcclusionEffect.EAmbientOcclusionQuality.h"
+#include "Engine.PostProcessEffect.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class AmbientOcclusionEffect : public PostProcessEffect
 	{
 	public:
+		typedef AmbientOcclusionEffect__EAmbientOcclusionQuality EAmbientOcclusionQuality;
 		ADD_STRUCT(float, HistoryWeightConvergenceTime, 188)
 		ADD_STRUCT(float, HistoryConvergenceTime, 184)
 		ADD_STRUCT(int, FilterSize, 180)

@@ -1,6 +1,10 @@
 #pragma once
-#include "Core.Object.InterpCurvePointVector2D.h"
+namespace UnrealScript
+{
+	struct Object__InterpCurveVector2D;
+}
 #include "Core.Object.EInterpMethodType.h"
+#include "Core.Object.InterpCurvePointVector2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

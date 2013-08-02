@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class K2GraphBase;
+}
 #include "Core.Object.h"
 #include "Engine.K2NodeBase.h"
 #define ADD_STRUCT(x, y, offset) \

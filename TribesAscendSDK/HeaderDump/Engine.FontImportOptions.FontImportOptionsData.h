@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.FontImportOptions.EFontImportCharacterSet.h"
+namespace UnrealScript
+{
+	struct FontImportOptions__FontImportOptionsData;
+}
 #include "Core.Object.LinearColor.h"
+#include "Engine.FontImportOptions.EFontImportCharacterSet.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,7 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKMapMusicInfo;
+}
 #include "Core.Object.h"
-#include "UDKBase.UDKMapMusicInfo.StingersForAMap.h"
+#include "UDKBase.UDKMapMusicInfo.ECrossfadeType.h"
 #include "UDKBase.UDKMapMusicInfo.MusicForAMap.h"
+#include "UDKBase.UDKMapMusicInfo.MusicSegment.h"
+#include "UDKBase.UDKMapMusicInfo.StingersForAMap.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,6 +21,10 @@ namespace UnrealScript
 	class UDKMapMusicInfo : public Object
 	{
 	public:
+		typedef UDKMapMusicInfo__ECrossfadeType ECrossfadeType;
+		typedef UDKMapMusicInfo__MusicSegment MusicSegment;
+		typedef UDKMapMusicInfo__StingersForAMap StingersForAMap;
+		typedef UDKMapMusicInfo__MusicForAMap MusicForAMap;
 		ADD_STRUCT(UDKMapMusicInfo__StingersForAMap, MapStingers, 160)
 		ADD_STRUCT(UDKMapMusicInfo__MusicForAMap, MapMusic, 60)
 	};

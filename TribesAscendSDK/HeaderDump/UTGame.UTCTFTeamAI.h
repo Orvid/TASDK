@@ -1,9 +1,13 @@
 #pragma once
-#include "UTGame.UTTeamAI.h"
+namespace UnrealScript
+{
+	class UTCTFTeamAI;
+}
 #include "Engine.Controller.h"
-#include "UTGame.UTSquadAI.h"
 #include "UTGame.UTCTFFlag.h"
 #include "UTGame.UTGameObjective.h"
+#include "UTGame.UTSquadAI.h"
+#include "UTGame.UTTeamAI.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

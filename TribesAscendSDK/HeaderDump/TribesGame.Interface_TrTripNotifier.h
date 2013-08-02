@@ -1,9 +1,12 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class Interface_TrTripNotifier;
+}
 #include "Core.Interface.h"
 #include "Engine.ParticleSystem.h"
-#include "TribesGame.TrTripActor.h"
 #include "Engine.Pawn.h"
+#include "TribesGame.TrTripActor.h"
 namespace UnrealScript
 {
 	class Interface_TrTripNotifier : public Interface

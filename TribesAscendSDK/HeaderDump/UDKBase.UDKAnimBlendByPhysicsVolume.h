@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKAnimBlendByPhysicsVolume;
+}
+#include "Engine.PhysicsVolume.h"
 #include "UDKBase.UDKAnimBlendBase.h"
 #include "UDKBase.UDKAnimBlendByPhysicsVolume.PhysicsVolumeParams.h"
-#include "Engine.PhysicsVolume.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +29,7 @@ namespace UnrealScript
 	class UDKAnimBlendByPhysicsVolume : public UDKAnimBlendBase
 	{
 	public:
+		typedef UDKAnimBlendByPhysicsVolume__PhysicsVolumeParams PhysicsVolumeParams;
 		ADD_STRUCT(ScriptArray<UDKAnimBlendByPhysicsVolume__PhysicsVolumeParams>, PhysicsParamList, 296)
 		ADD_OBJECT(PhysicsVolume, LastPhysicsVolume, 308)
 		void PhysicsVolumeChanged(class PhysicsVolume* NewVolume)

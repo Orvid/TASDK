@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SpotLightToggleable;
+}
 #include "Engine.SpotLight.h"
 #include "Engine.SpotLightToggleable.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -16,6 +20,7 @@ namespace UnrealScript
 	class SpotLightToggleable : public SpotLight
 	{
 	public:
+		typedef SpotLightToggleable__CheckpointRecord CheckpointRecord;
 		bool ShouldSaveForCheckpoint()
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(27194);

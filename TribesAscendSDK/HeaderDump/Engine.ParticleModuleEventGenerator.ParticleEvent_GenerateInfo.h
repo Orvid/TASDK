@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ParticleModuleEventGenerator__ParticleEvent_GenerateInfo;
+}
 #include "Engine.ParticleModuleEventSendToGame.h"
 #include "Engine.ParticleSystemComponent.EParticleEventType.h"
 #define ADD_BOOL(name, offset, mask) \

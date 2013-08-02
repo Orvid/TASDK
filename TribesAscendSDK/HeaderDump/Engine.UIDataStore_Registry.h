@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataStore_Registry;
+}
 #include "Engine.UIDataStore.h"
 #include "Engine.UIDynamicFieldProvider.h"
 #define ADD_OBJECT(x, y, offset) \

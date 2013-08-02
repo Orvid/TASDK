@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.SkelControlWheel.h"
+namespace UnrealScript
+{
+	class SVehicleWheel;
+}
 #include "Core.Component.h"
-#include "Core.Object.Vector.h"
 #include "Core.Object.Pointer.h"
-#include "Engine.SVehicleWheel.EWheelSide.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.SVehicleWheel.EWheelSide.h"
+#include "Engine.SkelControlWheel.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +31,7 @@ namespace UnrealScript
 	class SVehicleWheel : public Component
 	{
 	public:
+		typedef SVehicleWheel__EWheelSide EWheelSide;
 		ADD_OBJECT(SkelControlWheel, WheelControl, 104)
 		ADD_STRUCT(ScriptName, SkelControlName, 96)
 		ADD_STRUCT(Vector, WheelPosition, 168)

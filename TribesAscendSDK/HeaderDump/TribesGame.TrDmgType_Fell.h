@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDmgType_Fell;
+}
 #include "TribesGame.TrDmgType_Base.h"
 namespace UnrealScript
 {

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrMenuSounds;
+}
 #include "Core.Object.h"
 #include "TribesGame.GFxTrMenuSounds.EMenuSound.h"
 namespace UnrealScript
@@ -6,6 +10,7 @@ namespace UnrealScript
 	class GFxTrMenuSounds : public Object
 	{
 	public:
+		typedef GFxTrMenuSounds__EMenuSound EMenuSound;
 		void SoundToolTip(bool bOpened)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(56597);

@@ -1,17 +1,19 @@
 #pragma once
-#include "Engine.Canvas.h"
-#include "UTGame.UTWeapon.h"
-#include "Core.Object.Vector.h"
-#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
-#include "UTGame.UTVehicle.h"
-#include "Engine.PhysicalMaterial.h"
-#include "Engine.SoundCue.h"
-#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	class UTVehicleWeapon;
+}
 #include "Engine.Actor.h"
+#include "Engine.Canvas.h"
 #include "Engine.HUD.h"
+#include "Engine.PhysicalMaterial.h"
 #include "Engine.Projectile.h"
-#include "UTGame.UTWeapon.EZoomState.h"
+#include "Engine.SoundCue.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
 #include "UTGame.UTPlayerController.h"
+#include "UTGame.UTVehicle.h"
+#include "UTGame.UTWeapon.h"
+#include "UTGame.UTWeapon.EZoomState.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

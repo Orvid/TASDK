@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.PhysicsVolume.h"
+namespace UnrealScript
+{
+	class UTKillZVolume;
+}
 #include "Engine.Actor.h"
 #include "Engine.Pawn.h"
-#include "Core.Object.Vector.h"
+#include "Engine.PhysicsVolume.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

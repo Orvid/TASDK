@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ImageServer;
+}
 #include "IpDrv.WebApplication.h"
 #include "IpDrv.WebRequest.h"
 #include "IpDrv.WebResponse.h"

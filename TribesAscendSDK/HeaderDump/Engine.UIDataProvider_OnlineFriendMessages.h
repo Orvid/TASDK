@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.OnlineSubsystem.OnlineFriendMessage.h"
-#include "Engine.UIDataProvider_OnlinePlayerDataBase.h"
+namespace UnrealScript
+{
+	class UIDataProvider_OnlineFriendMessages;
+}
 #include "Core.Object.Pointer.h"
 #include "Engine.LocalPlayer.h"
+#include "Engine.OnlineSubsystem.OnlineFriendMessage.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.UIDataProvider_OnlinePlayerDataBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

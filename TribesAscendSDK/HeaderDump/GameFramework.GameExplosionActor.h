@@ -1,14 +1,17 @@
 #pragma once
-#include "GameFramework.GamePawn.h"
-#include "GameFramework.GameExplosion.h"
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class GameExplosionActor;
+}
+#include "Core.Object.Box.h"
 #include "Engine.Actor.h"
 #include "Engine.CameraShake.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PhysicalMaterial.h"
-#include "Core.Object.Box.h"
+#include "Engine.Controller.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.PhysicalMaterial.h"
 #include "Engine.PlayerController.h"
+#include "GameFramework.GameExplosion.h"
+#include "GameFramework.GamePawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

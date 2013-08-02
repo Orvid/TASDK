@@ -1,14 +1,17 @@
 #pragma once
-#include "Engine.NavigationPoint.h"
-#include "Engine.Canvas.h"
-#include "Engine.UIRoot.TextureCoordinates.h"
-#include "Engine.Texture2D.h"
-#include "Engine.AIController.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.h"
-#include "UDKBase.UDKPlayerController.h"
+namespace UnrealScript
+{
+	class UDKGameObjective;
+}
 #include "Core.Object.LinearColor.h"
+#include "Engine.AIController.h"
+#include "Engine.Actor.h"
+#include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.Texture2D.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "UDKBase.UDKPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

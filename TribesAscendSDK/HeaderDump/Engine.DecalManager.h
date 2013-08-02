@@ -1,10 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class DecalManager;
+}
+#include "Core.Object.Vector2D.h"
 #include "Engine.Actor.h"
 #include "Engine.DecalManager.ActiveDecalInfo.h"
-#include "Core.Object.Vector2D.h"
 #include "Engine.MaterialInterface.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,6 +16,7 @@ namespace UnrealScript
 	class DecalManager : public Actor
 	{
 	public:
+		typedef DecalManager__ActiveDecalInfo ActiveDecalInfo;
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, PoolDecals, 480)

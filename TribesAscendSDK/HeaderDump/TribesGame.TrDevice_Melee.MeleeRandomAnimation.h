@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrDevice_Melee__MeleeRandomAnimation;
+}
 #include "Engine.CameraAnim.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

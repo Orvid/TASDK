@@ -1,9 +1,13 @@
 #pragma once
-#include "UDKBase.UDKBot.h"
-#include "UDKBase.UDKTeamOwnedInfo.h"
+namespace UnrealScript
+{
+	class UDKSquadAI;
+}
 #include "Engine.NavigationPoint.h"
-#include "UDKBase.UDKSquadAI.AlternateRoute.h"
+#include "UDKBase.UDKBot.h"
 #include "UDKBase.UDKGameObjective.h"
+#include "UDKBase.UDKSquadAI.AlternateRoute.h"
+#include "UDKBase.UDKTeamOwnedInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,6 +21,7 @@ namespace UnrealScript
 	class UDKSquadAI : public UDKTeamOwnedInfo
 	{
 	public:
+		typedef UDKSquadAI__AlternateRoute AlternateRoute;
 		ADD_STRUCT(ScriptArray<class NavigationPoint*>, ObjectiveRouteCache, 488)
 		ADD_STRUCT(ScriptArray<class NavigationPoint*>, PreviousObjectiveRouteCache, 500)
 		ADD_STRUCT(ScriptArray<UDKSquadAI__AlternateRoute>, SquadRoutes, 520)

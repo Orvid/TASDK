@@ -1,16 +1,20 @@
 #pragma once
-#include "TribesGame.TrDaDCore.h"
-#include "UTGame.UTGameReplicationInfo.h"
-#include "TribesGame.TrDeployable.h"
-#include "TribesGame.TrServerSettingsInfo.h"
-#include "TribesGame.TrPlayerReplicationInfo.h"
-#include "TribesGame.TrObjectPool.h"
-#include "TribesGame.TrPawn.PhysicsType.h"
-#include "TribesGame.TrFlagBase.h"
+namespace UnrealScript
+{
+	class TrGameReplicationInfo;
+}
+#include "Engine.Actor.h"
 #include "Engine.PlayerReplicationInfo.h"
 #include "TribesGame.TrDaDCapacitor.h"
+#include "TribesGame.TrDaDCore.h"
+#include "TribesGame.TrDeployable.h"
+#include "TribesGame.TrFlagBase.h"
+#include "TribesGame.TrObjectPool.h"
+#include "TribesGame.TrPawn.PhysicsType.h"
+#include "TribesGame.TrPlayerReplicationInfo.h"
+#include "TribesGame.TrServerSettingsInfo.h"
 #include "TribesGame.TrTeamBlockerStaticMeshActor.h"
-#include "Engine.Actor.h"
+#include "UTGame.UTGameReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

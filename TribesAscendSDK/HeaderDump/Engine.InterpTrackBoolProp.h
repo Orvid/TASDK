@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackBoolProp;
+}
 #include "Engine.InterpTrack.h"
 #include "Engine.InterpTrackBoolProp.BoolTrackKey.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class InterpTrackBoolProp : public InterpTrack
 	{
 	public:
+		typedef InterpTrackBoolProp__BoolTrackKey BoolTrackKey;
 		ADD_STRUCT(ScriptArray<InterpTrackBoolProp__BoolTrackKey>, BoolTrack, 128)
 		ADD_STRUCT(ScriptName, PropertyName, 140)
 	};

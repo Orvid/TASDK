@@ -1,9 +1,13 @@
 #pragma once
-#include "UTGame.GFxUDKFrontEnd_Screen.h"
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_MainMenu;
+}
 #include "GFxUI.GFxClikWidget.h"
 #include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
 #include "UTGame.GFxUDKFrontEnd_MainMenu.Option.h"
+#include "UTGame.GFxUDKFrontEnd_Screen.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,6 +21,7 @@ namespace UnrealScript
 	class GFxUDKFrontEnd_MainMenu : public GFxUDKFrontEnd_Screen
 	{
 	public:
+		typedef GFxUDKFrontEnd_MainMenu__Option Option;
 		ADD_OBJECT(GFxClikWidget, ListMC, 232)
 		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_MainMenu__Option>, ListOptions, 220)
 		ADD_STRUCT(byte, LastSelectedIndex, 248)

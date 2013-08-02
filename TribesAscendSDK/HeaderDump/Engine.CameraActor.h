@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class CameraActor;
+}
 #include "Core.Object.TPOV.h"
-#include "Engine.PostProcessVolume.PostProcessSettings.h"
+#include "Engine.Actor.h"
 #include "Engine.HUD.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

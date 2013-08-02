@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Surface;
+}
 #include "Core.Object.h"
 namespace UnrealScript
 {

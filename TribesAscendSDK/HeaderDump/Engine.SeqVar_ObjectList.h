@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SeqVar_Object.h"
+namespace UnrealScript
+{
+	class SeqVar_ObjectList;
+}
 #include "Core.Object.h"
+#include "Engine.SeqVar_Object.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,31 +1,33 @@
 #pragma once
-#include "Engine.PlayerController.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Engine.Info.h"
-#include "Engine.AutoTestManager.h"
-#include "Engine.GameReplicationInfo.h"
-#include "Engine.BroadcastHandler.h"
-#include "Engine.Mutator.h"
-#include "Engine.HUD.h"
-#include "Engine.AccessControl.h"
-#include "Engine.CoverReplicator.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "Engine.GameInfo.GameClassShortName.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "Engine.GameInfo.GameTypePrefix.h"
-#include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "Engine.Pawn.h"
-#include "Engine.NavigationPoint.h"
-#include "Core.Object.Guid.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.PlayerStart.h"
-#include "Engine.PickupFactory.h"
+namespace UnrealScript
+{
+	class GameInfo;
+}
 #include "Core.Object.h"
-#include "Engine.Vehicle.h"
-#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Core.Object.Guid.h"
+#include "Engine.AccessControl.h"
+#include "Engine.Actor.h"
+#include "Engine.AutoTestManager.h"
+#include "Engine.BroadcastHandler.h"
+#include "Engine.Controller.h"
+#include "Engine.CoverReplicator.h"
 #include "Engine.GameInfo.EStandbyType.h"
+#include "Engine.GameInfo.GameClassShortName.h"
+#include "Engine.GameInfo.GameTypePrefix.h"
+#include "Engine.GameReplicationInfo.h"
+#include "Engine.HUD.h"
+#include "Engine.Info.h"
+#include "Engine.Mutator.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.Pawn.h"
+#include "Engine.PickupFactory.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.PlayerStart.h"
+#include "Engine.Vehicle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -49,6 +51,9 @@ namespace UnrealScript
 	class GameInfo : public Info
 	{
 	public:
+		typedef GameInfo__EStandbyType EStandbyType;
+		typedef GameInfo__GameClassShortName GameClassShortName;
+		typedef GameInfo__GameTypePrefix GameTypePrefix;
 		ADD_STRUCT(int, NumPlayers, 584)
 		ADD_OBJECT(ScriptClass, GameMessageClass, 644)
 		ADD_OBJECT(ScriptClass, PlayerReplicationInfoClass, 680)

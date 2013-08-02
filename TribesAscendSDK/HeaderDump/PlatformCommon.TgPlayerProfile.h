@@ -1,8 +1,12 @@
 #pragma once
-#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
+namespace UnrealScript
+{
+	class TgPlayerProfile;
+}
 #include "Engine.OnlinePlayerStorage.h"
-#include "PlatformCommon.TgPlayerProfile.BadgeStruct.h"
 #include "PlatformCommon.TgPlayerProfile.AccoladeStruct.h"
+#include "PlatformCommon.TgPlayerProfile.BadgeStruct.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +26,9 @@ namespace UnrealScript
 	class TgPlayerProfile : public OnlinePlayerStorage
 	{
 	public:
+		typedef TgPlayerProfile__BadgeStruct BadgeStruct;
+		typedef TgPlayerProfile__PropertyPair PropertyPair;
+		typedef TgPlayerProfile__AccoladeStruct AccoladeStruct;
 		ADD_STRUCT(ScriptArray<TgPlayerProfile__BadgeStruct>, Badges, 192)
 		ADD_STRUCT(ScriptArray<TgPlayerProfile__BadgeStruct>, TopBadges, 204)
 		ADD_STRUCT(ScriptArray<TgPlayerProfile__PropertyPair>, ClassTimePlayed, 216)

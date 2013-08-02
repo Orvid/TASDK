@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKAnimNodeJumpLeanOffset;
+}
 #include "Core.Object.Vector2D.h"
 #include "Engine.AnimNodeAimOffset.h"
 #define ADD_BOOL(name, offset, mask) \

@@ -1,13 +1,17 @@
 #pragma once
-#include "Engine.LocalPlayer.h"
-#include "Engine.Interaction.h"
-#include "Engine.Console.scrollbackData.h"
-#include "Engine.Console.AutoCompleteCommand.h"
-#include "Engine.Console.AutoCompleteNode.h"
-#include "Engine.Texture2D.h"
+namespace UnrealScript
+{
+	class Console;
+}
 #include "Core.Object.Color.h"
 #include "Core.Object.EInputEvent.h"
 #include "Engine.Canvas.h"
+#include "Engine.Console.AutoCompleteCommand.h"
+#include "Engine.Console.AutoCompleteNode.h"
+#include "Engine.Console.scrollbackData.h"
+#include "Engine.Interaction.h"
+#include "Engine.LocalPlayer.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -31,6 +35,9 @@ namespace UnrealScript
 	class Console : public Interaction
 	{
 	public:
+		typedef Console__scrollbackData scrollbackData;
+		typedef Console__AutoCompleteCommand AutoCompleteCommand;
+		typedef Console__AutoCompleteNode AutoCompleteNode;
 		static const auto MaxHistory = 16;
 		ADD_STRUCT(ScriptArray<Console__scrollbackData>, Scrollback, 140)
 		ADD_STRUCT(ScriptArray<Console__AutoCompleteCommand>, ManualAutoCompleteList, 384)

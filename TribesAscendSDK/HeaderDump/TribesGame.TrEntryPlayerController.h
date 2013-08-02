@@ -1,14 +1,16 @@
 #pragma once
-#include "TribesGame.TrPlayerController.h"
-#include "Engine.PostProcessChain.h"
+namespace UnrealScript
+{
+	class TrEntryPlayerController;
+}
 #include "Engine.LocalPlayer.h"
-#include "TribesGame.TrPaperDollMainMenu.h"
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "TribesGame.TrObject.EContentDataType.h"
-#include "TribesGame.TrMainMenuContentData.h"
 #include "Engine.OnlineSubsystem.EOnlineServerConnectionStatus.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.PostProcessChain.h"
+#include "TribesGame.TrMainMenuContentData.h"
+#include "TribesGame.TrObject.EContentDataType.h"
+#include "TribesGame.TrPaperDollMainMenu.h"
+#include "TribesGame.TrPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

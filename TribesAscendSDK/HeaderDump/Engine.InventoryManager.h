@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class InventoryManager;
+}
 #include "Engine.Actor.h"
+#include "Engine.HUD.h"
+#include "Engine.Inventory.h"
 #include "Engine.Pawn.h"
 #include "Engine.Weapon.h"
-#include "Engine.Inventory.h"
-#include "Engine.HUD.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct MeshBeaconClient__ClientBandwidthTestData;
+}
 #include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestState.h"
 #include "IpDrv.MeshBeacon.EMeshBeaconBandwidthTestType.h"
 #define ADD_STRUCT(x, y, offset) \

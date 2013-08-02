@@ -1,12 +1,15 @@
 #pragma once
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "Engine.GameplayEvents.h"
-#include "Engine.GameInfo.h"
+namespace UnrealScript
+{
+	class GameplayEventsWriter;
+}
 #include "Engine.Controller.h"
-#include "Core.Object.Vector.h"
-#include "Engine.TeamInfo.h"
 #include "Engine.CoverLink.h"
+#include "Engine.GameInfo.h"
+#include "Engine.GameplayEvents.h"
 #include "Engine.GenericParamListStatEntry.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.TeamInfo.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

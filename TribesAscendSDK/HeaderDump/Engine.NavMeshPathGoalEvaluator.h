@@ -1,5 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class NavMeshPathGoalEvaluator;
+}
 #include "Core.Object.h"
+#include "Engine.NavMeshPathGoalEvaluator.BiasedGoalActor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,6 +28,7 @@ namespace UnrealScript
 	class NavMeshPathGoalEvaluator : public Object
 	{
 	public:
+		typedef NavMeshPathGoalEvaluator__BiasedGoalActor BiasedGoalActor;
 		ADD_STRUCT(int, NumNodesProcessed, 76)
 		ADD_STRUCT(int, NumNodesThrownOut, 72)
 		ADD_BOOL(bAlwaysCallEvaluateGoal, 68, 0x1)

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDmgType_RepairToolAX;
+}
 #include "TribesGame.TrDmgType_RepairTool.h"
 namespace UnrealScript
 {

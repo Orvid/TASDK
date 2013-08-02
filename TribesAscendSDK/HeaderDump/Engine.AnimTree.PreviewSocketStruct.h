@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.StaticMesh.h"
+namespace UnrealScript
+{
+	struct AnimTree__PreviewSocketStruct;
+}
 #include "Engine.SkeletalMesh.h"
+#include "Engine.StaticMesh.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

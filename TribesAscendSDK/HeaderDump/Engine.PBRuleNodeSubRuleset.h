@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PBRuleNodeSubRuleset;
+}
 #include "Engine.PBRuleNodeBase.h"
 #include "Engine.ProcBuildingRuleset.h"
 #define ADD_OBJECT(x, y, offset) \

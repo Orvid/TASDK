@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNodePlayCustomAnim;
+}
 #include "Engine.AnimNodeBlend.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.AnimNodeSequence.ERootBoneAxis.h"

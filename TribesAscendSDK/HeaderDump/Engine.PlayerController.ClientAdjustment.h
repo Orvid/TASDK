@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine.Actor.EPhysics.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	struct PlayerController__ClientAdjustment;
+}
 #include "Engine.Actor.h"
+#include "Engine.Actor.EPhysics.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

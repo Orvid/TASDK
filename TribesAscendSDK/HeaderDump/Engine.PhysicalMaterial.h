@@ -1,11 +1,14 @@
 #pragma once
-#include "Engine.Actor.PhysEffectInfo.h"
+namespace UnrealScript
+{
+	class PhysicalMaterial;
+}
 #include "Core.Object.h"
-#include "Engine.PhysicalMaterialPropertyBase.h"
-#include "Engine.SoundCue.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Actor.PhysEffectInfo.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.PhysicalMaterial.EPhysEffectType.h"
+#include "Engine.PhysicalMaterialPropertyBase.h"
+#include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,6 +32,7 @@ namespace UnrealScript
 	class PhysicalMaterial : public Object
 	{
 	public:
+		typedef PhysicalMaterial__EPhysEffectType EPhysEffectType;
 		ADD_STRUCT(int, MaterialIndex, 60)
 		ADD_OBJECT(SoundCue, FractureSoundSingle, 148)
 		ADD_OBJECT(SoundCue, FractureSoundExplosion, 144)

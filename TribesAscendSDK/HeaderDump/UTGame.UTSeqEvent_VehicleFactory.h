@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSeqEvent_VehicleFactory;
+}
 #include "Engine.SequenceEvent.h"
 #include "UTGame.UTVehicle.h"
 #define ADD_OBJECT(x, y, offset) \

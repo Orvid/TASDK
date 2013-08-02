@@ -1,9 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class CameraShake;
+}
+#include "Core.Object.h"
+#include "Engine.CameraAnim.h"
+#include "Engine.CameraShake.EInitialOscillatorOffset.h"
 #include "Engine.CameraShake.FOscillator.h"
 #include "Engine.CameraShake.ROscillator.h"
 #include "Engine.CameraShake.VOscillator.h"
-#include "Core.Object.h"
-#include "Engine.CameraAnim.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +32,10 @@ namespace UnrealScript
 	class CameraShake : public Object
 	{
 	public:
+		typedef CameraShake__EInitialOscillatorOffset EInitialOscillatorOffset;
+		typedef CameraShake__FOscillator FOscillator;
+		typedef CameraShake__VOscillator VOscillator;
+		typedef CameraShake__ROscillator ROscillator;
 		ADD_STRUCT(CameraShake__VOscillator, LocOscillation, 112)
 		ADD_STRUCT(CameraShake__ROscillator, RotOscillation, 76)
 		ADD_BOOL(bSingleInstance, 60, 0x1)

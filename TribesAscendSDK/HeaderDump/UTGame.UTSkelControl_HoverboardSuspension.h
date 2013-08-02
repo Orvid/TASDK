@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSkelControl_HoverboardSuspension;
+}
 #include "UDKBase.UDKSkelControl_HoverboardSuspension.h"
 namespace UnrealScript
 {

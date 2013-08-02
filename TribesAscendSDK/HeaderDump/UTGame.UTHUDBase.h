@@ -1,15 +1,17 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTHUDBase;
+}
 #include "Core.Object.Color.h"
-#include "UDKBase.UDKHUD.h"
-#include "Engine.Texture2D.h"
 #include "Engine.Canvas.h"
+#include "Engine.PlayerController.h"
+#include "Engine.Texture2D.h"
 #include "Engine.UIRoot.TextureCoordinates.h"
+#include "UDKBase.UDKHUD.h"
+#include "UTGame.GFxUI_PauseMenu.h"
 #include "UTGame.UTGameReplicationInfo.h"
 #include "UTGame.UTPlayerController.h"
-#include "UTGame.GFxUI_PauseMenu.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PlayerController.h"
-#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

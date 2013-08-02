@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Canvas__CanvasUVTri;
+}
 #include "Core.Object.Vector2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

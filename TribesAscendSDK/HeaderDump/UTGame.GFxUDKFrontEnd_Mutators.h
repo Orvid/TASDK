@@ -1,10 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_Mutators;
+}
+#include "GFxUI.GFxClikWidget.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
+#include "GFxUI.GFxObject.h"
 #include "UTGame.GFxUDKFrontEnd_Screen.h"
 #include "UTGame.UTUIDataProvider_Mutator.h"
-#include "GFxUI.GFxClikWidget.EventData.h"
 #include "UTGame.UTUIDataStore_MenuItems.h"
-#include "GFxUI.GFxObject.h"
-#include "GFxUI.GFxClikWidget.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

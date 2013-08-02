@@ -1,16 +1,19 @@
 #pragma once
-#include "Engine.Actor.h"
-#include "Engine.Material.h"
-#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
-#include "Engine.Weapon.h"
-#include "UTGame.UTPawn.EWeapAnimType.h"
-#include "Engine.SoundCue.h"
+namespace UnrealScript
+{
+	class UTWeaponAttachment;
+}
 #include "Core.Object.Color.h"
-#include "UTGame.UTPawn.h"
-#include "Engine.ParticleSystem.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PhysicalMaterial.h"
+#include "Engine.Actor.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Material.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.PhysicalMaterial.h"
+#include "Engine.SoundCue.h"
+#include "Engine.Weapon.h"
+#include "UDKBase.UDKPawn.MaterialImpactEffect.h"
+#include "UTGame.UTPawn.h"
+#include "UTGame.UTPawn.EWeapAnimType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

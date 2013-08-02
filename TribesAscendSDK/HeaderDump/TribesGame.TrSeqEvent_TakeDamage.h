@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SeqEvent_TakeDamage.h"
+namespace UnrealScript
+{
+	class TrSeqEvent_TakeDamage;
+}
 #include "Engine.Actor.h"
+#include "Engine.SeqEvent_TakeDamage.h"
 namespace UnrealScript
 {
 	class TrSeqEvent_TakeDamage : public SeqEvent_TakeDamage

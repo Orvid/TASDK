@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAnimNodeBlendByRidingPassenger;
+}
 #include "Engine.AnimNodeSequence.h"
 #include "TribesGame.TrAnimNodeBlendList.h"
 #include "TribesGame.TrPawn.h"

@@ -3,10 +3,10 @@ namespace UnrealScript
 {
 	class AnimNotify;
 }
-#include "Engine.AnimSequence.AnimNotifyEvent.h"
 #include "Core.Object.h"
-#include "Engine.AnimNodeSequence.h"
 #include "Core.Object.Color.h"
+#include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimSequence.AnimNotifyEvent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

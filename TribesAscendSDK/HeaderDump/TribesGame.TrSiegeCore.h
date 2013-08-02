@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrSiegeCore;
+}
 #include "TribesGame.TrGameObjective.h"
 namespace UnrealScript
 {

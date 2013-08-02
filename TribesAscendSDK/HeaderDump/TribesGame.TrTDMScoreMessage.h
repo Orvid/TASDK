@@ -1,8 +1,12 @@
 #pragma once
-#include "UTGame.UTLocalMessage.h"
+namespace UnrealScript
+{
+	class TrTDMScoreMessage;
+}
+#include "Core.Object.h"
 #include "Engine.PlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
-#include "Core.Object.h"
+#include "UTGame.UTLocalMessage.h"
 namespace UnrealScript
 {
 	class TrTDMScoreMessage : public UTLocalMessage

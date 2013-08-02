@@ -1,10 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrInventoryManager;
+}
+#include "Engine.Inventory.h"
 #include "Engine.Weapon.h"
-#include "UTGame.UTInventoryManager.h"
-#include "TribesGame.TrStatsInterface.h"
 #include "TribesGame.TrDevice.h"
 #include "TribesGame.TrObject.TR_EQUIP_POINT.h"
-#include "Engine.Inventory.h"
+#include "TribesGame.TrStatsInterface.h"
+#include "UTGame.UTInventoryManager.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,9 +1,12 @@
 #pragma once
-#include "Engine.LensFlare.h"
-#include "Engine.Actor.h"
-#include "Engine.SeqAct_Toggle.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class LensFlareSource;
+}
 #include "Core.Object.LinearColor.h"
+#include "Engine.Actor.h"
+#include "Engine.LensFlare.h"
+#include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

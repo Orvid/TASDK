@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameExplosionContent;
+}
 #include "Core.Object.h"
 #include "Engine.CameraShake.h"
 #include "Engine.FogVolumeSphericalDensityInfo.h"

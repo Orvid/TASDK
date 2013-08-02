@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_SetSoundMode;
+}
 #include "Engine.SequenceAction.h"
 #include "Engine.SoundMode.h"
 #define ADD_BOOL(name, offset, mask) \

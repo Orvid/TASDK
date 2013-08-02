@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrHelpTextManager_Training;
+}
 #include "TribesGame.TrHelpTextManager.h"
-#include "TribesGame.TrHelpTextManager_Training.EHelpTextTrainingType.h"
 #include "TribesGame.TrHelpTextManager.EHelpTextType.h"
+#include "TribesGame.TrHelpTextManager_Training.EHelpTextTrainingType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,6 +15,7 @@ namespace UnrealScript
 	class TrHelpTextManager_Training : public TrHelpTextManager
 	{
 	public:
+		typedef TrHelpTextManager_Training__EHelpTextTrainingType EHelpTextTrainingType;
 		ADD_STRUCT(ScriptString*, m_TrainingHelpTextExample1, 1264)
 		ADD_STRUCT(TrHelpTextManager_Training__EHelpTextTrainingType, m_CurrentHelpTextTrainingType, 1552)
 		ADD_STRUCT(ScriptString*, m_TrainingHelpTextExample1MenuTitle, 1408)

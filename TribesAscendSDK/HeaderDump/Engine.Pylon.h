@@ -1,12 +1,17 @@
 #pragma once
-#include "Engine.NavigationPoint.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Volume.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.SeqAct_Toggle.h"
+namespace UnrealScript
+{
+	class Pylon;
+}
 #include "Core.Object.OctreeElementId.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.Pylon.ENavMeshEdgeType.h"
+#include "Engine.Pylon.PolyReference.h"
+#include "Engine.SeqAct_Toggle.h"
+#include "Engine.Volume.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,6 +35,8 @@ namespace UnrealScript
 	class Pylon : public NavigationPoint
 	{
 	public:
+		typedef Pylon__ENavMeshEdgeType ENavMeshEdgeType;
+		typedef Pylon__PolyReference PolyReference;
 		ADD_STRUCT(ScriptArray<Vector>, NextPassSeedList, 716)
 		ADD_STRUCT(ScriptArray<class Volume*>, ExpansionVolumes, 744)
 		ADD_STRUCT(ScriptArray<class Pylon*>, ImposterPylons, 792)

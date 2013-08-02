@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrFlagCTF_BloodEagle;
+}
 #include "TribesGame.TrFlagCTF.h"
 namespace UnrealScript
 {

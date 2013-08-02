@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataStore_Strings;
+}
 #include "Engine.UIConfigFileProvider.h"
 #include "Engine.UIDataStore_StringBase.h"
 #define ADD_STRUCT(x, y, offset) \

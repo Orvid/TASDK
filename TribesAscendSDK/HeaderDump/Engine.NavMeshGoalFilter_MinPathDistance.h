@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.NavMeshGoal_GenericFilterContainer.h"
+namespace UnrealScript
+{
+	class NavMeshGoalFilter_MinPathDistance;
+}
 #include "Engine.NavMeshGoal_Filter.h"
+#include "Engine.NavMeshGoal_GenericFilterContainer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

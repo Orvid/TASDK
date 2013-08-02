@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class StructProperty;
+}
 #include "Core.Property.h"
 namespace UnrealScript
 {

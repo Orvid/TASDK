@@ -1,7 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class RB_ConstraintSetup;
+}
 #include "Core.Object.h"
 #include "Engine.RB_ConstraintSetup.LinearDOFSetup.h"
-#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +24,7 @@ namespace UnrealScript
 	class RB_ConstraintSetup : public Object
 	{
 	public:
+		typedef RB_ConstraintSetup__LinearDOFSetup LinearDOFSetup;
 		ADD_STRUCT(ScriptName, JointName, 60)
 		ADD_STRUCT(ScriptName, ConstraintBone1, 68)
 		ADD_STRUCT(ScriptName, ConstraintBone2, 76)

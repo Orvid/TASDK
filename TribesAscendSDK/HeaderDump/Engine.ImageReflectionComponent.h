@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ImageReflectionComponent;
+}
 #include "Engine.ActorComponent.h"
 #include "Engine.Texture2D.h"
 #define ADD_OBJECT(x, y, offset) \

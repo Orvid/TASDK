@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class SequenceObject;
+	class Sequence;
+}
 #include "Core.Object.h"
 #include "Core.Object.Color.h"
-#include "Engine.Sequence.h"
 #include "Engine.WorldInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -83,3 +87,4 @@ namespace UnrealScript
 #undef ADD_BOOL
 #undef ADD_STRUCT
 #undef ADD_OBJECT
+#include "Engine.Sequence.h"

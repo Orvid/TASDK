@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTVehicle.h"
-#include "UDKBase.UDKProjectile.h"
+namespace UnrealScript
+{
+	class UTAirVehicle;
+}
 #include "Engine.Actor.EDoubleClickDir.h"
+#include "UDKBase.UDKProjectile.h"
+#include "UTGame.UTVehicle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

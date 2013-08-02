@@ -1,11 +1,14 @@
 #pragma once
-#include "TribesGame.TrProjectile.h"
-#include "Engine.CameraAnim.h"
-#include "UDKBase.UDKPawn.MaterialSoundEffect.h"
-#include "Engine.SoundCue.h"
-#include "Engine.ParticleSystem.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrProj_Lacerator;
+}
 #include "Engine.Actor.h"
+#include "Engine.CameraAnim.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.SoundCue.h"
+#include "TribesGame.TrProjectile.h"
+#include "UDKBase.UDKPawn.MaterialSoundEffect.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

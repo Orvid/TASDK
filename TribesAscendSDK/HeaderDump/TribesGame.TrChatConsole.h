@@ -1,9 +1,13 @@
 #pragma once
-#include "UTGame.UTConsole.h"
+namespace UnrealScript
+{
+	class TrChatConsole;
+}
+#include "Core.Object.EInputEvent.h"
+#include "Engine.Canvas.h"
 #include "Engine.Console.AutoCompleteCommand.h"
 #include "TribesGame.TrPlayerController.h"
-#include "Engine.Canvas.h"
-#include "Core.Object.EInputEvent.h"
+#include "UTGame.UTConsole.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

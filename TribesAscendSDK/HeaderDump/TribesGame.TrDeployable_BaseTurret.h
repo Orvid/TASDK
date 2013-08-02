@@ -1,12 +1,15 @@
 #pragma once
-#include "Engine.Actor.TraceHitInfo.h"
-#include "TribesGame.TrPlayerController.h"
-#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
-#include "TribesGame.TrDeployable_Turret.h"
-#include "Engine.Texture2D.h"
+namespace UnrealScript
+{
+	class TrDeployable_BaseTurret;
+}
 #include "Engine.Actor.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.Controller.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Texture2D.h"
+#include "TribesGame.TrDeployable_Turret.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
+#include "TribesGame.TrPlayerController.h"
 namespace UnrealScript
 {
 	class TrDeployable_BaseTurret : public TrDeployable_Turret

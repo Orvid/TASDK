@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class CurveEdPresetCurve;
+}
 #include "Core.Object.h"
 #include "Engine.CurveEdPresetCurve.PresetGeneratedPoint.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class CurveEdPresetCurve : public Object
 	{
 	public:
+		typedef CurveEdPresetCurve__PresetGeneratedPoint PresetGeneratedPoint;
 		ADD_STRUCT(ScriptArray<CurveEdPresetCurve__PresetGeneratedPoint>, Points, 72)
 		ADD_STRUCT(ScriptString*, CurveName, 60)
 	};

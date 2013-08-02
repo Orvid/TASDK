@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.UIDataProvider_OnlinePlayerDataBase.h"
-#include "Engine.UIDataProvider_OnlinePlayerStorage.PlayerStorageArrayProvider.h"
+namespace UnrealScript
+{
+	class UIDataProvider_OnlinePlayerStorage;
+}
+#include "Engine.LocalPlayer.h"
 #include "Engine.OnlinePlayerStorage.h"
 #include "Engine.UIDataProvider.h"
-#include "Engine.LocalPlayer.h"
+#include "Engine.UIDataProvider_OnlinePlayerDataBase.h"
+#include "Engine.UIDataProvider_OnlinePlayerStorage.PlayerStorageArrayProvider.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +31,7 @@ namespace UnrealScript
 	class UIDataProvider_OnlinePlayerStorage : public UIDataProvider_OnlinePlayerDataBase
 	{
 	public:
+		typedef UIDataProvider_OnlinePlayerStorage__PlayerStorageArrayProvider PlayerStorageArrayProvider;
 		ADD_STRUCT(ScriptArray<UIDataProvider_OnlinePlayerStorage__PlayerStorageArrayProvider>, PlayerStorageArrayProviders, 108)
 		ADD_STRUCT(int, DeviceStorageSizeNeeded, 120)
 		ADD_BOOL(bWasErrorLastRead, 104, 0x1)

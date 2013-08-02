@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrUIDataProvider_MapInfo;
+}
 #include "UDKBase.UDKUIDataProvider_MapInfo.h"
 namespace UnrealScript
 {

@@ -1,5 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackVisibility;
+}
 #include "Engine.InterpTrack.h"
+#include "Engine.InterpTrackVisibility.EVisibilityTrackAction.h"
+#include "Engine.InterpTrackVisibility.EVisibilityTrackCondition.h"
 #include "Engine.InterpTrackVisibility.VisibilityTrackKey.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -20,6 +26,9 @@ namespace UnrealScript
 	class InterpTrackVisibility : public InterpTrack
 	{
 	public:
+		typedef InterpTrackVisibility__EVisibilityTrackCondition EVisibilityTrackCondition;
+		typedef InterpTrackVisibility__EVisibilityTrackAction EVisibilityTrackAction;
+		typedef InterpTrackVisibility__VisibilityTrackKey VisibilityTrackKey;
 		ADD_STRUCT(ScriptArray<InterpTrackVisibility__VisibilityTrackKey>, VisibilityTrack, 128)
 		ADD_BOOL(bFireEventsWhenJumpingForwards, 140, 0x4)
 		ADD_BOOL(bFireEventsWhenBackwards, 140, 0x2)

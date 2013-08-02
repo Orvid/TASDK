@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorFactoryApexDestructible;
+}
 #include "Engine.ActorFactory.h"
-#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
 #include "Engine.ApexDestructibleAsset.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
 #include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

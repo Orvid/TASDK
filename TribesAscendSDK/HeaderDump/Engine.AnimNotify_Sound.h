@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNotify_Sound;
+}
 #include "Engine.AnimNotify.h"
 #include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \

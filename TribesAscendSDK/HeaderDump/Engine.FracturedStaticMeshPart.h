@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.FracturedStaticMeshActor.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class FracturedStaticMeshPart;
+}
 #include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
+#include "Engine.FracturedStaticMeshActor.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

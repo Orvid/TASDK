@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAnimNodeBlendByFlying;
+}
 #include "TribesGame.TrAnimNodeBlendByFlying.EFlyDirTypes.h"
 #include "TribesGame.TrAnimNodeBlendList.h"
 #include "TribesGame.TrPawn.h"
@@ -15,6 +19,7 @@ namespace UnrealScript
 	class TrAnimNodeBlendByFlying : public TrAnimNodeBlendList
 	{
 	public:
+		typedef TrAnimNodeBlendByFlying__EFlyDirTypes EFlyDirTypes;
 		ADD_OBJECT(TrPawn, m_TrPawn, 296)
 		ADD_STRUCT(TrAnimNodeBlendByFlying__EFlyDirTypes, LastDirection, 292)
 	};

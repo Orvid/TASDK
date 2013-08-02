@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrDevice.h"
+namespace UnrealScript
+{
+	class TrDevice_SN7;
+}
 #include "Engine.Projectile.h"
+#include "TribesGame.TrDevice.h"
 namespace UnrealScript
 {
 	class TrDevice_SN7 : public TrDevice

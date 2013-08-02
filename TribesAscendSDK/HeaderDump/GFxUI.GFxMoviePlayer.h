@@ -1,25 +1,30 @@
 #pragma once
-#include "GFxUI.GFxMoviePlayer.GFxDataStoreBinding.h"
-#include "GFxUI.GFxMoviePlayer.SoundThemeBinding.h"
+namespace UnrealScript
+{
+	class GFxMoviePlayer;
+}
 #include "Core.Object.h"
-#include "GFxUI.SwfMovie.h"
-#include "Engine.PlayerController.h"
-#include "GFxUI.GFxMoviePlayer.ExternalTexture.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.TextureRenderTarget2D.h"
-#include "GFxUI.GFxMoviePlayer.GFxTimingMode.h"
-#include "GFxUI.GFxMoviePlayer.GFxRenderTextureMode.h"
-#include "GFxUI.GFxDataStoreSubscriber.h"
-#include "GFxUI.GFxMoviePlayer.GFxWidgetBinding.h"
-#include "GFxUI.GFxObject.h"
-#include "Engine.LocalPlayer.h"
-#include "GFxUI.GFxMoviePlayer.ASValue.h"
 #include "Core.Object.EInputEvent.h"
 #include "Core.Object.Matrix.h"
-#include "GFxUI.GFxMoviePlayer.GFxAlign.h"
-#include "GFxUI.GFxMoviePlayer.GFxScaleMode.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.GameViewportClient.h"
+#include "Engine.LocalPlayer.h"
+#include "Engine.PlayerController.h"
 #include "Engine.Texture.h"
+#include "Engine.TextureRenderTarget2D.h"
+#include "GFxUI.GFxDataStoreSubscriber.h"
+#include "GFxUI.GFxMoviePlayer.ASType.h"
+#include "GFxUI.GFxMoviePlayer.ASValue.h"
+#include "GFxUI.GFxMoviePlayer.ExternalTexture.h"
+#include "GFxUI.GFxMoviePlayer.GFxAlign.h"
+#include "GFxUI.GFxMoviePlayer.GFxDataStoreBinding.h"
+#include "GFxUI.GFxMoviePlayer.GFxRenderTextureMode.h"
+#include "GFxUI.GFxMoviePlayer.GFxScaleMode.h"
+#include "GFxUI.GFxMoviePlayer.GFxTimingMode.h"
+#include "GFxUI.GFxMoviePlayer.GFxWidgetBinding.h"
+#include "GFxUI.GFxMoviePlayer.SoundThemeBinding.h"
+#include "GFxUI.GFxObject.h"
+#include "GFxUI.SwfMovie.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -43,6 +48,16 @@ namespace UnrealScript
 	class GFxMoviePlayer : public Object
 	{
 	public:
+		typedef GFxMoviePlayer__ASType ASType;
+		typedef GFxMoviePlayer__GFxAlign GFxAlign;
+		typedef GFxMoviePlayer__GFxScaleMode GFxScaleMode;
+		typedef GFxMoviePlayer__GFxTimingMode GFxTimingMode;
+		typedef GFxMoviePlayer__GFxRenderTextureMode GFxRenderTextureMode;
+		typedef GFxMoviePlayer__ASValue ASValue;
+		typedef GFxMoviePlayer__GFxWidgetBinding GFxWidgetBinding;
+		typedef GFxMoviePlayer__SoundThemeBinding SoundThemeBinding;
+		typedef GFxMoviePlayer__GFxDataStoreBinding GFxDataStoreBinding;
+		typedef GFxMoviePlayer__ExternalTexture ExternalTexture;
 		ADD_STRUCT(int, LocalPlayerOwnerIndex, 208)
 		ADD_OBJECT(SwfMovie, MovieInfo, 196)
 		ADD_BOOL(bAutoPlay, 200, 0x80)

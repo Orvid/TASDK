@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKTeamOwnedInfo;
+}
 #include "Engine.ReplicationInfo.h"
 #include "Engine.TeamInfo.h"
 #define ADD_OBJECT(x, y, offset) \

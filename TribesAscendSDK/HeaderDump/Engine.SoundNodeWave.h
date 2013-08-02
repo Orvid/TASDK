@@ -1,11 +1,15 @@
 #pragma once
-#include "Engine.EngineTypes.LocalizedSubtitle.h"
-#include "Engine.SoundNode.h"
-#include "Engine.EngineTypes.SubtitleCue.h"
-#include "Engine.SoundNodeWave.EDecompressionType.h"
+namespace UnrealScript
+{
+	class SoundNodeWave;
+}
 #include "Core.Object.Pointer.h"
 #include "Core.Object.UntypedBulkData_Mirror.h"
 #include "Engine.AudioDevice.ETTSSpeaker.h"
+#include "Engine.EngineTypes.LocalizedSubtitle.h"
+#include "Engine.EngineTypes.SubtitleCue.h"
+#include "Engine.SoundNode.h"
+#include "Engine.SoundNodeWave.EDecompressionType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +29,7 @@ namespace UnrealScript
 	class SoundNodeWave : public SoundNode
 	{
 	public:
+		typedef SoundNodeWave__EDecompressionType EDecompressionType;
 		ADD_STRUCT(ScriptArray<int>, ChannelOffsets, 120)
 		ADD_STRUCT(ScriptArray<int>, ChannelSizes, 132)
 		ADD_STRUCT(ScriptArray<EngineTypes__SubtitleCue>, Subtitles, 376)

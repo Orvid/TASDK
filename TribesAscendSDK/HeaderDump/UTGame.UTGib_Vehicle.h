@@ -1,8 +1,12 @@
 #pragma once
-#include "UTGame.UTGib.h"
+namespace UnrealScript
+{
+	class UTGib_Vehicle;
+}
+#include "Engine.MaterialInstanceTimeVarying.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.SoundCue.h"
-#include "Engine.MaterialInstanceTimeVarying.h"
+#include "UTGame.UTGib.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

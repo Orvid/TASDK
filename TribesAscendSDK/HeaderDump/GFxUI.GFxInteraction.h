@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.LocalPlayer.h"
-#include "Engine.Interaction.h"
+namespace UnrealScript
+{
+	class GFxInteraction;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.Interaction.h"
+#include "Engine.LocalPlayer.h"
 #include "GFxUI.GFxMoviePlayer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

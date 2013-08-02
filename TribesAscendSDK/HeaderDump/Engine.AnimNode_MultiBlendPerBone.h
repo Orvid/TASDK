@@ -1,8 +1,16 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimNode_MultiBlendPerBone;
+}
 #include "Engine.AnimNodeBlendBase.h"
-#include "Engine.Pawn.h"
-#include "Engine.AnimNode_MultiBlendPerBone.PerBoneMaskInfo.h"
+#include "Engine.AnimNode_MultiBlendPerBone.BranchInfo.h"
 #include "Engine.AnimNode_MultiBlendPerBone.EBlendType.h"
+#include "Engine.AnimNode_MultiBlendPerBone.EWeightCheck.h"
+#include "Engine.AnimNode_MultiBlendPerBone.PerBoneMaskInfo.h"
+#include "Engine.AnimNode_MultiBlendPerBone.WeightNodeRule.h"
+#include "Engine.AnimNode_MultiBlendPerBone.WeightRule.h"
+#include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +34,12 @@ namespace UnrealScript
 	class AnimNode_MultiBlendPerBone : public AnimNodeBlendBase
 	{
 	public:
+		typedef AnimNode_MultiBlendPerBone__EWeightCheck EWeightCheck;
+		typedef AnimNode_MultiBlendPerBone__EBlendType EBlendType;
+		typedef AnimNode_MultiBlendPerBone__WeightNodeRule WeightNodeRule;
+		typedef AnimNode_MultiBlendPerBone__WeightRule WeightRule;
+		typedef AnimNode_MultiBlendPerBone__BranchInfo BranchInfo;
+		typedef AnimNode_MultiBlendPerBone__PerBoneMaskInfo PerBoneMaskInfo;
 		ADD_OBJECT(Pawn, PawnOwner, 244)
 		ADD_STRUCT(ScriptArray<AnimNode_MultiBlendPerBone__PerBoneMaskInfo>, MaskList, 248)
 		ADD_STRUCT(AnimNode_MultiBlendPerBone__EBlendType, RotationBlendType, 260)

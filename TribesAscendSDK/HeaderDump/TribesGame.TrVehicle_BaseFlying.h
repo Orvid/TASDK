@@ -1,8 +1,10 @@
 #pragma once
-#include "TribesGame.TrVehicle_BaseFlying.FlyingParticleEffects.h"
+namespace UnrealScript
+{
+	class TrVehicle_BaseFlying;
+}
 #include "TribesGame.TrVehicle.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
+#include "TribesGame.TrVehicle_BaseFlying.FlyingParticleEffects.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +28,7 @@ namespace UnrealScript
 	class TrVehicle_BaseFlying : public TrVehicle
 	{
 	public:
+		typedef TrVehicle_BaseFlying__FlyingParticleEffects FlyingParticleEffects;
 		ADD_BOOL(m_bCanAutoLevelVehicle, 3288, 0x2)
 		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying__FlyingParticleEffects>, LeftEngineParticles, 3212)
 		ADD_STRUCT(ScriptArray<TrVehicle_BaseFlying__FlyingParticleEffects>, MidEngineParticles, 3224)

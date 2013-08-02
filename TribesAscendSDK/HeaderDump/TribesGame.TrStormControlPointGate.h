@@ -1,10 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrStormControlPointGate;
+}
 #include "Engine.Actor.h"
+#include "Engine.Canvas.h"
+#include "Engine.PlayerController.h"
 #include "TribesGame.TrGameObjective.h"
 #include "TribesGame.TrStormControlPoint.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PlayerController.h"
-#include "Engine.Canvas.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

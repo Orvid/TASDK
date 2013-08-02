@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrPerk_SonicPunch;
+}
 #include "TribesGame.TrPerk.h"
 namespace UnrealScript
 {

@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataProvider_Settings;
+}
+#include "Engine.Settings.h"
 #include "Engine.UIDataProvider.h"
 #include "Engine.UIDataProvider_Settings.SettingsArrayProvider.h"
 #include "Engine.UIDynamicDataProvider.h"
-#include "Engine.Settings.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +30,7 @@ namespace UnrealScript
 	class UIDataProvider_Settings : public UIDynamicDataProvider
 	{
 	public:
+		typedef UIDataProvider_Settings__SettingsArrayProvider SettingsArrayProvider;
 		ADD_STRUCT(ScriptArray<UIDataProvider_Settings__SettingsArrayProvider>, SettingsArrayProviders, 128)
 		ADD_BOOL(bIsAListRow, 140, 0x1)
 		ADD_OBJECT(Settings, Settings, 124)

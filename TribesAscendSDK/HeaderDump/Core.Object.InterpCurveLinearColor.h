@@ -1,6 +1,10 @@
 #pragma once
-#include "Core.Object.InterpCurvePointLinearColor.h"
+namespace UnrealScript
+{
+	struct Object__InterpCurveLinearColor;
+}
 #include "Core.Object.EInterpMethodType.h"
+#include "Core.Object.InterpCurvePointLinearColor.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

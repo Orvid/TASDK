@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Settings__LocalizedStringSettingMetaData;
+}
 #include "Engine.Settings.StringIdToStringMapping.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

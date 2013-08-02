@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxAction_GetVariable;
+}
 #include "Engine.SequenceAction.h"
 #include "GFxUI.GFxMoviePlayer.h"
 #define ADD_STRUCT(x, y, offset) \

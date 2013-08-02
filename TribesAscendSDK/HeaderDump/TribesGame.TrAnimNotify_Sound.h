@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAnimNotify_Sound;
+}
 #include "Engine.AnimNotify_Sound.h"
 #include "TribesGame.TrAnimNotify_Sound.DeviceOverride.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -14,6 +18,7 @@ namespace UnrealScript
 	class TrAnimNotify_Sound : public AnimNotify_Sound
 	{
 	public:
+		typedef TrAnimNotify_Sound__DeviceOverride DeviceOverride;
 		ADD_STRUCT(ScriptArray<TrAnimNotify_Sound__DeviceOverride>, m_DeviceOverrides, 92)
 		ADD_OBJECT(ScriptClass, m_PreviewDeviceClass, 104)
 	};

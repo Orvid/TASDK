@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Actor__TraceHitInfo;
+}
 #include "Engine.Material.h"
 #include "Engine.PhysicalMaterial.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Texture2D__TextureLinkedListMirror;
+}
 #include "Core.Object.Pointer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

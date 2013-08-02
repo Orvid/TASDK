@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Texture2D.h"
+namespace UnrealScript
+{
+	class SpriteComponent;
+}
 #include "Engine.PrimitiveComponent.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

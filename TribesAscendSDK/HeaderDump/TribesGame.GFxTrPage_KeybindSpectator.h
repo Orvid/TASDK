@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrPage_KeybindSpectator;
+}
 #include "TribesGame.GFxTrPage.h"
 namespace UnrealScript
 {

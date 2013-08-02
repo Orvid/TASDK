@@ -1,8 +1,12 @@
 #pragma once
-#include "IpDrv.MCPBase.h"
+namespace UnrealScript
+{
+	class OnlineTitleFileDownloadMcp;
+}
 #include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
-#include "IpDrv.OnlineTitleFileDownloadMcp.TitleFileMcp.h"
+#include "IpDrv.MCPBase.h"
 #include "IpDrv.OnlineTitleFileDownloadMcp.FileNameToURLMapping.h"
+#include "IpDrv.OnlineTitleFileDownloadMcp.TitleFileMcp.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -12,6 +16,8 @@ namespace UnrealScript
 	class OnlineTitleFileDownloadMcp : public MCPBase
 	{
 	public:
+		typedef OnlineTitleFileDownloadMcp__TitleFileMcp TitleFileMcp;
+		typedef OnlineTitleFileDownloadMcp__FileNameToURLMapping FileNameToURLMapping;
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, ReadTitleFileCompleteDelegates, 64)

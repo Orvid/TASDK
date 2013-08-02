@@ -1,6 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrPage;
+}
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.GFxTrAction.h"
+#include "TribesGame.GFxTrPage.ResolutionSet.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,6 +25,7 @@ namespace UnrealScript
 	class GFxTrPage : public GFxObject
 	{
 	public:
+		typedef GFxTrPage__ResolutionSet ResolutionSet;
 		static const auto MENU_ELEMENT_LOGIN = 1;
 		static const auto MENU_ELEMENT_OPTIONS = 2;
 		static const auto MENU_ELEMENT_SIDEBAR = 3;

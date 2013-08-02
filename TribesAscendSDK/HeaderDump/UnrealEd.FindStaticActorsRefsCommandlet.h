@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class FindStaticActorsRefsCommandlet;
+}
 #include "UnrealEd.PerformMapCheckCommandlet.h"
 namespace UnrealScript
 {

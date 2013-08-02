@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_GrenadeXL_MKD;
+}
 #include "TribesGame.TrDevice_GrenadeXL.h"
 namespace UnrealScript
 {

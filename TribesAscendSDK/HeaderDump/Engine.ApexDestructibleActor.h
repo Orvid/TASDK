@@ -1,11 +1,14 @@
 #pragma once
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class ApexDestructibleActor;
+}
 #include "Engine.Actor.h"
-#include "Engine.FractureMaterial.h"
 #include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.SoundCue.h"
+#include "Engine.Controller.h"
+#include "Engine.FractureMaterial.h"
 #include "Engine.ParticleSystem.h"
-#include "Core.Object.Vector.h"
+#include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

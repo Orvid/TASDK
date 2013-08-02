@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAttachment_RepairToolEG;
+}
 #include "TribesGame.TrAttachment_RepairTool.h"
 namespace UnrealScript
 {

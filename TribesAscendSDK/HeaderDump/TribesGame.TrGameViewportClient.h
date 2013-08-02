@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTGameViewportClient.h"
-#include "TribesGame.TrChatConsole.h"
+namespace UnrealScript
+{
+	class TrGameViewportClient;
+}
 #include "Engine.Canvas.h"
+#include "TribesGame.TrChatConsole.h"
+#include "UTGame.UTGameViewportClient.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

@@ -1,5 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class DistributionFloat;
+}
 #include "Core.Component.h"
+#include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -20,6 +25,7 @@ namespace UnrealScript
 	class DistributionFloat : public Component
 	{
 	public:
+		typedef DistributionFloat__RawDistributionFloat RawDistributionFloat;
 		ADD_BOOL(bIsDirty, 76, 0x2)
 		ADD_BOOL(bCanBeBaked, 76, 0x1)
 		ADD_STRUCT(Object__Pointer, VfTable_FCurveEdInterface, 72)

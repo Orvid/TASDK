@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorFactoryFogVolumeConstantDensityInfo;
+}
 #include "Engine.ActorFactory.h"
 #include "Engine.MaterialInterface.h"
 #define ADD_BOOL(name, offset, mask) \

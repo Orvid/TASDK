@@ -1,19 +1,24 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameViewportClient;
+}
 #include "Core.Object.h"
-#include "Core.Object.QWord.h"
-#include "Engine.Console.h"
-#include "Engine.UIInteraction.h"
-#include "Engine.GameViewportClient.SplitscreenData.h"
-#include "Engine.GameViewportClient.ESplitScreenType.h"
-#include "Engine.LocalPlayer.h"
-#include "Engine.GameViewportClient.TitleSafeZoneArea.h"
-#include "Engine.Interaction.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.GameViewportClient.DebugDisplayProperty.h"
 #include "Core.Object.EInputEvent.h"
+#include "Core.Object.Pointer.h"
 #include "Core.Object.Vector2D.h"
 #include "Engine.Canvas.h"
+#include "Engine.Console.h"
+#include "Engine.GameViewportClient.DebugDisplayProperty.h"
+#include "Engine.GameViewportClient.ESafeZoneType.h"
+#include "Engine.GameViewportClient.ESplitScreenType.h"
+#include "Engine.GameViewportClient.PerPlayerSplitscreenData.h"
+#include "Engine.GameViewportClient.SplitscreenData.h"
+#include "Engine.GameViewportClient.TitleSafeZoneArea.h"
+#include "Engine.Interaction.h"
+#include "Engine.LocalPlayer.h"
 #include "Engine.PlayerController.EProgressMessageType.h"
+#include "Engine.UIInteraction.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -37,6 +42,12 @@ namespace UnrealScript
 	class GameViewportClient : public Object
 	{
 	public:
+		typedef GameViewportClient__ESplitScreenType ESplitScreenType;
+		typedef GameViewportClient__ESafeZoneType ESafeZoneType;
+		typedef GameViewportClient__TitleSafeZoneArea TitleSafeZoneArea;
+		typedef GameViewportClient__PerPlayerSplitscreenData PerPlayerSplitscreenData;
+		typedef GameViewportClient__SplitscreenData SplitscreenData;
+		typedef GameViewportClient__DebugDisplayProperty DebugDisplayProperty;
 		ADD_OBJECT(Console, ViewportConsole, 96)
 		ADD_OBJECT(UIInteraction, UIController, 92)
 		ADD_STRUCT(GameViewportClient__ESplitScreenType, ActiveSplitscreenType, 201)

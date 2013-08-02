@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrHelpTextManager;
+}
 #include "Engine.Actor.h"
 #include "TribesGame.TrHelpTextManager.EHelpTextType.h"
-#include "TribesGame.TrHelpTextManager.HelpTextTypeRemovalTimerInfo.h"
 #include "TribesGame.TrHelpTextManager.HelpTextInfo.h"
+#include "TribesGame.TrHelpTextManager.HelpTextTypeRemovalTimerInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +26,9 @@ namespace UnrealScript
 	class TrHelpTextManager : public Actor
 	{
 	public:
+		typedef TrHelpTextManager__EHelpTextType EHelpTextType;
+		typedef TrHelpTextManager__HelpTextInfo HelpTextInfo;
+		typedef TrHelpTextManager__HelpTextTypeRemovalTimerInfo HelpTextTypeRemovalTimerInfo;
 		ADD_BOOL(m_bShowHelpTexts, 476, 0x1)
 		ADD_BOOL(m_bSuppressOffhandReminder, 476, 0x100)
 		ADD_BOOL(m_bSuppressSpotTargetReminder, 476, 0x10000000)

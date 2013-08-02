@@ -1,11 +1,14 @@
 #pragma once
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class Inventory;
+}
 #include "Engine.Actor.h"
-#include "Engine.SoundCue.h"
-#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Controller.h"
 #include "Engine.InventoryManager.h"
 #include "Engine.Pawn.h"
-#include "Core.Object.Vector.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.SoundCue.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -40,7 +43,6 @@ namespace UnrealScript
 		ADD_BOOL(bDropOnDeath, 496, 0x1)
 		ADD_STRUCT(ScriptString*, ItemName, 484)
 		ADD_OBJECT(InventoryManager, InvManager, 480)
-		ADD_OBJECT(Inventory, Inventory, 476)
 		float DetourWeight(class Pawn* Other, float PathWeight)
 		{
 			static ScriptFunction* function = (ScriptFunction*)(*ScriptObject::object_array())(14796);

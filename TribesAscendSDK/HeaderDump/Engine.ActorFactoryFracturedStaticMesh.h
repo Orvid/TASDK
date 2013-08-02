@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class ActorFactoryFracturedStaticMesh;
+}
 #include "Engine.ActorFactory.h"
 #include "Engine.FracturedStaticMesh.h"
 #define ADD_STRUCT(x, y, offset) \

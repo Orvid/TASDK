@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKUIDataProvider_StringArray;
+}
 #include "UDKBase.UDKUIDataProvider_SimpleElementProvider.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

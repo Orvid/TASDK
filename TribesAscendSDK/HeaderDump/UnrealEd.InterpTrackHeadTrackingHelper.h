@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackHeadTrackingHelper;
+}
 #include "UnrealEd.InterpTrackHelper.h"
 namespace UnrealScript
 {

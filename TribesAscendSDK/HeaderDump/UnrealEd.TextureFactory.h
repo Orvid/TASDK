@@ -1,10 +1,14 @@
 #pragma once
-#include "UnrealEd.TextureFactory.LightingModel.h"
+namespace UnrealScript
+{
+	class TextureFactory;
+}
 #include "Core.Factory.h"
+#include "UnrealEd.TextureFactory.Blending.h"
 #include "UnrealEd.TextureFactory.LODGroup.h"
+#include "UnrealEd.TextureFactory.LightingModel.h"
 #include "UnrealEd.TextureFactory.TextureCompressionSettings.h"
 #include "UnrealEd.TextureFactory.TextureMipGenSettings.h"
-#include "UnrealEd.TextureFactory.Blending.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -24,6 +28,11 @@ namespace UnrealScript
 	class TextureFactory : public Factory
 	{
 	public:
+		typedef TextureFactory__TextureCompressionSettings TextureCompressionSettings;
+		typedef TextureFactory__LODGroup LODGroup;
+		typedef TextureFactory__Blending Blending;
+		typedef TextureFactory__LightingModel LightingModel;
+		typedef TextureFactory__TextureMipGenSettings TextureMipGenSettings;
 		ADD_BOOL(NoCompression, 112, 0x1)
 		ADD_BOOL(CompressionNoAlpha, 116, 0x1)
 		ADD_STRUCT(TextureFactory__TextureCompressionSettings, CompressionSettings, 124)

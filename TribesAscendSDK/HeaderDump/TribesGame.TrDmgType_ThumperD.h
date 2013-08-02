@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDmgType_ThumperD;
+}
 #include "TribesGame.TrDmgType_Explosive.h"
 namespace UnrealScript
 {

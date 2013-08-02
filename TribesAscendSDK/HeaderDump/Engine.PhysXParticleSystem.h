@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
-#include "Engine.PhysXParticleSystem.EPacketSizeMultiplier.h"
+namespace UnrealScript
+{
+	class PhysXParticleSystem;
+}
 #include "Core.Object.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.PhysXParticleSystem.EPacketSizeMultiplier.h"
 #include "Engine.PhysXParticleSystem.ESimulationMethod.h"
-#include "Core.Object.Vector.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
 #include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -25,6 +28,8 @@ namespace UnrealScript
 	class PhysXParticleSystem : public Object
 	{
 	public:
+		typedef PhysXParticleSystem__ESimulationMethod ESimulationMethod;
+		typedef PhysXParticleSystem__EPacketSizeMultiplier EPacketSizeMultiplier;
 		ADD_STRUCT(Object__Pointer, PSys, 156)
 		ADD_STRUCT(Object__Pointer, CascadeScene, 152)
 		ADD_STRUCT(float, CollisionResponseCoefficient, 148)

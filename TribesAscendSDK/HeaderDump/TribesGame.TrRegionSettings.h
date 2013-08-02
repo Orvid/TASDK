@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrRegionSettings;
+}
 #include "GFxUI.GFxObject.h"
 #include "GameFramework.SeqAct_ModifyProperty.PropertyInfo.h"
 #define ADD_STRUCT(x, y, offset) \

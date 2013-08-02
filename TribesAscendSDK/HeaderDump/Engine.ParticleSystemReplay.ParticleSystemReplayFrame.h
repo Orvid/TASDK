@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ParticleSystemReplay__ParticleSystemReplayFrame;
+}
 #include "Engine.ParticleSystemReplay.ParticleEmitterReplayFrame.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

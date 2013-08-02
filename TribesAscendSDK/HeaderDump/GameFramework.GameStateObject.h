@@ -1,7 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameStateObject;
+}
+#include "Core.Object.Array_Mirror.h"
 #include "Engine.GameplayEventsHandler.h"
 #include "GameFramework.GameStateObject.GameSessionType.h"
-#include "Core.Object.Array_Mirror.h"
+#include "GameFramework.GameStateObject.PlayerState.h"
+#include "GameFramework.GameStateObject.TeamState.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +27,9 @@ namespace UnrealScript
 	class GameStateObject : public GameplayEventsHandler
 	{
 	public:
+		typedef GameStateObject__GameSessionType GameSessionType;
+		typedef GameStateObject__TeamState TeamState;
+		typedef GameStateObject__PlayerState PlayerState;
 		ADD_STRUCT(int, MaxRoundNumber, 124)
 		ADD_STRUCT(int, RoundNumber, 120)
 		ADD_BOOL(bIsRoundStarted, 116, 0x2)

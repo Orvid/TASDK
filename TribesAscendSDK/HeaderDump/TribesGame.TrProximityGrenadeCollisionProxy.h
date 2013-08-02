@@ -1,8 +1,11 @@
 #pragma once
-#include "TribesGame.TrCollisionProxy.h"
-#include "Engine.Pawn.h"
+namespace UnrealScript
+{
+	class TrProximityGrenadeCollisionProxy;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Pawn.h"
+#include "TribesGame.TrCollisionProxy.h"
 namespace UnrealScript
 {
 	class TrProximityGrenadeCollisionProxy : public TrCollisionProxy

@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrFlagBase.h"
+namespace UnrealScript
+{
+	class TrFlagCTF;
+}
 #include "Engine.Controller.h"
+#include "TribesGame.TrFlagBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

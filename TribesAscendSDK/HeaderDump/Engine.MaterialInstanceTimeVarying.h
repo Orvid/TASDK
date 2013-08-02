@@ -1,15 +1,20 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialInstanceTimeVarying;
+}
+#include "Core.Object.InterpCurveFloat.h"
+#include "Core.Object.InterpCurveVector.h"
+#include "Core.Object.LinearColor.h"
+#include "Engine.Font.h"
 #include "Engine.MaterialInstance.h"
 #include "Engine.MaterialInstanceTimeVarying.FontParameterValueOverTime.h"
-#include "Core.Object.LinearColor.h"
+#include "Engine.MaterialInstanceTimeVarying.ParameterValueOverTime.h"
 #include "Engine.MaterialInstanceTimeVarying.ScalarParameterValueOverTime.h"
 #include "Engine.MaterialInstanceTimeVarying.TextureParameterValueOverTime.h"
 #include "Engine.MaterialInstanceTimeVarying.VectorParameterValueOverTime.h"
 #include "Engine.MaterialInterface.h"
 #include "Engine.Texture.h"
-#include "Core.Object.InterpCurveFloat.h"
-#include "Core.Object.InterpCurveVector.h"
-#include "Engine.Font.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,6 +38,11 @@ namespace UnrealScript
 	class MaterialInstanceTimeVarying : public MaterialInstance
 	{
 	public:
+		typedef MaterialInstanceTimeVarying__ParameterValueOverTime ParameterValueOverTime;
+		typedef MaterialInstanceTimeVarying__FontParameterValueOverTime FontParameterValueOverTime;
+		typedef MaterialInstanceTimeVarying__ScalarParameterValueOverTime ScalarParameterValueOverTime;
+		typedef MaterialInstanceTimeVarying__TextureParameterValueOverTime TextureParameterValueOverTime;
+		typedef MaterialInstanceTimeVarying__VectorParameterValueOverTime VectorParameterValueOverTime;
 		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying__FontParameterValueOverTime>, FontParameterValues, 440)
 		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying__ScalarParameterValueOverTime>, ScalarParameterValues, 452)
 		ADD_STRUCT(ScriptArray<MaterialInstanceTimeVarying__TextureParameterValueOverTime>, TextureParameterValues, 464)

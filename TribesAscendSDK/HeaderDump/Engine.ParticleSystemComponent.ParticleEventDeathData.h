@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ParticleSystemComponent__ParticleEventDeathData;
+}
 #include "Engine.ParticleSystemComponent.ParticleEventData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

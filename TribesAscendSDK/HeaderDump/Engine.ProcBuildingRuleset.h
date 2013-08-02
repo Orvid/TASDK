@@ -1,11 +1,16 @@
 #pragma once
+namespace UnrealScript
+{
+	class ProcBuildingRuleset;
+}
 #include "Core.Object.h"
-#include "Engine.PBRuleNodeBase.h"
-#include "Engine.ProcBuildingRuleset.PBParamSwatch.h"
 #include "Engine.MaterialInterface.h"
+#include "Engine.PBRuleNodeBase.h"
 #include "Engine.PBRuleNodeComment.h"
-#include "Engine.Texture.h"
+#include "Engine.ProcBuildingRuleset.EProcBuildingAxis.h"
+#include "Engine.ProcBuildingRuleset.PBParamSwatch.h"
 #include "Engine.ProcBuildingRuleset.PBVariationInfo.h"
+#include "Engine.Texture.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,6 +34,9 @@ namespace UnrealScript
 	class ProcBuildingRuleset : public Object
 	{
 	public:
+		typedef ProcBuildingRuleset__EProcBuildingAxis EProcBuildingAxis;
+		typedef ProcBuildingRuleset__PBParamSwatch PBParamSwatch;
+		typedef ProcBuildingRuleset__PBVariationInfo PBVariationInfo;
 		ADD_OBJECT(PBRuleNodeBase, RootRule, 60)
 		ADD_BOOL(bBeingEdited, 64, 0x1)
 		ADD_BOOL(bEnableInteriorTexture, 64, 0x2)

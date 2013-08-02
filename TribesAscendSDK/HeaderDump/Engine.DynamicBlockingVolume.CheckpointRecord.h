@@ -1,6 +1,8 @@
 #pragma once
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	struct DynamicBlockingVolume__CheckpointRecord;
+}
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct OnlineSubsystem__OnlineContent;
+}
 #include "Engine.OnlineSubsystem.EOnlineContentType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTEmit_BloodSpray;
+}
 #include "UTGame.UTEmit_HitEffect.h"
 namespace UnrealScript
 {

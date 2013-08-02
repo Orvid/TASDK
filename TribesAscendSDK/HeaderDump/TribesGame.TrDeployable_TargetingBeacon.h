@@ -1,9 +1,12 @@
 #pragma once
-#include "TribesGame.TrDeployable_RadarSensor.h"
-#include "Engine.Texture2D.h"
-#include "Engine.PlayerController.h"
+namespace UnrealScript
+{
+	class TrDeployable_TargetingBeacon;
+}
 #include "Engine.Canvas.h"
-#include "Core.Object.Vector.h"
+#include "Engine.PlayerController.h"
+#include "Engine.Texture2D.h"
+#include "TribesGame.TrDeployable_RadarSensor.h"
 namespace UnrealScript
 {
 	class TrDeployable_TargetingBeacon : public TrDeployable_RadarSensor

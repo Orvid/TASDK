@@ -1,9 +1,13 @@
 #pragma once
-#include "UTGame.UTLocalMessage.h"
-#include "Engine.SoundNodeWave.h"
+namespace UnrealScript
+{
+	class UTScriptedVoiceMessage;
+}
 #include "Core.Object.h"
 #include "Engine.PlayerController.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "Engine.SoundNodeWave.h"
+#include "UTGame.UTLocalMessage.h"
 namespace UnrealScript
 {
 	class UTScriptedVoiceMessage : public UTLocalMessage

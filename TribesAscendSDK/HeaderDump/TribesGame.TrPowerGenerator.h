@@ -1,15 +1,18 @@
 #pragma once
-#include "TribesGame.TrGameObjective.h"
+namespace UnrealScript
+{
+	class TrPowerGenerator;
+}
 #include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "TribesGame.TrTeamBlockerStaticMeshActor.h"
-#include "Core.Object.Vector.h"
-#include "Engine.AnimNodeScalePlayRate.h"
 #include "Engine.Actor.TraceHitInfo.h"
-#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
-#include "TribesGame.TrDeployable.h"
+#include "Engine.AnimNodeScalePlayRate.h"
+#include "Engine.Controller.h"
 #include "Engine.Texture2D.h"
+#include "TribesGame.TrDeployable.h"
+#include "TribesGame.TrGameObjective.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
 #include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrTeamBlockerStaticMeshActor.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

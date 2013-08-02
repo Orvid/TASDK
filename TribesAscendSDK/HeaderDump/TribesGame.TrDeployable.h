@@ -1,24 +1,26 @@
 #pragma once
-#include "TribesGame.TrGameObjective.h"
+namespace UnrealScript
+{
+	class TrDeployable;
+}
 #include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "TribesGame.TrPowerGenerator.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.AnimNodeScalePlayRate.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Controller.h"
+#include "Engine.Pawn.h"
 #include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Projectile.h"
 #include "Engine.SoundCue.h"
 #include "Engine.Weapon.h"
-#include "Engine.Pawn.h"
+#include "TribesGame.TrDeployableCollisionProxy.h"
+#include "TribesGame.TrGameObjective.h"
+#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrPowerGenerator.h"
 #include "TribesGame.TrSubDevice.h"
 #include "TribesGame.TrTurretPawn.h"
-#include "TribesGame.TrDeployableCollisionProxy.h"
-#include "TribesGame.TrPawn.h"
-#include "Engine.Actor.TraceHitInfo.h"
 #include "TribesGame.TrVehicle.h"
-#include "TribesGame.TrPlayerController.h"
-#include "Engine.Projectile.h"
-#include "Core.Object.Rotator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

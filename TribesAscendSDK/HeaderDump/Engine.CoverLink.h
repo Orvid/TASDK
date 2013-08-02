@@ -1,19 +1,28 @@
 #pragma once
+namespace UnrealScript
+{
+	class CoverLink;
+}
+#include "Engine.CoverLink.CovPosInfo.h"
+#include "Engine.CoverLink.CoverInfo.h"
+#include "Engine.CoverLink.CoverReference.h"
 #include "Engine.CoverLink.CoverSlot.h"
-#include "Engine.NavigationPoint.h"
-#include "Engine.Pawn.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.CoverLink.DynamicLinkInfo.h"
-#include "Core.Object.Vector.h"
+#include "Engine.CoverLink.ECoverAction.h"
+#include "Engine.CoverLink.ECoverDirection.h"
 #include "Engine.CoverLink.ECoverLocationDescription.h"
 #include "Engine.CoverLink.ECoverType.h"
-#include "Engine.CoverLink.CoverInfo.h"
 #include "Engine.CoverLink.EFireLinkID.h"
-#include "Engine.CoverLink.ECoverAction.h"
+#include "Engine.CoverLink.ExposedLink.h"
+#include "Engine.CoverLink.FireLink.h"
+#include "Engine.CoverLink.FireLinkItem.h"
+#include "Engine.CoverLink.SlotMoveRef.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.NavigationPoint.CheckpointRecord.h"
+#include "Engine.Pawn.h"
+#include "Engine.Scout.h"
 #include "Engine.SeqAct_ModifyCover.h"
 #include "Engine.SeqAct_Toggle.h"
-#include "Engine.NavigationPoint.CheckpointRecord.h"
-#include "Engine.Scout.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -37,6 +46,20 @@ namespace UnrealScript
 	class CoverLink : public NavigationPoint
 	{
 	public:
+		typedef CoverLink__ECoverLocationDescription ECoverLocationDescription;
+		typedef CoverLink__ECoverType ECoverType;
+		typedef CoverLink__ECoverAction ECoverAction;
+		typedef CoverLink__ECoverDirection ECoverDirection;
+		typedef CoverLink__EFireLinkID EFireLinkID;
+		typedef CoverLink__CovPosInfo CovPosInfo;
+		typedef CoverLink__FireLinkItem FireLinkItem;
+		typedef CoverLink__FireLink FireLink;
+		typedef CoverLink__DynamicLinkInfo DynamicLinkInfo;
+		typedef CoverLink__ExposedLink ExposedLink;
+		typedef CoverLink__CoverReference CoverReference;
+		typedef CoverLink__SlotMoveRef SlotMoveRef;
+		typedef CoverLink__CoverSlot CoverSlot;
+		typedef CoverLink__CoverInfo CoverInfo;
 		static const float COVERLINK_DangerDist;
 		static const float COVERLINK_EdgeExposureDot;
 		static const float COVERLINK_EdgeCheckDot;

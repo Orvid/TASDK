@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TextureThumbnailRenderer;
+}
 #include "UnrealEd.ThumbnailRenderer.h"
 namespace UnrealScript
 {

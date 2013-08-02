@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct TrPlayerVoice__VGSCommandToVoiceMap;
+}
 #include "Engine.SoundCue.h"
 #include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #define ADD_STRUCT(x, y, offset) \

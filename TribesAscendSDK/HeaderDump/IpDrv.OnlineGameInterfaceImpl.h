@@ -1,14 +1,18 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineGameInterfaceImpl;
+}
 #include "Core.Object.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.OnlineGameSearch.h"
+#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
+#include "Engine.OnlineGameSettings.h"
 #include "Engine.OnlineSubsystem.ELanBeaconState.h"
 #include "Engine.OnlineSubsystem.EOnlineGameState.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "Engine.OnlineGameSearch.h"
-#include "Engine.OnlineGameSettings.h"
-#include "IpDrv.OnlineSubsystemCommonImpl.h"
-#include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
 #include "Engine.OnlineSubsystem.OnlineArbitrationRegistrant.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "IpDrv.OnlineSubsystemCommonImpl.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

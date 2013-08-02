@@ -1,7 +1,11 @@
 #pragma once
-#include "TribesGame.TrEffect_Managed.h"
-#include "Engine.Actor.ImpactInfo.h"
+namespace UnrealScript
+{
+	class TrEffect_Blink;
+}
 #include "Engine.Actor.h"
+#include "Engine.Actor.ImpactInfo.h"
+#include "TribesGame.TrEffect_Managed.h"
 namespace UnrealScript
 {
 	class TrEffect_Blink : public TrEffect_Managed

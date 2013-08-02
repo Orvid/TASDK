@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataProvider_OnlinePlayerDataBase;
+}
 #include "Engine.LocalPlayer.h"
 #include "Engine.UIDataProvider.h"
 #define ADD_STRUCT(x, y, offset) \

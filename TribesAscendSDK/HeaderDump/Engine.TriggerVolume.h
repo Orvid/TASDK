@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TriggerVolume;
+}
 #include "Engine.Projectile.h"
 #include "Engine.Volume.h"
 namespace UnrealScript

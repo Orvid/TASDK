@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.OnlineSubsystem.OnlineRegistrant.h"
+namespace UnrealScript
+{
+	struct OnlineSubsystem__NamedSession;
+}
+#include "Core.Object.Pointer.h"
 #include "Engine.OnlineGameSettings.h"
 #include "Engine.OnlineSubsystem.OnlineArbitrationRegistrant.h"
-#include "Core.Object.Pointer.h"
+#include "Engine.OnlineSubsystem.OnlineRegistrant.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

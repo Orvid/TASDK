@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_GameCrowdPopulationManagerToggle;
+}
 #include "Engine.SequenceAction.h"
 #include "GameFramework.GameCrowd_ListOfAgents.h"
 #define ADD_BOOL(name, offset, mask) \

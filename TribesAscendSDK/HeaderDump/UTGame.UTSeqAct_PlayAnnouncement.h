@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSeqAct_PlayAnnouncement;
+}
 #include "Engine.SequenceAction.h"
 #include "UDKBase.UDKPlayerController.ObjectiveAnnouncementInfo.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct SkeletalMesh__SoftBodySpecialBoneInfo;
+}
 #include "Engine.SkeletalMesh.SoftBodyBoneType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

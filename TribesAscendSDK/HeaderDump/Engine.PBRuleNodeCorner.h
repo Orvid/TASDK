@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PBRuleNodeCorner;
+}
 #include "Engine.PBRuleNodeBase.h"
 #include "Engine.PBRuleNodeCorner.RBCornerAngleInfo.h"
 #include "Engine.ProcBuilding.EPBCornerType.h"
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class PBRuleNodeCorner : public PBRuleNodeBase
 	{
 	public:
+		typedef PBRuleNodeCorner__RBCornerAngleInfo RBCornerAngleInfo;
 		ADD_STRUCT(ScriptArray<PBRuleNodeCorner__RBCornerAngleInfo>, Angles, 108)
 		ADD_STRUCT(float, RoundCurvature, 140)
 		ADD_STRUCT(int, RoundTesselation, 136)

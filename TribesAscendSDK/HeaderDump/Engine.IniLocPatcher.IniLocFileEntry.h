@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct IniLocPatcher__IniLocFileEntry;
+}
 #include "Engine.OnlineSubsystem.EOnlineEnumerationReadState.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

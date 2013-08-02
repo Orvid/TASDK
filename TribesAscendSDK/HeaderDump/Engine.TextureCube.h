@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TextureCube;
+}
 #include "Engine.Texture.h"
-#include "Engine.Texture2D.h"
 #include "Engine.Texture.EPixelFormat.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

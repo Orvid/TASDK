@@ -1,14 +1,18 @@
 #pragma once
-#include "TribesGame.TrFlagBase.h"
-#include "TribesGame.TrGame.h"
-#include "Engine.Pawn.h"
-#include "TribesGame.TrFlagCTF.h"
-#include "Engine.Controller.h"
-#include "Engine.Actor.h"
-#include "UTGame.UTCarriedObject.h"
+namespace UnrealScript
+{
+	class TrGame_TRCTF;
+}
 #include "Engine.AIController.h"
-#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
+#include "Engine.Pawn.h"
 #include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "TribesGame.TrFlagBase.h"
+#include "TribesGame.TrFlagCTF.h"
+#include "TribesGame.TrGame.h"
+#include "UTGame.UTCarriedObject.h"
 #include "UTGame.UTPlayerController.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \

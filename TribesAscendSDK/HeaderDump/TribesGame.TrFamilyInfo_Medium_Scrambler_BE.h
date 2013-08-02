@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrFamilyInfo_Medium_Scrambler_BE;
+}
 #include "TribesGame.TrFamilyInfo_Medium_Scrambler.h"
 namespace UnrealScript
 {

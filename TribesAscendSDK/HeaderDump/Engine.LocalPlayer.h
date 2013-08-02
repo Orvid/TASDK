@@ -1,18 +1,21 @@
 #pragma once
-#include "Engine.LocalPlayer.PostProcessSettingsOverride.h"
-#include "Engine.GameViewportClient.h"
-#include "Engine.Player.h"
-#include "Engine.LocalPlayer.CurrentPostProcessVolumeInfo.h"
-#include "Core.Object.Vector2D.h"
-#include "Engine.PostProcessChain.h"
-#include "Engine.TranslationContext.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class LocalPlayer;
+}
 #include "Core.Object.EAspectRatioAxisConstraint.h"
-#include "Engine.LocalPlayer.SynchronizedActorVisibilityHistory.h"
 #include "Core.Object.Pointer.h"
+#include "Core.Object.Vector2D.h"
 #include "Engine.Actor.h"
-#include "Engine.PostProcessVolume.PostProcessSettings.h"
+#include "Engine.GameViewportClient.h"
+#include "Engine.LocalPlayer.CurrentPostProcessVolumeInfo.h"
+#include "Engine.LocalPlayer.PostProcessSettingsOverride.h"
+#include "Engine.LocalPlayer.SynchronizedActorVisibilityHistory.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.Player.h"
+#include "Engine.PostProcessChain.h"
+#include "Engine.PostProcessVolume.PostProcessSettings.h"
+#include "Engine.TranslationContext.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -36,6 +39,9 @@ namespace UnrealScript
 	class LocalPlayer : public Player
 	{
 	public:
+		typedef LocalPlayer__PostProcessSettingsOverride PostProcessSettingsOverride;
+		typedef LocalPlayer__CurrentPostProcessVolumeInfo CurrentPostProcessVolumeInfo;
+		typedef LocalPlayer__SynchronizedActorVisibilityHistory SynchronizedActorVisibilityHistory;
 		ADD_STRUCT(int, ControllerId, 96)
 		ADD_OBJECT(GameViewportClient, ViewportClient, 100)
 		ADD_STRUCT(Object__Vector2D, Size, 112)

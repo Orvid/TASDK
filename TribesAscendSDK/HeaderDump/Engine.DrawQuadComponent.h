@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DrawQuadComponent;
+}
 #include "Engine.PrimitiveComponent.h"
 #include "Engine.Texture.h"
 #define ADD_STRUCT(x, y, offset) \

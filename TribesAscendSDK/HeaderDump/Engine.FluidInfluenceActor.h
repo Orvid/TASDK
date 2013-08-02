@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class FluidInfluenceActor;
+}
 #include "Engine.Actor.h"
 #include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \

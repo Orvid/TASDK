@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.StaticMeshActor.h"
-#include "Engine.MaterialInstanceConstant.h"
+namespace UnrealScript
+{
+	class TrTeamBlockerStaticMeshActor;
+}
 #include "Engine.Material.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.StaticMeshActor.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

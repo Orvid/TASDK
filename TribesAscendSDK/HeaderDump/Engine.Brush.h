@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.Brush.ECsgOper.h"
+namespace UnrealScript
+{
+	class Brush;
+}
+#include "Core.Object.Color.h"
 #include "Engine.Actor.h"
+#include "Engine.Brush.ECsgOper.h"
 #include "Engine.Brush.GeomSelection.h"
 #include "Engine.Model.h"
-#include "Core.Object.Color.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,8 +31,9 @@ namespace UnrealScript
 	class Brush : public Actor
 	{
 	public:
+		typedef Brush__ECsgOper ECsgOper;
+		typedef Brush__GeomSelection GeomSelection;
 		ADD_STRUCT(ScriptArray<Brush__GeomSelection>, SavedSelections, 500)
-		ADD_OBJECT(Model, Brush, 492)
 		ADD_BOOL(bPlaceableFromClassBrowser, 488, 0x4)
 		ADD_BOOL(bSolidWhenSelected, 488, 0x2)
 		ADD_BOOL(bColored, 488, 0x1)

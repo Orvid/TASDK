@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKAnimBlendBySlotActive;
+}
 #include "Engine.AnimNodeBlendPerBone.h"
 #include "Engine.AnimNodeSlot.h"
 #define ADD_OBJECT(x, y, offset) \

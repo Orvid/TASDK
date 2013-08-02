@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.UIDataProvider.h"
-#include "Engine.Settings.IdToStringMapping.h"
-#include "Engine.Settings.h"
+namespace UnrealScript
+{
+	class UIDataProvider_SettingsArray;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.Settings.h"
+#include "Engine.Settings.IdToStringMapping.h"
+#include "Engine.UIDataProvider.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

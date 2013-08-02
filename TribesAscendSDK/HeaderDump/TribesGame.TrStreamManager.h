@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrStreamManager;
+}
 #include "Core.Object.h"
 #include "TribesGame.TrStreamManager.GameStream.h"
 #include "TribesGame.TrStreamManager.STREAMTYPE.h"
@@ -21,6 +25,8 @@ namespace UnrealScript
 	class TrStreamManager : public Object
 	{
 	public:
+		typedef TrStreamManager__STREAMTYPE STREAMTYPE;
+		typedef TrStreamManager__GameStream GameStream;
 		ADD_STRUCT(ScriptArray<TrStreamManager__GameStream>, Streams, 164)
 		ADD_STRUCT(ScriptString*, StreamServer, 152)
 		ADD_STRUCT(ScriptString*, StreamPath, 140)

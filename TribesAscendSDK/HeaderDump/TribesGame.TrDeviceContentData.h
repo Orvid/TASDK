@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.AnimTree.h"
+namespace UnrealScript
+{
+	class TrDeviceContentData;
+}
 #include "Core.Object.h"
-#include "Engine.SkeletalMesh.h"
 #include "Engine.AnimSet.h"
+#include "Engine.AnimTree.h"
 #include "Engine.PhysicsAsset.h"
+#include "Engine.SkeletalMesh.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

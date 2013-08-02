@@ -1,7 +1,11 @@
 #pragma once
-#include "IpDrv.MeshBeacon.ConnectionBandwidthStats.h"
+namespace UnrealScript
+{
+	struct MeshBeaconClient__ClientConnectionRequest;
+}
 #include "Engine.OnlineSubsystem.ENATType.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "IpDrv.MeshBeacon.ConnectionBandwidthStats.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

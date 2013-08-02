@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class LightmassOptionsObject;
+}
 #include "Core.Object.h"
 namespace UnrealScript
 {

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqVar_Int;
+}
 #include "Engine.SequenceVariable.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

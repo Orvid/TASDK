@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class InterpTrackInstToggle;
+}
 #include "Engine.InterpTrackInst.h"
 #include "Engine.InterpTrackToggle.ETrackToggleAction.h"
 #define ADD_BOOL(name, offset, mask) \

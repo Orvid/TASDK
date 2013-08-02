@@ -1,13 +1,17 @@
 #pragma once
-#include "Engine.UISceneClient.h"
+namespace UnrealScript
+{
+	class GameUISceneClient;
+}
 #include "Core.Object.Double.h"
-#include "Core.Object.Map_Mirror.h"
 #include "Core.Object.IntPoint.h"
-#include "Engine.WorldInfo.ENetMode.h"
-#include "Engine.PlayerController.h"
-#include "Engine.LocalPlayer.h"
+#include "Core.Object.Map_Mirror.h"
 #include "Engine.Actor.ETravelType.h"
+#include "Engine.LocalPlayer.h"
 #include "Engine.Player.h"
+#include "Engine.PlayerController.h"
+#include "Engine.UISceneClient.h"
+#include "Engine.WorldInfo.ENetMode.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

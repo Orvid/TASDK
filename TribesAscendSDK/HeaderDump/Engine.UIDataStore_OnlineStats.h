@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.UIDataStore_Remote.h"
-#include "Engine.OnlineStatsRead.h"
+namespace UnrealScript
+{
+	class UIDataStore_OnlineStats;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.OnlineStatsRead.h"
 #include "Engine.UIDataStore_OnlineStats.EStatsFetchType.h"
-#include "Engine.UIDataStore_OnlineStats.RankMetaData.h"
 #include "Engine.UIDataStore_OnlineStats.PlayerNickMetaData.h"
+#include "Engine.UIDataStore_OnlineStats.RankMetaData.h"
+#include "Engine.UIDataStore_Remote.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -18,6 +22,9 @@ namespace UnrealScript
 	class UIDataStore_OnlineStats : public UIDataStore_Remote
 	{
 	public:
+		typedef UIDataStore_OnlineStats__EStatsFetchType EStatsFetchType;
+		typedef UIDataStore_OnlineStats__RankMetaData RankMetaData;
+		typedef UIDataStore_OnlineStats__PlayerNickMetaData PlayerNickMetaData;
 		ADD_STRUCT(ScriptArray<ScriptClass*>, StatsReadClasses, 128)
 		ADD_STRUCT(ScriptArray<class OnlineStatsRead*>, StatsReadObjects, 196)
 		ADD_STRUCT(UIDataStore_OnlineStats__EStatsFetchType, CurrentReadType, 212)

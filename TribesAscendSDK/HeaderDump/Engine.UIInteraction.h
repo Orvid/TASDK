@@ -1,15 +1,19 @@
 #pragma once
-#include "Engine.LocalPlayer.h"
-#include "Engine.Interaction.h"
-#include "Engine.OnlineSubsystem.ENATType.h"
+namespace UnrealScript
+{
+	class UIInteraction;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.GameUISceneClient.h"
-#include "Engine.UIInteraction.UIKeyRepeatData.h"
-#include "Engine.UIRoot.UIAxisEmulationDefinition.h"
 #include "Engine.DataStoreClient.h"
-#include "Engine.UIInteraction.UIAxisEmulationData.h"
-#include "Engine.UIManager.h"
+#include "Engine.GameUISceneClient.h"
+#include "Engine.Interaction.h"
+#include "Engine.LocalPlayer.h"
 #include "Engine.OnlineSubsystem.ELoginStatus.h"
+#include "Engine.OnlineSubsystem.ENATType.h"
+#include "Engine.UIInteraction.UIAxisEmulationData.h"
+#include "Engine.UIInteraction.UIKeyRepeatData.h"
+#include "Engine.UIManager.h"
+#include "Engine.UIRoot.UIAxisEmulationDefinition.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,6 +37,8 @@ namespace UnrealScript
 	class UIInteraction : public Interaction
 	{
 	public:
+		typedef UIInteraction__UIAxisEmulationData UIAxisEmulationData;
+		typedef UIInteraction__UIKeyRepeatData UIKeyRepeatData;
 		ADD_OBJECT(GameUISceneClient, SceneClient, 132)
 		ADD_STRUCT(ScriptArray<ScriptName>, SupportedDoubleClickKeys, 136)
 		ADD_STRUCT(ScriptArray<UIRoot__UIAxisEmulationDefinition>, ConfiguredAxisEmulationDefinitions, 196)

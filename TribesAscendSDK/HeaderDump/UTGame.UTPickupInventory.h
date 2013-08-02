@@ -1,8 +1,12 @@
 #pragma once
-#include "UTGame.UTInventory.h"
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class UTPickupInventory;
+}
 #include "Engine.Actor.h"
+#include "Engine.Controller.h"
 #include "Engine.Pawn.h"
+#include "UTGame.UTInventory.h"
 namespace UnrealScript
 {
 	class UTPickupInventory : public UTInventory

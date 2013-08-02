@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.UIDataStoreSubscriber.h"
+namespace UnrealScript
+{
+	class UIDataStorePublisher;
+}
 #include "Engine.UIDataStore.h"
+#include "Engine.UIDataStoreSubscriber.h"
 namespace UnrealScript
 {
 	class UIDataStorePublisher : public UIDataStoreSubscriber

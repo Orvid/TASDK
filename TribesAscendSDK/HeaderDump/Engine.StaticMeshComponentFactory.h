@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class StaticMeshComponentFactory;
+}
 #include "Engine.MeshComponentFactory.h"
 #include "Engine.StaticMesh.h"
 #define ADD_OBJECT(x, y, offset) \

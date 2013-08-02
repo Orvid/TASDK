@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleRotationOverLifetime;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModuleRotationBase.h"
 #define ADD_BOOL(name, offset, mask) \

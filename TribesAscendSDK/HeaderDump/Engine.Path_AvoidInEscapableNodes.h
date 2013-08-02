@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Path_AvoidInEscapableNodes;
+}
 #include "Engine.PathConstraint.h"
 #include "Engine.Pawn.h"
 #define ADD_STRUCT(x, y, offset) \

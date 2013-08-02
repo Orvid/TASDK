@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrKeyBindings;
+}
+#include "Engine.PlayerInput.h"
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.TrObject.ESettingsList.h"
-#include "Engine.PlayerInput.h"
 #include "TribesGame.TrPlayerInput_Spectator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

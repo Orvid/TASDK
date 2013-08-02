@@ -1,11 +1,15 @@
 #pragma once
-#include "GameFramework.MobileMenuObject.h"
+namespace UnrealScript
+{
+	class MobileMenuScene;
+}
 #include "Core.Object.h"
+#include "Engine.Canvas.h"
 #include "Engine.Font.h"
 #include "Engine.SoundCue.h"
-#include "GameFramework.MobilePlayerInput.h"
-#include "Engine.Canvas.h"
 #include "GameFramework.MobileInputZone.EZoneTouchEvent.h"
+#include "GameFramework.MobileMenuObject.h"
+#include "GameFramework.MobilePlayerInput.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

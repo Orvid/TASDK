@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct SkeletalMesh__SkeletalMeshLODInfo;
+}
 #include "Engine.SkeletalMesh.TriangleSortOption.h"
 #include "Engine.SkeletalMesh.TriangleSortSettings.h"
 #define ADD_STRUCT(x, y, offset) \

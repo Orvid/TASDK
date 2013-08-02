@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrUI_ClassMenu;
+}
 #include "GFxUI.GFxMoviePlayer.h"
 namespace UnrealScript
 {

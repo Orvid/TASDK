@@ -1,15 +1,17 @@
 #pragma once
-#include "UTGame.UTVehicleWeapon.h"
-#include "Engine.Projectile.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "TribesGame.TrObject.EWeaponTracerType.h"
-#include "Engine.ParticleSystem.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrVehicleWeapon;
+}
 #include "Engine.CameraShake.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.Projectile.h"
 #include "Engine.SoundCue.h"
+#include "TribesGame.TrObject.EWeaponTracerType.h"
 #include "TribesGame.TrProj_Tracer.h"
-#include "Core.Object.Rotator.h"
 #include "UTGame.UTPlayerController.h"
+#include "UTGame.UTVehicleWeapon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,11 +1,14 @@
 #pragma once
-#include "UTGame.UTWeapon.h"
-#include "Engine.ForceFeedbackWaveform.h"
-#include "Engine.ParticleSystem.h"
-#include "Engine.HUD.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Actor.ImpactInfo.h"
+namespace UnrealScript
+{
+	class UTBeamWeapon;
+}
 #include "Engine.Actor.h"
+#include "Engine.Actor.ImpactInfo.h"
+#include "Engine.ForceFeedbackWaveform.h"
+#include "Engine.HUD.h"
+#include "Engine.ParticleSystem.h"
+#include "UTGame.UTWeapon.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

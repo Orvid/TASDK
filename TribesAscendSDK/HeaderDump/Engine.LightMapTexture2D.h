@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class LightMapTexture2D;
+}
 #include "Engine.Texture2D.h"
 namespace UnrealScript
 {

@@ -1,6 +1,10 @@
 #pragma once
-#include "UDKBase.UDKPawn.h"
+namespace UnrealScript
+{
+	class UDKAnimBlendByTurnInPlace;
+}
 #include "UDKBase.UDKAnimBlendBase.h"
+#include "UDKBase.UDKPawn.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

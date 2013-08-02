@@ -1,9 +1,12 @@
 #pragma once
-#include "Engine.ParticleModuleTrailBase.h"
-#include "Core.Object.Vector.h"
-#include "Engine.ParticleModuleTrailSource.ETrail2SourceMethod.h"
+namespace UnrealScript
+{
+	class ParticleModuleTrailSource;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Engine.ParticleModule.EParticleSourceSelectionMethod.h"
+#include "Engine.ParticleModuleTrailBase.h"
+#include "Engine.ParticleModuleTrailSource.ETrail2SourceMethod.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,6 +26,7 @@ namespace UnrealScript
 	class ParticleModuleTrailSource : public ParticleModuleTrailBase
 	{
 	public:
+		typedef ParticleModuleTrailSource__ETrail2SourceMethod ETrail2SourceMethod;
 		ADD_STRUCT(ScriptArray<Vector>, SourceOffsetDefaults, 120)
 		ADD_STRUCT(int, SourceOffsetCount, 116)
 		ADD_BOOL(bInheritRotation, 112, 0x2)

@@ -1,6 +1,10 @@
 #pragma once
-#include "Core.Object.Matrix.h"
+namespace UnrealScript
+{
+	struct EngineTypes__DominantShadowInfo;
+}
 #include "Core.Object.Box.h"
+#include "Core.Object.Matrix.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

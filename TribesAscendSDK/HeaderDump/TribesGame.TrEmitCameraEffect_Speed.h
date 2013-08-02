@@ -1,8 +1,10 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "UDKBase.UDKEmitCameraEffect.h"
+namespace UnrealScript
+{
+	class TrEmitCameraEffect_Speed;
+}
 #include "Engine.SoundCue.h"
-#include "Core.Object.Rotator.h"
+#include "UDKBase.UDKEmitCameraEffect.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

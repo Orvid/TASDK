@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class LineBatchComponent;
+}
 #include "Core.Object.Pointer.h"
 #include "Engine.PrimitiveComponent.h"
 #define ADD_STRUCT(x, y, offset) \

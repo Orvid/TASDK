@@ -1,6 +1,11 @@
 #pragma once
-#include "Engine.InterpTrackInst.h"
+namespace UnrealScript
+{
+	class InterpTrackInstHeadTracking;
+}
 #include "Engine.InterpTrackHeadTracking.EHeadTrackingAction.h"
+#include "Engine.InterpTrackInst.h"
+#include "Engine.InterpTrackInstHeadTracking.ActorToLookAt.h"
 #include "Engine.SkelControlLookAt.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -25,6 +30,7 @@ namespace UnrealScript
 	class InterpTrackInstHeadTracking : public InterpTrackInst
 	{
 	public:
+		typedef InterpTrackInstHeadTracking__ActorToLookAt ActorToLookAt;
 		ADD_STRUCT(ScriptArray<class SkelControlLookAt*>, TrackControls, 128)
 		ADD_STRUCT(float, LastUpdatePosition, 140)
 		ADD_STRUCT(InterpTrackHeadTracking__EHeadTrackingAction, Action, 60)

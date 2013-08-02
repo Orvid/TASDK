@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class NavMeshPath_WithinTraversalDist;
+}
 #include "Engine.NavMeshPathConstraint.h"
 #include "Engine.NavigationHandle.h"
 #define ADD_BOOL(name, offset, mask) \

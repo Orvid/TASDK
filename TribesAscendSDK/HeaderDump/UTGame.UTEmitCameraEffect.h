@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTEmitCameraEffect;
+}
 #include "UDKBase.UDKEmitCameraEffect.h"
 namespace UnrealScript
 {

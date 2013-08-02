@@ -1,5 +1,8 @@
 #pragma once
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrProj_MotionSensor;
+}
 #include "TribesGame.TrProj_Mine.h"
 namespace UnrealScript
 {

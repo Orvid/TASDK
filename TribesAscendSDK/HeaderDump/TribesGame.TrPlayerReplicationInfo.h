@@ -1,17 +1,21 @@
 #pragma once
-#include "UTGame.UTPlayerReplicationInfo.h"
-#include "TribesGame.TrStatsInterface.h"
+namespace UnrealScript
+{
+	class TrPlayerReplicationInfo;
+}
 #include "Engine.Actor.h"
-#include "TribesGame.TrValueModifier.h"
-#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
-#include "Engine.PlayerReplicationInfo.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.PlayerReplicationInfo.h"
 #include "Engine.SkeletalMesh.h"
-#include "TribesGame.TrPlayerReplicationInfo.EquipLevel.h"
+#include "Engine.TeamInfo.h"
 #include "TribesGame.TrInventoryHelper.h"
 #include "TribesGame.TrObject.EArmorType.h"
-#include "Engine.TeamInfo.h"
+#include "TribesGame.TrObject.TR_EQUIP_POINT.h"
+#include "TribesGame.TrPlayerReplicationInfo.EquipLevel.h"
+#include "TribesGame.TrStatsInterface.h"
+#include "TribesGame.TrValueModifier.h"
 #include "UTGame.UTCarriedObject.h"
+#include "UTGame.UTPlayerReplicationInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -35,6 +39,7 @@ namespace UnrealScript
 	class TrPlayerReplicationInfo : public UTPlayerReplicationInfo
 	{
 	public:
+		typedef TrPlayerReplicationInfo__EquipLevel EquipLevel;
 		static const auto THR_SPINFUSOR = 1;
 		static const auto THR_SMG = 2;
 		static const auto THR_RIFLE = 3;

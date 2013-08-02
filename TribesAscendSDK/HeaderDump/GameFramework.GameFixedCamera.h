@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameFixedCamera;
+}
+#include "Engine.Camera.TViewTarget.h"
 #include "Engine.Pawn.h"
 #include "GameFramework.GameCameraBase.h"
 #include "GameFramework.GamePlayerCamera.h"
-#include "Engine.Camera.TViewTarget.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

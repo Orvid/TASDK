@@ -1,12 +1,16 @@
 #pragma once
-#include "UTGame.UTGameObjective.h"
-#include "Engine.SoundNodeWave.h"
-#include "UTGame.UTCarriedObject.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "UTGame.UTBot.h"
+namespace UnrealScript
+{
+	class UTCTFBase;
+}
 #include "Engine.Actor.h"
-#include "Engine.PlayerController.h"
+#include "Engine.MaterialInstanceConstant.h"
 #include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
+#include "Engine.SoundNodeWave.h"
+#include "UTGame.UTBot.h"
+#include "UTGame.UTCarriedObject.h"
+#include "UTGame.UTGameObjective.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

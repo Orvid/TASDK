@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTAnimNodeSequence;
+}
 #include "UDKBase.UDKAnimNodeSequence.h"
 namespace UnrealScript
 {

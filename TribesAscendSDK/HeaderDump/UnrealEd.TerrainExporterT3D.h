@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TerrainExporterT3D;
+}
 #include "Core.Exporter.h"
 namespace UnrealScript
 {

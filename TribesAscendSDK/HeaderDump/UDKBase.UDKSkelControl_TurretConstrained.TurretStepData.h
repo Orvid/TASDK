@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UDKSkelControl_TurretConstrained__TurretStepData;
+}
 #include "UDKBase.UDKSkelControl_TurretConstrained.TurretConstraintData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

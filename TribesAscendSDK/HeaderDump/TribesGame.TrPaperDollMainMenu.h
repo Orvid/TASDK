@@ -1,10 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrPaperDollMainMenu;
+}
 #include "TribesGame.TrMainMenuMeshInfo.h"
-#include "TribesGame.TrObject.EContentDataType.h"
-#include "TribesGame.TrPaperDoll.h"
-#include "TribesGame.TrObject.PaperDollInfo.h"
-#include "Core.Object.Rotator.h"
 #include "TribesGame.TrMainMenuMeshInfo.ParticleSystemInfo.h"
+#include "TribesGame.TrObject.EContentDataType.h"
+#include "TribesGame.TrObject.PaperDollInfo.h"
+#include "TribesGame.TrPaperDoll.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

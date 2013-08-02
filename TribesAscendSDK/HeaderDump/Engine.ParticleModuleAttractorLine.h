@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleAttractorBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleAttractorLine;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
-#include "Core.Object.Vector.h"
+#include "Engine.ParticleModuleAttractorBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct Object__InterpCurveTwoVectors;
+}
 #include "Core.Object.EInterpMethodType.h"
 #include "Core.Object.InterpCurvePointTwoVectors.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ParticleSystemComponent__ViewParticleEmitterInstanceMotionBlurInfo;
+}
 #include "Core.Object.Map_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

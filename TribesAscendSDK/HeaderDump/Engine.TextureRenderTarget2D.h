@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.Texture.TextureAddress.h"
-#include "Engine.TextureRenderTarget.h"
+namespace UnrealScript
+{
+	class TextureRenderTarget2D;
+}
 #include "Core.Object.LinearColor.h"
 #include "Engine.Texture.EPixelFormat.h"
+#include "Engine.Texture.TextureAddress.h"
+#include "Engine.TextureRenderTarget.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

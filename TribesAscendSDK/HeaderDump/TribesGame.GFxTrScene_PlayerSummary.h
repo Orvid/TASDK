@@ -1,8 +1,12 @@
 #pragma once
-#include "TribesGame.GFxTrScene.h"
+namespace UnrealScript
+{
+	class GFxTrScene_PlayerSummary;
+}
 #include "GFxUI.GFxObject.h"
-#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
 #include "PlatformCommon.TgPlayerProfile.BadgeStruct.h"
+#include "PlatformCommon.TgPlayerProfile.PropertyPair.h"
+#include "TribesGame.GFxTrScene.h"
 #include "TribesGame.TrSummaryHelper.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

@@ -1,8 +1,13 @@
 #pragma once
-#include "Engine.ParticleModuleTypeDataBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleTypeDataBeam2;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
-#include "Engine.ParticleModuleTypeDataBeam2.EBeamTaperMethod.h"
+#include "Engine.ParticleModuleTypeDataBase.h"
+#include "Engine.ParticleModuleTypeDataBeam2.BeamTargetData.h"
 #include "Engine.ParticleModuleTypeDataBeam2.EBeam2Method.h"
+#include "Engine.ParticleModuleTypeDataBeam2.EBeamTaperMethod.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +27,9 @@ namespace UnrealScript
 	class ParticleModuleTypeDataBeam2 : public ParticleModuleTypeDataBase
 	{
 	public:
+		typedef ParticleModuleTypeDataBeam2__EBeam2Method EBeam2Method;
+		typedef ParticleModuleTypeDataBeam2__EBeamTaperMethod EBeamTaperMethod;
+		typedef ParticleModuleTypeDataBeam2__BeamTargetData BeamTargetData;
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, TaperScale, 172)
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, TaperFactor, 144)
 		ADD_STRUCT(DistributionFloat__RawDistributionFloat, Distance, 116)

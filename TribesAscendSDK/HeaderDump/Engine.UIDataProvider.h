@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIDataProvider;
+}
+#include "Engine.UIDataProvider.EProviderAccessType.h"
 #include "Engine.UIDataProvider.UIDataProviderField.h"
 #include "Engine.UIRoot.h"
-#include "Engine.UIDataProvider.EProviderAccessType.h"
 #include "Engine.UIRoot.EUIDataProviderFieldType.h"
 #include "Engine.UIRoot.UIProviderScriptFieldValue.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -13,6 +17,8 @@ namespace UnrealScript
 	class UIDataProvider : public UIRoot
 	{
 	public:
+		typedef UIDataProvider__EProviderAccessType EProviderAccessType;
+		typedef UIDataProvider__UIDataProviderField UIDataProviderField;
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.DelegateProperty'!
 void*>, ProviderChangedNotifies, 64)

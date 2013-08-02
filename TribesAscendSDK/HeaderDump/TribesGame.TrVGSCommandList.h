@@ -1,7 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrVGSCommandList;
+}
 #include "Core.Object.h"
-#include "TribesGame.TrVGSCommandList.TrVGSCommand.h"
+#include "TribesGame.TrVGSCommandList.EVGSContextActor.h"
 #include "TribesGame.TrVGSCommandList.EVGSContextLocation.h"
+#include "TribesGame.TrVGSCommandList.EVGSScope.h"
+#include "TribesGame.TrVGSCommandList.TrVGSCommand.h"
+#include "TribesGame.TrVGSCommandList.VGSCommandType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +28,11 @@ namespace UnrealScript
 	class TrVGSCommandList : public Object
 	{
 	public:
+		typedef TrVGSCommandList__EVGSContextLocation EVGSContextLocation;
+		typedef TrVGSCommandList__EVGSScope EVGSScope;
+		typedef TrVGSCommandList__VGSCommandType VGSCommandType;
+		typedef TrVGSCommandList__EVGSContextActor EVGSContextActor;
+		typedef TrVGSCommandList__TrVGSCommand TrVGSCommand;
 		ADD_STRUCT(ScriptString*, MenuString_TeamWait, 11724)
 		ADD_STRUCT(ScriptString*, MenuString_TeamThanks, 11712)
 		ADD_STRUCT(ScriptString*, MenuString_TeamSorry, 11700)

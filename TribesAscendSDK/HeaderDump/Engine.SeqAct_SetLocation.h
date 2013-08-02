@@ -1,8 +1,10 @@
 #pragma once
-#include "Engine.SeqAct_SetSequenceVariable.h"
+namespace UnrealScript
+{
+	class SeqAct_SetLocation;
+}
 #include "Core.Object.h"
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
+#include "Engine.SeqAct_SetSequenceVariable.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

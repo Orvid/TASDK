@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UIRoot__UIDataStoreBinding;
+}
 #include "Engine.UIDataStore.h"
 #include "Engine.UIRoot.EUIDataProviderFieldType.h"
 #define ADD_STRUCT(x, y, offset) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrCTFBase_DiamondSword;
+}
 #include "TribesGame.TrCTFBase.h"
 namespace UnrealScript
 {

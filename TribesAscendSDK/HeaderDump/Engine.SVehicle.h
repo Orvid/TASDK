@@ -1,21 +1,23 @@
 #pragma once
-#include "Engine.Vehicle.h"
-#include "Engine.SVehicle.VehicleState.h"
-#include "Engine.SoundCue.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class SVehicle;
+}
 #include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "Engine.RB_ConstraintInstance.h"
-#include "Engine.Pawn.h"
-#include "Engine.RB_StayUprightSetup.h"
-#include "Engine.SkeletalMesh.h"
-#include "Engine.PhysicsAsset.h"
-#include "Engine.Actor.TraceHitInfo.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.PlayerController.h"
 #include "Engine.Actor.CollisionImpactData.h"
-#include "Engine.Teleporter.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
 #include "Engine.HUD.h"
+#include "Engine.Pawn.h"
+#include "Engine.PhysicsAsset.h"
+#include "Engine.PlayerController.h"
+#include "Engine.RB_ConstraintInstance.h"
+#include "Engine.RB_StayUprightSetup.h"
+#include "Engine.SVehicle.VehicleState.h"
+#include "Engine.SkeletalMesh.h"
+#include "Engine.SoundCue.h"
+#include "Engine.Teleporter.h"
+#include "Engine.Vehicle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -39,6 +41,7 @@ namespace UnrealScript
 	class SVehicle : public Vehicle
 	{
 	public:
+		typedef SVehicle__VehicleState VehicleState;
 		ADD_STRUCT(ScriptArray<
 // ERROR: Unknown object class 'Class Core.ComponentProperty'!
 void*>, Wheels, 1264)

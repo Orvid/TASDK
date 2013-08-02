@@ -1,10 +1,12 @@
 #pragma once
-#include "GameFramework.GamePawn.h"
-#include "Engine.Actor.h"
+namespace UnrealScript
+{
+	class GameSpecialMove;
+}
 #include "Core.Object.h"
-#include "Core.Object.Rotator.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Actor.h"
 #include "Engine.Pawn.h"
+#include "GameFramework.GamePawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

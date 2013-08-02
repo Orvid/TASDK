@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrRibbonManager.RibbonData.h"
+namespace UnrealScript
+{
+	class TrRibbonManager;
+}
 #include "Core.Object.h"
+#include "TribesGame.TrRibbonManager.RibbonData.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class TrRibbonManager : public Object
 	{
 	public:
+		typedef TrRibbonManager__RibbonData RibbonData;
 		ADD_BOOL(bDirty, 68, 0x1)
 		ADD_BOOL(bHaveUnlocks, 68, 0x2)
 		ADD_BOOL(bOnlyUnlocks, 68, 0x4)

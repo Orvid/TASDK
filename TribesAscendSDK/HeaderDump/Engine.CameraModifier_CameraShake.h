@@ -1,12 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class CameraModifier_CameraShake;
+}
+#include "Core.Object.TPOV.h"
+#include "Engine.Camera.h"
+#include "Engine.Camera.ECameraAnimPlaySpace.h"
 #include "Engine.CameraModifier.h"
 #include "Engine.CameraModifier_CameraShake.CameraShakeInstance.h"
-#include "Engine.CameraShake.FOscillator.h"
 #include "Engine.CameraShake.h"
-#include "Engine.Camera.ECameraAnimPlaySpace.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.Camera.h"
-#include "Core.Object.TPOV.h"
+#include "Engine.CameraShake.FOscillator.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,6 +33,7 @@ namespace UnrealScript
 	class CameraModifier_CameraShake : public CameraModifier
 	{
 	public:
+		typedef CameraModifier_CameraShake__CameraShakeInstance CameraShakeInstance;
 		ADD_STRUCT(ScriptArray<CameraModifier_CameraShake__CameraShakeInstance>, ActiveShakes, 88)
 		ADD_STRUCT(float, SplitScreenShakeScale, 100)
 		float InitializeOffset(CameraShake__FOscillator& Param)

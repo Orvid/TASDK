@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineStats;
+}
 #include "Core.Object.h"
 #include "Engine.Settings.StringIdToStringMapping.h"
 #define ADD_STRUCT(x, y, offset) \

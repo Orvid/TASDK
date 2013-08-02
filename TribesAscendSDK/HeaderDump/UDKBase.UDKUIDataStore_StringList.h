@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKUIDataStore_StringList;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.LocalPlayer.h"
 #include "Engine.UIDataStore_StringBase.h"
 #include "UDKBase.UDKUIDataStore_StringList.EStringListData.h"
-#include "Engine.LocalPlayer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,6 +20,7 @@ namespace UnrealScript
 	class UDKUIDataStore_StringList : public UIDataStore_StringBase
 	{
 	public:
+		typedef UDKUIDataStore_StringList__EStringListData EStringListData;
 		static const auto INVALIDFIELD = -1;
 		ADD_STRUCT(ScriptArray<UDKUIDataStore_StringList__EStringListData>, StringData, 128)
 		ADD_STRUCT(Object__Pointer, VfTable_IUIListElementCellProvider, 124)

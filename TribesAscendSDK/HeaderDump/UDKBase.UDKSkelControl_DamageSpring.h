@@ -1,7 +1,9 @@
 #pragma once
-#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	class UDKSkelControl_DamageSpring;
+}
 #include "UDKBase.UDKSkelControl_Damage.h"
-#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

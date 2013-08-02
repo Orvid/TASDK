@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTHoverWheel;
+}
 #include "UDKBase.UDKVehicleWheel.h"
 namespace UnrealScript
 {

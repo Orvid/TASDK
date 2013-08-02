@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrChatConsoleCommands;
+}
 #include "Core.Object.h"
 namespace UnrealScript
 {

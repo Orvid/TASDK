@@ -1,8 +1,12 @@
 #pragma once
-#include "UTGame.UTItemPickupFactory.h"
+namespace UnrealScript
+{
+	class UTAmmoPickupFactory;
+}
+#include "Engine.Controller.h"
 #include "Engine.Pawn.h"
 #include "UTGame.UTHUD.h"
-#include "Engine.Controller.h"
+#include "UTGame.UTItemPickupFactory.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

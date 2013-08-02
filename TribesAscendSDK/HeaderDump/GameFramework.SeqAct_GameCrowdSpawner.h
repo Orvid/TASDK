@@ -1,12 +1,16 @@
 #pragma once
-#include "GameFramework.SeqAct_GameCrowdSpawner.AgentArchetypeInfo.h"
+namespace UnrealScript
+{
+	class SeqAct_GameCrowdSpawner;
+}
 #include "Engine.Actor.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
 #include "Engine.SeqAct_Latent.h"
 #include "GameFramework.GameCrowdAgent.h"
-#include "GameFramework.GameCrowd_ListOfAgents.h"
-#include "GameFramework.GameCrowdReplicationActor.h"
-#include "Engine.LightComponent.LightingChannelContainer.h"
 #include "GameFramework.GameCrowdGroup.h"
+#include "GameFramework.GameCrowdReplicationActor.h"
+#include "GameFramework.GameCrowd_ListOfAgents.h"
+#include "GameFramework.SeqAct_GameCrowdSpawner.AgentArchetypeInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,6 +34,7 @@ namespace UnrealScript
 	class SeqAct_GameCrowdSpawner : public SeqAct_Latent
 	{
 	public:
+		typedef SeqAct_GameCrowdSpawner__AgentArchetypeInfo AgentArchetypeInfo;
 		ADD_STRUCT(ScriptArray<class Actor*>, SpawnLocs, 256)
 		ADD_STRUCT(ScriptArray<SeqAct_GameCrowdSpawner__AgentArchetypeInfo>, AgentArchetypes, 300)
 		ADD_STRUCT(ScriptArray<class GameCrowdAgent*>, SpawnedList, 312)

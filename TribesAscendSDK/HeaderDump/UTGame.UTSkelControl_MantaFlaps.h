@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSkelControl_MantaFlaps;
+}
 #include "UDKBase.UDKSkelControl_VehicleFlap.h"
 namespace UnrealScript
 {

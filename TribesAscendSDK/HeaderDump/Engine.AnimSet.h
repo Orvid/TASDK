@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.AnimSequence.h"
+namespace UnrealScript
+{
+	class AnimSet;
+}
 #include "Core.Object.h"
+#include "Engine.AnimSequence.h"
 #include "Engine.AnimSet.AnimSetMeshLinkup.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class AnimSet : public Object
 	{
 	public:
+		typedef AnimSet__AnimSetMeshLinkup AnimSetMeshLinkup;
 		ADD_STRUCT(ScriptArray<ScriptName>, TrackBoneNames, 64)
 		ADD_STRUCT(ScriptArray<class AnimSequence*>, Sequences, 76)
 		ADD_STRUCT(ScriptArray<AnimSet__AnimSetMeshLinkup>, LinkupCache, 148)

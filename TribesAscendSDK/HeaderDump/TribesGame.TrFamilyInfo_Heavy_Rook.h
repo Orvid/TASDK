@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrFamilyInfo_Heavy_Rook;
+}
 #include "TribesGame.TrFamilyInfo_Heavy.h"
 namespace UnrealScript
 {

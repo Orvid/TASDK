@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class FogVolumeDensityInfo;
+}
+#include "Engine.FogVolumeDensityInfo.CheckpointRecord.h"
 #include "Engine.Info.h"
 #include "Engine.SeqAct_Toggle.h"
-#include "Engine.FogVolumeDensityInfo.CheckpointRecord.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -17,6 +21,7 @@ namespace UnrealScript
 	class FogVolumeDensityInfo : public Info
 	{
 	public:
+		typedef FogVolumeDensityInfo__CheckpointRecord CheckpointRecord;
 		ADD_BOOL(bEnabled, 484, 0x1)
 		void PostBeginPlay()
 		{

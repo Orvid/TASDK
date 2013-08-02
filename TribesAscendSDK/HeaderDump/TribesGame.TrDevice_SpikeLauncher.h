@@ -1,7 +1,11 @@
 #pragma once
-#include "TribesGame.TrDevice.h"
-#include "Engine.SoundCue.h"
+namespace UnrealScript
+{
+	class TrDevice_SpikeLauncher;
+}
 #include "Engine.AnimNodeSequence.h"
+#include "Engine.SoundCue.h"
+#include "TribesGame.TrDevice.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

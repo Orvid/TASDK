@@ -1,7 +1,11 @@
 #pragma once
-#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
-#include "TribesGame.TrDeployable_BaseTurret.h"
+namespace UnrealScript
+{
+	class TrBaseTurret_Neutral;
+}
 #include "Engine.Texture2D.h"
+#include "TribesGame.TrDeployable_BaseTurret.h"
+#include "TribesGame.TrHelpTextManager.EHelpTextType.h"
 namespace UnrealScript
 {
 	class TrBaseTurret_Neutral : public TrDeployable_BaseTurret

@@ -1,9 +1,14 @@
 #pragma once
-#include "Engine.InterpTrackMove.EInterpTrackMoveFrame.h"
-#include "Engine.InterpTrack.h"
-#include "Engine.InterpTrackMove.EInterpTrackMoveRotMode.h"
-#include "Engine.InterpTrackMove.InterpLookupTrack.h"
+namespace UnrealScript
+{
+	class InterpTrackMove;
+}
 #include "Core.Object.InterpCurveVector.h"
+#include "Engine.InterpTrack.h"
+#include "Engine.InterpTrackMove.EInterpTrackMoveFrame.h"
+#include "Engine.InterpTrackMove.EInterpTrackMoveRotMode.h"
+#include "Engine.InterpTrackMove.InterpLookupPoint.h"
+#include "Engine.InterpTrackMove.InterpLookupTrack.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -23,6 +28,10 @@ namespace UnrealScript
 	class InterpTrackMove : public InterpTrack
 	{
 	public:
+		typedef InterpTrackMove__EInterpTrackMoveRotMode EInterpTrackMoveRotMode;
+		typedef InterpTrackMove__EInterpTrackMoveFrame EInterpTrackMoveFrame;
+		typedef InterpTrackMove__InterpLookupTrack InterpLookupTrack;
+		typedef InterpTrackMove__InterpLookupPoint InterpLookupPoint;
 		ADD_STRUCT(InterpTrackMove__EInterpTrackMoveRotMode, RotMode, 193)
 		ADD_STRUCT(InterpTrackMove__EInterpTrackMoveFrame, MoveFrame, 192)
 		ADD_BOOL(bHide3DTrack, 188, 0x20)

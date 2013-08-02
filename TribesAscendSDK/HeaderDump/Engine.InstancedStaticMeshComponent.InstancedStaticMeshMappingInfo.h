@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ShadowMap2D.h"
+namespace UnrealScript
+{
+	struct InstancedStaticMeshComponent__InstancedStaticMeshMappingInfo;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.ShadowMap2D.h"
 #include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

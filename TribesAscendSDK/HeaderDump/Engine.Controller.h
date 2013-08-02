@@ -1,35 +1,37 @@
 #pragma once
-#include "Engine.Actor.h"
-#include "Engine.Weapon.h"
-#include "Engine.Pawn.h"
-#include "Engine.CoverLink.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "Engine.NavigationPoint.h"
-#include "Engine.Controller.VisiblePortalInfo.h"
-#include "Engine.SeqAct_ModifyHealth.h"
-#include "Engine.FaceFXAnimSet.h"
-#include "Core.Object.Vector.h"
-#include "Engine.InterpActor.h"
-#include "Engine.ReachSpec.h"
-#include "Engine.SeqAct_Interp.h"
-#include "Engine.Actor.BasedPosition.h"
-#include "Engine.NavigationHandle.h"
+namespace UnrealScript
+{
+	class Controller;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.Actor.h"
+#include "Engine.Actor.BasedPosition.h"
+#include "Engine.Controller.VisiblePortalInfo.h"
+#include "Engine.CoverLink.h"
+#include "Engine.FaceFXAnimSet.h"
+#include "Engine.HUD.h"
+#include "Engine.InterpActor.h"
 #include "Engine.InterpGroup.h"
-#include "Engine.SeqAct_SetPhysics.h"
-#include "Engine.SoundCue.h"
-#include "Engine.SeqAct_Possess.h"
-#include "Engine.Projectile.h"
+#include "Engine.InterpGroupInst.h"
 #include "Engine.Inventory.h"
 #include "Engine.LiftCenter.h"
+#include "Engine.NavigationHandle.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.Pawn.h"
 #include "Engine.PhysicsVolume.h"
-#include "Engine.HUD.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.Projectile.h"
+#include "Engine.ReachSpec.h"
+#include "Engine.SeqAct_Interp.h"
+#include "Engine.SeqAct_ModifyHealth.h"
+#include "Engine.SeqAct_Possess.h"
+#include "Engine.SeqAct_SetPhysics.h"
+#include "Engine.SeqAct_SetVelocity.h"
 #include "Engine.SeqAct_Teleport.h"
 #include "Engine.SeqAct_ToggleGodMode.h"
-#include "Engine.SeqAct_SetVelocity.h"
 #include "Engine.SeqAct_ToggleHidden.h"
-#include "Engine.InterpGroupInst.h"
+#include "Engine.SoundCue.h"
+#include "Engine.Weapon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -53,9 +55,8 @@ namespace UnrealScript
 	class Controller : public Actor
 	{
 	public:
+		typedef Controller__VisiblePortalInfo VisiblePortalInfo;
 		static const auto LATENT_MOVETOWARD = 503;
-		ADD_OBJECT(Pawn, Pawn, 480)
-		ADD_OBJECT(PlayerReplicationInfo, PlayerReplicationInfo, 484)
 		ADD_BOOL(bGodMode, 496, 0x2)
 		ADD_STRUCT(ScriptArray<class NavigationPoint*>, RouteCache, 716)
 		ADD_STRUCT(ScriptArray<Controller__VisiblePortalInfo>, VisiblePortals, 860)

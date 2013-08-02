@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct GameEngine__FullyLoadedPackagesInfo;
+}
 #include "Core.Object.h"
 #include "Engine.GameEngine.EFullyLoadPackageType.h"
 #define ADD_STRUCT(x, y, offset) \

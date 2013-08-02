@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine.SequenceAction.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class SeqAct_Deproject;
+}
 #include "Core.Object.h"
+#include "Engine.SequenceAction.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

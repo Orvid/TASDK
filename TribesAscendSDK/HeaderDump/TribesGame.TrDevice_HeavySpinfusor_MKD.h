@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_HeavySpinfusor_MKD;
+}
 #include "TribesGame.TrDevice_HeavySpinfusor.h"
 namespace UnrealScript
 {

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorFactoryDecal;
+}
 #include "Engine.ActorFactory.h"
 #include "Engine.MaterialInterface.h"
 #define ADD_OBJECT(x, y, offset) \

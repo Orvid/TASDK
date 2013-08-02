@@ -1,15 +1,21 @@
 #pragma once
-#include "Engine.GameplayEvents.PawnClassEventData.h"
+namespace UnrealScript
+{
+	class GameplayEvents;
+}
 #include "Core.Object.h"
-#include "Engine.GameplayEvents.PlayerInformationNew.h"
-#include "Engine.GameplayEvents.WeaponClassEventData.h"
-#include "Engine.GameplayEvents.TeamInformation.h"
-#include "Engine.GameplayEvents.GameSessionInformation.h"
-#include "Engine.GameplayEvents.GameplayEventMetaData.h"
-#include "Engine.GameplayEvents.DamageClassEventData.h"
-#include "Engine.GameplayEvents.ProjectileClassEventData.h"
-#include "Engine.GameplayEvents.GameplayEventsHeader.h"
 #include "Core.Object.Pointer.h"
+#include "Engine.GameplayEvents.DamageClassEventData.h"
+#include "Engine.GameplayEvents.EGameStatGroups.h"
+#include "Engine.GameplayEvents.GameSessionInformation.h"
+#include "Engine.GameplayEvents.GameStatGroup.h"
+#include "Engine.GameplayEvents.GameplayEventMetaData.h"
+#include "Engine.GameplayEvents.GameplayEventsHeader.h"
+#include "Engine.GameplayEvents.PawnClassEventData.h"
+#include "Engine.GameplayEvents.PlayerInformationNew.h"
+#include "Engine.GameplayEvents.ProjectileClassEventData.h"
+#include "Engine.GameplayEvents.TeamInformation.h"
+#include "Engine.GameplayEvents.WeaponClassEventData.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,6 +35,17 @@ namespace UnrealScript
 	class GameplayEvents : public Object
 	{
 	public:
+		typedef GameplayEvents__EGameStatGroups EGameStatGroups;
+		typedef GameplayEvents__PlayerInformationNew PlayerInformationNew;
+		typedef GameplayEvents__TeamInformation TeamInformation;
+		typedef GameplayEvents__GameplayEventMetaData GameplayEventMetaData;
+		typedef GameplayEvents__WeaponClassEventData WeaponClassEventData;
+		typedef GameplayEvents__DamageClassEventData DamageClassEventData;
+		typedef GameplayEvents__ProjectileClassEventData ProjectileClassEventData;
+		typedef GameplayEvents__PawnClassEventData PawnClassEventData;
+		typedef GameplayEvents__GameStatGroup GameStatGroup;
+		typedef GameplayEvents__GameplayEventsHeader GameplayEventsHeader;
+		typedef GameplayEvents__GameSessionInformation GameSessionInformation;
 		static const auto HeaderFlags_NoEventStrings = 1;
 		ADD_STRUCT(ScriptArray<GameplayEvents__PlayerInformationNew>, PlayerList, 228)
 		ADD_STRUCT(ScriptArray<GameplayEvents__TeamInformation>, TeamList, 240)

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.FogVolumeDensityComponent.h"
+namespace UnrealScript
+{
+	class FogVolumeLinearHalfspaceDensityComponent;
+}
 #include "Core.Object.Plane.h"
+#include "Engine.FogVolumeDensityComponent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

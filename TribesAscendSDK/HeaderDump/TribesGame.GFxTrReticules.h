@@ -1,8 +1,12 @@
 #pragma once
-#include "GFxUI.GFxObject.h"
+namespace UnrealScript
+{
+	class GFxTrReticules;
+}
 #include "Engine.Pawn.h"
 #include "Engine.Weapon.h"
 #include "Engine.WorldInfo.h"
+#include "GFxUI.GFxObject.h"
 #include "TribesGame.GfxTrHud.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

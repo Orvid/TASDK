@@ -1,9 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTWeaponPickupFactory;
+}
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
 #include "UTGame.UTBot.h"
 #include "UTGame.UTPickupFactory.h"
 #include "UTGame.UTWeaponLocker.PawnToucher.h"
-#include "Engine.PlayerController.h"
-#include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

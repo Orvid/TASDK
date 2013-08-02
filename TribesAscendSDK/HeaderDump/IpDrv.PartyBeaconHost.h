@@ -1,12 +1,16 @@
 #pragma once
-#include "IpDrv.PartyBeacon.PartyReservation.h"
-#include "IpDrv.PartyBeacon.h"
+namespace UnrealScript
+{
+	class PartyBeaconHost;
+}
 #include "Engine.OnlineGameSearch.h"
-#include "IpDrv.PartyBeacon.EPartyReservationResult.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "IpDrv.PartyBeacon.h"
+#include "IpDrv.PartyBeacon.EPartyReservationResult.h"
+#include "IpDrv.PartyBeacon.PartyReservation.h"
+#include "IpDrv.PartyBeacon.PlayerReservation.h"
 #include "IpDrv.PartyBeaconHost.ClientBeaconConnection.h"
 #include "IpDrv.PartyBeaconHost.EPartyBeaconHostState.h"
-#include "IpDrv.PartyBeacon.PlayerReservation.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -26,6 +30,8 @@ namespace UnrealScript
 	class PartyBeaconHost : public PartyBeacon
 	{
 	public:
+		typedef PartyBeaconHost__EPartyBeaconHostState EPartyBeaconHostState;
+		typedef PartyBeaconHost__ClientBeaconConnection ClientBeaconConnection;
 		ADD_STRUCT(ScriptArray<PartyBeaconHost__ClientBeaconConnection>, Clients, 104)
 		ADD_STRUCT(ScriptArray<PartyBeacon__PartyReservation>, Reservations, 132)
 		ADD_STRUCT(PartyBeaconHost__EPartyBeaconHostState, BeaconState, 168)

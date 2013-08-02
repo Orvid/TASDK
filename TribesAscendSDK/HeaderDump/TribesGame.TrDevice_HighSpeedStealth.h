@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDevice_HighSpeedStealth;
+}
 #include "TribesGame.TrDevice_Stealth.h"
 namespace UnrealScript
 {

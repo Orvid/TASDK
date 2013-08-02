@@ -1,12 +1,16 @@
 #pragma once
-#include "Engine.ReplicationInfo.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "Engine.TeamInfo.h"
-#include "Engine.PlayerReplicationInfo.AutomatedTestingDatum.h"
-#include "Engine.Texture2D.h"
+namespace UnrealScript
+{
+	class PlayerReplicationInfo;
+}
 #include "Engine.AudioDevice.ETTSSpeaker.h"
 #include "Engine.Controller.h"
 #include "Engine.HUD.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "Engine.PlayerReplicationInfo.AutomatedTestingDatum.h"
+#include "Engine.ReplicationInfo.h"
+#include "Engine.TeamInfo.h"
+#include "Engine.Texture2D.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -30,6 +34,7 @@ namespace UnrealScript
 	class PlayerReplicationInfo : public ReplicationInfo
 	{
 	public:
+		typedef PlayerReplicationInfo__AutomatedTestingDatum AutomatedTestingDatum;
 		ADD_BOOL(bAdmin, 524, 0x1)
 		ADD_STRUCT(ScriptString*, PlayerName, 492)
 		ADD_STRUCT(int, PlayerID, 516)

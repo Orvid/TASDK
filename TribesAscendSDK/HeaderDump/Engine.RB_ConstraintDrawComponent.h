@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.PrimitiveComponent.h"
+namespace UnrealScript
+{
+	class RB_ConstraintDrawComponent;
+}
 #include "Engine.MaterialInterface.h"
+#include "Engine.PrimitiveComponent.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

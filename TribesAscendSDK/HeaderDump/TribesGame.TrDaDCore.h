@@ -1,15 +1,18 @@
 #pragma once
-#include "TribesGame.TrGameObjective.h"
+namespace UnrealScript
+{
+	class TrDaDCore;
+}
 #include "Engine.Actor.h"
-#include "Engine.Controller.h"
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrDaDShell.h"
-#include "TribesGame.TrDaDCoreShield.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "TribesGame.TrDaDCapacitor.h"
 #include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.PlayerController.h"
 #include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.PlayerController.h"
+#include "TribesGame.TrDaDCapacitor.h"
+#include "TribesGame.TrDaDCoreShield.h"
+#include "TribesGame.TrDaDShell.h"
+#include "TribesGame.TrGameObjective.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

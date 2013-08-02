@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrSeqAct_EndMatch;
+}
 #include "Engine.SequenceAction.h"
 namespace UnrealScript
 {

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ActorFactoryAI.h"
+namespace UnrealScript
+{
+	class UTActorFactoryAI;
+}
 #include "Engine.Actor.h"
+#include "Engine.ActorFactoryAI.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

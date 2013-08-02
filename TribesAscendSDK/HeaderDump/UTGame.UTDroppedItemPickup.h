@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.Pawn.h"
-#include "UTGame.UTDroppedPickup.h"
-#include "Engine.SoundCue.h"
+namespace UnrealScript
+{
+	class UTDroppedItemPickup;
+}
 #include "Engine.Controller.h"
+#include "Engine.Pawn.h"
+#include "Engine.SoundCue.h"
+#include "UTGame.UTDroppedPickup.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

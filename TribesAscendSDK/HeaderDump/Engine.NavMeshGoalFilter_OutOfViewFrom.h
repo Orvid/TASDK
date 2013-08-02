@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.NavMeshGoal_GenericFilterContainer.h"
-#include "Engine.NavMeshGoal_Filter.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class NavMeshGoalFilter_OutOfViewFrom;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.NavMeshGoal_Filter.h"
+#include "Engine.NavMeshGoal_GenericFilterContainer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

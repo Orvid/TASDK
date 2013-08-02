@@ -1,7 +1,11 @@
 #pragma once
-#include "TribesGame.TrPlayerController.h"
-#include "TribesGame.TrConsolePlayerController.ProfileSettingToUE3BindingDatum.h"
+namespace UnrealScript
+{
+	class TrConsolePlayerController;
+}
 #include "Engine.Pawn.h"
+#include "TribesGame.TrConsolePlayerController.ProfileSettingToUE3BindingDatum.h"
+#include "TribesGame.TrPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class TrConsolePlayerController : public TrPlayerController
 	{
 	public:
+		typedef TrConsolePlayerController__ProfileSettingToUE3BindingDatum ProfileSettingToUE3BindingDatum;
 		ADD_STRUCT(ScriptArray<TrConsolePlayerController__ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMapping360, 3436)
 		ADD_STRUCT(ScriptArray<TrConsolePlayerController__ProfileSettingToUE3BindingDatum>, ProfileSettingToUE3BindingMappingPS3, 3448)
 		ADD_BOOL(bDebugTargetAdhesion, 3432, 0x2)

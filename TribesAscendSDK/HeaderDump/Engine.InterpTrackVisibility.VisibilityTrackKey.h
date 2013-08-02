@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.InterpTrackVisibility.EVisibilityTrackCondition.h"
+namespace UnrealScript
+{
+	struct InterpTrackVisibility__VisibilityTrackKey;
+}
 #include "Engine.InterpTrackVisibility.EVisibilityTrackAction.h"
+#include "Engine.InterpTrackVisibility.EVisibilityTrackCondition.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

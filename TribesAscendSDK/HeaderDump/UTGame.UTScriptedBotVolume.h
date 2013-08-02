@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.PhysicsVolume.h"
+namespace UnrealScript
+{
+	class UTScriptedBotVolume;
+}
 #include "Engine.Pawn.h"
+#include "Engine.PhysicsVolume.h"
 namespace UnrealScript
 {
 	class UTScriptedBotVolume : public PhysicsVolume

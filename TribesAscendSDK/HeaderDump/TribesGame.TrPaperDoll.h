@@ -1,12 +1,15 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "Engine.SkeletalMeshActorMAT.h"
+namespace UnrealScript
+{
+	class TrPaperDoll;
+}
 #include "Engine.AnimNodePlayCustomAnim.h"
-#include "TribesGame.TrPlayerController.h"
-#include "Engine.SkeletalMesh.h"
-#include "TribesGame.TrObject.PaperDollInfo.h"
 #include "Engine.AnimNodeSequence.h"
 #include "Engine.MaterialInstanceConstant.h"
+#include "Engine.SkeletalMesh.h"
+#include "Engine.SkeletalMeshActorMAT.h"
+#include "TribesGame.TrObject.PaperDollInfo.h"
+#include "TribesGame.TrPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

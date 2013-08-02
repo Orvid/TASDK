@@ -1,9 +1,13 @@
 #pragma once
-#include "Core.Object.Color.h"
-#include "UTGame.UTLocalMessage.h"
-#include "Engine.PlayerReplicationInfo.h"
+namespace UnrealScript
+{
+	class UTDeathMessage;
+}
 #include "Core.Object.h"
+#include "Core.Object.Color.h"
 #include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "UTGame.UTLocalMessage.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

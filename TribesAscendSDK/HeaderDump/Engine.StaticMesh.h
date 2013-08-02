@@ -1,7 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class StaticMesh;
+}
 #include "Core.Object.h"
-#include "Engine.StaticMesh.StaticMeshLODInfo.h"
 #include "Engine.RB_BodySetup.h"
+#include "Engine.StaticMesh.StaticMeshLODElement.h"
+#include "Engine.StaticMesh.StaticMeshLODInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +30,8 @@ namespace UnrealScript
 	class StaticMesh : public Object
 	{
 	public:
+		typedef StaticMesh__StaticMeshLODElement StaticMeshLODElement;
+		typedef StaticMesh__StaticMeshLODInfo StaticMeshLODInfo;
 		ADD_BOOL(UseSimpleLineCollision, 252, 0x1)
 		ADD_BOOL(UseSimpleBoxCollision, 256, 0x1)
 		ADD_BOOL(UseSimpleRigidBodyCollision, 260, 0x1)

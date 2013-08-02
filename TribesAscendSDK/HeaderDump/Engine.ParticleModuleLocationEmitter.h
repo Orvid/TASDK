@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleLocationEmitter;
+}
 #include "Engine.ParticleModuleLocationBase.h"
 #include "Engine.ParticleModuleLocationEmitter.ELocationEmitterSelectionMethod.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class ParticleModuleLocationEmitter : public ParticleModuleLocationBase
 	{
 	public:
+		typedef ParticleModuleLocationEmitter__ELocationEmitterSelectionMethod ELocationEmitterSelectionMethod;
 		ADD_STRUCT(float, InheritSourceRotationScale, 92)
 		ADD_STRUCT(float, InheritSourceVelocityScale, 88)
 		ADD_BOOL(bInheritSourceRotation, 84, 0x2)

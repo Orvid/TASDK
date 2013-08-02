@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_MobileAddInputZones;
+}
 #include "Engine.SequenceAction.h"
 #include "GameFramework.MobileInputZone.h"
 #define ADD_STRUCT(x, y, offset) \

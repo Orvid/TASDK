@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.MeshComponent.h"
+namespace UnrealScript
+{
+	class ApexComponentBase;
+}
 #include "Core.Object.Color.h"
-#include "Engine.ApexAsset.h"
-#include "Core.Object.RenderCommandFence_Mirror.h"
 #include "Core.Object.Pointer.h"
+#include "Core.Object.RenderCommandFence_Mirror.h"
+#include "Engine.ApexAsset.h"
+#include "Engine.MeshComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

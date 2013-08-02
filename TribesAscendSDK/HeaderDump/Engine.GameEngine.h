@@ -1,16 +1,21 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameEngine;
+}
 #include "Engine.DownloadableContentEnumerator.h"
+#include "Engine.DownloadableContentManager.h"
 #include "Engine.Engine.h"
-#include "Engine.OnlineSubsystem.h"
-#include "Engine.PendingLevel.h"
-#include "Engine.InGameAdManager.h"
+#include "Engine.GameEngine.EFullyLoadPackageType.h"
+#include "Engine.GameEngine.FullyLoadedPackagesInfo.h"
+#include "Engine.GameEngine.LevelStreamingStatus.h"
 #include "Engine.GameEngine.NamedNetDriver.h"
 #include "Engine.GameEngine.URL.h"
+#include "Engine.InGameAdManager.h"
 #include "Engine.Level.h"
-#include "Engine.DownloadableContentManager.h"
-#include "Engine.GameEngine.LevelStreamingStatus.h"
 #include "Engine.ObjectReferencer.h"
-#include "Engine.GameEngine.FullyLoadedPackagesInfo.h"
+#include "Engine.OnlineSubsystem.h"
+#include "Engine.PendingLevel.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -34,6 +39,11 @@ namespace UnrealScript
 	class GameEngine : public Engine
 	{
 	public:
+		typedef GameEngine__EFullyLoadPackageType EFullyLoadPackageType;
+		typedef GameEngine__LevelStreamingStatus LevelStreamingStatus;
+		typedef GameEngine__FullyLoadedPackagesInfo FullyLoadedPackagesInfo;
+		typedef GameEngine__NamedNetDriver NamedNetDriver;
+		typedef GameEngine__URL URL;
 		ADD_OBJECT(PendingLevel, GPendingLevel, 1484)
 		ADD_STRUCT(ScriptString*, PendingLevelPlayerControllerClassName, 1488)
 		ADD_STRUCT(GameEngine__URL, LastURL, 1500)

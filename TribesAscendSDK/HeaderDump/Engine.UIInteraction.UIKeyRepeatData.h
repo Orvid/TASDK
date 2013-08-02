@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UIInteraction__UIKeyRepeatData;
+}
 #include "Core.Object.Double.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

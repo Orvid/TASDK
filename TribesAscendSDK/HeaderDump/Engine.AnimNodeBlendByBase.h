@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.AnimNodeBlendList.h"
-#include "Engine.AnimNodeBlendByBase.EBaseBlendType.h"
+namespace UnrealScript
+{
+	class AnimNodeBlendByBase;
+}
 #include "Engine.Actor.h"
+#include "Engine.AnimNodeBlendByBase.EBaseBlendType.h"
+#include "Engine.AnimNodeBlendList.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,6 +19,7 @@ namespace UnrealScript
 	class AnimNodeBlendByBase : public AnimNodeBlendList
 	{
 	public:
+		typedef AnimNodeBlendByBase__EBaseBlendType EBaseBlendType;
 		ADD_OBJECT(Actor, CachedBase, 296)
 		ADD_STRUCT(float, BlendTime, 292)
 		ADD_OBJECT(ScriptClass, ActorClass, 288)

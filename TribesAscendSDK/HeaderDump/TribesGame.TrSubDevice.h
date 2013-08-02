@@ -1,7 +1,10 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrDevice.h"
+namespace UnrealScript
+{
+	class TrSubDevice;
+}
 #include "Engine.Actor.ImpactInfo.h"
+#include "TribesGame.TrDevice.h"
 namespace UnrealScript
 {
 	class TrSubDevice : public TrDevice

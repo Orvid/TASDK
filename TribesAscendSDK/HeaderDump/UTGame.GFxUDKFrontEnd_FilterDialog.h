@@ -1,11 +1,15 @@
 #pragma once
-#include "UTGame.GFxUDKFrontEnd_Dialog.h"
-#include "GFxUI.GFxClikWidget.EventData.h"
-#include "UTGame.UTUIDataStore_MenuItems.h"
-#include "GFxUI.GFxObject.h"
-#include "UTGame.GFxUDKFrontEnd_FilterDialog.Option.h"
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_FilterDialog;
+}
 #include "GFxUI.GFxClikWidget.h"
+#include "GFxUI.GFxClikWidget.EventData.h"
+#include "GFxUI.GFxObject.h"
+#include "UTGame.GFxUDKFrontEnd_Dialog.h"
+#include "UTGame.GFxUDKFrontEnd_FilterDialog.Option.h"
 #include "UTGame.UTDataStore_GameSearchDM.h"
+#include "UTGame.UTUIDataStore_MenuItems.h"
 #include "UTGame.UTUIDataStore_StringList.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -30,6 +34,7 @@ namespace UnrealScript
 	class GFxUDKFrontEnd_FilterDialog : public GFxUDKFrontEnd_Dialog
 	{
 	public:
+		typedef GFxUDKFrontEnd_FilterDialog__Option Option;
 		ADD_STRUCT(ScriptArray<GFxUDKFrontEnd_FilterDialog__Option>, ListOptions, 196)
 		ADD_OBJECT(GFxObject, GameTypeOptionItem, 192)
 		ADD_OBJECT(GFxObject, DataProvider, 188)

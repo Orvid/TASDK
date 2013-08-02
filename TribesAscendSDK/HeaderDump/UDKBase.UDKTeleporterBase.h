@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.Teleporter.h"
-#include "Engine.TextureRenderTarget2D.h"
-#include "Engine.SoundCue.h"
+namespace UnrealScript
+{
+	class UDKTeleporterBase;
+}
+#include "Engine.Actor.h"
 #include "Engine.MaterialInstanceConstant.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.Actor.h"
+#include "Engine.SoundCue.h"
+#include "Engine.Teleporter.h"
+#include "Engine.TextureRenderTarget2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

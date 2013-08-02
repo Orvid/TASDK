@@ -1,10 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTGameReplicationInfo;
+}
 #include "Engine.GameReplicationInfo.h"
-#include "UTGame.UTPlayerController.h"
-#include "UTGame.UTGameReplicationInfo.MeshEffect.h"
 #include "Engine.MaterialInterface.h"
-#include "UTGame.UTGameReplicationInfo.EFlagState.h"
 #include "Engine.PlayerReplicationInfo.h"
+#include "UTGame.UTGameReplicationInfo.EFlagState.h"
+#include "UTGame.UTGameReplicationInfo.MeshEffect.h"
+#include "UTGame.UTPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -28,6 +32,8 @@ namespace UnrealScript
 	class UTGameReplicationInfo : public GameReplicationInfo
 	{
 	public:
+		typedef UTGameReplicationInfo__EFlagState EFlagState;
+		typedef UTGameReplicationInfo__MeshEffect MeshEffect;
 		ADD_BOOL(bStoryMode, 568, 0x4)
 		ADD_BOOL(bAnnouncementsDisabled, 568, 0x20)
 		ADD_STRUCT(ScriptString*, MessageOfTheDay, 624)

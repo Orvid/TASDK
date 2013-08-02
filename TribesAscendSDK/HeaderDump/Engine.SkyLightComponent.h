@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SkyLightComponent;
+}
 #include "Core.Object.Color.h"
 #include "Engine.LightComponent.h"
 #define ADD_STRUCT(x, y, offset) \

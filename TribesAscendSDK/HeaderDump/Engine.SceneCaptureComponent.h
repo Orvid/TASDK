@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.ActorComponent.h"
-#include "Engine.SceneCaptureComponent.ESceneCaptureViewMode.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.PostProcessChain.h"
+namespace UnrealScript
+{
+	class SceneCaptureComponent;
+}
 #include "Core.Object.Color.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.ActorComponent.h"
+#include "Engine.PostProcessChain.h"
+#include "Engine.SceneCaptureComponent.ESceneCaptureViewMode.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +31,7 @@ namespace UnrealScript
 	class SceneCaptureComponent : public ActorComponent
 	{
 	public:
+		typedef SceneCaptureComponent__ESceneCaptureViewMode ESceneCaptureViewMode;
 		ADD_BOOL(bEnabled, 88, 0x1)
 		ADD_STRUCT(ScriptArray<Object__Pointer>, PostProcessProxies, 132)
 		ADD_STRUCT(Object__Pointer, ViewState, 128)

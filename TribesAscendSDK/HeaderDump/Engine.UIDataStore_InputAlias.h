@@ -1,6 +1,11 @@
 #pragma once
-#include "Engine.UIDataStore_StringBase.h"
+namespace UnrealScript
+{
+	class UIDataStore_InputAlias;
+}
 #include "Engine.UIDataStore_InputAlias.UIDataStoreInputAlias.h"
+#include "Engine.UIDataStore_InputAlias.UIInputKeyData.h"
+#include "Engine.UIDataStore_StringBase.h"
 #include "Engine.UIRoot.EInputPlatformType.h"
 #include "Engine.UIRoot.RawInputKeyEventData.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -12,6 +17,8 @@ namespace UnrealScript
 	class UIDataStore_InputAlias : public UIDataStore_StringBase
 	{
 	public:
+		typedef UIDataStore_InputAlias__UIDataStoreInputAlias UIDataStoreInputAlias;
+		typedef UIDataStore_InputAlias__UIInputKeyData UIInputKeyData;
 		ADD_STRUCT(ScriptArray<UIDataStore_InputAlias__UIDataStoreInputAlias>, InputAliases, 120)
 		ScriptString* GetAliasFontMarkup(ScriptName DesiredAlias, UIRoot__EInputPlatformType OverridePlatform)
 		{

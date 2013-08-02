@@ -1,6 +1,11 @@
 #pragma once
-#include "Engine.OnlineStatsRead.ColumnMetaData.h"
+namespace UnrealScript
+{
+	class OnlineStatsRead;
+}
 #include "Engine.OnlineStats.h"
+#include "Engine.OnlineStatsRead.ColumnMetaData.h"
+#include "Engine.OnlineStatsRead.OnlineStatsColumn.h"
 #include "Engine.OnlineStatsRead.OnlineStatsRow.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -12,6 +17,9 @@ namespace UnrealScript
 	class OnlineStatsRead : public OnlineStats
 	{
 	public:
+		typedef OnlineStatsRead__OnlineStatsRow OnlineStatsRow;
+		typedef OnlineStatsRead__ColumnMetaData ColumnMetaData;
+		typedef OnlineStatsRead__OnlineStatsColumn OnlineStatsColumn;
 		ADD_STRUCT(ScriptArray<int>, ColumnIds, 80)
 		ADD_STRUCT(ScriptArray<OnlineStatsRead__OnlineStatsRow>, Rows, 96)
 		ADD_STRUCT(ScriptArray<OnlineStatsRead__ColumnMetaData>, ColumnMappings, 108)

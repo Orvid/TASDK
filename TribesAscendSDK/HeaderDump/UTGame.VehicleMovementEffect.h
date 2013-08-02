@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class VehicleMovementEffect;
+}
 #include "UDKBase.UDKVehicleMovementEffect.h"
 namespace UnrealScript
 {

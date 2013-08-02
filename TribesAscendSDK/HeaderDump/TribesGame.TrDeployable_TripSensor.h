@@ -1,10 +1,13 @@
 #pragma once
-#include "TribesGame.TrDeployable_Sensor.h"
-#include "Engine.Pawn.h"
+namespace UnrealScript
+{
+	class TrDeployable_TripSensor;
+}
 #include "Core.Object.Pointer.h"
 #include "Engine.ParticleSystem.h"
+#include "Engine.Pawn.h"
+#include "TribesGame.TrDeployable_Sensor.h"
 #include "TribesGame.TrTripActor.h"
-#include "Core.Object.Vector.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

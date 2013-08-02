@@ -1,10 +1,14 @@
 #pragma once
-#include "TribesGame.TrGame_TRCTF.h"
-#include "TribesGame.TrCTFBase_DiamondSword.h"
-#include "TribesGame.TrCTFBase_BloodEagle.h"
-#include "TribesGame.TrCTFBase.h"
+namespace UnrealScript
+{
+	class TrGame_TrCTFBlitz;
+}
 #include "Engine.Controller.h"
+#include "TribesGame.TrCTFBase.h"
+#include "TribesGame.TrCTFBase_BloodEagle.h"
+#include "TribesGame.TrCTFBase_DiamondSword.h"
 #include "TribesGame.TrFlagBase.h"
+#include "TribesGame.TrGame_TRCTF.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

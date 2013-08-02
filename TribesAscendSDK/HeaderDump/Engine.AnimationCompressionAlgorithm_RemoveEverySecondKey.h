@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AnimationCompressionAlgorithm_RemoveEverySecondKey;
+}
 #include "Engine.AnimationCompressionAlgorithm.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

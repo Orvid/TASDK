@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct AnimNodeAimOffset__AimComponent;
+}
 #include "Engine.AnimNodeAimOffset.AimTransform.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

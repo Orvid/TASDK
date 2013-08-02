@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class NavMeshPath_EnforceTwoWayEdges;
+}
 #include "Engine.NavMeshPathConstraint.h"
 #include "Engine.NavigationHandle.h"
 namespace UnrealScript

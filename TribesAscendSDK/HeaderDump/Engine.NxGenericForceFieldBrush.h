@@ -1,11 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class NxGenericForceFieldBrush;
+}
+#include "Core.Object.Pointer.h"
+#include "Engine.NxGenericForceFieldBrush.FFB_ForceFieldCoordinates.h"
+#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
+#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #include "Engine.Projectile.h"
 #include "Engine.Volume.h"
-#include "Core.Object.Pointer.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PrimitiveComponent.ERBCollisionChannel.h"
-#include "Engine.NxGenericForceFieldBrush.FFB_ForceFieldCoordinates.h"
-#include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,6 +18,7 @@ namespace UnrealScript
 	class NxGenericForceFieldBrush : public Volume
 	{
 	public:
+		typedef NxGenericForceFieldBrush__FFB_ForceFieldCoordinates FFB_ForceFieldCoordinates;
 		ADD_STRUCT(ScriptArray<Object__Pointer>, ConvexMeshes, 684)
 		ADD_STRUCT(ScriptArray<Object__Pointer>, ExclusionShapes, 696)
 		ADD_STRUCT(ScriptArray<Object__Pointer>, ExclusionShapePoses, 708)

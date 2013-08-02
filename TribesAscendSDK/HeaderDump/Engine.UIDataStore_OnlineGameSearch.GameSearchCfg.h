@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.UIDataProvider_Settings.h"
+namespace UnrealScript
+{
+	struct UIDataStore_OnlineGameSearch__GameSearchCfg;
+}
 #include "Engine.OnlineGameSearch.h"
+#include "Engine.UIDataProvider_Settings.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

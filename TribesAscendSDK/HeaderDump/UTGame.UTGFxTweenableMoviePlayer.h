@@ -1,7 +1,11 @@
 #pragma once
-#include "UTGame.UTGFxTweenableMoviePlayer.GFxTween.h"
+namespace UnrealScript
+{
+	class UTGFxTweenableMoviePlayer;
+}
 #include "GFxUI.GFxMoviePlayer.h"
 #include "GFxUI.GFxObject.h"
+#include "UTGame.UTGFxTweenableMoviePlayer.GFxTween.h"
 #include "UTGame.UTGFxTweenableMoviePlayer.TweenType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -26,6 +30,8 @@ namespace UnrealScript
 	class UTGFxTweenableMoviePlayer : public GFxMoviePlayer
 	{
 	public:
+		typedef UTGFxTweenableMoviePlayer__TweenType TweenType;
+		typedef UTGFxTweenableMoviePlayer__GFxTween GFxTween;
 		ADD_STRUCT(ScriptArray<UTGFxTweenableMoviePlayer__GFxTween>, TweenList, 380)
 		void TweenTo(class GFxObject* MC, float Duration, ScriptString* Member, float Target, UTGFxTweenableMoviePlayer__TweenType NewTweenType, ScriptString* Callback)
 		{

@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.AnimNotify.h"
+namespace UnrealScript
+{
+	class AnimNotify_Scripted;
+}
 #include "Engine.Actor.h"
 #include "Engine.AnimNodeSequence.h"
+#include "Engine.AnimNotify.h"
 namespace UnrealScript
 {
 	class AnimNotify_Scripted : public AnimNotify

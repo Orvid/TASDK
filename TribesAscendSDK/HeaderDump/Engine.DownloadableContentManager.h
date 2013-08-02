@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.GameEngine.h"
+namespace UnrealScript
+{
+	class DownloadableContentManager;
+}
 #include "Core.Object.h"
-#include "Core.Object.Pointer.h"
 #include "Core.Object.Map_Mirror.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.GameEngine.h"
 #include "Engine.OnlineSubsystem.OnlineContent.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

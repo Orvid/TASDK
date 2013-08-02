@@ -1,6 +1,10 @@
 #pragma once
-#include "TribesGame.TrObject.EContentDataType.h"
+namespace UnrealScript
+{
+	struct TrMainMenuContentData__MeshData;
+}
 #include "TribesGame.TrMainMenuMeshInfo.h"
+#include "TribesGame.TrObject.EContentDataType.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

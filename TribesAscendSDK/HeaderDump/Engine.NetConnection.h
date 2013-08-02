@@ -1,6 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class NetConnection;
+	class ChildConnection;
+}
 #include "Engine.Player.h"
-#include "Engine.ChildConnection.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -14,3 +18,4 @@ namespace UnrealScript
 	};
 }
 #undef ADD_STRUCT
+#include "Engine.ChildConnection.h"

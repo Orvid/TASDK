@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ActorFactoryPlayerStart;
+}
 #include "Engine.ActorFactory.h"
 namespace UnrealScript
 {

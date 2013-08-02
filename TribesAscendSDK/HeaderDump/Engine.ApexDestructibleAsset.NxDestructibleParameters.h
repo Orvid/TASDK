@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ApexDestructibleAsset__NxDestructibleParameters;
+}
+#include "Core.Object.Box.h"
 #include "Engine.ApexDestructibleAsset.NxDestructibleDepthParameters.h"
 #include "Engine.ApexDestructibleAsset.NxDestructibleParametersFlag.h"
-#include "Core.Object.Box.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

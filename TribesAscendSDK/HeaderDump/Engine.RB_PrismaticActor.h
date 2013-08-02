@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class RB_PrismaticActor;
+}
 #include "Engine.RB_ConstraintActor.h"
 namespace UnrealScript
 {

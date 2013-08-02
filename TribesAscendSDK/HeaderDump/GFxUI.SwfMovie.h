@@ -1,6 +1,9 @@
 #pragma once
+namespace UnrealScript
+{
+	class SwfMovie;
+}
 #include "GFxUI.GFxRawData.h"
-#include "Core.Object.QWord.h"
 #include "GFxUI.SwfMovie.FlashTextureRescale.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -21,6 +24,7 @@ namespace UnrealScript
 	class SwfMovie : public GFxRawData
 	{
 	public:
+		typedef SwfMovie__FlashTextureRescale FlashTextureRescale;
 		ADD_STRUCT(QWord, ImportTimeStamp, 164)
 		ADD_STRUCT(int, RTVideoTextures, 160)
 		ADD_STRUCT(int, RTTextures, 156)

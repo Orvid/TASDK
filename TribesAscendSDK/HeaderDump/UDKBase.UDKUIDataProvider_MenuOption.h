@@ -1,7 +1,11 @@
 #pragma once
-#include "UDKBase.UDKUIResourceDataProvider.h"
+namespace UnrealScript
+{
+	class UDKUIDataProvider_MenuOption;
+}
 #include "Engine.UIRoot.UIRangeData.h"
 #include "UDKBase.UDKUIDataProvider_MenuOption.EUTOptionType.h"
+#include "UDKBase.UDKUIResourceDataProvider.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class UDKUIDataProvider_MenuOption : public UDKUIResourceDataProvider
 	{
 	public:
+		typedef UDKUIDataProvider_MenuOption__EUTOptionType EUTOptionType;
 		ADD_STRUCT(ScriptArray<ScriptName>, OptionSet, 156)
 		ADD_STRUCT(UIRoot__UIRangeData, RangeData, 220)
 		ADD_STRUCT(int, EditBoxMaxLength, 216)

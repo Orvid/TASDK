@@ -1,7 +1,10 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameCrowdAttractor;
+}
 #include "GameFramework.GameCrowdAgent.h"
 #include "GameFramework.GameCrowdForcePoint.h"
-#include "Core.Object.Vector.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

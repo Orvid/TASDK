@@ -1,9 +1,12 @@
 #pragma once
-#include "TribesGame.TrStationCollision.h"
-#include "TribesGame.TrPawn.h"
-#include "Engine.Pawn.h"
+namespace UnrealScript
+{
+	class TrRepairStationCollision;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Pawn.h"
+#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrStationCollision.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

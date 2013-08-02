@@ -1,7 +1,10 @@
 #pragma once
-#include "Core.Object.Vector.h"
-#include "GameFramework.GameTypes.ShakeParams.h"
+namespace UnrealScript
+{
+	struct GameTypes__ScreenShakeStruct;
+}
 #include "GameFramework.GameTypes.EShakeParam.h"
+#include "GameFramework.GameTypes.ShakeParams.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

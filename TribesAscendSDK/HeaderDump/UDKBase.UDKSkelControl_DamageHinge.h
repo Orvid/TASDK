@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKSkelControl_DamageHinge;
+}
 #include "Core.Object.EAxis.h"
 #include "UDKBase.UDKSkelControl_Damage.h"
 #define ADD_STRUCT(x, y, offset) \

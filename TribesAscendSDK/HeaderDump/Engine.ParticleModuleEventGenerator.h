@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleEventGenerator;
+}
 #include "Engine.ParticleModuleEventBase.h"
 #include "Engine.ParticleModuleEventGenerator.ParticleEvent_GenerateInfo.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -20,6 +24,7 @@ namespace UnrealScript
 	class ParticleModuleEventGenerator : public ParticleModuleEventBase
 	{
 	public:
+		typedef ParticleModuleEventGenerator__ParticleEvent_GenerateInfo ParticleEvent_GenerateInfo;
 		ADD_STRUCT(ScriptArray<ParticleModuleEventGenerator__ParticleEvent_GenerateInfo>, Events, 72)
 	};
 }

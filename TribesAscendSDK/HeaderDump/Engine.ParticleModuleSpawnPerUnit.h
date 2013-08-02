@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ParticleModuleSpawnBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleSpawnPerUnit;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Engine.ParticleModuleSpawnBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

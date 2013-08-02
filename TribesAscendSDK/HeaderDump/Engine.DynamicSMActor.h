@@ -1,12 +1,14 @@
 #pragma once
+namespace UnrealScript
+{
+	class DynamicSMActor;
+}
 #include "Engine.Actor.h"
-#include "Engine.SeqAct_SetMesh.h"
-#include "Core.Object.Vector.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.StaticMesh.h"
 #include "Engine.Pawn.h"
 #include "Engine.SeqAct_SetMaterial.h"
+#include "Engine.SeqAct_SetMesh.h"
+#include "Engine.StaticMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

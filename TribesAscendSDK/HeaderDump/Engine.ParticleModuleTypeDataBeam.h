@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.ParticleModuleTypeDataBase.h"
-#include "Core.DistributionVector.RawDistributionVector.h"
+namespace UnrealScript
+{
+	class ParticleModuleTypeDataBeam;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleTypeDataBase.h"
 #include "Engine.ParticleModuleTypeDataBeam.EBeamEndPointMethod.h"
 #include "Engine.ParticleModuleTypeDataBeam.EBeamMethod.h"
 #define ADD_BOOL(name, offset, mask) \
@@ -23,6 +27,8 @@ namespace UnrealScript
 	class ParticleModuleTypeDataBeam : public ParticleModuleTypeDataBase
 	{
 	public:
+		typedef ParticleModuleTypeDataBeam__EBeamMethod EBeamMethod;
+		typedef ParticleModuleTypeDataBeam__EBeamEndPointMethod EBeamEndPointMethod;
 		ADD_BOOL(RenderTessellation, 224, 0x8)
 		ADD_BOOL(RenderLines, 224, 0x4)
 		ADD_BOOL(RenderDirectLine, 224, 0x2)

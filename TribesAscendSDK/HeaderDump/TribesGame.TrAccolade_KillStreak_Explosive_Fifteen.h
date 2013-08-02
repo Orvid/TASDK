@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrAccolade_KillStreak_Explosive_Fifteen;
+}
 #include "TribesGame.TrAccolade.h"
 namespace UnrealScript
 {

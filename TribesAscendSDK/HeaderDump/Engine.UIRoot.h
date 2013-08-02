@@ -1,11 +1,25 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIRoot;
+	class GameUISceneClient;
+	class UIDataStore;
+	class UIInteraction;
+}
 #include "Core.Object.h"
-#include "Engine.UIRoot.EInputPlatformType.h"
 #include "Engine.LocalPlayer.h"
-#include "Engine.UIDataStore.h"
-#include "Engine.UIInteraction.h"
-#include "Engine.GameUISceneClient.h"
+#include "Engine.UIRoot.EInputPlatformType.h"
+#include "Engine.UIRoot.EUIDataProviderFieldType.h"
+#include "Engine.UIRoot.InputEventParameters.h"
+#include "Engine.UIRoot.InputKeyAction.h"
+#include "Engine.UIRoot.RawInputKeyEventData.h"
+#include "Engine.UIRoot.SubscribedInputEventParameters.h"
+#include "Engine.UIRoot.TextureCoordinates.h"
+#include "Engine.UIRoot.UIAxisEmulationDefinition.h"
+#include "Engine.UIRoot.UIDataStoreBinding.h"
 #include "Engine.UIRoot.UIProviderFieldValue.h"
+#include "Engine.UIRoot.UIProviderScriptFieldValue.h"
+#include "Engine.UIRoot.UIRangeData.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,6 +43,18 @@ namespace UnrealScript
 	class UIRoot : public Object
 	{
 	public:
+		typedef UIRoot__EInputPlatformType EInputPlatformType;
+		typedef UIRoot__EUIDataProviderFieldType EUIDataProviderFieldType;
+		typedef UIRoot__UIRangeData UIRangeData;
+		typedef UIRoot__TextureCoordinates TextureCoordinates;
+		typedef UIRoot__UIProviderScriptFieldValue UIProviderScriptFieldValue;
+		typedef UIRoot__UIProviderFieldValue UIProviderFieldValue;
+		typedef UIRoot__InputKeyAction InputKeyAction;
+		typedef UIRoot__UIDataStoreBinding UIDataStoreBinding;
+		typedef UIRoot__InputEventParameters InputEventParameters;
+		typedef UIRoot__SubscribedInputEventParameters SubscribedInputEventParameters;
+		typedef UIRoot__UIAxisEmulationDefinition UIAxisEmulationDefinition;
+		typedef UIRoot__RawInputKeyEventData RawInputKeyEventData;
 		static const auto DEFAULT_SIZE_X = 1024;
 		static const auto DEFAULT_SIZE_Y = 768;
 		static const auto MAX_SUPPORTED_GAMEPADS = 4;
@@ -144,3 +170,6 @@ void**)params;
 #undef ADD_BOOL
 #undef ADD_STRUCT
 #undef ADD_OBJECT
+#include "Engine.GameUISceneClient.h"
+#include "Engine.UIDataStore.h"
+#include "Engine.UIInteraction.h"

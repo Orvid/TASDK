@@ -1,8 +1,13 @@
 #pragma once
-#include "Engine.AnimObject.h"
-#include "Engine.AnimNodeBlendBase.h"
+namespace UnrealScript
+{
+	class AnimNode;
+	class AnimNodeBlendBase;
+}
 #include "Core.Object.BoneAtom.h"
 #include "Engine.AnimNode.CurveKey.h"
+#include "Engine.AnimNode.ESliderType.h"
+#include "Engine.AnimObject.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +27,8 @@ namespace UnrealScript
 	class AnimNode : public AnimObject
 	{
 	public:
+		typedef AnimNode__ESliderType ESliderType;
+		typedef AnimNode__CurveKey CurveKey;
 		ADD_STRUCT(ScriptArray<class AnimNodeBlendBase*>, ParentNodes, 120)
 		ADD_STRUCT(ScriptArray<Object__BoneAtom>, CachedBoneAtoms, 140)
 		ADD_STRUCT(ScriptArray<AnimNode__CurveKey>, CachedCurveKeys, 196)
@@ -89,3 +96,4 @@ namespace UnrealScript
 }
 #undef ADD_BOOL
 #undef ADD_STRUCT
+#include "Engine.AnimNodeBlendBase.h"

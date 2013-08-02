@@ -1,19 +1,22 @@
 #pragma once
-#include "Engine.ActorComponent.h"
-#include "Engine.LightComponent.ELightAffectsClassification.h"
+namespace UnrealScript
+{
+	class LightComponent;
+}
 #include "Core.Object.Color.h"
+#include "Core.Object.Guid.h"
+#include "Core.Object.LinearColor.h"
+#include "Core.Object.Matrix.h"
+#include "Core.Object.Pointer.h"
+#include "Engine.ActorComponent.h"
 #include "Engine.Brush.h"
+#include "Engine.LightComponent.ELightAffectsClassification.h"
+#include "Engine.LightComponent.ELightShadowMode.h"
+#include "Engine.LightComponent.EShadowFilterQuality.h"
+#include "Engine.LightComponent.EShadowProjectionTechnique.h"
+#include "Engine.LightComponent.LightingChannelContainer.h"
 #include "Engine.LightFunction.h"
 #include "Engine.Texture2D.h"
-#include "Core.Object.Pointer.h"
-#include "Core.Object.Guid.h"
-#include "Engine.LightComponent.LightingChannelContainer.h"
-#include "Core.Object.Matrix.h"
-#include "Engine.LightComponent.ELightShadowMode.h"
-#include "Core.Object.LinearColor.h"
-#include "Engine.LightComponent.EShadowProjectionTechnique.h"
-#include "Core.Object.Vector.h"
-#include "Engine.LightComponent.EShadowFilterQuality.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -37,6 +40,11 @@ namespace UnrealScript
 	class LightComponent : public ActorComponent
 	{
 	public:
+		typedef LightComponent__EShadowFilterQuality EShadowFilterQuality;
+		typedef LightComponent__EShadowProjectionTechnique EShadowProjectionTechnique;
+		typedef LightComponent__ELightShadowMode ELightShadowMode;
+		typedef LightComponent__ELightAffectsClassification ELightAffectsClassification;
+		typedef LightComponent__LightingChannelContainer LightingChannelContainer;
 		ADD_STRUCT(float, Brightness, 256)
 		ADD_STRUCT(Object__Color, LightColor, 260)
 		ADD_OBJECT(LightFunction, Function, 264)

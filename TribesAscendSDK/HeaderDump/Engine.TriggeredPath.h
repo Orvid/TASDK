@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.NavigationPoint.h"
+namespace UnrealScript
+{
+	class TriggeredPath;
+}
 #include "Engine.Actor.h"
-#include "Engine.SeqAct_Toggle.h"
+#include "Engine.NavigationPoint.h"
 #include "Engine.Pawn.h"
+#include "Engine.SeqAct_Toggle.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

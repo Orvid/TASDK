@@ -1,7 +1,11 @@
 #pragma once
-#include "TribesGame.TrDevice.h"
-#include "Engine.Projectile.h"
+namespace UnrealScript
+{
+	class TrDevice_AutoFire;
+}
 #include "Engine.AnimNodeSequence.h"
+#include "Engine.Projectile.h"
+#include "TribesGame.TrDevice.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

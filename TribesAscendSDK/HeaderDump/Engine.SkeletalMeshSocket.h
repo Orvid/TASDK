@@ -1,9 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class SkeletalMeshSocket;
+}
 #include "Core.Object.h"
-#include "Engine.StaticMesh.h"
-#include "Core.Object.Rotator.h"
 #include "Engine.SkeletalMesh.h"
-#include "Core.Object.Vector.h"
+#include "Engine.StaticMesh.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

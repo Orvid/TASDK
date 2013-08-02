@@ -1,13 +1,16 @@
 #pragma once
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class KAsset;
+}
 #include "Engine.Actor.h"
+#include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
 #include "Engine.PhysicsAsset.h"
+#include "Engine.SeqAct_AttachToActor.h"
+#include "Engine.SeqAct_Teleport.h"
 #include "Engine.SeqAct_Toggle.h"
 #include "Engine.SkeletalMesh.h"
-#include "Engine.SeqAct_AttachToActor.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.SeqAct_Teleport.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

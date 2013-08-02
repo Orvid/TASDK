@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.SequenceCondition.h"
+namespace UnrealScript
+{
+	class UTSeqCond_HasInventory;
+}
 #include "Engine.Actor.h"
+#include "Engine.SequenceCondition.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

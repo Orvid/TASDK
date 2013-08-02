@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTDataStore_GameSearchPersonal;
+}
+#include "Engine.OnlineGameSearch.h"
+#include "Engine.OnlineSubsystem.UniqueNetId.h"
 #include "UDKBase.UDKDataStore_GameSearchBase.h"
 #include "UTGame.UTDataStore_GameSearchDM.h"
-#include "Engine.OnlineSubsystem.UniqueNetId.h"
-#include "Engine.OnlineGameSearch.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

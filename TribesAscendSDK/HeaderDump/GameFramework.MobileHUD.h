@@ -1,12 +1,16 @@
 #pragma once
-#include "GameFramework.SeqEvent_HudRender.h"
-#include "Engine.HUD.h"
-#include "GameFramework.MobileInputZone.TextureUVs.h"
-#include "GameFramework.MobileInputZone.h"
-#include "Engine.Font.h"
-#include "Engine.Texture2D.h"
+namespace UnrealScript
+{
+	class MobileHUD;
+}
 #include "Core.Object.Color.h"
+#include "Engine.Font.h"
+#include "Engine.HUD.h"
+#include "Engine.Texture2D.h"
+#include "GameFramework.MobileInputZone.h"
+#include "GameFramework.MobileInputZone.TextureUVs.h"
 #include "GameFramework.MobilePlayerInput.h"
+#include "GameFramework.SeqEvent_HudRender.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class Texture2DDynamic;
+}
 #include "Engine.Texture.h"
 #include "Engine.Texture.EPixelFormat.h"
 #define ADD_BOOL(name, offset, mask) \

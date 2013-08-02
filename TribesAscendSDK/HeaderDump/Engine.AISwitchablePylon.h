@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class AISwitchablePylon;
+}
 #include "Engine.Pylon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

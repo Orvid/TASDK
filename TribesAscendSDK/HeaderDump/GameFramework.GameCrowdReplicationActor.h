@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GameCrowdReplicationActor;
+}
 #include "Engine.Actor.h"
 #include "GameFramework.SeqAct_GameCrowdSpawner.h"
 #define ADD_BOOL(name, offset, mask) \

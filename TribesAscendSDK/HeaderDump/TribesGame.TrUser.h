@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrUser;
+}
 #include "Core.Object.h"
-#include "TribesGame.TrUser.NewItem.h"
 #include "TribesGame.GFxTrMenuMoviePlayer.h"
+#include "TribesGame.TrUser.NewItem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +29,7 @@ namespace UnrealScript
 	class TrUser : public Object
 	{
 	public:
+		typedef TrUser__NewItem NewItem;
 		ADD_BOOL(m_DidLogin, 80, 0x1)
 		ADD_STRUCT(int, m_ClassId, 76)
 		ADD_STRUCT(ScriptString*, CurrencyName, 64)

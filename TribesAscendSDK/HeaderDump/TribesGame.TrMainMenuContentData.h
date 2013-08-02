@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrMainMenuContentData;
+}
 #include "Core.Object.h"
 #include "TribesGame.TrMainMenuContentData.MeshData.h"
-#include "TribesGame.TrPaperDollMainMenu.h"
 #include "TribesGame.TrObject.EContentDataType.h"
+#include "TribesGame.TrPaperDollMainMenu.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -16,6 +20,7 @@ namespace UnrealScript
 	class TrMainMenuContentData : public Object
 	{
 	public:
+		typedef TrMainMenuContentData__MeshData MeshData;
 		ADD_STRUCT(ScriptArray<TrMainMenuContentData__MeshData>, m_MeshData, 60)
 		void SendPaperDollANewMesh(class TrPaperDollMainMenu* MainMenuPaperDoll, TrObject__EContentDataType ContentDataType)
 		{

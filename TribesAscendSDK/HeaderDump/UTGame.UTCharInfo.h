@@ -1,6 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTCharInfo;
+}
 #include "Core.Object.h"
 #include "UTGame.UTCharInfo.CharacterInfo.h"
+#include "UTGame.UTCharInfo.CustomAIData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -10,6 +15,8 @@ namespace UnrealScript
 	class UTCharInfo : public Object
 	{
 	public:
+		typedef UTCharInfo__CustomAIData CustomAIData;
+		typedef UTCharInfo__CharacterInfo CharacterInfo;
 		ADD_STRUCT(ScriptArray<UTCharInfo__CharacterInfo>, Characters, 60)
 		ADD_STRUCT(ScriptArray<ScriptClass*>, Families, 72)
 		ADD_STRUCT(float, LOD3DisplayFactor, 92)

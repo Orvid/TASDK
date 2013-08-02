@@ -1,11 +1,14 @@
 #pragma once
-#include "TribesGame.TrGameObjective.h"
-#include "Engine.PlayerController.h"
-#include "TribesGame.TrPawn.h"
-#include "TribesGame.TrInventoryStation_Storm.h"
-#include "TribesGame.TrStormControlPoint.ControlPointState.h"
+namespace UnrealScript
+{
+	class TrStormControlPoint;
+}
 #include "Engine.Canvas.h"
-#include "Core.Object.Vector.h"
+#include "Engine.PlayerController.h"
+#include "TribesGame.TrGameObjective.h"
+#include "TribesGame.TrInventoryStation_Storm.h"
+#include "TribesGame.TrPawn.h"
+#include "TribesGame.TrStormControlPoint.ControlPointState.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -15,6 +18,7 @@ namespace UnrealScript
 	class TrStormControlPoint : public TrGameObjective
 	{
 	public:
+		typedef TrStormControlPoint__ControlPointState ControlPointState;
 		ADD_STRUCT(ScriptArray<class TrInventoryStation_Storm*>, m_InventoryStations, 1392)
 		ADD_STRUCT(ScriptString*, m_sControlPointName, 1404)
 		ADD_STRUCT(float, m_fLaunchTimeDescriptionPlacementY, 1388)

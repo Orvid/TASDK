@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SeqAct_PlayAgentAnimation;
+}
 #include "Engine.Actor.h"
 #include "Engine.SeqAct_Latent.h"
 #include "GameFramework.GameCrowdAgentSkeletal.h"

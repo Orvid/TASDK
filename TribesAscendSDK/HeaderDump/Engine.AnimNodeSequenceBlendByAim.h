@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.AnimNodeSequenceBlendBase.h"
+namespace UnrealScript
+{
+	class AnimNodeSequenceBlendByAim;
+}
 #include "Core.Object.Vector2D.h"
+#include "Engine.AnimNodeSequenceBlendBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrDmgType_WhiteOut;
+}
 #include "TribesGame.TrDmgType_Explosive.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

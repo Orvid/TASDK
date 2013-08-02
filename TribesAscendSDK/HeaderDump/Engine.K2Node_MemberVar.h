@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class K2Node_MemberVar;
+}
 #include "Engine.K2Connector.EK2ConnectorType.h"
 #include "Engine.K2Node_Code.h"
 #define ADD_STRUCT(x, y, offset) \

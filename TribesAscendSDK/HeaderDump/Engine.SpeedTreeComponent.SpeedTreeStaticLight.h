@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct SpeedTreeComponent__SpeedTreeStaticLight;
+}
 #include "Core.Object.Guid.h"
 #include "Engine.ShadowMap1D.h"
 #define ADD_STRUCT(x, y, offset) \

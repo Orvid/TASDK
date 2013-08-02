@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PBRuleNodeTransform;
+}
 #include "Engine.PBRuleNodeBase.h"
 namespace UnrealScript
 {

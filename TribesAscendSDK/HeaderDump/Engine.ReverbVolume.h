@@ -1,7 +1,12 @@
 #pragma once
-#include "Engine.Volume.h"
+namespace UnrealScript
+{
+	class ReverbVolume;
+}
 #include "Engine.ReverbVolume.InteriorSettings.h"
+#include "Engine.ReverbVolume.ReverbPreset.h"
 #include "Engine.ReverbVolume.ReverbSettings.h"
+#include "Engine.Volume.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -25,6 +30,9 @@ namespace UnrealScript
 	class ReverbVolume : public Volume
 	{
 	public:
+		typedef ReverbVolume__ReverbPreset ReverbPreset;
+		typedef ReverbVolume__InteriorSettings InteriorSettings;
+		typedef ReverbVolume__ReverbSettings ReverbSettings;
 		ADD_OBJECT(ReverbVolume, NextLowerPriorityVolume, 580)
 		ADD_STRUCT(ReverbVolume__InteriorSettings, AmbientZoneSettings, 544)
 		ADD_STRUCT(ReverbVolume__ReverbSettings, Settings, 528)

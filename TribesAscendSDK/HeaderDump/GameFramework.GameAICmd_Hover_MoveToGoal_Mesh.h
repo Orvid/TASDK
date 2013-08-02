@@ -1,10 +1,13 @@
 #pragma once
-#include "Engine.HUD.h"
-#include "Core.Object.Vector.h"
-#include "GameFramework.GameAICommand.h"
+namespace UnrealScript
+{
+	class GameAICmd_Hover_MoveToGoal_Mesh;
+}
 #include "Engine.Actor.h"
-#include "GameFramework.GameAIController.h"
+#include "Engine.HUD.h"
 #include "Engine.Pawn.h"
+#include "GameFramework.GameAICommand.h"
+#include "GameFramework.GameAIController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

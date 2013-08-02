@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Interface_NavMeshPathObject.h"
+namespace UnrealScript
+{
+	class Interface_NavMeshPathSwitch;
+}
 #include "Engine.AIController.h"
+#include "Engine.Interface_NavMeshPathObject.h"
 namespace UnrealScript
 {
 	class Interface_NavMeshPathSwitch : public Interface_NavMeshPathObject

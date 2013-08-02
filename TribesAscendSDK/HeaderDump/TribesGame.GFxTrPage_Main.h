@@ -1,8 +1,13 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrPage_Main;
+}
+#include "GFxUI.GFxObject.h"
+#include "TribesGame.GFxTrAction.h"
 #include "TribesGame.GFxTrPage.h"
 #include "TribesGame.GFxTrPage_Main.BundleData.h"
-#include "TribesGame.GFxTrAction.h"
-#include "GFxUI.GFxObject.h"
+#include "TribesGame.GFxTrPage_Main.EFEATURES.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -22,6 +27,8 @@ namespace UnrealScript
 	class GFxTrPage_Main : public GFxTrPage
 	{
 	public:
+		typedef GFxTrPage_Main__EFEATURES EFEATURES;
+		typedef GFxTrPage_Main__BundleData BundleData;
 		ADD_BOOL(bSwingingCamera, 376, 0x1)
 		ADD_STRUCT(ScriptArray<GFxTrPage_Main__BundleData>, ActiveBundles, 404)
 		ADD_STRUCT(ScriptString*, TabOffset, 392)

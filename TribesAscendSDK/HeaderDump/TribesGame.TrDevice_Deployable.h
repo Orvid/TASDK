@@ -1,9 +1,11 @@
 #pragma once
-#include "TribesGame.TrDeployableHologram.h"
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrDevice.h"
-#include "Core.Object.Rotator.h"
+namespace UnrealScript
+{
+	class TrDevice_Deployable;
+}
 #include "TribesGame.TrDeployable.h"
+#include "TribesGame.TrDeployableHologram.h"
+#include "TribesGame.TrDevice.h"
 #include "UTGame.UTPlayerController.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \

@@ -1,15 +1,18 @@
 #pragma once
-#include "Engine.MaterialInstanceConstant.h"
-#include "UTGame.UTCarriedObject.h"
-#include "Engine.Canvas.h"
-#include "TribesGame.TrCollisionProxy.h"
-#include "Core.Object.Vector.h"
-#include "Engine.ParticleSystem.h"
-#include "Engine.PlayerController.h"
+namespace UnrealScript
+{
+	class TrFlagBase;
+}
 #include "Engine.Actor.h"
+#include "Engine.Canvas.h"
 #include "Engine.Controller.h"
 #include "Engine.HUD.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.PlayerController.h"
+#include "TribesGame.TrCollisionProxy.h"
 #include "TribesGame.TrPawn.h"
+#include "UTGame.UTCarriedObject.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct MaterialInstanceConstant__FontParameterValue;
+}
 #include "Core.Object.Guid.h"
 #include "Engine.Font.h"
 #define ADD_STRUCT(x, y, offset) \

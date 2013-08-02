@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct MorphNodeWeightBase__MorphNodeConn;
+}
 #include "Engine.MorphNodeBase.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class RB_PulleyJointActor;
+}
 #include "Engine.RB_ConstraintActor.h"
 namespace UnrealScript
 {

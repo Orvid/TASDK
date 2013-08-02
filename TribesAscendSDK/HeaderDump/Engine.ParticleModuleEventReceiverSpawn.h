@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.ParticleModuleEventReceiverBase.h"
-#include "Core.DistributionVector.RawDistributionVector.h"
+namespace UnrealScript
+{
+	class ParticleModuleEventReceiverSpawn;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
+#include "Core.DistributionVector.RawDistributionVector.h"
+#include "Engine.ParticleModuleEventReceiverBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

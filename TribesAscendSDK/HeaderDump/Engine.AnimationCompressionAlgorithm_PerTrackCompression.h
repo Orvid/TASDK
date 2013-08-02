@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.AnimationCompressionAlgorithm_RemoveLinearKeys.h"
-#include "Engine.AnimSequence.AnimationCompressionFormat.h"
+namespace UnrealScript
+{
+	class AnimationCompressionAlgorithm_PerTrackCompression;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.AnimSequence.AnimationCompressionFormat.h"
+#include "Engine.AnimationCompressionAlgorithm_RemoveLinearKeys.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

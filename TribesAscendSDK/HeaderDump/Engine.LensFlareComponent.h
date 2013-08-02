@@ -1,9 +1,14 @@
 #pragma once
-#include "Core.Object.Pointer.h"
-#include "Engine.PrimitiveComponent.h"
-#include "Engine.LensFlareComponent.LensFlareElementMaterials.h"
+namespace UnrealScript
+{
+	class LensFlareComponent;
+}
 #include "Core.Object.LinearColor.h"
+#include "Core.Object.Pointer.h"
 #include "Engine.LensFlare.h"
+#include "Engine.LensFlareComponent.LensFlareElementInstance.h"
+#include "Engine.LensFlareComponent.LensFlareElementMaterials.h"
+#include "Engine.PrimitiveComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -27,6 +32,8 @@ namespace UnrealScript
 	class LensFlareComponent : public PrimitiveComponent
 	{
 	public:
+		typedef LensFlareComponent__LensFlareElementMaterials LensFlareElementMaterials;
+		typedef LensFlareComponent__LensFlareElementInstance LensFlareElementInstance;
 		ADD_STRUCT(ScriptArray<LensFlareComponent__LensFlareElementMaterials>, Materials, 540)
 		ADD_STRUCT(float, NextTraceTime, 556)
 		ADD_STRUCT(Object__Pointer, ReleaseResourcesFence, 552)

@@ -1,7 +1,11 @@
 #pragma once
-#include "Engine.MaterialExpressionSceneTexture.ESceneTextureType.h"
+namespace UnrealScript
+{
+	class MaterialExpressionSceneTexture;
+}
 #include "Engine.MaterialExpression.h"
 #include "Engine.MaterialExpression.ExpressionInput.h"
+#include "Engine.MaterialExpressionSceneTexture.ESceneTextureType.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class MaterialExpressionSceneTexture : public MaterialExpression
 	{
 	public:
+		typedef MaterialExpressionSceneTexture__ESceneTextureType ESceneTextureType;
 		ADD_BOOL(ScreenAlign, 140, 0x1)
 		ADD_STRUCT(MaterialExpressionSceneTexture__ESceneTextureType, SceneTextureType, 136)
 		ADD_STRUCT(MaterialExpression__ExpressionInput, Coordinates, 108)

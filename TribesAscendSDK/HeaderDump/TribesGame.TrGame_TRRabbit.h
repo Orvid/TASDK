@@ -1,13 +1,17 @@
 #pragma once
-#include "TribesGame.TrGame.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "TribesGame.TrFlagRabbit.h"
-#include "Engine.PlayerStart.h"
+namespace UnrealScript
+{
+	class TrGame_TRRabbit;
+}
 #include "Engine.Controller.h"
-#include "UTGame.UTTeamInfo.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.PlayerStart.h"
+#include "TribesGame.TrFlagRabbit.h"
+#include "TribesGame.TrGame.h"
 #include "TribesGame.TrGame_TRRabbit.ScoreStruct.h"
 #include "TribesGame.TrPlayerController.h"
-#include "Engine.Pawn.h"
+#include "UTGame.UTTeamInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -21,6 +25,7 @@ namespace UnrealScript
 	class TrGame_TRRabbit : public TrGame
 	{
 	public:
+		typedef TrGame_TRRabbit__ScoreStruct ScoreStruct;
 		ADD_OBJECT(PlayerReplicationInfo, m_HolderPRI, 1464)
 		ADD_OBJECT(PlayerReplicationInfo, m_Leader, 1468)
 		ADD_STRUCT(float, m_fScoreInterval, 1460)

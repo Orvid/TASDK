@@ -1,10 +1,14 @@
 #pragma once
-#include "UTGame.GFxUDKFrontEnd_Screen.h"
+namespace UnrealScript
+{
+	class GFxUDKFrontEnd_SettingsBase;
+}
+#include "Engine.UIDataStore_OnlineGameSettings.h"
+#include "GFxUI.GFxClikWidget.h"
 #include "GFxUI.GFxClikWidget.EventData.h"
 #include "GFxUI.GFxObject.h"
-#include "Engine.UIDataStore_OnlineGameSettings.h"
+#include "UTGame.GFxUDKFrontEnd_Screen.h"
 #include "UTGame.UTUIDataProvider_MenuOption.h"
-#include "GFxUI.GFxClikWidget.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

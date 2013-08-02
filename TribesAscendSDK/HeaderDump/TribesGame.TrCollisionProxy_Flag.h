@@ -1,7 +1,10 @@
 #pragma once
-#include "TribesGame.TrCollisionProxy.h"
+namespace UnrealScript
+{
+	class TrCollisionProxy_Flag;
+}
 #include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
+#include "TribesGame.TrCollisionProxy.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

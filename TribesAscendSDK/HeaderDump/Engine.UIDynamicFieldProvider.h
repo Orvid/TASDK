@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.UIRoot.UIProviderScriptFieldValue.h"
-#include "Engine.UIDataProvider.h"
+namespace UnrealScript
+{
+	class UIDynamicFieldProvider;
+}
 #include "Core.Object.Map_Mirror.h"
+#include "Engine.UIDataProvider.h"
 #include "Engine.UIRoot.EUIDataProviderFieldType.h"
+#include "Engine.UIRoot.UIProviderScriptFieldValue.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

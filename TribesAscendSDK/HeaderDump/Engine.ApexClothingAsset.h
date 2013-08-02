@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class ApexClothingAsset;
+}
+#include "Core.Object.Pointer.h"
+#include "Engine.ApexAsset.h"
 #include "Engine.ApexGenericAsset.h"
 #include "Engine.MaterialInterface.h"
-#include "Engine.ApexAsset.h"
-#include "Core.Object.Pointer.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,9 +1,12 @@
 #pragma once
-#include "TribesGame.TrDevice_AutoFire.h"
+namespace UnrealScript
+{
+	class TrDevice_Melee;
+}
 #include "Engine.Actor.ImpactInfo.h"
 #include "Engine.AnimNodeSequence.h"
+#include "TribesGame.TrDevice_AutoFire.h"
 #include "TribesGame.TrDevice_Melee.MeleeRandomAnimation.h"
-#include "Core.Object.Vector.h"
 #include "TribesGame.TrPawn.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -18,6 +21,7 @@ namespace UnrealScript
 	class TrDevice_Melee : public TrDevice_AutoFire
 	{
 	public:
+		typedef TrDevice_Melee__MeleeRandomAnimation MeleeRandomAnimation;
 		ADD_STRUCT(ScriptArray<Actor__ImpactInfo>, PendingImpactList, 2164)
 		ADD_STRUCT(ScriptArray<TrDevice_Melee__MeleeRandomAnimation>, FiringAnimRandomList, 2176)
 		ADD_OBJECT(AnimNodeSequence, FiringAnimSeqNode, 2188)

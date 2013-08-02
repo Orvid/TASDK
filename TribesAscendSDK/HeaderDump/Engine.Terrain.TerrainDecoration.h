@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Terrain.TerrainDecorationInstance.h"
+namespace UnrealScript
+{
+	struct Terrain__TerrainDecoration;
+}
 #include "Engine.PrimitiveComponentFactory.h"
+#include "Engine.Terrain.TerrainDecorationInstance.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

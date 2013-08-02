@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class DistributionVectorConstantCurve;
+}
 #include "Core.DistributionVector.h"
 #include "Core.DistributionVector.EDistributionVectorLockFlags.h"
 #include "Core.Object.InterpCurveVector.h"

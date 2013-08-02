@@ -1,13 +1,17 @@
 #pragma once
-#include "IpDrv.PartyBeaconClient.EPartyBeaconClientRequest.h"
-#include "IpDrv.PartyBeacon.PartyReservation.h"
-#include "IpDrv.PartyBeaconClient.EPartyBeaconClientState.h"
-#include "IpDrv.PartyBeacon.h"
-#include "IpDrv.ClientBeaconAddressResolver.h"
-#include "IpDrv.PartyBeacon.PlayerReservation.h"
+namespace UnrealScript
+{
+	class PartyBeaconClient;
+}
 #include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
 #include "Engine.OnlineSubsystem.UniqueNetId.h"
+#include "IpDrv.ClientBeaconAddressResolver.h"
+#include "IpDrv.PartyBeacon.h"
 #include "IpDrv.PartyBeacon.EPartyReservationResult.h"
+#include "IpDrv.PartyBeacon.PartyReservation.h"
+#include "IpDrv.PartyBeacon.PlayerReservation.h"
+#include "IpDrv.PartyBeaconClient.EPartyBeaconClientRequest.h"
+#include "IpDrv.PartyBeaconClient.EPartyBeaconClientState.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -21,6 +25,8 @@ namespace UnrealScript
 	class PartyBeaconClient : public PartyBeacon
 	{
 	public:
+		typedef PartyBeaconClient__EPartyBeaconClientRequest EPartyBeaconClientRequest;
+		typedef PartyBeaconClient__EPartyBeaconClientState EPartyBeaconClientState;
 		ADD_OBJECT(ClientBeaconAddressResolver, Resolver, 164)
 		ADD_OBJECT(ScriptClass, ResolverClass, 160)
 		ADD_STRUCT(ScriptString*, ResolverClassName, 148)

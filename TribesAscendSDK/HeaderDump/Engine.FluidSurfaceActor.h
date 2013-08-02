@@ -1,9 +1,12 @@
 #pragma once
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class FluidSurfaceActor;
+}
 #include "Engine.Actor.h"
-#include "Engine.ParticleSystem.h"
-#include "Core.Object.Vector.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.Controller.h"
+#include "Engine.ParticleSystem.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

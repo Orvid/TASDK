@@ -1,7 +1,11 @@
 #pragma once
+namespace UnrealScript
+{
+	class UDKAnimNodeSequenceByBoneRotation;
+}
+#include "Core.Object.EAxis.h"
 #include "Engine.AnimNodeSequence.h"
 #include "UDKBase.UDKAnimNodeSequenceByBoneRotation.AnimByRotation.h"
-#include "Core.Object.EAxis.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -11,6 +15,7 @@ namespace UnrealScript
 	class UDKAnimNodeSequenceByBoneRotation : public AnimNodeSequence
 	{
 	public:
+		typedef UDKAnimNodeSequenceByBoneRotation__AnimByRotation AnimByRotation;
 		ADD_STRUCT(ScriptArray<UDKAnimNodeSequenceByBoneRotation__AnimByRotation>, AnimList, 332)
 		ADD_STRUCT(Object__EAxis, BoneAxis, 328)
 		ADD_STRUCT(ScriptName, BoneName, 320)

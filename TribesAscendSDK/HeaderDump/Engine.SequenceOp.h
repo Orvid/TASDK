@@ -1,15 +1,20 @@
 #pragma once
-#include "Engine.Pawn.h"
+namespace UnrealScript
+{
+	class SequenceOp;
+}
+#include "Core.Object.h"
+#include "Engine.Actor.h"
+#include "Engine.Controller.h"
 #include "Engine.InterpData.h"
+#include "Engine.Pawn.h"
 #include "Engine.SequenceObject.h"
 #include "Engine.SequenceOp.SeqEventLink.h"
 #include "Engine.SequenceOp.SeqOpInputLink.h"
+#include "Engine.SequenceOp.SeqOpOutputInputLink.h"
 #include "Engine.SequenceOp.SeqOpOutputLink.h"
 #include "Engine.SequenceOp.SeqVarLink.h"
-#include "Core.Object.h"
 #include "Engine.SequenceVariable.h"
-#include "Engine.Actor.h"
-#include "Engine.Controller.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -33,6 +38,11 @@ namespace UnrealScript
 	class SequenceOp : public SequenceObject
 	{
 	public:
+		typedef SequenceOp__SeqOpInputLink SeqOpInputLink;
+		typedef SequenceOp__SeqOpOutputLink SeqOpOutputLink;
+		typedef SequenceOp__SeqVarLink SeqVarLink;
+		typedef SequenceOp__SeqEventLink SeqEventLink;
+		typedef SequenceOp__SeqOpOutputInputLink SeqOpOutputInputLink;
 		ADD_STRUCT(ScriptArray<SequenceOp__SeqOpInputLink>, InputLinks, 144)
 		ADD_STRUCT(ScriptArray<SequenceOp__SeqOpOutputLink>, OutputLinks, 156)
 		ADD_STRUCT(ScriptArray<SequenceOp__SeqVarLink>, VariableLinks, 168)

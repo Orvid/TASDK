@@ -1,6 +1,10 @@
 #pragma once
-#include "GameFramework.GameCrowdAgentBehavior.h"
+namespace UnrealScript
+{
+	class GameCrowdBehavior_WaitForGroup;
+}
 #include "GameFramework.GameCrowdAgent.h"
+#include "GameFramework.GameCrowdAgentBehavior.h"
 namespace UnrealScript
 {
 	class GameCrowdBehavior_WaitForGroup : public GameCrowdAgentBehavior

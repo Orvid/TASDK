@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TextureRenderTargetFactoryNew;
+}
 #include "Core.Factory.h"
 #include "UnrealEd.TextureRenderTargetFactoryNew.Format.h"
 #define ADD_STRUCT(x, y, offset) \
@@ -10,6 +14,7 @@ namespace UnrealScript
 	class TextureRenderTargetFactoryNew : public Factory
 	{
 	public:
+		typedef TextureRenderTargetFactoryNew__Format Format;
 		ADD_STRUCT(int, Width, 112)
 		ADD_STRUCT(int, Height, 116)
 		ADD_STRUCT(TextureRenderTargetFactoryNew__Format, Format, 120)

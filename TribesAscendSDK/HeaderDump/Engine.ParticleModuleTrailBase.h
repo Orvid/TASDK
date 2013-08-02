@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleTrailBase;
+}
 #include "Engine.ParticleModule.h"
 namespace UnrealScript
 {

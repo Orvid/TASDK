@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct GameSkelCtrl_Recoil__RecoilParams;
+}
 #include "GameFramework.GameSkelCtrl_Recoil.ERecoilStart.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

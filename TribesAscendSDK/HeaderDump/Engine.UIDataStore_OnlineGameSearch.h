@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.UIDataStore_Remote.h"
-#include "Engine.OnlineGameSearch.h"
-#include "Engine.UIDataStore_OnlineGameSearch.GameSearchCfg.h"
+namespace UnrealScript
+{
+	class UIDataStore_OnlineGameSearch;
+}
 #include "Core.Object.Pointer.h"
-#include "Engine.OnlineSubsystem.h"
+#include "Engine.OnlineGameSearch.h"
 #include "Engine.OnlineGameSearch.OnlineGameSearchResult.h"
+#include "Engine.OnlineSubsystem.h"
+#include "Engine.UIDataStore_OnlineGameSearch.GameSearchCfg.h"
+#include "Engine.UIDataStore_Remote.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -18,6 +22,7 @@ namespace UnrealScript
 	class UIDataStore_OnlineGameSearch : public UIDataStore_Remote
 	{
 	public:
+		typedef UIDataStore_OnlineGameSearch__GameSearchCfg GameSearchCfg;
 		ADD_STRUCT(ScriptArray<UIDataStore_OnlineGameSearch__GameSearchCfg>, GameSearchCfgList, 148)
 		ADD_STRUCT(int, ActiveSearchIndex, 164)
 		ADD_STRUCT(int, SelectedIndex, 160)

@@ -1,10 +1,14 @@
 #pragma once
-#include "UTGame.UTBot.h"
+namespace UnrealScript
+{
+	class UTDefensePoint;
+}
 #include "Engine.Actor.h"
 #include "Engine.Controller.h"
-#include "UDKBase.UDKScriptedNavigationPoint.h"
-#include "UDKBase.UDKGameObjective.h"
 #include "Engine.Texture2D.h"
+#include "UDKBase.UDKGameObjective.h"
+#include "UDKBase.UDKScriptedNavigationPoint.h"
+#include "UTGame.UTBot.h"
 #include "UTGame.UTDefensePoint.EDefensePriority.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -29,6 +33,7 @@ namespace UnrealScript
 	class UTDefensePoint : public UDKScriptedNavigationPoint
 	{
 	public:
+		typedef UTDefensePoint__EDefensePriority EDefensePriority;
 		ADD_OBJECT(ScriptClass, WeaponPreference, 712)
 		ADD_BOOL(bSniping, 708, 0x2)
 		ADD_BOOL(bFirstScript, 708, 0x1)

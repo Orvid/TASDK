@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SoundNodeMature;
+}
 #include "Engine.SoundNode.h"
 namespace UnrealScript
 {

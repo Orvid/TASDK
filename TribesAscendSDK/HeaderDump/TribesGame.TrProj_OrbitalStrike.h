@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrProj_OrbitalStrike;
+}
 #include "TribesGame.TrProj_CallInBase.h"
 namespace UnrealScript
 {

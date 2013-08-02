@@ -1,12 +1,15 @@
 #pragma once
-#include "Engine.Actor.h"
-#include "Engine.Texture2D.h"
-#include "Engine.PlayerController.h"
-#include "Core.Object.Vector2D.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Engine.Canvas.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class TrSpottedTarget;
+}
 #include "Core.Object.LinearColor.h"
+#include "Core.Object.Vector2D.h"
+#include "Engine.Actor.h"
+#include "Engine.Canvas.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.PlayerController.h"
+#include "Engine.Texture2D.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

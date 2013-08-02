@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.ParticleModuleUberBase.h"
+namespace UnrealScript
+{
+	class ParticleModuleUberRainImpacts;
+}
 #include "Core.DistributionFloat.RawDistributionFloat.h"
 #include "Core.DistributionVector.RawDistributionVector.h"
 #include "Engine.ParticleModuleLocationPrimitiveCylinder.CylinderHeightAxis.h"
+#include "Engine.ParticleModuleUberBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

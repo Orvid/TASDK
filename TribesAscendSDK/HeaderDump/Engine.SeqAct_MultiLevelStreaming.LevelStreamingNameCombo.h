@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct SeqAct_MultiLevelStreaming__LevelStreamingNameCombo;
+}
 #include "Engine.LevelStreaming.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ParticleModuleSubUVSelect;
+}
 #include "Core.DistributionVector.RawDistributionVector.h"
 #include "Engine.ParticleModuleSubUVBase.h"
 #define ADD_STRUCT(x, y, offset) \

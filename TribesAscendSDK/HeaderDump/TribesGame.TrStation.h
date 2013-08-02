@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrStation;
+}
 #include "Engine.Actor.h"
-#include "TribesGame.TrGameObjective.h"
 #include "Engine.SoundCue.h"
 #include "TribesGame.TrCaHCapturePoint.h"
+#include "TribesGame.TrGameObjective.h"
 #include "TribesGame.TrPawn.h"
 #include "TribesGame.TrStationCollision.h"
 #define ADD_STRUCT(x, y, offset) \

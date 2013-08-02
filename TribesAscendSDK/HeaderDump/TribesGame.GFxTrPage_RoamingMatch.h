@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrPage_RoamingMatch;
+}
 #include "TribesGame.GFxTrPage.h"
 namespace UnrealScript
 {

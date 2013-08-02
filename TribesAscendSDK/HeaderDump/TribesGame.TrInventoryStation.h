@@ -1,8 +1,12 @@
 #pragma once
-#include "TribesGame.TrStation.h"
+namespace UnrealScript
+{
+	class TrInventoryStation;
+}
+#include "Core.Object.Color.h"
 #include "Engine.Texture2D.h"
 #include "TribesGame.TrPawn.h"
-#include "Core.Object.Color.h"
+#include "TribesGame.TrStation.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

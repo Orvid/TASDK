@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrPowerGenerator_BloodEagle;
+}
 #include "TribesGame.TrPowerGenerator.h"
 namespace UnrealScript
 {

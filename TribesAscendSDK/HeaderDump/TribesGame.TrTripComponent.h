@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrTripComponent;
+}
 #include "Engine.PrimitiveComponent.h"
 #include "TribesGame.TrTripActor.h"
 #define ADD_STRUCT(x, y, offset) \

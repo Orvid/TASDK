@@ -1,11 +1,14 @@
 #pragma once
-#include "Engine.Actor.h"
-#include "Core.Object.InterpCurveFloat.h"
-#include "Engine.SplineActor.SplineConnection.h"
+namespace UnrealScript
+{
+	class SplineActor;
+}
 #include "Core.Object.Color.h"
-#include "Core.Object.Vector.h"
+#include "Core.Object.InterpCurveFloat.h"
+#include "Engine.Actor.h"
 #include "Engine.SeqAct_Toggle.h"
 #include "Engine.SeqAct_ToggleHidden.h"
+#include "Engine.SplineActor.SplineConnection.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -29,6 +32,7 @@ namespace UnrealScript
 	class SplineActor : public Actor
 	{
 	public:
+		typedef SplineActor__SplineConnection SplineConnection;
 		ADD_STRUCT(ScriptArray<SplineActor__SplineConnection>, Connections, 476)
 		ADD_STRUCT(ScriptArray<class SplineActor*>, LinksFrom, 508)
 		ADD_STRUCT(Object__InterpCurveFloat, SplineVelocityOverTime, 540)

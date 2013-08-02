@@ -1,9 +1,13 @@
 #pragma once
-#include "UDKBase.UDKAnimNodeSeqWeap.h"
+namespace UnrealScript
+{
+	class UDKAnimNodeCopyBoneTranslation;
+}
+#include "Engine.AnimNodeAimOffset.h"
 #include "Engine.AnimNodeBlendBase.h"
 #include "UDKBase.UDKAnimBlendByWeapType.h"
 #include "UDKBase.UDKAnimNodeCopyBoneTranslation.BoneCopyInfo.h"
-#include "Engine.AnimNodeAimOffset.h"
+#include "UDKBase.UDKAnimNodeSeqWeap.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -17,6 +21,7 @@ namespace UnrealScript
 	class UDKAnimNodeCopyBoneTranslation : public AnimNodeBlendBase
 	{
 	public:
+		typedef UDKAnimNodeCopyBoneTranslation__BoneCopyInfo BoneCopyInfo;
 		ADD_STRUCT(ScriptArray<UDKAnimNodeCopyBoneTranslation__BoneCopyInfo>, DefaultBoneCopyArray, 256)
 		ADD_STRUCT(ScriptArray<UDKAnimNodeCopyBoneTranslation__BoneCopyInfo>, DualWieldBoneCopyArray, 268)
 		ADD_STRUCT(ScriptArray<UDKAnimNodeCopyBoneTranslation__BoneCopyInfo>, ActiveBoneCopyArray, 280)

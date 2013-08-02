@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class ReimportFbxSkeletalMeshFactory;
+}
 #include "UnrealEd.FbxFactory.h"
 #include "UnrealEd.FbxImportUI.h"
 #define ADD_OBJECT(x, y, offset) \

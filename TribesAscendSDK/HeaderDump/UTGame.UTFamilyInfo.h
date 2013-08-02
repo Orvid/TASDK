@@ -1,20 +1,23 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTFamilyInfo;
+}
 #include "Core.Object.h"
-#include "Engine.SkeletalMesh.h"
-#include "Engine.ParticleSystem.h"
-#include "Engine.AnimSet.h"
-#include "UTGame.UTPawn.GibInfo.h"
-#include "Engine.PhysicsAsset.h"
-#include "Engine.MaterialInstance.h"
-#include "Engine.MaterialInterface.h"
-#include "UDKBase.UDKPawn.EmoteInfo.h"
-#include "Engine.StaticMesh.h"
-#include "UDKBase.UDKPawn.DistanceBasedParticleTemplate.h"
-#include "Engine.MaterialInstanceTimeVarying.h"
-#include "Engine.Texture.h"
 #include "Core.Object.LinearColor.h"
+#include "Engine.AnimSet.h"
+#include "Engine.MaterialInstance.h"
 #include "Engine.MaterialInstanceConstant.h"
-#include "Core.Object.Vector.h"
+#include "Engine.MaterialInstanceTimeVarying.h"
+#include "Engine.MaterialInterface.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.PhysicsAsset.h"
+#include "Engine.SkeletalMesh.h"
+#include "Engine.StaticMesh.h"
+#include "Engine.Texture.h"
+#include "UDKBase.UDKPawn.DistanceBasedParticleTemplate.h"
+#include "UDKBase.UDKPawn.EmoteInfo.h"
+#include "UTGame.UTPawn.GibInfo.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

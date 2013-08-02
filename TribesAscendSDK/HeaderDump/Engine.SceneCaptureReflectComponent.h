@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class SceneCaptureReflectComponent;
+}
 #include "Engine.SceneCaptureComponent.h"
 #include "Engine.TextureRenderTarget2D.h"
 #define ADD_STRUCT(x, y, offset) \

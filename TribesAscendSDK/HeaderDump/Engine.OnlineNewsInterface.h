@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class OnlineNewsInterface;
+}
 #include "Core.Interface.h"
 #include "Engine.OnlineSubsystem.EOnlineNewsType.h"
 namespace UnrealScript

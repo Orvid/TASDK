@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class MaterialExpressionMeshSubUV;
+}
 #include "Engine.MaterialExpressionTextureSample.h"
 namespace UnrealScript
 {

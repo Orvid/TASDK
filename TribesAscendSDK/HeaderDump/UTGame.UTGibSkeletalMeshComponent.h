@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTGibSkeletalMeshComponent;
+}
 #include "Engine.SkeletalMeshComponent.h"
 namespace UnrealScript
 {

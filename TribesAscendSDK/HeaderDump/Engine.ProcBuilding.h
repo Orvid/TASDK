@@ -1,18 +1,24 @@
 #pragma once
+namespace UnrealScript
+{
+	class ProcBuilding;
+}
+#include "Engine.Actor.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.ProcBuilding.EBuildingStatsBrowserColumns.h"
+#include "Engine.ProcBuilding.EPBCornerType.h"
 #include "Engine.ProcBuilding.EScopeEdge.h"
-#include "Engine.ProcBuilding.PBMeshCompInfo.h"
-#include "Engine.Volume.h"
-#include "Engine.ProcBuilding.PBMaterialParam.h"
-#include "Engine.ProcBuildingRuleset.h"
+#include "Engine.ProcBuilding.PBEdgeInfo.h"
 #include "Engine.ProcBuilding.PBFaceUVInfo.h"
 #include "Engine.ProcBuilding.PBFracMeshCompInfo.h"
-#include "Engine.ProcBuilding.PBScopeProcessInfo.h"
+#include "Engine.ProcBuilding.PBMaterialParam.h"
+#include "Engine.ProcBuilding.PBMemUsageInfo.h"
+#include "Engine.ProcBuilding.PBMeshCompInfo.h"
 #include "Engine.ProcBuilding.PBScope2D.h"
-#include "Engine.ProcBuilding.PBEdgeInfo.h"
-#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.ProcBuilding.PBScopeProcessInfo.h"
+#include "Engine.ProcBuildingRuleset.h"
 #include "Engine.StaticMeshActor.h"
-#include "Engine.Actor.h"
-#include "Core.Object.Vector.h"
+#include "Engine.Volume.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -36,6 +42,17 @@ namespace UnrealScript
 	class ProcBuilding : public Volume
 	{
 	public:
+		typedef ProcBuilding__EScopeEdge EScopeEdge;
+		typedef ProcBuilding__EBuildingStatsBrowserColumns EBuildingStatsBrowserColumns;
+		typedef ProcBuilding__EPBCornerType EPBCornerType;
+		typedef ProcBuilding__PBMaterialParam PBMaterialParam;
+		typedef ProcBuilding__PBFracMeshCompInfo PBFracMeshCompInfo;
+		typedef ProcBuilding__PBFaceUVInfo PBFaceUVInfo;
+		typedef ProcBuilding__PBMemUsageInfo PBMemUsageInfo;
+		typedef ProcBuilding__PBMeshCompInfo PBMeshCompInfo;
+		typedef ProcBuilding__PBScopeProcessInfo PBScopeProcessInfo;
+		typedef ProcBuilding__PBScope2D PBScope2D;
+		typedef ProcBuilding__PBEdgeInfo PBEdgeInfo;
 		static const auto PROCBUILDING_VERSION = 1;
 		static const float ROOF_MINZ;
 		ADD_OBJECT(ProcBuildingRuleset, Ruleset, 520)

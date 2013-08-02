@@ -1,26 +1,28 @@
 #pragma once
-#include "UTGame.UTGameObjective.h"
-#include "TribesGame.TrPlayerController.h"
-#include "Engine.SoundCue.h"
-#include "TribesGame.TrGameObjective.ObjectiveDamageAssist.h"
-#include "TribesGame.TrObject.EMissileLock.h"
-#include "TribesGame.TrGameObjective.UpgradeSelectionList.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.ParticleSystem.h"
-#include "Engine.Controller.h"
-#include "Engine.PhysicsAsset.h"
-#include "Engine.CameraAnim.h"
-#include "Engine.Texture2D.h"
-#include "Engine.Material.h"
-#include "Core.Object.Vector.h"
-#include "TribesGame.TrStatsInterface.h"
+namespace UnrealScript
+{
+	class TrGameObjective;
+}
 #include "Engine.Actor.h"
-#include "Engine.Pawn.h"
-#include "Engine.PlayerController.h"
 #include "Engine.Actor.TraceHitInfo.h"
+#include "Engine.CameraAnim.h"
 #include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.Material.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.ParticleSystem.h"
+#include "Engine.Pawn.h"
+#include "Engine.PhysicsAsset.h"
+#include "Engine.PlayerController.h"
+#include "Engine.SoundCue.h"
+#include "Engine.Texture2D.h"
+#include "TribesGame.TrGameObjective.ObjectiveDamageAssist.h"
+#include "TribesGame.TrGameObjective.UpgradeSelectionList.h"
 #include "TribesGame.TrHelpTextManager.EHelpTextType.h"
+#include "TribesGame.TrObject.EMissileLock.h"
+#include "TribesGame.TrPlayerController.h"
+#include "TribesGame.TrStatsInterface.h"
+#include "UTGame.UTGameObjective.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -44,6 +46,8 @@ namespace UnrealScript
 	class TrGameObjective : public UTGameObjective
 	{
 	public:
+		typedef TrGameObjective__UpgradeSelectionList UpgradeSelectionList;
+		typedef TrGameObjective__ObjectiveDamageAssist ObjectiveDamageAssist;
 		static const auto MAX_CLASS_SLOTS = 10;
 		static const auto TR_QUERY_CTF = 0;
 		static const auto TR_QUERY_TDM = 1;

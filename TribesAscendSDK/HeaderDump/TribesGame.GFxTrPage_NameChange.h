@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class GFxTrPage_NameChange;
+}
 #include "GFxUI.GFxObject.h"
 #include "TribesGame.GFxTrPage_VendorTable.h"
 #define ADD_BOOL(name, offset, mask) \

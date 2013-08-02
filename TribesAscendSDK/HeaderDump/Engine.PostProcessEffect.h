@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class PostProcessEffect;
+}
 #include "Core.Object.h"
 #include "Engine.Scene.ESceneDepthPriorityGroup.h"
 #define ADD_BOOL(name, offset, mask) \

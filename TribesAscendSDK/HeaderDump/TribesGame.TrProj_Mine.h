@@ -1,17 +1,20 @@
 #pragma once
-#include "TribesGame.TrProjectile.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "TribesGame.TrMineCollisionProxy.h"
-#include "Engine.Pawn.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Engine.SoundCue.h"
-#include "Core.Object.Vector.h"
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class TrProj_Mine;
+}
 #include "Engine.Actor.h"
 #include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.Texture2D.h"
-#include "Engine.PlayerController.h"
 #include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.Pawn.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.SoundCue.h"
+#include "Engine.Texture2D.h"
+#include "TribesGame.TrMineCollisionProxy.h"
+#include "TribesGame.TrProjectile.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

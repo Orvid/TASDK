@@ -1,10 +1,14 @@
 #pragma once
-#include "Engine.CameraAnimInst.h"
+namespace UnrealScript
+{
+	class AnimNodeSequence;
+}
 #include "Engine.AnimNode.h"
-#include "Engine.AnimSequence.h"
-#include "Engine.CameraAnim.h"
 #include "Engine.AnimNodeSequence.ERootBoneAxis.h"
 #include "Engine.AnimNodeSequence.ERootRotationOption.h"
+#include "Engine.AnimSequence.h"
+#include "Engine.CameraAnim.h"
+#include "Engine.CameraAnimInst.h"
 #include "Engine.SkelControlBase.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -29,6 +33,8 @@ namespace UnrealScript
 	class AnimNodeSequence : public AnimNode
 	{
 	public:
+		typedef AnimNodeSequence__ERootRotationOption ERootRotationOption;
+		typedef AnimNodeSequence__ERootBoneAxis ERootBoneAxis;
 		ADD_OBJECT(AnimSequence, AnimSeq, 252)
 		ADD_BOOL(bPlaying, 236, 0x1)
 		ADD_STRUCT(float, Rate, 232)

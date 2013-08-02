@@ -1,7 +1,12 @@
 #pragma once
-#include "Engine.AudioDevice.ESoundClassName.h"
+namespace UnrealScript
+{
+	class SoundCue;
+}
 #include "Core.Object.h"
+#include "Engine.AudioDevice.ESoundClassName.h"
 #include "Engine.FaceFXAnimSet.h"
+#include "Engine.SoundCue.SoundNodeEditorData.h"
 #include "Engine.SoundNode.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
@@ -16,6 +21,7 @@ namespace UnrealScript
 	class SoundCue : public Object
 	{
 	public:
+		typedef SoundCue__SoundNodeEditorData SoundNodeEditorData;
 		ADD_STRUCT(ScriptString*, FaceFXAnimName, 168)
 		ADD_OBJECT(FaceFXAnimSet, FaceFXAnimSetRef, 152)
 		ADD_STRUCT(ScriptString*, FaceFXGroupName, 156)

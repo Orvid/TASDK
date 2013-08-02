@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UIDataStore_InputAlias__UIDataStoreInputAlias;
+}
 #include "Engine.UIDataStore_InputAlias.UIInputKeyData.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

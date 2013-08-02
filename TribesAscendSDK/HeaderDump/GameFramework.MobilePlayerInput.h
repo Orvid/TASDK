@@ -1,19 +1,24 @@
 #pragma once
-#include "Engine.PlayerInput.h"
-#include "GameFramework.SeqEvent_MobileRawInput.h"
-#include "GameFramework.SeqEvent_MobileBase.h"
-#include "Core.Object.Vector.h"
+namespace UnrealScript
+{
+	class MobilePlayerInput;
+}
 #include "Core.Object.EInputEvent.h"
-#include "GameFramework.MobilePlayerInput.TouchData.h"
-#include "GameFramework.MobilePlayerInput.MobileInputZoneClassMap.h"
-#include "GameFramework.MobilePlayerInput.MobileInputGroup.h"
 #include "Core.Object.Vector2D.h"
-#include "GameFramework.MobileInputZone.h"
-#include "GameFramework.MobileMenuScene.h"
-#include "GameFramework.MobileMenuObject.h"
-#include "GameFramework.MobileInputZone.EZoneTouchEvent.h"
-#include "Engine.Canvas.h"
 #include "Engine.Actor.ETravelType.h"
+#include "Engine.Canvas.h"
+#include "Engine.PlayerInput.h"
+#include "GameFramework.MobileInputZone.h"
+#include "GameFramework.MobileInputZone.EZoneTouchEvent.h"
+#include "GameFramework.MobileMenuObject.h"
+#include "GameFramework.MobileMenuScene.h"
+#include "GameFramework.MobilePlayerInput.EUIOrientation.h"
+#include "GameFramework.MobilePlayerInput.MobileInputGroup.h"
+#include "GameFramework.MobilePlayerInput.MobileInputZoneClassMap.h"
+#include "GameFramework.MobilePlayerInput.TouchData.h"
+#include "GameFramework.MobilePlayerInput.TouchDataEvent.h"
+#include "GameFramework.SeqEvent_MobileBase.h"
+#include "GameFramework.SeqEvent_MobileRawInput.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -37,6 +42,11 @@ namespace UnrealScript
 	class MobilePlayerInput : public PlayerInput
 	{
 	public:
+		typedef MobilePlayerInput__EUIOrientation EUIOrientation;
+		typedef MobilePlayerInput__TouchData TouchData;
+		typedef MobilePlayerInput__MobileInputGroup MobileInputGroup;
+		typedef MobilePlayerInput__MobileInputZoneClassMap MobileInputZoneClassMap;
+		typedef MobilePlayerInput__TouchDataEvent TouchDataEvent;
 		static const auto NumTouchDataEntries = 5;
 		ADD_STRUCT(Vector, DeviceAccelerometerRawData, 928)
 		ADD_BOOL(bDeviceHasGyroscope, 764, 0x10)

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.ActorFactory.h"
+namespace UnrealScript
+{
+	class ActorFactoryArchetype;
+}
 #include "Engine.Actor.h"
+#include "Engine.ActorFactory.h"
 #define ADD_OBJECT(x, y, offset) \
 class x* get_##y() { return *(class x**)(this + offset); } \
 void set_##y(x* val) { *(class x**)(this + offset) = val; } \

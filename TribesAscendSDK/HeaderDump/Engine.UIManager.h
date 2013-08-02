@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class UIManager;
+}
 #include "Core.Object.h"
 #include "Engine.LocalPlayer.h"
 namespace UnrealScript

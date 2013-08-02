@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.Trigger.h"
+namespace UnrealScript
+{
+	class Trigger_LOS;
+}
 #include "Engine.PlayerController.h"
+#include "Engine.Trigger.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

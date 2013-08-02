@@ -1,7 +1,10 @@
 #pragma once
-#include "Engine.StaticMeshComponent.h"
+namespace UnrealScript
+{
+	class SplineMeshComponent;
+}
 #include "Engine.SplineMeshComponent.SplineMeshParams.h"
-#include "Core.Object.Vector.h"
+#include "Engine.StaticMeshComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +24,7 @@ namespace UnrealScript
 	class SplineMeshComponent : public StaticMeshComponent
 	{
 	public:
+		typedef SplineMeshComponent__SplineMeshParams SplineMeshParams;
 		ADD_BOOL(bSmoothInterpRollScale, 708, 0x1)
 		ADD_STRUCT(Vector, SplineXDir, 696)
 		ADD_STRUCT(SplineMeshComponent__SplineMeshParams, SplineParams, 608)

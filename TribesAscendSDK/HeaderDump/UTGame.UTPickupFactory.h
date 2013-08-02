@@ -1,14 +1,18 @@
 #pragma once
-#include "Engine.SoundNodeWave.h"
+namespace UnrealScript
+{
+	class UTPickupFactory;
+}
 #include "Core.Object.LinearColor.h"
-#include "UDKBase.UDKPickupFactory.h"
-#include "Engine.Projectile.h"
-#include "Engine.ForceFeedbackWaveform.h"
-#include "Engine.SoundCue.h"
-#include "UTGame.UTBot.h"
 #include "Engine.Controller.h"
-#include "UTGame.UTHUD.h"
+#include "Engine.ForceFeedbackWaveform.h"
 #include "Engine.Pawn.h"
+#include "Engine.Projectile.h"
+#include "Engine.SoundCue.h"
+#include "Engine.SoundNodeWave.h"
+#include "UDKBase.UDKPickupFactory.h"
+#include "UTGame.UTBot.h"
+#include "UTGame.UTHUD.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

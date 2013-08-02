@@ -1,50 +1,52 @@
 #pragma once
-#include "Engine.Controller.h"
+namespace UnrealScript
+{
+	class Pawn;
+	class Vehicle;
+}
+#include "Core.Object.Pointer.h"
 #include "Engine.Actor.h"
-#include "Engine.Pawn.EPathSearchType.h"
-#include "Engine.Weapon.h"
-#include "Engine.InventoryManager.h"
-#include "Engine.SeqAct_AttachToActor.h"
-#include "Engine.LadderVolume.h"
-#include "Engine.FaceFXAnimSet.h"
-#include "Core.Object.Vector.h"
-#include "Engine.PhysicsVolume.h"
-#include "Engine.NavigationPoint.h"
+#include "Engine.Actor.AnimSlotInfo.h"
 #include "Engine.Actor.EPhysics.h"
 #include "Engine.Actor.TraceHitInfo.h"
-#include "Engine.SeqAct_PlayFaceFXAnim.h"
 #include "Engine.AnimNodeSlot.h"
-#include "Engine.SeqAct_SetMaterial.h"
-#include "Engine.PlayerController.h"
-#include "Engine.InterpGroup.h"
-#include "Engine.Pawn.ScalarParameterInterpStruct.h"
-#include "Engine.Pawn.LastHitInfoStruct.h"
-#include "Engine.EngineTypes.RootMotionCurve.h"
-#include "Engine.SeqAct_AssignController.h"
-#include "Engine.Inventory.h"
-#include "Engine.MaterialInstanceConstant.h"
-#include "Engine.RB_BodyInstance.h"
-#include "Core.Object.Rotator.h"
-#include "Engine.InterpGroupInst.h"
-#include "Engine.PathGoalEvaluator.h"
-#include "Engine.Vehicle.h"
-#include "Engine.PlayerStart.h"
-#include "Engine.PlayerReplicationInfo.h"
-#include "Engine.PathConstraint.h"
-#include "Core.Object.Pointer.h"
-#include "Engine.SoundCue.h"
 #include "Engine.AnimSet.h"
-#include "Engine.SeqAct_SetVelocity.h"
-#include "Engine.Actor.AnimSlotInfo.h"
-#include "Engine.SeqAct_Interp.h"
-#include "Engine.FaceFXAsset.h"
-#include "Engine.SequenceEvent.h"
-#include "Engine.Pylon.ENavMeshEdgeType.h"
-#include "Engine.HUD.h"
-#include "Engine.SeqAct_GiveInventory.h"
-#include "Engine.TeamInfo.h"
-#include "Engine.SeqAct_Teleport.h"
 #include "Engine.Canvas.h"
+#include "Engine.Controller.h"
+#include "Engine.EngineTypes.RootMotionCurve.h"
+#include "Engine.FaceFXAnimSet.h"
+#include "Engine.FaceFXAsset.h"
+#include "Engine.HUD.h"
+#include "Engine.InterpGroup.h"
+#include "Engine.InterpGroupInst.h"
+#include "Engine.Inventory.h"
+#include "Engine.InventoryManager.h"
+#include "Engine.LadderVolume.h"
+#include "Engine.MaterialInstanceConstant.h"
+#include "Engine.NavigationPoint.h"
+#include "Engine.PathConstraint.h"
+#include "Engine.PathGoalEvaluator.h"
+#include "Engine.Pawn.EPathSearchType.h"
+#include "Engine.Pawn.LastHitInfoStruct.h"
+#include "Engine.Pawn.ScalarParameterInterpStruct.h"
+#include "Engine.PhysicsVolume.h"
+#include "Engine.PlayerController.h"
+#include "Engine.PlayerReplicationInfo.h"
+#include "Engine.PlayerStart.h"
+#include "Engine.Pylon.ENavMeshEdgeType.h"
+#include "Engine.RB_BodyInstance.h"
+#include "Engine.SeqAct_AssignController.h"
+#include "Engine.SeqAct_AttachToActor.h"
+#include "Engine.SeqAct_GiveInventory.h"
+#include "Engine.SeqAct_Interp.h"
+#include "Engine.SeqAct_PlayFaceFXAnim.h"
+#include "Engine.SeqAct_SetMaterial.h"
+#include "Engine.SeqAct_SetVelocity.h"
+#include "Engine.SeqAct_Teleport.h"
+#include "Engine.SequenceEvent.h"
+#include "Engine.SoundCue.h"
+#include "Engine.TeamInfo.h"
+#include "Engine.Weapon.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -68,9 +70,10 @@ namespace UnrealScript
 	class Pawn : public Actor
 	{
 	public:
-		ADD_OBJECT(Controller, Controller, 508)
+		typedef Pawn__EPathSearchType EPathSearchType;
+		typedef Pawn__ScalarParameterInterpStruct ScalarParameterInterpStruct;
+		typedef Pawn__LastHitInfoStruct LastHitInfoStruct;
 		ADD_STRUCT(int, MaxPitchLimit, 664)
-		ADD_OBJECT(Weapon, Weapon, 984)
 		ADD_OBJECT(InventoryManager, InvManager, 980)
 		ADD_BOOL(bIsWalking, 528, 0x4)
 		ADD_STRUCT(float, EyeHeight, 728)
@@ -125,7 +128,6 @@ namespace UnrealScript
 		ADD_OBJECT(ScriptClass, HitDamageType, 904)
 		ADD_STRUCT(Vector, TakeHitLocation, 892)
 		ADD_OBJECT(PlayerStart, LastStartSpot, 884)
-		ADD_OBJECT(PlayerReplicationInfo, PlayerReplicationInfo, 860)
 		ADD_OBJECT(ScriptClass, ControllerClass, 856)
 		ADD_STRUCT(ScriptString*, MenuName, 844)
 		ADD_STRUCT(float, DamageScaling, 840)
@@ -1922,3 +1924,4 @@ void**)params = AC;
 #undef ADD_BOOL
 #undef ADD_STRUCT
 #undef ADD_OBJECT
+#include "Engine.Vehicle.h"

@@ -1,6 +1,10 @@
 #pragma once
-#include "Engine.MaterialExpressionTextureSample.h"
+namespace UnrealScript
+{
+	class MaterialExpressionTextureSampleParameter;
+}
 #include "Core.Object.Guid.h"
+#include "Engine.MaterialExpressionTextureSample.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

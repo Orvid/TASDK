@@ -1,9 +1,13 @@
 #pragma once
-#include "Engine.KMeshProps.KSphereElem.h"
-#include "Engine.KMeshProps.KBoxElem.h"
-#include "Engine.KMeshProps.KSphylElem.h"
+namespace UnrealScript
+{
+	struct KMeshProps__KAggregateGeom;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.KMeshProps.KBoxElem.h"
 #include "Engine.KMeshProps.KConvexElem.h"
+#include "Engine.KMeshProps.KSphereElem.h"
+#include "Engine.KMeshProps.KSphylElem.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

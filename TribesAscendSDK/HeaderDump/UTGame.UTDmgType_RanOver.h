@@ -1,9 +1,12 @@
 #pragma once
-#include "UTGame.UTDamageType.h"
-#include "UTGame.UTPlayerReplicationInfo.h"
-#include "UTGame.UTPlayerController.h"
+namespace UnrealScript
+{
+	class UTDmgType_RanOver;
+}
 #include "Engine.Pawn.h"
-#include "Core.Object.Vector.h"
+#include "UTGame.UTDamageType.h"
+#include "UTGame.UTPlayerController.h"
+#include "UTGame.UTPlayerReplicationInfo.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \

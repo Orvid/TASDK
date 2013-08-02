@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TranslationContext;
+}
 #include "Core.Object.h"
 #include "Engine.TranslatorTag.h"
 #define ADD_STRUCT(x, y, offset) \

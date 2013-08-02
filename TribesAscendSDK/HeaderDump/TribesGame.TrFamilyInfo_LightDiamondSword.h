@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class TrFamilyInfo_LightDiamondSword;
+}
 #include "TribesGame.TrFamilyInfo_Light.h"
 namespace UnrealScript
 {

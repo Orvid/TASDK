@@ -1,8 +1,12 @@
 #pragma once
+namespace UnrealScript
+{
+	class NxForceFieldComponent;
+}
 #include "Core.Object.Pointer.h"
+#include "Engine.ForceFieldShape.h"
 #include "Engine.PrimitiveComponent.h"
 #include "Engine.PrimitiveComponent.RBCollisionChannelContainer.h"
-#include "Engine.ForceFieldShape.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct UDKPawn__MaterialImpactEffect;
+}
 #include "Engine.MaterialInterface.h"
 #include "Engine.ParticleSystem.h"
 #include "Engine.SoundCue.h"

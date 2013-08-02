@@ -1,16 +1,21 @@
 #pragma once
-#include "GameFramework.GameStatsAggregator.GameEvents.h"
-#include "GameFramework.GameStatsAggregator.PawnEvents.h"
+namespace UnrealScript
+{
+	class GameStatsAggregator;
+}
+#include "Core.Object.Map_Mirror.h"
 #include "Engine.GameplayEvents.GameplayEventMetaData.h"
 #include "Engine.GameplayEventsHandler.h"
 #include "GameFramework.GameStateObject.h"
 #include "GameFramework.GameStatsAggregator.AggregateEventMapping.h"
-#include "GameFramework.GameStatsAggregator.TeamEvents.h"
-#include "GameFramework.GameStatsAggregator.PlayerEvents.h"
 #include "GameFramework.GameStatsAggregator.DamageEvents.h"
+#include "GameFramework.GameStatsAggregator.GameEvent.h"
+#include "GameFramework.GameStatsAggregator.GameEvents.h"
+#include "GameFramework.GameStatsAggregator.PawnEvents.h"
+#include "GameFramework.GameStatsAggregator.PlayerEvents.h"
 #include "GameFramework.GameStatsAggregator.ProjectileEvents.h"
+#include "GameFramework.GameStatsAggregator.TeamEvents.h"
 #include "GameFramework.GameStatsAggregator.WeaponEvents.h"
-#include "Core.Object.Map_Mirror.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \
 void set_##y(x val) { *(x*)(this + offset) = val; } \
@@ -24,6 +29,15 @@ namespace UnrealScript
 	class GameStatsAggregator : public GameplayEventsHandler
 	{
 	public:
+		typedef GameStatsAggregator__AggregateEventMapping AggregateEventMapping;
+		typedef GameStatsAggregator__TeamEvents TeamEvents;
+		typedef GameStatsAggregator__PlayerEvents PlayerEvents;
+		typedef GameStatsAggregator__DamageEvents DamageEvents;
+		typedef GameStatsAggregator__PawnEvents PawnEvents;
+		typedef GameStatsAggregator__ProjectileEvents ProjectileEvents;
+		typedef GameStatsAggregator__WeaponEvents WeaponEvents;
+		typedef GameStatsAggregator__GameEvents GameEvents;
+		typedef GameStatsAggregator__GameEvent GameEvent;
 		static const auto GAMEEVENT_AGGREGATED_DATA = 10000;
 		static const auto GAMEEVENT_AGGREGATED_PLAYER_TIMEALIVE = 10001;
 		static const auto GAMEEVENT_AGGREGATED_PLAYER_KILLS = 10002;

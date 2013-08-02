@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	class CheatManager;
+}
 #include "Core.Object.h"
 #include "Engine.DebugCameraController.h"
 #include "Engine.Weapon.h"

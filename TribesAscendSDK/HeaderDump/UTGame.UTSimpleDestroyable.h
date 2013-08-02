@@ -1,12 +1,15 @@
 #pragma once
+namespace UnrealScript
+{
+	class UTSimpleDestroyable;
+}
 #include "Engine.Actor.h"
+#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.Controller.h"
 #include "Engine.DynamicSMActor.h"
-#include "Engine.StaticMesh.h"
-#include "Core.Object.Vector.h"
 #include "Engine.ParticleSystem.h"
-#include "Engine.Actor.TraceHitInfo.h"
 #include "Engine.SoundCue.h"
+#include "Engine.StaticMesh.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

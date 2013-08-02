@@ -1,7 +1,13 @@
 #pragma once
-#include "Engine.SkelControlBase.h"
+namespace UnrealScript
+{
+	class GameSkelCtrl_Recoil;
+}
 #include "Core.Object.Vector2D.h"
+#include "Engine.SkelControlBase.h"
+#include "GameFramework.GameSkelCtrl_Recoil.ERecoilStart.h"
 #include "GameFramework.GameSkelCtrl_Recoil.RecoilDef.h"
+#include "GameFramework.GameSkelCtrl_Recoil.RecoilParams.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \
@@ -21,6 +27,9 @@ namespace UnrealScript
 	class GameSkelCtrl_Recoil : public SkelControlBase
 	{
 	public:
+		typedef GameSkelCtrl_Recoil__ERecoilStart ERecoilStart;
+		typedef GameSkelCtrl_Recoil__RecoilParams RecoilParams;
+		typedef GameSkelCtrl_Recoil__RecoilDef RecoilDef;
 		ADD_STRUCT(Object__Vector2D, Aim, 304)
 		ADD_STRUCT(GameSkelCtrl_Recoil__RecoilDef, Recoil, 192)
 		ADD_BOOL(bApplyControl, 188, 0x8)

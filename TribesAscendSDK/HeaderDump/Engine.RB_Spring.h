@@ -1,8 +1,11 @@
 #pragma once
-#include "Engine.ActorComponent.h"
+namespace UnrealScript
+{
+	class RB_Spring;
+}
 #include "Core.Object.InterpCurveFloat.h"
 #include "Core.Object.Pointer.h"
-#include "Core.Object.Vector.h"
+#include "Engine.ActorComponent.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
 void set_##name(bool val) \

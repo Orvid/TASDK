@@ -1,4 +1,8 @@
 #pragma once
+namespace UnrealScript
+{
+	struct ProcBuilding__PBScope2D;
+}
 #include "Core.Object.Matrix.h"
 #define ADD_STRUCT(x, y, offset) \
 x get_##y() { return *(x*)(this + offset); } \

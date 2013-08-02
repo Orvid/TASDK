@@ -1,8 +1,12 @@
 #pragma once
-#include "Engine.NavigationPoint.h"
+namespace UnrealScript
+{
+	class DoorMarker;
+}
 #include "Engine.Actor.h"
 #include "Engine.DoorMarker.EDoorType.h"
 #include "Engine.InterpActor.h"
+#include "Engine.NavigationPoint.h"
 #include "Engine.Pawn.h"
 #define ADD_BOOL(name, offset, mask) \
 bool get_##name() { return (*(DWORD*)(this + offset) & mask) != 0; } \
@@ -27,6 +31,7 @@ namespace UnrealScript
 	class DoorMarker : public NavigationPoint
 	{
 	public:
+		typedef DoorMarker__EDoorType EDoorType;
 		ADD_BOOL(bTempDisabledCollision, 704, 0x10)
 		ADD_BOOL(bDoorOpen, 704, 0x8)
 		ADD_BOOL(bBlockedWhenClosed, 704, 0x4)
