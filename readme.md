@@ -22,6 +22,9 @@ To run a local server:
 To run a dedicated server: 
 `TribesAscend server mapname -seekfreeloading`
 
+To connect to a dedicated server:
+`TribesAscend ip:port -seekfreeloading`
+
 
 ## Guidelines
 
