@@ -1,5 +1,5 @@
 #include "TASDK.h"
-#include "HeaderDump/TribesGame.TrPlayerController.h"
+//#include "HeaderDump/TribesGame.TrPlayerController.h"
 #include "HeaderDump/TribesGame.TrEquipInterface.h"
 //#include "Armor.h"
 

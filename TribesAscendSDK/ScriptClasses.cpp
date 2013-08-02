@@ -195,7 +195,7 @@ struct ClassDependencyManager
 		static std::string headerName;
 		headerName = GetHeaderName(objType);
 		headerName = headerName.substr(0, headerName.length() - 2);
-		if (!strcmp(objType->object_class()->GetName(), "Class") && SuperIsSelf((ScriptStruct*)objType))
+		if (!strcmp(objType->object_class()->GetName(), "Class"))// && SuperIsSelf((ScriptStruct*)objType))
 		{
 			requiredPreDeclarations[objType->GetName()] = 1;
 			requiredPostHeaders[headerName] = 1;
